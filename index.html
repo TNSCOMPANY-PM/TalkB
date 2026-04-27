@@ -5835,6 +5835,18 @@ footer {
 
 .exit-modal-form { display: flex; gap: 8px; margin-bottom: 16px; }
 
+.nl-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2D7D46;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 4px;
+  animation: nlFadeIn .3s ease;
+}
+@keyframes nlFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
 .exit-modal-form input {
   flex: 1;
   padding: 14px 16px;
@@ -8934,7 +8946,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
           매달 1회, F&amp;B AI 검색 트렌드와 신규 인사이트 포스트를 이메일로 정리해 드립니다. 언제든 구독 취소 가능합니다.
         </p>
       </div>
-      <form class="insights-newsletter-form" onsubmit="event.preventDefault(); alert('구독이 완료되었습니다!');">
+      <form class="insights-newsletter-form" onsubmit="event.preventDefault(); submitNewsletter(this);">
         <input type="email" placeholder="이메일 주소" required>
         <button type="submit" class="btn btn-accent">구독</button>
       </form>
@@ -9042,17 +9054,17 @@ html, body { max-width: 100%; overflow-x: hidden; }
   <div class="newsletter-bar-text">
     <strong>AI 마케팅 인사이트</strong>를 월 1회 이메일로 받아보세요.
   </div>
-  <form class="newsletter-bar-form" onsubmit="event.preventDefault(); alert('구독이 완료되었습니다!'); document.getElementById('newsletterBar').classList.remove('visible');">
+  <form class="newsletter-bar-form" onsubmit="event.preventDefault(); submitNewsletter(this, function(){ document.getElementById('newsletterBar').classList.remove('visible'); });">
     <input type="email" placeholder="이메일 주소" required>
     <button type="submit" class="btn btn-accent">구독하기</button>
   </form>
-  <button class="newsletter-bar-close" onclick="(function(){document.getElementById('newsletterBar').classList.remove('visible');try{localStorage.setItem('talkb_nl_dismissed_until',String(Date.now()+24*60*60*1000));}catch(e){try{sessionStorage.setItem('nlClosed','1');}catch(e2){}}})()">×</button>
+  <button class="newsletter-bar-close" aria-label="뉴스레터 닫기" onclick="(function(){document.getElementById('newsletterBar').classList.remove('visible');try{localStorage.setItem('talkb_nl_dismissed_until',String(Date.now()+24*60*60*1000));}catch(e){try{sessionStorage.setItem('nlClosed','1');}catch(e2){}}})()">×</button>
 </div>
 
 <!-- Exit Modal (뉴스레터 구독) -->
 <div class="exit-modal" id="exitModal">
   <div class="exit-modal-inner">
-    <button class="exit-modal-close" onclick="document.getElementById('exitModal').classList.remove('visible')">×</button>
+    <button class="exit-modal-close" aria-label="팝업 닫기" onclick="document.getElementById('exitModal').classList.remove('visible')">×</button>
     <div class="exit-modal-label">Before You Go</div>
     <h3 class="exit-modal-title">
       <em>AI 마케팅 소식을</em><br>놓치지 마세요.
@@ -9060,7 +9072,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <p class="exit-modal-desc">
       지금 바쁘셔도 괜찮습니다. F&amp;B AI 검색 트렌드와 실전 팁을 월 1회 이메일로 정리해드립니다.
     </p>
-    <form class="exit-modal-form" onsubmit="event.preventDefault(); alert('구독이 완료되었습니다!'); document.getElementById('exitModal').classList.remove('visible');">
+    <form class="exit-modal-form" onsubmit="event.preventDefault(); submitNewsletter(this, function(){ document.getElementById('exitModal').classList.remove('visible'); });">
       <input type="email" placeholder="이메일 주소" required>
       <button type="submit" class="btn btn-accent">구독</button>
     </form>
@@ -9073,11 +9085,21 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 <script>
 // ─────────────────────────────────────────────────
+// Newsletter 구독 폼 공용 핸들러 (alert 대신 인라인 피드백)
+// ─────────────────────────────────────────────────
+function submitNewsletter(form, afterCb) {
+  const emailEl = form.querySelector('input[type="email"]');
+  const email = emailEl ? emailEl.value : '';
+  form.innerHTML = '<span class="nl-success">✓&nbsp; <strong>' + email + '</strong> 구독 완료! 감사합니다.</span>';
+  if (typeof afterCb === 'function') setTimeout(afterCb, 1400);
+}
+
+// ─────────────────────────────────────────────────
 // Nav scroll effect
 // ─────────────────────────────────────────────────
 const nav = document.getElementById('topnav');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 80);
+  nav?.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
 
 // ─────────────────────────────────────────────────
