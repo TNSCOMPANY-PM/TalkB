@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/insights-geo-guide.html",                  "destination": "/insights/geo-guide.html",                  "permanent": true },
+    { "source": "/insights-seo-geo-aeo-comparison.html",     "destination": "/insights/seo-geo-aeo-comparison.html",     "permanent": true },
+    { "source": "/insights-ai-answer-4-stages.html",         "destination": "/insights/ai-answer-4-stages.html",         "permanent": true },
+    { "source": "/insights-franchise-hq-ai-citation.html",   "destination": "/insights/franchise-hq-ai-citation.html",   "permanent": true },
+    { "source": "/insights-local-store-checklist.html",      "destination": "/insights/local-store-checklist.html",      "permanent": true },
+    { "source": "/insights-situational-query-response.html", "destination": "/insights/situational-query-response.html", "permanent": true },
+    { "source": "/insights-chatgpt-citation-conditions.html","destination": "/insights/chatgpt-citation-conditions.html","permanent": true },
+    { "source": "/insights-perplexity-citation-structure.html","destination": "/insights/perplexity-citation-structure.html","permanent": true },
+    { "source": "/insights-google-aio-gemini-guide.html",    "destination": "/insights/google-aio-gemini-guide.html",    "permanent": true },
+    { "source": "/insights-korea-ai-search-2026.html",       "destination": "/insights/korea-ai-search-2026.html",       "permanent": true },
+    { "source": "/insights-zero-click-era-fnb.html",         "destination": "/insights/zero-click-era-fnb.html",         "permanent": true }
+  ]
+}

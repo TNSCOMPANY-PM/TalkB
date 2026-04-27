@@ -82,18 +82,19 @@ talkb-site/
 ├── robots.txt
 ├── llms.txt (AI 크롤러용 사이트 요약)
 ├── sitemap.xml
-└── insights-*.html (인사이트 11편)
-    ├── insights-geo-guide.html (Pillar 01-01)
-    ├── insights-seo-geo-aeo-comparison.html (01-02)
-    ├── insights-ai-answer-4-stages.html (01-03)
-    ├── insights-franchise-hq-ai-citation.html (02-01)
-    ├── insights-local-store-checklist.html (02-02)
-    ├── insights-situational-query-response.html (02-03)
-    ├── insights-chatgpt-citation-conditions.html (03-01)
-    ├── insights-perplexity-citation-structure.html (03-02)
-    ├── insights-google-aio-gemini-guide.html (03-03)
-    ├── insights-korea-ai-search-2026.html (04-01)
-    └── insights-zero-click-era-fnb.html (04-02)
+├── vercel.json (301 리다이렉트 설정)
+└── insights/ (인사이트 11편 서브폴더)
+    ├── geo-guide.html (Pillar 01-01)
+    ├── seo-geo-aeo-comparison.html (01-02)
+    ├── ai-answer-4-stages.html (01-03)
+    ├── franchise-hq-ai-citation.html (02-01)
+    ├── local-store-checklist.html (02-02)
+    ├── situational-query-response.html (02-03)
+    ├── chatgpt-citation-conditions.html (03-01)
+    ├── perplexity-citation-structure.html (03-02)
+    ├── google-aio-gemini-guide.html (03-03)
+    ├── korea-ai-search-2026.html (04-01)
+    └── zero-click-era-fnb.html (04-02)
 ```
 
 ---
