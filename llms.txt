@@ -1,8 +1,8 @@
 # TalkB (토크비)
 
-> F&B 브랜드를 위한 AI 검색 최적화(GEO·AEO) 전담 파트너사. ChatGPT·Perplexity·Gemini·Claude 4대 생성형 AI 답변에 브랜드가 인용되도록 콘텐츠를 설계하고 매달 실측 리포트를 제공합니다.
+> 국내 1세대 맛집 전문 AI 노출 자동화 솔루션. ChatGPT·Perplexity·Gemini·Claude 4대 생성형 AI 답변에 우리 매장이 자동으로 인용되도록 24시간 시스템이 추적·실행·학습합니다. 사람이 자문하는 컨설팅이 아닌 SaaS 솔루션입니다.
 
-TalkB는 한국의 (주)티앤에스컴퍼니가 운영하는 F&B 전담 AI 검색 최적화 브랜드입니다. 프랜차이즈 본사·가맹점·독립매장이 ChatGPT, Perplexity, Google AI Overview, Claude의 답변에 인용되도록 사이트 구조·콘텐츠·외부 채널을 통합 설계합니다. 2024년 Princeton University KDD 논문에서 정립된 GEO(Generative Engine Optimization) 방법론을 한국 F&B 업종에 특화 적용합니다.
+TalkB는 한국의 (주)티앤에스컴퍼니가 운영하는 맛집 전담 AI 노출 자동화 솔루션입니다. 지역 맛집 사장님과 프랜차이즈 직가맹점·본사가 ChatGPT, Perplexity, Google AI Overview, Claude의 답변에 자동으로 인용되도록 사이트 구조·콘텐츠·외부 채널을 시스템이 자동 최적화합니다. 2024년 Princeton University KDD 논문에서 정립된 GEO(Generative Engine Optimization) 방법론을 한국 맛집 업종에 특화 자동화한 솔루션입니다.
 
 ## 핵심 정보
 
