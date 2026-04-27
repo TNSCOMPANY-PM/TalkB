@@ -1588,6 +1588,179 @@ nav.topnav.scrolled {
   letter-spacing: -0.01em;
 }
 
+
+/* === GPT CHAT MOCKUP (Hero) === */
+.gpt-mockup-wrap { margin: 40px auto 0; max-width: 680px; position: relative; }
+.gpt-window {
+  background: #212121; border-radius: 14px;
+  box-shadow: 0 28px 72px rgba(0,0,0,0.30), 0 0 0 1px rgba(255,255,255,0.07);
+  overflow: hidden; font-family: var(--f-body);
+}
+.gpt-chrome {
+  display: flex; align-items: center; gap: 7px; padding: 12px 16px;
+  background: #171717; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.gpt-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.gpt-dot.r { background: #FF5F57; }
+.gpt-dot.y { background: #FEBC2E; }
+.gpt-dot.g { background: #28C840; }
+.gpt-chrome-label {
+  margin-left: 10px; font-size: 13px; color: rgba(255,255,255,0.42);
+  font-weight: 500; letter-spacing: -0.01em;
+}
+.gpt-body { display: flex; }
+.gpt-sidebar {
+  width: 52px; background: #171717; border-right: 1px solid rgba(255,255,255,0.05);
+  padding: 14px 10px; display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.gpt-sidebar-icon {
+  width: 30px; height: 30px; background: rgba(255,255,255,0.07); border-radius: 7px;
+}
+.gpt-chat { flex: 1; padding: 24px 22px; display: flex; flex-direction: column; gap: 18px; }
+.gpt-msg { display: flex; gap: 10px; align-items: flex-start; }
+.gpt-msg.user { justify-content: flex-end; }
+.gpt-avatar {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff;
+}
+.gpt-avatar.ai { background: #10A37F; }
+.gpt-avatar.user-av { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+.gpt-bubble { max-width: 85%; font-size: 13px; line-height: 1.65; letter-spacing: -0.01em; }
+.gpt-msg.user .gpt-bubble {
+  padding: 10px 15px; background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.88); border-radius: 14px 3px 14px 14px;
+}
+.gpt-msg.ai .gpt-bubble { color: rgba(255,255,255,0.85); }
+.gpt-bubble p { margin: 0 0 10px; }
+.gpt-bubble p:last-child { margin-bottom: 0; }
+.gpt-restaurant-list { display: flex; flex-direction: column; gap: 7px; margin: 10px 0; }
+.gpt-restaurant-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 9px 13px; background: rgba(255,255,255,0.06);
+  border-radius: 9px; border-left: 3px solid #10A37F;
+}
+.gpt-restaurant-name { font-weight: 600; color: rgba(255,255,255,0.94); font-size: 13px; }
+.gpt-restaurant-desc { color: rgba(255,255,255,0.5); font-size: 11.5px; margin-top: 2px; }
+.gpt-window-footer {
+  font-size: 11px; color: rgba(255,255,255,0.25); text-align: center;
+  padding: 10px 16px; border-top: 1px solid rgba(255,255,255,0.05);
+}
+.gpt-callout {
+  margin-top: 16px; padding: 18px 22px;
+  background: var(--accent-soft); border: 1px solid rgba(232,93,58,0.2); border-radius: 12px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.gpt-callout-icon { font-size: 22px; flex-shrink: 0; line-height: 1.3; }
+.gpt-callout-text { font-size: 14.5px; font-weight: 600; color: var(--ink); letter-spacing: -0.02em; line-height: 1.55; }
+.gpt-callout-text em { color: var(--accent); font-style: normal; }
+@media (max-width: 640px) {
+  .gpt-sidebar { display: none; }
+  .gpt-bubble { font-size: 12px; }
+  .gpt-restaurant-name { font-size: 12px; }
+}
+
+/* === 결론 먼저 섹션 === */
+.summary-first {
+  padding: 72px 0 64px;
+  background: var(--ink);
+  color: var(--white);
+}
+.summary-first-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+.summary-first-eyebrow {
+  font-family: var(--f-mono); font-size: 11px; color: var(--accent);
+  letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px;
+}
+.summary-first-title {
+  font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -0.04em;
+  line-height: 1.2; color: var(--white); margin-bottom: 16px;
+}
+.summary-first-title em { color: var(--accent); font-style: normal; }
+.summary-first-sub {
+  font-size: 16px; color: rgba(255,255,255,0.58); line-height: 1.7;
+  letter-spacing: -0.01em; margin-bottom: 52px; max-width: 540px; margin-left: auto; margin-right: auto;
+}
+.summary-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 0;
+}
+.summary-card {
+  padding: 28px 24px; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; text-align: left;
+}
+.summary-card-num {
+  font-family: var(--f-mono); font-size: 11px; color: var(--accent);
+  font-weight: 700; letter-spacing: 0.1em; margin-bottom: 12px;
+}
+.summary-card-title {
+  font-size: 17px; font-weight: 700; color: var(--white);
+  letter-spacing: -0.03em; line-height: 1.3; margin-bottom: 10px;
+}
+.summary-card-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; letter-spacing: -0.01em; }
+@media (max-width: 680px) { .summary-cards { grid-template-columns: 1fr; } }
+
+/* === Enterprise Strip === */
+.enterprise-strip {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.enterprise-strip::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(232,93,58,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.enterprise-strip-inner { max-width: 900px; margin: 0 auto; }
+.enterprise-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; background: rgba(232,93,58,0.15);
+  border: 1px solid rgba(232,93,58,0.3); border-radius: 100px;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.enterprise-title {
+  font-size: clamp(24px, 4vw, 38px); font-weight: 700; letter-spacing: -0.04em;
+  line-height: 1.25; color: var(--white); margin-bottom: 14px;
+}
+.enterprise-sub {
+  font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7;
+  letter-spacing: -0.01em; margin-bottom: 40px; max-width: 560px;
+}
+.enterprise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+.enterprise-feature {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 18px 20px; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+}
+.enterprise-feature-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.enterprise-feature-body {}
+.enterprise-feature-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; letter-spacing: -0.02em; }
+.enterprise-feature-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+.enterprise-pilot-row {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 20px 24px; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+  margin-bottom: 32px;
+}
+.enterprise-pilot-label {
+  font-family: var(--f-mono); font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; flex-shrink: 0;
+}
+.enterprise-pilot-brand {
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
+  padding: 4px 12px; background: rgba(255,255,255,0.06); border-radius: 100px;
+}
+.enterprise-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .enterprise-grid { grid-template-columns: 1fr; }
+  .enterprise-cta-row .btn { width: 100%; }
+}
+
 /* Hero 우측 */
 .hero-visual { padding-top: 16px; }
 
@@ -6381,6 +6554,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       <li><a href="#solution">작동 방식</a></li>
       <li><a href="#pricing">가격</a></li>
       <li><a href="#process">시작 방법</a></li>
+      <li><a href="#enterprise">본사</a></li>
       <li><a href="#resources">자료</a></li>
       <li class="nav-cta-wrap"><a href="#final-cta" class="nav-cta">무료 진단</a></li>
     </ul>
@@ -6406,6 +6580,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       <li><a href="#pricing" data-drawer-close>가격</a></li>
       <li><a href="#conversion" data-drawer-close>왜 효과적인가</a></li>
       <li><a href="#process" data-drawer-close>시작 방법</a></li>
+      <li><a href="#enterprise" data-drawer-close>프랜차이즈 본사</a></li>
       <li><a href="#resources" data-drawer-close>자료</a></li>
       <li><a href="#faq" data-drawer-close>자주 묻는 질문</a></li>
       <li><a href="#final-cta" class="mobile-cta" data-drawer-close>무료 진단</a></li>
@@ -6414,61 +6589,83 @@ html, body { max-width: 100%; overflow-x: hidden; }
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     HERO V3 - 생성형 AI 통합 + 광고비 Before/After
-     TJ 피드백 반영: 로고 통합, 질문 2개, CTA 제거
+     HERO V4 - GPT Chat UI Mockup + 결론 먼저
+     독립매장 사장님 1순위 대상 · 사장님 언어
      ═══════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="container">
     <div class="hero-center">
-      <div class="hero-tagline-banner">국내 1세대 · 맛집 전문 AI 노출 자동화 솔루션</div>
+      <div class="hero-tagline-banner">국내 1세대 · 요식업 전문 AI 노출 자동화 솔루션</div>
 
       <h1 class="hero-main-title">
-        AI에 우리 매장을 검색하면<br>
-        <em>옆집이 먼저 나옵니다.</em>
+        손님이 AI에게 맛집을 물을 때,<br>
+        <em>내 매장이 대답에 없습니다.</em>
       </h1>
 
       <p class="hero-sub-line">
-        손님은 이미 AI에게 묻고, 답변에 나온 매장으로 갑니다.<br>
-        <strong>거기에 우리 매장이 없으면, 매출은 옆집으로 갑니다.</strong>
+        요식업 손님의 절반이 이미 AI로 오늘 갈 식당을 고릅니다.<br>
+        <strong>AI 답변에 없는 매장은, 영업 중이어도 없는 겁니다.</strong>
       </p>
 
-      <!-- 생성형 AI 통합 비주얼 -->
-      <div class="ai-unified-visual">
-        <div class="ai-unified-label">손님이 매일 AI에 검색하는 질문</div>
-
-        <div class="ai-brands-row">
-          <div class="ai-brand-icon">
-            <span class="ai-brand-mark gpt">G</span>
-            <span class="ai-brand-name">ChatGPT</span>
+      <!-- GPT Chat Window Mockup -->
+      <div class="gpt-mockup-wrap">
+        <div class="gpt-window">
+          <div class="gpt-chrome">
+            <span class="gpt-dot r"></span>
+            <span class="gpt-dot y"></span>
+            <span class="gpt-dot g"></span>
+            <span class="gpt-chrome-label">ChatGPT</span>
           </div>
-          <div class="ai-brand-icon">
-            <span class="ai-brand-mark perplexity">P</span>
-            <span class="ai-brand-name">Perplexity</span>
+          <div class="gpt-body">
+            <div class="gpt-sidebar">
+              <div class="gpt-sidebar-icon"></div>
+              <div class="gpt-sidebar-icon"></div>
+              <div class="gpt-sidebar-icon"></div>
+            </div>
+            <div class="gpt-chat">
+              <div class="gpt-msg user">
+                <div class="gpt-bubble">
+                  광장동에서 조용하고 분위기 좋은 한식당 추천해줘. 주차 가능하면 좋겠어.
+                </div>
+                <div class="gpt-avatar user-av">나</div>
+              </div>
+              <div class="gpt-msg ai">
+                <div class="gpt-avatar ai">AI</div>
+                <div class="gpt-bubble">
+                  <p>광장동에서 분위기 좋고 주차 가능한 한식당을 추천해 드릴게요.</p>
+                  <div class="gpt-restaurant-list">
+                    <div class="gpt-restaurant-item">
+                      <div>
+                        <div class="gpt-restaurant-name">광장한옥집</div>
+                        <div class="gpt-restaurant-desc">전통 한옥 인테리어 · 주차 2시간 무료 · 예약 필수</div>
+                      </div>
+                    </div>
+                    <div class="gpt-restaurant-item">
+                      <div>
+                        <div class="gpt-restaurant-name">문래한식당</div>
+                        <div class="gpt-restaurant-desc">조용한 분위기 · 계절 코스 요리 전문 · 룸 있음</div>
+                      </div>
+                    </div>
+                    <div class="gpt-restaurant-item">
+                      <div>
+                        <div class="gpt-restaurant-name">청담한식</div>
+                        <div class="gpt-restaurant-desc">소규모 프라이빗 룸 · 발레파킹 가능 · 소수 운영</div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>방문 전 예약 여부를 확인해 보세요.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ai-brand-icon">
-            <span class="ai-brand-mark gemini">G</span>
-            <span class="ai-brand-name">Gemini</span>
-          </div>
-          <div class="ai-brand-icon">
-            <span class="ai-brand-mark claude">C</span>
-            <span class="ai-brand-name">Claude</span>
-          </div>
-          <div class="ai-brand-icon">
-            <span class="ai-brand-mark cue">N</span>
-            <span class="ai-brand-name">Cue:</span>
-          </div>
-          <span class="ai-plus-more">+ 그 밖의 모든 AI</span>
+          <div class="gpt-window-footer">ChatGPT 시뮬레이션 · 매장명은 예시입니다</div>
         </div>
 
-        <!-- 실제 질문 2개 - 맛집 시나리오 -->
-        <div class="ai-question-stack">
-          <div class="ai-question-card">
-            광장동에서 조용하고 맛있는 한식당, 주차되는 곳으로 추천해줘
-            <span class="who">손님</span>
-          </div>
-          <div class="ai-question-card">
-            강남역 근처 회식하기 좋은 고깃집 추천해줘. 4명, 평균 1인 5만원
-            <span class="who">손님</span>
+        <div class="gpt-callout">
+          <div class="gpt-callout-icon">⚠️</div>
+          <div class="gpt-callout-text">
+            방금 이 AI 대화에 <em>우리 매장 이름은 없었습니다.</em><br>
+            손님은 지금 이 방식으로 오늘 저녁 식당을 고르고 있습니다.
           </div>
         </div>
       </div>
@@ -6534,6 +6731,41 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
       <div class="trust-badges-foot">
         모든 인증서·특허는 운영사 (주)티앤에스컴퍼니 명의로 보유 중이며, footer에서 확인 가능합니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SUMMARY FIRST · TalkB가 하는 일 (결론 먼저)
+     ═══════════════════════════════════════════════════════ -->
+<section class="summary-first">
+  <div class="container">
+    <div class="summary-first-inner fade-in">
+      <div class="summary-first-eyebrow">TalkB가 하는 일</div>
+      <h2 class="summary-first-title">
+        AI가 <em>우리 매장 이름을</em><br>직접 말하게 만듭니다.
+      </h2>
+      <p class="summary-first-sub">
+        광고비 없이, 자동으로, 매달 쌓이는 구조.<br>
+        측정→최적화→결과 — 딱 세 단계입니다.
+      </p>
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-card-num">STEP 01</div>
+          <div class="summary-card-title">AI가 내 매장을<br>어떻게 인식하는지 측정</div>
+          <div class="summary-card-desc">ChatGPT·Perplexity·구글 AI에게 우리 매장 관련 질문을 던져 현재 노출 상태와 경쟁 매장 대비 위치를 수치로 파악합니다.</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card-num">STEP 02</div>
+          <div class="summary-card-title">AI가 인용하는<br>콘텐츠 자동 생성·배포</div>
+          <div class="summary-card-desc">AI가 좋아하는 방식으로 우리 매장 정보를 가공해 자동 배포합니다. 사장님이 따로 할 일은 없습니다.</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card-num">STEP 03</div>
+          <div class="summary-card-title">매달 Before/After<br>리포트로 결과 확인</div>
+          <div class="summary-card-desc">AI 노출률이 얼마나 올랐는지, 어떤 질문에서 언급됐는지 매달 수치로 확인합니다. 광고비와 달리 쌓이는 자산입니다.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -6637,8 +6869,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="pilot-strip-inner fade-in">
       <div class="pilot-strip-label">
         <span class="pilot-dot"></span>
-        Currently in Pilot
-        <span class="pilot-label-kr">현재 TalkB와 함께 진행 중인 브랜드</span>
+        Enterprise Pilot
+        <span class="pilot-label-kr">프랜차이즈 본사 파일럿 3사 · Before 측정 완료</span>
       </div>
 
       <div class="pilot-logos">
@@ -6825,7 +7057,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="industry-bars fade-in">
       <div class="industry-bars-header">
         <h3 class="industry-bars-title">
-          사람들이 식당 관련 질문을 구글에 던지면,<br>
+          손님이 요식업 관련 질문을 구글에 던지면,<br>
           <em>10번 중 8번 정도는 AI가 먼저 답변</em>합니다.
         </h3>
       </div>
@@ -6833,11 +7065,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
       <p style="font-size: 13px; color: var(--ink-mid); line-height: 1.7; margin-bottom: 28px; max-width: 680px;">
         예시 · "강남 한식당 추천", "김밥 프랜차이즈 창업 정보" 같은 질문을 구글에 치면 
         기존 검색 결과 위에 <span class="term-tooltip">AI 요약 답변<span class="term-tooltip-icon">?</span><span class="term-tooltip-popup"><strong>구글 AI Overview</strong>를 말합니다. 구글 검색 결과 맨 위에 AI가 정리해서 보여주는 요약 박스입니다. 여러 웹사이트를 종합해 한 번에 답을 제시합니다.<span class="term-tooltip-ex">"김밥 프랜차이즈" 검색 시 맨 위에 "주요 김밥 프랜차이즈로는 A, B, C가 있으며…"라고 AI가 직접 답변</span></span></span>이 먼저 뜹니다. 
-        <strong style="color: var(--ink); font-weight: 600;">식당업은 다른 어떤 업종보다도 이 AI 답변이 자주 나타나는 영역</strong>입니다.
+        <strong style="color: var(--ink); font-weight: 600;">요식업은 다른 어떤 업종보다도 이 AI 답변이 자주 나타나는 영역</strong>입니다.
       </p>
 
       <div class="industry-bar-row highlight">
-        <div class="industry-bar-label">식당업</div>
+        <div class="industry-bar-label">요식업</div>
         <div class="industry-bar-track">
           <div class="industry-bar-fill" data-width="78"></div>
         </div>
@@ -6885,7 +7117,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
 
       <div class="industry-bars-footnote">
-        출처: BrightEdge 2026.02 9개 업종 구글 AI 답변 노출 조사 · 식당업은 헬스케어·교육·B2B에 이어 AI 검색이 가장 활발한 상위 업종
+        출처: BrightEdge 2026.02 9개 업종 구글 AI 답변 노출 조사 · 요식업은 헬스케어·교육·B2B에 이어 AI 검색이 가장 활발한 상위 업종
       </div>
     </div>
   </div>
@@ -7907,17 +8139,17 @@ html, body { max-width: 100%; overflow-x: hidden; }
 <!-- ═══════════════════════════════════════════════════════
      REFERENCE CLIENTS (파일럿 → 레퍼런스, 히스토리 제거)
      ═══════════════════════════════════════════════════════ -->
-<section class="section section-cream" id="clients">
+<section class="section" id="clients" style="background: #F8F5EF; border-top: 3px solid #E85D3A;">
   <div class="container">
     <div class="clients-intro fade-in" style="text-align: center;">
-      <div class="eyebrow center">Before Measurement · 실측 데이터</div>
+      <div class="eyebrow center">Enterprise Pilot · 프랜차이즈 본사 실측 데이터</div>
       <h2 class="headline-lg">
-        우린 말이 아닌,<br>
-        <em class="italic">데이터로 증명합니다.</em>
+        본사 단위 적용 시,<br>
+        <em class="italic">AI 인용률 변화를 수치로 검증합니다.</em>
       </h2>
       <p class="subtitle" style="margin: 24px auto 0; text-align: center;">
-        TalkB는 모든 파트너사 온보딩 시 <strong style="color: var(--ink); font-weight: 600;">Before 측정</strong>을 먼저 진행합니다.
-        3개월 뒤 After 측정과 비교해 <strong style="color: var(--accent); font-weight: 700;">AI 인용률 변화를 실제 숫자로</strong> 검증하기 위해서입니다.
+        프랜차이즈 본사 파일럿 3사에 대해 <strong style="color: var(--ink); font-weight: 600;">Before 측정</strong>을 먼저 진행합니다.
+        3개월 뒤 After 측정과 비교해 <strong style="color: var(--accent); font-weight: 700;">AI 인용률 변화를 실제 숫자로</strong> 검증합니다.
       </p>
     </div>
 
@@ -8037,7 +8269,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       <div class="ai-inaccuracy-header">
         <div class="ai-inaccuracy-tag">⚠ Pattern Observed</div>
         <h3 class="ai-inaccuracy-title">
-          AI가 F&amp;B 브랜드를 인용할 때 <em>자주 틀리는 4가지 유형</em>
+          프랜차이즈 본사 브랜드를 AI가 인용할 때 <em>자주 틀리는 4가지 유형</em>
         </h3>
         <p class="ai-inaccuracy-desc">
           파일럿 측정 과정에서 반복적으로 관찰된 부정확 답변 패턴입니다. <strong>AI 학습 데이터의 시점 차이와 출처 부족</strong>이 주요 원인으로, 본사가 AI 친화 콘텐츠를 별도 구축하지 않으면 <strong>"무노출"보다 "부정확 노출"이 더 위험</strong>한 상황이 발생합니다.
@@ -8795,6 +9027,70 @@ html, body { max-width: 100%; overflow-x: hidden; }
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
+     ENTERPRISE STRIP · 프랜차이즈 본사 / 가맹 브랜드 전용
+     ═══════════════════════════════════════════════════════ -->
+<section class="enterprise-strip" id="enterprise" aria-label="프랜차이즈 본사 전용 플랜">
+  <div class="container">
+    <div class="enterprise-strip-inner fade-in">
+      <div class="enterprise-badge">For Enterprise</div>
+      <h2 class="enterprise-title">
+        프랜차이즈 본사 · 가맹 브랜드라면<br>
+        <span style="color: var(--accent);">전혀 다른 차원의 접근이 필요합니다.</span>
+      </h2>
+      <p class="enterprise-sub">
+        독립매장 1개가 아닌 전체 가맹점을 AI 검색에 동시 노출시키고,<br>
+        예비창업자가 AI에게 창업 브랜드를 물었을 때 우리 브랜드가 먼저 나오게 만드는<br>
+        기업 전용 Enterprise 플랜이 있습니다.
+      </p>
+
+      <div class="enterprise-grid">
+        <div class="enterprise-feature">
+          <div class="enterprise-feature-icon">🏢</div>
+          <div class="enterprise-feature-body">
+            <div class="enterprise-feature-title">가맹점 전체 AI 노출 통합 관리</div>
+            <div class="enterprise-feature-desc">전국 매장을 지역별·업종별로 분류해 AI가 각 상권에서 정확하게 인용하도록 설계합니다.</div>
+          </div>
+        </div>
+        <div class="enterprise-feature">
+          <div class="enterprise-feature-icon">🚀</div>
+          <div class="enterprise-feature-body">
+            <div class="enterprise-feature-title">예비창업자 모집 AI 노출 <span style="font-size:11px; color:var(--accent); font-weight:700; background:rgba(232,93,58,0.15); padding:2px 8px; border-radius:4px; margin-left:6px;">Enterprise 전용</span></div>
+            <div class="enterprise-feature-desc">창업 관련 질문에 우리 브랜드가 먼저 답변으로 등장하도록 최적화합니다. 가맹 모집 비용을 AI 자산으로 대체합니다.</div>
+          </div>
+        </div>
+        <div class="enterprise-feature">
+          <div class="enterprise-feature-icon">🎯</div>
+          <div class="enterprise-feature-body">
+            <div class="enterprise-feature-title">브랜드 정보 정확도 교정</div>
+            <div class="enterprise-feature-desc">매장 수·창업 비용·가맹 조건 등 AI가 잘못 인용하는 정보를 지속적으로 모니터링하고 교정합니다.</div>
+          </div>
+        </div>
+        <div class="enterprise-feature">
+          <div class="enterprise-feature-icon">📊</div>
+          <div class="enterprise-feature-body">
+            <div class="enterprise-feature-title">본사·가맹점 통합 리포트</div>
+            <div class="enterprise-feature-desc">본사 브랜드 노출 + 개별 가맹점 지역 노출을 합산해 전사 AI 가시성을 월간 리포트로 제공합니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="enterprise-pilot-row">
+        <span class="enterprise-pilot-label">Pilot 진행 중</span>
+        <span class="enterprise-pilot-brand">오공김밥</span>
+        <span class="enterprise-pilot-brand">덮밥장사장</span>
+        <span class="enterprise-pilot-brand">한신우동</span>
+        <span style="font-size:12px; color:rgba(255,255,255,0.3); margin-left:4px;">파일럿 3사 Before 측정 완료 · After 결과 2026 Q2 공개 예정</span>
+      </div>
+
+      <div class="enterprise-cta-row">
+        <a href="#final-cta" class="btn btn-accent btn-lg">본사 전용 무료 진단 신청 →</a>
+        <a href="#clients" class="btn btn-ghost btn-lg" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);">파일럿 데이터 보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
      INSIGHTS HUB · Topical Authority 콘텐츠 허브
      4 Pillar × 5 Cluster = 20 posts 로드맵
      ═══════════════════════════════════════════════════════ -->
@@ -8807,7 +9103,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         <em class="italic">우리 사이트도 AI에 인용됩니다.</em>
       </h2>
       <p class="subtitle" style="margin: 24px auto 0;">
-        TalkB는 F&amp;B AI 검색 최적화의 모든 주제를 직접 다룹니다. 
+        TalkB는 요식업 AI 검색 최적화의 모든 주제를 직접 다룹니다. 
         GEO 기본 원리부터 플랫폼별 실전 가이드까지 — 이 사이트 자체가 <strong style="color: var(--ink); font-weight: 600;">우리 방법론의 가장 강력한 증명</strong>입니다.
       </p>
     </div>
@@ -8890,12 +9186,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
 
-    <!-- Pillar 2 · F&B 브랜드 AI 인용 전략 -->
+    <!-- Pillar 2 · 요식업 브랜드 AI 인용 전략 -->
     <div class="pillar fade-in">
       <div class="pillar-head">
         <div class="pillar-num">Pillar 02</div>
         <div>
-          <h3 class="pillar-title">F&amp;B 브랜드 AI 인용 전략</h3>
+          <h3 class="pillar-title">요식업 브랜드 AI 인용 전략</h3>
           <p class="pillar-desc">프랜차이즈 본사부터 독립매장까지 · 업종별 실전 플레이북.</p>
         </div>
       </div>
