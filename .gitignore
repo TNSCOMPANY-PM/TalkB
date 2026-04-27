@@ -1,5 +1,9 @@
 _internal/
 DEPLOY_GUIDE.md
+HOW_TO_USE.md
 .DS_Store
 node_modules/
 .vercel/
+package.json
+package-lock.json
+.htmlhintrc

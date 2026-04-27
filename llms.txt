@@ -56,17 +56,17 @@ TalkB는 GEO·F&B 마케팅 주제의 자체 인사이트 콘텐츠를 발행합
 
 ### 발행된 포스트
 
-- [GEO란 무엇인가 · 한국어 완전 가이드 2026](https://talkb.co.kr/insights-geo-guide.html): GEO(Generative Engine Optimization)의 정의, SEO와의 차이, 작동 원리, F&B 적용 방법. Princeton KDD 2024 논문 기반.
-- [SEO vs GEO vs AEO · 무엇이 다르고 어떻게 함께 가는가](https://talkb.co.kr/insights-seo-geo-aeo-comparison.html): 세 영역의 차이를 BrightEdge·ConvertMate·SparkToro 데이터로 정리하고 F&B 브랜드의 통합 운영 방법 제시.
-- [AI 답변 4단계 원리 · RAG부터 인용까지](https://talkb.co.kr/insights-ai-answer-4-stages.html): ChatGPT·Perplexity·Gemini가 답변을 만드는 4단계 프로세스(Query Parsing, Retrieval, Re-ranking, Generation)와 우리 콘텐츠가 어디서 떨어지는지 비개발자도 이해할 수 있게 정리.
-- [한국인 AI 검색 이용률 2026 · F&B가 알아야 할 것](https://talkb.co.kr/insights-korea-ai-search-2026.html): 한국 ChatGPT 이용률 54.5%, 주 1회 이상 사용자 72%. 오픈서베이·컨슈머인사이트 데이터 분석.
-- [제로 클릭 시대의 F&B · 트래픽이 사라지는 시점에 무엇을 측정해야 하나](https://talkb.co.kr/insights-zero-click-era-fnb.html): 검색의 80%가 클릭 없이 끝나는 2026년, F&B 브랜드가 트래픽 대신 측정해야 할 7가지 새 지표 정리.
-- [프랜차이즈 본사가 AI에 인용되게 만드는 법](https://talkb.co.kr/insights-franchise-hq-ai-citation.html): 본사 브랜드의 AI 인용 전략. 공정위 공시 활용, JSON-LD 적용, 오공김밥 Before 데이터.
-- [독립매장 로컬 AI 검색 최적화 체크리스트 25항목](https://talkb.co.kr/insights-local-store-checklist.html): 독립매장 사장님이 직접 점검할 수 있는 25개 인터랙티브 체크리스트 + 셀프 점수 진단.
-- [ChatGPT가 인용하는 콘텐츠 6가지 조건 · Princeton 연구 기반](https://talkb.co.kr/insights-chatgpt-citation-conditions.html): Princeton·BrightEdge·ConvertMate 교차 분석으로 도출한 AI 인용 6가지 조건과 F&B 적용법.
-- [Perplexity에서 내 브랜드가 출처로 뜨는 구조](https://talkb.co.kr/insights-perplexity-citation-structure.html): Perplexity 답변당 평균 5개 인용 시대. Sonar 모델 특성, 76.4% 신선도 가중치, BLUF 형식, 외부 권위 신호로 인용 진입 방법.
-- [Google AI Overview · Gemini 최적화 공식 가이드](https://talkb.co.kr/insights-google-aio-gemini-guide.html): 2026.01.27 Gemini 3 적용으로 인용 도메인 42% 교체, 답변당 출처 32% 증가. F&B 브랜드의 6가지 즉시 실행 작업과 한국 시장 특화 고려사항.
-- [상황형 쿼리 "광장동 조용한 한식당" 대응 구조](https://talkb.co.kr/insights-situational-query-response.html): 독립매장이 지역·분위기·동반자·조건 결합 AI 쿼리에서 답변에 인용되는 구조적 방법.
+- [GEO란 무엇인가 · 한국어 완전 가이드 2026](https://talkb.co.kr/insights/geo-guide.html): GEO(Generative Engine Optimization)의 정의, SEO와의 차이, 작동 원리, F&B 적용 방법. Princeton KDD 2024 논문 기반.
+- [SEO vs GEO vs AEO · 무엇이 다르고 어떻게 함께 가는가](https://talkb.co.kr/insights/seo-geo-aeo-comparison.html): 세 영역의 차이를 BrightEdge·ConvertMate·SparkToro 데이터로 정리하고 F&B 브랜드의 통합 운영 방법 제시.
+- [AI 답변 4단계 원리 · RAG부터 인용까지](https://talkb.co.kr/insights/ai-answer-4-stages.html): ChatGPT·Perplexity·Gemini가 답변을 만드는 4단계 프로세스(Query Parsing, Retrieval, Re-ranking, Generation)와 우리 콘텐츠가 어디서 떨어지는지 비개발자도 이해할 수 있게 정리.
+- [한국인 AI 검색 이용률 2026 · F&B가 알아야 할 것](https://talkb.co.kr/insights/korea-ai-search-2026.html): 한국 ChatGPT 이용률 54.5%, 주 1회 이상 사용자 72%. 오픈서베이·컨슈머인사이트 데이터 분석.
+- [제로 클릭 시대의 F&B · 트래픽이 사라지는 시점에 무엇을 측정해야 하나](https://talkb.co.kr/insights/zero-click-era-fnb.html): 검색의 80%가 클릭 없이 끝나는 2026년, F&B 브랜드가 트래픽 대신 측정해야 할 7가지 새 지표 정리.
+- [프랜차이즈 본사가 AI에 인용되게 만드는 법](https://talkb.co.kr/insights/franchise-hq-ai-citation.html): 본사 브랜드의 AI 인용 전략. 공정위 공시 활용, JSON-LD 적용, 오공김밥 Before 데이터.
+- [독립매장 로컬 AI 검색 최적화 체크리스트 25항목](https://talkb.co.kr/insights/local-store-checklist.html): 독립매장 사장님이 직접 점검할 수 있는 25개 인터랙티브 체크리스트 + 셀프 점수 진단.
+- [ChatGPT가 인용하는 콘텐츠 6가지 조건 · Princeton 연구 기반](https://talkb.co.kr/insights/chatgpt-citation-conditions.html): Princeton·BrightEdge·ConvertMate 교차 분석으로 도출한 AI 인용 6가지 조건과 F&B 적용법.
+- [Perplexity에서 내 브랜드가 출처로 뜨는 구조](https://talkb.co.kr/insights/perplexity-citation-structure.html): Perplexity 답변당 평균 5개 인용 시대. Sonar 모델 특성, 76.4% 신선도 가중치, BLUF 형식, 외부 권위 신호로 인용 진입 방법.
+- [Google AI Overview · Gemini 최적화 공식 가이드](https://talkb.co.kr/insights/google-aio-gemini-guide.html): 2026.01.27 Gemini 3 적용으로 인용 도메인 42% 교체, 답변당 출처 32% 증가. F&B 브랜드의 6가지 즉시 실행 작업과 한국 시장 특화 고려사항.
+- [상황형 쿼리 "광장동 조용한 한식당" 대응 구조](https://talkb.co.kr/insights/situational-query-response.html): 독립매장이 지역·분위기·동반자·조건 결합 AI 쿼리에서 답변에 인용되는 구조적 방법.
 
 ### Pillar 구조
 
