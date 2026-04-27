@@ -628,6 +628,8 @@ nav.topnav.scrolled {
   font-weight: 700;
   color: var(--ink);
   letter-spacing: -0.04em;
+  min-height: 44px;
+  padding: 4px 0;
 }
 
 .nav-brand .mark {
@@ -683,8 +685,8 @@ nav.topnav.scrolled {
 /* === 햄버거 버튼 === */
 .nav-hamburger {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   background: var(--bg-soft);
   border: 1px solid var(--border);
@@ -4802,7 +4804,8 @@ nav.topnav.scrolled {
 }
 
 .faq-tab-btn {
-  padding: 10px 20px;
+  padding: 12px 20px;
+  min-height: 44px;
   background: transparent;
   color: var(--ink-mid);
   font-size: 13px;
@@ -5575,7 +5578,7 @@ footer {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
 }
 
 .footer-links a {
@@ -5583,6 +5586,10 @@ footer {
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s;
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
 }
 
 .footer-links a:hover { color: var(--accent); }
@@ -5635,6 +5642,9 @@ footer {
   color: var(--accent);
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 .footer-biz-value a:hover {
   border-color: var(--accent);
@@ -5752,8 +5762,13 @@ footer {
   background: none;
   color: rgba(255, 255, 255, 0.5);
   font-size: 22px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0 8px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 720px) {
@@ -6620,7 +6635,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
 
       <div class="pilot-strip-note">
-        3개 브랜드의 Before/After AI 인용 데이터는 <a href="#cases-data">아래에서 확인</a>하실 수 있습니다.
+        3개 브랜드의 Before/After AI 인용 데이터는 <a href="#cases-data" style="display:inline-block;padding:4px 0;">아래에서 확인</a>하실 수 있습니다.
       </div>
     </div>
   </div>
