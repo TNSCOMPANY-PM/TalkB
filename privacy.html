@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개인정보처리방침 · TalkB</title>
+  <meta name="description" content="TalkB(토크비)의 개인정보처리방침입니다. (주)티앤에스컴퍼니가 수집·이용·보관하는 개인정보의 범위와 처리 방법을 안내합니다.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://talkb.co.kr/privacy.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23E85D3A'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'>T</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #E85D3A;
+      --ink: #1C1B1A;
+      --ink-mid: #4D4943;
+      --ink-muted: #757575;
+      --border: #E8E4DA;
+      --bg-soft: #F8F5EF;
+      --white: #FFFFFF;
+    }
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--ink); background: var(--white); line-height: 1.8; font-size: 16px; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; background: var(--white); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-inner { max-width: 820px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-weight: 800; font-size: 18px; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-brand .dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; display: inline-block; }
+    .nav-back { color: var(--ink-muted); text-decoration: none; font-size: 14px; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* Article */
+    .article { max-width: 820px; margin: 0 auto; padding: 56px 24px 96px; }
+    .article-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+    .article-label { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .article-title { font-size: clamp(28px, 5vw, 40px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .article-meta { font-size: 14px; color: var(--ink-muted); }
+
+    /* TOC */
+    .toc { background: var(--bg-soft); border-radius: 12px; padding: 28px 32px; margin-bottom: 48px; }
+    .toc-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); margin-bottom: 14px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--ink-mid); text-decoration: none; font-size: 15px; }
+    .toc a:hover { color: var(--accent); }
+
+    /* Sections */
+    .policy-section { margin-bottom: 52px; scroll-margin-top: 80px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .policy-section h3 { font-size: 17px; font-weight: 700; margin: 28px 0 12px; color: var(--ink); }
+    .policy-section p { margin-bottom: 14px; color: var(--ink-mid); }
+    .policy-section ul, .policy-section ol { padding-left: 22px; margin-bottom: 14px; color: var(--ink-mid); }
+    .policy-section li { margin-bottom: 8px; }
+    .policy-section strong { color: var(--ink); font-weight: 600; }
+
+    /* Table */
+    .policy-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .policy-table th { background: var(--bg-soft); font-weight: 700; padding: 12px 16px; text-align: left; border: 1px solid var(--border); }
+    .policy-table td { padding: 12px 16px; border: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; }
+
+    /* Contact box */
+    .contact-box { background: var(--bg-soft); border-radius: 12px; padding: 28px 32px; margin-top: 16px; }
+    .contact-box p { margin-bottom: 8px; color: var(--ink-mid); }
+    .contact-box a { color: var(--accent); font-weight: 600; }
+
+    /* Footer */
+    footer { background: var(--ink); color: rgba(255,255,255,0.6); text-align: center; padding: 32px 24px; font-size: 13px; }
+    footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .article { padding: 40px 18px 72px; }
+      .toc { padding: 20px 20px; }
+      .contact-box { padding: 20px; }
+      .policy-table { font-size: 13px; }
+      .policy-table th, .policy-table td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">TalkB <span class="dot"></span></a>
+    <a href="index.html" class="nav-back">← 메인으로</a>
+  </div>
+</nav>
+
+<main class="article">
+
+  <header class="article-header">
+    <div class="article-label">Legal</div>
+    <h1 class="article-title">개인정보처리방침</h1>
+    <p class="article-meta">
+      시행일: 2026년 04월 27일 &nbsp;|&nbsp; 최종 수정: 2026년 04월 27일<br>
+      운영자: (주)티앤에스컴퍼니 · 대표 김태정
+    </p>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#section1">수집하는 개인정보 항목</a></li>
+      <li><a href="#section2">개인정보 수집 방법</a></li>
+      <li><a href="#section3">개인정보 처리 목적</a></li>
+      <li><a href="#section4">개인정보 보유 및 파기</a></li>
+      <li><a href="#section5">개인정보의 제3자 제공</a></li>
+      <li><a href="#section6">개인정보처리 위탁</a></li>
+      <li><a href="#section7">정보주체의 권리·의무</a></li>
+      <li><a href="#section8">쿠키 및 행태정보</a></li>
+      <li><a href="#section9">개인정보 보호 조치</a></li>
+      <li><a href="#section10">개인정보보호 책임자</a></li>
+      <li><a href="#section11">권익침해 구제방법</a></li>
+      <li><a href="#section12">방침 변경 고지</a></li>
+    </ol>
+  </nav>
+
+  <p style="color: var(--ink-mid); margin-bottom: 48px;">
+    (주)티앤에스컴퍼니(이하 "회사")는 개인정보보호법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관련 법령에 따라 이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 아래와 같이 개인정보처리방침을 수립·공개합니다.
+  </p>
+
+  <!-- 1 -->
+  <section class="policy-section" id="section1">
+    <h2>1. 수집하는 개인정보 항목</h2>
+
+    <h3>1-1. 서비스 상담·신청 시 (무료 진단 신청 폼)</h3>
+    <table class="policy-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>수집 항목</th>
+          <th>필수 여부</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>독립매장·가맹점</td>
+          <td>매장명, 대표자(담당자) 이름, 이메일, 연락처, 매장 유형, 현재 고민</td>
+          <td>필수</td>
+        </tr>
+        <tr>
+          <td>프랜차이즈 본사</td>
+          <td>브랜드명, 매장 수, 담당자 이름, 이메일, 연락처, 현재 고민</td>
+          <td>필수</td>
+        </tr>
+        <tr>
+          <td>뉴스레터 구독</td>
+          <td>이메일</td>
+          <td>필수</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>1-2. 서비스 이용 중 자동 수집</h3>
+    <ul>
+      <li>접속 IP 주소, 접속 일시, 브라우저 종류·버전, 운영체제</li>
+      <li>방문 페이지, 체류 시간, 유입 경로 (Google Analytics 4 활용)</li>
+    </ul>
+
+    <h3>1-3. 유료 계약 시</h3>
+    <ul>
+      <li>계약 담당자 이름, 직함, 이메일, 연락처</li>
+      <li>결제 정보 (카드번호 등 민감 결제 정보는 PG사가 직접 처리, 회사는 보유하지 않음)</li>
+      <li>세금계산서 발행을 위한 사업자 정보 (사업자등록번호, 상호, 대표자명, 주소)</li>
+    </ul>
+  </section>
+
+  <!-- 2 -->
+  <section class="policy-section" id="section2">
+    <h2>2. 개인정보 수집 방법</h2>
+    <ul>
+      <li>홈페이지 내 상담 신청 폼 및 뉴스레터 구독 폼</li>
+      <li>이메일, 전화 등 오프라인 상담</li>
+      <li>서비스 이용 과정에서 자동 생성·수집 (로그, 쿠키)</li>
+      <li>유료 계약 체결 과정</li>
+    </ul>
+  </section>
+
+  <!-- 3 -->
+  <section class="policy-section" id="section3">
+    <h2>3. 개인정보 처리 목적</h2>
+    <table class="policy-table">
+      <thead>
+        <tr><th>목적</th><th>처리하는 정보</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>서비스 상담 및 제안서 제공</td><td>이름, 이메일, 연락처, 매장 정보</td></tr>
+        <tr><td>뉴스레터 발송 (TalkB Insights 콘텐츠)</td><td>이메일</td></tr>
+        <tr><td>계약 체결 및 서비스 이행</td><td>담당자 정보, 결제 정보, 사업자 정보</td></tr>
+        <tr><td>고객 지원 및 민원 처리</td><td>이름, 이메일, 연락처</td></tr>
+        <tr><td>서비스 개선 및 이용 통계 분석</td><td>접속 로그, 행태 정보 (비식별 처리)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4 -->
+  <section class="policy-section" id="section4">
+    <h2>4. 개인정보 보유 및 파기</h2>
+
+    <h3>4-1. 보유 기간</h3>
+    <table class="policy-table">
+      <thead>
+        <tr><th>보유 항목</th><th>보유 기간</th><th>근거</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>상담 신청 정보</td><td>상담 완료 후 1년</td><td>정보주체 동의</td></tr>
+        <tr><td>뉴스레터 구독 정보</td><td>구독 해지 시까지</td><td>정보주체 동의</td></tr>
+        <tr><td>계약·거래 관련 정보</td><td>계약 종료 후 5년</td><td>전자상거래법</td></tr>
+        <tr><td>세금계산서 관련 정보</td><td>5년</td><td>국세기본법</td></tr>
+        <tr><td>소비자 불만·분쟁 기록</td><td>3년</td><td>전자상거래법</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4-2. 파기 방법</h3>
+    <ul>
+      <li><strong>전자적 파일</strong>: 복원 불가능한 방법으로 영구 삭제</li>
+      <li><strong>출력물 등 비전자적 기록</strong>: 분쇄 또는 소각</li>
+    </ul>
+  </section>
+
+  <!-- 5 -->
+  <section class="policy-section" id="section5">
+    <h2>5. 개인정보의 제3자 제공</h2>
+    <p>회사는 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 아래의 경우에는 예외입니다.</p>
+    <ul>
+      <li>이용자가 사전에 동의한 경우</li>
+      <li>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</li>
+    </ul>
+    <p><strong>현재 회사는 개인정보를 제3자에게 제공하고 있지 않습니다.</strong></p>
+  </section>
+
+  <!-- 6 -->
+  <section class="policy-section" id="section6">
+    <h2>6. 개인정보처리 위탁</h2>
+    <p>회사는 서비스 제공을 위해 아래와 같이 개인정보 처리를 위탁합니다.</p>
+    <table class="policy-table">
+      <thead>
+        <tr><th>수탁업체</th><th>위탁 업무</th><th>보유 기간</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google LLC (Google Analytics)</td><td>서비스 이용 통계 분석 (비식별 처리)</td><td>수집 후 26개월</td></tr>
+        <tr><td>Formspree Inc. (예정)</td><td>상담 신청 폼 데이터 수신</td><td>처리 완료 즉시 삭제</td></tr>
+        <tr><td>결제대행사 (예정, 토스페이먼츠 등)</td><td>결제 처리 및 정산</td><td>관련 법령에 따름</td></tr>
+      </tbody>
+    </table>
+    <p>위탁 계약 시 개인정보보호법 제26조에 따라 위탁업체의 개인정보 처리 여부 감독 및 안전성 확보 조치를 요구합니다.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="policy-section" id="section7">
+    <h2>7. 정보주체의 권리·의무</h2>
+    <p>이용자는 회사에 대해 언제든지 아래의 권리를 행사할 수 있습니다.</p>
+    <ul>
+      <li><strong>열람 요구</strong>: 보유 중인 본인의 개인정보 열람 요청</li>
+      <li><strong>정정·삭제 요구</strong>: 오류가 있거나 불필요한 개인정보의 정정·삭제 요청</li>
+      <li><strong>처리 정지 요구</strong>: 개인정보 처리의 일시적 정지 요청</li>
+      <li><strong>동의 철회</strong>: 뉴스레터 구독 해지, 마케팅 수신 동의 철회</li>
+    </ul>
+    <p>권리 행사는 hello@talkb.co.kr 로 이메일 요청하시면 <strong>10일 이내</strong> 처리합니다.</p>
+    <p>권리 행사는 정보주체의 법정대리인이나 위임을 받은 자도 할 수 있습니다. 이 경우 위임장을 제출해야 합니다.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="policy-section" id="section8">
+    <h2>8. 쿠키 및 행태정보</h2>
+    <h3>8-1. 쿠키 사용 목적</h3>
+    <ul>
+      <li>이용자의 선호 설정 저장 (뉴스레터 바 닫기 여부 등)</li>
+      <li>서비스 이용 패턴 분석 (Google Analytics 4, 비식별)</li>
+    </ul>
+    <h3>8-2. 쿠키 거부 방법</h3>
+    <p>브라우저 설정에서 쿠키를 거부할 수 있습니다. 쿠키 거부 시 일부 서비스 이용이 제한될 수 있습니다.</p>
+    <ul>
+      <li>Chrome: 설정 → 개인정보 및 보안 → 쿠키 및 사이트 데이터</li>
+      <li>Safari: 기본 설정 → 개인정보 보호 → 크로스 사이트 추적 방지</li>
+    </ul>
+  </section>
+
+  <!-- 9 -->
+  <section class="policy-section" id="section9">
+    <h2>9. 개인정보 보호 조치</h2>
+    <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취합니다.</p>
+    <ul>
+      <li><strong>접근 통제</strong>: 개인정보에 대한 접근 권한을 업무 담당자로 제한</li>
+      <li><strong>전송 암호화</strong>: HTTPS(SSL/TLS) 적용으로 전송 중 암호화</li>
+      <li><strong>비밀번호 암호화</strong>: 이용자 비밀번호는 복호화 불가능한 일방향 암호화 저장</li>
+      <li><strong>보안 프로그램</strong>: 악성코드 방지를 위한 보안 소프트웨어 설치·운영</li>
+      <li><strong>물리적 보안</strong>: 개인정보가 포함된 문서의 안전한 보관·폐기</li>
+    </ul>
+  </section>
+
+  <!-- 10 -->
+  <section class="policy-section" id="section10">
+    <h2>10. 개인정보보호 책임자</h2>
+    <p>회사는 개인정보 처리에 관한 업무를 총괄하고, 개인정보 처리와 관련한 정보주체의 불만 처리 및 피해 구제를 위하여 아래와 같이 개인정보보호 책임자를 지정합니다.</p>
+    <div class="contact-box">
+      <p><strong>개인정보보호 책임자</strong></p>
+      <p>성명: 김태정 (대표)</p>
+      <p>소속: (주)티앤에스컴퍼니</p>
+      <p>이메일: <a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a></p>
+      <p>주소: 서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)</p>
+    </div>
+    <p style="margin-top: 16px;">정보주체는 회사의 서비스를 이용하면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보보호 책임자에게 문의할 수 있습니다. 회사는 정보주체의 문의에 지체없이 답변 및 처리합니다.</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="policy-section" id="section11">
+    <h2>11. 권익침해 구제방법</h2>
+    <p>개인정보 침해로 인한 구제를 받기 위하여 개인정보분쟁조정위원회, 한국인터넷진흥원 개인정보침해신고센터 등에 분쟁해결이나 상담 등을 신청할 수 있습니다.</p>
+    <ul>
+      <li><strong>개인정보분쟁조정위원회</strong>: www.kopico.go.kr / 1833-6972</li>
+      <li><strong>개인정보침해신고센터</strong>: privacy.kisa.or.kr / 118</li>
+      <li><strong>대검찰청 사이버수사과</strong>: www.spo.go.kr / 1301</li>
+      <li><strong>경찰청 사이버안전국</strong>: cyberbureau.police.go.kr / 182</li>
+    </ul>
+  </section>
+
+  <!-- 12 -->
+  <section class="policy-section" id="section12">
+    <h2>12. 방침 변경 고지</h2>
+    <p>이 개인정보처리방침은 2026년 04월 27일부터 적용됩니다. 법령·정책 변경 또는 서비스 변경 시 방침 변경 내용을 홈페이지를 통해 공지하며, 중요한 변경 사항은 이메일로 별도 통지합니다.</p>
+    <p>이전 버전의 개인정보처리방침은 요청 시 확인하실 수 있습니다.</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 (주)티앤에스컴퍼니 · TalkB &nbsp;|&nbsp; <a href="index.html">메인으로</a> &nbsp;|&nbsp; <a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a></p>
+  <p style="margin-top: 8px; font-size: 12px;">사업자등록번호: 455-86-00636 &nbsp;|&nbsp; 서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)</p>
+</footer>
+
+</body>
+</html>

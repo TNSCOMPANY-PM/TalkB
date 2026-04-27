@@ -271,6 +271,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; z-index: 200; transition: width 0.1s ease-out; }
+
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 48px 0 8px; border-top: 1px solid var(--border); padding-top: 32px; }
+@media (max-width: 600px) { .post-nav { grid-template-columns: 1fr; } }
+.post-nav-item { display: flex; flex-direction: column; gap: 6px; padding: 16px 20px; background: var(--bg-soft, #F8F5EF); border-radius: 12px; text-decoration: none; transition: background 0.2s, transform 0.2s; border: 1px solid var(--border, #E8E4DA); }
+.post-nav-item:hover { background: var(--white, #fff); transform: translateY(-2px); border-color: var(--accent, #E85D3A); }
+.post-nav-next { text-align: right; }
+.post-nav-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #E85D3A); }
+.post-nav-title { font-size: 14px; font-weight: 600; color: var(--ink, #1C1B1A); line-height: 1.4; }
 </style>
 </head>
 <body>

@@ -206,6 +206,14 @@ a { color: inherit; text-decoration: none; }
   .article-cta { padding: 28px 22px; }
   .article-cta h3 { font-size: 20px; }
 }
+
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 48px 0 8px; border-top: 1px solid var(--border); padding-top: 32px; }
+@media (max-width: 600px) { .post-nav { grid-template-columns: 1fr; } }
+.post-nav-item { display: flex; flex-direction: column; gap: 6px; padding: 16px 20px; background: var(--bg-soft, #F8F5EF); border-radius: 12px; text-decoration: none; transition: background 0.2s, transform 0.2s; border: 1px solid var(--border, #E8E4DA); }
+.post-nav-item:hover { background: var(--white, #fff); transform: translateY(-2px); border-color: var(--accent, #E85D3A); }
+.post-nav-next { text-align: right; }
+.post-nav-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent, #E85D3A); }
+.post-nav-title { font-size: 14px; font-weight: 600; color: var(--ink, #1C1B1A); line-height: 1.4; }
 </style>
 </head>
 <body>
@@ -491,6 +499,15 @@ a { color: inherit; text-decoration: none; }
       <li>Pasquale Pillitteri. <em>"Google AI Mode Case Study."</em> 1위 유지하며 38% 트래픽 손실 사례. 2026.04.</li>
     </ol>
   </div>
+
+
+<nav class="post-nav">
+  <a href="/insights/korea-ai-search-2026.html" class="post-nav-item post-nav-prev">
+    <span class="post-nav-label">← 이전 글</span>
+    <span class="post-nav-title">한국인 AI 검색 이용률 2026 · F&amp;B가 알아야 할 것</span>
+  </a>
+  <div></div>
+</nav>
 
   <div class="related">
     <div class="related-label">Related Reading</div>
