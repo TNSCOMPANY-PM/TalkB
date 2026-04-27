@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E85D3A">
+
+<title>Perplexity에서 내 브랜드가 출처로 뜨는 구조 — TalkB Insights</title>
+<meta name="title" content="Perplexity에서 내 브랜드가 출처로 뜨는 구조">
+<meta name="description" content="Perplexity 월 7억 8천만 쿼리 시대. 답변당 평균 5개만 인용되는 좁은 문에 어떻게 들어가는가. Sonar 모델, 76.4% 신선도, BLUF 형식, 외부 권위 신호까지 — Perplexity 전용 최적화의 전체 구조를 정리합니다.">
+<meta name="keywords" content="Perplexity 최적화, Perplexity 인용, Perplexity AI, Sonar 모델, RAG, AI 검색 최적화, 답변엔진, BLUF, F&B Perplexity, TalkB">
+<meta name="author" content="TalkB · 김태정">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://talkb.co.kr/insights-perplexity-citation-structure.html">
+<meta property="article:published_time" content="2026-04-25">
+<meta property="article:author" content="김태정">
+<meta property="article:section" content="AI 플랫폼 실전">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://talkb.co.kr/insights-perplexity-citation-structure.html">
+<meta property="og:title" content="Perplexity에서 내 브랜드가 출처로 뜨는 구조">
+<meta property="og:description" content="답변당 5개 인용. 그 좁은 문에 들어가는 방법.">
+<meta property="og:image" content="https://talkb.co.kr/og-insights-perplexity.png">
+<meta property="og:site_name" content="TalkB Insights">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Perplexity에서 내 브랜드가 출처로 뜨는 구조">
+<meta name="twitter:image" content="https://talkb.co.kr/og-insights-perplexity.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Perplexity에서 내 브랜드가 출처로 뜨는 구조",
+  "description": "Perplexity 답변에 인용되기 위한 전체 구조 - Sonar 모델 특성, 신선도, 권위 신호.",
+  "image": "https://talkb.co.kr/og-insights-perplexity.png",
+  "author": { "@type": "Person", "name": "김태정", "jobTitle": "대표", "worksFor": { "@type": "Organization", "name": "TalkB" } },
+  "publisher": { "@type": "Organization", "name": "TalkB", "logo": { "@type": "ImageObject", "url": "https://talkb.co.kr/logo.png" } },
+  "datePublished": "2026-04-25",
+  "dateModified": "2026-04-25",
+  "inLanguage": "ko-KR",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://talkb.co.kr/insights-perplexity-citation-structure.html" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Perplexity는 ChatGPT와 어떻게 다른가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Perplexity는 모든 답변을 실시간 웹 검색 후 생성하는 답변 엔진입니다. ChatGPT가 학습 데이터 기반 응답과 실시간 검색을 혼용하는 반면, Perplexity는 100% RAG 기반이고 답변마다 출처 링크를 항상 표시합니다. 답변당 평균 인용 수도 다릅니다 - ChatGPT 10.42개, Google AI Overview 9.26개, Perplexity 5.01개. 적은 만큼 각 인용이 차지하는 가중치가 큽니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Perplexity의 Sonar 모델은 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sonar는 Perplexity가 자체 개발한 검색 특화 LLM 시리즈입니다. 외부 모델(GPT-4, Claude 등)도 함께 사용하지만 Perplexity의 핵심 차별점은 검색-순위-생성 전 과정이 통합된 Sonar 시스템입니다. Sonar는 신선도(recency)를 다른 어떤 신호보다 강하게 가중하며, 같은 콘텐츠라도 30일 이내 업데이트된 것을 그렇지 않은 것보다 3.2배 우선합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Perplexity는 어떤 도메인을 가장 많이 인용하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yext의 2025년 10월 6.8백만 인용 분석에 따르면 Perplexity는 뉴스·저널리즘 사이트 비중이 큽니다. Gemini는 자체 브랜드 도메인이 52.15%로 최고지만, Perplexity는 외부 권위 출처(언론·전문 사이트·Wikipedia·정부 도메인)에서 인용을 많이 가져옵니다. 도메인 연수도 차이가 있어 Perplexity는 10~15년 도메인을 26.16% 비중으로 인용해 신생 도메인에도 진입 기회가 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "F&B 브랜드가 Perplexity 인용을 늘리는 가장 빠른 방법은?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "신선도 관리가 가장 빠른 효과를 냅니다. Perplexity의 분석 데이터에서 인용 페이지의 76.4%가 30일 이내 업데이트된 콘텐츠였습니다. 따라서 본사·매장의 핵심 페이지(About, FAQ, 메뉴, 가격 정보)에 마지막 업데이트 일자를 명시하고 분기 1회 이상 실제로 갱신하는 것이 첫 단계입니다. 그 다음이 BLUF 형식 작성, JSON-LD 적용, 외부 매체 노출 순으로 진행됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "TalkB는 Perplexity 인용을 어떻게 측정하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "매달 25문항 4뎁스 질문을 Perplexity에 직접 입력해 답변과 인용 출처를 기록합니다. 4대 AI(ChatGPT·Perplexity·Gemini·Claude) 동시 측정 중 Perplexity가 가장 빠르게 변화를 보이는 플랫폼이며, TalkB 파일럿 기준 콘텐츠 작업 후 2~4주 내 초기 변화가 관찰됩니다. ChatGPT는 8~12주 소요되는 것과 대비됩니다."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "TalkB", "item": "https://talkb.co.kr/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/#resources" },
+    { "@type": "ListItem", "position": 3, "name": "Perplexity 인용 구조" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+<style>
+:root { --bg: #FFFFFF; --bg-soft: #FAFAFA; --bg-deep: #F5F5F5; --ink: #0A0A0A; --ink-soft: #171717; --ink-mid: #52525B; --ink-muted: #A1A1AA; --ink-light: #D4D4D8; --border: #E4E4E7; --border-soft: #F4F4F5; --accent: #E85D3A; --accent-deep: #C94422; --accent-soft: #FFF1EC; --accent-paper: #FFF7F3; --white: #FFFFFF; --f-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; --f-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace; --r-sm: 8px; --r-md: 16px; --r-lg: 24px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; max-width: 100%; overflow-x: hidden; }
+body { font-family: var(--f-body); font-size: 16px; line-height: 1.7; color: var(--ink); background: var(--bg); letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; max-width: 100%; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--ink); color: var(--white); }
+
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; z-index: 200; transition: width 0.1s ease-out; }
+
+.nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; padding: 14px 0; }
+.nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.nav-brand { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.04em; }
+.nav-brand .mark { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+.nav-brand-kr { font-size: 12px; color: var(--ink-muted); font-weight: 500; }
+.nav-cta { padding: 8px 18px; background: var(--accent); color: var(--white); border-radius: 100px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 10px rgba(232, 93, 58, 0.22); transition: transform 0.2s; white-space: nowrap; }
+
+.article { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+.article-breadcrumb { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+.article-breadcrumb a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+.article-breadcrumb a:hover { border-color: var(--accent); }
+.article-breadcrumb .sep { margin: 0 10px; color: var(--ink-light); }
+.article-title { font-size: clamp(28px, 4.5vw, 44px); font-weight: 700; line-height: 1.18; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 24px; }
+.article-lead { font-size: 19px; line-height: 1.7; color: var(--ink-mid); letter-spacing: -0.015em; margin-bottom: 32px; font-weight: 400; }
+.article-lead strong { color: var(--ink); font-weight: 600; }
+.article-meta { display: flex; gap: 20px; align-items: center; padding: 16px 0; margin-bottom: 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 13px; color: var(--ink-mid); font-family: var(--f-mono); letter-spacing: -0.005em; flex-wrap: wrap; }
+.article-meta-dot { width: 4px; height: 4px; background: var(--ink-light); border-radius: 50%; }
+.article h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.25; letter-spacing: -0.035em; color: var(--ink); margin: 56px 0 20px; }
+.article h2:first-of-type { margin-top: 0; }
+.article h3 { font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.025em; color: var(--ink); margin: 32px 0 14px; }
+.article p { font-size: 16.5px; line-height: 1.85; color: var(--ink-soft); letter-spacing: -0.01em; margin-bottom: 20px; }
+.article p strong { color: var(--ink); font-weight: 600; }
+.article ul, .article ol { padding-left: 24px; margin-bottom: 20px; }
+.article li { font-size: 16px; line-height: 1.85; color: var(--ink-soft); letter-spacing: -0.01em; margin-bottom: 8px; }
+.article li strong { color: var(--ink); font-weight: 600; }
+.article a.ext { color: var(--accent); border-bottom: 1px solid var(--accent-soft); transition: border-color 0.2s; font-weight: 500; }
+
+.callout { padding: 24px 28px; background: var(--accent-paper); border-left: 3px solid var(--accent); border-radius: 0 var(--r-md) var(--r-md) 0; margin: 28px 0; }
+.callout-label { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+.callout p { margin-bottom: 0; }
+.callout p + p { margin-top: 12px; }
+
+.keyfact { padding: 20px 24px; background: var(--bg-soft); border-radius: var(--r-md); margin: 24px 0; font-size: 15px; color: var(--ink-mid); line-height: 1.75; }
+.keyfact-tag { display: inline-block; padding: 3px 10px; background: var(--ink); color: var(--white); font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; font-weight: 700; border-radius: 100px; margin-bottom: 10px; }
+.keyfact strong { color: var(--ink); font-weight: 600; }
+
+/* Comparison cards 3-col */
+.platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+@media (max-width: 720px) { .platform-grid { grid-template-columns: 1fr; } }
+.platform-card { padding: 22px; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--white); }
+.platform-card.highlight { border-color: var(--accent); background: var(--accent-paper); }
+.platform-name { font-size: 15px; font-weight: 700; color: var(--ink); letter-spacing: -0.025em; margin-bottom: 10px; }
+.platform-card.highlight .platform-name { color: var(--accent-deep); }
+.platform-stat { font-family: var(--f-mono); font-size: 28px; font-weight: 700; color: var(--ink); letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px; }
+.platform-card.highlight .platform-stat { color: var(--accent); }
+.platform-desc { font-size: 12.5px; color: var(--ink-mid); line-height: 1.55; letter-spacing: -0.005em; }
+
+/* Numbered list */
+.numbered-list { counter-reset: nlist; list-style: none; padding: 0; margin: 28px 0; }
+.numbered-list li { counter-increment: nlist; padding: 22px 26px 22px 68px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); margin-bottom: 12px; position: relative; }
+.numbered-list li::before { content: counter(nlist, decimal-leading-zero); position: absolute; left: 22px; top: 22px; font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); }
+.numbered-list li strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 6px; font-size: 15.5px; }
+.numbered-list li span { font-size: 14px; color: var(--ink-mid); line-height: 1.7; }
+
+/* Inline stat box */
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+@media (max-width: 720px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+.stat-item { padding: 18px; background: var(--bg-soft); border-radius: var(--r-sm); text-align: center; }
+.stat-num { font-family: var(--f-mono); font-size: 24px; font-weight: 700; color: var(--accent); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+.stat-lbl { font-size: 11px; color: var(--ink-mid); line-height: 1.5; letter-spacing: -0.005em; }
+
+.sources { margin-top: 56px; padding: 28px; background: var(--bg-soft); border-radius: var(--r-md); }
+.sources-label { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; }
+.sources ol { padding-left: 20px; margin: 0; }
+.sources li { font-size: 13px; color: var(--ink-mid); line-height: 1.75; margin-bottom: 8px; letter-spacing: -0.005em; }
+.sources li a { color: var(--accent); border-bottom: 1px solid transparent; word-break: break-all; }
+
+.article-cta { margin-top: 56px; padding: 36px 32px; background: var(--ink); border-radius: var(--r-lg); text-align: center; color: var(--white); }
+.article-cta-label { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+.article-cta h3 { font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: -0.03em; color: var(--white); margin: 0 0 14px; }
+.article-cta p { font-size: 15px; color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin: 0 0 24px; }
+.article-cta-btn { display: inline-block; padding: 14px 28px; background: var(--accent); color: var(--white); border-radius: 100px; font-weight: 600; font-size: 15px; box-shadow: 0 4px 16px rgba(232, 93, 58, 0.3); transition: transform 0.2s; }
+.article-cta-btn:hover { transform: translateY(-2px); }
+
+.related { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+.related-label { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.related-card { padding: 20px 24px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); transition: all 0.2s; }
+.related-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232, 93, 58, 0.08); }
+.related-card-pillar { font-family: var(--f-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+.related-card-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.45; letter-spacing: -0.02em; }
+
+.footer { padding: 40px 24px; background: var(--bg-soft); border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--ink-muted); letter-spacing: -0.005em; }
+.footer a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+
+@media (max-width: 560px) {
+  .article { padding: 32px 18px 60px; }
+  .article-meta { flex-wrap: wrap; gap: 10px; }
+  .callout, .keyfact { padding: 22px; }
+  .numbered-list li { padding: 20px 20px 20px 56px; }
+  .numbered-list li::before { left: 18px; top: 20px; }
+  .article-cta { padding: 28px 22px; }
+  .article-cta h3 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
+    <a href="index.html#final-cta" class="nav-cta">1:1 무료 상담</a>
+  </div>
+</nav>
+
+<article class="article">
+
+  <div class="article-breadcrumb">
+    <a href="index.html">TalkB</a><span class="sep">/</span>
+    <a href="index.html#resources">Insights</a><span class="sep">/</span>
+    <span>AI 플랫폼 실전</span>
+  </div>
+
+  <h1 class="article-title">Perplexity에서 내 브랜드가 출처로 뜨는 구조</h1>
+
+  <p class="article-lead">
+    Perplexity는 <strong>월 7억 8천만 쿼리</strong>를 처리하는 답변 엔진이자, AI 검색 시대의 가장 명확한 트래픽 채널입니다. ChatGPT가 답변 10개 중 2개에만 인용 링크를 다는 반면, Perplexity는 <strong>모든 답변에 출처를 표시</strong>합니다. 그러나 답변당 평균 인용은 <strong>5개에 불과</strong>합니다. 이 좁은 문에 들어가는 구조 — Sonar 모델 특성, 신선도 가중치, BLUF 형식, 외부 권위 신호 — 를 정리합니다.
+  </p>
+
+  <div class="article-meta">
+    <span>김태정 · TalkB 대표</span>
+    <span class="article-meta-dot"></span>
+    <span>발행 2026.04.25</span>
+    <span class="article-meta-dot"></span>
+    <span>9분 읽기</span>
+    <span class="article-meta-dot"></span>
+    <span>Pillar 03 · 플랫폼</span>
+  </div>
+
+  <h2>Perplexity가 다른 AI와 다른 이유</h2>
+
+  <p>
+    Perplexity는 2022년 Google·Meta·OpenAI 출신 엔지니어들이 창업한 회사입니다. 다른 AI 플랫폼이 챗봇을 답변 엔진으로 확장한 형태라면, Perplexity는 <strong>처음부터 답변 엔진(Answer Engine)으로 설계</strong>됐습니다. 이 차이가 실제 작동 방식에 큰 영향을 줍니다.
+  </p>
+
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="platform-name">ChatGPT</div>
+      <div class="platform-stat">10.42</div>
+      <div class="platform-desc">답변당 평균 인용 수. 단, 인용은 답변 10개 중 2개에만 표시 — 나머지는 학습 데이터 기반.</div>
+    </div>
+    <div class="platform-card highlight">
+      <div class="platform-name">Perplexity</div>
+      <div class="platform-stat">5.01</div>
+      <div class="platform-desc">답변당 평균 인용 수. 100% RAG 기반이라 모든 답변에 출처 표시. 적은 만큼 가중치는 큼.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Google AI Overview</div>
+      <div class="platform-stat">9.26</div>
+      <div class="platform-desc">답변당 평균 인용. 단, 답변 박스 내 링크 클릭률은 1% (Pew Research 2025).</div>
+    </div>
+  </div>
+
+  <p>
+    숫자만 보면 ChatGPT가 인용 수가 많아 유리해 보이지만, 실제로는 정반대입니다. <strong>Perplexity는 모든 답변에 5개 출처가 명시</strong>되고 사용자가 출처를 적극적으로 확인하는 행동 패턴을 가져, 인용 1개당 실제 트래픽 전환율이 가장 높습니다. Discovered Labs 데이터에 따르면 <strong>AI 추천 트래픽 전환율은 14.2%로 Google 2.8%보다 5배 높습니다.</strong>
+  </p>
+
+  <h2>Sonar 모델 — Perplexity의 핵심 차별점</h2>
+
+  <p>
+    Perplexity는 ChatGPT나 Claude를 외부 모델로 사용하기도 하지만, 진짜 차별점은 <strong>Sonar라는 자체 검색 특화 LLM 시리즈</strong>입니다. Sonar는 단순 LLM이 아니라 <em>검색 → 재순위 → 생성</em> 전 과정이 통합된 시스템입니다.
+  </p>
+
+  <p>
+    Sonar의 가장 중요한 특성은 <strong>신선도(recency) 가중치가 다른 어떤 신호보다 강하다</strong>는 점입니다. Vydera Lab의 Perplexity 인용 분석에서 <strong>인용된 페이지의 76.4%가 30일 이내 업데이트</strong>된 콘텐츠였습니다. 같은 콘텐츠라도 6개월 전 게시된 것보다 최근 갱신된 것이 3배 이상 인용됩니다.
+  </p>
+
+  <div class="keyfact">
+    <span class="keyfact-tag">Sonar 신선도 윈도우</span>
+    <p>
+      Perplexity는 새 콘텐츠 게시 후 <strong>24시간 이내에 인덱스에 반영</strong>됩니다. 이는 ChatGPT나 Gemini보다 훨씬 빠르며, B2B 사례 연구·신제품 발표 등을 곧바로 답변에 반영시킬 수 있는 유일한 플랫폼입니다. 첫 게시 후 첫 분 동안의 클릭률이 향후 인용 성과에 영향을 준다는 분석도 있습니다.
+    </p>
+  </div>
+
+  <h2>Perplexity가 인용하는 도메인의 특성</h2>
+
+  <p>
+    Yext가 2025년 10월 발표한 6.8백만 인용 분석에서 플랫폼별 도메인 선호 패턴이 뚜렷이 갈렸습니다.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="stat-num">52.15%</div>
+      <div class="stat-lbl">Gemini 인용 중<br>자체 브랜드 도메인</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">~32%</div>
+      <div class="stat-lbl">Perplexity 인용 중<br>뉴스·저널리즘</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">26.16%</div>
+      <div class="stat-lbl">Perplexity 인용 도메인<br>10~15년 연수</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">45%</div>
+      <div class="stat-lbl">Reddit 인용 빈도<br>(타 출처 대비)</div>
+    </div>
+  </div>
+
+  <p>
+    여기서 두 가지 통찰이 나옵니다. 첫째, <strong>Perplexity는 "공식 자체 도메인" 중심인 Gemini와 정반대로, 외부 권위 출처(언론·전문 매체·커뮤니티 검증)를 강하게 인용</strong>합니다. 즉 자기 사이트만 잘 만든다고 Perplexity에 잡히지 않으며, 외부 매체 노출과 Reddit 같은 커뮤니티 신호가 동시에 작동해야 합니다.
+  </p>
+
+  <p>
+    둘째, <strong>도메인 연수가 10~15년인 사이트도 26.16% 비중으로 인용</strong>됩니다. Google AI Overview는 15년 이상 도메인을 49.21% 비중으로 인용하는 반면, Perplexity는 중년 도메인에도 진입 기회가 있다는 뜻입니다. 신생 한국 브랜드에게 Google보다 Perplexity가 진입 장벽이 낮은 이유.
+  </p>
+
+  <h2>Perplexity 인용을 위한 7가지 작업</h2>
+
+  <p>
+    이상의 특성을 종합하면 Perplexity 최적화는 다음 7단계로 구조화됩니다. 우선순위 순서로 정리합니다.
+  </p>
+
+  <ol class="numbered-list">
+    <li>
+      <strong>30일 신선도 사이클 구축</strong>
+      <span>핵심 페이지(About, FAQ, 메뉴, 가격, 매장 소개)에 "최종 업데이트: 2026년 X월" 명시. 분기 1회 이상 실제로 수치·정보를 갱신. 단순한 날짜 변경은 효과 없으며 콘텐츠 자체가 실제로 바뀌어야 Perplexity 인덱스가 반영합니다. <strong>TalkB 파일럿에서 가장 즉각적 효과를 낸 단일 작업.</strong></span>
+    </li>
+    <li>
+      <strong>BLUF 형식으로 첫 단락 재구성</strong>
+      <span>Bottom Line Up Front — 결론을 가장 먼저, 근거를 뒤에. "이 글은 마케팅에 관한 것입니다" 같은 도입부 절대 금지. 첫 문장이 곧 답변이어야 합니다. ConvertMate 분석에서 BLUF 형식 페이지는 일반 페이지 대비 <strong>2.8배 높은 인용률</strong>을 보입니다.</span>
+    </li>
+    <li>
+      <strong>JSON-LD 스키마 4종 적용</strong>
+      <span>Article(블로그 포스트), FAQPage(질문-답변), Organization(브랜드 정보), LocalBusiness(매장 정보). Perplexity의 ML 재순위 모델은 schema.org 명시 데이터를 가장 신뢰합니다. JSON-LD 적용 페이지는 인용률이 1.5~2배 상승.</span>
+    </li>
+    <li>
+      <strong>외부 권위 매체 노출</strong>
+      <span>Perplexity는 외부 출처 의존도가 높아 본인 사이트만으로는 한계. 업계 매체·지역 언론·전문 블로그 등에 실제 보도되거나 게스트 포스트 1~2건이 있어야 권위 신호가 생깁니다. 특히 G2·Capterra 등 리뷰 플랫폼은 B2B 가중치가 높음.</span>
+    </li>
+    <li>
+      <strong>Reddit 등 커뮤니티 검증 신호 확보</strong>
+      <span>Perplexity는 Reddit을 다른 출처보다 45% 자주 인용합니다. 한국 매장이라면 직접적 Reddit 활동은 한계가 있지만, <strong>구글 지도 리뷰·국제 리뷰 사이트(Tripadvisor·Yelp)에 영문 리뷰 누적</strong>이 유사한 효과를 냅니다.</span>
+    </li>
+    <li>
+      <strong>로그 분석으로 PerplexityBot 방문 추적</strong>
+      <span>Perplexity 크롤러는 사이트 로그에 흔적을 남깁니다. 가장 자주 방문되는 페이지가 인용 가능성이 가장 높은 페이지. 이 페이지를 우선 보강. 호스팅사 통계 페이지나 Google Analytics에서 User-Agent 필터로 확인 가능.</span>
+    </li>
+    <li>
+      <strong>llms.txt 작성 및 사이트 루트 배치</strong>
+      <span>Perplexity는 llms.txt를 우선 인식하는 플랫폼. 사이트 핵심 정보·발행 콘텐츠 목록·연락처를 간결하게 정리한 텍스트 파일. 약 10~15분 작업으로 가능하며 PerplexityBot이 다른 페이지보다 먼저 참조합니다.</span>
+    </li>
+  </ol>
+
+  <h2>Perplexity 인용을 막는 흔한 실수 4가지</h2>
+
+  <h3>실수 1. 콘텐츠를 한 번 쓰고 방치</h3>
+  <p>
+    가장 흔한 실수입니다. 1년 전 게시한 명문 콘텐츠라도 Perplexity의 신선도 가중치에서 밀립니다. <strong>최소 분기 1회 실제 갱신 + 업데이트 일자 노출</strong>이 핵심. 갱신할 게 없다면 새 사례·새 통계·새 외부 인용이라도 추가하는 게 좋습니다.
+  </p>
+
+  <h3>실수 2. "추상적 도입부"로 시작</h3>
+  <p>
+    "오늘날 빠르게 변화하는 비즈니스 환경에서…" 같은 추상적 도입부는 Perplexity의 청크 매칭에서 거의 100% 떨어집니다. 첫 문장에 <strong>구체적 사실·숫자·결론</strong>이 있어야 합니다. "Perplexity는 답변당 평균 5개 출처를 인용한다"처럼.
+  </p>
+
+  <h3>실수 3. 자기 사이트만 잘 만들기</h3>
+  <p>
+    Perplexity는 외부 권위 의존도가 가장 높은 플랫폼입니다. 본인 사이트가 완벽해도 외부 매체에 한 번도 언급된 적 없으면 권위 신호가 부족해 인용률이 정체됩니다. <strong>최소 2~3건의 외부 매체 노출 + 리뷰 플랫폼 등록</strong>이 동반되어야 합니다.
+  </p>
+
+  <h3>실수 4. AI 크롤러 차단</h3>
+  <p>
+    의외로 흔한 문제. 일부 호스팅사·CMS의 기본 robots.txt가 PerplexityBot을 차단하고 있습니다. <strong>"Allow: /" + PerplexityBot 명시 허용</strong>이 적혀 있는지 확인. 차단되어 있으면 위 6가지 작업이 다 무용지물입니다.
+  </p>
+
+  <h2>F&amp;B 브랜드의 Perplexity 활용 시나리오</h2>
+
+  <p>
+    Perplexity는 F&amp;B 브랜드에게 가장 빠르게 효과를 보여주는 플랫폼입니다. 신선도·구조·외부 권위 3박자가 식당업 쿼리 패턴과 잘 맞기 때문입니다.
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">TalkB 파일럿 관찰</div>
+    <p>
+      파일럿 3사 중 가장 빠른 변화는 <strong>Perplexity에서 2~4주 시점부터</strong> 관찰됩니다. ChatGPT는 8~12주, Google AI Overview는 4~8주. 즉 Perplexity는 GEO 작업의 <strong>"빠른 피드백 루프"</strong> 역할을 합니다 — 어느 작업이 효과 있는지를 가장 먼저 알려주는 플랫폼.
+    </p>
+    <p>
+      따라서 본사·매장 단위 GEO 우선순위는 <strong>Perplexity → Google AI Overview → ChatGPT 순</strong>으로 잡는 것이 합리적입니다. Perplexity에서 효과를 본 작업을 다른 플랫폼으로 확장하는 방식.
+    </p>
+  </div>
+
+  <h3>예비창업자 시나리오</h3>
+  <p>
+    "치킨 프랜차이즈 창업비용 1억 미만 중에서 본사 지원 잘 해주는 곳 추천"같은 질문이 Perplexity에 들어가면, 본사 사이트의 공정위 공시 요약 페이지 + 외부 매체 보도 + 가맹점주 리뷰 3가지가 동시에 인용 후보가 됩니다. 본사 입장에서는 이 세 영역을 모두 갖춰야 답변 5개 안에 들어갑니다.
+  </p>
+
+  <h3>독립매장 시나리오</h3>
+  <p>
+    "광장동 부모님 모실 만한 한정식 어디가 좋아?"같은 상황형 쿼리에서 Perplexity는 매장 자체 사이트(LocalBusiness 스키마) + 구글 지도 리뷰 + 외부 푸드 매체 리뷰를 종합해 답변. <strong>Perplexity는 한국 매장이라도 영문 외부 리뷰가 있으면 더 자주 인용</strong>하는 경향이 있어 Tripadvisor·Yelp·Google 리뷰의 영문 작성을 권장합니다.
+  </p>
+
+  <h2>자주 묻는 질문</h2>
+
+  <h3>Q. Perplexity는 한국어 콘텐츠를 잘 인용하나요?</h3>
+  <p>
+    한국어 학습량이 영어보다 적어 초기 반응 속도는 영어 대비 1~2주 정도 늦습니다. 다만 <strong>한국어 콘텐츠라도 신선도·구조·외부 권위 3박자가 갖춰지면 영어 콘텐츠와 유사한 인용률</strong>을 보입니다. TalkB 파일럿 3사 모두 한국어 콘텐츠 기반이며 Perplexity 인용 효과를 확인 중.
+  </p>
+
+  <h3>Q. Perplexity Pages 기능은 활용해야 하나요?</h3>
+  <p>
+    Perplexity Pages는 사용자가 직접 큐레이션한 답변 페이지를 만드는 기능입니다. 활용 시 자체 도메인 콘텐츠가 Pages에 인용되어 자연스러운 출처가 됩니다. 다만 한국 사용자 비중이 적어 직접적 효과는 제한적이며, 글로벌 B2B 영업이 있는 브랜드만 우선순위 검토 권장.
+  </p>
+
+  <h3>Q. Perplexity 인용이 늘면 다른 AI에서도 자동으로 인용되나요?</h3>
+  <p>
+    부분적으로 그렇습니다. Perplexity가 인용한 페이지가 Google AI Overview에 영향을 주는 사례가 관찰되며, 약 4~8주 후 Google AI Overview에 반영되는 패턴이 있습니다. ChatGPT는 학습 데이터 갱신 주기가 길어 자동 반영 효과가 가장 약합니다.
+  </p>
+
+  <div class="article-cta">
+    <div class="article-cta-label">Perplexity Audit</div>
+    <h3>Perplexity에서 우리 브랜드는<br>몇 번 인용되고 있을까?</h3>
+    <p>
+      1:1 무료 상담에서 Perplexity 인용 현황 진단 + 신선도·외부 권위·구조 3축 점수를 산출해 드립니다. 30분 통화로 어느 작업이 가장 시급한지 도출됩니다.
+    </p>
+    <a href="index.html#final-cta" class="article-cta-btn">Perplexity 진단 신청</a>
+  </div>
+
+  <div class="sources">
+    <div class="sources-label">Sources</div>
+    <ol>
+      <li>BloggerByteByteGo. <em>"How Perplexity Built an AI Google."</em> Vespa 기반 RAG 파이프라인 분석. 2025.11.</li>
+      <li>Yext. <em>"AI Search Citation Analysis."</em> 6.8M 인용 · 1.6M 답변 분석. 2025.10.</li>
+      <li>Vydera Lab. <em>"Perplexity Citation Pattern Analysis."</em> 76.4% 30일 내 업데이트. 2026.03.</li>
+      <li>Discovered Labs. <em>"Perplexity Optimization Guide."</em> 2.8x 인용률 · 14.2% 전환률. 2026.01. <a href="https://discoveredlabs.com/blog/perplexity-optimization-how-to-get-cited-linked-2026" class="ext" target="_blank" rel="noopener">discoveredlabs.com</a></li>
+      <li>Authority Tech. <em>"Reddit Perplexity GEO Strategy 2026."</em> Reddit 45% 인용 빈도. 2026.02.</li>
+      <li>Authority Tech. <em>"How Perplexity Selects Sources."</em> 2026.02. 366,000 인용 분석.</li>
+      <li>Pew Research. <em>"AI Overview Click-Through Analysis."</em> 1% 클릭률. 2025.07.</li>
+      <li>Stackmatix. <em>"Perplexity AI Optimization Strategy 2026."</em> 도메인 연수 분석.</li>
+    </ol>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related Reading</div>
+    <div class="related-grid">
+      <a href="insights-chatgpt-citation-conditions.html" class="related-card">
+        <div class="related-card-pillar">Pillar 03 · 플랫폼</div>
+        <div class="related-card-title">ChatGPT가 인용하는 콘텐츠 6가지 조건</div>
+      </a>
+      <a href="insights-ai-answer-4-stages.html" class="related-card">
+        <div class="related-card-pillar">Pillar 01 · 기초</div>
+        <div class="related-card-title">AI 답변 4단계 원리 · RAG부터 인용까지</div>
+      </a>
+      <a href="insights-situational-query-response.html" class="related-card">
+        <div class="related-card-pillar">Pillar 02 · F&amp;B 전략</div>
+        <div class="related-card-title">상황형 쿼리 "광장동 조용한 한식당" 대응 구조</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<footer class="footer">
+  © 2026 (주)티앤에스컴퍼니 · TalkB — F&amp;B 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <a href="index.html">talkb.co.kr</a> · <a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a>
+</footer>
+
+<script>
+(function() {
+  var p = document.getElementById('scrollProgress');
+  if (!p) return;
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement;
+    var s = h.scrollTop || document.body.scrollTop;
+    var height = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+    p.style.width = (height > 0 ? (s / height) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

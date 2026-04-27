@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E85D3A">
+
+<title>Google AI Overview · Gemini 최적화 공식 가이드 — TalkB Insights</title>
+<meta name="title" content="Google AI Overview · Gemini 최적화 공식 가이드">
+<meta name="description" content="2026년 1월 27일 Gemini 3 글로벌 적용 후 AI Overview 인용 도메인 42% 교체, 평균 인용 출처 32% 증가. YouTube 18.2% / Reddit 21%로 외부 권위 출처가 지배. F&B 브랜드가 들어가는 6가지 작업과 영업 임팩트.">
+<meta name="keywords" content="Google AI Overview, Gemini 3, AI Overview 최적화, AEO, query fan-out, 한국 F&B AI 검색, 인용 알고리즘, TalkB">
+<meta name="author" content="TalkB · 김태정">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://talkb.co.kr/insights-google-aio-gemini-guide.html">
+<meta property="article:published_time" content="2026-04-25">
+<meta property="article:author" content="김태정">
+<meta property="article:section" content="AI 플랫폼 실전">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://talkb.co.kr/insights-google-aio-gemini-guide.html">
+<meta property="og:title" content="Google AI Overview · Gemini 최적화 공식 가이드">
+<meta property="og:description" content="Gemini 3가 인용 도메인 42% 교체. F&B 브랜드가 들어가는 6가지 작업.">
+<meta property="og:image" content="https://talkb.co.kr/og-insights-gemini.png">
+<meta property="og:site_name" content="TalkB Insights">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Google AI Overview · Gemini 최적화 공식 가이드">
+<meta name="twitter:image" content="https://talkb.co.kr/og-insights-gemini.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Google AI Overview · Gemini 최적화 공식 가이드",
+  "description": "Gemini 3 적용 이후 인용 알고리즘 변화와 F&B 브랜드의 6가지 최적화 작업.",
+  "image": "https://talkb.co.kr/og-insights-gemini.png",
+  "author": { "@type": "Person", "name": "김태정", "jobTitle": "대표", "worksFor": { "@type": "Organization", "name": "TalkB" } },
+  "publisher": { "@type": "Organization", "name": "TalkB", "logo": { "@type": "ImageObject", "url": "https://talkb.co.kr/logo.png" } },
+  "datePublished": "2026-04-25",
+  "dateModified": "2026-04-25",
+  "inLanguage": "ko-KR",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://talkb.co.kr/insights-google-aio-gemini-guide.html" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Google AI Overview와 Gemini는 같은 건가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "둘은 분리된 채널이지만 같은 모델로 작동합니다. AI Overview는 Google 검색 결과 상단에 자동 노출되는 AI 요약이고, Gemini는 별도 앱·웹 챗봇입니다. 2026년 1월 27일 이후 두 채널 모두 Gemini 3 모델을 디폴트로 사용하며, 같은 query fan-out과 인용 알고리즘을 공유합니다. 다만 Ahrefs 2025년 12월 분석에 따르면 두 채널 간 실제 인용 출처 중복은 13.7%에 불과해, 같은 질문이라도 두 채널이 서로 다른 출처를 인용하는 경우가 대다수입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gemini 3가 도메인을 42% 교체했다는 게 무슨 뜻인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2026년 1월 27일 Google이 AI Overview의 디폴트 모델을 Gemini 3로 업그레이드한 직후 SE Ranking 분석 결과, 이전에 인용되던 도메인의 42%가 새로운 도메인으로 교체됐습니다. 또한 답변당 평균 출처 수가 11.5개에서 15개+로 32% 증가했습니다. 이는 이전에 인용되던 사이트는 다시 인용을 못 받을 수 있고, 이전에 인용 못 받던 사이트는 새 진입 기회가 생겼다는 뜻입니다. F&B 브랜드 입장에서 2026년 상반기는 진입 타이밍입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Overview 인용 1위 도메인이 YouTube라는 게 사실인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "사실입니다. YouTube가 AI Overview 단일 최다 인용 도메인이며, 2025년 후반 기준 전체 인용의 약 18.2%를 차지합니다. Reddit이 21% 비중으로 그 뒤를 잇습니다. 이는 사용자 경험 기반 답변(UGC, 영상 시연, 실제 사용 후기)을 Gemini 3가 강하게 가중하기 때문입니다. F&B 브랜드 입장에서 본인 사이트만 잘 만드는 것이 아니라 YouTube 콘텐츠·외부 매체 노출·리뷰 사이트 신호가 동시에 작동해야 합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Overview 인용은 SEO 1위와 별개인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 점점 더 별개입니다. 2025년 중반에는 AI Overview 인용 페이지의 76%가 같은 쿼리 Google 검색 상위 10위에 들었지만, 2026년 초 Gemini 3 적용 후 이 비율이 38%로 급락했습니다. Ahrefs 데이터 기준 46.5%는 Top 50에도 들지 못하는 페이지에서 인용됐습니다. 이유는 query fan-out — 한 질문이 5~10개 하위 쿼리로 분해되어 각 하위 쿼리의 다양한 답변에서 인용을 가져오기 때문입니다. 키워드 1개 1위가 아니라 토픽 클러스터 전체 깊이가 중요해졌습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gemini는 답변에 브랜드를 언급하면서 출처 링크를 안 다는 경우가 많다는데?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "맞습니다. Growth Memo 2026년 4월 분석에 따르면 Gemini는 응답의 83.7%에서 브랜드를 언급하지만, 출처 링크를 다는 비율은 21.4%에 불과합니다. 즉 사용자가 답변에서 브랜드명을 보지만 클릭할 수 있는 링크가 없는 '고스트 시티에이션(ghost citation)'이 다수입니다. F&B 입장에서는 측정 시 인용 링크 빈도와 텍스트 언급 빈도를 분리해서 봐야 정확한 가시성이 보입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "한국 F&B 브랜드가 가장 빠르게 할 수 있는 작업은 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1) 핵심 페이지마다 첫 60자 이내에 직접 답변 배치(BLUF), 2) Article·FAQPage·LocalBusiness JSON-LD 적용, 3) Google Business Profile 정보 갱신·Q&A 5개 이상 등록, 4) 브랜드 관련 YouTube 콘텐츠 1~2개 생성(매장 소개·메뉴 시연), 5) 외부 매체 노출·푸드 매거진 게재, 6) Core Web Vitals 개선(특히 First Contentful Paint 0.4초 이내). 1~3번은 즉시 가능, 4~5번은 분기 1회 단위, 6번은 개발 작업이 필요합니다."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "TalkB", "item": "https://talkb.co.kr/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/#resources" },
+    { "@type": "ListItem", "position": 3, "name": "Google AI Overview · Gemini 가이드" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+<style>
+:root { --bg: #FFFFFF; --bg-soft: #FAFAFA; --bg-deep: #F5F5F5; --ink: #0A0A0A; --ink-soft: #171717; --ink-mid: #52525B; --ink-muted: #A1A1AA; --ink-light: #D4D4D8; --border: #E4E4E7; --border-soft: #F4F4F5; --accent: #E85D3A; --accent-deep: #C94422; --accent-soft: #FFF1EC; --accent-paper: #FFF7F3; --white: #FFFFFF; --f-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; --f-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace; --r-sm: 8px; --r-md: 16px; --r-lg: 24px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; max-width: 100%; overflow-x: hidden; }
+body { font-family: var(--f-body); font-size: 16px; line-height: 1.7; color: var(--ink); background: var(--bg); letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; max-width: 100%; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--ink); color: var(--white); }
+
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; z-index: 200; transition: width 0.1s ease-out; }
+
+.nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; padding: 14px 0; }
+.nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.nav-brand { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.04em; }
+.nav-brand .mark { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+.nav-brand-kr { font-size: 12px; color: var(--ink-muted); font-weight: 500; }
+.nav-cta { padding: 8px 18px; background: var(--accent); color: var(--white); border-radius: 100px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 10px rgba(232, 93, 58, 0.22); transition: transform 0.2s; white-space: nowrap; }
+
+.article { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+.article-breadcrumb { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+.article-breadcrumb a { color: var(--accent); border-bottom: 1px solid transparent; }
+.article-breadcrumb a:hover { border-color: var(--accent); }
+.article-breadcrumb .sep { margin: 0 10px; color: var(--ink-light); }
+.article-title { font-size: clamp(28px, 4.5vw, 44px); font-weight: 700; line-height: 1.18; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 24px; }
+.article-lead { font-size: 19px; line-height: 1.7; color: var(--ink-mid); letter-spacing: -0.015em; margin-bottom: 32px; font-weight: 400; }
+.article-lead strong { color: var(--ink); font-weight: 600; }
+.article-meta { display: flex; gap: 20px; align-items: center; padding: 16px 0; margin-bottom: 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 13px; color: var(--ink-mid); font-family: var(--f-mono); letter-spacing: -0.005em; flex-wrap: wrap; }
+.article-meta-dot { width: 4px; height: 4px; background: var(--ink-light); border-radius: 50%; }
+.article h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.25; letter-spacing: -0.035em; color: var(--ink); margin: 56px 0 20px; }
+.article h2:first-of-type { margin-top: 0; }
+.article h3 { font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.025em; color: var(--ink); margin: 32px 0 14px; }
+.article p { font-size: 16.5px; line-height: 1.85; color: var(--ink-soft); letter-spacing: -0.01em; margin-bottom: 20px; }
+.article p strong { color: var(--ink); font-weight: 600; }
+.article ul, .article ol { padding-left: 24px; margin-bottom: 20px; }
+.article li { font-size: 16px; line-height: 1.85; color: var(--ink-soft); letter-spacing: -0.01em; margin-bottom: 8px; }
+.article li strong { color: var(--ink); font-weight: 600; }
+.article a.ext { color: var(--accent); border-bottom: 1px solid var(--accent-soft); transition: border-color 0.2s; font-weight: 500; }
+
+.callout { padding: 24px 28px; background: var(--accent-paper); border-left: 3px solid var(--accent); border-radius: 0 var(--r-md) var(--r-md) 0; margin: 28px 0; }
+.callout-label { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+.callout p { margin-bottom: 0; }
+.callout p + p { margin-top: 12px; }
+
+.keyfact { padding: 20px 24px; background: var(--bg-soft); border-radius: var(--r-md); margin: 24px 0; font-size: 15px; color: var(--ink-mid); line-height: 1.75; }
+.keyfact-tag { display: inline-block; padding: 3px 10px; background: var(--ink); color: var(--white); font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; font-weight: 700; border-radius: 100px; margin-bottom: 10px; }
+.keyfact strong { color: var(--ink); font-weight: 600; }
+
+/* Big stat row */
+.big-stat-section { margin: 32px 0; padding: 36px 32px; background: var(--ink); border-radius: var(--r-lg); color: var(--white); }
+.big-stat-tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 18px; }
+.big-stat-headline { font-size: clamp(20px, 3vw, 26px); font-weight: 700; line-height: 1.3; letter-spacing: -0.025em; color: var(--white); margin-bottom: 22px; }
+.big-stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 720px) { .big-stat-row { grid-template-columns: repeat(2, 1fr); } }
+.big-stat-num { font-family: var(--f-body); font-size: clamp(26px, 3.5vw, 36px); font-weight: 700; color: var(--accent); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+.big-stat-lbl { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.55; letter-spacing: -0.005em; }
+.big-stat-lbl strong { color: var(--white); font-weight: 600; }
+
+/* Comparison row */
+.comp-row { margin: 28px 0; padding: 24px 28px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); display: grid; grid-template-columns: 80px 1fr 1fr; gap: 18px; align-items: center; }
+@media (max-width: 720px) { .comp-row { grid-template-columns: 1fr; gap: 12px; padding: 22px; } }
+.comp-row-mark { font-family: var(--f-mono); font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.4; }
+.comp-row-from, .comp-row-to { padding: 16px 18px; border-radius: var(--r-sm); }
+.comp-row-from { background: var(--bg-deep); }
+.comp-row-to { background: var(--accent-paper); border: 1px solid var(--accent-soft); }
+.comp-row-stat { font-family: var(--f-mono); font-size: 22px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; color: var(--ink); }
+.comp-row-to .comp-row-stat { color: var(--accent-deep); }
+.comp-row-cap { font-size: 11px; color: var(--ink-mid); letter-spacing: -0.005em; line-height: 1.5; }
+.comp-row-cap strong { color: var(--ink); font-weight: 600; }
+
+/* Numbered task list */
+.task-list { counter-reset: task; list-style: none; padding: 0; margin: 28px 0; }
+.task-list li { counter-increment: task; padding: 24px 28px 24px 72px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); margin-bottom: 12px; position: relative; }
+.task-list li::before { content: counter(task, decimal-leading-zero); position: absolute; left: 24px; top: 24px; font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); }
+.task-list li strong.task-name { display: block; color: var(--ink); font-weight: 700; margin-bottom: 4px; font-size: 16px; letter-spacing: -0.025em; }
+.task-list li .task-tag { display: inline-block; padding: 2px 8px; background: var(--bg-deep); color: var(--ink-mid); font-family: var(--f-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; }
+.task-list li .task-tag.fast { background: var(--accent-soft); color: var(--accent); }
+.task-list li .task-desc { display: block; font-size: 14px; color: var(--ink-mid); line-height: 1.7; letter-spacing: -0.005em; }
+.task-list li .task-desc strong { color: var(--ink); font-weight: 600; }
+
+/* Citation distribution viz */
+.cite-dist { margin: 28px 0; padding: 28px; background: var(--bg-soft); border-radius: var(--r-md); }
+.cite-dist-title { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 18px; }
+.cite-dist-row { display: grid; grid-template-columns: 60px 1fr 80px; gap: 14px; align-items: center; padding: 8px 0; }
+@media (max-width: 560px) { .cite-dist-row { grid-template-columns: 50px 1fr 60px; gap: 10px; } }
+.cite-dist-zone { font-size: 12px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.cite-dist-bar { height: 18px; background: var(--white); border-radius: 100px; overflow: hidden; border: 1px solid var(--border-soft); }
+.cite-dist-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.6s ease; }
+.cite-dist-val { font-family: var(--f-mono); font-size: 13px; font-weight: 700; color: var(--ink); text-align: right; letter-spacing: -0.005em; }
+
+.sources { margin-top: 56px; padding: 28px; background: var(--bg-soft); border-radius: var(--r-md); }
+.sources-label { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; }
+.sources ol { padding-left: 20px; margin: 0; }
+.sources li { font-size: 13px; color: var(--ink-mid); line-height: 1.75; margin-bottom: 8px; letter-spacing: -0.005em; }
+.sources li a { color: var(--accent); border-bottom: 1px solid transparent; word-break: break-all; }
+
+.article-cta { margin-top: 56px; padding: 36px 32px; background: var(--ink); border-radius: var(--r-lg); text-align: center; color: var(--white); }
+.article-cta-label { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+.article-cta h3 { font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: -0.03em; color: var(--white); margin: 0 0 14px; }
+.article-cta p { font-size: 15px; color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin: 0 0 24px; }
+.article-cta-btn { display: inline-block; padding: 14px 28px; background: var(--accent); color: var(--white); border-radius: 100px; font-weight: 600; font-size: 15px; box-shadow: 0 4px 16px rgba(232, 93, 58, 0.3); transition: transform 0.2s; }
+.article-cta-btn:hover { transform: translateY(-2px); }
+
+.related { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+.related-label { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.related-card { padding: 20px 24px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); transition: all 0.2s; }
+.related-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232, 93, 58, 0.08); }
+.related-card-pillar { font-family: var(--f-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+.related-card-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.45; letter-spacing: -0.02em; }
+
+.footer { padding: 40px 24px; background: var(--bg-soft); border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--ink-muted); letter-spacing: -0.005em; }
+.footer a { color: var(--accent); border-bottom: 1px solid transparent; }
+
+@media (max-width: 560px) {
+  .article { padding: 32px 18px 60px; }
+  .article-meta { flex-wrap: wrap; gap: 10px; }
+  .callout, .keyfact { padding: 22px; }
+  .big-stat-section { padding: 26px 22px; }
+  .task-list li { padding: 22px 22px 22px 60px; }
+  .task-list li::before { left: 20px; top: 22px; }
+  .article-cta { padding: 28px 22px; }
+  .article-cta h3 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
+    <a href="index.html#final-cta" class="nav-cta">1:1 무료 상담</a>
+  </div>
+</nav>
+
+<article class="article">
+
+  <div class="article-breadcrumb">
+    <a href="index.html">TalkB</a><span class="sep">/</span>
+    <a href="index.html#resources">Insights</a><span class="sep">/</span>
+    <span>AI 플랫폼 실전</span>
+  </div>
+
+  <h1 class="article-title">Google AI Overview · Gemini 최적화 공식 가이드</h1>
+
+  <p class="article-lead">
+    2026년 1월 27일, Google이 AI Overview의 디폴트 모델을 <strong>Gemini 3</strong>로 업그레이드했습니다. 직후 SE Ranking 분석 결과, <strong>이전에 인용되던 도메인의 42%가 교체</strong>됐고 답변당 평균 출처 수가 <strong>32% 증가</strong>(11.5 → 15+)했습니다. 한국 F&amp;B 브랜드 입장에서 <strong>2026년 상반기는 새 진입 기회의 시점</strong>. 이 가이드는 Gemini 3가 인용을 결정하는 알고리즘과 F&amp;B 브랜드가 즉시 실행 가능한 6가지 작업을 정리합니다.
+  </p>
+
+  <div class="article-meta">
+    <span>김태정 · TalkB 대표</span>
+    <span class="article-meta-dot"></span>
+    <span>발행 2026.04.25</span>
+    <span class="article-meta-dot"></span>
+    <span>10분 읽기</span>
+    <span class="article-meta-dot"></span>
+    <span>Pillar 03 · 플랫폼</span>
+  </div>
+
+  <h2>먼저 정리: AI Overview vs Gemini 앱</h2>
+
+  <p>
+    이 두 채널은 <strong>같은 모델로 작동하지만 진입 경로가 다른 별개의 채널</strong>입니다. 혼동하기 쉬워 짚고 갑니다.
+  </p>
+
+  <ul>
+    <li><strong>Google AI Overview</strong>: 사용자가 google.com에서 검색하면 자동으로 결과 상단에 노출되는 AI 요약. 사용자가 별도 앱을 설치하지 않아도 모든 Google 사용자에게 노출. 미국 정보형 검색의 47%, 전체 검색의 50~60%에서 트리거.</li>
+    <li><strong>Gemini 앱</strong>: 별도 앱·웹 챗봇. 월 활성 사용자 3억 명 (ChatGPT에 이은 글로벌 2위 AI 어시스턴트). 사용자가 의도적으로 접근.</li>
+    <li><strong>AI Mode</strong>: Google 검색 안의 대화형 검색 인터페이스. AI Overview에서 후속 질문으로 전환 가능. 미국 사용자에게 점진 확대 중.</li>
+  </ul>
+
+  <p>
+    세 채널 모두 <strong>Gemini 3가 디폴트 모델이자 같은 query fan-out 알고리즘</strong>을 공유합니다. 다만 Ahrefs 2025년 12월 분석에서 <strong>AI Overview와 AI Mode의 인용 출처 중복은 13.7%</strong>에 불과합니다. 같은 질문이라도 채널마다 다른 출처를 인용한다는 뜻.
+  </p>
+
+  <h2>Gemini 3가 바꾼 것 — 그리고 왜 지금이 진입 타이밍인가</h2>
+
+  <div class="big-stat-section">
+    <div class="big-stat-tag">2026.01.27 Gemini 3 Update</div>
+    <div class="big-stat-headline">
+      Google이 AI Overview의 인용 알고리즘을 <strong style="color: var(--accent);">완전히 흔들어 놓은 시점</strong>입니다.
+    </div>
+    <div class="big-stat-row">
+      <div>
+        <div class="big-stat-num">42%</div>
+        <div class="big-stat-lbl"><strong>인용 도메인 교체율</strong>. 이전 출처가 새로 들어온 출처로 대체</div>
+      </div>
+      <div>
+        <div class="big-stat-num">+32%</div>
+        <div class="big-stat-lbl"><strong>답변당 평균 출처 수 증가</strong>. 11.5 → 15+개</div>
+      </div>
+      <div>
+        <div class="big-stat-num">38%</div>
+        <div class="big-stat-lbl"><strong>Top 10 인용 비율</strong>. mid-2025 76%에서 급락</div>
+      </div>
+      <div>
+        <div class="big-stat-num">46.5%</div>
+        <div class="big-stat-lbl"><strong>Top 50 외 페이지</strong>에서 가져온 인용 비중</div>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    이 데이터의 의미는 두 갈래입니다. <strong>이전에 인용되던 사이트는 다시 인용 못 받을 위험</strong>이 있고, 반대로 <strong>이전에 인용 못 받던 사이트는 이번에 진입할 기회</strong>가 생겼습니다. 한국 F&amp;B 브랜드 대부분이 후자에 해당하므로, 2026년 상반기는 가장 좋은 진입 시점입니다.
+  </p>
+
+  <h3>왜 이런 변화가 일어났나 — Query Fan-out</h3>
+
+  <p>
+    Gemini 3는 사용자 질문을 그대로 처리하지 않고 <strong>5~10개 하위 쿼리(sub-query)로 분해</strong>한 후 각 하위 쿼리에 답이 되는 페이지를 따로 가져와 답변을 합성합니다. 이전 모델보다 분해가 더 적극적이고, 각 하위 쿼리에서 가져오는 출처 수도 더 많습니다.
+  </p>
+
+  <p>
+    예를 들어 사용자가 "치킨 프랜차이즈 창업비용 1억 이내 추천"이라고 물으면 Gemini 3는 다음 하위 쿼리로 분해합니다:
+  </p>
+
+  <ul>
+    <li>치킨 프랜차이즈 창업비용 평균</li>
+    <li>1억 미만 치킨 가맹 본사 리스트</li>
+    <li>치킨 가맹 ROI</li>
+    <li>치킨 가맹 본사 지원 비교</li>
+    <li>치킨 프랜차이즈 가맹 후기</li>
+    <li>2026년 치킨 시장 트렌드</li>
+  </ul>
+
+  <p>
+    각 하위 쿼리마다 <strong>2~3개 출처를 가져와 합산</strong>합니다. 결과적으로 한 답변에 15개+ 출처가 들어가고, <strong>한 키워드 1위로 모든 출처를 차지하는 게 불가능</strong>해진 것입니다. 이게 Top 10 인용 비율이 76%에서 38%로 급락한 배경.
+  </p>
+
+  <h2>Gemini 3가 인용 출처를 고르는 6가지 신호</h2>
+
+  <p>
+    SEO 전문 매체와 데이터 분석을 종합하면 Gemini 3의 인용 알고리즘이 가장 강하게 가중하는 신호는 다음 6가지입니다.
+  </p>
+
+  <div class="comp-row">
+    <div class="comp-row-mark">Signal 01<br>E-E-A-T</div>
+    <div class="comp-row-from">
+      <div class="comp-row-stat">전통 SEO</div>
+      <div class="comp-row-cap">키워드 매칭, 백링크 양</div>
+    </div>
+    <div class="comp-row-to">
+      <div class="comp-row-stat">Gemini 3</div>
+      <div class="comp-row-cap"><strong>경험·전문성·권위·신뢰</strong> 4축. 정부·학술·전문 도메인 우선. 의료 주장에 의학 저널이 블로그보다 가중치 높음.</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-row-mark">Signal 02<br>Freshness</div>
+    <div class="comp-row-from">
+      <div class="comp-row-stat">SEO</div>
+      <div class="comp-row-cap">콘텐츠 게시일 기준</div>
+    </div>
+    <div class="comp-row-to">
+      <div class="comp-row-stat">Gemini 3</div>
+      <div class="comp-row-cap"><strong>AI 인용 콘텐츠는 일반 SEO 결과보다 25.7% 신선</strong>. dateModified 갱신·dataPublished 명시·30일 내 통계 업데이트가 직접 신호.</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-row-mark">Signal 03<br>구조화</div>
+    <div class="comp-row-from">
+      <div class="comp-row-stat">SEO</div>
+      <div class="comp-row-cap">스키마 선택사항</div>
+    </div>
+    <div class="comp-row-to">
+      <div class="comp-row-stat">Gemini 3</div>
+      <div class="comp-row-cap"><strong>JSON-LD 사실상 필수</strong>. Article·FAQPage·LocalBusiness·Organization. 명확한 헤더 계층(H1→H2→H3) 페이지가 28~40% 더 자주 인용.</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-row-mark">Signal 04<br>토픽 깊이</div>
+    <div class="comp-row-from">
+      <div class="comp-row-stat">SEO</div>
+      <div class="comp-row-cap">단일 키워드 1위</div>
+    </div>
+    <div class="comp-row-to">
+      <div class="comp-row-stat">Gemini 3</div>
+      <div class="comp-row-cap"><strong>토픽 클러스터 전체 깊이</strong>. fan-out 모든 하위 쿼리에 답할 수 있는 콘텐츠 셋 보유. 단일 페이지가 아닌 콘텐츠 생태계.</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-row-mark">Signal 05<br>속도</div>
+    <div class="comp-row-from">
+      <div class="comp-row-stat">SEO</div>
+      <div class="comp-row-cap">Core Web Vitals 권장</div>
+    </div>
+    <div class="comp-row-to">
+      <div class="comp-row-stat">Gemini 3</div>
+      <div class="comp-row-cap"><strong>FCP 0.4초 이내 페이지: 평균 6.7회 인용 / 1.13초+ 페이지: 2.1회</strong>. 빠른 페이지가 3배 자주 인용.</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-row-mark">Signal 06<br>외부 신호</div>
+    <div class="comp-row-from">
+      <div class="comp-row-stat">SEO</div>
+      <div class="comp-row-cap">백링크 + 도메인 권위</div>
+    </div>
+    <div class="comp-row-to">
+      <div class="comp-row-stat">Gemini 3</div>
+      <div class="comp-row-cap"><strong>YouTube 18.2% / Reddit 21%</strong>가 인용 출처. 분산 매체 배포는 자체 사이트만 사용 대비 <strong>인용 +325% 증가</strong>.</div>
+    </div>
+  </div>
+
+  <h2>인용은 텍스트 어디서 발생하는가</h2>
+
+  <p>
+    Growth Memo의 2026년 4월 분석에 따르면 LLM 인용은 텍스트 위치에 따라 명확한 분포를 보입니다.
+  </p>
+
+  <div class="cite-dist">
+    <div class="cite-dist-title">LLM 인용 발생 위치 분포 (Growth Memo, 2026.04)</div>
+    <div class="cite-dist-row">
+      <div class="cite-dist-zone">첫 30%</div>
+      <div class="cite-dist-bar"><div class="cite-dist-fill" style="width: 88%;"></div></div>
+      <div class="cite-dist-val">44.2%</div>
+    </div>
+    <div class="cite-dist-row">
+      <div class="cite-dist-zone">중간 40%</div>
+      <div class="cite-dist-bar"><div class="cite-dist-fill" style="width: 62%;"></div></div>
+      <div class="cite-dist-val">31.1%</div>
+    </div>
+    <div class="cite-dist-row">
+      <div class="cite-dist-zone">끝 30%</div>
+      <div class="cite-dist-bar"><div class="cite-dist-fill" style="width: 28%;"></div></div>
+      <div class="cite-dist-val">14% 이하</div>
+    </div>
+  </div>
+
+  <p>
+    <strong>인용의 75%가 텍스트 앞 70% 안에서 발생</strong>합니다. 가장 강한 신호는 <strong>첫 30%에서 44.2%</strong>. 즉 결론·핵심 데이터는 글의 앞쪽에 명확히 배치돼야 인용 가능성이 폭발적으로 늘어납니다. "마무리 단락에 정리한다"는 한국식 글쓰기는 AI 인용에 가장 불리합니다.
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">실전 가이드 · 40~60자 인용 블록</div>
+    <p>
+      각 H2 섹션의 첫 줄은 <strong>40~60자 이내의 자기완결적 답변 문장</strong>이 가장 인용률이 높습니다. 예시 비교:
+    </p>
+    <p>
+      ❌ "AI Overview 최적화에 대해 이야기하기 위해서는 먼저 다양한 요소를 고려해야 하는데, 구조·권위·포맷 선택 등이 있고…"
+    </p>
+    <p>
+      ✓ <strong>"AI Overview 최적화는 3가지 구조 요소를 요구한다 — 계층적 헤더, 각 섹션 첫 60자 이내 직답, 명확한 출처 표시 통계."</strong>
+    </p>
+  </div>
+
+  <h2>F&amp;B 브랜드의 6가지 즉시 실행 작업</h2>
+
+  <p>
+    위 알고리즘 신호를 한국 F&amp;B 브랜드에게 적용 가능한 구체 작업으로 정리하면 다음과 같습니다. <strong style="color: var(--accent);">FAST</strong> 표시는 즉시 실행 가능, 일반 표시는 분기 단위 작업입니다.
+  </p>
+
+  <ol class="task-list">
+    <li>
+      <strong class="task-name">핵심 페이지마다 BLUF 첫 60자 직답 배치</strong>
+      <span class="task-tag fast">FAST · 1주 내</span>
+      <span class="task-desc">
+        About·FAQ·메뉴·가맹 안내 페이지의 첫 단락을 재작성. 구체적 사실·숫자·결론을 첫 줄에. "환영합니다"같은 인사말 도입부 제거. <strong>각 H2 섹션 시작 60자 안에 자기완결적 답변</strong>이 들어가야 함.
+      </span>
+    </li>
+    <li>
+      <strong class="task-name">JSON-LD 4종 적용 (Article·FAQPage·LocalBusiness·Organization)</strong>
+      <span class="task-tag fast">FAST · 1~2주</span>
+      <span class="task-desc">
+        Schema.org 표준 JSON-LD를 페이지 head에 삽입. 본사 사이트는 Organization+Article+FAQPage, 매장 페이지는 LocalBusiness+OpeningHoursSpecification. 워드프레스라면 Yoast·Rank Math 플러그인, 자체 사이트라면 직접 삽입. <strong>Gemini 3가 가장 신뢰하는 데이터 형식</strong>.
+      </span>
+    </li>
+    <li>
+      <strong class="task-name">Google Business Profile 활성화 (매장당)</strong>
+      <span class="task-tag fast">FAST · 즉시</span>
+      <span class="task-desc">
+        매장 카테고리 세부 항목, 속성 10개+, 사진 20장+, Q&amp;A 5개+ 답변. 영업시간·전화 정보 NAP 일관성 확인. <strong>로컬 의도 검색의 직접 신호</strong>이며 Gemini가 매장 정보를 가져가는 1차 출처. 무료, 매장당 약 2~3시간 작업.
+      </span>
+    </li>
+    <li>
+      <strong class="task-name">YouTube 콘텐츠 1~2개 생성</strong>
+      <span class="task-tag">분기 · 영상 제작</span>
+      <span class="task-desc">
+        매장 소개·메뉴 시연·공정·점주 인터뷰 등 1~3분 영상. <strong>YouTube가 AI Overview 단일 최다 인용 도메인(18.2%)</strong>. 영상 제목·설명에 핵심 키워드, 한국어+영어 자막 동시 추가. 한 번 제작한 영상이 12~24개월 인용 자산이 됨.
+      </span>
+    </li>
+    <li>
+      <strong class="task-name">외부 매체 분산 노출</strong>
+      <span class="task-tag">분기 · 1건+</span>
+      <span class="task-desc">
+        업계 매체 보도, 푸드 매거진 게재, 게스트 포스트, 지역 신문 인터뷰. <strong>분산 매체 배포는 자체 사이트만 사용 대비 인용 +325% 증가</strong>. 한국 F&amp;B는 푸드 매거진(<em>월간 외식경영, 푸드매거진, 식품외식경제</em>) + 지역 매체에 분기 1건 노출 목표.
+      </span>
+    </li>
+    <li>
+      <strong class="task-name">Core Web Vitals 개선 (FCP &lt; 0.4초)</strong>
+      <span class="task-tag">개발 · 1회</span>
+      <span class="task-desc">
+        First Contentful Paint 0.4초 이내 페이지는 1.13초+ 페이지 대비 <strong>3배 더 자주 인용</strong>. 이미지 최적화(WebP·lazy loading), 폰트 최적화, 사용 안 하는 스크립트 제거가 핵심. Google PageSpeed Insights 75+ 목표.
+      </span>
+    </li>
+  </ol>
+
+  <h2>한국 F&amp;B에 특화된 추가 고려사항</h2>
+
+  <h3>한국어 검색 vs 영어 검색</h3>
+  <p>
+    Gemini 3는 한국어 응답에서 영어보다 학습량이 적어 <strong>같은 작업이 영어보다 효과 발현이 1~2주 늦습니다</strong>. 그러나 한국어 콘텐츠 + 영어 메타 태그 + 영어 사이트맵을 동시 운영하면 양쪽 진입이 모두 가능합니다. TalkB 파일럿 3사 모두 이 이중 운영 구조.
+  </p>
+
+  <h3>네이버와의 분리 운영</h3>
+  <p>
+    네이버 검색 결과는 Google AI Overview에 영향을 주지 않습니다. 네이버 블로그·카페·지식iN의 노출은 글로벌 AI 채널과 별개. 한국 F&amp;B는 <strong>"Google AI Overview + Gemini 트랙" + "네이버 트랙"</strong>을 별개로 동시 운영해야 합니다.
+  </p>
+
+  <h3>Gemini의 낮은 전환율 이슈</h3>
+  <p>
+    LLM 별 트래픽 전환율은 <strong>ChatGPT 15.9% / Perplexity 10.5% / Claude 5% / Gemini 3%</strong>로 Gemini가 가장 낮습니다. 그 이유는 <strong>Gemini의 "고스트 시티에이션" 현상</strong> — 응답의 83.7%에서 브랜드를 언급하지만 출처 링크는 21.4%만 표시. 텍스트에서 브랜드를 본 사용자가 클릭할 링크가 없습니다.
+  </p>
+
+  <p>
+    이는 약점이 아닌 <strong>측정 패러다임 변화의 신호</strong>입니다. Gemini 노출은 트래픽이 아닌 <em>브랜드 인지·언급 누적</em>으로 측정해야 하며, 사용자가 며칠 후 브랜드명을 직접 검색하는 행동으로 전환을 추적해야 합니다.
+  </p>
+
+  <div class="keyfact">
+    <span class="keyfact-tag">TalkB Insight</span>
+    <p>
+      <strong>Gemini 3 적용 시점인 2026년 1월 27일을 GEO 작업의 명확한 시작점으로 잡는 것이 합리적입니다.</strong> 이전에 인용을 못 받던 한국 F&amp;B 브랜드 입장에서 알고리즘 리셋은 진입 기회. TalkB 파일럿 3사는 1월 27일을 Before 측정 기준점으로 설정해 6개월 누적 변화를 추적 중입니다.
+    </p>
+  </div>
+
+  <h2>자주 묻는 질문</h2>
+
+  <h3>Q. AI Overview에 인용되려면 SEO 1위가 꼭 필요한가요?</h3>
+  <p>
+    아닙니다. 2025년 중반엔 인용 페이지의 76%가 Top 10이었지만 2026년 초 38%로 떨어졌고, <strong>46.5%는 Top 50에도 들지 못합니다</strong>. 토픽 깊이·구조·신선도가 키워드 1위보다 중요해진 시점.
+  </p>
+
+  <h3>Q. 우리 브랜드는 작은데 권위 신호가 부족합니다</h3>
+  <p>
+    AI Advantage Agency 분석에 따르면 <strong>전문성 깊이가 큰 회사를 이깁니다</strong>. 시드 단계 SaaS 브랜드가 잘 구조화된 토픽 클러스터로 대형 경쟁사를 제치고 인용되는 케이스 다수. F&amp;B에서도 같은 원리 — 본사 규모와 무관하게 콘텐츠 깊이가 결정적.
+  </p>
+
+  <h3>Q. YouTube 영상이 부담스러운데 다른 방법은?</h3>
+  <p>
+    YouTube가 가장 효과 큰 외부 권위 채널이지만 유일한 채널은 아닙니다. <strong>Reddit(국제 매장)·푸드 매거진 보도·G2같은 리뷰 사이트·산업 매체 게스트 포스트</strong>도 동등한 권위 신호. 한국 F&amp;B는 푸드 매거진 + 지역 매체 분기 1건 노출이 가장 현실적인 대안.
+  </p>
+
+  <h3>Q. 6가지 작업 중 무엇부터?</h3>
+  <p>
+    1번(BLUF) → 3번(GBP) → 2번(JSON-LD) 순서가 ROI가 가장 높습니다. 1·3번은 즉시 가능하고 효과도 빠릅니다(2~6주). 2번은 개발 또는 플러그인 작업이 필요하지만 한 번 적용하면 모든 페이지에 효과. 4·5·6번은 분기 단위로 누적.
+  </p>
+
+  <div class="article-cta">
+    <div class="article-cta-label">Gemini 3 Audit</div>
+    <h3>Gemini 3 적용 후<br>우리 브랜드 인용 변화는?</h3>
+    <p>
+      1:1 무료 상담에서 Google AI Overview·Gemini 앱 양쪽 인용 현황 진단 + 6가지 작업 중 우선순위 도출. 30분 통화로 진입 기회의 시점에 맞는 액션이 명확해집니다.
+    </p>
+    <a href="index.html#final-cta" class="article-cta-btn">Gemini 진단 신청</a>
+  </div>
+
+  <div class="sources">
+    <div class="sources-label">Sources</div>
+    <ol>
+      <li>SE Ranking. <em>"Gemini 3 AI Overview Citation Analysis."</em> 42% 도메인 교체, +32% 출처. 2026.02.</li>
+      <li>Ahrefs. <em>"AI Overview vs AI Mode Citation Overlap."</em> 13.7% 중복. 2025.12.</li>
+      <li>ALM Corp. <em>"Google AI Overview Citations Top-10 Drop."</em> 76% → 38%. 2026.03. <a href="https://almcorp.com/blog/google-ai-overview-citations-drop-top-ranking-pages-2026/" class="ext" target="_blank" rel="noopener">almcorp.com</a></li>
+      <li>Growth Memo. <em>"LLM Citation Position Analysis."</em> 첫 30% 44.2%. 2026.04.</li>
+      <li>Position Digital. <em>"150+ AI SEO Statistics 2026."</em> Gemini 83.7% 언급 / 21.4% 인용. 2026.04. <a href="https://www.position.digital/blog/ai-seo-statistics/" class="ext" target="_blank" rel="noopener">position.digital</a></li>
+      <li>Averi. <em>"Google AI Overview Optimization 2026."</em> FCP 0.4초 인용률 분석. 2026.01.</li>
+      <li>Stacker. <em>"Earned Media Distribution and AI Citations."</em> +325% 인용 증가. 2025.12.</li>
+      <li>Ahrefs. <em>"AI Citation Source Analysis."</em> AI 인용 페이지 25.7% 신선도. 2025.</li>
+      <li>Oltre AI. <em>"Gemini Citation Optimization."</em> H2 섹션 단위 인용 패턴. 2026.03.</li>
+      <li>WebFX. <em>"LLM Traffic Conversion Rates."</em> ChatGPT 15.9% / Perplexity 10.5% / Claude 5% / Gemini 3%. 2025.06.</li>
+    </ol>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related Reading</div>
+    <div class="related-grid">
+      <a href="insights-perplexity-citation-structure.html" class="related-card">
+        <div class="related-card-pillar">Pillar 03 · 플랫폼</div>
+        <div class="related-card-title">Perplexity에서 내 브랜드가 출처로 뜨는 구조</div>
+      </a>
+      <a href="insights-chatgpt-citation-conditions.html" class="related-card">
+        <div class="related-card-pillar">Pillar 03 · 플랫폼</div>
+        <div class="related-card-title">ChatGPT가 인용하는 콘텐츠 6가지 조건</div>
+      </a>
+      <a href="insights-ai-answer-4-stages.html" class="related-card">
+        <div class="related-card-pillar">Pillar 01 · 기초</div>
+        <div class="related-card-title">AI 답변 4단계 원리 · RAG부터 인용까지</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<footer class="footer">
+  © 2026 (주)티앤에스컴퍼니 · TalkB — F&amp;B 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <a href="index.html">talkb.co.kr</a> · <a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a>
+</footer>
+
+<script>
+(function() {
+  var p = document.getElementById('scrollProgress');
+  if (!p) return;
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement;
+    var s = h.scrollTop || document.body.scrollTop;
+    var height = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+    p.style.width = (height > 0 ? (s / height) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

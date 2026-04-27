@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E85D3A">
+<meta name="robots" content="noindex, follow">
+
+<title>페이지를 찾을 수 없습니다 — TalkB</title>
+<meta name="description" content="요청하신 페이지를 찾을 수 없습니다. TalkB 메인 페이지에서 다른 콘텐츠를 둘러보세요.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+<style>
+:root {
+  --bg: #FFFFFF; --bg-soft: #FAFAFA; --bg-deep: #F5F5F5;
+  --ink: #0A0A0A; --ink-soft: #171717; --ink-mid: #52525B; --ink-muted: #A1A1AA; --ink-light: #D4D4D8;
+  --border: #E4E4E7; --border-soft: #F4F4F5;
+  --accent: #E85D3A; --accent-deep: #C94422; --accent-soft: #FFF1EC;
+  --white: #FFFFFF;
+  --f-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow-x: hidden; }
+body {
+  font-family: var(--f-body);
+  color: var(--ink);
+  background: var(--bg);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+.nav {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  background: var(--white);
+}
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+}
+.nav-brand .mark {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.nav-brand-kr {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+
+.container {
+  max-width: 560px;
+  text-align: center;
+}
+
+.error-mark {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.error-num {
+  font-family: var(--f-body);
+  font-size: clamp(96px, 22vw, 180px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.error-num span { color: var(--accent); }
+
+.error-title {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.error-desc {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  letter-spacing: -0.01em;
+  margin-bottom: 36px;
+}
+
+.error-desc strong { color: var(--ink); font-weight: 600; }
+
+.cta-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: -0.01em;
+  transition: all 0.2s;
+  min-height: 48px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(232, 93, 58, 0.28);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 93, 58, 0.36);
+}
+
+.btn-ghost {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--ink);
+  background: var(--bg-soft);
+}
+
+.suggestions {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.suggestions-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.suggestion-list {
+  display: grid;
+  gap: 8px;
+}
+
+.suggestion-list a {
+  padding: 14px 18px;
+  background: var(--bg-soft);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.suggestion-list a:hover {
+  background: var(--white);
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.suggestion-list a span.arrow {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.footer {
+  padding: 28px 24px;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-muted);
+  letter-spacing: -0.005em;
+}
+
+.footer a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.footer a:hover { border-color: var(--accent); }
+
+@media (max-width: 560px) {
+  .main { padding: 40px 18px; }
+  .error-num { font-size: clamp(80px, 25vw, 130px); }
+  .cta-row .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="container">
+
+    <div class="error-mark">Page Not Found</div>
+
+    <div class="error-num">4<span>0</span>4</div>
+
+    <h1 class="error-title">찾으시는 페이지가 없거나<br>이동되었습니다.</h1>
+
+    <p class="error-desc">
+      입력하신 주소를 다시 한번 확인해주세요.<br>
+      또는 아래 메인 페이지에서 <strong>F&amp;B AI 검색 최적화 솔루션</strong>을 둘러보실 수 있습니다.
+    </p>
+
+    <div class="cta-row">
+      <a href="/" class="btn btn-accent">메인으로 돌아가기</a>
+      <a href="/#final-cta" class="btn btn-ghost">1:1 상담 신청</a>
+    </div>
+
+    <div class="suggestions">
+      <div class="suggestions-label">자주 찾는 페이지</div>
+      <div class="suggestion-list">
+        <a href="/#solution">
+          <span>TalkB 솔루션 보기</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="/#pricing">
+          <span>상품·가격 안내</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="/#cases-data">
+          <span>파일럿 Before 데이터</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="/#resources">
+          <span>TalkB Insights 콘텐츠</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="/#faq">
+          <span>자주 묻는 질문</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  © 2026 (주)티앤에스컴퍼니 · TalkB — F&amp;B 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a>
+</footer>
+
+</body>
+</html>

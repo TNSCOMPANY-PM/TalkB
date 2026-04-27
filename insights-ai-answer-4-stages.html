@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E85D3A">
+
+<title>AI 답변 4단계 원리 · RAG부터 인용까지 — TalkB Insights</title>
+<meta name="title" content="AI 답변 4단계 원리 · RAG부터 인용까지">
+<meta name="description" content="ChatGPT·Perplexity·Gemini가 답변을 만드는 4단계 프로세스 — Query Parsing, Retrieval(RAG), Re-ranking, Generation. 각 단계에서 우리 콘텐츠가 어떻게 선별되고 인용되는지, 어디서 떨어지면 답변에서 사라지는지 비개발자도 이해할 수 있게 정리합니다.">
+<meta name="keywords" content="RAG, Retrieval Augmented Generation, AI 답변 원리, ChatGPT 작동 방식, Perplexity 작동 방식, AI 검색 메커니즘, vector embedding, semantic search, GEO, TalkB">
+<meta name="author" content="TalkB · 김태정">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://talkb.co.kr/insights-ai-answer-4-stages.html">
+<meta property="article:published_time" content="2026-04-25">
+<meta property="article:author" content="김태정">
+<meta property="article:section" content="GEO 기초">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://talkb.co.kr/insights-ai-answer-4-stages.html">
+<meta property="og:title" content="AI 답변 4단계 원리 · RAG부터 인용까지">
+<meta property="og:description" content="ChatGPT·Perplexity·Gemini가 답변을 만드는 4단계 — 우리 콘텐츠가 어디서 선별되고 어디서 떨어지는가.">
+<meta property="og:image" content="https://talkb.co.kr/og-insights-ai-stages.png">
+<meta property="og:site_name" content="TalkB Insights">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 답변 4단계 원리 · RAG부터 인용까지">
+<meta name="twitter:image" content="https://talkb.co.kr/og-insights-ai-stages.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 답변 4단계 원리 · RAG부터 인용까지",
+  "description": "ChatGPT·Perplexity·Gemini가 답변을 만드는 4단계 프로세스를 비개발자도 이해할 수 있게 정리.",
+  "image": "https://talkb.co.kr/og-insights-ai-stages.png",
+  "author": { "@type": "Person", "name": "김태정", "jobTitle": "대표", "worksFor": { "@type": "Organization", "name": "TalkB" } },
+  "publisher": { "@type": "Organization", "name": "TalkB", "logo": { "@type": "ImageObject", "url": "https://talkb.co.kr/logo.png" } },
+  "datePublished": "2026-04-25",
+  "dateModified": "2026-04-25",
+  "inLanguage": "ko-KR",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://talkb.co.kr/insights-ai-answer-4-stages.html" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "RAG가 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAG(Retrieval-Augmented Generation)는 AI가 답변을 만들기 전에 외부 지식 소스(웹·데이터베이스·문서)를 검색해 관련 자료를 가져온 후, 그 자료를 근거로 답변을 생성하는 방식입니다. 2020년 Meta AI 논문에서 처음 정립된 후 ChatGPT 검색·Perplexity·Google AI Overview 등 거의 모든 AI 답변 시스템의 표준이 됐습니다. 2025년 IBM·McKinsey 보고서 기준 기업 LLM 배포의 67%가 어떤 형태로든 RAG를 사용합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Perplexity가 답변당 페이지 10개를 방문하지만 3-4개만 인용한다는 건 무슨 뜻인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Perplexity는 사용자 질문 1건당 약 10개 후보 페이지를 검색해 가져오지만, 그 중 답변에 실제 인용·링크되는 페이지는 평균 3~4개에 불과합니다. 즉 검색에 잡히는 것(Retrieval)과 인용되는 것(Citation)은 별개의 게이트가 있다는 뜻이며, 두 게이트를 모두 통과해야 답변에 노출됩니다. ChatGPT는 답변당 평균 10.42개, Google AI Overview는 9.26개 인용 표시."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI가 답변을 만드는 4단계는 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1단계 Query Parsing(질문 해석): 사용자 질문의 의도를 파악하고 여러 하위 쿼리로 분해. 2단계 Retrieval(검색·인출): 외부 웹·데이터베이스에서 관련 후보 페이지 수십 개 가져옴. 3단계 Re-ranking(재순위 매김): 후보 페이지를 권위·신선도·구조·관련도 등으로 재정렬해 상위 3~5개 선별. 4단계 Generation(생성·인용): 선별된 페이지에서 핵심 정보를 추출해 답변을 작성하고 출처를 표시. 각 단계에서 우리 콘텐츠가 떨어지면 다음 단계로 못 갑니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "콘텐츠가 4단계 중 어느 단계에서 떨어지는지 어떻게 알 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI 플랫폼이 내부 로그를 공개하지 않아 정확히는 알기 어렵지만 추정 가능한 신호가 있습니다. 1단계(Query Parsing)에서 떨어지는 경우는 콘텐츠 주제와 사용자 질문의 표현 차이 때문이고, 2단계(Retrieval)에서 떨어지는 경우는 robots.txt 차단·인덱싱 부재·도메인 권위 부족 때문입니다. 3단계(Re-ranking)에서 떨어지는 경우는 콘텐츠 구조·신선도·인용 부족 때문이고, 4단계(Generation)에서 떨어지는 경우는 추출 가능한 명확한 답변 문장이 본문 첫 30%에 없기 때문입니다. TalkB의 25문항 4뎁스 측정은 어느 단계에서 떨어지는지 패턴화해 진단합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RAG는 ChatGPT 학습 데이터와 어떻게 다른가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT는 두 가지 응답 방식을 가집니다. 첫째는 학습 기반 응답으로, 모델이 학습된 시점까지의 웹 콘텐츠를 패턴으로 기억해 실시간 검색 없이 답변. 둘째는 RAG 기반 응답으로, OAI-SearchBot이 사용자 질문에 맞춰 웹을 실시간 검색해 최신 정보를 가져옴. 학습 기반 응답에 들어가려면 이미 인터넷에 콘텐츠가 누적되어야 하고, RAG 기반 응답에 들어가려면 현재 시점에 검색되고 인용 가능한 구조여야 합니다. Perplexity·Gemini는 거의 100% RAG 기반이고, ChatGPT는 두 방식을 혼용합니다."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "TalkB", "item": "https://talkb.co.kr/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/#resources" },
+    { "@type": "ListItem", "position": 3, "name": "AI 답변 4단계 원리" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+<style>
+:root {
+  --bg: #FFFFFF; --bg-soft: #FAFAFA; --bg-deep: #F5F5F5;
+  --ink: #0A0A0A; --ink-soft: #171717; --ink-mid: #52525B; --ink-muted: #A1A1AA; --ink-light: #D4D4D8;
+  --border: #E4E4E7; --border-soft: #F4F4F5;
+  --accent: #E85D3A; --accent-deep: #C94422; --accent-soft: #FFF1EC; --accent-paper: #FFF7F3;
+  --white: #FFFFFF;
+  --f-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --r-sm: 8px; --r-md: 16px; --r-lg: 24px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; max-width: 100%; overflow-x: hidden; }
+body { font-family: var(--f-body); font-size: 16px; line-height: 1.7; color: var(--ink); background: var(--bg); letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; max-width: 100%; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--ink); color: var(--white); }
+
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; z-index: 200; transition: width 0.1s ease-out; }
+
+.nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; padding: 14px 0; }
+.nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.nav-brand { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.04em; }
+.nav-brand .mark { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+.nav-brand-kr { font-size: 12px; color: var(--ink-muted); font-weight: 500; }
+.nav-cta { padding: 8px 18px; background: var(--accent); color: var(--white); border-radius: 100px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 10px rgba(232, 93, 58, 0.22); transition: transform 0.2s; white-space: nowrap; }
+
+.article { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+.article-breadcrumb { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+.article-breadcrumb a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+.article-breadcrumb a:hover { border-color: var(--accent); }
+.article-breadcrumb .sep { margin: 0 10px; color: var(--ink-light); }
+.article-title { font-size: clamp(28px, 4.5vw, 44px); font-weight: 700; line-height: 1.18; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 24px; }
+.article-lead { font-size: 19px; line-height: 1.7; color: var(--ink-mid); letter-spacing: -0.015em; margin-bottom: 32px; font-weight: 400; }
+.article-lead strong { color: var(--ink); font-weight: 600; }
+.article-meta { display: flex; gap: 20px; align-items: center; padding: 16px 0; margin-bottom: 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 13px; color: var(--ink-mid); font-family: var(--f-mono); letter-spacing: -0.005em; flex-wrap: wrap; }
+.article-meta-dot { width: 4px; height: 4px; background: var(--ink-light); border-radius: 50%; }
+.article h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.25; letter-spacing: -0.035em; color: var(--ink); margin: 56px 0 20px; }
+.article h2:first-of-type { margin-top: 0; }
+.article h3 { font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.025em; color: var(--ink); margin: 32px 0 14px; }
+.article p { font-size: 16.5px; line-height: 1.85; color: var(--ink-soft); letter-spacing: -0.01em; margin-bottom: 20px; }
+.article p strong { color: var(--ink); font-weight: 600; }
+.article ul, .article ol { padding-left: 24px; margin-bottom: 20px; }
+.article li { font-size: 16px; line-height: 1.85; color: var(--ink-soft); letter-spacing: -0.01em; margin-bottom: 8px; }
+.article li strong { color: var(--ink); font-weight: 600; }
+.article a.ext { color: var(--accent); border-bottom: 1px solid var(--accent-soft); transition: border-color 0.2s; font-weight: 500; }
+.article a.ext:hover { border-color: var(--accent); }
+
+.callout { padding: 24px 28px; background: var(--accent-paper); border-left: 3px solid var(--accent); border-radius: 0 var(--r-md) var(--r-md) 0; margin: 28px 0; }
+.callout-label { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+.callout p { margin-bottom: 0; }
+.callout p + p { margin-top: 12px; }
+
+.keyfact { padding: 20px 24px; background: var(--bg-soft); border-radius: var(--r-md); margin: 24px 0; font-size: 15px; color: var(--ink-mid); line-height: 1.75; }
+.keyfact-tag { display: inline-block; padding: 3px 10px; background: var(--ink); color: var(--white); font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; font-weight: 700; border-radius: 100px; margin-bottom: 10px; }
+.keyfact strong { color: var(--ink); font-weight: 600; }
+
+/* Stage cards */
+.stage { margin: 24px 0; padding: 32px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); position: relative; }
+.stage-num { position: absolute; top: -14px; left: 24px; padding: 7px 16px; background: var(--ink); color: var(--white); font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; border-radius: 100px; }
+.stage-name { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.3; letter-spacing: -0.03em; margin: 12px 0 6px; }
+.stage-name span { color: var(--accent); }
+.stage-tagline { font-size: 13px; color: var(--ink-muted); font-family: var(--f-mono); letter-spacing: -0.005em; margin-bottom: 18px; }
+.stage-body { font-size: 15.5px; line-height: 1.8; color: var(--ink-soft); margin-bottom: 18px; }
+.stage-body strong { color: var(--ink); font-weight: 600; }
+
+.stage-fail { padding: 18px 22px; background: var(--accent-paper); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.stage-fail-lbl { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+.stage-fail-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.7; }
+.stage-fail-text strong { color: var(--ink); font-weight: 600; }
+
+/* Funnel visualization */
+.funnel { margin: 32px 0; padding: 32px; background: var(--ink); border-radius: var(--r-md); color: var(--white); }
+.funnel-title { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 22px; }
+.funnel-row { display: grid; grid-template-columns: 110px 1fr 60px; gap: 16px; align-items: center; padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+.funnel-row:first-of-type { border-top: none; }
+@media (max-width: 560px) { .funnel-row { grid-template-columns: 80px 1fr 50px; gap: 10px; } }
+.funnel-stage { font-size: 13px; font-weight: 600; color: var(--white); letter-spacing: -0.01em; }
+.funnel-bar { height: 12px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; position: relative; }
+.funnel-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.6s ease; }
+.funnel-val { font-family: var(--f-mono); font-size: 13px; font-weight: 700; color: var(--white); text-align: right; letter-spacing: -0.005em; }
+
+.sources { margin-top: 56px; padding: 28px; background: var(--bg-soft); border-radius: var(--r-md); }
+.sources-label { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; }
+.sources ol { padding-left: 20px; margin: 0; }
+.sources li { font-size: 13px; color: var(--ink-mid); line-height: 1.75; margin-bottom: 8px; letter-spacing: -0.005em; }
+.sources li a { color: var(--accent); border-bottom: 1px solid transparent; word-break: break-all; }
+
+.article-cta { margin-top: 56px; padding: 36px 32px; background: var(--ink); border-radius: var(--r-lg); text-align: center; color: var(--white); }
+.article-cta-label { font-family: var(--f-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+.article-cta h3 { font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: -0.03em; color: var(--white); margin: 0 0 14px; }
+.article-cta p { font-size: 15px; color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin: 0 0 24px; }
+.article-cta-btn { display: inline-block; padding: 14px 28px; background: var(--accent); color: var(--white); border-radius: 100px; font-weight: 600; font-size: 15px; box-shadow: 0 4px 16px rgba(232, 93, 58, 0.3); transition: transform 0.2s; }
+.article-cta-btn:hover { transform: translateY(-2px); }
+
+.related { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+.related-label { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.related-card { padding: 20px 24px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); transition: all 0.2s; }
+.related-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232, 93, 58, 0.08); }
+.related-card-pillar { font-family: var(--f-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+.related-card-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.45; letter-spacing: -0.02em; }
+
+.footer { padding: 40px 24px; background: var(--bg-soft); border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--ink-muted); letter-spacing: -0.005em; }
+.footer a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+
+@media (max-width: 560px) {
+  .article { padding: 32px 18px 60px; }
+  .article-meta { flex-wrap: wrap; gap: 10px; }
+  .callout, .keyfact, .stage, .funnel { padding: 22px; }
+  .article-cta { padding: 28px 22px; }
+  .article-cta h3 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
+    <a href="index.html#final-cta" class="nav-cta">1:1 무료 상담</a>
+  </div>
+</nav>
+
+<article class="article">
+
+  <div class="article-breadcrumb">
+    <a href="index.html">TalkB</a><span class="sep">/</span>
+    <a href="index.html#resources">Insights</a><span class="sep">/</span>
+    <span>GEO 기초</span>
+  </div>
+
+  <h1 class="article-title">AI 답변 4단계 원리 · RAG부터 인용까지</h1>
+
+  <p class="article-lead">
+    ChatGPT·Perplexity·Gemini는 사용자 질문에 어떻게 답변할까요? 한 줄로 답한다면: <strong>"검색하고, 추려내고, 다시 순위 매기고, 답변을 쓴다."</strong> 이 4단계 프로세스의 정식 이름이 RAG(Retrieval-Augmented Generation)입니다. 우리 콘텐츠는 이 4단계 중 어느 한 곳에서라도 떨어지면 답변에서 사라집니다. 비개발자도 이해할 수 있게 각 단계를 정리하고, <strong>어디서 떨어지면 어떻게 되는지</strong>까지 짚어드립니다.
+  </p>
+
+  <div class="article-meta">
+    <span>김태정 · TalkB 대표</span>
+    <span class="article-meta-dot"></span>
+    <span>발행 2026.04.25</span>
+    <span class="article-meta-dot"></span>
+    <span>9분 읽기</span>
+    <span class="article-meta-dot"></span>
+    <span>Pillar 01 · 기초</span>
+  </div>
+
+  <h2>먼저 RAG가 뭔지부터</h2>
+
+  <p>
+    RAG는 <strong>Retrieval-Augmented Generation</strong>의 약자로, "검색으로 보강된 생성"이라는 뜻입니다. 2020년 Meta AI가 처음 발표한 기법인데, 핵심 아이디어는 단순합니다.
+  </p>
+
+  <p>
+    AI 모델은 학습 데이터까지의 지식만 가지고 있어서 새 정보를 모릅니다. 또 학습된 지식만으로 답하면 <strong>없는 사실을 지어내는 환각(hallucination)</strong> 문제가 발생합니다. 이를 해결하려면 답을 만들기 <em>전에</em> 외부 출처에서 관련 자료를 가져와 그 자료를 근거로 답하게 하는 게 자연스럽습니다.
+  </p>
+
+  <div class="keyfact">
+    <span class="keyfact-tag">2026 시점</span>
+    <p>
+      McKinsey 2026 State of AI in Enterprise 보고서 기준 <strong>기업 LLM 배포의 67%가 RAG를 사용</strong>합니다. 2024년 31%에서 2년 만에 두 배 이상 증가. 환각률은 RAG 적용 시 <strong>40~70% 감소</strong>한다는 게 일관된 결과입니다.
+    </p>
+  </div>
+
+  <p>
+    Perplexity는 <strong>모든 답변에 RAG를 적용</strong>합니다. ChatGPT는 학습 기반 응답과 RAG 기반 응답을 혼용합니다(검색이 필요하다고 판단되는 질문에만 OAI-SearchBot을 통해 웹을 검색). Google AI Overview도 사실상 RAG 구조이며, Gemini는 자체 학습 데이터와 Google 검색 인덱스를 결합한 변형 RAG를 씁니다.
+  </p>
+
+  <p>
+    그럼 RAG가 정확히 어떻게 작동할까요? 4단계로 분해하면 다음과 같습니다.
+  </p>
+
+  <h2>4단계 — 우리 콘텐츠가 답변에 들어가기까지</h2>
+
+  <!-- Stage 1 -->
+  <div class="stage">
+    <div class="stage-num">Stage 01</div>
+    <div class="stage-name">Query Parsing <span>· 질문 해석</span></div>
+    <div class="stage-tagline">"사용자가 진짜 묻는 건 뭐지?"</div>
+    <div class="stage-body">
+      AI는 사용자 질문을 그대로 받지 않습니다. <strong>의도를 분석하고 여러 하위 쿼리(sub-query)로 분해</strong>합니다. Google AI Mode의 "쿼리 팬아웃(query fan-out)"이 대표적인데, 한 질문에 대해 <strong>16개의 병렬 검색</strong>을 동시에 돌리는 방식입니다.
+      <br><br>
+      예를 들어 사용자가 "광장동 조용한 한식당 추천"이라고 물으면 AI는 이걸 다음처럼 분해합니다: "광진구 광장동 한식당", "조용한 분위기 식당", "광장동 한정식 가족 식사", "광나루역 근처 한식당", "광장동 룸 있는 한식당" 등.
+    </div>
+    <div class="stage-fail">
+      <div class="stage-fail-lbl">⚠ 여기서 떨어지면</div>
+      <div class="stage-fail-text">
+        AI는 우리 콘텐츠를 <strong>아예 검색 후보로 고려하지 않습니다.</strong> 원인은 콘텐츠가 사용자가 실제로 쓰는 자연어 표현과 동떨어져 있을 때. "고품격 한식 다이닝"이라고만 적힌 매장 소개는 "광장동 조용한 한식당" 쿼리 분해 결과 어디에도 매칭되지 않습니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2 -->
+  <div class="stage">
+    <div class="stage-num">Stage 02</div>
+    <div class="stage-name">Retrieval <span>· 검색·인출</span></div>
+    <div class="stage-tagline">"관련 있는 페이지 후보 가져와"</div>
+    <div class="stage-body">
+      분해된 하위 쿼리들로 <strong>외부 웹·인덱스에서 후보 페이지 수십 개를 가져옵니다.</strong> 이때 두 종류의 검색이 동시에 작동합니다.
+      <br><br>
+      <strong>① Sparse Retrieval (전통 검색)</strong>: 키워드 매칭. "광장동" 단어가 있는 페이지를 찾는 식. BM25 같은 순위 알고리즘 사용.
+      <br>
+      <strong>② Dense Retrieval (벡터 검색)</strong>: 의미 매칭. 페이지를 1,000개 차원의 숫자 벡터로 변환해 의미적으로 가까운 페이지를 찾음. "조용한"이라고 직접 안 적혀 있어도 "차분한", "대화하기 좋은" 같은 표현이 있으면 매칭.
+      <br><br>
+      Perplexity는 이 단계에서 <strong>약 10개 페이지를 후보로 가져옵니다</strong>. ChatGPT 검색은 더 많이, Google AI Overview는 평균 4.2개 출처 기반으로 답변을 만듭니다.
+    </div>
+    <div class="stage-fail">
+      <div class="stage-fail-lbl">⚠ 여기서 떨어지면</div>
+      <div class="stage-fail-text">
+        AI 크롤러가 사이트에 접근할 수 없거나, 도메인 권위가 너무 낮거나, Bing 인덱스에 없으면 <strong>후보 단계에서 제외</strong>됩니다. robots.txt가 GPTBot·PerplexityBot·ClaudeBot을 차단하고 있으면 콘텐츠 품질과 무관하게 0%. 한국 매장이 네이버 블로그에만 있으면 이 단계에서 사라지는 이유가 이것입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 3 -->
+  <div class="stage">
+    <div class="stage-num">Stage 03</div>
+    <div class="stage-name">Re-ranking <span>· 재순위 매김</span></div>
+    <div class="stage-tagline">"이 중에 진짜 좋은 출처는?"</div>
+    <div class="stage-body">
+      Stage 2에서 가져온 후보 페이지 수십 개를 <strong>여러 신호로 다시 평가해 상위 3~5개를 선별</strong>합니다. Perplexity의 Sonar 모델, ChatGPT의 자체 ranker, Google의 RankBrain·MUM이 여기서 작동합니다.
+      <br><br>
+      평가에 쓰이는 주요 신호는 다음과 같습니다.
+      <br><br>
+      <strong>① 도메인 권위 (E-E-A-T)</strong>: 기관·언론·전문 도메인을 우대.
+      <br>
+      <strong>② 신선도 (Freshness)</strong>: 최근 30일 내 업데이트된 콘텐츠는 3.2배 인용. 특히 Perplexity는 신선도 가중치가 가장 높음.
+      <br>
+      <strong>③ 구조 명확성</strong>: H1/H2/H3 헤더 계층, JSON-LD, FAQ 구조가 있는 페이지를 우대.
+      <br>
+      <strong>④ 콘텐츠 심도</strong>: 20,000자+ 심층 콘텐츠는 4.3배 인용.
+      <br>
+      <strong>⑤ 외부 권위 신호</strong>: 다른 신뢰 출처가 인용·언급한 도메인을 우대.
+    </div>
+    <div class="stage-fail">
+      <div class="stage-fail-lbl">⚠ 여기서 떨어지면</div>
+      <div class="stage-fail-text">
+        AI 크롤러가 사이트를 <strong>방문은 했지만 답변에 인용하지 않습니다.</strong> Perplexity는 평균 10개 방문 → 3-4개만 인용. 6-7개 페이지는 이 단계에서 떨어집니다. 신선도 부족·구조 미흡·도메인 권위 약함이 가장 흔한 원인. ConvertMate 데이터에서 AI 인용 페이지의 61%가 JSON-LD 적용, 68.7%가 명확한 헤더 계층을 갖췄습니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4 -->
+  <div class="stage">
+    <div class="stage-num">Stage 04</div>
+    <div class="stage-name">Generation <span>· 생성·인용</span></div>
+    <div class="stage-tagline">"이제 답변을 쓰고 출처를 표시해"</div>
+    <div class="stage-body">
+      선별된 3~5개 페이지에서 <strong>핵심 정보를 추출(extract)해 답변을 작성</strong>합니다. 이때 LLM은 "<em>너는 검색한 것 외엔 절대 말하지 마라</em>"는 엄격한 지시를 받습니다 — 학습 데이터로 임의 보충하면 환각이 생기기 때문.
+      <br><br>
+      추출은 <strong>"청크(chunk)" 단위</strong>로 진행됩니다. 페이지 전체가 아니라 200~500자 단위로 잘라서 필요한 부분만 가져옵니다. <strong>본문 첫 30%에 핵심 답변이 명확히 있는 페이지가 가장 많이 추출</strong>됩니다 — Princeton 연구에서 AI 인용의 44%가 텍스트 앞 30%에서 발생한다고 밝혔습니다.
+      <br><br>
+      마지막으로 답변 끝에 출처 링크가 표시됩니다. ChatGPT는 답변당 평균 10.42개, Google AI Overview는 9.26개, Perplexity는 5.01개 인용 표시. <strong>인용에 들어가야 비로소 사용자가 우리 사이트로 클릭할 수 있습니다.</strong>
+    </div>
+    <div class="stage-fail">
+      <div class="stage-fail-lbl">⚠ 여기서 떨어지면</div>
+      <div class="stage-fail-text">
+        Stage 3까지 통과해 답변 생성 후보로 들어왔지만 <strong>실제 인용·링크에는 빠지는</strong> 상태. 원인은 추출 가능한 명확한 답변 문장이 첫 단락에 없거나, "이 글은 마케팅에 관한 것입니다"같은 모호한 도입부 때문에 청크 단위 매칭이 약할 때. <strong>BLUF(Bottom Line Up Front) 형식</strong> — 결론을 먼저, 근거를 뒤에 — 으로 쓴 페이지가 인용률이 2.8배 높습니다.
+      </div>
+    </div>
+  </div>
+
+  <h2>실제 데이터로 본 4단계 통과율</h2>
+
+  <p>
+    Perplexity 공개 데이터와 외부 분석을 결합해 <strong>실제로 페이지가 4단계를 거치며 어떻게 떨어지는지</strong> 시각화하면 다음과 같습니다 (Perplexity 기준 추정).
+  </p>
+
+  <div class="funnel">
+    <div class="funnel-title">RAG 4-Stage Funnel · Perplexity 추정</div>
+    <div class="funnel-row">
+      <div class="funnel-stage">전체 인덱스</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width: 100%;"></div></div>
+      <div class="funnel-val">100%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Query 매칭</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width: 35%;"></div></div>
+      <div class="funnel-val">~35%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Retrieval 후보</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width: 12%;"></div></div>
+      <div class="funnel-val">~12%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Re-rank Top 10</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width: 4%;"></div></div>
+      <div class="funnel-val">~4%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">최종 인용</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width: 1.5%;"></div></div>
+      <div class="funnel-val">~1.5%</div>
+    </div>
+  </div>
+
+  <p>
+    이 깔때기에서 가장 큰 손실은 <strong>2단계(Retrieval) → 3단계(Re-ranking)</strong>입니다. 검색에는 잡히지만 권위·구조·신선도 부족으로 답변 후보에 들지 못하는 페이지가 압도적으로 많다는 뜻입니다. 즉 <em>인용되지 않는 콘텐츠 대부분의 문제는 "AI가 못 찾아서"가 아니라 "찾았지만 답변에 쓸 만하지 않아서"</em>입니다.
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">TalkB 진단 방식</div>
+    <p>
+      TalkB의 25문항 4뎁스 측정은 <strong>4단계 중 어느 단계에서 떨어지는지를 패턴화해 진단</strong>합니다. D0~D3 뎁스별로 0% 인용이라면 Stage 1~2 문제(검색 후보 자체가 안 됨), D3는 인용되는데 D0~D2가 0%라면 Stage 3 문제(권위·구조 부족), D3에서 인용은 되지만 부정확하다면 Stage 4 문제(추출 단계 콘텐츠 명확성 부족)로 분류해 우선 작업 영역을 도출합니다.
+    </p>
+  </div>
+
+  <h2>Stage별 우리가 할 수 있는 작업</h2>
+
+  <p>
+    각 단계의 게이트를 통과하기 위한 작업은 다릅니다. 우선순위는 다음과 같습니다.
+  </p>
+
+  <p>
+    <strong>Stage 1 (Query Parsing) 통과를 위해</strong> — 사용자가 실제로 쓰는 자연어 표현을 콘텐츠에 자연스럽게 포함. "고품격 한식 다이닝"이 아니라 "광진구 광장동 조용한 한정식 전문점, 부모님 모시기 좋은 4인 룸"처럼.
+  </p>
+
+  <p>
+    <strong>Stage 2 (Retrieval) 통과를 위해</strong> — robots.txt에 AI 크롤러 6+종 명시 허용, llms.txt 작성, 사이트맵 제출, 자체 도메인 또는 티스토리·Medium 같은 AI 크롤 가능 채널 사용. 네이버 블로그에만 의존하지 않기.
+  </p>
+
+  <p>
+    <strong>Stage 3 (Re-ranking) 통과를 위해</strong> — JSON-LD 스키마 적용 (Article·FAQPage·LocalBusiness·Organization), H1/H2/H3 헤더 계층, 30일 내 업데이트, 권위 출처 인용, 외부 매체 노출.
+  </p>
+
+  <p>
+    <strong>Stage 4 (Generation) 통과를 위해</strong> — BLUF 형식 (결론 먼저, 근거 뒤), 첫 단락에 핵심 답변, 청크 단위로 자기 완결적인 단락 구성, FAQ 형식 Q&amp;A 활용.
+  </p>
+
+  <h2>자주 묻는 질문</h2>
+
+  <h3>Q. 우리는 콘텐츠 양이 적은데 4단계 다 통과 가능한가요?</h3>
+  <p>
+    가능합니다. 양보다 <strong>각 페이지의 자기완결성</strong>이 중요합니다. 한 페이지가 한 질문에 충분히 답하는 구조면 양이 적어도 인용됩니다. 다만 도메인 권위는 콘텐츠 누적에 비례하므로, 최소한의 핵심 페이지(About, FAQ, 주요 서비스 설명) 5~10개는 갖춰져 있어야 합니다.
+  </p>
+
+  <h3>Q. RAG가 뭔지 모르고도 GEO 작업 효과를 볼 수 있나요?</h3>
+  <p>
+    네. 4단계 원리는 "왜 이 작업이 필요한지" 이해하기 위한 배경이지, 작업 자체는 구체적 체크리스트로 진행됩니다. 다만 원리를 알면 <em>왜 어떤 작업이 효과 있고 어떤 작업이 효과 없는지</em>를 직관적으로 판단할 수 있어 의사결정이 빨라집니다.
+  </p>
+
+  <h3>Q. ChatGPT는 RAG를 안 쓰고 답변할 때도 있다는데 어떻게 대응하나요?</h3>
+  <p>
+    학습 기반 응답에 들어가려면 <strong>학습 데이터에 우리 콘텐츠가 누적</strong>되어야 합니다. 이는 단기 작업으로 안 되고, <em>오랜 기간 동안 인터넷 곳곳에 일관된 정보가 쌓이는 것</em>이 핵심입니다. 그래서 GEO는 단기 SEO보다 누적 게임에 가깝고, 그 누적의 시작점이 4단계 게이트 모두를 통과하는 콘텐츠를 정기적으로 발행하는 것입니다.
+  </p>
+
+  <div class="article-cta">
+    <div class="article-cta-label">Stage Diagnosis</div>
+    <h3>우리 사이트는 4단계 중<br>어디서 떨어지고 있을까?</h3>
+    <p>
+      1:1 무료 상담에서 25문항 4뎁스 테스트로 단계별 통과율을 진단해 드립니다. 어느 단계 작업을 우선해야 할지 30분 통화로 명확해집니다.
+    </p>
+    <a href="index.html#final-cta" class="article-cta-btn">단계 진단 신청</a>
+  </div>
+
+  <div class="sources">
+    <div class="sources-label">Sources</div>
+    <ol>
+      <li>Lewis et al. <em>"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks."</em> Meta AI · NeurIPS 2020.</li>
+      <li>McKinsey. <em>"State of AI in Enterprise 2026."</em> 67% RAG 적용률.</li>
+      <li>BloggerByteByteGo. <em>"How Perplexity Built an AI Google."</em> 2025.11. Perplexity의 Vespa 기반 RAG 파이프라인 분석.</li>
+      <li>ConvertMate. <em>"GEO Benchmark Study 2026."</em> 12,500개 쿼리 분석.</li>
+      <li>Aggarwal et al. <em>"GEO: Generative Engine Optimization."</em> Princeton · KDD 2024.</li>
+      <li>Yext. <em>"AI Search Citation Analysis."</em> 2025.10. 6.8M 인용 분석. Gemini 52.15% 자체 도메인.</li>
+      <li>Pasquale Pillitteri. <em>"Google AI Mode and Zero-Click."</em> 2026.04. Query fan-out 16개 분해.</li>
+      <li>Vydera Lab. <em>"RAG Pipeline Analysis."</em> 2026.03. 76.4% 인용 페이지가 30일 내 업데이트.</li>
+    </ol>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related Reading</div>
+    <div class="related-grid">
+      <a href="insights-chatgpt-citation-conditions.html" class="related-card">
+        <div class="related-card-pillar">Pillar 03 · 플랫폼</div>
+        <div class="related-card-title">ChatGPT가 인용하는 콘텐츠 6가지 조건</div>
+      </a>
+      <a href="insights-seo-geo-aeo-comparison.html" class="related-card">
+        <div class="related-card-pillar">Pillar 01 · 기초</div>
+        <div class="related-card-title">SEO vs GEO vs AEO · 무엇이 다른가</div>
+      </a>
+      <a href="insights-geo-guide.html" class="related-card">
+        <div class="related-card-pillar">Pillar 01 · 기초</div>
+        <div class="related-card-title">GEO란 무엇인가 · 한국어 완전 가이드</div>
+      </a>
+    </div>
+  </div>
+
+</article>
+
+<footer class="footer">
+  © 2026 (주)티앤에스컴퍼니 · TalkB — F&amp;B 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <a href="index.html">talkb.co.kr</a> · <a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a>
+</footer>
+
+<script>
+(function() {
+  var p = document.getElementById('scrollProgress');
+  if (!p) return;
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement;
+    var s = h.scrollTop || document.body.scrollTop;
+    var height = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+    p.style.width = (height > 0 ? (s / height) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

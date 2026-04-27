@@ -1,0 +1,5 @@
+_internal/
+DEPLOY_GUIDE.md
+.DS_Store
+node_modules/
+.vercel/

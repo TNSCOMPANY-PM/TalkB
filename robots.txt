@@ -1,0 +1,114 @@
+# ═══════════════════════════════════════════════════════
+# TalkB · robots.txt
+# F&B 브랜드 AI 검색 최적화 파트너사
+# Last updated: 2026-04-24
+# ═══════════════════════════════════════════════════════
+
+# ─── AI Crawlers · 명시적 허용 ───
+# OpenAI ChatGPT 학습용 크롤러
+User-agent: GPTBot
+Allow: /
+
+# OpenAI ChatGPT 실시간 브라우징 크롤러
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI 사용자 액션 크롤러
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic Claude 학습용 크롤러
+User-agent: ClaudeBot
+Allow: /
+
+# Anthropic Claude 사용자 액션 크롤러
+User-agent: Claude-Web
+Allow: /
+
+# Anthropic Claude 검색용 크롤러
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity 실시간 검색 크롤러
+User-agent: PerplexityBot
+Allow: /
+
+# Perplexity 사용자 액션 크롤러
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI 학습용 (Gemini, AI Overview)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence 학습용
+User-agent: Applebot-Extended
+Allow: /
+
+# Apple 검색용
+User-agent: Applebot
+Allow: /
+
+# Meta AI 학습용
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# ByteDance / TikTok AI
+User-agent: Bytespider
+Allow: /
+
+# Common Crawl (LLM 학습 데이터셋 핵심 소스)
+User-agent: CCBot
+Allow: /
+
+# Cohere AI 학습용
+User-agent: cohere-ai
+Allow: /
+
+# DuckAssist (DuckDuckGo AI)
+User-agent: DuckAssistBot
+Allow: /
+
+# You.com AI
+User-agent: YouBot
+Allow: /
+
+# Diffbot (LLM 학습 데이터)
+User-agent: Diffbot
+Allow: /
+
+# Mistral AI
+User-agent: MistralAI-User
+Allow: /
+
+# ─── 일반 검색엔진 ───
+# Googlebot (Google Search)
+User-agent: Googlebot
+Allow: /
+
+# Bingbot (Microsoft Bing & Copilot)
+User-agent: Bingbot
+Allow: /
+
+# 네이버 검색 봇
+User-agent: Yeti
+Allow: /
+
+# 다음 검색 봇
+User-agent: Daumoa
+Allow: /
+
+# ─── 모든 크롤러 기본 허용 ───
+User-agent: *
+Allow: /
+
+# ─── 인덱싱 제외 경로 ───
+# (현재 없음 — 향후 비공개 페이지 추가 시 여기에 명시)
+# Disallow: /admin/
+# Disallow: /private/
+
+# ─── Sitemap ───
+Sitemap: https://talkb.co.kr/sitemap.xml
