@@ -4,9 +4,9 @@
 
 ---
 
-## 📊 현재 상태 (2026.04.27 기준)
+## 📊 현재 상태 (2026.04.28 기준)
 
-**완료**: 사이트 Step 1-8 전체 완료, GitHub push됨, Vercel 자동 배포 완료
+**완료**: 사이트 Step 1-8 + SITE_REVAMP_TASKS.md Phase 1-6 전체 완료, GitHub push됨, Vercel 자동 배포 완료
 
 ---
 
@@ -25,27 +25,50 @@
 ### Step 7: 인사이트 11편 정리
 - ✅ 7-1: 비교 맥락 외 "컨설팅" 표현 없음 확인
 - ✅ 7-2: footer "F&B 브랜드" → "맛집 브랜드" 변경 (11건)
-- ✅ 7-3: "Fix된" → "정착된/확립된" 변경 (index.html 2곳)
+- ✅ 7-3: "Fix된" → "정착된/확립된" 변경
 - ✅ 7-4: 작성자 표기 "TalkB · 김태정" 11편 통일
+- ✅ 인사이트 이전/다음 글 네비게이션 (11편 순서 연결)
 
 ### Step 8: 종합 검증
-- ✅ 8-1: HTML 태그 무결성 (13개 파일 ALL CLEAR)
-- ✅ 8-2: JSON-LD 유효성 (35개 블록 ALL CLEAR)
+- ✅ 8-1: HTML 태그 무결성 ALL CLEAR
+- ✅ 8-2: JSON-LD 유효성 ALL CLEAR
 - ✅ 8-3: JavaScript syntax ALL CLEAR
 - ✅ 8-4: 구 브랜드(Apixo) 잔존 0건, 구 가격 잔존 0건
 - ✅ 8-5: 사업자 정보 일관성 통과
-- ✅ 8-6: 가격 4곳 동기화 완료 (JSON-LD FAQ "10팀에 한해" → 얼리버드 일반 표현으로 수정)
-- ✅ 8-7: sitemap.xml 12개 URL 확인
+- ✅ 8-6: 가격 4곳 동기화 완료
+- ✅ 8-7: sitemap.xml URL 확인
 - ✅ 8-8: llms.txt 인사이트 11편 확인
 - ✅ 8-9: DEPLOY_GUIDE.md v3 업데이트
 
-### 추가 완료 작업 (세션 중 진행)
+### Site Revamp (GitHub 28c666c, 2026.04.28)
+- ✅ Phase 1: 메인 페이지 8단 골격 재배치 (25개 → 14개 섹션)
+  - 섹션 순서: Hero → 신뢰배지 → 왜토크비 → 비교표 → 서비스 → 진행방식 → 왜지금 → 가격 → FAQ → CTA → Enterprise → 고객사례 → 콘텐츠
+  - 네비게이션 업데이트: 왜토크비·서비스·왜지금·가격·FAQ·자료·무료진단
+  - F&B → 요식업 가시 콘텐츠 전면 교체
+  - Hero: GPT 채팅 창 UI 목업, "NO.1 요식업 전문 AI 노출 솔루션" 슬로건
+- ✅ Phase 2: /resources.html 생성 (AI 검색 리서치 자료 7개 섹션 분리)
+  - korea-market / now / paradox / gap / compounding / conversion / saas
+  - sitemap.xml 추가 (14 URL), llms.txt Resource Pages 섹션 추가
+  - 메인 네비 "자료" → /resources.html 연결
+- ✅ Phase 3: 비용 섹션 3개 → pricing 1개 통합
+  - cost-shift / cost 섹션 제거 (Phase 1에서 처리)
+  - commitments 섹션 pricing 하단에 병합
+  - 가격 4곳 동기화 확인 (JSON-LD/FAQ/카드/llms.txt)
+- ✅ Phase 4: 인사이트 영역 → OG 이미지 가로 스크롤 카드 카루셀 (11편)
+  - scroll-snap CSS + 터치 스와이프 지원
+  - 좌우 화살표 버튼 (44px, 모바일 숨김)
+  - "전체 자료 보기 →" /resources.html 링크 추가
+- ✅ Phase 5: Hero + Timing 카피 확정
+  - Hero: "AI는 지금 사장님 옆집을 추천하고 있습니다."
+  - Timing: "AI 마케팅, 지금이 저점입니다."
+- ✅ Phase 6: 종합 검증 통과 + git push
+
+### 추가 완료 작업
+- ✅ privacy.html (개인정보처리방침) 신규 생성
 - ✅ insights/ 서브폴더 이동 (루트 → insights/)
 - ✅ vercel.json 301 리다이렉트 11건
-- ✅ OG 이미지 12개 PNG 생성 (Puppeteer)
+- ✅ OG 이미지 12개 PNG 생성
 - ✅ 모바일 터치 타겟 44px 적용
-- ✅ 네비게이션 개선 (사장님 언어: AI 검색/왜 지금?/작동 방식/가격/시작 방법/자료)
-- ✅ 인사이트 네비게이션 탭 추가
 
 ---
 
@@ -58,7 +81,6 @@
 | Google Search Console | 미등록 | 김태정 |
 | talkb.co.kr DNS 연결 | 미연결 | 김동균 |
 | logo.png 256×256 | 미제작 | — |
-| Privacy Policy 페이지 | 미제작 | — |
 
 ---
 
@@ -81,6 +103,6 @@
 
 ---
 
-**문서 버전**: v2.0
-**작성일**: 2026.04.27
-**상태**: Step 7-8 전체 완료
+**문서 버전**: v3.0
+**작성일**: 2026.04.28
+**상태**: SITE_REVAMP_TASKS.md Phase 1-6 전체 완료

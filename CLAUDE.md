@@ -370,41 +370,45 @@ subscriptions (구독 정보)
 
 ---
 
-## 📊 사이트 섹션 흐름 (현재)
+## 📊 사이트 섹션 흐름 (현재 · 8단 구조 · 2026.04.28 기준)
 
-1. Hero — 위협 직접 체감 카피
-2. Trust Badges — 9년차/메인비즈/ISO/특허
-3. Korea Market — 한국 시장 변화 데이터
-4. Pilot Strip — 오공김밥/덮밥장사장/한신우동
-5. Cost Shift — 광고비 vs AI 자산
-6. Now — 글로벌·한국 데이터
-7. Paradox — "손님은 더 이상 검색하지 않습니다"
-8. Timing — 시대는 반복된다
-9. Gap — 지금 잃고 있는 것 (지역 매장 → 본사 순)
-10. Compounding — 광고비 사라짐, AI 자산 쌓임
-11. Conversion — 같은 고객, 다른 결과
-12. Solution — TalkB 작동 방식
-13. Why TalkB — 우리만의 차별화
-14. Cases Data — 3개사 Before/After
-15. Process — 진행 방식
-16. Hq Pricing — 본사 단위 ROI
-17. Pricing — 4단 가격
-18. Promise — TalkB 책임
-19. FAQ — 자주 묻는 질문
-20. Final CTA — 무료 도입 진단 신청
+### 메인 페이지 (index.html)
+
+| # | 섹션 | id | 핵심 카피 |
+|---|------|----|----------|
+| 1 | Hero | hero | "AI는 지금 사장님 옆집을 추천하고 있습니다." |
+| — | 신뢰배지 | trust-badges | 9년차/MAIN-BIZ/ISO/특허 |
+| 2 | 왜 토크비인가 | why | 요식업 전담 차별화 |
+| — | 비교표 | competitor | TalkB vs 일반 대행사 vs SEO 도구 |
+| 3 | 우리가 해줄 수 있는 것 | solution | 작동 방식 3단계 |
+| — | 진행 방식 | process | Day 1~월간 루틴 |
+| 4 | 왜 지금인가 | timing | "AI 마케팅, 지금이 저점입니다." |
+| 5 | 가격 플랜 | pricing | 4단 가격 카드 + TalkB 약속 |
+| 6 | FAQ | faq | 독립매장/본사/공통 탭 |
+| 7 | CTA | final-cta | 무료 진단 신청 |
+| — | Enterprise | enterprise | 프랜차이즈 본사 |
+| — | 고객 사례 | clients | 오공김밥 Before 데이터 |
+| 8 | 콘텐츠 | resources | 가로 스크롤 인사이트 카드 11편 |
+
+### 서브 페이지
+- `/resources.html` — AI 검색 리서치 자료 (메인에서 분리한 원리·통계 섹션 7개)
+- `/privacy.html` — 개인정보처리방침
+- `/insights/*.html` — 인사이트 11편 (이전/다음 글 네비게이션)
 
 ---
 
 ## 🚧 알려진 잔존 작업
 
-### Step 7: 인사이트 11편 정리 (다음 작업)
-- "F&B" 표현 점검 (footer만 변경, 본문은 학술 톤이라 보존)
-- 작성자 표기 통일 (2개 파일 수정 필요: insights-geo-guide.html, insights-korea-ai-search-2026.html)
+### 외부 의존성 (코드 작업 외)
+- 실제 대표 전화번호 삽입 (010-XXXX-XXXX 자리)
+- Formspree 양식 ID 연결 (현재 mailto 폴백)
+- talkb.co.kr DNS 연결
+- logo.png 256×256 제작
 
-### Step 8: 종합 검증 + 최종 패키징
-- HTML/JSON-LD/JS 무결성 검증
-- sitemap.xml 12개 URL 일치
-- llms.txt 11편 인사이트 일치
+### 다음 개발 과제
+- 트래킹 시스템 MVP (ChatGPT/Perplexity/Google AI/Gemini API 호출·파싱)
+- Supabase 스키마 설계 (시니어 자문과 함께)
+- 결제 연동 (토스페이먼츠)
 
 ---
 
@@ -492,6 +496,6 @@ git push
 
 ---
 
-**문서 버전**: v2.0  
-**작성일**: 2026.04.27 (오전 사이트 작업 후 업데이트)  
+**문서 버전**: v2.1  
+**작성일**: 2026.04.28 (Site Revamp Phase 1-6 완료 후 업데이트)  
 **다음 갱신 트리거**: 시니어 자문 영입 후 / 데이터 스키마 확정 후 / 결제 시스템 가동 후
