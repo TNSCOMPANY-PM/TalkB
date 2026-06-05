@@ -12,6 +12,22 @@
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
 
+<!-- Meta Pixel — /ai-restaurant 전용. 본진 페이지에는 없음 ── -->
+<script>var META_PIXEL_ID = 'YOUR_PIXEL_ID'; /* ← 실제 픽셀 ID로 교체 */</script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', META_PIXEL_ID);
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+  alt=""></noscript>
+<!-- /Meta Pixel ──────────────────────────────────────────── -->
+
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 
@@ -1198,6 +1214,9 @@ footer {
   var SUPABASE_URL = 'https://cdodmwqxhcemmqzqzfyt.supabase.co';
   var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkb2Rtd3F4aGNlbW1xenF6Znl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwMzAxMDgsImV4cCI6MjA5MzYwNjEwOH0.74igSMu3sxft-KvlhxyYWzOIstvZ1z4Ml6DOX6ZA--k';
 
+  /* ── Meta Pixel 중복 방지 플래그 ─────────────────────────── */
+  var leadFired = false;
+
   /* ── GPT 카루셀 ──────────────────────────────────────── */
   var slides = document.querySelectorAll('#gptCarousel .gpt-slide');
   var dotBtns = document.querySelectorAll('.carousel-dot-btn');
@@ -1245,6 +1264,7 @@ footer {
   var modalCard = document.getElementById('modalCard');
 
   window.openModal = function () {
+    if (window.fbq) fbq('trackCustom', 'OpenLeadForm');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     /* 폼이 이미 성공 상태면 유지, 아니면 폼 표시 */
@@ -1334,6 +1354,11 @@ footer {
   }
 
   function showSuccess() {
+    /* Lead 이벤트 — Supabase insert 성공 시 1회만 */
+    if (!leadFired && window.fbq) {
+      fbq('track', 'Lead');
+      leadFired = true;
+    }
     if (formWrap) formWrap.style.display = 'none';
     if (formSuccess) formSuccess.classList.add('visible');
     if (modalCard) modalCard.scrollTop = 0;
