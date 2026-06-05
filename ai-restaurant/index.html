@@ -17,7 +17,7 @@
 
 <style>
 /* ══════════════════════════════════════════════════════════
-   TALKB · /ai-restaurant Landing Page  v3.0
+   TALKB · /ai-restaurant Landing Page  v3.1
    디자인 토큰 = index.html 동일
 ══════════════════════════════════════════════════════════ */
 
@@ -156,12 +156,14 @@ h2.lp-h2 {
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  height: 60px; display: flex; align-items: center;
+  min-height: 60px; height: auto; display: flex; align-items: center;
+  padding: 10px 0;
 }
 .lp-header-inner {
   display: flex; align-items: center;
   justify-content: space-between; width: 100%;
 }
+.lp-brand-wrap { display: flex; flex-direction: column; gap: 3px; }
 .lp-brand {
   display: flex; align-items: center; gap: 8px;
   font-size: 22px; font-weight: 700; color: var(--ink);
@@ -169,6 +171,7 @@ h2.lp-h2 {
 }
 .lp-brand .mark { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
 .lp-brand-kr { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
+.lp-tagline { font-size: 11px; color: var(--ink-muted); letter-spacing: -0.01em; line-height: 1; }
 
 /* ── HERO ────────────────────────────────────────────────── */
 .lp-hero { padding: 64px 0 56px; background: var(--bg); }
@@ -619,6 +622,40 @@ footer {
 .fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 
+/* ── 출처 각주 ───────────────────────────────────────────── */
+.stat-source {
+  font-size: 11.5px; color: var(--ink-light); line-height: 1.6;
+  margin-top: 16px; letter-spacing: -0.01em; text-align: left;
+}
+
+/* ── 5축 진단 블록 ────────────────────────────────────────── */
+.diag-block {
+  margin-bottom: 24px; padding: 20px 18px;
+  background: rgba(255,255,255,0.06); border-radius: var(--r-md);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.diag-axes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.diag-chip {
+  padding: 5px 12px; border-radius: 100px;
+  background: rgba(232,93,58,0.16); border: 1px solid rgba(232,93,58,0.35);
+  font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: -0.01em;
+}
+.diag-examples { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.diag-ex {
+  font-size: 12.5px; color: rgba(255,255,255,0.6);
+  font-family: var(--f-mono); letter-spacing: -0.01em;
+  padding-left: 12px; border-left: 2px solid rgba(232,93,58,0.4);
+  line-height: 1.5;
+}
+.diag-note {
+  font-size: 13px; color: rgba(255,255,255,0.78);
+  line-height: 1.65; letter-spacing: -0.01em;
+}
+.diag-note strong { color: var(--white); }
+
+/* ── Form hint ────────────────────────────────────────────── */
+.form-hint { font-size: 12px; color: var(--ink-muted); letter-spacing: -0.01em; }
+
 /* ── 375px specific ──────────────────────────────────────── */
 @media (max-width: 375px) {
   .container, .container-narrow { padding: 0 16px; }
@@ -643,9 +680,12 @@ footer {
 ══════════════════════════════════════════════════════ -->
 <header class="lp-header">
   <div class="container lp-header-inner">
-    <a href="https://talkb.co.kr" class="lp-brand" aria-label="TalkB 홈으로">
-      TalkB<span class="mark"></span><span class="lp-brand-kr">토크비</span>
-    </a>
+    <div class="lp-brand-wrap">
+      <a href="https://talkb.co.kr" class="lp-brand" aria-label="TalkB 홈으로">
+        TalkB<span class="mark"></span><span class="lp-brand-kr">토크비</span>
+      </a>
+      <div class="lp-tagline">외식업 사장님을 위한 AI 검색 진단·최적화·리포트</div>
+    </div>
   </div>
 </header>
 
@@ -660,8 +700,6 @@ footer {
         손님이 ChatGPT에 "○○동 맛집" 물어보면,<br>
         사장님 가게 말고 <em class="hi">옆집</em>이 나옵니다.
       </h1>
-      <p class="lp-hero-sub fade-in">요즘 손님들은 GPT에 먼저 물어봅니다.<br>사장님 가게가 나올까요?</p>
-
       <!-- Light GPT Carousel -->
       <div class="gpt-mockup-wrap fade-in">
         <div id="gptCarousel">
@@ -795,6 +833,7 @@ footer {
       <p>지금은 네이버 플레이스 관리하고, 블로그 발행하고, 인스타 올리고… 신경 쓸 게 이미 산더미인데 — 이제 ChatGPT까지 챙기라고 합니다.</p>
       <p><strong>네이버 플레이스 1등이어도, 블로그를 아무리 발행해도 ChatGPT 답변엔 안 나옵니다.</strong> 또 새로 배워서, 또 직접 해야 하나. 머리가 터집니다.</p>
     </div>
+    <p class="stat-source fade-in">※ 한국 소비자 4명 중 3명이 AI 서비스 이용, 72%는 주 1회 이상 (컨슈머인사이트 2025 하반기 이동통신 조사)</p>
   </div>
 </section>
 
@@ -812,6 +851,7 @@ footer {
       <strong>지금 비어 있는 자리는 매달 줄어듭니다.</strong><br>
       1년 뒤엔 이미 자리 잡은 경쟁사를 밀어내야 합니다.
     </div>
+    <p class="stat-source fade-in">※ ChatGPT 이용 경험률 54.5%, 9개월 만에 +15%p (오픈서베이 AI 검색 트렌드 리포트 2026)</p>
   </div>
 </section>
 
@@ -910,6 +950,23 @@ footer {
 
         <div class="offer-title">
           ChatGPT 노출 측정 + 진단 리포트 + 최적화 실행
+        </div>
+
+        <!-- 5축 진단 시각화 -->
+        <div class="diag-block">
+          <div class="diag-axes">
+            <span class="diag-chip">상황</span>
+            <span class="diag-chip">동반자</span>
+            <span class="diag-chip">분위기</span>
+            <span class="diag-chip">시간대</span>
+            <span class="diag-chip">편의성</span>
+          </div>
+          <div class="diag-examples">
+            <div class="diag-ex">"혼밥하기 좋은 ○○동 칼국수"</div>
+            <div class="diag-ex">"주말 가족 모임 조용한 ○○구 고기집"</div>
+            <div class="diag-ex">"늦은 밤 회식 가능한 ○○역 술집"</div>
+          </div>
+          <div class="diag-note"><strong>가게 이름 없이 묻습니다.</strong> 이름을 빼고도 추천에 등장해야 ChatGPT가 진짜 우리 가게를 아는 겁니다.</div>
         </div>
 
         <ul class="offer-features">
@@ -1094,25 +1151,9 @@ footer {
       <form id="leadForm" novalidate>
         <div class="form-row">
           <div class="form-field">
-            <label class="form-label" for="biz_type">업종<span class="req">*</span></label>
-            <select class="form-select" id="biz_type" name="biz_type" required>
-              <option value="" disabled selected>업종을 선택하세요</option>
-              <option value="음식점">음식점</option>
-              <option value="카페">카페</option>
-              <option value="베이커리">베이커리</option>
-              <option value="술집">술집</option>
-              <option value="기타">기타</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label class="form-label" for="store_name">매장명<span class="req">*</span></label>
-            <input class="form-input" type="text" id="store_name" name="store_name" placeholder="예: 강남한우마을" required>
-          </div>
-
-          <div class="form-field">
-            <label class="form-label" for="location">매장 위치 (동 단위)<span class="req">*</span></label>
-            <input class="form-input" type="text" id="location" name="location" placeholder="예: 서울 강남구 역삼동" required>
+            <label class="form-label" for="place_url">네이버 플레이스 URL<span class="req">*</span></label>
+            <input class="form-input" type="url" id="place_url" name="place_url" placeholder="https://naver.me/..." required>
+            <div class="form-hint">플레이스 앱 → 공유 → 링크 복사 후 붙여넣기</div>
           </div>
 
           <div class="form-field">
@@ -1123,7 +1164,7 @@ footer {
           <div class="form-consent">
             <input type="checkbox" id="consent" name="consent" required>
             <label class="form-consent-text" for="consent">
-              개인정보 수집·이용에 동의합니다 (수집: 업종·매장명·위치·휴대폰 / 목적: 무료 진단 및 상담 안내 / 보유: 목적 달성 후 즉시 파기 / 동의 거부 시 신청 불가) · <a href="/privacy.html" target="_blank">개인정보처리방침</a>
+              개인정보 수집·이용에 동의합니다 (수집: 플레이스 URL·휴대폰 / 목적: 무료 진단 및 상담 안내 / 보유: 목적 달성 후 즉시 파기 / 동의 거부 시 신청 불가) · <a href="/privacy.html" target="_blank">개인정보처리방침</a>
             </label>
           </div>
 
@@ -1233,14 +1274,16 @@ footer {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var biz_type = document.getElementById('biz_type').value.trim();
-      var store_name = document.getElementById('store_name').value.trim();
-      var location = document.getElementById('location').value.trim();
+      var place_url = document.getElementById('place_url').value.trim();
       var phone = document.getElementById('phone').value.trim();
       var consent = document.getElementById('consent').checked;
 
-      if (!biz_type || !store_name || !location || !phone) {
+      if (!place_url || !phone) {
         alert('모든 필수 항목을 입력해 주세요.');
+        return;
+      }
+      if (!place_url.startsWith('http') || place_url.indexOf('naver') === -1) {
+        alert('네이버 플레이스 URL을 입력해 주세요.\n예: https://naver.me/... 또는 https://m.place.naver.com/...');
         return;
       }
       if (!consent) {
@@ -1252,9 +1295,7 @@ footer {
       submitBtn.textContent = '신청 중...';
 
       var payload = JSON.stringify({
-        biz_type: biz_type,
-        store_name: store_name,
-        location: location,
+        place_url: place_url,
         phone: phone,
         consent: consent,
         source: 'lp_ai_restaurant'
