@@ -340,6 +340,31 @@ h2.lp-h2 {
   .gpt-restaurant-name { font-size: 12px; }
 }
 
+/* ── GPT CAROUSEL ────────────────────────────────────────── */
+.gpt-slide { display: none; }
+.gpt-slide.active { display: block; }
+.carousel-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 14px 0 0;
+}
+.carousel-dot-btn {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  padding: 0;
+  flex-shrink: 0;
+}
+.carousel-dot-btn.active {
+  background: var(--accent);
+  width: 22px;
+  border-radius: 4px;
+}
+
 /* ── 공감 섹션 (2) ──────────────────────────────────────── */
 .empathy-box {
   margin-top: 32px;
@@ -936,6 +961,26 @@ footer {
 .section-head { text-align: center; margin-bottom: 0; }
 .section-head h2 { margin-top: 8px; }
 .section-head .lp-sub { margin: 20px auto 0; }
+
+/* ── 모바일 375px 최적화 ─────────────────────────────────── */
+@media (max-width: 480px) {
+  h1.lp-h1 { font-size: 28px; }
+  .lp-hero-cta-wrap .btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 15px;
+    min-height: 54px;
+  }
+  .offer-price-num { font-size: 44px !important; }
+  .top-bar-text { font-size: 11px; }
+}
+@media (max-width: 375px) {
+  .container, .container-narrow { padding: 0 16px; }
+  .offer-card { padding: 28px 18px; }
+  .trust-badges-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 
@@ -945,8 +990,7 @@ footer {
      TOP ANNOUNCEMENT BAR
 ══════════════════════════════════════════════════════ -->
 <div class="top-bar">
-  <span class="top-bar-text">AI에게 물어도 안 나오는 사장님 가게, AI가 추천하게 만들어 드립니다.</span>
-  <a href="#form" class="top-bar-btn">사전신청</a>
+  <span class="top-bar-text">AI에게 물어도 안 나오는 사장님 가게, AI가 추천하게 만들어 드립니다. · 7월 1일 얼리버드 오픈</span>
 </div>
 
 <!-- ══════════════════════════════════════════════════════
@@ -957,7 +1001,6 @@ footer {
     <a href="https://talkb.co.kr" class="lp-brand" aria-label="TalkB 홈으로">
       TalkB<span class="mark"></span><span class="lp-brand-kr">토크비</span>
     </a>
-    <a href="#form" class="lp-header-cta">얼리버드 사전신청 →</a>
   </div>
 </header>
 
@@ -972,61 +1015,208 @@ footer {
         손님이 AI에게 "○○동 맛집" 물어보면,<br>
         사장님 가게 말고 <em class="hi">옆집</em>이 나옵니다.
       </h1>
-      <p class="lp-hero-sub fade-in">AI 답변에 없는 가게는, 영업 중이어도 없는 겁니다.</p>
+      <p class="lp-hero-sub fade-in">요즘 손님들은 GPT에 먼저 물어봅니다.<br>사장님 가게가 나올까요?</p>
 
-      <!-- GPT Chat Mockup -->
+      <!-- GPT Chat Mockup — 4슬라이드 자동 롤링 -->
       <div class="gpt-mockup-wrap fade-in">
-        <div class="gpt-window">
-          <div class="gpt-chrome">
-            <span class="gpt-dot r"></span>
-            <span class="gpt-dot y"></span>
-            <span class="gpt-dot g"></span>
-            <span class="gpt-chrome-label">ChatGPT</span>
-          </div>
-          <div class="gpt-body">
-            <div class="gpt-sidebar">
-              <div class="gpt-sidebar-icon"></div>
-              <div class="gpt-sidebar-icon"></div>
-              <div class="gpt-sidebar-icon"></div>
-            </div>
-            <div class="gpt-chat">
-              <div class="gpt-msg user">
-                <div class="gpt-bubble">강남에서 부모님 모실 한정식 추천해줘.</div>
-                <div class="gpt-avatar user-av">나</div>
+        <div id="gptCarousel">
+
+          <!-- 슬라이드 1: 잠실 한정식 -->
+          <div class="gpt-slide active">
+            <div class="gpt-window">
+              <div class="gpt-chrome">
+                <span class="gpt-dot r"></span>
+                <span class="gpt-dot y"></span>
+                <span class="gpt-dot g"></span>
+                <span class="gpt-chrome-label">ChatGPT</span>
               </div>
-              <div class="gpt-msg ai">
-                <div class="gpt-avatar ai">AI</div>
-                <div class="gpt-bubble">
-                  <p>강남에서 부모님 모시기 좋은 한정식집을 추천드릴게요.</p>
-                  <div class="gpt-restaurant-list">
-                    <div class="gpt-restaurant-item">
-                      <div>
-                        <div class="gpt-restaurant-name">남도한정식 강남점</div>
-                        <div class="gpt-restaurant-desc">전통 상차림 · 룸 있음 · 예약 권장</div>
-                      </div>
-                    </div>
-                    <div class="gpt-restaurant-item">
-                      <div>
-                        <div class="gpt-restaurant-name">청운당 한식</div>
-                        <div class="gpt-restaurant-desc">조용한 분위기 · 계절 코스 · 주차 가능</div>
-                      </div>
-                    </div>
-                    <div class="gpt-restaurant-item">
-                      <div>
-                        <div class="gpt-restaurant-name">한옥밥상 역삼</div>
-                        <div class="gpt-restaurant-desc">프라이빗 룸 · 발레파킹 · 가족 모임 특화</div>
+              <div class="gpt-body">
+                <div class="gpt-sidebar">
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                </div>
+                <div class="gpt-chat">
+                  <div class="gpt-msg user">
+                    <div class="gpt-bubble">잠실에서 부모님 모시고 갈 한정식 추천해줘</div>
+                    <div class="gpt-avatar user-av">나</div>
+                  </div>
+                  <div class="gpt-msg ai">
+                    <div class="gpt-avatar ai">AI</div>
+                    <div class="gpt-bubble">
+                      <p>잠실 근처 어른 모시기 좋은 한정식집을 추천드릴게요.</p>
+                      <div class="gpt-restaurant-list">
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">한울담</div>
+                          <div class="gpt-restaurant-desc">전통 한정식 코스 · 룸 있음 · 예약 필수</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">정담한정식</div>
+                          <div class="gpt-restaurant-desc">계절 제철 상차림 · 주차 가능 · 가족 모임 추천</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">모란각</div>
+                          <div class="gpt-restaurant-desc">프라이빗 룸 · 발레파킹 · 소규모 운영</div>
+                        </div></div>
                       </div>
                     </div>
                   </div>
-                  <p>방문 전 예약 여부를 꼭 확인해 보세요.</p>
                 </div>
               </div>
+              <div class="gpt-window-footer">ChatGPT 시뮬레이션 · 매장명은 예시입니다</div>
             </div>
           </div>
-          <div class="gpt-window-footer">ChatGPT 시뮬레이션 · 매장명은 예시입니다</div>
+
+          <!-- 슬라이드 2: 성수 디저트 카페 -->
+          <div class="gpt-slide">
+            <div class="gpt-window">
+              <div class="gpt-chrome">
+                <span class="gpt-dot r"></span>
+                <span class="gpt-dot y"></span>
+                <span class="gpt-dot g"></span>
+                <span class="gpt-chrome-label">ChatGPT</span>
+              </div>
+              <div class="gpt-body">
+                <div class="gpt-sidebar">
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                </div>
+                <div class="gpt-chat">
+                  <div class="gpt-msg user">
+                    <div class="gpt-bubble">성수동 분위기 좋은 디저트 카페 알려줘</div>
+                    <div class="gpt-avatar user-av">나</div>
+                  </div>
+                  <div class="gpt-msg ai">
+                    <div class="gpt-avatar ai">AI</div>
+                    <div class="gpt-bubble">
+                      <p>성수동에서 분위기 있는 디저트 카페를 소개해 드릴게요.</p>
+                      <div class="gpt-restaurant-list">
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">어반로스터리</div>
+                          <div class="gpt-restaurant-desc">스페셜티 커피 + 수제 케이크 · 공장 인테리어</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">카페모먼트</div>
+                          <div class="gpt-restaurant-desc">시즌 디저트 전문 · 사진 명소 · 예약 추천</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">베이크하우스</div>
+                          <div class="gpt-restaurant-desc">브런치 + 수제빵 · 테라스 좌석 · 오전 오픈</div>
+                        </div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="gpt-window-footer">ChatGPT 시뮬레이션 · 매장명은 예시입니다</div>
+            </div>
+          </div>
+
+          <!-- 슬라이드 3: 강남역 고깃집 -->
+          <div class="gpt-slide">
+            <div class="gpt-window">
+              <div class="gpt-chrome">
+                <span class="gpt-dot r"></span>
+                <span class="gpt-dot y"></span>
+                <span class="gpt-dot g"></span>
+                <span class="gpt-chrome-label">ChatGPT</span>
+              </div>
+              <div class="gpt-body">
+                <div class="gpt-sidebar">
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                </div>
+                <div class="gpt-chat">
+                  <div class="gpt-msg user">
+                    <div class="gpt-bubble">강남역 근처 회식하기 좋은 고깃집</div>
+                    <div class="gpt-avatar user-av">나</div>
+                  </div>
+                  <div class="gpt-msg ai">
+                    <div class="gpt-avatar ai">AI</div>
+                    <div class="gpt-bubble">
+                      <p>강남역 주변 단체 회식에 적합한 고깃집입니다.</p>
+                      <div class="gpt-restaurant-list">
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">화로상회</div>
+                          <div class="gpt-restaurant-desc">참숯 화로 · 대형 룸 · 법인카드 세금계산서</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">마장축산</div>
+                          <div class="gpt-restaurant-desc">정육 직영 · 두툼한 부위 · 주차 가능</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">등심관</div>
+                          <div class="gpt-restaurant-desc">프리미엄 한우 등심 · 와인 페어링 · 예약 추천</div>
+                        </div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="gpt-window-footer">ChatGPT 시뮬레이션 · 매장명은 예시입니다</div>
+            </div>
+          </div>
+
+          <!-- 슬라이드 4: 홍대 혼밥 국밥 -->
+          <div class="gpt-slide">
+            <div class="gpt-window">
+              <div class="gpt-chrome">
+                <span class="gpt-dot r"></span>
+                <span class="gpt-dot y"></span>
+                <span class="gpt-dot g"></span>
+                <span class="gpt-chrome-label">ChatGPT</span>
+              </div>
+              <div class="gpt-body">
+                <div class="gpt-sidebar">
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                  <div class="gpt-sidebar-icon"></div>
+                </div>
+                <div class="gpt-chat">
+                  <div class="gpt-msg user">
+                    <div class="gpt-bubble">홍대 혼자 먹기 좋은 국밥집</div>
+                    <div class="gpt-avatar user-av">나</div>
+                  </div>
+                  <div class="gpt-msg ai">
+                    <div class="gpt-avatar ai">AI</div>
+                    <div class="gpt-bubble">
+                      <p>홍대 근처 혼밥 하기 좋은 국밥집을 알려드릴게요.</p>
+                      <div class="gpt-restaurant-list">
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">시골국밥</div>
+                          <div class="gpt-restaurant-desc">진한 사골 베이스 · 1인 카운터석 · 24시간</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">한솥뚝배기</div>
+                          <div class="gpt-restaurant-desc">뚝배기 순대국 · 밑반찬 셀프 · 혼밥 환영</div>
+                        </div></div>
+                        <div class="gpt-restaurant-item"><div>
+                          <div class="gpt-restaurant-name">옛집해장</div>
+                          <div class="gpt-restaurant-desc">해장국 전문 · 아침 영업 · 깔끔한 국물</div>
+                        </div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="gpt-window-footer">ChatGPT 시뮬레이션 · 매장명은 예시입니다</div>
+            </div>
+          </div>
+
+        </div><!-- /gptCarousel -->
+
+        <!-- 도트 네비 -->
+        <div class="carousel-nav">
+          <button class="carousel-dot-btn active" data-idx="0" aria-label="슬라이드 1"></button>
+          <button class="carousel-dot-btn" data-idx="1" aria-label="슬라이드 2"></button>
+          <button class="carousel-dot-btn" data-idx="2" aria-label="슬라이드 3"></button>
+          <button class="carousel-dot-btn" data-idx="3" aria-label="슬라이드 4"></button>
         </div>
 
-        <div class="gpt-callout">
+        <!-- 공통 callout -->
+        <div class="gpt-callout" style="margin-top:16px;">
           <div class="gpt-callout-icon">⚠️</div>
           <div class="gpt-callout-text">
             ← 우리 가게는 여기 없습니다.<br>
@@ -1121,25 +1311,13 @@ footer {
 ══════════════════════════════════════════════════════ -->
 <section class="lp-section" id="guide">
   <div class="container-narrow">
-    <div class="fade-in">
-      <div class="eyebrow">TalkB의 역할</div>
-      <h2 class="lp-h2">
-        그 AI, 이제 사장님이<br>
-        <em class="hi">직접 안 하셔도 됩니다.</em>
-      </h2>
-    </div>
-    <div class="guide-card fade-in">
-      <p>
-        산더미 같은 일 중 'AI' 한 칸을, 통째로 저희가 맡습니다.<br>
-        (네이버·인스타가 아니라, AI 최적화 영역만 저희가 알아서 합니다.)
-      </p>
-      <p>
-        사장님은 하던 대로 장사만 하세요.<br>
+    <div class="fade-in" style="text-align:center;">
+      <div class="eyebrow center">TalkB의 역할</div>
+      <h2 class="lp-h2">그 AI, 이제 사장님이 <em class="hi">직접 안 하셔도 됩니다.</em></h2>
+      <p class="lp-sub center" style="margin-top:20px;">
+        사장님은 장사만 하세요.<br>
         AI 답변에 우리 가게가 나오게 만드는 일은 저희가 합니다.
       </p>
-      <div class="guide-highlight">
-        AI 답변 자리 — 저희가 대신 차지해 드립니다.
-      </div>
     </div>
   </div>
 </section>
@@ -1377,17 +1555,15 @@ footer {
           </div>
 
           <div class="form-field">
-            <label class="form-label" for="contact">연락처 또는 이메일<span class="req">*</span></label>
-            <input class="form-input" type="text" id="contact" name="contact"
-              placeholder="010-XXXX-XXXX 또는 이메일 주소" required>
+            <label class="form-label" for="phone">휴대폰 번호<span class="req">*</span></label>
+            <input class="form-input" type="tel" id="phone" name="phone"
+              placeholder="010-1234-5678" required>
           </div>
 
           <div class="form-consent">
             <input type="checkbox" id="consent" name="consent" required>
             <label class="form-consent-text" for="consent">
-              [필수] 개인정보 수집·이용에 동의합니다. 수집 항목: 업종, 매장명, 위치, 연락처.
-              이용 목적: 무료 진단 제공 및 서비스 안내. 보유 기간: 서비스 종료 시 즉시 파기.
-              (<a href="/privacy.html" target="_blank">개인정보처리방침</a>)
+              개인정보 수집·이용에 동의합니다 (수집: 업종·매장명·위치·휴대폰 / 목적: 무료 진단 및 상담 안내 / 보유: 목적 달성 후 즉시 파기 / 동의 거부 시 신청 불가) · <a href="/privacy.html" target="_blank">개인정보처리방침</a>
             </label>
           </div>
 
@@ -1397,10 +1573,6 @@ footer {
 
         </div>
       </form>
-      <p class="form-footer-note">
-        제출 시 <a href="/privacy.html" style="color: var(--accent);">개인정보처리방침</a>에 동의합니다.
-        수집된 정보는 상담 목적 외 사용하지 않습니다.
-      </p>
     </div>
   </div>
 </section>
@@ -1410,32 +1582,11 @@ footer {
 ══════════════════════════════════════════════════════ -->
 <footer>
   <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">
-          TalkB<span class="mark"></span><span class="footer-brand-kr">토크비</span>
-        </div>
-        <p class="footer-tag">
-          "우리 매장이<br>AI 답변에 인용되도록."
-        </p>
-        <div class="footer-company">
-          (주)티앤에스컴퍼니<br>
-          맛집 전문 AI 노출 솔루션
-        </div>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <ul class="footer-links">
-          <li><a href="#form">얼리버드 사전신청</a></li>
-          <li><a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a></li>
-          <li><a href="https://talkb.co.kr" target="_blank">talkb.co.kr</a></li>
-          <li><a href="/privacy.html">개인정보처리방침</a></li>
-        </ul>
-      </div>
+    <div style="margin-bottom: 28px;">
+      <div class="footer-brand">TalkB<span class="mark"></span><span class="footer-brand-kr">토크비</span></div>
+      <div class="footer-company">(주)티앤에스컴퍼니 · 맛집 전문 AI 노출 솔루션</div>
     </div>
 
-    <!-- 사업자 정보 -->
     <div class="footer-business-info">
       <div class="footer-biz-row">
         <span class="footer-biz-label">상호</span>
@@ -1465,7 +1616,7 @@ footer {
 
     <div class="footer-bottom">
       <div>© 2026 (주)티앤에스컴퍼니 · TalkB All rights reserved.</div>
-      <div>talkb.co.kr/ai-restaurant</div>
+      <div><a href="/privacy.html" style="color:rgba(255,255,255,0.45);">개인정보처리방침</a></div>
     </div>
   </div>
 </footer>
@@ -1503,24 +1654,47 @@ footer {
     var diff = target - now;
     var el = document.getElementById('ddayCount');
     if (!el) return;
-    if (diff <= 0) {
-      el.textContent = 'D-0';
-      return;
-    }
+    if (diff <= 0) { el.textContent = 'D-0'; return; }
     var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
     el.textContent = 'D-' + days;
   }
   updateDday();
+
+  /* ── GPT 카루셀 ──────────────────────────────────────── */
+  var slides = document.querySelectorAll('#gptCarousel .gpt-slide');
+  var dotBtns = document.querySelectorAll('.carousel-dot-btn');
+  var currentSlide = 0;
+  var carouselTimer = null;
+
+  function goToSlide(idx) {
+    slides[currentSlide].classList.remove('active');
+    dotBtns[currentSlide].classList.remove('active');
+    currentSlide = (idx + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dotBtns[currentSlide].classList.add('active');
+  }
+
+  function startCarousel() {
+    carouselTimer = setInterval(function () { goToSlide(currentSlide + 1); }, 3500);
+  }
+
+  if (slides.length > 1) {
+    dotBtns.forEach(function (btn, i) {
+      btn.addEventListener('click', function () {
+        clearInterval(carouselTimer);
+        goToSlide(i);
+        startCarousel();
+      });
+    });
+    startCarousel();
+  }
 
   /* ── Fade-in on scroll ───────────────────────────────── */
   var fadeEls = document.querySelectorAll('.fade-in');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
     }, { threshold: 0.12 });
     fadeEls.forEach(function (el) { io.observe(el); });
@@ -1528,17 +1702,13 @@ footer {
     fadeEls.forEach(function (el) { el.classList.add('visible'); });
   }
 
-  /* ── Mobile CTA bar: hide when form visible ──────────── */
+  /* ── Mobile CTA bar: 폼 섹션 진입 시 숨김 ───────────── */
   var mobileCta = document.getElementById('mobileCta');
   var formSection = document.getElementById('form');
   if (mobileCta && formSection && 'IntersectionObserver' in window) {
     var formObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          mobileCta.style.display = 'none';
-        } else {
-          mobileCta.style.display = '';
-        }
+        mobileCta.style.display = e.isIntersecting ? 'none' : '';
       });
     }, { threshold: 0.1 });
     formObs.observe(formSection);
@@ -1554,14 +1724,13 @@ footer {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      /* Basic validation */
       var biz_type = document.getElementById('biz_type').value.trim();
       var store_name = document.getElementById('store_name').value.trim();
       var location = document.getElementById('location').value.trim();
-      var contact = document.getElementById('contact').value.trim();
+      var phone = document.getElementById('phone').value.trim();
       var consent = document.getElementById('consent').checked;
 
-      if (!biz_type || !store_name || !location || !contact) {
+      if (!biz_type || !store_name || !location || !phone) {
         alert('모든 필수 항목을 입력해 주세요.');
         return;
       }
@@ -1577,15 +1746,13 @@ footer {
         biz_type: biz_type,
         store_name: store_name,
         location: location,
-        contact: contact,
+        phone: phone,
         consent: consent,
         source: 'lp_ai_restaurant'
       });
 
-      /* Supabase anon insert */
       if (!SUPABASE_ANON_KEY) {
-        /* Anon key 미설정 시 → 성공 UX만 보여줌 (개발 확인용) */
-        console.warn('[TalkB] SUPABASE_ANON_KEY가 설정되지 않았습니다. DB 저장 없이 성공 화면만 표시합니다.');
+        console.warn('[TalkB] SUPABASE_ANON_KEY 미설정 — DB 저장 없이 성공 화면 표시');
         showSuccess();
         return;
       }
@@ -1604,24 +1771,24 @@ footer {
         if (res.ok || res.status === 201) {
           showSuccess();
         } else {
-          return res.text().then(function (txt) {
-            throw new Error(res.status + ' ' + txt);
-          });
+          return res.text().then(function (txt) { throw new Error(res.status + ' ' + txt); });
         }
       })
       .catch(function (err) {
         console.error('[TalkB] 폼 제출 오류:', err);
         submitBtn.disabled = false;
         submitBtn.textContent = '사전신청 완료하기 →';
-        alert('신청 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 hello@talkb.co.kr로 연락주세요.');
+        alert('신청 중 오류가 발생했습니다. hello@talkb.co.kr로 연락주세요.');
       });
     });
   }
 
   function showSuccess() {
     if (formWrap) formWrap.style.display = 'none';
-    if (formSuccess) formSuccess.classList.add('visible');
-    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (formSuccess) {
+      formSuccess.classList.add('visible');
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 
 })();
