@@ -57,6 +57,16 @@ html, body {
 /* ── TOP ─────────────────────────────────────────── */
 .top { flex: 0 0 auto; }
 
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 24px; font-weight: 500; color: var(--ink-muted);
+  letter-spacing: -0.01em; margin-bottom: 16px;
+}
+.eyebrow::before {
+  content: ''; width: 8px; height: 8px;
+  background: var(--accent); border-radius: 50%; flex-shrink: 0;
+}
+
 /* 메인 후크: 가장 크게 */
 .hook-main {
   display: block; font-size: 76px; font-weight: 900;
@@ -191,8 +201,9 @@ html, body {
 <body>
 <div class="canvas">
 
-  <!-- TOP: hook -->
+  <!-- TOP: eyebrow + hook -->
   <div class="top">
+    <div class="eyebrow">식당·카페 사장님이라면</div>
     <span class="hook-main">AI 최적화, <span class="accent">지금이 선점 타이밍</span></span>
     <span class="hook-sub">네이버·인스타·유튜브 광고 경쟁에 지치셨다면</span>
   </div>
@@ -248,7 +259,7 @@ html, body {
 
   <!-- BOTTOM -->
   <div class="bot">
-    <div class="solution">외식업 전용 <strong>AI 노출 최적화</strong> — 토크비</div>
+    <div class="solution">식당·카페 사장님 전용 <strong>AI 노출 최적화</strong> — 토크비</div>
     <div class="badge-wrap">
       <div class="badge">🗓 7월 얼리버드 사전신청 · 선착순 50팀</div>
     </div>
