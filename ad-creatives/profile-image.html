@@ -27,22 +27,27 @@ html, body {
   width: 1080px; height: 1080px;
   display: flex; align-items: center; justify-content: center;
 }
-/* 로고: 폭이 정사각 70%(756px) 이내가 되도록 font-size 조절 */
-.logo-bar {
-  display: flex; align-items: center; gap: 16px;
-  max-width: 756px; /* 원형 크롭 안에 들어오는 폭 */
+/* 세로 2단 묶음 — 정중앙 정렬 */
+.logo-wrap {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 12px;
 }
+/* 1줄: TalkB — 정사각 폭 약 55~58% */
 .logo-text {
-  font-size: 118px; font-weight: 900;
-  color: var(--ink); letter-spacing: -0.05em; line-height: 1;
+  font-size: 190px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.055em; line-height: 1;
   white-space: nowrap;
 }
+/* 2줄: ● 토크비 */
+.logo-sub {
+  display: flex; align-items: center; gap: 14px;
+}
 .logo-dot {
-  width: 18px; height: 18px;
+  width: 20px; height: 20px;
   background: var(--accent); border-radius: 50%; flex-shrink: 0;
 }
 .logo-kr {
-  font-size: 58px; font-weight: 500;
+  font-size: 80px; font-weight: 500;
   color: var(--ink-muted); letter-spacing: -0.03em; line-height: 1;
   white-space: nowrap;
 }
@@ -50,10 +55,12 @@ html, body {
 </head>
 <body>
 <div class="canvas">
-  <div class="logo-bar">
+  <div class="logo-wrap">
     <span class="logo-text">TalkB</span>
-    <span class="logo-dot"></span>
-    <span class="logo-kr">토크비</span>
+    <div class="logo-sub">
+      <span class="logo-dot"></span>
+      <span class="logo-kr">토크비</span>
+    </div>
   </div>
 </div>
 </body>
