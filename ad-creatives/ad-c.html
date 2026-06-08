@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  TalkB Ad C — 선점 + 비가역  (1080×1080)            ║
+  ╠══════════════════════════════════════════════════════╣
+  ║  캡처 방법                                           ║
+  ║  1. Chrome DevTools > Toggle device toolbar          ║
+  ║     → 1080×1080 지정 → Cmd+Shift+P > "Capture       ║
+  ║       full size screenshot"                          ║
+  ║  2. 헤드리스:                                        ║
+  ║     chrome --headless --screenshot=ad-c.png          ║
+  ║       --window-size=1080,1080                        ║
+  ║       --hide-scrollbars file://$(pwd)/ad-c.html      ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<title>TalkB Ad C</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root {
+  --accent:       #E85D3A;
+  --accent-deep:  #C94422;
+  --accent-soft:  #FFF1EC;
+  --ink:          #0A0A0A;
+  --ink-mid:      #52525B;
+  --ink-muted:    #757575;
+  --bg:           #FFFFFF;
+  --border:       #E4E4E7;
+  --f: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1080px; height: 1080px;
+  overflow: hidden; background: var(--bg);
+  font-family: var(--f); -webkit-font-smoothing: antialiased;
+}
+
+.canvas {
+  width: 1080px; height: 1080px;
+  padding: 64px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  background: linear-gradient(175deg, #fff 55%, #FFF7F3 100%);
+}
+.canvas::before {
+  content: '';
+  position: absolute; top: -80px; left: -80px;
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, rgba(232,93,58,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── TOP ─────────────────────────────────────────── */
+.top { flex: 0 0 auto; }
+
+.hook {
+  line-height: 1.1; letter-spacing: -0.04em;
+  font-weight: 800; color: var(--ink);
+}
+.hook-line { display: block; font-size: 68px; }
+.hook .accent { color: var(--accent); }
+
+/* ── MID — 타임라인 ──────────────────────────────── */
+.mid {
+  flex: 1 1 auto; display: flex; flex-direction: column;
+  justify-content: center; padding: 36px 0;
+}
+
+/* 타임라인 레일 */
+.timeline-wrap { position: relative; padding: 0 12px; }
+
+.timeline-rail {
+  position: absolute; top: 42px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, #E4E4E7 0%, #E4E4E7 70%, var(--accent) 70%, var(--accent) 100%);
+  border-radius: 2px;
+}
+
+.timeline-items {
+  display: flex; justify-content: space-between; position: relative; z-index: 1;
+}
+
+.tl-item {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  flex: 1;
+}
+
+.tl-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 3px solid #D1D5DB; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.tl-item.now .tl-dot {
+  width: 56px; height: 56px;
+  border: 3px solid var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 8px rgba(232,93,58,0.12);
+}
+
+.tl-dot-inner {
+  width: 10px; height: 10px; border-radius: 50%; background: #D1D5DB;
+}
+.tl-item.now .tl-dot-inner { display: none; }
+
+.tl-star {
+  font-size: 26px; line-height: 1;
+}
+
+.tl-year {
+  font-size: 18px; font-weight: 700; color: #9CA3AF;
+  font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+}
+.tl-item.now .tl-year { font-size: 22px; color: var(--accent); font-weight: 800; }
+
+.tl-label {
+  font-size: 22px; font-weight: 700; color: #6B7280; letter-spacing: -0.02em;
+}
+.tl-item.now .tl-label { font-size: 32px; font-weight: 900; color: var(--accent); }
+
+.tl-sub {
+  font-size: 14px; color: #9CA3AF; letter-spacing: -0.01em;
+  text-align: center; line-height: 1.4;
+}
+.tl-item.now .tl-sub { font-size: 16px; color: var(--accent-deep); font-weight: 600; }
+
+/* 선점 뱃지 */
+.now-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff;
+  font-size: 17px; font-weight: 700; padding: 7px 18px;
+  border-radius: 100px; letter-spacing: -0.01em;
+  margin-top: 12px;
+  align-self: center;
+}
+
+/* 화살표 그룹 */
+.tl-arrows {
+  display: flex; justify-content: space-around;
+  padding: 0 80px; margin-bottom: 16px; position: relative; z-index: 2;
+}
+.tl-arrow { font-size: 22px; color: #D1D5DB; font-weight: 700; }
+.tl-arrow.hot { color: var(--accent); }
+
+/* ── 메시지 블록 ──────────────────────────────────── */
+.wave-msg {
+  margin-top: 28px; padding: 20px 28px;
+  background: rgba(232,93,58,0.06); border-left: 4px solid var(--accent);
+  border-radius: 0 16px 16px 0;
+}
+.wave-msg p {
+  font-size: 22px; color: var(--ink-mid); line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.wave-msg strong { color: var(--ink); }
+
+/* ── BOTTOM ──────────────────────────────────────── */
+.bot { flex: 0 0 auto; }
+
+.solution {
+  font-size: 26px; font-weight: 600; color: var(--ink-mid);
+  letter-spacing: -0.02em; margin-bottom: 18px; text-align: center;
+}
+.solution strong { color: var(--ink); }
+
+.badge-wrap { text-align: center; margin-bottom: 22px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  font-size: 22px; font-weight: 700; padding: 12px 28px;
+  border-radius: 100px; letter-spacing: -0.01em;
+}
+
+.logo-bar { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.logo-text { font-size: 26px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
+.logo-dot { width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
+.logo-kr { font-size: 16px; color: var(--ink-muted); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- TOP: hook -->
+  <div class="top">
+    <div class="hook">
+      <span class="hook-line">블로그·인스타 그때처럼,</span>
+      <span class="hook-line">AI는 <span class="accent">지금이 선점</span></span>
+    </div>
+  </div>
+
+  <!-- MID: 타임라인 -->
+  <div class="mid">
+
+    <div class="timeline-wrap">
+      <!-- 레일 -->
+      <div class="timeline-rail"></div>
+
+      <!-- 화살표 -->
+      <div class="tl-arrows">
+        <span class="tl-arrow">→</span>
+        <span class="tl-arrow">→</span>
+        <span class="tl-arrow hot">→</span>
+      </div>
+
+      <!-- 아이템 -->
+      <div class="timeline-items">
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-year">2010</div>
+          <div class="tl-label">블로그</div>
+          <div class="tl-sub">먼저 쌓은 가게가<br>수년간 독점</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-year">2014</div>
+          <div class="tl-label">인스타</div>
+          <div class="tl-sub">팔로워 먼저<br>확보가 전부</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-year">2017</div>
+          <div class="tl-label">유튜브</div>
+          <div class="tl-sub">영상 선점 채널<br>지금도 1위</div>
+        </div>
+        <div class="tl-item now">
+          <div class="tl-dot"><div class="tl-star">★</div></div>
+          <div class="tl-year">2026</div>
+          <div class="tl-label">AI</div>
+          <div class="tl-sub">지금 들어가야<br>몇 년을 차지</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wave-msg">
+      <p>먼저 들어간 가게가 수년간 손님을 가져갔습니다.<br><strong>지금 비어 있는 AI 자리, 먼저 잡는 가게가 차지합니다.</strong></p>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bot">
+    <div class="solution">외식업 전용 <strong>AI 노출 최적화</strong> — 토크비</div>
+    <div class="badge-wrap">
+      <div class="badge">🗓 7월 얼리버드 사전신청 · 선착순 50팀</div>
+    </div>
+    <div class="logo-bar">
+      <span class="logo-text">TalkB</span>
+      <span class="logo-dot"></span>
+      <span class="logo-kr">토크비</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

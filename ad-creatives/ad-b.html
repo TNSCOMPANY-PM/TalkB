@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  TalkB Ad B — 충격 + 대비  (1080×1080)              ║
+  ╠══════════════════════════════════════════════════════╣
+  ║  캡처 방법                                           ║
+  ║  1. Chrome DevTools > Toggle device toolbar          ║
+  ║     → 1080×1080 지정 → Cmd+Shift+P > "Capture       ║
+  ║       full size screenshot"                          ║
+  ║  2. 헤드리스:                                        ║
+  ║     chrome --headless --screenshot=ad-b.png          ║
+  ║       --window-size=1080,1080                        ║
+  ║       --hide-scrollbars file://$(pwd)/ad-b.html      ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<title>TalkB Ad B</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root {
+  --accent:       #E85D3A;
+  --accent-deep:  #C94422;
+  --accent-soft:  #FFF1EC;
+  --ink:          #0A0A0A;
+  --ink-mid:      #52525B;
+  --ink-muted:    #757575;
+  --bg:           #FFFFFF;
+  --border:       #E4E4E7;
+  --success:      #16A34A;
+  --success-soft: #F0FDF4;
+  --f: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1080px; height: 1080px;
+  overflow: hidden; background: var(--bg);
+  font-family: var(--f); -webkit-font-smoothing: antialiased;
+}
+
+.canvas {
+  width: 1080px; height: 1080px;
+  padding: 64px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  background: #ffffff;
+}
+.canvas::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(232,93,58,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── TOP ─────────────────────────────────────────── */
+.top { flex: 0 0 auto; }
+
+.hook {
+  line-height: 1.1; letter-spacing: -0.04em;
+  font-weight: 800; color: var(--ink); margin-bottom: 0;
+}
+.hook-line { display: block; font-size: 72px; }
+.hook .accent { color: var(--accent); }
+
+/* ── MID — 좌우 대비 ─────────────────────────────── */
+.mid {
+  flex: 1 1 auto; display: flex; align-items: center;
+  justify-content: center; padding: 36px 0;
+}
+
+.compare-wrap {
+  display: flex; gap: 24px; width: 100%;
+}
+
+.compare-card {
+  flex: 1; border-radius: 28px; padding: 40px 36px;
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center; gap: 16px;
+}
+.compare-card.naver {
+  background: var(--success-soft);
+  border: 2px solid rgba(22,163,74,0.25);
+}
+.compare-card.gpt {
+  background: #F5F5F5;
+  border: 2px solid #E0E0E0;
+}
+
+.compare-platform {
+  font-size: 19px; font-weight: 700; letter-spacing: -0.02em;
+}
+.compare-card.naver .compare-platform { color: var(--success); }
+.compare-card.gpt   .compare-platform { color: #9CA3AF; }
+
+.compare-title {
+  font-size: 30px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.2;
+}
+.compare-card.naver .compare-title { color: #111827; }
+.compare-card.gpt   .compare-title { color: #6B7280; }
+
+.compare-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 100px;
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+}
+.compare-card.naver .compare-badge {
+  background: var(--success); color: #fff;
+}
+.compare-card.gpt .compare-badge {
+  background: #E5E7EB; color: #9CA3AF;
+  text-decoration: line-through;
+}
+
+.compare-sub {
+  font-size: 17px; letter-spacing: -0.01em; line-height: 1.5;
+}
+.compare-card.naver .compare-sub { color: var(--success); }
+.compare-card.gpt   .compare-sub { color: #9CA3AF; }
+
+/* divider arrow */
+.compare-arrow {
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; width: 56px;
+}
+.compare-arrow svg { width: 40px; height: 40px; }
+
+/* ── BOTTOM ──────────────────────────────────────── */
+.bot { flex: 0 0 auto; }
+
+.solution {
+  font-size: 26px; font-weight: 600; color: var(--ink-mid);
+  letter-spacing: -0.02em; margin-bottom: 18px; text-align: center;
+}
+.solution strong { color: var(--ink); }
+
+.badge-wrap { text-align: center; margin-bottom: 22px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  font-size: 22px; font-weight: 700; padding: 12px 28px;
+  border-radius: 100px; letter-spacing: -0.01em;
+}
+
+.logo-bar { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.logo-text { font-size: 26px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
+.logo-dot { width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
+.logo-kr { font-size: 16px; color: var(--ink-muted); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- TOP: hook -->
+  <div class="top">
+    <div class="hook">
+      <span class="hook-line">네이버 1등인데,</span>
+      <span class="hook-line">ChatGPT엔 <span class="accent">안 나옵니다</span></span>
+    </div>
+  </div>
+
+  <!-- MID: 좌우 대비 -->
+  <div class="mid">
+    <div class="compare-wrap">
+      <!-- 네이버 -->
+      <div class="compare-card naver">
+        <div class="compare-platform">네이버 플레이스</div>
+        <div class="compare-title">매장 검색<br>상위 노출</div>
+        <div class="compare-badge">✓ 1위</div>
+        <div class="compare-sub">꾸준히 관리한<br>블로그·리뷰 덕분에</div>
+      </div>
+
+      <!-- 화살표 -->
+      <div class="compare-arrow">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 20H30M30 20L22 12M30 20L22 28" stroke="#D1D5DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- ChatGPT -->
+      <div class="compare-card gpt">
+        <div class="compare-platform">ChatGPT</div>
+        <div class="compare-title">AI 답변에<br>우리 가게?</div>
+        <div class="compare-badge">✕ 미등장</div>
+        <div class="compare-sub">네이버 1등이어도<br>ChatGPT는 별개</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bot">
+    <div class="solution"><strong>ChatGPT 노출</strong>, 외식업 전문 토크비가 잡아드립니다</div>
+    <div class="badge-wrap">
+      <div class="badge">🗓 7월 얼리버드 사전신청 · 선착순 50팀</div>
+    </div>
+    <div class="logo-bar">
+      <span class="logo-text">TalkB</span>
+      <span class="logo-dot"></span>
+      <span class="logo-kr">토크비</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
