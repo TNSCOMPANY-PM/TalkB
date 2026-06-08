@@ -79,14 +79,18 @@ html, body {
   background: var(--accent); border-radius: 50%; flex-shrink: 0;
 }
 
-.hook {
-  line-height: 1.12; letter-spacing: -0.04em;
-  font-weight: 800; color: var(--ink);
-  margin-bottom: 0;
+.hook { margin-bottom: 0; }
+/* 받쳐주는 설정 줄 — 눈에 띄되 payoff 압도 안 함 */
+.hook-setup {
+  display: block; font-size: 40px; font-weight: 700;
+  color: var(--ink-mid); letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 4px;
 }
-.hook-line { display: block; font-size: 64px; }
-.hook-line.big { font-size: 72px; }
-.hook .accent { color: var(--accent); }
+/* 메인 payoff — 이미지에서 가장 큰 요소 */
+.hook-payoff {
+  display: block; font-size: 104px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.055em; line-height: 1.0;
+}
+.hook-payoff .accent { color: var(--accent); }
 
 /* ── MIDDLE — GPT Card ───────────────────────────── */
 .mid { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; padding: 28px 0; }
@@ -95,11 +99,11 @@ html, body {
   background: #ffffff; border-radius: 20px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 32px rgba(0,0,0,0.08);
-  overflow: hidden; max-width: 760px; margin: 0 auto; width: 100%;
+  overflow: hidden; max-width: 680px; margin: 0 auto; width: 100%;
 }
 .gpt-header {
   display: flex; align-items: center; gap: 10px;
-  padding: 13px 18px; background: #fff;
+  padding: 10px 16px; background: #fff;
   border-bottom: 1px solid #f0f0f0;
 }
 .gpt-ham { display: flex; flex-direction: column; gap: 4px; }
@@ -108,12 +112,12 @@ html, body {
 .gpt-logo small { font-size: 13px; color: #9ca3af; font-weight: 400; margin-left: 4px; }
 .gpt-edit { font-size: 18px; color: #9ca3af; }
 
-.gpt-body { padding: 20px 18px; display: flex; flex-direction: column; gap: 14px; }
+.gpt-body { padding: 16px 16px; display: flex; flex-direction: column; gap: 10px; }
 
 .msg-user { display: flex; justify-content: flex-end; align-items: flex-end; gap: 10px; }
 .bubble-user {
-  padding: 11px 16px; background: #f3f4f6; color: #111827;
-  border-radius: 18px 4px 18px 18px; font-size: 17px; line-height: 1.5;
+  padding: 10px 14px; background: #f3f4f6; color: #111827;
+  border-radius: 18px 4px 18px 18px; font-size: 15px; line-height: 1.5;
   max-width: 80%; letter-spacing: -0.01em;
 }
 .av-user {
@@ -129,10 +133,10 @@ html, body {
   font-size: 11px; font-weight: 700; color: #fff;
 }
 .bubble-ai {
-  flex: 1; padding: 12px 16px;
+  flex: 1; padding: 10px 14px;
   background: #f9fafb; border: 1px solid #e5e7eb;
   border-radius: 4px 18px 18px 18px;
-  font-size: 17px; color: #1f2937; line-height: 1.6; letter-spacing: -0.01em;
+  font-size: 15px; color: #1f2937; line-height: 1.6; letter-spacing: -0.01em;
 }
 .bubble-ai strong { color: #059669; font-weight: 700; }
 
@@ -183,9 +187,8 @@ html, body {
   <div class="top">
     <div class="eyebrow">외식업 사장님이라면</div>
     <div class="hook">
-      <span class="hook-line">손님이 ChatGPT에</span>
-      <span class="hook-line">"○○동 맛집" 물으면,</span>
-      <span class="hook-line big"><span class="accent">옆집</span>이 나옵니다</span>
+      <span class="hook-setup">손님이 ChatGPT에 "○○동 맛집" 물으면,</span>
+      <span class="hook-payoff"><span class="accent">옆집</span>이 나옵니다</span>
     </div>
   </div>
 

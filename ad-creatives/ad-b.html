@@ -68,8 +68,8 @@ html, body {
 
 /* ── MID — 좌우 대비 ─────────────────────────────── */
 .mid {
-  flex: 1 1 auto; display: flex; align-items: center;
-  justify-content: center; padding: 36px 0;
+  flex: 1 1 auto; display: flex; flex-direction: column;
+  justify-content: center; padding: 32px 0;
 }
 
 .compare-wrap {
@@ -77,9 +77,9 @@ html, body {
 }
 
 .compare-card {
-  flex: 1; border-radius: 28px; padding: 40px 36px;
+  flex: 1; border-radius: 28px; padding: 28px 28px;
   display: flex; flex-direction: column;
-  align-items: flex-start; justify-content: center; gap: 16px;
+  align-items: flex-start; justify-content: center; gap: 12px;
 }
 .compare-card.naver {
   background: var(--success-soft);
@@ -97,15 +97,27 @@ html, body {
 .compare-card.gpt   .compare-platform { color: #9CA3AF; }
 
 .compare-title {
-  font-size: 30px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.2;
+  font-size: 26px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.25;
 }
 .compare-card.naver .compare-title { color: #111827; }
 .compare-card.gpt   .compare-title { color: #6B7280; }
 
 .compare-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 20px; border-radius: 100px;
-  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+  padding: 9px 18px; border-radius: 100px;
+  font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+}
+
+/* 키 메시지 + 서브 (카드 아래) */
+.key-msg {
+  margin-top: 20px; font-size: 24px; font-weight: 800;
+  color: var(--ink); letter-spacing: -0.03em; line-height: 1.35;
+  text-align: center;
+}
+.sub-msg {
+  margin-top: 8px; font-size: 18px; font-weight: 500;
+  color: var(--ink-mid); letter-spacing: -0.02em;
+  text-align: center;
 }
 .compare-card.naver .compare-badge {
   background: var(--success); color: #fff;
@@ -167,10 +179,9 @@ html, body {
     <div class="compare-wrap">
       <!-- 네이버 -->
       <div class="compare-card naver">
-        <div class="compare-platform">네이버 플레이스</div>
-        <div class="compare-title">매장 검색<br>상위 노출</div>
+        <div class="compare-platform">네이버</div>
+        <div class="compare-title">네이버 플레이스 1위<br>네이버 블로그 1위</div>
         <div class="compare-badge">✓ 1위</div>
-        <div class="compare-sub">꾸준히 관리한<br>블로그·리뷰 덕분에</div>
       </div>
 
       <!-- 화살표 -->
@@ -183,16 +194,18 @@ html, body {
       <!-- ChatGPT -->
       <div class="compare-card gpt">
         <div class="compare-platform">ChatGPT</div>
-        <div class="compare-title">AI 답변에<br>우리 가게?</div>
-        <div class="compare-badge">✕ 미등장</div>
-        <div class="compare-sub">네이버 1등이어도<br>ChatGPT는 별개</div>
+        <div class="compare-title">AI 답변엔<br>미등장</div>
+        <div class="compare-badge">✕&nbsp;&nbsp;미등장</div>
       </div>
     </div>
+
+    <div class="key-msg">네이버에 쏟은 비용의 일부면, AI는 지금 선점할 수 있습니다</div>
+    <div class="sub-msg">한 번 자리 잡으면, 광고를 멈춰도 손님이 찾아옵니다</div>
   </div>
 
   <!-- BOTTOM -->
   <div class="bot">
-    <div class="solution"><strong>ChatGPT 노출</strong>, 외식업 전문 토크비가 잡아드립니다</div>
+    <div class="solution">외식업 전용 <strong>AI 노출 최적화</strong> — 토크비</div>
     <div class="badge-wrap">
       <div class="badge">🗓 7월 얼리버드 사전신청 · 선착순 50팀</div>
     </div>
