@@ -27,7 +27,7 @@ html, body {
 
 .canvas {
   width: 1200px; height: 630px;
-  padding: 64px 80px;
+  padding: 44px 48px;
   display: flex; flex-direction: column; justify-content: space-between;
   position: relative; overflow: hidden;
   background: linear-gradient(155deg, #fff 55%, #FFF7F3 100%);
@@ -51,23 +51,23 @@ html, body {
 
 /* eyebrow */
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 9px;
-  font-size: 22px; font-weight: 500; color: var(--ink-muted);
-  letter-spacing: -0.01em; margin-bottom: 22px;
+  display: inline-flex; align-items: center; gap: 11px;
+  font-size: 34px; font-weight: 500; color: var(--ink-muted);
+  letter-spacing: -0.01em; margin-bottom: 18px;
 }
 .eyebrow::before {
-  content: ''; width: 9px; height: 9px;
+  content: ''; width: 12px; height: 12px;
   background: var(--accent); border-radius: 50%; flex-shrink: 0;
 }
 
 /* hook */
 .hook-setup {
-  display: block; font-size: 54px; font-weight: 700;
-  color: var(--ink-mid); letter-spacing: -0.04em; line-height: 1.2;
-  margin-bottom: 2px; white-space: nowrap;
+  display: block; font-size: 68px; font-weight: 700;
+  color: var(--ink-mid); letter-spacing: -0.04em; line-height: 1.15;
+  margin-bottom: 4px; white-space: nowrap;
 }
 .hook-payoff {
-  display: block; font-size: 82px; font-weight: 900;
+  display: block; font-size: 110px; font-weight: 900;
   color: var(--ink); letter-spacing: -0.055em; line-height: 1.02;
   white-space: nowrap;
 }
@@ -78,15 +78,15 @@ html, body {
   display: flex; align-items: center; justify-content: space-between;
   position: relative; z-index: 1;
 }
-.logo-bar { display: flex; align-items: center; gap: 10px; }
-.logo-text { font-size: 38px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
-.logo-dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
-.logo-kr { font-size: 23px; color: var(--ink-muted); font-weight: 500; }
+.logo-bar { display: flex; align-items: center; gap: 14px; }
+.logo-text { font-size: 54px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
+.logo-dot { width: 16px; height: 16px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+.logo-kr { font-size: 34px; color: var(--ink-muted); font-weight: 500; }
 
 .badge {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 10px;
   background: var(--accent); color: #fff;
-  font-size: 20px; font-weight: 700; padding: 11px 26px;
+  font-size: 30px; font-weight: 700; padding: 14px 34px;
   border-radius: 100px; letter-spacing: -0.01em;
   white-space: nowrap;
 }
