@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<!--
+  TalkB OG Image — 1200×630
+  카톡·페북·광고 공유 썸네일
+-->
+<title>TalkB OG Image</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root {
+  --accent:    #E85D3A;
+  --ink:       #0A0A0A;
+  --ink-mid:   #52525B;
+  --ink-muted: #757575;
+  --f: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1200px; height: 630px;
+  overflow: hidden; background: #fff;
+  font-family: var(--f); -webkit-font-smoothing: antialiased;
+}
+
+.canvas {
+  width: 1200px; height: 630px;
+  padding: 64px 80px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+  background: linear-gradient(155deg, #fff 55%, #FFF7F3 100%);
+}
+/* 우상단 accent 글로우 */
+.canvas::before {
+  content: '';
+  position: absolute; top: -120px; right: -120px;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(232,93,58,0.11) 0%, transparent 65%);
+  pointer-events: none;
+}
+/* 좌하단 보조 글로우 */
+.canvas::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(232,93,58,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* eyebrow */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 22px; font-weight: 500; color: var(--ink-muted);
+  letter-spacing: -0.01em; margin-bottom: 22px;
+}
+.eyebrow::before {
+  content: ''; width: 9px; height: 9px;
+  background: var(--accent); border-radius: 50%; flex-shrink: 0;
+}
+
+/* hook */
+.hook-setup {
+  display: block; font-size: 54px; font-weight: 700;
+  color: var(--ink-mid); letter-spacing: -0.04em; line-height: 1.2;
+  margin-bottom: 2px; white-space: nowrap;
+}
+.hook-payoff {
+  display: block; font-size: 82px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.055em; line-height: 1.02;
+  white-space: nowrap;
+}
+.hook-payoff .accent { color: var(--accent); }
+
+/* bottom row */
+.bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 1;
+}
+.logo-bar { display: flex; align-items: center; gap: 10px; }
+.logo-text { font-size: 38px; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; }
+.logo-dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+.logo-kr { font-size: 23px; color: var(--ink-muted); font-weight: 500; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff;
+  font-size: 20px; font-weight: 700; padding: 11px 26px;
+  border-radius: 100px; letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- 상단: eyebrow + hook -->
+  <div>
+    <div class="eyebrow">식당·카페 사장님이라면</div>
+    <span class="hook-setup">손님이 ChatGPT에 물어보면,</span>
+    <span class="hook-payoff"><span class="accent">옆집</span>이 나옵니다</span>
+  </div>
+
+  <!-- 하단: 로고 + 배지 -->
+  <div class="bottom">
+    <div class="logo-bar">
+      <span class="logo-text">TalkB</span>
+      <span class="logo-dot"></span>
+      <span class="logo-kr">토크비</span>
+    </div>
+    <div class="badge">🗓 7월 얼리버드 사전신청</div>
+  </div>
+
+</div>
+</body>
+</html>

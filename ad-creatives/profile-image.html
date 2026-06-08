@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<!--
+  TalkB Profile Image — 1080×1080
+  인스타 프로필 (원형 크롭 대응, 로고만)
+-->
+<title>TalkB Profile Image</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root {
+  --accent:    #E85D3A;
+  --ink:       #0A0A0A;
+  --ink-muted: #757575;
+  --f: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1080px; height: 1080px;
+  overflow: hidden; background: #F8F5EF;
+  font-family: var(--f); -webkit-font-smoothing: antialiased;
+}
+.canvas {
+  width: 1080px; height: 1080px;
+  display: flex; align-items: center; justify-content: center;
+}
+/* 로고: 폭이 정사각 70%(756px) 이내가 되도록 font-size 조절 */
+.logo-bar {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 756px; /* 원형 크롭 안에 들어오는 폭 */
+}
+.logo-text {
+  font-size: 118px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.05em; line-height: 1;
+  white-space: nowrap;
+}
+.logo-dot {
+  width: 18px; height: 18px;
+  background: var(--accent); border-radius: 50%; flex-shrink: 0;
+}
+.logo-kr {
+  font-size: 58px; font-weight: 500;
+  color: var(--ink-muted); letter-spacing: -0.03em; line-height: 1;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="logo-bar">
+    <span class="logo-text">TalkB</span>
+    <span class="logo-dot"></span>
+    <span class="logo-kr">토크비</span>
+  </div>
+</div>
+</body>
+</html>
