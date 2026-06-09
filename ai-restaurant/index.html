@@ -526,7 +526,14 @@ footer {
 }
 .footer-brand .mark { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
 .footer-brand-kr { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; }
-.footer-company { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 24px; }
+.footer-company { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+.footer-biz-toggle {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.4); font-size: 12px;
+  font-family: var(--f-body); letter-spacing: -0.01em;
+  padding: 0; margin-bottom: 0; display: block;
+}
+.footer-biz-toggle:hover { color: rgba(255,255,255,0.65); }
 .footer-business-info {
   display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 8px 20px; padding: 16px 20px; margin: 0 0 24px;
@@ -1102,7 +1109,11 @@ footer {
     <div class="footer-brand">TalkB<span class="mark"></span><span class="footer-brand-kr">토크비</span></div>
     <div class="footer-company">(주)티앤에스컴퍼니 · 맛집 전문 AI 노출 솔루션</div>
 
-    <div class="footer-business-info">
+    <button class="footer-biz-toggle" id="footerBizToggle" onclick="toggleFooterBiz()">
+      사업자 정보 <span id="footerBizArrow">▾</span>
+    </button>
+
+    <div class="footer-business-info" id="footerBizInfo" style="display:none">
       <div class="footer-biz-row">
         <span class="footer-biz-label">상호</span>
         <span class="footer-biz-value">(주)티앤에스컴퍼니</span>
@@ -1122,10 +1133,6 @@ footer {
       <div class="footer-biz-row footer-biz-row-wide">
         <span class="footer-biz-label">사업장</span>
         <span class="footer-biz-value">서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)</span>
-      </div>
-      <div class="footer-biz-row">
-        <span class="footer-biz-label">이메일</span>
-        <span class="footer-biz-value"><a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a></span>
       </div>
     </div>
 
@@ -1355,6 +1362,21 @@ footer {
     if (formSuccess) formSuccess.classList.add('visible');
     if (modalCard) modalCard.scrollTop = 0;
   }
+
+  /* ── 푸터 사업자 정보 아코디언 ────────────────────────── */
+  window.toggleFooterBiz = function () {
+    var el    = document.getElementById('footerBizInfo');
+    var arrow = document.getElementById('footerBizArrow');
+    if (el.style.display === 'none') {
+      el.style.display = '';
+      el.style.marginTop = '12px';
+      arrow.textContent = '▴';
+    } else {
+      el.style.display = 'none';
+      el.style.marginTop = '';
+      arrow.textContent = '▾';
+    }
+  };
 
 })();
 </script>
