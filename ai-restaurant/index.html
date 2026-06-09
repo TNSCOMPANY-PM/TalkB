@@ -1165,7 +1165,7 @@ footer {
 <div class="bottom-cta-bar" id="bottomCtaBar">
   <div class="bottom-cta-text"><strong>7월 오픈 예정 얼리버드</strong> · 월 150,000원 · 선착순 50팀</div>
   <button class="btn btn-accent" style="padding: 12px 24px; font-size: 14px; font-weight: 600;" onclick="openModal()">
-    얼리버드 사전신청 · 무료진단 →
+    내 가게 AI 노출, 무료 진단 →
   </button>
 </div>
 
@@ -1177,8 +1177,8 @@ footer {
     <button class="modal-close" onclick="closeModal()" aria-label="닫기">×</button>
 
     <div id="modalFormWrap">
-      <div class="modal-title" id="modalTitle">얼리버드 사전신청</div>
-      <div class="modal-sub">무료 진단 후 7월 오픈 시 가장 먼저 연락드립니다. 지금은 결제하지 않습니다.</div>
+      <div class="modal-title" id="modalTitle">내 가게 ChatGPT 노출, 무료 진단</div>
+      <div class="modal-sub">네이버 플레이스 주소만 넣으면 접수 완료. 진단 결과는 영업일 기준 24시간 이내 문자로 보내드립니다.</div>
 
       <form id="leadForm" novalidate>
         <div class="form-row">
@@ -1201,7 +1201,7 @@ footer {
           </div>
 
           <button type="submit" class="btn btn-accent btn-block btn-lg" id="submitBtn" style="margin-top: 4px;">
-            사전신청 완료하기 →
+            무료 진단 신청하기 →
           </button>
         </div>
       </form>
@@ -1363,7 +1363,7 @@ footer {
       .catch(function (err) {
         console.error('[TalkB] 폼 제출 오류:', err);
         submitBtn.disabled = false;
-        submitBtn.textContent = '사전신청 완료하기 →';
+        submitBtn.textContent = '무료 진단 신청하기 →';
         alert('신청 중 오류가 발생했습니다. hello@talkb.co.kr로 연락주세요.');
       });
     });
