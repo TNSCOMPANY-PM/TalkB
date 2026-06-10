@@ -1293,18 +1293,33 @@ footer {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var place_url = document.getElementById('place_url').value.trim();
-      var phone = document.getElementById('phone').value.trim();
-      var consent = document.getElementById('consent').checked;
+      var rawUrl   = document.getElementById('place_url').value;
+      var rawPhone = document.getElementById('phone').value;
+      var consent  = document.getElementById('consent').checked;
 
-      if (!place_url || !phone) {
-        alert('모든 필수 항목을 입력해 주세요.');
+      // ── [1] 네이버 플레이스 URL 추출 + 정규화 ─────────────────
+      // 허용: naver.me/*, (서브도메인.)place.naver.com/*, (m.)map.naver.com/*
+      // 차단: blog/cafe/booking/smartplace/검색결과 등
+      var urlMatch = rawUrl.match(
+        /((?:https?:\/\/)?(?:naver\.me\/[^\s]+|(?:[\w-]+\.)?place\.naver\.com\/[^\s]+|(?:m\.)?map\.naver\.com\/[^\s]+))/i
+      );
+      if (!urlMatch) {
+        alert('네이버 플레이스 주소를 붙여넣어 주세요.\n예: https://naver.me/... 또는 https://m.place.naver.com/...');
         return;
       }
-      if (!place_url.startsWith('http') || place_url.indexOf('naver') === -1) {
-        alert('네이버 플레이스 URL을 입력해 주세요.\n예: https://naver.me/... 또는 https://m.place.naver.com/...');
+      var normalizedUrl = urlMatch[1];
+      if (!/^https?:\/\//i.test(normalizedUrl)) {
+        normalizedUrl = 'https://' + normalizedUrl;
+      }
+
+      // ── [2] 휴대폰 정규화 + 검증 ──────────────────────────────
+      var normalizedPhone = rawPhone.replace(/\D/g, '');
+      if (!/^01[016789]\d{7,8}$/.test(normalizedPhone)) {
+        alert('올바른 휴대폰 번호를 입력해주세요.\n예: 010-1234-5678');
         return;
       }
+
+      // ── [3] 개인정보 동의 ─────────────────────────────────────
       if (!consent) {
         alert('개인정보 수집·이용 동의가 필요합니다.');
         return;
@@ -1314,8 +1329,8 @@ footer {
       submitBtn.textContent = '신청 중...';
 
       var payload = JSON.stringify({
-        place_url: place_url,
-        phone: phone,
+        place_url: normalizedUrl,
+        phone: normalizedPhone,
         consent: consent,
         source: 'lp_ai_restaurant'
       });
