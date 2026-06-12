@@ -95,12 +95,12 @@ fbq('track', 'PageView');
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--f-body);
-  font-size: 16px; line-height: 1.6;
+  font-size: 16px; line-height: 1.7;
   color: var(--ink); background: var(--bg);
   font-weight: 400; -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em; overflow-x: hidden;
   padding-top: 44px;   /* fixed top bar */
-  padding-bottom: 80px; /* fixed bottom CTA bar */
+  padding-bottom: 100px; /* fixed bottom CTA bar */
 }
 img, svg { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -116,7 +116,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 /* ── Typography ─────────────────────────────────────────── */
 .eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13px; color: var(--ink-mid); font-weight: 500;
+  font-size: 15px; color: var(--ink-mid); font-weight: 500;
   letter-spacing: -0.01em; margin-bottom: 20px;
 }
 .eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
@@ -137,7 +137,7 @@ h2.lp-h2 {
   text-align: center;
 }
 .lp-sub {
-  font-size: 17px; line-height: 1.7;
+  font-size: 17px; line-height: 1.75;
   color: var(--ink-mid); letter-spacing: -0.01em;
   text-align: left;
 }
@@ -158,13 +158,13 @@ h2.lp-h2 {
   font-size: 15px; font-weight: 500; letter-spacing: -0.01em;
   transition: all 0.2s; cursor: pointer; white-space: nowrap;
   font-family: var(--f-body); border: 1px solid transparent;
-  min-height: 44px;
+  min-height: 52px;
 }
 .btn-accent { background: var(--accent); color: var(--white); }
 .btn-accent:hover { background: var(--accent-deep); transform: translateY(-1px); box-shadow: var(--sh-accent); }
 .btn-ghost { background: var(--white); color: var(--ink); border-color: var(--border); }
 .btn-ghost:hover { border-color: var(--ink); }
-.btn-lg { padding: 18px 36px; font-size: 16px; font-weight: 600; }
+.btn-lg { padding: 18px 36px; font-size: 17px; font-weight: 600; }
 .btn-block { width: 100%; }
 .btn-center { display: block; margin: 0 auto; }
 
@@ -180,7 +180,7 @@ h2.lp-h2 {
   letter-spacing: -0.01em; white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis;
 }
-@media (max-width: 480px) { .top-bar-text { font-size: 11px; } }
+@media (max-width: 480px) { .top-bar-text { font-size: 13px; } }
 
 /* ── HEADER ──────────────────────────────────────────────── */
 .lp-header {
@@ -203,13 +203,13 @@ h2.lp-h2 {
 }
 .lp-brand .mark { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
 .lp-brand-kr { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
-.lp-tagline { font-size: 11px; color: var(--ink-muted); letter-spacing: -0.01em; line-height: 1; }
+.lp-tagline { font-size: 13px; color: #555555; letter-spacing: -0.01em; line-height: 1; }
 
 /* ── HERO ────────────────────────────────────────────────── */
 .lp-hero { padding: 64px 0 56px; background: var(--bg); }
 .lp-hero-inner { max-width: 720px; margin: 0 auto; text-align: center; }
 .lp-hero-sub {
-  font-size: 18px; color: var(--ink-mid); margin-top: 20px;
+  font-size: 19px; color: var(--ink-mid); margin-top: 20px;
   letter-spacing: -0.01em; line-height: 1.6; text-align: center;
 }
 
@@ -303,7 +303,7 @@ h2.lp-h2 {
   font-size: 17px; font-weight: 700; color: var(--ink);
   letter-spacing: -0.03em; margin-bottom: 6px;
 }
-.mockup-callout-sub { font-size: 14px; color: var(--ink-muted); letter-spacing: -0.01em; line-height: 1.55; }
+.mockup-callout-sub { font-size: 16px; color: var(--ink-muted); letter-spacing: -0.01em; line-height: 1.6; }
 
 /* ── 공감 섹션 (2) ──────────────────────────────────────── */
 .empathy-box {
@@ -311,7 +311,7 @@ h2.lp-h2 {
   background: var(--accent-soft); border: 1px solid rgba(232,93,58,0.18);
   border-radius: var(--r-lg);
 }
-.empathy-box p { font-size: 16px; line-height: 1.75; color: var(--ink); text-align: left; letter-spacing: -0.01em; }
+.empathy-box p { font-size: 17px; line-height: 1.8; color: var(--ink); text-align: left; letter-spacing: -0.01em; }
 .empathy-box p + p { margin-top: 14px; }
 .empathy-box strong { color: var(--accent); }
 @media (max-width: 640px) { .empathy-box { padding: 22px 20px; } }
@@ -321,7 +321,7 @@ h2.lp-h2 {
   margin-top: 24px; padding: 22px 26px;
   background: var(--bg-dark); color: var(--white);
   border-radius: var(--r-lg);
-  font-size: 15px; line-height: 1.75; text-align: left; letter-spacing: -0.01em;
+  font-size: 17px; line-height: 1.75; text-align: left; letter-spacing: -0.01em;
 }
 .loss-highlight strong { color: var(--accent); font-weight: 700; }
 
@@ -343,7 +343,7 @@ h2.lp-h2 {
   letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--f-mono);
 }
 .opportunity-card p {
-  font-size: 15.5px; line-height: 1.75; color: rgba(255,255,255,0.75);
+  font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.75);
   text-align: left; letter-spacing: -0.01em;
 }
 .opportunity-card p + p { margin-top: 12px; }
@@ -371,15 +371,15 @@ h2.lp-h2 {
   font-family: var(--f-mono); font-size: 11px; font-weight: 700;
   color: var(--accent); letter-spacing: 0.1em; margin-bottom: 12px;
 }
-.step-title { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.03em; line-height: 1.3; margin-bottom: 10px; }
-.step-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.65; letter-spacing: -0.01em; text-align: left; }
+.step-title { font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -0.03em; line-height: 1.3; margin-bottom: 10px; }
+.step-desc { font-size: 16px; color: var(--ink-mid); line-height: 1.75; letter-spacing: -0.01em; text-align: left; }
 @media (max-width: 720px) { .step-grid { grid-template-columns: 1fr; gap: 12px; } }
 
 .timeline-note {
   margin-top: 28px; padding: 18px 22px;
   background: var(--bg-soft); border: 1px solid var(--border);
   border-radius: var(--r-md); border-left: 3px solid var(--accent);
-  font-size: 13px; color: var(--ink-mid); line-height: 1.7; text-align: left;
+  font-size: 15px; color: var(--ink-mid); line-height: 1.7; text-align: left;
   letter-spacing: -0.01em;
 }
 
@@ -425,7 +425,7 @@ h2.lp-h2 {
 }
 .offer-features li {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 14.5px; color: rgba(255,255,255,0.82); line-height: 1.55; text-align: left;
+  font-size: 16px; color: rgba(255,255,255,0.82); line-height: 1.65; text-align: left;
 }
 .offer-features li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
 .offer-features li strong { color: var(--white); }
@@ -433,7 +433,7 @@ h2.lp-h2 {
   margin-bottom: 14px; padding: 12px 16px;
   background: #ffffff; border-radius: var(--r-md);
   border: 1px solid var(--border);
-  font-size: 12px; color: var(--ink-muted); line-height: 1.6; text-align: left;
+  font-size: 14px; color: var(--ink-muted); line-height: 1.6; text-align: left;
 }
 .offer-price-box {
   padding: 24px 0 20px;
@@ -457,7 +457,7 @@ h2.lp-h2 {
   padding: 16px 18px; margin-bottom: 22px;
   background: #ffffff; border-radius: var(--r-md);
   border: 1px solid var(--border);
-  font-size: 13px; color: var(--ink-mid); line-height: 1.65; text-align: left;
+  font-size: 15px; color: var(--ink-mid); line-height: 1.65; text-align: left;
 }
 .offer-info-box strong { color: var(--ink); }
 .slots-badge {
@@ -490,8 +490,8 @@ h2.lp-h2 {
 }
 .trust-badge:hover { border-color: var(--accent); background: var(--accent-paper); }
 .trust-badge-icon { font-size: 20px; line-height: 1.2; flex-shrink: 0; }
-.trust-badge-title { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 3px; }
-.trust-badge-meta { font-size: 11px; color: var(--ink-muted); letter-spacing: -0.01em; line-height: 1.5; }
+.trust-badge-title { font-size: 15px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 3px; }
+.trust-badge-meta { font-size: 13px; color: #555555; letter-spacing: -0.01em; line-height: 1.5; }
 @media (max-width: 1000px) { .trust-badges-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 640px) { .trust-badges-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
 @media (max-width: 375px) { .trust-badges-grid { grid-template-columns: 1fr; } }
@@ -590,7 +590,7 @@ footer {
 
 .modal-close {
   position: absolute; top: 14px; right: 14px;
-  width: 36px; height: 36px; border-radius: 50%;
+  width: 44px; height: 44px; border-radius: 50%;
   background: var(--bg-soft); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; line-height: 1; color: var(--ink-muted); cursor: pointer;
@@ -603,7 +603,7 @@ footer {
   letter-spacing: -0.035em; margin-bottom: 6px; padding-right: 40px;
 }
 .modal-sub {
-  font-size: 14px; color: var(--ink-mid); margin-bottom: 28px;
+  font-size: 16px; color: var(--ink-mid); margin-bottom: 28px;
   line-height: 1.6; letter-spacing: -0.01em; text-align: left;
 }
 
@@ -624,7 +624,7 @@ footer {
 /* ── FORM (inside modal) ─────────────────────────────────── */
 .form-row { display: flex; flex-direction: column; gap: 14px; }
 .form-field { display: flex; flex-direction: column; gap: 7px; }
-.form-label { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+.form-label { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
 .form-label .req { color: var(--accent); margin-left: 2px; }
 .form-input, .form-select {
   width: 100%; padding: 14px 16px; min-height: 48px;
@@ -644,7 +644,7 @@ footer {
   background: var(--bg-soft); border-radius: var(--r-md); border: 1px solid var(--border);
 }
 .form-consent input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
-.form-consent-text { font-size: 13px; color: var(--ink-mid); line-height: 1.6; letter-spacing: -0.01em; }
+.form-consent-text { font-size: 15px; color: var(--ink-mid); line-height: 1.7; letter-spacing: -0.01em; }
 .form-consent-text a { color: var(--accent); border-bottom: 1px solid rgba(232,93,58,0.3); }
 
 /* Form success */
@@ -664,7 +664,7 @@ footer {
 
 /* ── 출처 각주 ───────────────────────────────────────────── */
 .stat-source {
-  font-size: 11.5px; color: var(--ink-light); line-height: 1.6;
+  font-size: 13px; color: var(--ink-muted); line-height: 1.6;
   margin-top: 16px; letter-spacing: -0.01em; text-align: left;
 }
 
@@ -694,7 +694,7 @@ footer {
 .diag-note strong { color: var(--white); }
 
 /* ── Form hint ────────────────────────────────────────────── */
-.form-hint { font-size: 12px; color: var(--ink-muted); letter-spacing: -0.01em; }
+.form-hint { font-size: 14px; color: #555555; letter-spacing: -0.01em; }
 
 /* ── 오퍼 섹션 다크 배경 헤딩 ──────────────────────────── */
 .lp-offer-section .lp-h2 { color: #FAFAFA; }
@@ -716,8 +716,8 @@ footer {
   padding: 12px 14px; border: 1px solid var(--border);
 }
 .ob1-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-.ob1-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
-.ob1-desc { font-size: 12px; color: var(--ink-mid); line-height: 1.6; }
+.ob1-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.ob1-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.6; }
 
 /* ── 오퍼 블록 2 (질문칩 라이트 카드) ──────────────────── */
 .ob2 {
@@ -726,7 +726,7 @@ footer {
 }
 .ob2-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .ob2-chip {
-  font-size: 12px; font-weight: 600;
+  font-size: 13px; font-weight: 600;
   color: var(--accent); background: var(--accent-soft);
   border: 1px solid rgba(232,93,58,0.2);
   border-radius: 99px; padding: 4px 12px;
@@ -735,14 +735,14 @@ footer {
 .ob2-q {
   background: var(--bg-soft); border-radius: 8px;
   padding: 10px 12px; border: 1px solid var(--border);
-  font-size: 13px; color: var(--ink-mid); line-height: 1.55;
+  font-size: 15px; color: var(--ink-mid); line-height: 1.65;
 }
 .ob2-more { font-size: 11px; color: var(--ink-muted); text-align: center; padding-top: 2px; }
 .ob2-note {
   background: rgba(232,93,58,0.06);
   border: 1px solid rgba(232,93,58,0.18);
   border-radius: 10px; padding: 12px 14px;
-  font-size: 12px; color: var(--ink-mid); line-height: 1.65;
+  font-size: 14px; color: var(--ink-mid); line-height: 1.65;
 }
 
 /* ── 375px specific ──────────────────────────────────────── */
@@ -851,8 +851,7 @@ footer {
 
         <!-- 2줄 callout -->
         <div class="mockup-callout">
-          <div class="mockup-callout-main">← 우리 가게는 여기 없습니다</div>
-          <div class="mockup-callout-sub">손님은 지금 이 방식으로 오늘 저녁 식당을 고르고 있습니다.</div>
+          <div class="mockup-callout-sub">토크비는 맛집(음식점·카페·술집)만 전문적으로 진단합니다.<br>다른 업종은 측정 방식이 달라 서비스가 불가능합니다.</div>
         </div>
       </div>
     </div>
@@ -1147,9 +1146,12 @@ footer {
      BOTTOM CTA BAR (전 디바이스)
 ══════════════════════════════════════════════════════ -->
 <div class="bottom-cta-bar" id="bottomCtaBar">
-  <button class="btn btn-accent" style="padding: 12px 24px; font-size: 14px; font-weight: 600; width: 100%; max-width: 480px;" onclick="openModal()">
-    내 가게 AI 노출, 무료 진단 →
-  </button>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:5px;width:100%;max-width:480px;">
+    <span style="font-size:11px;color:var(--ink-muted);font-weight:600;letter-spacing:-0.01em;">맛집(음식점·카페·술집) 전용</span>
+    <button class="btn btn-accent" style="padding: 16px 24px; font-size: 14px; font-weight: 600; width: 100%;" onclick="openModal()">
+      내 가게 AI 노출, 무료 진단 →
+    </button>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════
@@ -1161,6 +1163,7 @@ footer {
 
     <div id="modalFormWrap">
       <div class="modal-title" id="modalTitle">내 가게 ChatGPT 노출, 무료 진단</div>
+      <div style="display:inline-block;background:#FFF1EC;color:#E85D3A;font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:10px;letter-spacing:-0.01em;">맛집(음식점·카페·술집) 전용</div>
       <div class="modal-sub">네이버 플레이스 주소만 넣으면 접수 완료. 진단 결과는 영업일 기준 24시간 이내 문자로 보내드립니다.</div>
 
       <form id="leadForm" novalidate>
