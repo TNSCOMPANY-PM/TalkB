@@ -467,7 +467,7 @@ h2.lp-h2 {
 .trust-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
 .trust-label-kr { font-family: var(--f-body); font-size: 12px; letter-spacing: -0.01em; text-transform: none; color: var(--ink-muted); }
 .trust-badges-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 0 0 16px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 16px;
 }
 .trust-badge {
   display: flex; align-items: flex-start; gap: 12px;
@@ -478,7 +478,7 @@ h2.lp-h2 {
 .trust-badge-icon { font-size: 20px; line-height: 1.2; flex-shrink: 0; }
 .trust-badge-title { font-size: 15px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 3px; }
 .trust-badge-meta { font-size: 13px; color: #555555; letter-spacing: -0.01em; line-height: 1.5; }
-@media (max-width: 1000px) { .trust-badges-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 1000px) { .trust-badges-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .trust-badges-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
 @media (max-width: 375px) { .trust-badges-grid { grid-template-columns: 1fr; } }
 
@@ -1178,11 +1178,6 @@ footer {
       <div class="eyebrow center">검증된 운영사가 직접 합니다</div>
       <h2 class="lp-h2">9년간 쌓아온 신뢰와 인증</h2>
     </div>
-    <div class="trust-badges-label fade-in">
-      <span class="trust-dot"></span>
-      Verified &amp; Certified
-      <span class="trust-label-kr">검증된 운영사가 제공하는 신뢰 가능한 서비스</span>
-    </div>
     <div class="trust-badges-grid fade-in">
       <div class="trust-badge">
         <div class="trust-badge-icon">🏛️</div>
@@ -1210,13 +1205,6 @@ footer {
         <div>
           <div class="trust-badge-title">특허 보유</div>
           <div class="trust-badge-meta">제 10-2804310호 · 2025.04 등록</div>
-        </div>
-      </div>
-      <div class="trust-badge">
-        <div class="trust-badge-icon">🏢</div>
-        <div>
-          <div class="trust-badge-title">2016년 설립 법인</div>
-          <div class="trust-badge-meta">사업자 455-86-00636 · 서울 마곡</div>
         </div>
       </div>
     </div>
