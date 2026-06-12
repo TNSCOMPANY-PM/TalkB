@@ -934,93 +934,249 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     ⑦ 성공 비전
-══════════════════════════════════════════════════════ -->
-<section class="lp-section" id="vision">
-  <div class="container-narrow">
-    <div class="section-head fade-in">
-      <div class="eyebrow center">결국 이렇게 됩니다</div>
-      <h2 class="lp-h2">우리 가게가 ChatGPT 답에 나옵니다.</h2>
+<!-- ===================== 토크비 진단 예시 통합 섹션 (fd- 격리) =====================
+     교체 범위: 기존 ⑦ vision ~ ⑧ offer 전체
+     순수 표시 영역 — 픽셀/폼/Lead 이벤트와 무관
+     offer-info-box(기존 다)는 이 섹션 최하단에 그대로 유지됨
+============================================================================= -->
+<section class="lp-section fd-section" id="fd-diagnosis">
+<style>
+  .fd-section{background:#F7F6F4;padding:56px 20px 60px;}
+  .fd-wrap{width:100%;max-width:430px;margin:0 auto;}
+  .fd-eyebrow{font-size:13px;font-weight:800;color:#E85D3A;letter-spacing:.02em;text-align:center;margin-bottom:10px;}
+  .fd-title{font-size:25px;font-weight:900;line-height:1.4;letter-spacing:-.02em;text-align:center;color:#1A1A1A;margin-bottom:8px;}
+  .fd-title b{color:#E85D3A;}
+  .fd-sub{font-size:15px;color:#444;font-weight:600;line-height:1.55;text-align:center;margin-bottom:22px;}
+
+  .fd-icons{display:flex;gap:8px;margin-bottom:26px;}
+  .fd-ic{flex:1;background:#FFF;border:1px solid #ECECEC;border-radius:14px;padding:16px 8px;text-align:center;}
+  .fd-ic .fd-em{font-size:24px;}
+  .fd-ic .fd-ic-t{font-size:13.5px;font-weight:800;margin-top:7px;letter-spacing:-.01em;color:#1A1A1A;}
+  .fd-ic .fd-ic-d{font-size:11.5px;color:#6B6B6B;font-weight:600;margin-top:3px;line-height:1.4;}
+
+  .fd-tabs{display:flex;gap:8px;margin-bottom:14px;}
+  .fd-tab{flex:1;text-align:center;font-size:15px;font-weight:800;letter-spacing:-.01em;padding:12px 0;border-radius:12px;background:#FFF;border:1.5px solid #ECECEC;color:#6B6B6B;cursor:pointer;transition:.15s;}
+  .fd-tab.fd-active{background:#E85D3A;border-color:#E85D3A;color:#fff;box-shadow:0 4px 12px rgba(232,93,58,.25);}
+
+  .fd-card{background:#FFF;border-radius:20px;padding:24px 20px 22px;box-shadow:0 6px 24px rgba(0,0,0,.06);border:1px solid #ECECEC;overflow:hidden;}
+  .fd-ribbon{display:inline-block;font-size:13px;font-weight:800;letter-spacing:-.01em;padding:6px 13px;border-radius:99px;margin-bottom:14px;}
+  .fd-ribbon.fd-before{background:#F1F1F1;color:#555;}
+  .fd-ribbon.fd-after{background:#FFF1EC;color:#E85D3A;}
+  .fd-brand{font-size:13px;font-weight:800;letter-spacing:.08em;color:#E85D3A;margin-bottom:10px;}
+  .fd-store-meta{font-size:14.5px;color:#6B6B6B;font-weight:600;margin-bottom:4px;}
+  .fd-store-title{font-size:21px;font-weight:800;line-height:1.35;letter-spacing:-.02em;color:#1A1A1A;margin-bottom:18px;}
+  .fd-store-title b{color:#E85D3A;}
+
+  .fd-gauge-row{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+  .fd-pct{font-size:46px;font-weight:900;line-height:1;letter-spacing:-.03em;color:#9A9A9A;}
+  .fd-pct.fd-high{color:#E85D3A;}
+  .fd-gauge-sub{font-size:15px;font-weight:700;color:#444;}
+  .fd-bar{height:14px;border-radius:99px;background:#EFEFEF;position:relative;margin:14px 0 6px;overflow:hidden;}
+  .fd-bar > i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;width:15%;background:linear-gradient(90deg,#C9C9C9,#A8A8A8);}
+  .fd-bar.fd-high > i{width:72%;background:linear-gradient(90deg,#F08A6C,#E85D3A);}
+  .fd-bar-labels{display:flex;justify-content:space-between;font-size:12.5px;color:#6B6B6B;font-weight:600;}
+  .fd-verdict{font-size:16px;font-weight:800;margin:16px 0 4px;letter-spacing:-.01em;color:#777;}
+  .fd-verdict.fd-high{color:#E85D3A;}
+
+  .fd-hint{display:flex;align-items:center;gap:9px;background:#FFF1EC;border-radius:12px;padding:13px 14px;margin:20px 0 6px;}
+  .fd-hint .fd-hic{flex:0 0 auto;font-size:17px;}
+  .fd-hint .fd-ht{font-size:14px;font-weight:700;color:#E85D3A;line-height:1.45;letter-spacing:-.01em;}
+
+  .fd-qhead{font-size:13.5px;font-weight:700;color:#6B6B6B;margin:18px 0 6px;}
+  .fd-qitem{border-top:1px solid #ECECEC;}
+  .fd-q{display:flex;align-items:center;gap:11px;padding:13px 0;cursor:pointer;user-select:none;}
+  .fd-q .fd-mark{flex:0 0 24px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;background:#D24A3A;}
+  .fd-q .fd-qtext{flex:1;font-size:15px;font-weight:600;line-height:1.45;letter-spacing:-.01em;color:#1A1A1A;}
+  .fd-q .fd-tag{flex:0 0 auto;font-size:12.5px;font-weight:800;padding:4px 9px;border-radius:7px;background:#F2F2F2;color:#888;}
+  .fd-q .fd-arw{flex:0 0 auto;color:#BBB;font-size:13px;transition:transform .22s;margin-left:2px;}
+  .fd-qitem.fd-open .fd-q .fd-arw{transform:rotate(180deg);color:#E85D3A;}
+  .fd-detail{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .fd-qitem.fd-open .fd-detail{max-height:600px;}
+  .fd-detail-inner{padding:4px 0 18px;}
+  .fd-dlabel{font-size:13px;font-weight:800;color:#444;margin:8px 0 9px;letter-spacing:-.01em;}
+  .fd-comp{display:flex;align-items:baseline;gap:10px;padding:7px 0;}
+  .fd-comp .fd-rk{flex:0 0 auto;font-size:14px;font-weight:900;color:#E85D3A;width:26px;}
+  .fd-comp .fd-nm{font-size:15px;font-weight:800;color:#1A1A1A;}
+  .fd-comp .fd-lo{font-size:13px;color:#6B6B6B;font-weight:600;}
+  .fd-gptbox{background:#FAFAFA;border:1px solid #ECECEC;border-radius:11px;padding:13px 14px;margin-top:6px;}
+  .fd-gptbox .fd-gtxt{font-size:13.5px;line-height:1.62;color:#444;font-weight:500;}
+  .fd-gptbox .fd-gtxt b{color:#1A1A1A;}
+  .fd-miss{margin-top:11px;background:#FBECE7;border-radius:9px;padding:10px 12px;font-size:13.5px;font-weight:800;color:#C0432E;line-height:1.45;letter-spacing:-.01em;}
+
+  .fd-qstatic{display:flex;align-items:center;gap:11px;padding:13px 0;border-top:1px solid #ECECEC;}
+  .fd-qstatic .fd-mark{flex:0 0 24px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;background:#16A34A;}
+  .fd-qstatic .fd-qtext{flex:1;font-size:15px;font-weight:600;line-height:1.45;letter-spacing:-.01em;color:#1A1A1A;}
+  .fd-qstatic .fd-tag{flex:0 0 auto;font-size:12.5px;font-weight:800;padding:4px 9px;border-radius:7px;background:#E9F7EF;color:#16A34A;}
+  .fd-more{font-size:13.5px;color:#6B6B6B;font-weight:600;padding:13px 0;border-top:1px solid #ECECEC;text-align:center;}
+  .fd-blindnote{font-size:12.5px;color:#6B6B6B;line-height:1.55;font-weight:600;text-align:center;margin-top:12px;}
+
+  .fd-bridge{text-align:center;padding:20px 16px;}
+  .fd-bridge .fd-arrow{font-size:26px;color:#E85D3A;margin-bottom:6px;}
+  .fd-bridge .fd-bsub{font-size:14.5px;color:#444;font-weight:700;line-height:1.5;letter-spacing:-.01em;}
+
+  .fd-aftercta{margin-top:16px;background:#FFF1EC;border-radius:13px;padding:15px 16px;text-align:center;}
+  .fd-aftercta .fd-big{font-size:16px;font-weight:800;color:#E85D3A;letter-spacing:-.01em;line-height:1.45;}
+  .fd-note{font-size:12.5px;color:#6B6B6B;line-height:1.6;margin-top:14px;padding-top:14px;border-top:1px dashed #ECECEC;font-weight:500;}
+
+  .fd-pane{display:none;} .fd-pane.fd-active{display:block;}
+
+  /* 기존 offer-info-box를 이 섹션 톤에 맞춰 가운데 정렬 */
+  #fd-diagnosis .offer-info-box{max-width:430px;margin:26px auto 0;}
+</style>
+
+  <div class="fd-wrap">
+    <div class="fd-eyebrow">● 토크비가 하는 일</div>
+    <div class="fd-title">우리 가게가 ChatGPT에 나오게,<br><b>저희가 직접 만들어 드립니다</b></div>
+    <div class="fd-sub">먼저 손님 시점으로 진단하고, 안 나오는 자리를<br>저희가 직접 채웁니다. 사장님이 하실 일은 없습니다.</div>
+
+    <div class="fd-icons">
+      <div class="fd-ic"><div class="fd-em">🔍</div><div class="fd-ic-t">노출 측정</div><div class="fd-ic-d">손님 질문 10개로<br>등장 비율 측정</div></div>
+      <div class="fd-ic"><div class="fd-em">📊</div><div class="fd-ic-t">진단 리포트</div><div class="fd-ic-d">경쟁사·답변까지<br>문항별 분석</div></div>
+      <div class="fd-ic"><div class="fd-em">⚙️</div><div class="fd-ic-t">최적화 실행</div><div class="fd-ic-d">노출되도록<br>저희가 직접</div></div>
     </div>
-    <div class="vision-box fade-in">
-      <div class="vision-icon">🎯</div>
-      <p>결국 손님이 ChatGPT에 물으면, <strong>우리 가게가 답에 나옵니다.</strong> 광고비 없이, 그 답을 본 새 손님이 찾아옵니다.</p>
+
+    <div class="fd-tabs">
+      <div class="fd-tab fd-active" onclick="fdSwitch(this,'fd-food')">맛집</div>
+      <div class="fd-tab" onclick="fdSwitch(this,'fd-cafe')">카페</div>
+      <div class="fd-tab" onclick="fdSwitch(this,'fd-bar')">술집</div>
     </div>
+
+    <!-- 맛집 -->
+    <div class="fd-pane fd-active" id="fd-food">
+      <div class="fd-card">
+        <span class="fd-ribbon fd-before">무료진단 시 받는 리포트</span>
+        <div class="fd-brand">TALKB</div><div class="fd-store-meta">○○동 · 한식</div>
+        <div class="fd-store-title">우리식당 사장님 가게의<br><b>ChatGPT 노출 진단 결과</b></div>
+        <div class="fd-gauge-row"><span class="fd-pct">10%</span><span class="fd-gauge-sub">10개 질문 중 1개 노출</span></div>
+        <div class="fd-bar"><i></i></div><div class="fd-bar-labels"><span>0%</span><span>낮음</span><span>100%</span></div>
+        <div class="fd-verdict">손님 ChatGPT엔 거의 나오지 않습니다</div>
+        <div class="fd-hint"><span class="fd-hic">👀</span><span class="fd-ht">화살표를 누르면, 내 가게 대신 손님에게 추천된 <u>경쟁 매장</u>과 실제 GPT 답변까지 확인됩니다.</span></div>
+        <div class="fd-qhead">질문별 결과 — 손님이 이렇게 물어봅니다</div>
+        <div class="fd-qitem fd-open"><div class="fd-q" onclick="fdToggle(this)"><span class="fd-mark">✕</span><span class="fd-qtext">○○동에서 가족 모임하기 좋은 한식당 추천해줘</span><span class="fd-tag">미노출</span><span class="fd-arw">▼</span></div>
+          <div class="fd-detail"><div class="fd-detail-inner"><div class="fd-dlabel">함께 추천된 경쟁 매장</div>
+            <div class="fd-comp"><span class="fd-rk">1위</span><span class="fd-nm">솔담한정식</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">2위</span><span class="fd-nm">옛골토담</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">3위</span><span class="fd-nm">마루한상</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-dlabel" style="margin-top:14px;">GPT 답변</div>
+            <div class="fd-gptbox"><div class="fd-gtxt">○○동에서 가족 모임하기 좋은 한식당으로는 <b>솔담한정식</b>, <b>옛골토담</b>을 추천드립니다. 룸이 있어 어른 모시기 좋다는 평이 많습니다.</div></div>
+            <div class="fd-miss">→ 손님 답변에 '우리식당'은 없습니다.</div></div></div></div>
+        <div class="fd-qitem"><div class="fd-q" onclick="fdToggle(this)"><span class="fd-mark">✕</span><span class="fd-qtext">○○동에서 부모님 모시고 갈 한정식집 알려줘</span><span class="fd-tag">미노출</span><span class="fd-arw">▼</span></div>
+          <div class="fd-detail"><div class="fd-detail-inner"><div class="fd-dlabel">함께 추천된 경쟁 매장</div>
+            <div class="fd-comp"><span class="fd-rk">1위</span><span class="fd-nm">옛골토담</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">2위</span><span class="fd-nm">솔담한정식</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-dlabel" style="margin-top:14px;">GPT 답변</div>
+            <div class="fd-gptbox"><div class="fd-gtxt">부모님과 함께 가기 좋은 ○○동 한정식집으로는 <b>옛골토담</b>이 자주 언급됩니다. 코스 구성이 정갈하다는 후기가 많습니다.</div></div>
+            <div class="fd-miss">→ 손님 답변에 '우리식당'은 없습니다.</div></div></div></div>
+        <div class="fd-qstatic"><span class="fd-mark">✓</span><span class="fd-qtext">○○동에서 단체 예약 되는 식당 추천해줘</span><span class="fd-tag">노출됨 · GPT 3위</span></div>
+        <div class="fd-more">··· 외 7개 질문 결과 포함</div>
+      </div>
+    </div>
+
+    <!-- 카페 -->
+    <div class="fd-pane" id="fd-cafe">
+      <div class="fd-card">
+        <span class="fd-ribbon fd-before">무료진단 시 받는 리포트</span>
+        <div class="fd-brand">TALKB</div><div class="fd-store-meta">○○동 · 카페</div>
+        <div class="fd-store-title">우리카페 사장님 가게의<br><b>ChatGPT 노출 진단 결과</b></div>
+        <div class="fd-gauge-row"><span class="fd-pct">20%</span><span class="fd-gauge-sub">10개 질문 중 2개 노출</span></div>
+        <div class="fd-bar"><i style="width:20%;"></i></div><div class="fd-bar-labels"><span>0%</span><span>낮음</span><span>100%</span></div>
+        <div class="fd-verdict">손님 ChatGPT엔 거의 나오지 않습니다</div>
+        <div class="fd-hint"><span class="fd-hic">👀</span><span class="fd-ht">화살표를 누르면, 내 가게 대신 손님에게 추천된 <u>경쟁 매장</u>과 실제 GPT 답변까지 확인됩니다.</span></div>
+        <div class="fd-qhead">질문별 결과 — 손님이 이렇게 물어봅니다</div>
+        <div class="fd-qitem fd-open"><div class="fd-q" onclick="fdToggle(this)"><span class="fd-mark">✕</span><span class="fd-qtext">○○동에서 친구랑 수다 떨기 좋은 카페 추천해줘</span><span class="fd-tag">미노출</span><span class="fd-arw">▼</span></div>
+          <div class="fd-detail"><div class="fd-detail-inner"><div class="fd-dlabel">함께 추천된 경쟁 매장</div>
+            <div class="fd-comp"><span class="fd-rk">1위</span><span class="fd-nm">로우키 로스터리</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">2위</span><span class="fd-nm">카페 모브</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">3위</span><span class="fd-nm">언힐드 커피</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-dlabel" style="margin-top:14px;">GPT 답변</div>
+            <div class="fd-gptbox"><div class="fd-gtxt">친구와 수다 떨기 좋은 ○○동 카페로는 <b>로우키 로스터리</b>, <b>카페 모브</b>를 추천드립니다. 좌석 간격이 넓고 조용하다는 평이 많습니다.</div></div>
+            <div class="fd-miss">→ 손님 답변에 '우리카페'는 없습니다.</div></div></div></div>
+        <div class="fd-qitem"><div class="fd-q" onclick="fdToggle(this)"><span class="fd-mark">✕</span><span class="fd-qtext">○○동에서 노트북 작업하기 좋은 카페 알려줘</span><span class="fd-tag">미노출</span><span class="fd-arw">▼</span></div>
+          <div class="fd-detail"><div class="fd-detail-inner"><div class="fd-dlabel">함께 추천된 경쟁 매장</div>
+            <div class="fd-comp"><span class="fd-rk">1위</span><span class="fd-nm">언힐드 커피</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">2위</span><span class="fd-nm">로우키 로스터리</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-dlabel" style="margin-top:14px;">GPT 답변</div>
+            <div class="fd-gptbox"><div class="fd-gtxt">노트북 작업하기 좋은 ○○동 카페라면 콘센트와 와이파이가 잘 갖춰진 <b>언힐드 커피</b>가 자주 언급됩니다.</div></div>
+            <div class="fd-miss">→ 손님 답변에 '우리카페'는 없습니다.</div></div></div></div>
+        <div class="fd-qstatic"><span class="fd-mark">✓</span><span class="fd-qtext">○○동에서 디저트 맛있는 베이커리 카페 추천해줘</span><span class="fd-tag">노출됨 · GPT 2위</span></div>
+        <div class="fd-more">··· 외 7개 질문 결과 포함</div>
+      </div>
+    </div>
+
+    <!-- 술집 -->
+    <div class="fd-pane" id="fd-bar">
+      <div class="fd-card">
+        <span class="fd-ribbon fd-before">무료진단 시 받는 리포트</span>
+        <div class="fd-brand">TALKB</div><div class="fd-store-meta">○○동 · 이자카야·술집</div>
+        <div class="fd-store-title">우리술집 사장님 가게의<br><b>ChatGPT 노출 진단 결과</b></div>
+        <div class="fd-gauge-row"><span class="fd-pct">10%</span><span class="fd-gauge-sub">10개 질문 중 1개 노출</span></div>
+        <div class="fd-bar"><i></i></div><div class="fd-bar-labels"><span>0%</span><span>낮음</span><span>100%</span></div>
+        <div class="fd-verdict">손님 ChatGPT엔 거의 나오지 않습니다</div>
+        <div class="fd-hint"><span class="fd-hic">👀</span><span class="fd-ht">화살표를 누르면, 내 가게 대신 손님에게 추천된 <u>경쟁 매장</u>과 실제 GPT 답변까지 확인됩니다.</span></div>
+        <div class="fd-qhead">질문별 결과 — 손님이 이렇게 물어봅니다</div>
+        <div class="fd-qitem fd-open"><div class="fd-q" onclick="fdToggle(this)"><span class="fd-mark">✕</span><span class="fd-qtext">○○동에서 직장 회식하기 좋은 술집 추천해줘</span><span class="fd-tag">미노출</span><span class="fd-arw">▼</span></div>
+          <div class="fd-detail"><div class="fd-detail-inner"><div class="fd-dlabel">함께 추천된 경쟁 매장</div>
+            <div class="fd-comp"><span class="fd-rk">1위</span><span class="fd-nm">목로 포차</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">2위</span><span class="fd-nm">한잔하슈</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">3위</span><span class="fd-nm">밤안개 이자카야</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-dlabel" style="margin-top:14px;">GPT 답변</div>
+            <div class="fd-gptbox"><div class="fd-gtxt">직장 회식하기 좋은 ○○동 술집으로는 <b>목로 포차</b>, <b>한잔하슈</b>를 추천드립니다. 단체석이 넓고 안주 종류가 많다는 평입니다.</div></div>
+            <div class="fd-miss">→ 손님 답변에 '우리술집'은 없습니다.</div></div></div></div>
+        <div class="fd-qitem"><div class="fd-q" onclick="fdToggle(this)"><span class="fd-mark">✕</span><span class="fd-qtext">○○동에서 친구랑 가볍게 마실 이자카야 알려줘</span><span class="fd-tag">미노출</span><span class="fd-arw">▼</span></div>
+          <div class="fd-detail"><div class="fd-detail-inner"><div class="fd-dlabel">함께 추천된 경쟁 매장</div>
+            <div class="fd-comp"><span class="fd-rk">1위</span><span class="fd-nm">밤안개 이자카야</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-comp"><span class="fd-rk">2위</span><span class="fd-nm">목로 포차</span><span class="fd-lo">· ○○동</span></div>
+            <div class="fd-dlabel" style="margin-top:14px;">GPT 답변</div>
+            <div class="fd-gptbox"><div class="fd-gtxt">친구와 가볍게 한잔하기 좋은 ○○동 이자카야로는 <b>밤안개 이자카야</b>가 분위기 좋다는 후기가 많습니다.</div></div>
+            <div class="fd-miss">→ 손님 답변에 '우리술집'은 없습니다.</div></div></div></div>
+        <div class="fd-qstatic"><span class="fd-mark">✓</span><span class="fd-qtext">○○동에서 늦게까지 하는 호프집 추천해줘</span><span class="fd-tag">노출됨 · GPT 3위</span></div>
+        <div class="fd-more">··· 외 7개 질문 결과 포함</div>
+      </div>
+    </div>
+
+    <div class="fd-blindnote">가게 이름 없이 묻습니다. 이름을 빼고도 추천에 등장해야<br>ChatGPT가 진짜 우리 가게를 아는 겁니다.</div>
+
+    <!-- 브리지 (얼리버드/7월 문구 제외 — offer-info-box에만 둠) -->
+    <div class="fd-bridge">
+      <div class="fd-arrow">↓</div>
+      <div class="fd-bsub">정식 서비스에서 AI 노출 최적화를<br>저희가 직접 실행합니다.</div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="fd-card">
+      <span class="fd-ribbon fd-after">최적화 후 목표 · 이렇게 만들어 드립니다</span>
+      <div class="fd-brand">TALKB</div>
+      <div class="fd-store-title">손님이 ChatGPT를 보고<br><b>우리 가게를 찾아옵니다</b></div>
+      <div class="fd-gauge-row"><span class="fd-pct fd-high">70%+</span><span class="fd-gauge-sub">손님 질문에 우리 가게가 노출</span></div>
+      <div class="fd-bar fd-high"><i></i></div><div class="fd-bar-labels"><span>0%</span><span>높음</span><span>100%</span></div>
+      <div class="fd-verdict fd-high">손님이 물으면 우리 가게가 답에 나옵니다</div>
+      <div class="fd-qhead">최적화 후, 같은 질문에</div>
+      <div class="fd-qstatic"><span class="fd-mark">✓</span><span class="fd-qtext">가족 모임하기 좋은 한식당 추천해줘</span><span class="fd-tag">노출됨</span></div>
+      <div class="fd-qstatic"><span class="fd-mark">✓</span><span class="fd-qtext">친구랑 수다 떨기 좋은 카페 추천해줘</span><span class="fd-tag">노출됨</span></div>
+      <div class="fd-qstatic"><span class="fd-mark">✓</span><span class="fd-qtext">직장 회식하기 좋은 술집 추천해줘</span><span class="fd-tag">노출됨</span></div>
+      <div class="fd-aftercta"><div class="fd-big">광고비 없이, ChatGPT 답을 본<br>새 손님이 찾아옵니다</div></div>
+      <div class="fd-note">* 위 화면은 서비스 이해를 돕기 위한 <b>가상 예시</b>입니다. 매장명·경쟁사·답변은 실제가 아니며, 실제 노출률·개선 폭은 매장·지역·기간에 따라 다르고 특정 결과를 보장하지 않습니다.</div>
+    </div>
+
+    <div class="offer-info-box fade-in">
+      지금 신청하면<br>
+      <strong>✓ 무료 진단 1회 먼저 제공</strong><br>
+      결제는 정식 전환 시 · 지금은 결제하지 않습니다.<br>
+      <span style="color: var(--ink-muted); font-size:12px;">무료 진단은 신청하신 순서대로 순차 안내드립니다.</span>
+    </div>
+
   </div>
-</section>
 
-<!-- ══════════════════════════════════════════════════════
-     ⑧ 오퍼 · 가격
-══════════════════════════════════════════════════════ -->
-<section class="lp-offer-section" id="offer">
-  <div class="container-narrow">
-    <div class="section-head fade-in">
-      <h2 class="lp-h2">우리 가게가 ChatGPT 답변에 나오게,<br><em class="hi">저희가 직접 만들어 드립니다.</em></h2>
-    </div>
-
-    <div class="offer-wrap">
-
-      <!-- 블록 1: 3아이콘 카드 -->
-      <span class="ob-label">토크비가 하는 일</span>
-      <div class="ob1 fade-in">
-        <div class="ob1-row">
-          <span class="ob1-icon">🔍</span>
-          <div>
-            <div class="ob1-title">노출 측정</div>
-            <div class="ob1-desc">"○○동 ○○ 추천해줘" 류 15가지 질문을 직접 던져 우리 가게가 답변에 등장하는 비율을 수치로</div>
-          </div>
-        </div>
-        <div class="ob1-row">
-          <span class="ob1-icon">📊</span>
-          <div>
-            <div class="ob1-title">진단 리포트</div>
-            <div class="ob1-desc">어떤 상황(가족모임·데이트·혼밥·회식)에서 나오고 안 나오는지 분해</div>
-          </div>
-        </div>
-        <div class="ob1-row">
-          <span class="ob1-icon">⚙️</span>
-          <div>
-            <div class="ob1-title">최적화 실행</div>
-            <div class="ob1-desc">노출률을 끌어올리는 작업을 직접. 사장님이 하실 일은 없습니다</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 블록 2: 질문칩 + 말풍선 -->
-      <div class="ob2 fade-in">
-        <div class="ob2-chips">
-          <span class="ob2-chip">상황</span>
-          <span class="ob2-chip">동반자</span>
-          <span class="ob2-chip">분위기</span>
-          <span class="ob2-chip">시간대</span>
-          <span class="ob2-chip">편의성</span>
-        </div>
-        <div class="ob2-qs">
-          <div class="ob2-q">💬 "혼밥하기 좋은 ○○동 칼국수"</div>
-          <div class="ob2-q">💬 "주말 가족 모임 조용한 ○○구 고기집"</div>
-          <div class="ob2-q">💬 "늦은 밤 회식 가능한 ○○역 술집"</div>
-          <div class="ob2-more">··· 외 12가지 질문으로 진단</div>
-        </div>
-        <div class="ob2-note">
-          <strong>가게 이름 없이 묻습니다.</strong> 이름을 빼고도 추천에 등장해야 ChatGPT가 진짜 우리 가게를 아는 겁니다.
-        </div>
-      </div>
-
-      <!-- 기존 유지 (다크 위 라이트 카드) -->
-      <div class="offer-expand-note fade-in">현재 ChatGPT 기준으로 측정·최적화하며, 제미나이·구글 AI·퍼플렉시티는 순차 확대 예정입니다.</div>
-
-      <div class="offer-info-box fade-in">
-        지금 신청하면<br>
-        <strong>✓ 무료 진단 1회 먼저 제공</strong><br>
-        <br>
-        결제는 정식 전환 시 · 지금은 결제하지 않습니다.<br>
-        <span style="color: var(--ink-muted); font-size:12px;">무료 진단은 신청하신 순서대로 순차 안내드립니다.</span>
-      </div>
-
-
-    </div>
-  </div>
+<script>
+  function fdToggle(el){ el.parentElement.classList.toggle('fd-open'); }
+  function fdSwitch(tabEl, id){
+    var s=tabEl.parentElement.parentElement;
+    s.querySelectorAll('.fd-tab').forEach(function(t){t.classList.remove('fd-active');});
+    tabEl.classList.add('fd-active');
+    s.querySelectorAll('.fd-pane').forEach(function(p){p.classList.remove('fd-active');});
+    document.getElementById(id).classList.add('fd-active');
+  }
+</script>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
