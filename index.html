@@ -606,7 +606,7 @@ strong { font-weight: 700; }
 .form-field .req { color: var(--accent); }
 .form-status { font-size: 13.5px; line-height: 1.55; margin-top: 12px; padding: 11px 14px; border-radius: var(--r-sm); display: none; }
 .form-status.show { display: block; }
-.form-status.ok { background: #F0FDF4; color: #15803D; border: 1px solid #BBF7D0; }
+.form-status.ok { background: var(--accent-paper); color: var(--accent-deep); border: 1px solid var(--accent-soft); }
 .form-status.err { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
 .form-note { font-size: 11.5px; color: var(--ink-muted); text-align: center; margin-top: 14px; line-height: 1.5; }
 
@@ -1343,13 +1343,21 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       var location = val('inq_location');
       var applicantName = val('inq_name');
       var position = val('inq_position');
-      var phone = val('inq_phone');
+      var phoneRaw = val('inq_phone');
       var inquiry = val('inq_inquiry');
 
-      // 필수 3개 검증
-      if (!storeName) { alert('매장명을 입력해 주세요.'); return; }
-      if (!applicantName) { alert('성함을 입력해 주세요.'); return; }
-      if (!phone) { alert('연락처(휴대폰)를 입력해 주세요.'); return; }
+      // 필수 3개 검증 (인라인 메시지)
+      if (!storeName || !applicantName || !phoneRaw) {
+        showStatus('err', '매장명·성함·연락처는 필수입니다.');
+        return;
+      }
+
+      // 연락처: 숫자만 추출 후 01로 시작 + 10~11자리
+      var phoneDigits = phoneRaw.replace(/\D/g, '');
+      if (!/^01\d{8,9}$/.test(phoneDigits)) {
+        showStatus('err', '휴대폰 번호를 정확히 입력해 주세요 (예: 01012345678)');
+        return;
+      }
 
       submitBtn.disabled = true;
       submitBtn.textContent = '접수 중…';
@@ -1362,17 +1370,17 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
           location: location,
           applicant_name: applicantName,
           position: position,
-          phone: phone,
+          phone: phoneDigits,
           inquiry: inquiry
         })
       })
         .then(function (res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
-          showStatus('ok', '문의가 정상 접수되었습니다. 담당자가 곧 연락드리겠습니다.');
+          showStatus('ok', '문의가 정상 접수되었습니다.');
           form.reset();
         })
         .catch(function () {
-          showStatus('err', '접수에 실패했습니다. hello@talkb.co.kr로 문의해 주세요.');
+          showStatus('err', '일시적인 오류로 접수되지 않았습니다. 잠시 후 다시 시도해 주세요.');
         })
         .finally(function () {
           submitBtn.disabled = false;
