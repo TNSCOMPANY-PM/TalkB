@@ -641,14 +641,20 @@ strong { font-weight: 700; }
 .price-benefits li { position: relative; padding-left: 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.55; }
 .price-benefits li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; font-size: 12px; }
 .price-benefits strong { color: var(--ink); }
-.price-terms { max-width: 720px; margin: 26px auto 0; }
-.price-terms summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; color: var(--ink-muted); -webkit-tap-highlight-color: transparent; }
+.price-terms { max-width: 720px; margin: 26px auto 0; background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--sh-sm); overflow: hidden; }
+.price-terms summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; padding: 15px 20px; font-size: 15px; font-weight: 700; color: var(--ink); -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
+.price-terms summary:hover { background: var(--bg-soft); }
 .price-terms summary::-webkit-details-marker { display: none; }
-.price-terms summary::after { content: '▾'; font-size: 11px; transition: transform 0.2s; }
+.pt-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-deep); font-size: 12px; font-weight: 800; }
+.pt-title { flex: 1 1 auto; }
+.pt-hint { font-size: 12.5px; font-weight: 600; color: var(--ink-muted); }
+.price-terms summary::after { content: '▾'; font-size: 12px; color: var(--ink-muted); transition: transform 0.2s; }
 .price-terms[open] summary::after { transform: rotate(180deg); }
-.price-terms ol { list-style: none; counter-reset: t; margin-top: 12px; }
-.price-terms li { counter-increment: t; position: relative; padding-left: 22px; font-size: 13.5px; line-height: 1.6; color: var(--ink-muted); margin-bottom: 6px; }
-.price-terms li::before { content: counter(t) "."; position: absolute; left: 0; color: var(--ink-light); font-family: var(--f-mono); }
+.price-terms[open] .pt-hint { display: none; }
+.price-terms ol { list-style: none; counter-reset: t; margin: 0; padding: 4px 20px 18px 20px; border-top: 1px solid var(--line-soft); }
+.price-terms li { counter-increment: t; position: relative; padding-left: 22px; font-size: 13.5px; line-height: 1.6; color: var(--ink-mid); margin-top: 8px; }
+.price-terms li::before { content: counter(t) "."; position: absolute; left: 0; color: var(--ink-muted); font-family: var(--f-mono); }
+.price-terms li strong { color: var(--ink); }
 
 /* === TRUST BADGES === */
 .trust-label { display: flex; align-items: center; width: fit-content; margin: 0 auto 26px; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); background: #fff; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 8px 18px; box-shadow: 0 2px 10px rgba(232,93,58,0.12), 0 1px 3px rgba(20,17,15,0.05); line-height: 1.4; }
@@ -1211,7 +1217,7 @@ BLIND-END: 구 진행 방식 -->
         <div class="price-old">₩190,000</div>
         <div class="price-amt deal">₩133,000<span class="per"> /월 · 매장당</span></div>
         <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
-        <div class="price-keep">구독 유지 기간 내내 이 가격 그대로</div>
+        <div class="price-keep">구독 유지 기간 내내, 정가가 바뀌어도 <strong>30% 할인율 유지</strong></div>
         <div class="price-multi">1곳이든 여러 곳이든, 운영하는 <strong>매장 수만큼 구독</strong>합니다. (한 계정으로 함께 관리)</div>
         <dl class="price-spec">
           <div><dt>최적화 AI</dt><dd>ChatGPT</dd></div>
@@ -1254,12 +1260,13 @@ BLIND-END: 구 진행 방식 -->
 
     <!-- 얼리버드 유의사항 (접기) -->
     <details class="price-terms fade-in">
-      <summary>얼리버드 유의사항</summary>
+      <summary><span class="pt-ic">!</span><span class="pt-title">얼리버드 유의사항</span><span class="pt-hint">눌러서 확인</span></summary>
       <ol>
-        <li>얼리버드 할인은 GPT 기본 요금제 기준, 구독 유지 기간 내내 할인율이 적용됩니다. 기본 요금제 정가가 변경되어도 할인율은 유지됩니다.</li>
-        <li>상위 요금제 출시 시 할인 정책은 별도 안내됩니다.</li>
-        <li>구독 해지·결제 실패·명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며 재가입 시 정가가 적용됩니다.</li>
-        <li>결제 완료 후 기수 할인 소급 적용·변경 불가.</li>
+        <li>얼리버드 할인은 <strong>매장 플랜 기준</strong>이며, 구독 유지 기간 내내 할인율이 적용됩니다. 정가가 변경되어도 할인율은 유지됩니다.</li>
+        <li>멀티 AI <strong>상위 요금제</strong> 출시 시 할인 정책은 별도 안내됩니다.</li>
+        <li><strong>프랜차이즈 · 대량 등록</strong>의 할인은 별도 견적 기준이며, 얼리버드 할인과의 중복 적용 여부는 상담 시 안내됩니다.</li>
+        <li>구독 해지 · 결제 실패 · 명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며, 재가입 시 정가가 적용됩니다.</li>
+        <li>결제 완료 후 할인 소급 적용·변경은 불가합니다.</li>
       </ol>
     </details>
   </div>
