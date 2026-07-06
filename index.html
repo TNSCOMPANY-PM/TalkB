@@ -524,6 +524,13 @@ strong { font-weight: 700; }
 .tl-compare .highlight { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--accent-soft); text-align: center; }
 .tl-compare .highlight .msg { font-size: 17px; font-weight: 700; color: var(--accent-deep); margin-bottom: 0; line-height: 1.5; }
 .tl-compare .msg em { color: var(--accent); font-weight: 800; }
+/* 선점 인사이트 통합 박스 */
+.tl-insight { margin-top: 28px; max-width: 760px; margin-left: auto; margin-right: auto; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--card-radius); padding: var(--card-pad); }
+.tl-insight p { font-size: 17px; color: var(--ink-mid); line-height: 1.68; }
+.tl-insight p + p { margin-top: 12px; }
+.tl-insight .src { font-size: var(--fs-caption); color: var(--ink-muted); }
+.tl-insight .hl { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--accent-soft); font-weight: 800; color: var(--accent-deep); }
+.tl-insight .hl em { color: var(--accent); }
 
 /* === DIAGNOSIS (진단 방식) === */
 .diag-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 34px; align-items: center; margin-top: 36px; }
@@ -748,7 +755,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <li><a href="#diagnosis">진단</a></li>
       <li><a href="#reference">레퍼런스</a></li>
       <li><a href="#pricing">가격</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#faq">자주 묻는 질문</a></li>
       <li><a href="/resources.html">자료</a></li>
       <li class="nav-cta-wrap"><a href="#contact" class="nav-cta">문의하기</a></li>
     </ul>
@@ -809,7 +816,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section" id="timing">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">Why Now</div>
+      <div class="eyebrow center">왜 지금인가</div>
       <h2 class="headline center">AI 마케팅,<br>지금이 선점 타이밍입니다.</h2>
       <p class="lead center">채널이 열릴 때 먼저 들어간 매장이 수년간 독점합니다.<br>블로그·SNS·유튜브가 그랬듯, AI도 마찬가지입니다.</p>
     </div>
@@ -823,8 +830,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <div class="tl-main">
           <div class="tl-card">
             <h3>블로그가 새로운 검색 입구</h3>
-            <p>네이버 블로그·플레이스가 맛집 검색의 입구였습니다. 초기에 자리 잡은 매장은 거의 무료로 수년간 상위를 독점했습니다. 지금은 상위 몇 자리를 광고가 차지하고, 순위를 지키려면 매달 수백만원을 써도 쉽지 않습니다.</p>
-            <p>그리고 네이버를 아무리 잘 잡아도, <em>ChatGPT가 학습하지 못한 매장</em>은 추천 답변에 등장하지 않습니다.</p>
+            <p>초기에 자리 잡은 매장은 거의 무료로 수년간 상위를 독점했습니다. <em>지금은 매달 수백만원을 써도 쉽지 않습니다.</em></p>
           </div>
         </div>
       </div>
@@ -837,7 +843,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <div class="tl-main">
           <div class="tl-card">
             <h3>인스타를 선점한 브랜드</h3>
-            <p>초기 진입 브랜드는 팔로워 자산을 무료로 쌓았습니다. 뒤늦게 들어가려면 인플루언서 광고비가 필요하고 효율은 절반 이하입니다.</p>
+            <p>초기 진입 브랜드는 팔로워를 무료로 쌓았습니다. 지금은 광고비를 써도 효율이 절반 이하입니다.</p>
           </div>
         </div>
       </div>
@@ -850,7 +856,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <div class="tl-main">
           <div class="tl-card">
             <h3>유튜브·쇼츠를 선점한 채널</h3>
-            <p>이 시기 진입한 채널이 지금의 구독자 자산을 보유합니다. 지금 같은 규모로 성장하는 건 사실상 불가능합니다.</p>
+            <p>이 시기 진입한 채널이 지금의 구독자 자산을 갖고 있습니다. 지금 같은 성장은 사실상 불가능합니다.</p>
           </div>
         </div>
       </div>
@@ -863,33 +869,16 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <div class="tl-main">
           <div class="tl-card">
             <h3>AI 검색 · 네 번째 파도</h3>
-            <p>똑같은 패턴이 반복되고 있습니다. 소비자는 이미 AI에게 묻고 있고, 지금 자리를 잡은 매장은 노출됩니다. AI는 한번 신뢰한 출처를 다시 노출시키는 경향이 있어, 먼저 쌓인 노출이 다음 노출로 이어지며 더 단단해집니다.</p>
-            <p>1년 뒤 진입하려면, 이미 자리 잡은 경쟁사를 밀어내야 합니다.</p>
+            <p>같은 패턴이 반복되고 있습니다. 먼저 최적화한 매장이 먼저 추천되고, 그 자리는 갈수록 비싸집니다.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="tl-compare fade-in">
-      <h3>같은 자리, 지금이 가장 쌉니다.</h3>
-      <p>다른 채널은 순위 유지에 매달 수백만원이 들 수 있습니다.</p>
-      <p>토크비 AI 최적화는 월 19만원(VAT별도)으로 시작하고, 빠른 매장은 1주일 안에 추천에 등장하기 시작했습니다.</p>
-      <p>AI 최적화 경쟁이 치열해지면 진입 비용은 오릅니다. 지금 자리를 선점하는 것이 가장 저렴합니다.</p>
-      <div class="highlight">
-        <div class="msg">얼리버드 기간 등록 매장은 구독 유지 기간 내내 <em>평생</em> <em>30%</em> 할인 적용</div>
-      </div>
-    </div>
-
-    <div class="tl-conclusion fade-in">
-      <div class="eyebrow-dark">The Pattern Repeats</div>
-      <h3>블로그·SNS·유튜브는 이제<br><em>누구나 뛰어드는 레드오션</em>이 됐습니다.</h3>
-      <p class="sub">광고비를 써도 효율은 떨어지고, 효과는 오래 못 갑니다.</p>
-      <p class="final">지금 이 순간이, <em>AI 검색의 자리를 선점</em>할 최고의 타이밍입니다.</p>
-    </div>
-
-    <div class="tl-foot fade-in">
-      <div class="stat">국내 소비자 2명 중 1명이 이미 AI 검색을 사용합니다.</div>
-      <div class="src">오픈서베이 AI 검색 트렌드 리포트 2026, ChatGPT 이용률 54.5%</div>
+    <div class="tl-insight fade-in">
+      <p>국내 소비자 2명 중 1명이 이미 AI에게 맛집을 물어봅니다. <span class="src">(오픈서베이 AI 검색 트렌드 리포트 2026 · ChatGPT 이용률 54.5%)</span></p>
+      <p>다른 채널은 순위 유지에 매달 수백만원이 들 수 있습니다. 토크비 AI 최적화는 월 19만원(VAT별도)으로 시작합니다.</p>
+      <p class="hl">얼리버드 기간 등록 매장은 구독 유지 기간 내내 <em>평생</em> <em>30%</em> 할인 적용</p>
     </div>
   </div>
 </section>
@@ -898,7 +887,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section section-cream" id="diagnosis">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">How We Measure</div>
+      <div class="eyebrow center">진단 방식</div>
       <h2 class="headline center">매장 이름을 빼고,<br>손님처럼 물어봅니다.</h2>
     </div>
     <div class="diag-grid">
@@ -940,7 +929,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section" id="reference">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">Reference</div>
+      <div class="eyebrow center">측정 결과</div>
       <h2 class="headline center">파일럿 매장에서<br>실제로 측정한 결과입니다.</h2>
     </div>
     <p class="ref-note fade-in">
@@ -1017,7 +1006,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section section-soft" id="process">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">How It Works</div>
+      <div class="eyebrow center">진행 방식</div>
       <h2 class="headline center">사장님 대신, 토크비가 합니다.</h2>
     </div>
     <div class="proc-grid fade-in">
@@ -1050,13 +1039,13 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section" id="pricing">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">Pricing</div>
+      <div class="eyebrow center">가격 안내</div>
       <h2 class="headline center">지금은 얼리버드 기간입니다.</h2>
     </div>
 
     <div class="price-grid fade-in">
       <div class="price-card featured">
-        <span class="price-flag">NOW</span>
+        <span class="price-flag">지금</span>
         <span class="price-badge">정식 플랜</span>
         <div class="price-name">ChatGPT 추천 노출</div>
         <div class="price-amt">₩190,000<span class="per"> /월</span></div>
@@ -1071,7 +1060,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <div class="price-desc">현재 제공: <strong>ChatGPT</strong><br>확장 예정: 제미나이 · 퍼플렉시티 · 클로드 · 네이버</div>
       </div>
       <div class="price-card">
-        <span class="price-badge">Enterprise</span>
+        <span class="price-badge">프랜차이즈 본사</span>
         <div class="price-name">프랜차이즈 본사</div>
         <div class="price-amt soon">별도 문의</div>
         <div class="price-vat">본사·가맹점 통합</div>
@@ -1081,7 +1070,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
     <!-- 얼리버드 블록 -->
     <div class="early fade-in">
-      <span class="early-flag"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;"></span>Early Bird</span>
+      <span class="early-flag"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;"></span>얼리버드 혜택</span>
       <div class="early-title">얼리버드 기간 등록 매장은<br>구독 유지 기간 내내 <em>평생</em> <em>30%</em> 할인 적용</div>
       <div class="early-list">
         <div class="early-item">
@@ -1116,7 +1105,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <!-- ═══════════════ 8. 신뢰 (배지) ═══════════════ -->
 <section class="section section-cream" aria-label="회사 인증 및 자격">
   <div class="container">
-    <div class="trust-label fade-in">Verified &amp; Certified · 검증된 운영사가 제공하는 서비스</div>
+    <div class="trust-label fade-in">검증된 운영사</div>
     <div class="trust-grid fade-in">
       <div class="trust-badge">
         <div class="ic">🏛️</div>
@@ -1147,7 +1136,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">FAQ</div>
+      <div class="eyebrow center">자주 묻는 질문</div>
       <h2 class="headline center">자주 묻는 질문</h2>
     </div>
     <div class="faq-list fade-in">
@@ -1218,7 +1207,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   <div class="container">
     <div class="final-grid">
       <div class="final-copy fade-in">
-        <div class="eyebrow">Get Started</div>
+        <div class="eyebrow">지금 확인하세요</div>
         <h2 class="headline">우리 가게가 ChatGPT에<br><em>나오는지</em>, 먼저 확인하세요.</h2>
         <ul class="final-list">
           <li>무료 진단으로 지금 ChatGPT 노출 상태 확인</li>
@@ -1232,7 +1221,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </div>
 
       <div class="form-card fade-in">
-        <span class="form-badge">Free · 무료 문의</span>
+        <span class="form-badge">무료 문의</span>
         <h3 class="form-title">문의하기</h3>
         <p class="form-sub">아래 정보를 남겨주시면 담당자가 연락드립니다.</p>
         <form id="inquiryForm" novalidate>
