@@ -134,15 +134,15 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "매장 플랜",
+      "name": "단일 매장 플랜",
       "price": "133000",
       "priceCurrency": "KRW",
       "description": "매장당 월 구독. 얼리버드 30% 적용가 (정가 190,000원), VAT 별도. ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트. 여러 매장도 한 계정으로 관리 가능(매장별 구독)."
     },
     {
       "@type": "Offer",
-      "name": "프랜차이즈 본사 플랜",
-      "description": "5개 매장 이상 운영 브랜드 권장. 본사 상위 계정으로 브랜드 전체 매장 통합 관리, 직·가맹점은 개별 계정 운영, 대량 등록 할인. 카카오채널로 별도 문의."
+      "name": "다매장 플랜",
+      "description": "10개 매장 이상 등록 시. 프랜차이즈 본사·다수 매장 운영자 대상. 상품 구성은 단일 매장 플랜과 동일하며, 본사 상위 계정으로 브랜드(최상위)·직영점·가맹점 상·하위 계정 구분 관리, 대량 등록 할인 적용. 카카오채널로 별도 문의."
     }
   ]
 }
@@ -609,8 +609,8 @@ strong { font-weight: 700; }
 .price-card { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); display: flex; flex-direction: column; box-shadow: var(--sh-sm); }
 .price-card.featured { border: 2px solid var(--accent); box-shadow: var(--sh-md); position: relative; }
 .price-flag { position: absolute; top: -12px; left: 24px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; font-family: var(--f-mono); padding: 4px 12px; border-radius: 999px; }
-.price-badge { display: inline-block; font-size: 14px; font-weight: 700; font-family: var(--f-mono); color: var(--ink-muted); background: var(--bg-soft); padding: 4px 10px; border-radius: 6px; margin-bottom: 14px; align-self: flex-start; }
 .price-name { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+.price-target { margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--ink-mid); line-height: 1.55; }
 .price-amt { font-family: var(--f-mono); font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
 .price-amt .per { font-size: 14px; color: var(--ink-muted); font-weight: 500; }
 .price-amt.soon { font-size: 22px; color: var(--ink-muted); }
@@ -1217,8 +1217,7 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-grid fade-in">
       <div class="price-card featured">
         <span class="price-flag">지금 · 얼리버드</span>
-        <span class="price-badge">정식 플랜</span>
-        <div class="price-name">매장 플랜</div>
+        <div class="price-name">단일 매장 플랜</div>
         <div class="price-old">₩190,000</div>
         <div class="price-amt deal">₩133,000<span class="per"> /월 · 매장당</span></div>
         <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
@@ -1234,13 +1233,13 @@ BLIND-END: 구 진행 방식 -->
         <div class="price-multi">매장이 여러 곳이어도 <strong>한 계정으로 함께 관리</strong>할 수 있습니다. (매장별 구독)</div>
       </div>
       <div class="price-card">
-        <span class="price-badge">별도 견적</span>
-        <div class="price-name">프랜차이즈 본사 플랜</div>
+        <div class="price-name">다매장 플랜</div>
         <div class="price-amt soon">별도 문의</div>
-        <div class="price-vat">5개 매장 이상 운영 브랜드 권장</div>
+        <div class="price-vat">10개 매장 이상 등록 시</div>
+        <div class="price-target">프랜차이즈 본사, 여러 매장을 운영하시는 경우 추천합니다.</div>
         <ul class="price-feats">
-          <li><strong>본사 상위 계정</strong> — 브랜드 전체 매장을 한눈에 통합 조회·관리</li>
-          <li>직·가맹점 관리자는 <strong>개별 계정</strong>으로 각자 매장 관리</li>
+          <li>상품 구성은 <strong>단일 매장 플랜과 동일</strong></li>
+          <li><strong>본사 상위 계정</strong> — 브랜드(최상위) · 직영점 · 가맹점 상·하위 계정 구분 관리</li>
           <li><strong>대량 등록 할인</strong> 적용</li>
         </ul>
         <div class="price-desc-foot">카카오채널로 문의해 주세요.</div>
