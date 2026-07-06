@@ -555,17 +555,27 @@ strong { font-weight: 700; }
 .ref-store { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
 .ref-store-name { font-size: 19px; font-weight: 800; color: var(--ink); }
 .ref-store-period { margin-top: 6px; font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
+.ref-store-periodsub { margin-top: 3px; font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
 .ref-chart { margin: 20px 0 6px; }
 .ref-chart svg { width: 100%; height: 180px; display: block; overflow: visible; }
-.ref-bignum { margin: 8px 0 2px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(26px,7vw,38px); }
+.ref-metric-key { font-family: var(--f-body); font-size: 15px; font-weight: 700; color: var(--ink-soft); letter-spacing: 0; }
+.ref-bignum { margin: 8px 0 2px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(26px,7vw,38px); line-height: 1.15; }
+.ref-bignum .ref-metric-key { vertical-align: middle; }
 .ref-bignum .from { color: var(--gauge-before); }
 .ref-bignum .arw { color: var(--accent); margin: 0 10px; }
 .ref-bignum .to { color: var(--accent); }
-.ref-substats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
-.ref-substat { text-align: center; }
-.ref-substat .k { font-size: 13px; color: var(--ink-muted); font-weight: 600; line-height: 1.35; }
-.ref-substat .v { margin-top: 5px; font-family: var(--f-mono); font-size: 18px; font-weight: 700; color: var(--ink); }
-.ref-caption { margin-top: 16px; font-size: 12px; color: var(--ink-muted); text-align: center; line-height: 1.5; }
+.ref-rankrow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
+.ref-rank-vals { font-family: var(--f-mono); font-size: 18px; font-weight: 700; }
+.ref-rank-vals .from { color: var(--gauge-before); }
+.ref-rank-vals .arw { color: var(--accent); margin: 0 8px; }
+.ref-rank-vals .to { color: var(--accent); }
+/* 툴팁 */
+.ref-tip { position: relative; display: inline-flex; align-items: center; vertical-align: middle; margin-left: 4px; cursor: pointer; -webkit-tap-highlight-color: transparent; outline: none; }
+.ref-tip-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1.3px solid currentColor; font-family: var(--f-body); font-size: 10px; font-weight: 700; font-style: normal; line-height: 1; opacity: 0.5; }
+.ref-tip:hover .ref-tip-icon, .ref-tip:focus .ref-tip-icon, .ref-tip.open .ref-tip-icon { opacity: 0.9; }
+.ref-tip-bubble { position: absolute; bottom: calc(100% + 9px); left: -8px; width: max-content; max-width: 220px; background: var(--ink); color: #fff; font-family: var(--f-body); font-size: 12.5px; font-weight: 500; line-height: 1.5; letter-spacing: 0; text-align: left; white-space: normal; padding: 9px 12px; border-radius: 8px; box-shadow: var(--sh-md); opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity 0.16s, transform 0.16s, visibility 0.16s; z-index: 20; pointer-events: none; }
+.ref-tip-bubble::after { content: ''; position: absolute; top: 100%; left: 13px; border: 6px solid transparent; border-top-color: var(--ink); }
+.ref-tip:hover .ref-tip-bubble, .ref-tip:focus .ref-tip-bubble, .ref-tip.open .ref-tip-bubble { opacity: 1; visibility: visible; transform: translateY(0); }
 .ref-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; }
 .ref-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh-sm); color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; -webkit-tap-highlight-color: transparent; }
 .ref-nav:hover { background: var(--accent-soft); }
@@ -575,7 +585,6 @@ strong { font-weight: 700; }
 .ref-dot.active { background: var(--accent); transform: scale(1.15); }
 .ref-control { margin-top: 30px; padding: 18px 22px; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: 17px; color: var(--ink-mid); line-height: 1.65; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
 .ref-control strong { color: var(--ink); }
-.ref-foot { margin-top: 16px; font-size: 13px; color: var(--ink-muted); text-align: center; line-height: 1.6; max-width: 680px; margin-left: auto; margin-right: auto; }
 
 /* === PROCESS (진행 방식) === */
 .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 38px; }
@@ -724,9 +733,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .price-grid { grid-template-columns: 1fr; }
   .early-list { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
-  .ref-substats { gap: 6px; }
-  .ref-substat .k { font-size: 12px; }
-  .ref-substat .v { font-size: 16px; }
+  .ref-rank-vals { font-size: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
@@ -958,7 +965,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">긴말 안 합니다. 데이터로 보여드리겠습니다.</div>
-      <h2 class="headline center">AI 추천 최적화 실행 결과</h2>
+      <h2 class="headline center">ChatGPT 추천 최적화 실행 결과</h2>
       <p class="lead center">레퍼런스 공개에 동의한 실제 매장 데이터입니다.</p>
     </div>
 
@@ -976,8 +983,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <div class="ref-control fade-in">
       같은 기간·지역·업종에서 <strong>측정만 하고 최적화하지 않은 매장은 변화가 없었습니다.</strong>
     </div>
-
-    <p class="ref-foot fade-in">측정 기준: ChatGPT · AI 추천 노출률 = 손님이 AI에게 물었을 때 추천 답변에 우리 매장이 나온 비율</p>
   </div>
 
   <script>
@@ -987,20 +992,23 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       {
         name: '덮밥장사장 대치역점',
         period: '최적화 전 2026.6.2 → 최신 2026.7.2',
+        periodSub: '2026.6.2 ~ 2026.7.2 · 1개월 진행 결과',
         trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90} ],
         from: '0%', to: '90%',
-        stats: [ {k:'평균 추천 순위', v:'1.2위'}, {k:'1위 추천률', v:'87%'}, {k:'측정 횟수', v:'5회'} ],
-        caption: 'AI 검색 5회 측정 · 검색 시나리오 150건 분석'
+        rankFrom: '추천 없음', rankTo: '1.2위'
       },
       {
         name: '광장동가온',
         period: '최적화 전 2026.6.2 → 최신 2026.7.2',
+        periodSub: '2026.6.2 ~ 2026.7.2 · 1개월 진행 결과',
         trend: [ {d:'6/2',v:26.7}, {d:'6/8',v:26.7}, {d:'6/15',v:33.3}, {d:'6/22',v:76.7}, {d:'6/29',v:76.7} ],
         from: '26.7%', to: '76.7%',
-        stats: [ {k:'평균 추천 순위', v:'1.5위'}, {k:'1위 추천률', v:'73.6%'}, {k:'측정 횟수', v:'5회'} ],
-        caption: 'AI 검색 5회 측정 · 검색 시나리오 150건 분석'
+        rankFrom: '추천 없음', rankTo: '1.5위'
       }
     ];
+
+    var TIP_RATE = 'ChatGPT에게 손님 시점으로 물었을 때 추천 답변에 우리 매장이 나온 비율';
+    var TIP_RANK = '같이 추천된 매장에서 우리 매장이 추천된 평균 순위';
 
     var ACCENT = '#E85D3A', GRID = '#E7E1D6', DOT = '#B9B1A4', MUTED = '#8A8377';
 
@@ -1038,17 +1046,26 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
     function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
+    function tip(text) {
+      return '<span class="ref-tip" tabindex="0" role="button" aria-label="설명: ' + esc(text) + '">' +
+        '<span class="ref-tip-icon" aria-hidden="true">i</span>' +
+        '<span class="ref-tip-bubble" role="tooltip">' + esc(text) + '</span></span>';
+    }
+
     function buildCard(st) {
-      var stats = st.stats.map(function (o) {
-        return '<div class="ref-substat"><div class="k">' + esc(o.k) + '</div><div class="v">' + esc(o.v) + '</div></div>';
-      }).join('');
       return '<div class="ref-slide"><div class="ref-store">' +
         '<div class="ref-store-name">' + esc(st.name) + '</div>' +
         '<div class="ref-store-period">' + esc(st.period) + '</div>' +
+        '<div class="ref-store-periodsub">' + esc(st.periodSub) + '</div>' +
         '<div class="ref-chart">' + buildChart(st.trend) + '</div>' +
-        '<div class="ref-bignum"><span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span></div>' +
-        '<div class="ref-substats">' + stats + '</div>' +
-        '<div class="ref-caption">' + esc(st.caption) + '</div>' +
+        '<div class="ref-bignum">' +
+          '<span class="ref-metric-key">추천률' + tip(TIP_RATE) + ' :</span> ' +
+          '<span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span>' +
+        '</div>' +
+        '<div class="ref-rankrow">' +
+          '<span class="ref-metric-key">평균 추천 순위' + tip(TIP_RANK) + '</span>' +
+          '<span class="ref-rank-vals"><span class="from">' + esc(st.rankFrom) + '</span><span class="arw">→</span><span class="to">' + esc(st.rankTo) + '</span></span>' +
+        '</div>' +
         '</div></div>';
     }
 
@@ -1076,6 +1093,22 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       prev.addEventListener('click', function () { go(idx - 1); });
       next.addEventListener('click', function () { go(idx + 1); });
       dots.forEach(function (d) { d.addEventListener('click', function () { go(+d.getAttribute('data-i')); }); });
+
+      // 툴팁: hover(CSS) + 탭/클릭·키보드(JS)로 열기
+      function closeTips(except) {
+        var open = track.querySelectorAll('.ref-tip.open');
+        Array.prototype.forEach.call(open, function (t) { if (t !== except) t.classList.remove('open'); });
+      }
+      track.addEventListener('click', function (e) {
+        var t = e.target.closest ? e.target.closest('.ref-tip') : null;
+        if (t) { e.stopPropagation(); e.preventDefault(); var was = t.classList.contains('open'); closeTips(t); t.classList.toggle('open', !was); }
+      });
+      track.addEventListener('keydown', function (e) {
+        var t = e.target.closest ? e.target.closest('.ref-tip') : null;
+        if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); var was = t.classList.contains('open'); closeTips(t); t.classList.toggle('open', !was); }
+        if (e.key === 'Escape') closeTips(null);
+      });
+      document.addEventListener('click', function () { closeTips(null); });
 
       // 모바일 스와이프
       var sx = 0, sy = 0, dragging = false;
