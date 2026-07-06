@@ -319,15 +319,24 @@ strong { font-weight: 700; }
 .section-soft { background: var(--bg-soft); }
 
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
   font-family: var(--f-mono);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   color: var(--accent);
-  margin-bottom: 14px;
+  background: #fff;
+  border: 1px solid var(--accent-soft);
+  border-radius: 999px;
+  padding: 8px 18px;
+  box-shadow: 0 2px 10px rgba(232,93,58,0.12), 0 1px 3px rgba(20,17,15,0.05);
+  margin-bottom: 18px;
+  text-align: center;
+  line-height: 1.4;
 }
-.eyebrow.center { text-align: center; }
+.eyebrow.center { display: flex; margin-left: auto; margin-right: auto; }
 
 .headline {
   font-size: var(--fs-h2);
@@ -520,12 +529,6 @@ strong { font-weight: 700; }
 .tl-compare .highlight .msg { font-size: 17px; font-weight: 700; color: var(--accent-deep); margin-bottom: 0; line-height: 1.5; }
 .tl-compare .msg em { color: var(--accent); font-weight: 800; }
 /* 선점 인사이트 통합 박스 */
-.tl-insight { margin-top: 28px; max-width: 760px; margin-left: auto; margin-right: auto; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--card-radius); padding: var(--card-pad); }
-.tl-insight p { font-size: 17px; color: var(--ink-mid); line-height: 1.68; }
-.tl-insight p + p { margin-top: 12px; }
-.tl-insight .src { font-size: var(--fs-caption); color: var(--ink-muted); }
-.tl-insight .hl { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--accent-soft); font-weight: 800; color: var(--accent-deep); }
-.tl-insight .hl em { color: var(--accent); }
 
 /* === 진행 절차 (STEP 3단계) === */
 .lead-punch { color: var(--accent); font-weight: 800; }
@@ -655,7 +658,7 @@ strong { font-weight: 700; }
 .early-final { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--accent); }
 
 /* === TRUST BADGES === */
-.trust-label { text-align: center; font-family: var(--f-mono); font-size: 14px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 26px; }
+.trust-label { display: flex; align-items: center; width: fit-content; margin: 0 auto 26px; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); background: #fff; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 8px 18px; box-shadow: 0 2px 10px rgba(232,93,58,0.12), 0 1px 3px rgba(20,17,15,0.05); line-height: 1.4; }
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .trust-badge { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); text-align: center; box-shadow: var(--sh-sm); }
 .trust-badge .ic { font-size: 28px; margin-bottom: 12px; }
@@ -711,6 +714,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .footer-tag { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); margin-bottom: 14px; }
 .footer-company { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
 .footer-col-title { font-family: var(--f-mono); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+.footer-insights { margin-top: 36px; }
+.footer-insights summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); -webkit-tap-highlight-color: transparent; }
+.footer-insights summary::-webkit-details-marker { display: none; }
+.footer-insights summary::after { content: '▾'; font-size: 11px; transition: transform 0.2s; }
+.footer-insights[open] summary::after { transform: rotate(180deg); }
+.footer-insights summary:hover { color: rgba(255,255,255,0.65); }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 9px; }
 .footer-links a { font-size: 14px; color: rgba(255,255,255,0.68); transition: color .15s; }
@@ -814,8 +823,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     </a>
     <ul class="nav-links">
       <li><a href="#timing">왜 지금</a></li>
-      <li><a href="#process">진행 절차</a></li>
       <li><a href="#reference">레퍼런스</a></li>
+      <li><a href="#process">진행 절차</a></li>
       <li><a href="#pricing">가격</a></li>
       <li><a href="#faq">자주 묻는 질문</a></li>
       <!-- 카카오 전환 준비: 자료·문의하기 임시 숨김 (삭제 아님)
@@ -939,11 +948,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </div>
     </div>
 
-    <div class="tl-insight fade-in">
-      <p>국내 소비자 2명 중 1명이 이미 AI에게 맛집을 물어봅니다. <span class="src">(오픈서베이 AI 검색 트렌드 리포트 2026 · ChatGPT 이용률 54.5%)</span></p>
-      <p>다른 채널은 순위 유지에 매달 수백만원이 들 수 있습니다. 토크비 AI 최적화는 월 19만원(VAT별도)으로 시작합니다.</p>
-      <p class="hl">얼리버드 기간 등록 매장은 구독 유지 기간 내내 <em>평생</em> <em>30%</em> 할인 적용</p>
-    </div>
   </div>
 </section>
 
@@ -1486,19 +1490,23 @@ BLIND-END: #contact -->
       </div>
     </div>
 
-    <!-- 인사이트 11편 전체 (SEO 내부 링크) -->
-    <div class="footer-col-title" style="margin-top:36px;">Insights · 자료 11편</div>
-    <ul class="footer-links" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:9px 24px; margin-top:12px;">
-      <li><a href="insights/geo-guide.html">GEO 완전 정복 가이드 — AI 검색 최적화 입문</a></li>
-      <li><a href="insights/seo-geo-aeo-comparison.html">SEO · GEO · AEO 차이 완전 정복</a></li>
-      <li><a href="insights/ai-answer-4-stages.html">AI 답변이 만들어지는 4단계 메커니즘</a></li>
-      <li><a href="insights/franchise-hq-ai-citation.html">프랜차이즈 본사가 AI 인용을 설계하는 방법</a></li>
-      <li><a href="insights/local-store-checklist.html">독립 매장 AI 노출 체크리스트 20선</a></li>
-      <li><a href="insights/situational-query-response.html">상황형 쿼리에 내 매장이 답변으로 뜨는 법</a></li>
-      <li><a href="insights/chatgpt-citation-conditions.html">ChatGPT가 특정 브랜드를 인용하는 조건</a></li>
-      <li><a href="insights/korea-ai-search-2026.html">한국 AI 검색 시장 2026</a></li>
-      <li><a href="insights/zero-click-era-fnb.html">제로 클릭 시대의 요식업</a></li>
-    </ul>
+    <!-- 인사이트 11편 전체 (SEO 내부 링크 · 기본 접힘) -->
+    <details class="footer-insights">
+      <summary>Insights · 자료 11편 전체보기</summary>
+      <ul class="footer-links" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:9px 24px; margin-top:12px;">
+        <li><a href="insights/geo-guide.html">GEO 완전 정복 가이드 — AI 검색 최적화 입문</a></li>
+        <li><a href="insights/seo-geo-aeo-comparison.html">SEO · GEO · AEO 차이 완전 정복</a></li>
+        <li><a href="insights/ai-answer-4-stages.html">AI 답변이 만들어지는 4단계 메커니즘</a></li>
+        <li><a href="insights/franchise-hq-ai-citation.html">프랜차이즈 본사가 AI 인용을 설계하는 방법</a></li>
+        <li><a href="insights/local-store-checklist.html">독립 매장 AI 노출 체크리스트 20선</a></li>
+        <li><a href="insights/situational-query-response.html">상황형 쿼리에 내 매장이 답변으로 뜨는 법</a></li>
+        <li><a href="insights/chatgpt-citation-conditions.html">ChatGPT가 특정 브랜드를 인용하는 조건</a></li>
+        <li><a href="insights/perplexity-citation-structure.html">Perplexity에서 내 브랜드가 출처로 뜨는 구조</a></li>
+        <li><a href="insights/google-aio-gemini-guide.html">Google AI Overview · Gemini 최적화 공식 가이드</a></li>
+        <li><a href="insights/korea-ai-search-2026.html">한국 AI 검색 시장 2026</a></li>
+        <li><a href="insights/zero-click-era-fnb.html">제로 클릭 시대의 요식업</a></li>
+      </ul>
+    </details>
 
     <!-- 사업자 정보 -->
     <div class="footer-biz">
