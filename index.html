@@ -533,17 +533,19 @@ strong { font-weight: 700; }
 .tl-insight .hl em { color: var(--accent); }
 
 /* === DIAGNOSIS (진단 방식) === */
-.diag-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 34px; align-items: center; margin-top: 36px; }
-.diag-copy h3 { font-size: clamp(19px,4.4vw,24px); font-weight: 800; line-height: 1.35; margin-bottom: 14px; }
-.diag-copy p { font-size: 17px; color: var(--ink-mid); line-height: 1.68; margin-bottom: 12px; }
-.diag-copy .score-line { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 8px; padding: 12px 18px; background: var(--accent-paper); border-radius: var(--r-sm); }
-.diag-copy .score-line .n { font-family: var(--f-mono); font-size: 26px; font-weight: 700; color: var(--accent); }
-.diag-copy .score-line .u { font-size: 14px; color: var(--ink-mid); font-weight: 600; }
-.diag-demo { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px; box-shadow: var(--sh-md); }
-.diag-demo .qh { font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--ink-muted); margin-bottom: 12px; letter-spacing: 0.04em; }
-.diag-q { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 17px; color: var(--ink-soft); }
-.diag-q:last-child { border-bottom: none; }
-.diag-q .qn { font-family: var(--f-mono); color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.diag-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 38px; }
+.diag-step { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); display: flex; flex-direction: column; }
+.diag-step-num { font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.diag-step h3 { font-size: 17px; font-weight: 800; margin-bottom: 7px; }
+.diag-step p { font-size: 17px; color: var(--ink-mid); line-height: 1.6; }
+.diag-figs { display: flex; gap: 12px; margin-top: 18px; }
+.diag-fig { flex: 1; min-width: 0; }
+.diag-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
+.diag-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
+.diag-bridge { margin-top: 42px; max-width: 640px; margin-left: auto; margin-right: auto; text-align: center; }
+.diag-bridge p { font-size: clamp(16px,3.8vw,18px); color: var(--ink-mid); line-height: 1.62; font-weight: 600; }
+.diag-bridge-link { display: inline-block; margin-top: 14px; font-size: 17px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent-soft); padding-bottom: 2px; transition: border-color 0.2s; }
+.diag-bridge-link:hover { border-color: var(--accent); }
 
 /* === REFERENCE === */
 .ref-note { font-size: 17px; color: var(--ink-mid); line-height: 1.7; max-width: 720px; margin: 0 auto 34px; text-align: center; }
@@ -700,7 +702,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 @media (max-width: 1023px) {
   .section { padding: 80px 0; }
   .nav-links { gap: 18px; }
-  .diag-grid { grid-template-columns: 1fr; gap: 26px; }
+  .diag-steps { gap: 16px; }
   .final-grid { grid-template-columns: 1fr; gap: 30px; }
   .final-copy .headline { text-align: center; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px 24px; }
@@ -720,6 +722,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .tl-card { padding: 15px 16px; }
   .tl-conclusion { padding: 32px 22px; }
   .proc-grid { grid-template-columns: 1fr 1fr; }
+  .diag-steps { grid-template-columns: 1fr; }
+  .diag-figs { flex-direction: column; }
   .price-grid { grid-template-columns: 1fr; }
   .early-list { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
@@ -887,40 +891,68 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section section-cream" id="diagnosis">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">진단 방식</div>
-      <h2 class="headline center">매장 이름을 빼고,<br>손님처럼 물어봅니다.</h2>
+      <div class="eyebrow center">실시간 무료진단</div>
+      <h2 class="headline center">AI 추천률, 지금 직접 확인해보세요</h2>
+      <p class="lead center">네이버 플레이스 링크만 넣으면, 우리 매장이 AI 추천에 얼마나 나오는지 3분 만에 직접 확인할 수 있습니다.</p>
     </div>
-    <div class="diag-grid">
-      <div class="diag-copy fade-in">
-        <h3>손님은 매장 이름을 모른 채 묻습니다.</h3>
-        <p>그래서 토크비도 매장 이름을 넣지 않고, 손님이 실제로 쓸 법한 15개 질문을 ChatGPT에 반복해서 던집니다.</p>
-        <p>그 답변에 우리 매장이 몇 번이나 등장하는지를 세어, <strong>ChatGPT 추천 노출률</strong>을 산출합니다. 매달 같은 질문으로 다시 측정해 변화를 추적합니다.</p>
-        <div class="score-line">
-          <span class="n">15</span>
-          <span class="u">개 질문 · 반복 측정</span>
+
+    <div class="diag-steps">
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">1</div>
+        <h3>매장 연결</h3>
+        <p>네이버 플레이스 링크만 넣으면 토크비가 매장을 분석합니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step1-connect.png" alt="매장 연결" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
         </div>
       </div>
-      <div class="diag-demo fade-in">
-        <div class="qh">// 손님처럼 묻는 질문 예시</div>
-        <div class="diag-q"><span class="qn">Q1</span><span>이 근처 분위기 좋은 한식당 추천해줘</span></div>
-        <div class="diag-q"><span class="qn">Q2</span><span>부모님 모시고 갈 조용한 식당 어디 있어?</span></div>
-        <div class="diag-q"><span class="qn">Q3</span><span>주차 편한 맛집 알려줘</span></div>
-        <div class="diag-q"><span class="qn">Q4</span><span>이 동네 회식하기 좋은 곳은?</span></div>
-        <div class="diag-q"><span class="qn">···</span><span>손님 상황별로 15개 질문 반복</span></div>
+
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">2</div>
+        <h3>질문 확인</h3>
+        <p>손님이 실제로 AI에게 묻는 질문을 자동으로 만들어 보여줍니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step2-questions.png" alt="질문 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">3</div>
+        <h3>측정 결과</h3>
+        <p>어떤 질문에 우리 매장이 나오는지, 그 자리에 어떤 경쟁 매장이 대신 나오는지 확인합니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step3a-questions.png" alt="측정 결과 - 질문별 노출" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+          <div class="diag-fig">
+            <img src="images/diagnosis/step3b-competitors.png" alt="측정 결과 - 경쟁 매장" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">4</div>
+        <h3>노출 점수</h3>
+        <p>현재 우리 매장의 AI 추천 노출 점수를 숫자로 확인합니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step4-score.png" alt="노출 점수" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- 리포트 미리보기 -->
-    <div class="fade-in" style="max-width: 620px; margin: 30px auto 0;">
-      <div style="background:#fff; border:1px solid var(--line); border-radius:var(--r-md); padding:22px; box-shadow:var(--sh-md);">
-        <div style="display:flex; align-items:center; gap:10px; padding-bottom:14px; border-bottom:1px solid var(--line-soft);">
-          <span style="flex-shrink:0; width:26px; height:26px; border-radius:50%; background:#FEF2F2; color:#DC2626; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center;">✕</span>
-          <span style="font-size:14.5px; font-weight:600; color:var(--ink-soft);">"광장동 뷰 좋은 한식집 추천해주세요"</span>
-          <span style="margin-left:auto; flex-shrink:0; font-size:11px; font-weight:700; font-family:var(--f-mono); color:#DC2626; background:#FEF2F2; padding:3px 9px; border-radius:6px;">미노출</span>
-        </div>
-        <p style="margin-top:14px; font-size:13.5px; color:var(--ink-mid); line-height:1.62;">이 질문에 우리 매장은 추천되지 않았고, <strong style="color:var(--ink-soft);">경쟁 매장이 대신 추천되고 있습니다.</strong></p>
-      </div>
-      <p style="text-align:center; margin-top:12px; font-size:13px; color:var(--ink-muted);">진단 후 이런 리포트를 받아보실 수 있습니다.</p>
+    <div class="diag-bridge fade-in">
+      <p>여기까지는 무료로 직접 확인하실 수 있습니다.<br>노출을 올리는 최적화부터는 토크비가 대신 해드립니다.</p>
+      <a href="#reference" class="diag-bridge-link">실제로 개선된 사례 보기 →</a>
     </div>
   </div>
 </section>
