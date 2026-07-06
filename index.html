@@ -547,38 +547,35 @@ strong { font-weight: 700; }
 .diag-bridge-link { display: inline-block; margin-top: 14px; font-size: 17px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent-soft); padding-bottom: 2px; transition: border-color 0.2s; }
 .diag-bridge-link:hover { border-color: var(--accent); }
 
-/* === REFERENCE === */
-.ref-note { font-size: 17px; color: var(--ink-mid); line-height: 1.7; max-width: 720px; margin: 0 auto 34px; text-align: center; }
-.ref-note strong { color: var(--ink); }
-
-.ref-table { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; box-shadow: var(--sh-sm); }
-.ref-row { display: grid; grid-template-columns: 1.4fr 46px 1fr 46px; align-items: center; gap: 12px; padding: 15px 20px; border-bottom: 1px solid var(--line-soft); }
-.ref-row:last-child { border-bottom: none; }
-.ref-row.head { background: var(--bg-soft); font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--ink-muted); letter-spacing: 0.03em; text-transform: uppercase; padding-top: 11px; padding-bottom: 11px; }
-.ref-name { font-size: 17px; font-weight: 700; color: var(--ink); }
-.ref-before { font-family: var(--f-mono); font-size: 17px; font-weight: 600; color: var(--ink-muted); text-align: center; }
-.ref-after { font-family: var(--f-mono); font-size: 17px; font-weight: 700; color: var(--accent); text-align: center; }
-.ref-bar { position: relative; height: 12px; background: var(--line-soft); border-radius: 6px; overflow: hidden; }
-.ref-bar .before { position: absolute; top: 0; left: 0; height: 100%; background: var(--gauge-before); border-radius: 6px; }
-.ref-bar .after { position: absolute; top: 0; left: 0; height: 100%; background: var(--accent); border-radius: 6px; }
-.ref-foot { margin-top: 14px; font-size: 14px; color: var(--ink-muted); text-align: center; font-family: var(--f-mono); }
-.ref-control { margin-top: 20px; padding: 18px 22px; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: 17px; color: var(--ink-mid); line-height: 1.65; text-align: center; }
+/* === REFERENCE (매장 카드 슬라이드) === */
+.ref-slider { position: relative; margin-top: 38px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.ref-viewport { overflow: hidden; padding: 6px; margin: -6px; }
+.ref-track { display: flex; transition: transform 0.42s cubic-bezier(0.22,0.61,0.36,1); touch-action: pan-y; }
+.ref-slide { flex: 0 0 100%; min-width: 100%; padding: 0 6px; }
+.ref-store { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
+.ref-store-name { font-size: 19px; font-weight: 800; color: var(--ink); }
+.ref-store-period { margin-top: 6px; font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
+.ref-chart { margin: 20px 0 6px; }
+.ref-chart svg { width: 100%; height: 180px; display: block; overflow: visible; }
+.ref-bignum { margin: 8px 0 2px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(26px,7vw,38px); }
+.ref-bignum .from { color: var(--gauge-before); }
+.ref-bignum .arw { color: var(--accent); margin: 0 10px; }
+.ref-bignum .to { color: var(--accent); }
+.ref-substats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
+.ref-substat { text-align: center; }
+.ref-substat .k { font-size: 13px; color: var(--ink-muted); font-weight: 600; line-height: 1.35; }
+.ref-substat .v { margin-top: 5px; font-family: var(--f-mono); font-size: 18px; font-weight: 700; color: var(--ink); }
+.ref-caption { margin-top: 16px; font-size: 12px; color: var(--ink-muted); text-align: center; line-height: 1.5; }
+.ref-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; }
+.ref-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh-sm); color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; -webkit-tap-highlight-color: transparent; }
+.ref-nav:hover { background: var(--accent-soft); }
+.ref-nav:disabled { opacity: 0.32; cursor: default; }
+.ref-dots { display: flex; gap: 9px; }
+.ref-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gauge-before); border: none; padding: 0; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+.ref-dot.active { background: var(--accent); transform: scale(1.15); }
+.ref-control { margin-top: 30px; padding: 18px 22px; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: 17px; color: var(--ink-mid); line-height: 1.65; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
 .ref-control strong { color: var(--ink); }
-
-.ref-card { margin-top: 26px; background: #fff; border: 1.5px solid var(--accent-soft); border-radius: var(--r-lg); padding: 30px 26px; box-shadow: var(--sh-md); }
-.ref-card-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-.ref-card-title { font-size: 18px; font-weight: 800; }
-.ref-card-loc { font-size: 14px; color: var(--ink-muted); font-weight: 600; }
-.ref-rate { margin: 18px 0 6px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(24px,6vw,34px); color: var(--ink); }
-.ref-rate .from { color: var(--ink-light); }
-.ref-rate .arw { color: var(--accent); margin: 0 8px; }
-.ref-rate .to { color: var(--accent); }
-.ref-card-sub { font-size: 17px; color: var(--ink-mid); line-height: 1.65; }
-.ref-graph-ph { margin: 22px 0; height: 150px; border-radius: var(--r-md); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); border: 1px dashed var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); font-size: 14px; color: var(--ink-muted); }
-.ref-quote-label { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-.ref-quote { padding: 16px 18px; background: var(--accent-paper); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 17px; color: var(--ink-soft); line-height: 1.65; font-style: italic; }
-.ref-define { margin-top: 30px; text-align: center; font-size: clamp(16px,3.8vw,19px); font-weight: 700; line-height: 1.55; color: var(--ink); max-width: 720px; margin-left: auto; margin-right: auto; }
-.ref-define em { color: var(--accent); }
+.ref-foot { margin-top: 16px; font-size: 13px; color: var(--ink-muted); text-align: center; line-height: 1.6; max-width: 680px; margin-left: auto; margin-right: auto; }
 
 /* === PROCESS (진행 방식) === */
 .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 38px; }
@@ -727,8 +724,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .price-grid { grid-template-columns: 1fr; }
   .early-list { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
-  .ref-row { grid-template-columns: 1.3fr 40px 1fr 40px; gap: 8px; padding: 13px 14px; }
-  .ref-name { font-size: 14px; }
+  .ref-substats { gap: 6px; }
+  .ref-substat .k { font-size: 12px; }
+  .ref-substat .v { font-size: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
@@ -738,8 +736,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .container { padding: 0 16px; }
   .gpt-conv { min-height: 268px; }
   .proc-grid { grid-template-columns: 1fr; }
-  .ref-row { grid-template-columns: 1fr 38px 38px; }
-  .ref-row .ref-bar { display: none; }
 }
 </style>
 </head>
@@ -961,77 +957,146 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section" id="reference">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">측정 결과</div>
-      <h2 class="headline center">파일럿 매장에서<br>실제로 측정한 결과입니다.</h2>
+      <div class="eyebrow center">긴말 안 합니다. 데이터로 보여드리겠습니다.</div>
+      <h2 class="headline center">AI 추천 최적화 실행 결과</h2>
+      <p class="lead center">레퍼런스 공개에 동의한 실제 매장 데이터입니다.</p>
     </div>
-    <p class="ref-note fade-in">
-      <strong>ChatGPT 노출 점수</strong>는 손님이 ChatGPT에게 맛집을 물었을 때, 추천 답변에 우리 매장이 얼마나 등장하는지를 <strong>30점 만점</strong>으로 측정한 값입니다.
-    </p>
 
-    <div class="ref-table fade-in">
-      <div class="ref-row head">
-        <span>매장</span><span style="text-align:center;">전</span><span style="text-align:center;">변화</span><span style="text-align:center;">후</span>
+    <div class="ref-slider fade-in">
+      <div class="ref-viewport">
+        <div class="ref-track" id="refTrack"><!-- 카드는 아래 배열에서 렌더링 --></div>
       </div>
-      <div class="ref-row">
-        <span class="ref-name">덮밥장사장 대치역점</span>
-        <span class="ref-before">0</span>
-        <span class="ref-bar"><span class="before" style="width:0%"></span><span class="after" style="width:90%"></span></span>
-        <span class="ref-after">27</span>
-      </div>
-      <div class="ref-row">
-        <span class="ref-name">오공김밥 일산탄현점</span>
-        <span class="ref-before">0</span>
-        <span class="ref-bar"><span class="before" style="width:0%"></span><span class="after" style="width:76.7%"></span></span>
-        <span class="ref-after">23</span>
-      </div>
-      <div class="ref-row">
-        <span class="ref-name">광장동가온</span>
-        <span class="ref-before">8</span>
-        <span class="ref-bar"><span class="before" style="width:26.7%"></span><span class="after" style="width:63.3%"></span></span>
-        <span class="ref-after">19</span>
-      </div>
-      <div class="ref-row">
-        <span class="ref-name">한신우동 본점</span>
-        <span class="ref-before">3</span>
-        <span class="ref-bar"><span class="before" style="width:10%"></span><span class="after" style="width:33.3%"></span></span>
-        <span class="ref-after">10</span>
-      </div>
-      <div class="ref-row">
-        <span class="ref-name">탐라담 영종도점</span>
-        <span class="ref-before">0</span>
-        <span class="ref-bar"><span class="before" style="width:0%"></span><span class="after" style="width:16.7%"></span></span>
-        <span class="ref-after">5</span>
+      <div class="ref-controls">
+        <button type="button" class="ref-nav" id="refPrev" aria-label="이전 매장">&#8249;</button>
+        <div class="ref-dots" id="refDots" role="tablist" aria-label="매장 선택"></div>
+        <button type="button" class="ref-nav" id="refNext" aria-label="다음 매장">&#8250;</button>
       </div>
     </div>
-    <p class="ref-foot fade-in">2026.6.2부터 측정 · 30점 만점</p>
 
     <div class="ref-control fade-in">
-      같은 기간, 같은 지역, 같은 업종에서 <strong>측정만 하고 토크비의 AI 최적화를 적용하지 않은 다수의 매장</strong>은 점수 변화가 없었습니다.
+      같은 기간·지역·업종에서 <strong>측정만 하고 최적화하지 않은 매장은 변화가 없었습니다.</strong>
     </div>
 
-    <!-- 광장동가온 강조 카드 -->
-    <div class="ref-card fade-in">
-      <div class="ref-card-head">
-        <span class="ref-card-title">광장동가온</span>
-        <span class="ref-card-loc">서울 광진구 · 한식</span>
-      </div>
-      <div class="ref-rate">
-        AI 추천 노출률 <span class="from">26.7%</span><span class="arw">→</span><span class="to">76.7%</span>
-      </div>
-      <p class="ref-card-sub">
-        손님이 ChatGPT에게 이 근처 한식집을 물었을 때, 추천 답변에 우리 매장이 등장한 비율입니다. 측정 시작 한 달 만에 26.7% → 76.7%로 올랐습니다.
-      </p>
-      <!-- 원본 확보 후 복원 예정 (숨김 처리)
-      <div class="ref-graph-ph">[ 노출률 추이 그래프 — 삽입 예정 ]</div>
-      <div class="ref-quote-label">AI가 실제로 이렇게 소개합니다</div>
-      <blockquote class="ref-quote">[AI 추천 문구 원문 삽입 예정]</blockquote>
-      -->
-    </div>
-
-    <p class="ref-define fade-in">
-      토크비는 매출을 보장하는 서비스가 아니라, <em>ChatGPT가 우리 매장을 추천하게 만드는 서비스</em>입니다.
-    </p>
+    <p class="ref-foot fade-in">측정 기준: ChatGPT · AI 추천 노출률 = 손님이 AI에게 물었을 때 추천 답변에 우리 매장이 나온 비율</p>
   </div>
+
+  <script>
+  (function () {
+    // 매장을 늘리려면 이 배열에 객체 하나만 추가하면 됩니다.
+    var REF_STORES = [
+      {
+        name: '덮밥장사장 대치역점',
+        period: '최적화 전 2026.6.2 → 최신 2026.7.2',
+        trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90} ],
+        from: '0%', to: '90%',
+        stats: [ {k:'평균 추천 순위', v:'1.2위'}, {k:'1위 추천률', v:'87%'}, {k:'측정 횟수', v:'5회'} ],
+        caption: 'AI 검색 5회 측정 · 검색 시나리오 150건 분석'
+      },
+      {
+        name: '광장동가온',
+        period: '최적화 전 2026.6.2 → 최신 2026.7.2',
+        trend: [ {d:'6/2',v:26.7}, {d:'6/8',v:26.7}, {d:'6/15',v:33.3}, {d:'6/22',v:76.7}, {d:'6/29',v:76.7} ],
+        from: '26.7%', to: '76.7%',
+        stats: [ {k:'평균 추천 순위', v:'1.5위'}, {k:'1위 추천률', v:'73.6%'}, {k:'측정 횟수', v:'5회'} ],
+        caption: 'AI 검색 5회 측정 · 검색 시나리오 150건 분석'
+      }
+    ];
+
+    var ACCENT = '#E85D3A', GRID = '#E7E1D6', DOT = '#B9B1A4', MUTED = '#8A8377';
+
+    function fmt(v) { return (v % 1 === 0) ? String(v) : v.toFixed(1); }
+
+    function buildChart(trend) {
+      var W = 320, H = 180, x0 = 34, x1 = 300, yTop = 30, yBot = 146;
+      var n = trend.length;
+      var xf = function (i) { return n === 1 ? (x0 + x1) / 2 : x0 + i * (x1 - x0) / (n - 1); };
+      var yf = function (v) { return yBot - (v / 100) * (yBot - yTop); };
+      var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="AI 추천 노출률 추이">';
+      // y축 기준선 (0/50/100)
+      [0, 50, 100].forEach(function (g) {
+        var y = yf(g);
+        s += '<line x1="' + x0 + '" y1="' + y + '" x2="' + x1 + '" y2="' + y + '" stroke="' + GRID + '" stroke-width="1"/>';
+        s += '<text x="' + (x0 - 8) + '" y="' + (y + 3.5) + '" text-anchor="end" font-family="monospace" font-size="9" fill="' + MUTED + '">' + g + '</text>';
+      });
+      // 꺾은선
+      var pts = trend.map(function (p, i) { return xf(i) + ',' + yf(p.v); }).join(' ');
+      s += '<polyline points="' + pts + '" fill="none" stroke="' + ACCENT + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+      // 점 + 값 라벨 + x축 날짜
+      trend.forEach(function (p, i) {
+        var x = xf(i), y = yf(p.v), last = (i === n - 1);
+        if (last) {
+          s += '<circle cx="' + x + '" cy="' + y + '" r="5.5" fill="' + ACCENT + '" stroke="#fff" stroke-width="2"/>';
+        } else {
+          s += '<circle cx="' + x + '" cy="' + y + '" r="3.5" fill="#fff" stroke="' + ACCENT + '" stroke-width="2"/>';
+        }
+        s += '<text x="' + x + '" y="' + (y - 11) + '" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="' + (last ? ACCENT : MUTED) + '">' + fmt(p.v) + '</text>';
+        s += '<text x="' + x + '" y="' + (yBot + 18) + '" text-anchor="middle" font-family="monospace" font-size="10" fill="' + DOT + '">' + p.d + '</text>';
+      });
+      s += '</svg>';
+      return s;
+    }
+
+    function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    function buildCard(st) {
+      var stats = st.stats.map(function (o) {
+        return '<div class="ref-substat"><div class="k">' + esc(o.k) + '</div><div class="v">' + esc(o.v) + '</div></div>';
+      }).join('');
+      return '<div class="ref-slide"><div class="ref-store">' +
+        '<div class="ref-store-name">' + esc(st.name) + '</div>' +
+        '<div class="ref-store-period">' + esc(st.period) + '</div>' +
+        '<div class="ref-chart">' + buildChart(st.trend) + '</div>' +
+        '<div class="ref-bignum"><span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span></div>' +
+        '<div class="ref-substats">' + stats + '</div>' +
+        '<div class="ref-caption">' + esc(st.caption) + '</div>' +
+        '</div></div>';
+    }
+
+    function init() {
+      var track = document.getElementById('refTrack');
+      var dotsWrap = document.getElementById('refDots');
+      var prev = document.getElementById('refPrev');
+      var next = document.getElementById('refNext');
+      if (!track) return;
+
+      track.innerHTML = REF_STORES.map(buildCard).join('');
+      dotsWrap.innerHTML = REF_STORES.map(function (st, i) {
+        return '<button type="button" class="ref-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" role="tab" aria-label="' + esc(st.name) + '"></button>';
+      }).join('');
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+
+      var idx = 0, count = REF_STORES.length;
+      function go(i) {
+        idx = Math.max(0, Math.min(count - 1, i));
+        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+        dots.forEach(function (d, di) { d.classList.toggle('active', di === idx); });
+        prev.disabled = (idx === 0);
+        next.disabled = (idx === count - 1);
+      }
+      prev.addEventListener('click', function () { go(idx - 1); });
+      next.addEventListener('click', function () { go(idx + 1); });
+      dots.forEach(function (d) { d.addEventListener('click', function () { go(+d.getAttribute('data-i')); }); });
+
+      // 모바일 스와이프
+      var sx = 0, sy = 0, dragging = false;
+      var vp = track.parentNode;
+      vp.addEventListener('touchstart', function (e) { var t = e.touches[0]; sx = t.clientX; sy = t.clientY; dragging = true; }, { passive: true });
+      vp.addEventListener('touchend', function (e) {
+        if (!dragging) return; dragging = false;
+        var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { go(idx + (dx < 0 ? 1 : -1)); }
+      }, { passive: true });
+
+      go(0);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
 </section>
 
 <!-- ═══════════════ 6. 진행 방식 ═══════════════ -->
