@@ -554,19 +554,20 @@ strong { font-weight: 700; }
 .ref-slide { flex: 0 0 100%; min-width: 100%; padding: 0 6px; }
 .ref-store { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
 .ref-store-name { font-size: 19px; font-weight: 800; color: var(--ink); }
-.ref-store-period { margin-top: 6px; font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
-.ref-store-periodsub { margin-top: 3px; font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
+.ref-store-period { margin-top: 8px; line-height: 1.3; }
+.ref-period-main { font-family: var(--f-body); font-size: 17px; font-weight: 800; color: var(--accent); }
+.ref-period-date { font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--ink-mid); margin-left: 2px; }
 .ref-chart { margin: 20px 0 6px; }
 .ref-chart svg { width: 100%; height: 180px; display: block; overflow: visible; }
-.ref-metric-key { font-family: var(--f-body); font-size: 15px; font-weight: 700; color: var(--ink-soft); letter-spacing: 0; }
+.ref-metric-key { font-family: var(--f-body); font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: 0; }
 .ref-bignum { margin: 8px 0 2px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(26px,7vw,38px); line-height: 1.15; }
 .ref-bignum .ref-metric-key { vertical-align: middle; }
-.ref-bignum .from { color: var(--gauge-before); }
+.ref-bignum .from { color: var(--ink-muted); }
 .ref-bignum .arw { color: var(--accent); margin: 0 10px; }
 .ref-bignum .to { color: var(--accent); }
 .ref-rankrow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
 .ref-rank-vals { font-family: var(--f-mono); font-size: 18px; font-weight: 700; }
-.ref-rank-vals .from { color: var(--gauge-before); }
+.ref-rank-vals .from { color: var(--ink-muted); }
 .ref-rank-vals .arw { color: var(--accent); margin: 0 8px; }
 .ref-rank-vals .to { color: var(--accent); }
 /* 툴팁 */
@@ -903,78 +904,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   </div>
 </section>
 
-<!-- ═══════════════ 4. 진단 방식 ═══════════════ -->
-<section class="section section-cream" id="diagnosis">
-  <div class="container">
-    <div class="section-head fade-in">
-      <div class="eyebrow center">실시간 무료진단</div>
-      <h2 class="headline center">AI 추천률, 지금 직접 확인해보세요</h2>
-      <p class="lead center">네이버 플레이스 링크만 넣으면, 우리 매장이 AI 추천에 얼마나 나오는지 3분 만에 직접 확인할 수 있습니다.</p>
-    </div>
-
-    <div class="diag-steps">
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">1</div>
-        <h3>매장 연결</h3>
-        <p>네이버 플레이스 링크만 넣으면 토크비가 매장을 분석합니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step1-connect.jpg" alt="매장 연결" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">2</div>
-        <h3>질문 확인</h3>
-        <p>손님이 실제로 AI에게 묻는 질문을 자동으로 만들어 보여줍니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step2-questions.jpg" alt="질문 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">3</div>
-        <h3>측정 결과</h3>
-        <p>어떤 질문에 우리 매장이 나오는지, 그 자리에 어떤 경쟁 매장이 대신 나오는지 확인합니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step3a-questions.jpg" alt="측정 결과 - 질문별 노출" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-          <div class="diag-fig">
-            <img src="images/diagnosis/step3b-competitors.jpg" alt="측정 결과 - 경쟁 매장" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">4</div>
-        <h3>노출 점수</h3>
-        <p>현재 우리 매장의 AI 추천 노출 점수를 숫자로 확인합니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step4-score.jpg" alt="노출 점수" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="diag-bridge fade-in">
-      <p>여기까지는 무료로 직접 확인하실 수 있습니다.<br>노출을 올리는 최적화부터는 토크비가 대신 해드립니다.</p>
-      <a href="#reference" class="diag-bridge-link">실제로 개선된 사례 보기 →</a>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════════ 5. 레퍼런스 ═══════════════ -->
-<section class="section" id="reference">
+<section class="section section-cream" id="reference">
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">긴말 안 합니다. 데이터로 보여드리겠습니다.</div>
@@ -1004,16 +935,16 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     var REF_STORES = [
       {
         name: '덮밥장사장 대치역점',
-        period: '최적화 전 2026.6.2 → 최신 2026.7.2',
-        periodSub: '2026.6.2 ~ 2026.7.2 · 1개월 진행 결과',
+        periodMain: '1개월 진행 결과',
+        periodDate: '2026.06.02 ~ 2026.07.02',
         trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90} ],
         from: '0%', to: '90%',
         rankFrom: '추천 없음', rankTo: '1.2위'
       },
       {
         name: '광장동가온',
-        period: '최적화 전 2026.6.2 → 최신 2026.7.2',
-        periodSub: '2026.6.2 ~ 2026.7.2 · 1개월 진행 결과',
+        periodMain: '1개월 진행 결과',
+        periodDate: '2026.06.02 ~ 2026.07.02',
         trend: [ {d:'6/2',v:26.7}, {d:'6/8',v:26.7}, {d:'6/15',v:33.3}, {d:'6/22',v:76.7}, {d:'6/29',v:76.7} ],
         from: '26.7%', to: '76.7%',
         rankFrom: '추천 없음', rankTo: '1.5위'
@@ -1023,7 +954,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     var TIP_RATE = 'ChatGPT에게 손님 시점으로 물었을 때 추천 답변에 우리 매장이 나온 비율';
     var TIP_RANK = '같이 추천된 매장에서 우리 매장이 추천된 평균 순위';
 
-    var ACCENT = '#E85D3A', GRID = '#E7E1D6', DOT = '#B9B1A4', MUTED = '#8A8377';
+    var ACCENT = '#E85D3A', GRID = '#DED7CA', AXIS = '#4A423A', VALTXT = '#3A332C';
 
     function fmt(v) { return (v % 1 === 0) ? String(v) : v.toFixed(1); }
 
@@ -1037,7 +968,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       [0, 50, 100].forEach(function (g) {
         var y = yf(g);
         s += '<line x1="' + x0 + '" y1="' + y + '" x2="' + x1 + '" y2="' + y + '" stroke="' + GRID + '" stroke-width="1"/>';
-        s += '<text x="' + (x0 - 8) + '" y="' + (y + 3.5) + '" text-anchor="end" font-family="monospace" font-size="9" fill="' + MUTED + '">' + g + '</text>';
+        s += '<text x="' + (x0 - 8) + '" y="' + (y + 4.5) + '" text-anchor="end" font-family="monospace" font-size="14" font-weight="600" fill="' + AXIS + '">' + g + '</text>';
       });
       // 꺾은선
       var pts = trend.map(function (p, i) { return xf(i) + ',' + yf(p.v); }).join(' ');
@@ -1050,8 +981,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         } else {
           s += '<circle cx="' + x + '" cy="' + y + '" r="3.5" fill="#fff" stroke="' + ACCENT + '" stroke-width="2"/>';
         }
-        s += '<text x="' + x + '" y="' + (y - 11) + '" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="' + (last ? ACCENT : MUTED) + '">' + fmt(p.v) + '</text>';
-        s += '<text x="' + x + '" y="' + (yBot + 18) + '" text-anchor="middle" font-family="monospace" font-size="10" fill="' + DOT + '">' + p.d + '</text>';
+        s += '<text x="' + x + '" y="' + (y - 12) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="700" fill="' + (last ? ACCENT : VALTXT) + '">' + fmt(p.v) + '</text>';
+        s += '<text x="' + x + '" y="' + (yBot + 20) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="600" fill="' + AXIS + '">' + p.d + '</text>';
       });
       s += '</svg>';
       return s;
@@ -1068,8 +999,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     function buildCard(st) {
       return '<div class="ref-slide"><div class="ref-store">' +
         '<div class="ref-store-name">' + esc(st.name) + '</div>' +
-        '<div class="ref-store-period">' + esc(st.period) + '</div>' +
-        '<div class="ref-store-periodsub">' + esc(st.periodSub) + '</div>' +
+        '<div class="ref-store-period"><strong class="ref-period-main">' + esc(st.periodMain) + '</strong> <span class="ref-period-date">(' + esc(st.periodDate) + ')</span></div>' +
         '<div class="ref-chart">' + buildChart(st.trend) + '</div>' +
         '<div class="ref-bignum">' +
           '<span class="ref-metric-key">추천률' + tip(TIP_RATE) + ' :</span> ' +
@@ -1143,6 +1073,76 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     }
   })();
   </script>
+</section>
+
+<!-- ═══════════════ 4. 진단 방식 ═══════════════ -->
+<section class="section" id="diagnosis">
+  <div class="container">
+    <div class="section-head fade-in">
+      <div class="eyebrow center">실시간 무료진단</div>
+      <h2 class="headline center">AI 추천률, 지금 직접 확인해보세요</h2>
+      <p class="lead center">네이버 플레이스 링크만 넣으면, 우리 매장이 AI 추천에 얼마나 나오는지 3분 만에 직접 확인할 수 있습니다.</p>
+    </div>
+
+    <div class="diag-steps">
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">1</div>
+        <h3>매장 연결</h3>
+        <p>네이버 플레이스 링크만 넣으면 토크비가 매장을 분석합니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step1-connect.jpg" alt="매장 연결" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">2</div>
+        <h3>질문 확인</h3>
+        <p>손님이 실제로 AI에게 묻는 질문을 자동으로 만들어 보여줍니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step2-questions.jpg" alt="질문 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">3</div>
+        <h3>측정 결과</h3>
+        <p>어떤 질문에 우리 매장이 나오는지, 그 자리에 어떤 경쟁 매장이 대신 나오는지 확인합니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step3a-questions.jpg" alt="측정 결과 - 질문별 노출" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+          <div class="diag-fig">
+            <img src="images/diagnosis/step3b-competitors.jpg" alt="측정 결과 - 경쟁 매장" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diag-step fade-in">
+        <div class="diag-step-num">4</div>
+        <h3>노출 점수</h3>
+        <p>현재 우리 매장의 AI 추천 노출 점수를 숫자로 확인합니다.</p>
+        <div class="diag-figs">
+          <div class="diag-fig">
+            <img src="images/diagnosis/step4-score.jpg" alt="노출 점수" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="diag-ph">이미지 준비 중</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-bridge fade-in">
+      <p>여기까지는 무료로 직접 확인하실 수 있습니다.<br>노출을 올리는 최적화부터는 토크비가 대신 해드립니다.</p>
+      <a href="#reference" class="diag-bridge-link">실제로 개선된 사례 보기 →</a>
+    </div>
+  </div>
 </section>
 
 <!-- ═══════════════ 6. 진행 방식 ═══════════════ -->
@@ -1497,7 +1497,7 @@ BLIND-END: #contact -->
 'use strict';
 
 /* 카카오채널 URL — 이 상수만 교체하면 전체 카카오 CTA(.js-kakao-link)에 반영됨 */
-const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_JxlWTX';
+const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_JxlWTX/chat';
 
 /* 카카오 JavaScript 키 — 실제 키 받으면 이 한 줄만 교체하면 채팅 플러그인으로 전환됨.
    'DUMMY...' 상태에서는 SDK 초기화를 건너뛰고 카카오채널 링크(새 탭) fallback으로 동작. */
@@ -1518,7 +1518,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
   /* ── 카카오 상담 FAB + 채팅 플러그인 (더미키: 채널 링크 fallback / 실제키: Kakao.Channel.chat) ── */
   var kakaoReady = false;
   function isDummyKey(k) { return !k || k.indexOf('DUMMY') === 0; }
-  function channelPublicId() { return KAKAO_CHANNEL_URL.split('/').pop(); } // '_JxlWTX'
+  function channelPublicId() { return (KAKAO_CHANNEL_URL.match(/_[A-Za-z0-9]+/) || [''])[0]; } // '_JxlWTX'
   function openChannelFallback() { window.open(KAKAO_CHANNEL_URL, '_blank', 'noopener'); }
 
   function initKakaoSdk() {
