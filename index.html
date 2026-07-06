@@ -134,15 +134,15 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "단일 매장 플랜",
+      "name": "매장 플랜",
       "price": "133000",
       "priceCurrency": "KRW",
-      "description": "매장당 월 구독. 얼리버드 30% 적용가 (정가 190,000원), VAT 별도. ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트. 여러 매장도 한 계정으로 관리 가능(매장별 구독)."
+      "description": "매장당 월 구독. 얼리버드 30% 적용가 (정가 190,000원), VAT 별도. ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트. 1곳이든 여러 곳이든 운영하는 매장 수만큼 구독하며, 한 계정으로 함께 관리."
     },
     {
       "@type": "Offer",
-      "name": "다매장 플랜",
-      "description": "10개 매장 이상 등록 시. 프랜차이즈 본사·다수 매장 운영자 대상. 상품 구성은 단일 매장 플랜과 동일하며, 본사 상위 계정으로 브랜드(최상위)·직영점·가맹점 상·하위 계정 구분 관리, 대량 등록 할인 적용. 카카오채널로 별도 문의."
+      "name": "프랜차이즈 · 대량 등록",
+      "description": "10개 매장 이상 일괄 등록 시. 프랜차이즈 본사·다수 매장 운영자 대상. 상품 구성은 매장 플랜과 동일하며, 본사 상위 계정으로 브랜드(최상위)·직영점·가맹점 상·하위 계정 구분 관리, 대량 등록 할인 적용. 카카오채널로 별도 문의."
     }
   ]
 }
@@ -634,28 +634,21 @@ strong { font-weight: 700; }
 .price-notice strong { color: var(--accent-deep); }
 .price-foot { margin-top: 12px; text-align: center; font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
-.early { margin-top: 30px; background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: 34px 28px; }
-.early-top { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
-.early-flag { display: inline-flex; align-items: center; gap: 7px; font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: #fff; background: var(--accent); padding: 6px 14px; border-radius: 999px; }
-.early-dday { display: inline-flex; align-items: center; font-family: var(--f-mono); font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.14); padding: 6px 12px; border-radius: 999px; }
-.early-hero { display: flex; align-items: center; gap: 28px; margin-bottom: 24px; }
-.early-big { flex-shrink: 0; text-align: center; }
-.early-big .pct { display: block; font-family: var(--f-mono); font-size: clamp(46px,8vw,64px); font-weight: 700; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
-.early-big .pct-sub { display: block; margin-top: 6px; font-size: 14px; font-weight: 800; color: #fff; }
-.early-title { font-size: clamp(16px,3.6vw,20px); font-weight: 700; line-height: 1.55; color: rgba(255,255,255,0.92); }
-.early-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.early-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 16px 18px; }
-.early-item .t { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 6px; line-height: 1.4; }
-.early-item .d { font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.62); }
-.early-terms { margin-top: 22px; border-top: 1px solid rgba(255,255,255,0.14); padding-top: 16px; }
-.early-terms summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; color: rgba(255,255,255,0.65); -webkit-tap-highlight-color: transparent; }
-.early-terms summary::-webkit-details-marker { display: none; }
-.early-terms summary::after { content: '▾'; font-size: 11px; transition: transform 0.2s; }
-.early-terms[open] summary::after { transform: rotate(180deg); }
-.early-terms ol { list-style: none; counter-reset: t; margin-top: 14px; }
-.early-terms li { counter-increment: t; position: relative; padding-left: 22px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.55); margin-bottom: 7px; }
-.early-terms li::before { content: counter(t) "."; position: absolute; left: 0; color: rgba(255,255,255,0.4); font-family: var(--f-mono); }
-.early-final { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--accent); }
+.price-benefits { margin-top: 16px; padding: 16px 18px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); }
+.pb-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 15px; font-weight: 800; color: var(--accent-deep); margin-bottom: 10px; }
+.pb-dday { font-family: var(--f-mono); font-size: 12px; font-weight: 700; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.price-benefits ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 0; padding: 0; }
+.price-benefits li { position: relative; padding-left: 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.55; }
+.price-benefits li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; font-size: 12px; }
+.price-benefits strong { color: var(--ink); }
+.price-terms { max-width: 720px; margin: 26px auto 0; }
+.price-terms summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; color: var(--ink-muted); -webkit-tap-highlight-color: transparent; }
+.price-terms summary::-webkit-details-marker { display: none; }
+.price-terms summary::after { content: '▾'; font-size: 11px; transition: transform 0.2s; }
+.price-terms[open] summary::after { transform: rotate(180deg); }
+.price-terms ol { list-style: none; counter-reset: t; margin-top: 12px; }
+.price-terms li { counter-increment: t; position: relative; padding-left: 22px; font-size: 13.5px; line-height: 1.6; color: var(--ink-muted); margin-bottom: 6px; }
+.price-terms li::before { content: counter(t) "."; position: absolute; left: 0; color: var(--ink-light); font-family: var(--f-mono); }
 
 /* === TRUST BADGES === */
 .trust-label { display: flex; align-items: center; width: fit-content; margin: 0 auto 26px; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); background: #fff; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 8px 18px; box-shadow: 0 2px 10px rgba(232,93,58,0.12), 0 1px 3px rgba(20,17,15,0.05); line-height: 1.4; }
@@ -788,9 +781,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .pstep-grid { grid-template-columns: 1fr; gap: 34px; }
   .pstep:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -28px; transform: translateX(-50%); }
   .price-grid { grid-template-columns: 1fr; }
-  .early-hero { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .early-big { text-align: left; }
-  .early-list { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
   .footer-biz { grid-template-columns: 1fr; }
@@ -1217,11 +1207,12 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-grid fade-in">
       <div class="price-card featured">
         <span class="price-flag">지금 · 얼리버드</span>
-        <div class="price-name">단일 매장 플랜</div>
+        <div class="price-name">매장 플랜</div>
         <div class="price-old">₩190,000</div>
         <div class="price-amt deal">₩133,000<span class="per"> /월 · 매장당</span></div>
         <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
         <div class="price-keep">구독 유지 기간 내내 이 가격 그대로</div>
+        <div class="price-multi">1곳이든 여러 곳이든, 운영하는 <strong>매장 수만큼 구독</strong>합니다. (한 계정으로 함께 관리)</div>
         <dl class="price-spec">
           <div><dt>최적화 AI</dt><dd>ChatGPT</dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
@@ -1230,15 +1221,22 @@ BLIND-END: 구 진행 방식 -->
           <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
           <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
         </dl>
-        <div class="price-multi">매장이 여러 곳이어도 <strong>한 계정으로 함께 관리</strong>할 수 있습니다. (매장별 구독)</div>
+        <div class="price-benefits">
+          <div class="pb-head">얼리버드 혜택 <span class="pb-dday"><span class="js-dday"></span> · 8/31 마감</span></div>
+          <ul>
+            <li><strong>얼리버드 전용 인증마크</strong> — 초기 파트너 표시</li>
+            <li><strong>상위 모델 무료 체험</strong> — 출시 시 기간 한정 제공</li>
+            <li>기간 7/14 ~ 8/31 · 목표 매장 수 도달 시 조기 종료될 수 있습니다</li>
+          </ul>
+        </div>
       </div>
       <div class="price-card">
-        <div class="price-name">다매장 플랜</div>
+        <div class="price-name">프랜차이즈 · 대량 등록</div>
         <div class="price-amt soon">별도 문의</div>
-        <div class="price-vat">10개 매장 이상 등록 시</div>
+        <div class="price-vat">10개 매장 이상 일괄 등록 시</div>
         <div class="price-target">프랜차이즈 본사, 여러 매장을 운영하시는 경우 추천합니다.</div>
         <ul class="price-feats">
-          <li>상품 구성은 <strong>단일 매장 플랜과 동일</strong></li>
+          <li>상품 구성은 <strong>매장 플랜과 동일</strong></li>
           <li><strong>본사 상위 계정</strong> — 브랜드(최상위) · 직영점 · 가맹점 상·하위 계정 구분 관리</li>
           <li><strong>대량 등록 할인</strong> 적용</li>
         </ul>
@@ -1254,39 +1252,16 @@ BLIND-END: 구 진행 방식 -->
     <!-- 상위 요금제 로드맵 각주 -->
     <p class="price-foot fade-in">※ 멀티 AI(제미나이 · 퍼플렉시티 · 클로드 · 네이버) 상위 요금제는 출시 시 별도 안내됩니다.</p>
 
-    <!-- 얼리버드 블록 -->
-    <div class="early fade-in">
-      <div class="early-top">
-        <span class="early-flag"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;"></span>얼리버드 혜택</span><span class="early-dday"><span class="js-dday"></span>&nbsp;· 8/31 마감</span>
-      </div>
-      <div class="early-hero">
-        <div class="early-big"><span class="pct">30%</span><span class="pct-sub">평생 할인</span></div>
-        <div class="early-title">얼리버드 기간 등록 매장은 구독을 유지하는 내내,<br>정가가 바뀌어도 할인율이 그대로 유지됩니다.</div>
-      </div>
-      <div class="early-list">
-        <div class="early-item">
-          <div class="t">기간 7/14 ~ 8/31</div>
-          <div class="d">목표 매장 수 도달 시 조기 종료될 수 있습니다.</div>
-        </div>
-        <div class="early-item">
-          <div class="t">얼리버드 전용 인증마크</div>
-          <div class="d">초기 파트너임을 표시하는 인증마크를 드립니다.</div>
-        </div>
-        <div class="early-item">
-          <div class="t">상위 모델 무료 체험</div>
-          <div class="d">상위 모델 출시 시 기간 한정으로 무료 체험을 제공합니다.</div>
-        </div>
-      </div>
-      <details class="early-terms">
-        <summary>유의사항 보기</summary>
-        <ol>
-          <li>얼리버드 할인은 GPT 기본 요금제 기준, 구독 유지 기간 내내 할인율이 적용됩니다. 기본 요금제 정가가 변경되어도 할인율은 유지됩니다.</li>
-          <li>상위 요금제 출시 시 할인 정책은 별도 안내됩니다.</li>
-          <li>구독 해지·결제 실패·명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며 재가입 시 정가가 적용됩니다.</li>
-        </ol>
-        <div class="early-final">※ 결제 완료 후 기수 할인 소급 적용·변경 불가</div>
-      </details>
-    </div>
+    <!-- 얼리버드 유의사항 (접기) -->
+    <details class="price-terms fade-in">
+      <summary>얼리버드 유의사항</summary>
+      <ol>
+        <li>얼리버드 할인은 GPT 기본 요금제 기준, 구독 유지 기간 내내 할인율이 적용됩니다. 기본 요금제 정가가 변경되어도 할인율은 유지됩니다.</li>
+        <li>상위 요금제 출시 시 할인 정책은 별도 안내됩니다.</li>
+        <li>구독 해지·결제 실패·명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며 재가입 시 정가가 적용됩니다.</li>
+        <li>결제 완료 후 기수 할인 소급 적용·변경 불가.</li>
+      </ol>
+    </details>
   </div>
 </section>
 
@@ -1531,7 +1506,7 @@ BLIND-END: #contact -->
       <span class="bcp-price"><span class="old">₩190,000</span><span class="arw">→</span><strong>₩133,000</strong><span class="per">/월</span></span>
       <span class="bcp-dday" id="bcpDday" aria-live="polite"></span>
     </div>
-    <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary bottom-cta-primary"><span class="bcta-full">무료진단 후 얼리버드 시작</span><span class="bcta-short">무료진단 시작</span></a>
+    <a href="#pricing" id="bctaBtn" class="btn btn-primary bottom-cta-primary"><span class="bcta-full">얼리버드 혜택 보기</span><span class="bcta-short">혜택 보기</span></a>
   </div>
 </div>
 
@@ -1573,6 +1548,33 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     var ddayEl = document.getElementById('bcpDday');
     if (ddayEl) ddayEl.textContent = txt;
     document.querySelectorAll('.js-dday').forEach(function (el) { el.textContent = txt; });
+  })();
+
+  /* ── 하단바 2단계 CTA — 가격 섹션(혜택·스펙)을 본 뒤에만 무료진단으로 연결 ── */
+  (function () {
+    var btn = document.getElementById('bctaBtn');
+    var pricing = document.getElementById('pricing');
+    if (!btn || !pricing) return;
+    var switched = false;
+    function toDiagnosis() {
+      if (switched) return;
+      switched = true;
+      btn.setAttribute('href', 'https://app.talkb.co.kr/onboard');
+      var f = btn.querySelector('.bcta-full');
+      var s = btn.querySelector('.bcta-short');
+      if (f) f.textContent = '무료진단 후 얼리버드 시작';
+      if (s) s.textContent = '무료진단 시작';
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { toDiagnosis(); io.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(pricing);
+    } else {
+      toDiagnosis(); // 구형 브라우저: 기존 동작(바로 진단 연결) 유지
+    }
   })();
 
   /* ── 카카오 상담 FAB + 채팅 플러그인 (더미키: 채널 링크 fallback / 실제키: Kakao.Channel.chat) ── */
