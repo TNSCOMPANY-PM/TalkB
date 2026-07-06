@@ -537,10 +537,8 @@ strong { font-weight: 700; }
 .pstep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 38px; }
 .pstep { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); display: flex; flex-direction: column; }
 .pstep:not(:last-child)::after { content: '→'; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); font-size: 19px; font-weight: 800; color: var(--accent); z-index: 1; }
-.pstep-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
-.pstep-num { display: inline-flex; align-items: center; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; }
-.pstep-time { font-size: 13px; font-weight: 700; color: var(--ink-muted); line-height: 1.4; }
-.pstep-time.zero { color: var(--ink); }
+.pstep-num { display: inline-flex; align-items: center; align-self: flex-start; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; white-space: nowrap; }
+.pstep-num.zero { color: #fff; background: var(--ink); }
 .pstep h3 { font-size: 18px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; }
 .pstep-list { flex: 1; list-style: none; counter-reset: ps; display: flex; flex-direction: column; gap: 9px; margin: 0; padding: 0; }
 .pstep-list li { counter-increment: ps; position: relative; padding-left: 24px; font-size: 15px; color: var(--ink-mid); line-height: 1.55; }
@@ -1086,15 +1084,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
     <div class="pstep-grid">
       <div class="pstep fade-in">
-        <div class="pstep-head">
-          <span class="pstep-num">STEP 1</span>
-          <span class="pstep-time">사장님 투자 시간 : 5분</span>
-        </div>
+        <span class="pstep-num">STEP 1 · 사장님 시간 5분</span>
         <h3>무료진단</h3>
         <ol class="pstep-list">
           <li>네이버 플레이스 링크 입력</li>
           <li>매장 분석과 질문 <strong>자동 생성</strong></li>
-          <li><strong>10개 질문 1회 측정</strong></li>
+          <li><strong>10개 추천 질문 1회 측정</strong></li>
           <li><strong>노출 점수</strong>와 <strong>경쟁 매장 순위</strong> 확인</li>
         </ol>
         <div class="pstep-fig">
@@ -1104,10 +1099,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </div>
 
       <div class="pstep fade-in">
-        <div class="pstep-head">
-          <span class="pstep-num">STEP 2</span>
-          <span class="pstep-time">사장님 투자 시간 : 5분</span>
-        </div>
+        <span class="pstep-num">STEP 2 · 사장님 시간 5분</span>
         <h3>얼리버드 신청 및 결제</h3>
         <ol class="pstep-list">
           <li><strong>매장 정보 작성</strong><span class="pstep-desc">이 정보로 AI가 우리 매장을 학습합니다</span></li>
@@ -1120,10 +1112,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </div>
 
       <div class="pstep fade-in">
-        <div class="pstep-head">
-          <span class="pstep-num">STEP 3</span>
-          <span class="pstep-time zero">사장님 투자 시간 : 0분</span>
-        </div>
+        <span class="pstep-num zero">STEP 3 · 사장님 시간 0분</span>
         <h3>AI 지속 학습 · 월간 리포트</h3>
         <ol class="pstep-list">
           <li><strong>정밀 측정</strong><span class="pstep-desc">15개 질문 × 5회 (추천 10 + 매장 이해도 5)</span></li>
