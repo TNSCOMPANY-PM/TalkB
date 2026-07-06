@@ -559,24 +559,19 @@ strong { font-weight: 700; }
 .ref-period-date { font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--ink-mid); margin-left: 2px; }
 .ref-chart { margin: 20px 0 6px; }
 .ref-chart svg { width: 100%; height: 180px; display: block; overflow: visible; }
-.ref-metric-key { font-family: var(--f-body); font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: 0; }
-.ref-bignum { margin: 8px 0 2px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(26px,7vw,38px); line-height: 1.15; }
-.ref-bignum .ref-metric-key { vertical-align: middle; }
-.ref-bignum .from { color: var(--ink-muted); }
-.ref-bignum .arw { color: var(--accent); margin: 0 10px; }
-.ref-bignum .to { color: var(--accent); }
-.ref-rankrow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
-.ref-rank-vals { font-family: var(--f-mono); font-size: 18px; font-weight: 700; }
-.ref-rank-vals .from { color: var(--ink-muted); }
-.ref-rank-vals .arw { color: var(--accent); margin: 0 8px; }
-.ref-rank-vals .to { color: var(--accent); }
+.ref-rate-box { margin-top: 18px; padding: 20px 22px 22px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; }
+.ref-rate-label { display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--ink); }
+.ref-rate-nums { margin-top: 8px; font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(32px,8.5vw,46px); line-height: 1.1; }
+.ref-rate-nums .from { color: var(--ink-mid); }
+.ref-rate-nums .arw { color: var(--accent); margin: 0 12px; }
+.ref-rate-nums .to { color: var(--accent); }
 /* 툴팁 */
 .ref-tip { position: relative; display: inline-flex; align-items: center; vertical-align: middle; margin-left: 4px; cursor: pointer; -webkit-tap-highlight-color: transparent; outline: none; }
 .ref-tip-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1.3px solid currentColor; font-family: var(--f-body); font-size: 10px; font-weight: 700; font-style: normal; line-height: 1; opacity: 0.5; }
 .ref-tip:hover .ref-tip-icon, .ref-tip:focus .ref-tip-icon, .ref-tip.open .ref-tip-icon { opacity: 0.9; }
-.ref-tip-bubble { position: absolute; bottom: calc(100% + 9px); left: -8px; width: max-content; max-width: 220px; background: var(--ink); color: #fff; font-family: var(--f-body); font-size: 12.5px; font-weight: 500; line-height: 1.5; letter-spacing: 0; text-align: left; white-space: normal; padding: 9px 12px; border-radius: 8px; box-shadow: var(--sh-md); opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity 0.16s, transform 0.16s, visibility 0.16s; z-index: 20; pointer-events: none; }
-.ref-tip-bubble::after { content: ''; position: absolute; top: 100%; left: 13px; border: 6px solid transparent; border-top-color: var(--ink); }
-.ref-tip:hover .ref-tip-bubble, .ref-tip:focus .ref-tip-bubble, .ref-tip.open .ref-tip-bubble { opacity: 1; visibility: visible; transform: translateY(0); }
+.ref-tip-bubble { position: absolute; bottom: calc(100% + 9px); left: 50%; width: max-content; max-width: 220px; background: var(--ink); color: #fff; font-family: var(--f-body); font-size: 12.5px; font-weight: 500; line-height: 1.5; letter-spacing: 0; text-align: left; white-space: normal; padding: 9px 12px; border-radius: 8px; box-shadow: var(--sh-md); opacity: 0; visibility: hidden; transform: translate(-50%, 4px); transition: opacity 0.16s, transform 0.16s, visibility 0.16s; z-index: 20; pointer-events: none; }
+.ref-tip-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--ink); }
+.ref-tip:hover .ref-tip-bubble, .ref-tip:focus .ref-tip-bubble, .ref-tip.open .ref-tip-bubble { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
 .ref-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; }
 .ref-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh-sm); color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; -webkit-tap-highlight-color: transparent; }
 .ref-nav:hover { background: var(--accent-soft); }
@@ -746,7 +741,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .price-grid { grid-template-columns: 1fr; }
   .early-list { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
-  .ref-rank-vals { font-size: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
@@ -947,21 +941,18 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         periodMain: '1개월 진행 결과',
         periodDate: '2026.06.02 ~ 2026.07.02',
         trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90} ],
-        from: '0%', to: '90%',
-        rankFrom: '추천 없음', rankTo: '1.2위'
+        from: '0%', to: '90%'
       },
       {
         name: '광장동가온',
         periodMain: '1개월 진행 결과',
         periodDate: '2026.06.02 ~ 2026.07.02',
         trend: [ {d:'6/2',v:26.7}, {d:'6/8',v:26.7}, {d:'6/15',v:33.3}, {d:'6/22',v:76.7}, {d:'6/29',v:76.7} ],
-        from: '26.7%', to: '76.7%',
-        rankFrom: '추천 없음', rankTo: '1.5위'
+        from: '26.7%', to: '76.7%'
       }
     ];
 
     var TIP_RATE = 'ChatGPT에게 손님 시점으로 물었을 때 추천 답변에 우리 매장이 나온 비율';
-    var TIP_RANK = '같이 추천된 매장에서 우리 매장이 추천된 평균 순위';
 
     var ACCENT = '#E85D3A', GRID = '#DED7CA', AXIS = '#4A423A', VALTXT = '#3A332C', YAXIS = '#B8B3AB';
 
@@ -1012,13 +1003,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         '<div class="ref-store-name">' + esc(st.name) + '</div>' +
         '<div class="ref-store-period"><strong class="ref-period-main">' + esc(st.periodMain) + '</strong> <span class="ref-period-date">(' + esc(st.periodDate) + ')</span></div>' +
         '<div class="ref-chart">' + buildChart(st.trend) + '</div>' +
-        '<div class="ref-bignum">' +
-          '<span class="ref-metric-key">추천률' + tip(TIP_RATE) + ' :</span> ' +
-          '<span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span>' +
-        '</div>' +
-        '<div class="ref-rankrow">' +
-          '<span class="ref-metric-key">평균 추천 순위' + tip(TIP_RANK) + '</span>' +
-          '<span class="ref-rank-vals"><span class="from">' + esc(st.rankFrom) + '</span><span class="arw">→</span><span class="to">' + esc(st.rankTo) + '</span></span>' +
+        '<div class="ref-rate-box">' +
+          '<div class="ref-rate-label">ChatGPT 추천률' + tip(TIP_RATE) + '</div>' +
+          '<div class="ref-rate-nums"><span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span></div>' +
         '</div>' +
         '</div></div>';
     }
