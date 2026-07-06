@@ -474,20 +474,35 @@ strong { font-weight: 700; }
 .prob-vs { text-align: center; margin-top: 30px; padding: 22px; background: var(--accent-paper); border-radius: var(--r-md); font-size: clamp(16px,4vw,20px); font-weight: 800; color: var(--ink); }
 .prob-vs em { color: var(--accent); }
 
-/* === TIMELINE (왜 지금) === */
-.timeline { margin-top: 40px; }
-.tl-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-.tl-step { position: relative; padding: 0 12px; text-align: center; }
-.tl-step::before { content: ""; position: absolute; top: 15px; left: 0; right: 0; height: 2px; background: var(--line); z-index: 0; }
-.tl-step:first-child::before { left: 50%; }
-.tl-step:last-child::before { right: 50%; }
-.tl-dot { position: relative; z-index: 1; width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 2px solid var(--line); color: var(--ink-muted); font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-family: var(--f-mono); }
-.tl-step.now .tl-dot { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: var(--sh-accent); }
-.tl-wave { font-size: 13px; font-weight: 700; color: var(--ink-mid); }
-.tl-step.now .tl-wave { color: var(--accent); }
-.tl-yr { font-family: var(--f-mono); font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
-.tl-caption { margin-top: 34px; text-align: center; font-size: clamp(15px,3.8vw,18px); font-weight: 700; color: var(--ink); }
-.tl-caption em { color: var(--accent); }
+/* === TIMELINE (왜 지금) — 세로 연도별 카드 === */
+.timeline { margin-top: 40px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.tl-item { display: flex; gap: 18px; }
+.tl-side { width: 84px; flex-shrink: 0; text-align: right; padding-top: 2px; }
+.tl-year { font-family: var(--f-mono); font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+.tl-chan { font-family: var(--f-mono); font-size: 11px; font-weight: 600; color: var(--ink-muted); margin-top: 3px; line-height: 1.3; }
+.tl-main { flex: 1; min-width: 0; position: relative; padding-left: 24px; border-left: 2px solid var(--line); padding-bottom: 26px; }
+.tl-item:last-child .tl-main { padding-bottom: 0; }
+.tl-main::before { content: ""; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--ink-light); z-index: 1; }
+.tl-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px 20px; }
+.tl-card h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.tl-card p { font-size: 15px; color: var(--ink-mid); line-height: 1.62; }
+.tl-card p + p { margin-top: 12px; }
+/* 2026 강조 */
+.tl-item.now .tl-year, .tl-item.now .tl-chan { color: var(--accent); }
+.tl-item.now .tl-main { border-left-color: var(--accent); }
+.tl-item.now .tl-main::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.tl-item.now .tl-card { background: var(--accent-paper); border-color: var(--accent-soft); }
+/* 다크 결론 박스 */
+.tl-conclusion { margin-top: 40px; background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: 40px 32px; text-align: center; }
+.tl-conclusion .eyebrow-dark { font-family: var(--f-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+.tl-conclusion h3 { font-size: clamp(19px,4.6vw,26px); font-weight: 800; line-height: 1.4; margin-bottom: 14px; }
+.tl-conclusion h3 em { color: var(--accent); }
+.tl-conclusion .sub { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+.tl-conclusion .final { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.14); font-size: clamp(16px,4vw,19px); font-weight: 800; color: #fff; line-height: 1.5; }
+.tl-conclusion .final em { color: var(--accent); }
+.tl-foot { margin-top: 22px; text-align: center; }
+.tl-foot .stat { font-size: clamp(15px,3.8vw,18px); font-weight: 700; color: var(--ink); }
+.tl-foot .src { margin-top: 6px; font-size: 11.5px; color: var(--ink-muted); line-height: 1.5; }
 
 /* === DIAGNOSIS (진단 방식) === */
 .diag-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 34px; align-items: center; margin-top: 36px; }
@@ -669,8 +684,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .hero-cta .btn { width: 100%; min-width: 0; }
   .gpt-conv { min-height: 240px; }
   .prob-grid { grid-template-columns: 1fr; }
-  .tl-track { grid-template-columns: 1fr 1fr; gap: 26px 0; }
-  .tl-step::before { display: none; }
+  .tl-side { width: 62px; }
+  .tl-year { font-size: 17px; }
+  .tl-main { padding-left: 18px; }
+  .tl-card { padding: 15px 16px; }
+  .tl-conclusion { padding: 32px 22px; }
   .proc-grid { grid-template-columns: 1fr 1fr; }
   .price-grid { grid-template-columns: 1fr; }
   .early-list { grid-template-columns: 1fr; }
@@ -795,35 +813,75 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">Why Now</div>
-      <h2 class="headline center">마케팅 채널은 늘 순서대로 왔습니다.</h2>
-      <p class="lead center">그리고 언제나, 먼저 올라탄 매장이 선점했습니다.</p>
+      <h2 class="headline center">AI 마케팅,<br>지금이 선점 타이밍입니다.</h2>
+      <p class="lead center">채널이 열릴 때 먼저 들어간 매장이 수년간 독점합니다.<br>블로그·SNS·유튜브가 그랬듯, AI도 마찬가지입니다.</p>
     </div>
+
     <div class="timeline fade-in">
-      <div class="tl-track">
-        <div class="tl-step">
-          <div class="tl-dot">1</div>
-          <div class="tl-wave">블로그</div>
-          <div class="tl-yr">첫 번째 파도</div>
+      <div class="tl-item">
+        <div class="tl-side">
+          <div class="tl-year">2010</div>
+          <div class="tl-chan">Blog</div>
         </div>
-        <div class="tl-step">
-          <div class="tl-dot">2</div>
-          <div class="tl-wave">SNS</div>
-          <div class="tl-yr">두 번째 파도</div>
-        </div>
-        <div class="tl-step">
-          <div class="tl-dot">3</div>
-          <div class="tl-wave">유튜브</div>
-          <div class="tl-yr">세 번째 파도</div>
-        </div>
-        <div class="tl-step now">
-          <div class="tl-dot">4</div>
-          <div class="tl-wave">AI 추천</div>
-          <div class="tl-yr">네 번째 파도 · 지금</div>
+        <div class="tl-main">
+          <div class="tl-card">
+            <h3>블로그가 새로운 검색 입구</h3>
+            <p>먼저 자리 잡은 매장은 거의 무료로 수년간 트래픽을 독점했습니다. 지금은 수백만원을 써도 같은 효과가 나지 않습니다.</p>
+          </div>
         </div>
       </div>
-      <p class="tl-caption">지금은 <em>AI 추천이라는 네 번째 파도</em>의 시작점입니다. 먼저 시작한 매장이 선점합니다.</p>
-      <p class="fade-in" style="text-align:center; margin-top:20px; font-size:clamp(15px,3.8vw,18px); font-weight:700; color:var(--ink);">국내 소비자 2명 중 1명이 이미 AI 검색을 사용합니다.</p>
-      <p class="fade-in" style="text-align:center; margin-top:6px; font-size:11.5px; color:var(--ink-muted); line-height:1.5;">오픈서베이 AI 검색 트렌드 리포트 2026, ChatGPT 이용률 54.5%</p>
+
+      <div class="tl-item">
+        <div class="tl-side">
+          <div class="tl-year">2014</div>
+          <div class="tl-chan">SNS ·<br>Instagram</div>
+        </div>
+        <div class="tl-main">
+          <div class="tl-card">
+            <h3>인스타를 선점한 브랜드</h3>
+            <p>초기 진입 브랜드는 팔로워 자산을 무료로 쌓았습니다. 뒤늦게 들어가려면 인플루언서 광고비가 필요하고 효율은 절반 이하입니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-side">
+          <div class="tl-year">2017</div>
+          <div class="tl-chan">YouTube ·<br>TikTok</div>
+        </div>
+        <div class="tl-main">
+          <div class="tl-card">
+            <h3>유튜브·쇼츠를 선점한 채널</h3>
+            <p>이 시기 진입한 채널이 지금의 구독자 자산을 보유합니다. 지금 같은 규모로 성장하는 건 사실상 불가능합니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item now">
+        <div class="tl-side">
+          <div class="tl-year">2026</div>
+          <div class="tl-chan">AI Search</div>
+        </div>
+        <div class="tl-main">
+          <div class="tl-card">
+            <h3>AI 검색 · 네 번째 파도</h3>
+            <p>똑같은 패턴이 반복되고 있습니다. 소비자는 이미 AI에게 묻고 있고, 지금 자리를 잡은 매장은 노출됩니다. AI는 한번 신뢰한 출처를 다시 노출시키는 경향이 있어, 먼저 쌓인 노출이 다음 노출로 이어지며 더 단단해집니다.</p>
+            <p>1년 뒤 진입하려면, 이미 자리 잡은 경쟁사를 밀어내야 합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-conclusion fade-in">
+      <div class="eyebrow-dark">The Pattern Repeats</div>
+      <h3>블로그·SNS·유튜브는 이제<br><em>누구나 뛰어드는 레드오션</em>이 됐습니다.</h3>
+      <p class="sub">광고비를 써도 효율은 떨어지고, 효과는 오래 못 갑니다.</p>
+      <p class="final">지금 이 순간이, <em>AI 검색의 자리를 선점</em>할 최고의 타이밍입니다.</p>
+    </div>
+
+    <div class="tl-foot fade-in">
+      <div class="stat">국내 소비자 2명 중 1명이 이미 AI 검색을 사용합니다.</div>
+      <div class="src">오픈서베이 AI 검색 트렌드 리포트 2026, ChatGPT 이용률 54.5%</div>
     </div>
   </div>
 </section>
