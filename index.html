@@ -549,6 +549,19 @@ strong { font-weight: 700; }
 .pstep-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
 .pstep-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
 
+/* === 진행 절차 — 어드민 톤 시안 (app.talkb.co.kr 토큰: 쿨 그레이 · Toss풍) === */
+#process.admin-tone { background: #F5F6F8; }
+#process.admin-tone .headline { color: #191F28; }
+#process.admin-tone .lead { color: #4E5968; }
+#process.admin-tone .pstep { background: #FFFFFF; border: none; border-radius: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 32px -12px rgba(0,0,0,0.10); }
+#process.admin-tone .pstep h3 { color: #191F28; }
+#process.admin-tone .pstep-list li { color: #4E5968; }
+#process.admin-tone .pstep-list strong { color: #191F28; }
+#process.admin-tone .pstep-desc { color: #8B95A1; }
+#process.admin-tone .pstep-num.zero { background: #191F28; }
+#process.admin-tone .pstep-fig img { border-color: #E5E8EB; }
+#process.admin-tone .pstep-ph { border-color: #D9DEE4; background: repeating-linear-gradient(45deg, #F2F4F6, #F2F4F6 12px, #E9EDF1 12px, #E9EDF1 24px); color: #8B95A1; }
+
 /* === REFERENCE (매장 카드 슬라이드) === */
 .ref-slider { position: relative; margin-top: 38px; max-width: 640px; margin-left: auto; margin-right: auto; }
 .ref-viewport { overflow: hidden; padding: 6px; margin: -6px; }
@@ -1074,7 +1087,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 </section>
 
 <!-- ═══════════════ 6. 진행 절차 (STEP 3단계 · 구 진단+진행방식 통합) ═══════════════ -->
-<section class="section section-soft" id="process">
+<section class="section admin-tone" id="process">
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">진행 절차</div>
