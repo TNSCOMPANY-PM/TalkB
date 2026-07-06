@@ -697,6 +697,15 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 10px; }
 .bottom-cta .btn { flex: 1; padding: 14px 16px; font-size: 17px; }
 .bottom-cta-primary { flex: 1.6; }
+/* 카카오 상담 FAB (우측 하단 고정, sticky 바 위) */
+.kakao-fab { position: fixed; right: 20px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 96; width: 56px; height: 56px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: #FEE500; box-shadow: 0 6px 20px rgba(20,17,15,0.22); display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease, box-shadow 0.15s ease; -webkit-tap-highlight-color: transparent; }
+.kakao-fab:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(20,17,15,0.28); }
+.kakao-fab:active { transform: translateY(0); }
+.kakao-fab svg { width: 28px; height: 28px; display: block; }
+@media (max-width: 767px) {
+  .kakao-fab { right: 16px; bottom: calc(80px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
+  .kakao-fab svg { width: 26px; height: 26px; }
+}
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
 /* Fade-in */
@@ -1479,11 +1488,20 @@ BLIND-END: #contact -->
   </div>
 </div>
 
+<!-- 카카오 상담 FAB (우측 하단 고정) -->
+<button type="button" id="kakaoFab" class="kakao-fab" aria-label="카카오톡 상담">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#3C1E1E" d="M12 3.2C6.9 3.2 3 6.44 3 10.35c0 2.5 1.68 4.7 4.2 5.98-.18.63-.66 2.35-.76 2.72-.12.46.17.45.36.33.15-.1 2.4-1.63 3.37-2.29.6.09 1.2.13 1.83.13 5.1 0 9-3.24 9-7.15S17.1 3.2 12 3.2z"/></svg>
+</button>
+
 <script>
 'use strict';
 
 /* 카카오채널 URL — 이 상수만 교체하면 전체 카카오 CTA(.js-kakao-link)에 반영됨 */
 const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_JxlWTX';
+
+/* 카카오 JavaScript 키 — 실제 키 받으면 이 한 줄만 교체하면 채팅 플러그인으로 전환됨.
+   'DUMMY...' 상태에서는 SDK 초기화를 건너뛰고 카카오채널 링크(새 탭) fallback으로 동작. */
+const KAKAO_JS_KEY = 'DUMMY_JS_KEY_REPLACE_LATER';
 
 /* 문의 접수 API (TalkB app) — 카카오 전환 준비로 문의 폼 블라인드, 임시 미사용 (삭제 아님·복원용)
 const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
@@ -1496,6 +1514,44 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     a.setAttribute('target', '_blank');
     a.setAttribute('rel', 'noopener');
   });
+
+  /* ── 카카오 상담 FAB + 채팅 플러그인 (더미키: 채널 링크 fallback / 실제키: Kakao.Channel.chat) ── */
+  var kakaoReady = false;
+  function isDummyKey(k) { return !k || k.indexOf('DUMMY') === 0; }
+  function channelPublicId() { return KAKAO_CHANNEL_URL.split('/').pop(); } // '_JxlWTX'
+  function openChannelFallback() { window.open(KAKAO_CHANNEL_URL, '_blank', 'noopener'); }
+
+  function initKakaoSdk() {
+    if (isDummyKey(KAKAO_JS_KEY)) return;          // 더미키: 초기화 스킵 (SDK 에러 방지)
+    if (typeof window.Kakao === 'undefined') return;
+    try {
+      if (!window.Kakao.isInitialized()) window.Kakao.init(KAKAO_JS_KEY);
+      kakaoReady = window.Kakao.isInitialized();
+    } catch (e) { kakaoReady = false; }
+  }
+
+  function loadKakaoSdk() {
+    if (isDummyKey(KAKAO_JS_KEY)) return;          // 더미키: SDK 로드하지 않음
+    if (typeof window.Kakao !== 'undefined') { initKakaoSdk(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
+    s.crossOrigin = 'anonymous';
+    s.onload = initKakaoSdk;
+    s.onerror = function () { kakaoReady = false; };
+    document.head.appendChild(s);
+  }
+
+  var kakaoFab = document.getElementById('kakaoFab');
+  if (kakaoFab) {
+    kakaoFab.addEventListener('click', function () {
+      if (!isDummyKey(KAKAO_JS_KEY) && kakaoReady && window.Kakao && window.Kakao.Channel) {
+        try { window.Kakao.Channel.chat({ channelPublicId: channelPublicId() }); return; }
+        catch (e) { /* 실패 시 아래 채널 링크로 폴백 */ }
+      }
+      openChannelFallback();                       // 더미키 또는 SDK 미준비 → 채널 새 탭
+    });
+  }
+  loadKakaoSdk();
 
   /* ── 모바일 드로어 ── */
   var hamburger = document.getElementById('navHamburger');
