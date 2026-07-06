@@ -54,7 +54,6 @@
   },
   "legalName": "(주)티앤에스컴퍼니",
   "taxID": "455-86-00636",
-  "email": "hello@talkb.co.kr",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)",
@@ -65,7 +64,8 @@
   },
   "areaServed": "KR",
   "sameAs": [
-    "https://talkb.co.kr"
+    "https://talkb.co.kr",
+    "https://pf.kakao.com/_JxlWTX/chat"
   ],
   "knowsAbout": [
     "ChatGPT optimization",
@@ -196,7 +196,7 @@
       "name": "환불 정책이 어떻게 되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "월 구독 기준, 결제일 기준 7일 이내 미사용 시 전액 환불이 가능합니다. 7일 이후에는 당월 잔여 기간 환불은 되지 않으며, 다음 달 결제 전 해지 요청 시 즉시 해지 처리됩니다. 해지 절차: hello@talkb.co.kr 로 해지 요청 메일 발송 → 24시간 내 확인 → 당월 말 해지 처리. 위약금 없음."
+        "text": "월 구독 기준, 결제일 기준 7일 이내 미사용 시 전액 환불이 가능합니다. 7일 이후에는 당월 잔여 기간 환불은 되지 않으며, 다음 달 결제 전 해지 요청 시 즉시 해지 처리됩니다. 해지 절차: 카카오채널(https://pf.kakao.com/_JxlWTX/chat)로 해지 요청 → 24시간 내 확인 → 당월 말 해지 처리. 위약금 없음."
       }
     },
     {
@@ -695,9 +695,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
 /* === STICKY CTA === */
 .bottom-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 95; background: rgba(255,255,255,0.96); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(20,17,15,0.07); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
-.bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 10px; }
-.bottom-cta .btn { flex: 1; padding: 14px 16px; font-size: 17px; }
-.bottom-cta-primary { flex: 1.6; }
+.bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.bottom-cta-promo { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 auto; }
+.bcp-lead { font-size: 15.5px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.bcp-dday { flex-shrink: 0; font-family: var(--f-mono); font-size: 14px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.bottom-cta .btn { flex: 0 0 auto; padding: 13px 22px; font-size: 16px; white-space: nowrap; }
+.bcp-short, .bcta-short { display: none; }
 /* 카카오 상담 FAB (우측 하단 고정, sticky 바 위) */
 .kakao-fab { position: fixed; right: 20px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 96; width: 56px; height: 56px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: #FEE500; box-shadow: 0 6px 20px rgba(20,17,15,0.22); display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease, box-shadow 0.15s ease; -webkit-tap-highlight-color: transparent; }
 .kakao-fab:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(20,17,15,0.28); }
@@ -747,7 +750,13 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
-  .bottom-cta .btn { padding: 13px 10px; font-size: 17px; }
+  .bottom-cta-inner { gap: 10px; }
+  .bottom-cta-promo { gap: 7px; }
+  .bcp-lead { font-size: 13px; }
+  .bcp-dday { font-size: 12.5px; padding: 2px 8px; }
+  .bottom-cta .btn { padding: 12px 13px; font-size: 14px; }
+  .bcp-full, .bcta-full { display: none; }
+  .bcp-short, .bcta-short { display: inline; }
 }
 @media (max-width: 400px) {
   .container { padding: 0 16px; }
@@ -954,7 +963,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     var TIP_RATE = 'ChatGPT에게 손님 시점으로 물었을 때 추천 답변에 우리 매장이 나온 비율';
     var TIP_RANK = '같이 추천된 매장에서 우리 매장이 추천된 평균 순위';
 
-    var ACCENT = '#E85D3A', GRID = '#DED7CA', AXIS = '#4A423A', VALTXT = '#3A332C';
+    var ACCENT = '#E85D3A', GRID = '#DED7CA', AXIS = '#4A423A', VALTXT = '#3A332C', YAXIS = '#B8B3AB';
 
     function fmt(v) { return (v % 1 === 0) ? String(v) : v.toFixed(1); }
 
@@ -968,7 +977,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       [0, 50, 100].forEach(function (g) {
         var y = yf(g);
         s += '<line x1="' + x0 + '" y1="' + y + '" x2="' + x1 + '" y2="' + y + '" stroke="' + GRID + '" stroke-width="1"/>';
-        s += '<text x="' + (x0 - 8) + '" y="' + (y + 4.5) + '" text-anchor="end" font-family="monospace" font-size="14" font-weight="600" fill="' + AXIS + '">' + g + '</text>';
+        s += '<text x="' + (x0 - 8) + '" y="' + (y + 4) + '" text-anchor="end" font-family="monospace" font-size="12" font-weight="500" fill="' + YAXIS + '">' + g + '</text>';
       });
       // 꺾은선
       var pts = trend.map(function (p, i) { return xf(i) + ',' + yf(p.v); }).join(' ');
@@ -981,7 +990,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         } else {
           s += '<circle cx="' + x + '" cy="' + y + '" r="3.5" fill="#fff" stroke="' + ACCENT + '" stroke-width="2"/>';
         }
-        s += '<text x="' + x + '" y="' + (y - 12) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="700" fill="' + (last ? ACCENT : VALTXT) + '">' + fmt(p.v) + '</text>';
+        if (i === 0 || last) {
+          s += '<text x="' + x + '" y="' + (y - 12) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="700" fill="' + (last ? ACCENT : VALTXT) + '">' + fmt(p.v) + '</text>';
+        }
         s += '<text x="' + x + '" y="' + (yBot + 20) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="600" fill="' + AXIS + '">' + p.d + '</text>';
       });
       s += '</svg>';
@@ -1184,6 +1195,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <div class="section-head fade-in">
       <div class="eyebrow center">가격 안내</div>
       <h2 class="headline center">지금은 얼리버드 기간입니다.</h2>
+      <p class="lead center">무료진단으로 현재 상태를 확인하신 뒤, 얼리버드로 시작하실 수 있습니다.</p>
     </div>
 
     <div class="price-grid fade-in">
@@ -1317,7 +1329,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <button class="faq-q">환불 정책이 어떻게 되나요?<span class="ico"></span></button>
         <div class="faq-a"><div class="faq-a-inner">
           월 구독 기준, <strong>결제일 기준 7일 이내 미사용 시 전액 환불</strong>이 가능합니다. 7일 이후에는 당월 잔여 기간 환불은 되지 않으며, 다음 달 결제 전 해지 요청 시 즉시 해지 처리됩니다.<br><br>
-          <strong>해지 절차</strong>: hello@talkb.co.kr 으로 "해지 요청" 메일 발송 → 24시간 내 확인 메일 수령 → 당월 말 해지 처리. 위약금 없음.
+          <strong>해지 절차</strong>: <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로 "해지 요청" → 24시간 내 확인 → 당월 말 해지 처리. 위약금 없음.
         </div></div>
       </div>
       <div class="faq-item">
@@ -1440,7 +1452,6 @@ BLIND-END: #contact -->
         <ul class="footer-links">
           <li><a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널 문의</a></li>
           <li><a href="#faq">자주 묻는 질문</a></li>
-          <li><a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a></li>
           <li><a href="privacy.html">개인정보 처리방침</a></li>
         </ul>
       </div>
@@ -1467,8 +1478,7 @@ BLIND-END: #contact -->
       <div class="footer-biz-row"><span class="footer-biz-label">사업자등록번호</span><span class="footer-biz-value">455-86-00636</span></div>
       <div class="footer-biz-row"><span class="footer-biz-label">법인등록번호</span><span class="footer-biz-value">110111-6223103</span></div>
       <div class="footer-biz-row wide"><span class="footer-biz-label">사업장 소재지</span><span class="footer-biz-value">서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">대표 이메일</span><span class="footer-biz-value"><a href="mailto:hello@talkb.co.kr">hello@talkb.co.kr</a></span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">대표 전화</span><span class="footer-biz-value">010-XXXX-XXXX <span style="color:rgba(255,255,255,0.3);font-size:10.5px;margin-left:6px;">(준비 중)</span></span></div>
+      <div class="footer-biz-row"><span class="footer-biz-label">문의 채널</span><span class="footer-biz-value"><a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널 상담</a></span></div>
     </div>
 
     <div class="footer-bottom">
@@ -1481,10 +1491,11 @@ BLIND-END: #contact -->
 <!-- Sticky CTA -->
 <div class="bottom-cta" id="bottomCta">
   <div class="bottom-cta-inner">
-    <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary bottom-cta-primary">AI추천률, 실시간 무료진단</a>
-    <!-- 카카오 전환 준비: sticky 문의 버튼 임시 숨김 (삭제 아님)
-    <a href="#contact" class="btn btn-ghost">문의하기</a>
-    -->
+    <div class="bottom-cta-promo">
+      <span class="bcp-lead"><span class="bcp-full">얼리버드 평생 30% 할인 · 8/31 마감</span><span class="bcp-short">평생 30% 할인</span></span>
+      <span class="bcp-dday" id="bcpDday" aria-live="polite"></span>
+    </div>
+    <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary bottom-cta-primary"><span class="bcta-full">무료진단 후 얼리버드 시작</span><span class="bcta-short">무료진단 시작</span></a>
   </div>
 </div>
 
@@ -1514,6 +1525,17 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     a.setAttribute('target', '_blank');
     a.setAttribute('rel', 'noopener');
   });
+
+  /* ── 하단바 얼리버드 D-day 카운트다운 (마감 2026-08-31 기준 자동 계산) ── */
+  var ddayEl = document.getElementById('bcpDday');
+  if (ddayEl) {
+    var deadline = new Date(2026, 7, 31); // 월 0-index: 7 = 8월
+    var today = new Date();
+    deadline.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+    var days = Math.ceil((deadline - today) / 86400000);
+    ddayEl.textContent = days > 0 ? ('D-' + days) : (days === 0 ? 'D-DAY' : '마감');
+  }
 
   /* ── 카카오 상담 FAB + 채팅 플러그인 (더미키: 채널 링크 fallback / 실제키: Kakao.Channel.chat) ── */
   var kakaoReady = false;
