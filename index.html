@@ -438,9 +438,9 @@ strong { font-weight: 700; }
 /* GPT mockup */
 /* ChatGPT 시뮬레이션 — app.talkb.co.kr/proposal 디자인 준거 */
 .gpt-mock {
-  max-width: 460px; margin: 40px auto 0;
+  width: 100%; max-width: 620px; margin: 40px auto 0;
   background: #fff; border: 1px solid #e5e7eb;
-  border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); overflow: hidden;
+  border-radius: 14px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); overflow: hidden;
   text-align: left;
 }
 .gpt-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
@@ -450,16 +450,16 @@ strong { font-weight: 700; }
 .gpt-menu { display: flex; flex-direction: column; gap: 3px; padding: 2px 4px; }
 .gpt-menu span { width: 14px; height: 2px; background: #9ca3af; border-radius: 999px; }
 /* 대화 영역 — 답변 표시 시 크기로 고정하여 페이지 흔들림 방지 */
-.gpt-conv { padding: 14px 12px 12px; background: #fff; min-height: 168px; }
-.gpt-q { display: flex; justify-content: flex-end; margin-bottom: 12px; }
-.gpt-q .bubble { background: #f4f4f4; border-radius: 18px 18px 4px 18px; padding: 9px 14px; max-width: 84%; font-size: 13px; color: #111; line-height: 1.5; }
-.sim-cursor { display: inline-block; width: 2px; height: 13px; background: #111; margin-left: 2px; vertical-align: middle; animation: cursor-blink .8s step-end infinite; }
+.gpt-conv { padding: 18px 16px 16px; background: #fff; min-height: 176px; }
+.gpt-q { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+.gpt-q .bubble { background: #f4f4f4; border-radius: 18px 18px 4px 18px; padding: 10px 15px; max-width: 84%; font-size: 15px; color: #111; line-height: 1.5; }
+.sim-cursor { display: inline-block; width: 2px; height: 16px; background: #111; margin-left: 2px; vertical-align: middle; animation: cursor-blink .8s step-end infinite; }
 @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-.gpt-a { display: flex; gap: 8px; align-items: flex-start; opacity: 0; transition: opacity .4s ease; }
+.gpt-a { display: flex; gap: 9px; align-items: flex-start; opacity: 0; transition: opacity .4s ease; }
 .gpt-a.show { opacity: 1; }
-.gpt-av { width: 24px; height: 24px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-.gpt-a .txt { font-size: 12.5px; color: #374151; line-height: 1.65; }
-.sim-note { max-width: 460px; margin: 10px auto 0; text-align: center; font-size: 11.5px; color: var(--ink-muted); }
+.gpt-av { width: 26px; height: 26px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.gpt-a .txt { font-size: 14px; color: #374151; line-height: 1.65; }
+.sim-note { max-width: 620px; margin: 12px auto 0; text-align: center; font-size: 12px; color: var(--ink-muted); }
 
 /* === PROBLEM === */
 .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 34px; }
@@ -662,6 +662,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
   .hero-cta .btn { width: 100%; min-width: 0; }
+  .gpt-conv { min-height: 224px; }
   .prob-grid { grid-template-columns: 1fr; }
   .tl-track { grid-template-columns: 1fr 1fr; gap: 26px 0; }
   .tl-step::before { display: none; }
@@ -678,6 +679,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 }
 @media (max-width: 400px) {
   .container { padding: 0 16px; }
+  .gpt-conv { min-height: 248px; }
   .proc-grid { grid-template-columns: 1fr; }
   .ref-row { grid-template-columns: 1fr 38px 38px; }
   .ref-row .ref-bar { display: none; }
@@ -728,16 +730,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="hero">
   <div class="container">
     <div class="hero-inner fade-in">
-      <span class="hero-badge"><span class="dot"></span>요식업 전문 · ChatGPT 추천 노출</span>
       <h1 class="hero-title">ChatGPT에 우리 가게,<br><em>나올까요?</em></h1>
       <p class="hero-sub">
         손님들이 이제 ChatGPT에게 맛집을 물어봅니다.<br>
         토크비는 ChatGPT가 우리 매장을 추천하게 만드는 서비스입니다.
       </p>
-      <div class="hero-cta">
-        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">AI 노출 실시간 확인</a>
-        <a href="#contact" class="btn btn-ghost btn-lg">문의하기</a>
-      </div>
 
       <!-- GPT mockup -->
       <div class="gpt-mock">
@@ -757,6 +754,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         </div>
       </div>
       <p class="sim-note">※ ChatGPT 시뮬레이션이며, 매장명은 예시입니다.</p>
+
+      <div class="hero-cta">
+        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">AI 노출 실시간 확인</a>
+        <a href="#contact" class="btn btn-ghost btn-lg">문의하기</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1445,7 +1447,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
         setTimeout(tick, 55);
       } else {
         if (cEl) cEl.style.display = 'none';
-        setTimeout(function () { aTxt.textContent = set.a; aEl.classList.add('show'); phase = 'showing'; tick(); }, 900);
+        setTimeout(function () { aEl.classList.add('show'); phase = 'showing'; tick(); }, 900);
       }
     } else if (phase === 'showing') {
       setTimeout(function () { phase = 'erasing'; tick(); }, 2400);
@@ -1458,12 +1460,14 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       } else {
         if (cEl) cEl.style.display = '';
         idx = (idx + 1) % SETS.length;
+        aTxt.textContent = SETS[idx].a;
         phase = 'typing';
         setTimeout(tick, 400);
       }
     }
   }
 
+  aTxt.textContent = SETS[0].a;
   tick();
 })();
 </script>
