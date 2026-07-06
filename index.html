@@ -618,6 +618,19 @@ strong { font-weight: 700; }
 .price-amt.soon { font-size: 22px; color: var(--ink-muted); }
 .price-vat { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
 .price-desc { font-size: 17px; color: var(--ink-mid); line-height: 1.6; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line-soft); flex: 1; }
+.price-old { font-family: var(--f-mono); font-size: 16px; font-weight: 600; color: var(--ink-light); text-decoration: line-through; margin-bottom: 2px; }
+.price-amt.deal { color: var(--accent); }
+.price-keep { margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent-deep); }
+.price-spec { margin: 16px 0 0; padding-top: 16px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.price-spec > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; line-height: 1.5; }
+.price-spec dt { color: var(--ink-muted); font-weight: 600; flex-shrink: 0; }
+.price-spec dd { margin: 0; color: var(--ink); font-weight: 700; text-align: right; }
+.price-cta { margin-top: 18px; }
+.price-link { display: inline-block; align-self: flex-start; margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent-soft); padding-bottom: 2px; transition: border-color 0.2s; }
+.price-link:hover { border-color: var(--accent); }
+.price-notice { max-width: 720px; margin: 22px auto 0; padding: 15px 20px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; font-size: 14.5px; color: var(--ink-mid); line-height: 1.6; }
+.price-notice strong { color: var(--accent-deep); }
+.early-dday { display: inline-flex; align-items: center; margin-left: 10px; font-family: var(--f-mono); font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.14); padding: 6px 12px; border-radius: 999px; margin-bottom: 18px; vertical-align: top; }
 
 .early { margin-top: 30px; background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: 34px 28px; }
 .early-flag { display: inline-flex; align-items: center; gap: 7px; font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: #fff; background: var(--accent); padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
@@ -1185,12 +1198,22 @@ BLIND-END: 구 진행 방식 -->
 
     <div class="price-grid fade-in">
       <div class="price-card featured">
-        <span class="price-flag">지금</span>
+        <span class="price-flag">지금 · 얼리버드</span>
         <span class="price-badge">정식 플랜</span>
         <div class="price-name">ChatGPT 추천 노출</div>
-        <div class="price-amt">₩190,000<span class="per"> /월</span></div>
-        <div class="price-vat">VAT 별도</div>
-        <div class="price-desc">ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트가 모두 포함됩니다.</div>
+        <div class="price-old">₩190,000</div>
+        <div class="price-amt deal">₩133,000<span class="per"> /월</span></div>
+        <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
+        <div class="price-keep">구독 유지 기간 내내 이 가격 그대로</div>
+        <dl class="price-spec">
+          <div><dt>최적화 AI</dt><dd>ChatGPT</dd></div>
+          <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
+          <div><dt>측정 질문 수</dt><dd>15개 (추천 10 + 매장 이해도 5)</dd></div>
+          <div><dt>측정 횟수</dt><dd>5회</dd></div>
+          <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
+          <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
+        </dl>
+        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-block price-cta">무료진단 후 얼리버드 시작</a>
       </div>
       <div class="price-card">
         <span class="price-badge">출시 예정</span>
@@ -1205,12 +1228,19 @@ BLIND-END: 구 진행 방식 -->
         <div class="price-amt soon">별도 문의</div>
         <div class="price-vat">본사·가맹점 통합</div>
         <div class="price-desc">여러 매장을 함께 운영하는 본사·브랜드를 위한 맞춤 견적입니다.</div>
+        <a href="#kakao-channel-placeholder" class="js-kakao-link price-link" target="_blank" rel="noopener">카카오채널로 문의하기 →</a>
       </div>
+    </div>
+
+    <!-- 접수 제한 공지 -->
+    <div class="price-notice fade-in">
+      같은 지역·같은 업종은 <strong>3개 이상 접수받지 않습니다.</strong><br>
+      저희 고객끼리 경쟁하게 만들 수 없기 때문입니다. 중복 신청이 많은 지역·업종은 접수가 조기 제한될 수 있습니다.
     </div>
 
     <!-- 얼리버드 블록 -->
     <div class="early fade-in">
-      <span class="early-flag"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;"></span>얼리버드 혜택</span>
+      <span class="early-flag"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;"></span>얼리버드 혜택</span><span class="early-dday"><span class="js-dday"></span>&nbsp;· 8/31 마감</span>
       <div class="early-title">얼리버드 기간 등록 매장은<br>구독 유지 기간 내내 <em>평생</em> <em>30%</em> 할인 적용</div>
       <div class="early-list">
         <div class="early-item">
@@ -1510,16 +1540,18 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     a.setAttribute('rel', 'noopener');
   });
 
-  /* ── 하단바 얼리버드 D-day 카운트다운 (마감 2026-08-31 기준 자동 계산) ── */
-  var ddayEl = document.getElementById('bcpDday');
-  if (ddayEl) {
+  /* ── 얼리버드 D-day 카운트다운 (마감 2026-08-31 기준 자동 계산 · 하단바 + 가격 섹션) ── */
+  (function () {
     var deadline = new Date(2026, 7, 31); // 월 0-index: 7 = 8월
     var today = new Date();
     deadline.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
     var days = Math.ceil((deadline - today) / 86400000);
-    ddayEl.textContent = days > 0 ? ('D-' + days) : (days === 0 ? 'D-DAY' : '마감');
-  }
+    var txt = days > 0 ? ('D-' + days) : (days === 0 ? 'D-DAY' : '마감');
+    var ddayEl = document.getElementById('bcpDday');
+    if (ddayEl) ddayEl.textContent = txt;
+    document.querySelectorAll('.js-dday').forEach(function (el) { el.textContent = txt; });
+  })();
 
   /* ── 카카오 상담 FAB + 채팅 플러그인 (더미키: 채널 링크 fallback / 실제키: Kakao.Channel.chat) ── */
   var kakaoReady = false;
