@@ -537,19 +537,16 @@ strong { font-weight: 700; }
 .pstep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 38px; }
 .pstep { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); display: flex; flex-direction: column; }
 .pstep:not(:last-child)::after { content: '→'; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); font-size: 19px; font-weight: 800; color: var(--accent); z-index: 1; }
-.pstep-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.pstep-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
 .pstep-num { display: inline-flex; align-items: center; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; }
-.pstep-time { display: inline-flex; align-items: center; font-size: 12px; font-weight: 700; color: var(--accent-deep); background: var(--accent-paper); border: 1px solid var(--accent-soft); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
-.pstep-time.zero { color: #fff; background: var(--ink); border-color: var(--ink); }
-.pstep h3 { font-size: 18px; font-weight: 800; margin-bottom: 5px; line-height: 1.4; }
-.pstep-sub { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 14px; line-height: 1.5; }
-.pstep-list { flex: 1; list-style: none; counter-reset: ps; display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; }
+.pstep-time { font-size: 13px; font-weight: 700; color: var(--ink-muted); line-height: 1.4; }
+.pstep-time.zero { color: var(--ink); }
+.pstep h3 { font-size: 18px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; }
+.pstep-list { flex: 1; list-style: none; counter-reset: ps; display: flex; flex-direction: column; gap: 9px; margin: 0; padding: 0; }
 .pstep-list li { counter-increment: ps; position: relative; padding-left: 24px; font-size: 15px; color: var(--ink-mid); line-height: 1.55; }
 .pstep-list li::before { content: counter(ps) '.'; position: absolute; left: 0; font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); }
 .pstep-list strong { color: var(--ink); font-weight: 700; }
-.pstep-cta { display: inline-block; align-self: flex-start; margin-top: 14px; font-size: 15px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent-soft); padding-bottom: 2px; transition: border-color 0.2s; }
-.pstep-cta:hover { border-color: var(--accent); }
-.pstep-cycle { margin-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--accent); line-height: 1.5; }
+.pstep-desc { display: block; margin-top: 2px; font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; }
 .pstep-fig { margin-top: 18px; }
 .pstep-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
 .pstep-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
@@ -1083,8 +1080,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">진행 절차</div>
-      <h2 class="headline center">우리 매장 AI 추천 최적화,<br>이렇게 진행됩니다</h2>
-      <p class="lead center">소중한 사장님 시간을 지켜 드립니다.<br><strong class="lead-punch">딱! 10분만 투자하세요.</strong></p>
+      <h2 class="headline center">우리 매장 AI 추천 최적화, 이렇게 진행됩니다</h2>
+      <p class="lead center">소중한 사장님 시간을 지켜 드립니다. <strong class="lead-punch">딱! 10분만 투자하세요.</strong></p>
     </div>
 
     <div class="pstep-grid">
@@ -1094,14 +1091,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <span class="pstep-time">사장님 투자 시간 : 5분</span>
         </div>
         <h3>무료진단</h3>
-        <div class="pstep-sub">5분 안에 직접 확인</div>
         <ol class="pstep-list">
           <li>네이버 플레이스 링크 입력</li>
           <li>매장 분석과 질문 <strong>자동 생성</strong></li>
           <li><strong>10개 질문 1회 측정</strong></li>
           <li><strong>노출 점수</strong>와 <strong>경쟁 매장 순위</strong> 확인</li>
         </ol>
-        <a href="https://app.talkb.co.kr/onboard" class="pstep-cta">지금 무료진단 해보기 →</a>
         <div class="pstep-fig">
           <img src="images/diagnosis/step4-score.jpg" alt="무료진단 — 노출 점수 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1114,9 +1109,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <span class="pstep-time">사장님 투자 시간 : 5분</span>
         </div>
         <h3>얼리버드 신청 및 결제</h3>
-        <div class="pstep-sub">사장님이 하실 일은 여기까지</div>
         <ol class="pstep-list">
-          <li><strong>매장 정보 작성</strong> — 이 정보로 AI가 우리 매장을 학습합니다</li>
+          <li><strong>매장 정보 작성</strong><span class="pstep-desc">이 정보로 AI가 우리 매장을 학습합니다</span></li>
           <li>얼리버드 <strong>신청 및 결제</strong></li>
         </ol>
         <div class="pstep-fig">
@@ -1131,13 +1125,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <span class="pstep-time zero">사장님 투자 시간 : 0분</span>
         </div>
         <h3>AI 지속 학습 · 월간 리포트</h3>
-        <div class="pstep-sub">사장님이 하실 일은 없습니다. 토크비가 알아서 해드려요.</div>
         <ol class="pstep-list">
-          <li>정밀 측정 — <strong>15개 질문 × 5회</strong> (추천 10 + 매장 이해도 5)</li>
-          <li><strong>AI 지속 학습</strong> — 매주 측정 결과를 반영해 <strong>매월 계속 개선</strong></li>
-          <li><strong>주 1회 측정</strong> 누적 → <strong>월 1회 리포트</strong> 발송</li>
+          <li><strong>정밀 측정</strong><span class="pstep-desc">15개 질문 × 5회 (추천 10 + 매장 이해도 5)</span></li>
+          <li><strong>AI 지속 학습</strong><span class="pstep-desc">매주 측정 결과를 반영해 매월 계속 개선</span></li>
+          <li><strong>주 1회 측정</strong> 누적 → <strong>매월 1회 리포트</strong> 발송</li>
         </ol>
-        <div class="pstep-cycle">↻ 한 번으로 끝나지 않습니다. 측정 → 학습 → 개선을 매월 반복합니다.</div>
         <div class="pstep-fig">
           <img src="images/diagnosis/step-report.jpg" alt="AI 지속 학습과 월간 리포트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
