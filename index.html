@@ -290,6 +290,7 @@ body {
   text-rendering: optimizeLegibility;
   word-break: keep-all;
   overflow-x: hidden;
+  padding-bottom: 76px; /* 하단 고정 CTA 바 공간 확보 */
 }
 
 a { color: inherit; text-decoration: none; }
@@ -383,9 +384,12 @@ strong { font-weight: 700; }
   align-items: center;
   justify-content: space-between;
 }
-.nav-brand { display: flex; align-items: baseline; gap: 8px; font-weight: 800; }
-.nav-brand-main { font-size: 20px; letter-spacing: -0.02em; }
-.nav-brand-kr { font-size: 13px; color: var(--ink-muted); font-weight: 600; margin-left: 4px; }
+.nav-brand { display: flex; flex-direction: column; justify-content: center; gap: 1px; font-weight: 800; line-height: 1.12; }
+.nav-brand-top { display: flex; align-items: center; gap: 5px; }
+.nav-brand-main { font-size: 19px; letter-spacing: -0.02em; }
+.nav-brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.nav-brand-kr { font-size: 13px; color: var(--ink-muted); font-weight: 600; }
+.nav-brand-slogan { font-size: 11px; color: var(--ink-muted); font-weight: 600; letter-spacing: -0.01em; }
 .nav-links { list-style: none; display: flex; align-items: center; gap: 26px; }
 .nav-links > li > a { font-size: 15px; font-weight: 600; color: var(--ink-mid); transition: color .15s; }
 .nav-links > li > a:hover { color: var(--accent); }
@@ -638,9 +642,10 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .footer-bottom { margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.45); }
 
 /* === STICKY CTA === */
-.sticky-cta { position: fixed; bottom: 20px; right: 20px; z-index: 90; background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; padding: 13px 20px; border-radius: 999px; box-shadow: var(--sh-accent); cursor: pointer; display: flex; align-items: center; gap: 8px; opacity: 0; visibility: hidden; transform: translateY(12px); transition: .3s; }
-.sticky-cta.show { opacity: 1; visibility: visible; transform: translateY(0); }
-.sticky-cta .dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.6s infinite; }
+.bottom-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 95; background: rgba(255,255,255,0.96); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(20,17,15,0.07); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+.bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 10px; }
+.bottom-cta .btn { flex: 1; padding: 14px 16px; font-size: 16px; }
+.bottom-cta-primary { flex: 1.6; }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
 /* Fade-in */
@@ -675,7 +680,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .footer-grid { grid-template-columns: 1fr; gap: 26px; }
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
-  .sticky-cta { bottom: 14px; right: 14px; }
+  .bottom-cta .btn { padding: 13px 10px; font-size: 15px; }
 }
 @media (max-width: 400px) {
   .container { padding: 0 16px; }
@@ -693,8 +698,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <nav class="topnav" id="topnav">
   <div class="nav-inner">
     <a href="#" class="nav-brand">
-      <span class="nav-brand-main">TalkB</span>
-      <span class="nav-brand-kr">토크비</span>
+      <span class="nav-brand-top"><span class="nav-brand-main">TalkB</span><span class="nav-brand-dot"></span><span class="nav-brand-kr">토크비</span></span>
+      <span class="nav-brand-slogan">맛집 전문 AI추천 최적화 솔루션</span>
     </a>
     <ul class="nav-links">
       <li><a href="#problem">문제</a></li>
@@ -730,10 +735,10 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="hero">
   <div class="container">
     <div class="hero-inner fade-in">
-      <h1 class="hero-title">ChatGPT에 우리 가게,<br><em>나올까요?</em></h1>
+      <h1 class="hero-title">AI가 우리 매장을<br><em>추천하고 있나요?</em></h1>
       <p class="hero-sub">
-        손님들이 이제 ChatGPT에게 맛집을 물어봅니다.<br>
-        토크비는 ChatGPT가 우리 매장을 추천하게 만드는 서비스입니다.
+        손님들은 이제 AI에게 맛집을 물어봅니다.<br>
+        토크비가 우리 매장을 AI가 추천하게 최적화 해드립니다.
       </p>
 
       <!-- GPT mockup -->
@@ -754,11 +759,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         </div>
       </div>
       <p class="sim-note">※ ChatGPT 시뮬레이션이며, 매장명은 예시입니다.</p>
-
-      <div class="hero-cta">
-        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">AI 노출 실시간 확인</a>
-        <a href="#contact" class="btn btn-ghost btn-lg">문의하기</a>
-      </div>
     </div>
   </div>
 </section>
@@ -1161,7 +1161,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <li>초기 파트너 전용 인증마크 제공</li>
         </ul>
         <div class="final-actions">
-          <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">AI 노출 실시간 확인</a>
+          <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">AI 추천, 무료진단</a>
         </div>
       </div>
 
@@ -1279,9 +1279,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 </footer>
 
 <!-- Sticky CTA -->
-<div class="sticky-cta" id="stickyCta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-  <span class="dot"></span>
-  문의하기
+<div class="bottom-cta" id="bottomCta">
+  <div class="bottom-cta-inner">
+    <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary bottom-cta-primary">AI 추천, 무료진단</a>
+    <a href="#contact" class="btn btn-ghost">문의하기</a>
+  </div>
 </div>
 
 <script>
@@ -1316,15 +1318,6 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       ans.style.maxHeight = isOpen ? (ans.scrollHeight + 'px') : '0';
     });
   });
-
-  /* ── Sticky CTA 노출 (히어로 지난 뒤) ── */
-  var sticky = document.getElementById('stickyCta');
-  if (sticky) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 640) sticky.classList.add('show');
-      else sticky.classList.remove('show');
-    }, { passive: true });
-  }
 
   /* ── Fade-in ── */
   if ('IntersectionObserver' in window) {
