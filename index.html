@@ -453,6 +453,10 @@ strong { font-weight: 700; }
 .gpt-a .pick.mine { border-color: var(--accent); box-shadow: 0 2px 8px rgba(232,93,58,0.14); }
 .gpt-a .pick .nm { font-weight: 700; font-size: 13.5px; }
 .gpt-a .pick .tag { margin-left: auto; font-size: 10.5px; font-weight: 700; font-family: var(--f-mono); color: var(--accent); background: var(--accent-soft); padding: 2px 7px; border-radius: 6px; }
+.gpt-a:empty { display: none; }
+.sim-cursor { display: inline-block; width: 2px; height: 15px; background: #fff; margin-left: 2px; vertical-align: middle; animation: cursor-blink .8s step-end infinite; }
+@keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.sim-note { max-width: 560px; margin: 10px auto 0; text-align: center; font-size: 11.5px; color: var(--ink-muted); }
 
 /* === PROBLEM === */
 .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 34px; }
@@ -739,19 +743,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <span class="lbl">ChatGPT</span>
         </div>
         <div class="gpt-conv">
-          <div class="gpt-q">이 근처 분위기 좋은 한식당 추천해줘</div>
-          <div class="gpt-a">
-            근처에서 추천할 만한 한식당을 정리해 드릴게요.
-            <div class="pick mine">
-              <span class="nm">우리 매장</span>
-              <span class="tag">추천됨</span>
-            </div>
-            <div class="pick">
-              <span class="nm">옆집 식당</span>
-            </div>
-          </div>
+          <div class="gpt-q"><span id="simQuery"></span><span class="sim-cursor" id="simCursor"></span></div>
+          <div class="gpt-a" id="simAnswer"></div>
         </div>
       </div>
+      <p class="sim-note">※ ChatGPT 시뮬레이션이며, 매장명은 예시입니다.</p>
     </div>
   </div>
 </section>
@@ -1398,6 +1394,66 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
         });
     });
   }
+})();
+
+/* ── 히어로 ChatGPT 타이핑 시뮬레이션 ── */
+(function () {
+  var qEl = document.getElementById('simQuery');
+  var cEl = document.getElementById('simCursor');
+  var aEl = document.getElementById('simAnswer');
+  if (!qEl || !aEl) return;
+
+  var SETS = [
+    { q: '강남역 근처 단체모임하기 좋은 고기집 추천해줘',
+      a: "강남역이라면 '숯향한우', '고기명가', '우대포차'를 추천드려요. 넓은 룸이 있어 단체 모임에 좋습니다." },
+    { q: '성수동 분위기 좋은 디저트카페 추천해줘',
+      a: "성수동에서는 '슈가레인', '온실디저트', '피어커피'가 인기예요. 통창 뷰와 시그니처 디저트로 사진 찍기 좋습니다." },
+    { q: '마곡 회식하기 좋은 술집 추천해줘',
+      a: "마곡 회식은 '마곡브루하우스', '포차공감', '나이트셀러'를 추천해요. 안주 구성이 좋아 모임 손님이 많습니다." },
+    { q: '광진구 가족 외식하기 좋은 한식당 추천해줘',
+      a: "광진구에서는 '가온한식', '온정관', '담소원'을 추천드려요. 룸이 있어 가족 외식에 편합니다." }
+  ];
+
+  // 모션 최소화 설정 시: 첫 세트만 정적 표시
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    qEl.textContent = SETS[0].q;
+    aEl.textContent = SETS[0].a;
+    if (cEl) cEl.style.display = 'none';
+    return;
+  }
+
+  var idx = 0, pos = 0, phase = 'typing';
+
+  function tick() {
+    var set = SETS[idx];
+
+    if (phase === 'typing') {
+      if (pos < set.q.length) {
+        pos++;
+        qEl.textContent = set.q.slice(0, pos);
+        setTimeout(tick, 55);
+      } else {
+        if (cEl) cEl.style.display = 'none';
+        setTimeout(function () { aEl.textContent = set.a; phase = 'showing'; tick(); }, 900);
+      }
+    } else if (phase === 'showing') {
+      setTimeout(function () { phase = 'erasing'; tick(); }, 2400);
+    } else { // erasing
+      aEl.textContent = '';
+      if (pos > 0) {
+        pos--;
+        qEl.textContent = set.q.slice(0, pos);
+        setTimeout(tick, 28);
+      } else {
+        if (cEl) cEl.style.display = '';
+        idx = (idx + 1) % SETS.length;
+        phase = 'typing';
+        setTimeout(tick, 400);
+      }
+    }
+  }
+
+  tick();
 })();
 </script>
 
