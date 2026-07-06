@@ -532,20 +532,15 @@ strong { font-weight: 700; }
 .tl-insight .hl { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--accent-soft); font-weight: 800; color: var(--accent-deep); }
 .tl-insight .hl em { color: var(--accent); }
 
-/* === DIAGNOSIS (진단 방식) === */
-.diag-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 38px; }
-.diag-step { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); display: flex; flex-direction: column; }
-.diag-step-num { font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.diag-step h3 { font-size: 17px; font-weight: 800; margin-bottom: 7px; }
-.diag-step p { font-size: 17px; color: var(--ink-mid); line-height: 1.6; }
-.diag-figs { display: flex; gap: 12px; margin-top: 18px; }
-.diag-fig { flex: 1; min-width: 0; }
-.diag-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
-.diag-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
-.diag-bridge { margin-top: 42px; max-width: 640px; margin-left: auto; margin-right: auto; text-align: center; }
-.diag-bridge p { font-size: clamp(16px,3.8vw,18px); color: var(--ink-mid); line-height: 1.62; font-weight: 600; }
-.diag-bridge-link { display: inline-block; margin-top: 14px; font-size: 17px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent-soft); padding-bottom: 2px; transition: border-color 0.2s; }
-.diag-bridge-link:hover { border-color: var(--accent); }
+/* === 진행 절차 (STEP 3단계) === */
+.pstep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 38px; }
+.pstep { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); display: flex; flex-direction: column; }
+.pstep-num { display: inline-flex; align-items: center; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; align-self: flex-start; }
+.pstep h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; line-height: 1.45; }
+.pstep p { font-size: 16px; color: var(--ink-mid); line-height: 1.62; flex: 1; }
+.pstep-fig { margin-top: 18px; }
+.pstep-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
+.pstep-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
 
 /* === REFERENCE (매장 카드 슬라이드) === */
 .ref-slider { position: relative; margin-top: 38px; max-width: 640px; margin-left: auto; margin-right: auto; }
@@ -716,7 +711,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 @media (max-width: 1023px) {
   .section { padding: 80px 0; }
   .nav-links { gap: 18px; }
-  .diag-steps { gap: 16px; }
+  .pstep-grid { gap: 16px; }
   .final-grid { grid-template-columns: 1fr; gap: 30px; }
   .final-copy .headline { text-align: center; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px 24px; }
@@ -736,8 +731,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .tl-card { padding: 15px 16px; }
   .tl-conclusion { padding: 32px 22px; }
   .proc-grid { grid-template-columns: 1fr 1fr; }
-  .diag-steps { grid-template-columns: 1fr; }
-  .diag-figs { flex-direction: column; }
+  .pstep-grid { grid-template-columns: 1fr; }
   .price-grid { grid-template-columns: 1fr; }
   .early-list { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
@@ -770,9 +764,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <span class="nav-brand-slogan">맛집 전문 AI추천 최적화 솔루션</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#problem">문제</a></li>
       <li><a href="#timing">왜 지금</a></li>
-      <li><a href="#diagnosis">진단</a></li>
+      <li><a href="#process">진행 절차</a></li>
       <li><a href="#reference">레퍼런스</a></li>
       <li><a href="#pricing">가격</a></li>
       <li><a href="#faq">자주 묻는 질문</a></li>
@@ -789,11 +782,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
 <div class="mobile-drawer" id="mobileDrawer">
   <ul>
-    <li><a href="#problem" data-drawer-close>문제 인식</a></li>
     <li><a href="#timing" data-drawer-close>왜 지금인가</a></li>
-    <li><a href="#diagnosis" data-drawer-close>진단 방식</a></li>
     <li><a href="#reference" data-drawer-close>레퍼런스</a></li>
-    <li><a href="#process" data-drawer-close>진행 방식</a></li>
+    <li><a href="#process" data-drawer-close>진행 절차</a></li>
     <li><a href="#pricing" data-drawer-close>얼리버드·가격</a></li>
     <li><a href="#faq" data-drawer-close>자주 묻는 질문</a></li>
     <!-- 카카오 전환 준비: 자료·문의하기 임시 숨김 (삭제 아님)
@@ -1073,78 +1064,49 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   </script>
 </section>
 
-<!-- ═══════════════ 4. 진단 방식 ═══════════════ -->
-<section class="section" id="diagnosis">
+<!-- ═══════════════ 6. 진행 절차 (STEP 3단계 · 구 진단+진행방식 통합) ═══════════════ -->
+<section class="section section-soft" id="process">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">실시간 무료진단</div>
-      <h2 class="headline center">AI 추천률, 지금 직접 확인해보세요</h2>
-      <p class="lead center">네이버 플레이스 링크만 넣으면, 우리 매장이 AI 추천에 얼마나 나오는지 3분 만에 직접 확인할 수 있습니다.</p>
+      <div class="eyebrow center">진행 절차</div>
+      <h2 class="headline center">우리 매장 AI 추천 최적화,<br>이렇게 진행됩니다</h2>
     </div>
 
-    <div class="diag-steps">
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">1</div>
-        <h3>매장 연결</h3>
-        <p>네이버 플레이스 링크만 넣으면 토크비가 매장을 분석합니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step1-connect.jpg" alt="매장 연결" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
+    <div class="pstep-grid">
+      <div class="pstep fade-in">
+        <span class="pstep-num">STEP 1</span>
+        <h3>무료진단 — 직접 확인 (3분)</h3>
+        <p>네이버 플레이스 링크만 넣으면 매장 분석과 질문이 자동 생성됩니다. 10개 질문 1회 측정으로 노출 점수와 경쟁 매장 순위를 확인합니다.</p>
+        <div class="pstep-fig">
+          <img src="images/diagnosis/step4-score.jpg" alt="무료진단 — 노출 점수 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="pstep-ph">이미지 준비 중</div>
         </div>
       </div>
 
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">2</div>
-        <h3>질문 확인</h3>
-        <p>손님이 실제로 AI에게 묻는 질문을 자동으로 만들어 보여줍니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step2-questions.jpg" alt="질문 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
+      <div class="pstep fade-in">
+        <span class="pstep-num">STEP 2</span>
+        <h3>얼리버드 신청 — 사장님이 하실 일은 여기까지</h3>
+        <p>매장 정보를 작성하고(이 정보로 AI가 학습합니다) 얼리버드를 신청합니다.</p>
+        <div class="pstep-fig">
+          <img src="images/diagnosis/step-signup.jpg" alt="얼리버드 신청" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="pstep-ph">이미지 준비 중</div>
         </div>
       </div>
 
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">3</div>
-        <h3>측정 결과</h3>
-        <p>어떤 질문에 우리 매장이 나오는지, 그 자리에 어떤 경쟁 매장이 대신 나오는지 확인합니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step3a-questions.jpg" alt="측정 결과 - 질문별 노출" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-          <div class="diag-fig">
-            <img src="images/diagnosis/step3b-competitors.jpg" alt="측정 결과 - 경쟁 매장" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
+      <div class="pstep fade-in">
+        <span class="pstep-num">STEP 3</span>
+        <h3>토크비가 진행합니다 — 이후 사장님은 리포트만 받으세요</h3>
+        <p>담당자 배정 후 정밀측정(15개 질문 × 5회: 추천 10 + 매장 이해도 5)을 실행하고 AI 학습을 시작합니다. 주 1회 측정을 누적해 월 1회 리포트를 보내드립니다.</p>
+        <div class="pstep-fig">
+          <img src="images/diagnosis/step-report.jpg" alt="월간 리포트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="pstep-ph">이미지 준비 중</div>
         </div>
       </div>
-
-      <div class="diag-step fade-in">
-        <div class="diag-step-num">4</div>
-        <h3>노출 점수</h3>
-        <p>현재 우리 매장의 AI 추천 노출 점수를 숫자로 확인합니다.</p>
-        <div class="diag-figs">
-          <div class="diag-fig">
-            <img src="images/diagnosis/step4-score.jpg" alt="노출 점수" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="diag-ph">이미지 준비 중</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="diag-bridge fade-in">
-      <p>여기까지는 무료로 직접 확인하실 수 있습니다.<br>노출을 올리는 최적화부터는 토크비가 대신 해드립니다.</p>
-      <a href="#reference" class="diag-bridge-link">실제로 개선된 사례 보기 →</a>
     </div>
   </div>
 </section>
-
-<!-- ═══════════════ 6. 진행 방식 ═══════════════ -->
-<section class="section section-soft" id="process">
+<!-- BLIND-START: 구 진행 방식 4단계 섹션 (진행 절차 섹션으로 통합 · 삭제 아님 · 복원용)
+<section class="section section-soft">
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">진행 방식</div>
@@ -1175,6 +1137,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <p class="proc-note fade-in">사장님이 하실 일은 <em>매장 정보 확인뿐</em>입니다.</p>
   </div>
 </section>
+BLIND-END: 구 진행 방식 -->
 
 <!-- ═══════════════ 7. 얼리버드 + 가격 ═══════════════ -->
 <section class="section" id="pricing">
@@ -1417,9 +1380,8 @@ BLIND-END: #contact -->
       <div>
         <div class="footer-col-title">Service</div>
         <ul class="footer-links">
-          <li><a href="#diagnosis">진단 방식</a></li>
           <li><a href="#reference">레퍼런스</a></li>
-          <li><a href="#process">진행 방식</a></li>
+          <li><a href="#process">진행 절차</a></li>
           <li><a href="#pricing">얼리버드·가격</a></li>
         </ul>
       </div>
