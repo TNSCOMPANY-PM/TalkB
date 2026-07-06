@@ -134,15 +134,15 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "정식 플랜 (ChatGPT 추천 노출)",
+      "name": "매장 플랜",
       "price": "133000",
       "priceCurrency": "KRW",
-      "description": "얼리버드 30% 적용가 (정가 190,000원). ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트. VAT 별도, 월 구독. 최적화 AI는 제미나이·퍼플렉시티·클로드·네이버로 확장 예정."
+      "description": "매장당 월 구독. 얼리버드 30% 적용가 (정가 190,000원), VAT 별도. ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트. 여러 매장도 한 계정으로 관리 가능(매장별 구독)."
     },
     {
       "@type": "Offer",
-      "name": "프랜차이즈 본사",
-      "description": "본사·가맹점 통합. 카카오채널로 별도 문의."
+      "name": "프랜차이즈 본사 플랜",
+      "description": "5개 매장 이상 운영 브랜드 권장. 본사 상위 계정으로 브랜드 전체 매장 통합 관리, 직·가맹점은 개별 계정 운영, 대량 등록 할인. 카카오채널로 별도 문의."
     }
   ]
 }
@@ -620,9 +620,16 @@ strong { font-weight: 700; }
 .price-spec > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; line-height: 1.5; }
 .price-spec dt { color: var(--ink-muted); font-weight: 600; flex-shrink: 0; }
 .price-spec dd { margin: 0; color: var(--ink); font-weight: 700; text-align: right; }
-.spec-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: var(--ink-muted); }
+.price-multi { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-soft); font-size: 13px; color: var(--ink-mid); line-height: 1.55; }
+.price-multi strong { color: var(--ink); }
+.price-feats { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line-soft); flex: 1; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.price-feats li { position: relative; padding-left: 16px; font-size: 14px; color: var(--ink-mid); line-height: 1.55; }
+.price-feats li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+.price-feats strong { color: var(--ink); }
+.price-desc-foot { margin-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--accent-deep); }
 .price-notice { max-width: 720px; margin: 22px auto 0; padding: 15px 20px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; font-size: 15px; font-weight: 600; color: var(--ink-mid); line-height: 1.6; }
 .price-notice strong { color: var(--accent-deep); }
+.price-foot { margin-top: 12px; text-align: center; font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
 .early { margin-top: 30px; background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: 34px 28px; }
 .early-top { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
@@ -1207,26 +1214,32 @@ BLIND-END: 구 진행 방식 -->
       <div class="price-card featured">
         <span class="price-flag">지금 · 얼리버드</span>
         <span class="price-badge">정식 플랜</span>
-        <div class="price-name">ChatGPT 추천 노출</div>
+        <div class="price-name">매장 플랜</div>
         <div class="price-old">₩190,000</div>
-        <div class="price-amt deal">₩133,000<span class="per"> /월</span></div>
+        <div class="price-amt deal">₩133,000<span class="per"> /월 · 매장당</span></div>
         <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
         <div class="price-keep">구독 유지 기간 내내 이 가격 그대로</div>
         <dl class="price-spec">
-          <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">확장 예정: 제미나이 · 퍼플렉시티 · 클로드 · 네이버</span></dd></div>
+          <div><dt>최적화 AI</dt><dd>ChatGPT</dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
           <div><dt>측정 질문 수</dt><dd>15개 (추천 10 + 매장 이해도 5)</dd></div>
           <div><dt>측정 횟수</dt><dd>5회</dd></div>
           <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
           <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
         </dl>
+        <div class="price-multi">매장이 여러 곳이어도 <strong>한 계정으로 함께 관리</strong>할 수 있습니다. (매장별 구독)</div>
       </div>
       <div class="price-card">
         <span class="price-badge">별도 견적</span>
-        <div class="price-name">프랜차이즈 본사</div>
+        <div class="price-name">프랜차이즈 본사 플랜</div>
         <div class="price-amt soon">별도 문의</div>
-        <div class="price-vat">본사·가맹점 통합</div>
-        <div class="price-desc">여러 매장을 함께 운영하는 본사·브랜드를 위한 맞춤 견적입니다. <strong>카카오채널로 문의해 주세요.</strong></div>
+        <div class="price-vat">5개 매장 이상 운영 브랜드 권장</div>
+        <ul class="price-feats">
+          <li><strong>본사 상위 계정</strong> — 브랜드 전체 매장을 한눈에 통합 조회·관리</li>
+          <li>직·가맹점 관리자는 <strong>개별 계정</strong>으로 각자 매장 관리</li>
+          <li><strong>대량 등록 할인</strong> 적용</li>
+        </ul>
+        <div class="price-desc-foot">카카오채널로 문의해 주세요.</div>
       </div>
     </div>
 
@@ -1234,6 +1247,9 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-notice fade-in">
       같은 지역·업종 <strong>3개 이상 접수 불가</strong> · 진행 전 카카오채널로 문의해 주세요.
     </div>
+
+    <!-- 상위 요금제 로드맵 각주 -->
+    <p class="price-foot fade-in">※ 멀티 AI(제미나이 · 퍼플렉시티 · 클로드 · 네이버) 상위 요금제는 출시 시 별도 안내됩니다.</p>
 
     <!-- 얼리버드 블록 -->
     <div class="early fade-in">
