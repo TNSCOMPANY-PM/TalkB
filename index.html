@@ -435,11 +435,14 @@ strong { font-weight: 700; }
 }
 .hero-sub {
   font-size: clamp(16px, 3.9vw, 19px); line-height: 1.68;
-  color: var(--ink-mid); margin: 20px auto 0; max-width: 600px;
+  color: var(--ink-mid); margin: 20px auto 0; max-width: 760px; word-break: keep-all;
 }
+.hero-sub strong { color: var(--accent-deep); font-weight: 800; }
 .hero-cta { display: flex; gap: 12px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
 .hero-cta .btn { min-width: 200px; }
-.hero-deadline { margin-top: 13px; font-size: 14.5px; font-weight: 600; color: var(--ink-mid); text-align: center; line-height: 1.6; word-break: keep-all; }
+@media (min-width: 1024px) {
+  .hero-inner { max-width: 980px; }
+}
 .hero-note { margin-top: 18px; font-size: 14px; color: var(--ink-muted); }
 
 /* GPT mockup */
@@ -464,8 +467,9 @@ strong { font-weight: 700; }
 .gpt-a.show { opacity: 1; }
 .gpt-av { width: 26px; height: 26px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 .gpt-a .txt { font-size: 18px; color: #374151; line-height: 1.65; }
-.sim-note { max-width: 620px; margin: 12px auto 0; text-align: center; font-size: 14px; color: var(--ink-muted); }
-.biz-notice { max-width: 620px; margin: 14px auto 0; padding: 13px 18px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--card-radius); text-align: center; font-size: var(--fs-caption); color: var(--accent-deep); line-height: 1.55; font-weight: 600; }
+.gpt-sim-tag { font-size: 12px; font-weight: 500; color: #9CA3AF; white-space: nowrap; }
+.sim-hl { font-weight: 700; color: var(--accent-deep); background: var(--accent-soft); padding: 1px 5px; border-radius: 5px; }
+.biz-notice { max-width: 720px; margin: 14px auto 0; padding: 13px 18px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--card-radius); text-align: center; font-size: var(--fs-caption); color: var(--accent-deep); line-height: 1.55; font-weight: 600; word-break: keep-all; }
 
 /* === PROBLEM === */
 .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 34px; }
@@ -618,7 +622,7 @@ strong { font-weight: 700; }
 /* PC: 가격 카드 2단 구성 — 좌 가격 · 우 스펙, 혜택은 전체 폭 */
 @media (min-width: 1024px) {
   .price-grid { max-width: 880px; }
-  .price-franchise, .price-notice { max-width: 880px; }
+  .price-franchise, .price-notice, .biz-notice { max-width: 880px; }
   .price-card.featured { padding: 34px 38px; }
   .price-cols { flex-direction: row; align-items: center; gap: 0; }
   .price-head { flex: 0 0 290px; }
@@ -857,15 +861,13 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="hero">
   <div class="container">
     <div class="hero-inner fade-in">
-      <h1 class="hero-title">AI가 우리 매장을<br><em>추천하고 있나요?</em></h1>
-      <p class="hero-sub">
-        <span class="pc-only">손님들은 이제 AI에게 맛집을 물어봅니다.<br>토크비가 우리 매장을 AI가 추천하게 최적화해 드립니다.</span><span class="mo-only">손님들은 이제 AI에게 맛집을 묻습니다.<br>토크비가 우리 매장을 추천하게 만듭니다.</span>
-      </p>
+      <div class="hero-badge"><span class="dot"></span>1차 얼리버드 · 마감까지 <span class="bcp-count" id="heroDday" aria-live="polite"></span></div>
+      <h1 class="hero-title">AI가 우리 매장을 <br class="mo-only"><em>추천하고 있나요?</em></h1>
+      <p class="hero-sub">손님들은 이제 AI에게 맛집을 묻습니다.<br class="mo-only"> <strong>토크비가 우리 매장을 추천하게 만듭니다.</strong></p>
 
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary btn-lg">1차 얼리버드 ~7/31 혜택보기</a>
       </div>
-      <p class="hero-deadline">지금이 가장 혜택이 높아요 · 1차 얼리버드 마감까지 <span class="bcp-count" id="heroDday" aria-live="polite"></span></p>
 
       <!-- GPT mockup -->
       <div class="gpt-mock">
@@ -874,6 +876,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
             <span class="gpt-ic"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5 C5 1.5 4 2.8 4.2 4.2 C2.8 4 1.5 5 1.5 6.5 C1.5 8 2.8 9 4.2 8.8 C4 10.2 5 11.5 6.5 11.5 C8 11.5 9 10.2 8.8 8.8 C10.2 9 11.5 8 11.5 6.5 C11.5 5 10.2 4 8.8 4.2 C9 2.8 8 1.5 6.5 1.5Z" fill="white" fill-opacity="0.9"/></svg></span>
             <span class="gpt-wm">ChatGPT</span>
           </div>
+          <span class="gpt-sim-tag">추천 시뮬레이션 · 매장명은 예시</span>
         </div>
         <div class="gpt-conv">
           <div class="gpt-q"><span class="bubble"><span id="simQuery"></span><span class="sim-cursor" id="simCursor"></span></span></div>
@@ -883,8 +886,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           </div>
         </div>
       </div>
-      <p class="sim-note">ChatGPT 추천 시뮬레이션 · 매장명은 예시입니다.</p>
-      <div class="biz-notice">토크비는 맛집(음식점·카페·술집) 전문 서비스입니다. 그 외 업종은 서비스 제공이 어렵습니다.</div>
     </div>
   </div>
 </section>
@@ -1383,6 +1384,9 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-notice fade-in">
       같은 지역·업종 <strong>3개 이상 접수 불가</strong>로 진행이 어려울 수 있습니다.
     </div>
+
+    <!-- 업종 안내 (구 히어로 하단) -->
+    <div class="biz-notice fade-in">토크비는 맛집(음식점·카페·술집) 전문 서비스입니다. 그 외 업종은 서비스 제공이 어렵습니다.</div>
   </div>
 </section>
 
@@ -1903,10 +1907,13 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       a: "광진구에서는 '가온한식', '온정관', '담소원'을 추천드려요. 룸이 있어 가족 외식에 편합니다." }
   ];
 
+  // 매장명('...')을 주황 하이라이트 칩으로 표시
+  function fmtA(s) { return s.replace(/'([^']+)'/g, '<span class="sim-hl">$1</span>'); }
+
   // 모션 최소화 설정 시: 첫 세트만 정적 표시
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     qEl.textContent = SETS[0].q;
-    aTxt.textContent = SETS[0].a;
+    aTxt.innerHTML = fmtA(SETS[0].a);
     aEl.classList.add('show');
     if (cEl) cEl.style.display = 'none';
     return;
@@ -1937,14 +1944,14 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       } else {
         if (cEl) cEl.style.display = '';
         idx = (idx + 1) % SETS.length;
-        aTxt.textContent = SETS[idx].a;
+        aTxt.innerHTML = fmtA(SETS[idx].a);
         phase = 'typing';
         setTimeout(tick, 400);
       }
     }
   }
 
-  aTxt.textContent = SETS[0].a;
+  aTxt.innerHTML = fmtA(SETS[0].a);
   tick();
 })();
 </script>
