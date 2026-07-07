@@ -547,8 +547,8 @@ strong { font-weight: 700; }
 .ref-stat .k { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); margin-bottom: 5px; line-height: 1.35; }
 .ref-stat .v { display: block; font-family: var(--f-mono); font-size: 18px; font-weight: 700; color: var(--accent); white-space: nowrap; }
 .ref-stat .v em { font-style: normal; color: var(--ink-muted); font-size: 15px; }
-.ref-slider { position: relative; margin-top: 22px; max-width: 1100px; margin-left: auto; margin-right: auto; padding-top: 54px; }
-.ref-topnav { position: absolute; top: 0; right: 6px; display: flex; gap: 10px; }
+.ref-slider { position: relative; margin-top: 22px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.ref-topnav { position: absolute; top: 10px; right: 22px; display: flex; gap: 8px; z-index: 5; }
 .ref-viewport { overflow: hidden; padding: 6px; margin: -6px; }
 .ref-track { display: flex; transition: transform 0.42s cubic-bezier(0.22,0.61,0.36,1); touch-action: pan-y; }
 .ref-slide { flex: 0 0 50%; min-width: 50%; padding: 0 8px; }
@@ -556,7 +556,7 @@ strong { font-weight: 700; }
   .ref-slide { flex: 0 0 100%; min-width: 100%; padding: 0 6px; }
 }
 .ref-store { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
-.ref-store-name { font-size: 22px; font-weight: 800; color: var(--ink); }
+.ref-store-name { font-size: 22px; font-weight: 800; color: var(--ink); padding-right: 90px; }
 .ref-store-loc { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); vertical-align: 2px; }
 .ref-quote { margin-top: 14px; padding: 13px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
 .ref-quote .rq-label { font-style: normal; font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 5px; }
@@ -578,7 +578,7 @@ strong { font-weight: 700; }
 .ref-tip-bubble { position: absolute; bottom: calc(100% + 9px); left: 50%; width: max-content; max-width: 220px; background: var(--ink); color: #fff; font-family: var(--f-body); font-size: 12.5px; font-weight: 500; line-height: 1.5; letter-spacing: 0; text-align: left; white-space: normal; padding: 9px 12px; border-radius: 8px; box-shadow: var(--sh-md); opacity: 0; visibility: hidden; transform: translate(-50%, 4px); transition: opacity 0.16s, transform 0.16s, visibility 0.16s; z-index: 20; pointer-events: none; }
 .ref-tip-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--ink); }
 .ref-tip:hover .ref-tip-bubble, .ref-tip:focus .ref-tip-bubble, .ref-tip.open .ref-tip-bubble { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
-.ref-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh-sm); color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; -webkit-tap-highlight-color: transparent; }
+.ref-nav { width: 38px; height: 38px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh-md); color: var(--ink); font-size: 19px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; -webkit-tap-highlight-color: transparent; }
 .ref-nav:hover { background: var(--accent-soft); }
 .ref-nav:disabled { opacity: 0.32; cursor: default; }
 .ref-control { margin-top: 30px; padding: 18px 22px; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: 18px; color: var(--ink-mid); line-height: 1.65; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
@@ -781,6 +781,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .price-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
   .trust-badge .ti { font-size: 16px; word-break: keep-all; }
+  .eyebrow.ref-eyebrow { font-size: 11.5px; letter-spacing: 0.02em; padding: 7px 12px; white-space: nowrap; }
   .ref-stats { gap: 8px; }
   .ref-stat { padding: 12px 6px; }
   .ref-stat .k { font-size: 11.5px; }
@@ -992,7 +993,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section section-cream" id="reference">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">긴말 안 합니다.<br class="mo-only"> 데이터로 보여드리겠습니다.</div>
+      <div class="eyebrow center ref-eyebrow">긴말 안 합니다. 데이터로 보여드리겠습니다.</div>
       <h2 class="headline center">ChatGPT 추천 최적화 실행 결과</h2>
       <p class="lead center">레퍼런스 공개에 동의한 실제 매장 데이터입니다.</p>
     </div>
@@ -1261,7 +1262,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <div class="pstep fade-in">
         <span class="pstep-num zero">STEP 3</span>
         <h3>서비스 실행</h3>
-        <p class="pstep-copy">정밀 진단 후, <strong>AI 학습 진행</strong></p>
+        <p class="pstep-copy">정밀 진단 후, AI 학습 진행<br><strong>매월 리포트 발송</strong></p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step-report.jpg" alt="서비스 실행 — 정밀 진단 후 AI 학습 진행" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
