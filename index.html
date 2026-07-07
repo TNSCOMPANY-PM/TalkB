@@ -735,10 +735,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .bottom-cta.dark .bcp-hook { color: #fff; }
 .bottom-cta.dark .bcp-timer { color: rgba(255,255,255,0.72); }
 .bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.bottom-cta-promo { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; flex: 1 1 auto; }
+.bottom-cta-promo { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 16px; min-width: 0; flex: 1 1 auto; }
+.bcp-copy { display: flex; flex-direction: column; gap: 2px; }
 .bcp-hook { font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.3; word-break: keep-all; }
 .bcp-timer { font-size: 13.5px; font-weight: 600; color: var(--ink-mid); line-height: 1.35; word-break: keep-all; }
 .bcp-count { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 14px; font-weight: 800; color: var(--accent); white-space: nowrap; }
+.bottom-cta .bcp-count { font-size: 27px; letter-spacing: -0.01em; }
 .bottom-cta .btn { flex: 0 0 auto; padding: 16px 34px; font-size: 17px; white-space: nowrap; }
 /* 카카오 상담 FAB (우측 하단 고정, sticky 바 위) */
 .kakao-fab { position: fixed; right: 20px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 96; width: 56px; height: 56px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: #FEE500; box-shadow: 0 6px 20px rgba(20,17,15,0.22); display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease, box-shadow 0.15s ease; -webkit-tap-highlight-color: transparent; }
@@ -803,10 +805,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
   .bottom-cta-inner { gap: 8px; }
-  .bottom-cta-promo { gap: 1px; }
+  .bottom-cta-promo { gap: 1px 10px; }
   .bcp-hook { font-size: 13px; }
   .bcp-timer { font-size: 12px; }
   .bcp-count { font-size: 12.5px; }
+  .bottom-cta .bcp-count { font-size: 19px; }
   .bottom-cta .btn { padding: 11px 12px; font-size: 13px; }
 }
 @media (max-width: 400px) {
@@ -1640,8 +1643,11 @@ BLIND-END: #contact -->
 <div class="bottom-cta" id="bottomCta">
   <div class="bottom-cta-inner">
     <div class="bottom-cta-promo">
-      <span class="bcp-hook">지금이 가장 혜택이 높아요.</span>
-      <span class="bcp-timer">1차 얼리버드 마감까지 <span class="bcp-count" id="bcpDday" aria-live="polite"></span></span>
+      <div class="bcp-copy">
+        <span class="bcp-hook">지금이 가장 혜택이 높아요.</span>
+        <span class="bcp-timer">1차 얼리버드 마감까지</span>
+      </div>
+      <span class="bcp-count" id="bcpDday" aria-live="polite"></span>
     </div>
     <a href="#pricing" id="bctaBtn" class="btn btn-primary bottom-cta-primary">혜택보기</a>
   </div>
