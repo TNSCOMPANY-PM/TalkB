@@ -191,7 +191,7 @@
       "name": "환불 정책이 어떻게 되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "서비스 신청 및 결제가 진행되면 정밀 측정 후 AI 학습이 시작됩니다. AI 학습을 위한 매장 정보 확정 후에는 중도 환불이 불가하오니, 확정 전 신중히 진행해 주시기 바랍니다."
+        "text": "매장 정보 확정(토크비 승인) 전에는 전액 환불되며, 승인 후에는 AI 학습이 시작되어 환불이 어렵습니다. 자세한 내용은 카카오채널(https://pf.kakao.com/_JxlWTX/chat)로 문의해 주세요."
       }
     },
     {
@@ -252,13 +252,13 @@
   --sh-lg: 0 20px 56px rgba(20,17,15,0.09);
   --sh-accent: 0 14px 34px rgba(232,93,58,0.22);
 
-  --maxw: 1100px;
+  --maxw: 1200px;
 
   /* === Typography Scale (일관성) === */
   --fs-hero: clamp(32px, 6.2vw, 54px);
-  --fs-h2: clamp(27px, 4.4vw, 38px);
-  --fs-h3: clamp(19px, 2.2vw, 23px);
-  --fs-body: 17px;
+  --fs-h2: clamp(28px, 4.6vw, 42px);
+  --fs-h3: clamp(20px, 2.3vw, 24px);
+  --fs-body: 18px;
   --fs-caption: 14px;
   --lh-body: 1.65;
 
@@ -272,7 +272,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   font-family: var(--f-body);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.65;
   color: var(--ink);
   background: var(--bg);
@@ -285,6 +285,8 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
+.mo-only { display: none; }
+@media (max-width: 767px) { .mo-only { display: inline; } .pc-only { display: none; } }
 img { max-width: 100%; display: block; }
 em { font-style: normal; color: var(--accent); }
 strong { font-weight: 700; }
@@ -346,7 +348,7 @@ strong { font-weight: 700; }
   justify-content: center;
   gap: 8px;
   font-family: var(--f-body);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
   padding: 15px 26px;
@@ -361,7 +363,7 @@ strong { font-weight: 700; }
 .btn-ghost { background: #fff; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--ink-light); transform: translateY(-2px); }
 .btn-block { width: 100%; }
-.btn-lg { padding: 17px 30px; font-size: 17px; }
+.btn-lg { padding: 17px 30px; font-size: 18px; }
 .btn-stack { flex-direction: column; gap: 3px; padding-top: 13px; padding-bottom: 13px; }
 .btn-sub { font-size: 14px; font-weight: 500; opacity: 0.85; }
 
@@ -391,7 +393,7 @@ strong { font-weight: 700; }
 .nav-brand-kr { font-size: 14px; color: var(--ink-muted); font-weight: 600; }
 .nav-brand-slogan { font-size: 14px; color: var(--ink-muted); font-weight: 600; letter-spacing: -0.01em; }
 .nav-links { list-style: none; display: flex; align-items: center; gap: 26px; }
-.nav-links > li > a { font-size: 17px; font-weight: 600; color: var(--ink-mid); transition: color .15s; }
+.nav-links > li > a { font-size: 18px; font-weight: 600; color: var(--ink-mid); transition: color .15s; }
 .nav-links > li > a:hover { color: var(--accent); }
 .nav-cta {
   background: var(--accent); color: #fff !important;
@@ -413,7 +415,7 @@ strong { font-weight: 700; }
 .mobile-drawer.open { transform: translateY(0); }
 .mobile-drawer ul { list-style: none; padding: 12px 20px 22px; }
 .mobile-drawer li { border-bottom: 1px solid var(--line-soft); }
-.mobile-drawer a { display: block; padding: 15px 4px; font-size: 17px; font-weight: 600; color: var(--ink-soft); }
+.mobile-drawer a { display: block; padding: 15px 4px; font-size: 18px; font-weight: 600; color: var(--ink-soft); }
 .mobile-drawer .mobile-cta { color: var(--accent); }
 
 /* === HERO === */
@@ -450,19 +452,17 @@ strong { font-weight: 700; }
 .gpt-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
 .gpt-brand { display: flex; align-items: center; gap: 8px; }
 .gpt-ic { width: 22px; height: 22px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.gpt-wm { font-size: 17px; font-weight: 700; color: #111; letter-spacing: -0.02em; }
-.gpt-menu { display: flex; flex-direction: column; gap: 3px; padding: 2px 4px; }
-.gpt-menu span { width: 14px; height: 2px; background: #9ca3af; border-radius: 999px; }
+.gpt-wm { font-size: 18px; font-weight: 700; color: #111; letter-spacing: -0.02em; }
 /* 대화 영역 — 답변 표시 시 크기로 고정하여 페이지 흔들림 방지 */
 .gpt-conv { padding: 18px 16px 16px; background: #fff; min-height: 190px; }
 .gpt-q { display: flex; justify-content: flex-end; margin-bottom: 14px; }
-.gpt-q .bubble { background: #f4f4f4; border-radius: 18px 18px 4px 18px; padding: 11px 16px; max-width: 84%; font-size: 17px; color: #111; line-height: 1.5; }
+.gpt-q .bubble { background: #f4f4f4; border-radius: 18px 18px 4px 18px; padding: 11px 16px; max-width: 84%; font-size: 18px; color: #111; line-height: 1.5; }
 .sim-cursor { display: inline-block; width: 2px; height: 16px; background: #111; margin-left: 2px; vertical-align: middle; animation: cursor-blink .8s step-end infinite; }
 @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 .gpt-a { display: flex; gap: 9px; align-items: flex-start; opacity: 0; transition: opacity .4s ease; }
 .gpt-a.show { opacity: 1; }
 .gpt-av { width: 26px; height: 26px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-.gpt-a .txt { font-size: 17px; color: #374151; line-height: 1.65; }
+.gpt-a .txt { font-size: 18px; color: #374151; line-height: 1.65; }
 .sim-note { max-width: 620px; margin: 12px auto 0; text-align: center; font-size: 14px; color: var(--ink-muted); }
 .biz-notice { max-width: 620px; margin: 14px auto 0; padding: 13px 18px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--card-radius); text-align: center; font-size: var(--fs-caption); color: var(--accent-deep); line-height: 1.55; font-weight: 600; }
 
@@ -470,8 +470,8 @@ strong { font-weight: 700; }
 .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 34px; }
 .prob-card { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
 .prob-card .ic { font-size: 26px; margin-bottom: 12px; }
-.prob-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
-.prob-card p { font-size: 17px; color: var(--ink-mid); line-height: 1.64; }
+.prob-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+.prob-card p { font-size: 18px; color: var(--ink-mid); line-height: 1.64; }
 .prob-vs { text-align: center; margin-top: 30px; padding: 22px; background: var(--accent-paper); border-radius: var(--r-md); font-size: clamp(16px,4vw,20px); font-weight: 800; color: var(--ink); }
 .prob-vs em { color: var(--accent); }
 
@@ -480,16 +480,16 @@ strong { font-weight: 700; }
 .tl-item { display: flex; gap: 18px; }
 .tl-side { width: 84px; flex-shrink: 0; text-align: right; padding-top: 2px; }
 .tl-year { font-family: var(--f-mono); font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
-.tl-chan { font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--ink-muted); margin-top: 3px; line-height: 1.3; }
-.tl-main { flex: 1; min-width: 0; position: relative; padding-left: 24px; border-left: 2px solid var(--line); padding-bottom: 26px; }
+.tl-main { flex: 1; min-width: 0; position: relative; padding-left: 24px; border-left: 2px solid var(--line); padding-bottom: 30px; }
 .tl-item:last-child .tl-main { padding-bottom: 0; }
 .tl-main::before { content: ""; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--ink-light); z-index: 1; }
-.tl-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px 20px; }
-.tl-card h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
-.tl-card p { font-size: 17px; color: var(--ink-mid); line-height: 1.62; }
-.tl-card p + p { margin-top: 12px; }
+.tl-label { font-size: 19px; font-weight: 800; color: var(--ink); line-height: 1.3; }
+.tl-item.now .tl-label { color: var(--accent); }
+.tl-card { margin-top: 12px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px 20px; }
+.tl-card p { font-size: 18px; color: var(--ink-mid); line-height: 1.62; }
+.tl-card em { color: var(--accent); font-style: normal; font-weight: 800; }
 /* 2026 강조 */
-.tl-item.now .tl-year, .tl-item.now .tl-chan { color: var(--accent); }
+.tl-item.now .tl-year { color: var(--accent); }
 .tl-item.now .tl-main { border-left-color: var(--accent); }
 .tl-item.now .tl-main::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 .tl-item.now .tl-card { background: var(--accent-paper); border-color: var(--accent-soft); }
@@ -498,7 +498,7 @@ strong { font-weight: 700; }
 .tl-conclusion .eyebrow-dark { font-family: var(--f-mono); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
 .tl-conclusion h3 { font-size: clamp(19px,4.6vw,26px); font-weight: 800; line-height: 1.4; margin-bottom: 14px; }
 .tl-conclusion h3 em { color: var(--accent); }
-.tl-conclusion .sub { font-size: 17px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+.tl-conclusion .sub { font-size: 18px; color: rgba(255,255,255,0.72); line-height: 1.6; }
 .tl-conclusion .final { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.14); font-size: clamp(16px,4vw,19px); font-weight: 800; color: #fff; line-height: 1.5; }
 .tl-conclusion .final em { color: var(--accent); }
 .tl-foot { margin-top: 22px; text-align: center; }
@@ -507,10 +507,10 @@ strong { font-weight: 700; }
 /* 선점 대비 블록 */
 .tl-compare { margin-top: 28px; max-width: 760px; margin-left: auto; margin-right: auto; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-lg); padding: 30px 28px; }
 .tl-compare h3 { font-size: clamp(18px,4.4vw,22px); font-weight: 800; color: var(--ink); margin-bottom: 16px; text-align: center; }
-.tl-compare p { font-size: 17px; color: var(--ink-mid); line-height: 1.68; }
+.tl-compare p { font-size: 18px; color: var(--ink-mid); line-height: 1.68; }
 .tl-compare p + p { margin-top: 11px; }
 .tl-compare .highlight { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--accent-soft); text-align: center; }
-.tl-compare .highlight .msg { font-size: 17px; font-weight: 700; color: var(--accent-deep); margin-bottom: 0; line-height: 1.5; }
+.tl-compare .highlight .msg { font-size: 18px; font-weight: 700; color: var(--accent-deep); margin-bottom: 0; line-height: 1.5; }
 .tl-compare .msg em { color: var(--accent); font-weight: 800; }
 /* 선점 인사이트 통합 박스 */
 
@@ -521,12 +521,9 @@ strong { font-weight: 700; }
 .pstep:not(:last-child)::after { content: '→'; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); font-size: 19px; font-weight: 800; color: var(--accent); z-index: 1; }
 .pstep-num { display: inline-flex; align-items: center; align-self: flex-start; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; white-space: nowrap; }
 .pstep-num.zero { color: #fff; background: var(--ink); }
-.pstep h3 { font-size: 18px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; }
-.pstep-list { flex: 1; list-style: none; counter-reset: ps; display: flex; flex-direction: column; gap: 9px; margin: 0; padding: 0; }
-.pstep-list li { counter-increment: ps; position: relative; padding-left: 24px; font-size: 15px; color: var(--ink-mid); line-height: 1.55; }
-.pstep-list li::before { content: counter(ps) '.'; position: absolute; left: 0; font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); }
-.pstep-list strong { color: var(--ink); font-weight: 700; }
-.pstep-desc { display: block; margin-top: 2px; font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; }
+.pstep h3 { font-size: 22px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; }
+.pstep-copy { flex: 1; font-size: 17px; color: var(--ink-mid); line-height: 1.62; }
+.pstep-copy strong { color: var(--ink); font-weight: 700; }
 .pstep-fig { margin-top: 18px; }
 .pstep-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
 .pstep-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
@@ -550,17 +547,21 @@ strong { font-weight: 700; }
 .ref-stat .k { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); margin-bottom: 5px; line-height: 1.35; }
 .ref-stat .v { display: block; font-family: var(--f-mono); font-size: 18px; font-weight: 700; color: var(--accent); white-space: nowrap; }
 .ref-stat .v em { font-style: normal; color: var(--ink-muted); font-size: 15px; }
-.ref-slider { position: relative; margin-top: 22px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.ref-slider { position: relative; margin-top: 22px; max-width: 1100px; margin-left: auto; margin-right: auto; padding-top: 54px; }
+.ref-topnav { position: absolute; top: 0; right: 6px; display: flex; gap: 10px; }
 .ref-viewport { overflow: hidden; padding: 6px; margin: -6px; }
 .ref-track { display: flex; transition: transform 0.42s cubic-bezier(0.22,0.61,0.36,1); touch-action: pan-y; }
-.ref-slide { flex: 0 0 100%; min-width: 100%; padding: 0 6px; }
+.ref-slide { flex: 0 0 50%; min-width: 50%; padding: 0 8px; }
+@media (max-width: 767px) {
+  .ref-slide { flex: 0 0 100%; min-width: 100%; padding: 0 6px; }
+}
 .ref-store { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
-.ref-store-name { font-size: 19px; font-weight: 800; color: var(--ink); }
+.ref-store-name { font-size: 22px; font-weight: 800; color: var(--ink); }
 .ref-store-loc { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); vertical-align: 2px; }
 .ref-quote { margin-top: 14px; padding: 13px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
 .ref-quote .rq-label { font-style: normal; font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 5px; }
 .ref-store-period { margin-top: 8px; line-height: 1.3; }
-.ref-period-main { font-family: var(--f-body); font-size: 17px; font-weight: 800; color: var(--accent); }
+.ref-period-main { font-family: var(--f-body); font-size: 18px; font-weight: 800; color: var(--accent); }
 .ref-period-date { font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--ink-mid); margin-left: 2px; }
 .ref-chart { margin: 20px 0 6px; }
 .ref-chart svg { width: 100%; height: 180px; display: block; overflow: visible; }
@@ -577,37 +578,33 @@ strong { font-weight: 700; }
 .ref-tip-bubble { position: absolute; bottom: calc(100% + 9px); left: 50%; width: max-content; max-width: 220px; background: var(--ink); color: #fff; font-family: var(--f-body); font-size: 12.5px; font-weight: 500; line-height: 1.5; letter-spacing: 0; text-align: left; white-space: normal; padding: 9px 12px; border-radius: 8px; box-shadow: var(--sh-md); opacity: 0; visibility: hidden; transform: translate(-50%, 4px); transition: opacity 0.16s, transform 0.16s, visibility 0.16s; z-index: 20; pointer-events: none; }
 .ref-tip-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--ink); }
 .ref-tip:hover .ref-tip-bubble, .ref-tip:focus .ref-tip-bubble, .ref-tip.open .ref-tip-bubble { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
-.ref-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; }
 .ref-nav { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh-sm); color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; -webkit-tap-highlight-color: transparent; }
 .ref-nav:hover { background: var(--accent-soft); }
 .ref-nav:disabled { opacity: 0.32; cursor: default; }
-.ref-dots { display: flex; gap: 9px; }
-.ref-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gauge-before); border: none; padding: 0; cursor: pointer; transition: background 0.2s, transform 0.2s; }
-.ref-dot.active { background: var(--accent); transform: scale(1.15); }
-.ref-control { margin-top: 30px; padding: 18px 22px; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: 17px; color: var(--ink-mid); line-height: 1.65; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
+.ref-control { margin-top: 30px; padding: 18px 22px; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: var(--r-md); font-size: 18px; color: var(--ink-mid); line-height: 1.65; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
 .ref-control strong { color: var(--ink); }
 
 /* === PROCESS (진행 방식) === */
 .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 38px; }
 .proc-step { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); position: relative; }
 .proc-num { font-family: var(--f-mono); font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.proc-step h3 { font-size: 17px; font-weight: 800; margin-bottom: 7px; }
-.proc-step p { font-size: 17px; color: var(--ink-mid); line-height: 1.6; }
+.proc-step h3 { font-size: 18px; font-weight: 800; margin-bottom: 7px; }
+.proc-step p { font-size: 18px; color: var(--ink-mid); line-height: 1.6; }
 .proc-note { margin-top: 28px; text-align: center; padding: 20px; background: var(--accent-paper); border-radius: var(--r-md); font-size: clamp(16px,3.8vw,18px); font-weight: 700; color: var(--ink); }
 .proc-note em { color: var(--accent); }
 
 /* === PRICING === */
-.price-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px; margin-top: 40px; align-items: stretch; max-width: 860px; margin-left: auto; margin-right: auto; }
+.price-grid { display: grid; grid-template-columns: 1fr; margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 .price-card { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); display: flex; flex-direction: column; box-shadow: var(--sh-sm); }
-.price-card.featured { border: 2px solid var(--accent); box-shadow: var(--sh-md); position: relative; }
+.price-card.featured { border: 2px solid var(--accent); box-shadow: 0 12px 40px rgba(232,93,58,0.14), var(--sh-md); position: relative; }
 .price-flag { position: absolute; top: -12px; left: 24px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; font-family: var(--f-mono); padding: 4px 12px; border-radius: 999px; }
-.price-name { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
-.price-target { margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--ink-mid); line-height: 1.55; }
+.price-name { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+.spec-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: var(--ink-muted); text-align: right; }
+.price-franchise { margin: 18px auto 0; max-width: 600px; text-align: center; font-size: 15px; color: var(--ink-mid); line-height: 1.6; }
+.price-franchise strong { color: var(--ink); }
 .price-amt { font-family: var(--f-mono); font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
 .price-amt .per { font-size: 14px; color: var(--ink-muted); font-weight: 500; }
-.price-amt.soon { font-size: 22px; color: var(--ink-muted); }
 .price-vat { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
-.price-desc { font-size: 17px; color: var(--ink-mid); line-height: 1.6; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line-soft); flex: 1; }
 .price-old { font-family: var(--f-mono); font-size: 16px; font-weight: 600; color: var(--ink-light); text-decoration: line-through; margin-bottom: 2px; }
 .price-amt.deal { color: var(--accent); }
 .price-keep { margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent-deep); }
@@ -617,14 +614,8 @@ strong { font-weight: 700; }
 .price-spec dd { margin: 0; color: var(--ink); font-weight: 700; text-align: right; }
 .price-multi { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-soft); font-size: 13px; color: var(--ink-mid); line-height: 1.55; }
 .price-multi strong { color: var(--ink); }
-.price-feats { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line-soft); flex: 1; list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.price-feats li { position: relative; padding-left: 16px; font-size: 14px; color: var(--ink-mid); line-height: 1.55; }
-.price-feats li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
-.price-feats strong { color: var(--ink); }
-.price-desc-foot { margin-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--accent-deep); }
 .price-notice { max-width: 720px; margin: 22px auto 0; padding: 15px 20px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; font-size: 15px; font-weight: 600; color: var(--ink-mid); line-height: 1.6; }
 .price-notice strong { color: var(--accent-deep); }
-.price-foot { margin-top: 12px; text-align: center; font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
 .price-benefits { margin-top: 16px; padding: 16px 18px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); }
 .pb-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 15px; font-weight: 800; color: var(--accent-deep); margin-bottom: 10px; }
@@ -653,14 +644,14 @@ strong { font-weight: 700; }
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .trust-badge { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); text-align: center; box-shadow: var(--sh-sm); }
 .trust-badge .ic { font-size: 28px; margin-bottom: 12px; }
-.trust-badge .ti { font-size: 17px; font-weight: 800; margin-bottom: 5px; }
+.trust-badge .ti { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
 .trust-badge .me { font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
 .trust-foot { margin-top: 22px; text-align: center; font-size: 14px; color: var(--ink-muted); }
 
 /* === FAQ === */
 .faq-list { max-width: 780px; margin: 40px auto 0; }
 .faq-item { border-bottom: 1px solid var(--line); }
-.faq-q { width: 100%; background: none; border: none; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 14px; padding: 22px 4px; font-family: var(--f-body); font-size: clamp(16px,3.6vw,17px); font-weight: 700; color: var(--ink); transition: color .15s; }
+.faq-q { width: 100%; background: none; border: none; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 14px; padding: 22px 4px; font-family: var(--f-body); font-size: clamp(17px,3.8vw,19px); font-weight: 700; color: var(--ink); transition: color .15s; }
 .faq-q:hover { color: var(--accent); }
 .faq-q .ico { margin-left: auto; flex-shrink: 0; width: 22px; height: 22px; position: relative; }
 .faq-q .ico::before, .faq-q .ico::after { content: ""; position: absolute; background: var(--accent); border-radius: 2px; transition: transform .25s; }
@@ -668,7 +659,7 @@ strong { font-weight: 700; }
 .faq-q .ico::after { left: 10px; top: 3px; bottom: 3px; width: 2px; }
 .faq-item.open .faq-q .ico::after { transform: scaleY(0); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-.faq-a-inner { padding: 0 4px 22px; font-size: 17px; line-height: 1.72; color: var(--ink-mid); }
+.faq-a-inner { padding: 0 4px 22px; font-size: 18px; line-height: 1.72; color: var(--ink-mid); }
 .faq-a-inner strong { color: var(--ink-soft); }
 .faq-todo { display: inline-block; font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--accent-deep); background: var(--accent-soft); padding: 3px 9px; border-radius: 6px; }
 
@@ -677,17 +668,17 @@ strong { font-weight: 700; }
 .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 .final-copy .headline { text-align: left; }
 .final-list { list-style: none; margin-top: 22px; }
-.final-list li { position: relative; padding-left: 28px; font-size: 17px; color: var(--ink-mid); line-height: 1.55; margin-bottom: 12px; }
+.final-list li { position: relative; padding-left: 28px; font-size: 18px; color: var(--ink-mid); line-height: 1.55; margin-bottom: 12px; }
 .final-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 800; }
 .final-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
 
 .form-card { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-lg); }
 .form-badge { display: inline-block; font-family: var(--f-mono); font-size: 14px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
 .form-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-.form-sub { font-size: 17px; color: var(--ink-muted); margin-bottom: 22px; }
+.form-sub { font-size: 18px; color: var(--ink-muted); margin-bottom: 22px; }
 .form-field { margin-bottom: 15px; }
 .form-field label { display: block; font-size: 14px; font-weight: 700; color: var(--ink-soft); margin-bottom: 7px; }
-.form-field input, .form-field textarea { width: 100%; font-family: var(--f-body); font-size: 17px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--bg-soft); transition: border .15s, background .15s; }
+.form-field input, .form-field textarea { width: 100%; font-family: var(--f-body); font-size: 18px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--bg-soft); transition: border .15s, background .15s; }
 .form-field textarea { resize: vertical; min-height: 92px; line-height: 1.6; }
 .form-field input:focus, .form-field textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
 .form-field .req { color: var(--accent); }
@@ -724,7 +715,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .footer-bottom { margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.45); }
 
 /* === STICKY CTA === */
-.bottom-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 95; background: rgba(255,255,255,0.96); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(20,17,15,0.07); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+.bottom-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 95; background: rgba(255,255,255,0.96); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(20,17,15,0.07); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); transition: background 0.45s ease, border-color 0.45s ease; }
+.bottom-cta.dark { background: rgba(22,18,15,0.96); border-top-color: rgba(255,255,255,0.08); }
+.bottom-cta.dark .bcp-price { color: #fff; }
+.bottom-cta.dark .bcp-price .old { color: rgba(255,255,255,0.4); }
+.bottom-cta.dark .bcp-price .per { color: rgba(255,255,255,0.55); }
 .bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .bottom-cta-promo { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 auto; }
 .bcp-price { font-family: var(--f-mono); font-weight: 700; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: baseline; gap: 6px; }
@@ -732,7 +727,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .bcp-price .arw { color: var(--accent); font-size: 14px; }
 .bcp-price strong { color: var(--accent); font-size: 18px; font-weight: 700; }
 .bcp-price .per { font-size: 12px; color: var(--ink-muted); font-weight: 600; }
-.bcp-dday { flex-shrink: 0; font-family: var(--f-mono); font-size: 14px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.bcp-dday { flex-shrink: 0; font-variant-numeric: tabular-nums; font-family: var(--f-mono); font-size: 14px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
 .bottom-cta .btn { flex: 0 0 auto; padding: 13px 22px; font-size: 16px; white-space: nowrap; }
 .bcta-short { display: none; }
 /* 카카오 상담 FAB (우측 하단 고정, sticky 바 위) */
@@ -740,9 +735,14 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .kakao-fab:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(20,17,15,0.28); }
 .kakao-fab:active { transform: translateY(0); }
 .kakao-fab svg { width: 28px; height: 28px; display: block; }
+/* 탑스크롤 버튼 (카카오 FAB 위) */
+.top-fab { position: fixed; right: 20px; bottom: calc(152px + env(safe-area-inset-bottom)); z-index: 96; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); padding: 0; cursor: pointer; background: #fff; color: var(--ink-mid); font-size: 18px; font-weight: 800; box-shadow: var(--sh-sm); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.15s; -webkit-tap-highlight-color: transparent; }
+.top-fab.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.top-fab:hover { background: var(--bg-soft); }
 @media (max-width: 767px) {
   .kakao-fab { right: 16px; bottom: calc(80px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   .kakao-fab svg { width: 26px; height: 26px; }
+  .top-fab { right: 16px; bottom: calc(144px + env(safe-area-inset-bottom)); width: 42px; height: 42px; }
 }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
@@ -771,7 +771,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .gpt-conv { min-height: 240px; }
   .prob-grid { grid-template-columns: 1fr; }
   .tl-side { width: 62px; }
-  .tl-year { font-size: 17px; }
+  .tl-year { font-size: 18px; }
   .tl-main { padding-left: 18px; }
   .tl-card { padding: 15px 16px; }
   .tl-conclusion { padding: 32px 22px; }
@@ -854,8 +854,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <div class="hero-inner fade-in">
       <h1 class="hero-title">AI가 우리 매장을<br><em>추천하고 있나요?</em></h1>
       <p class="hero-sub">
-        손님들은 이제 AI에게 맛집을 물어봅니다.<br>
-        토크비가 우리 매장을 AI가 추천하게 최적화해 드립니다.
+        <span class="pc-only">손님들은 이제 AI에게 맛집을 물어봅니다.<br>토크비가 우리 매장을 AI가 추천하게 최적화해 드립니다.</span><span class="mo-only">손님들은 이제 AI에게 맛집을 묻습니다.<br>토크비가 우리 매장을 추천하게 만듭니다.</span>
       </p>
 
       <!-- GPT mockup -->
@@ -865,7 +864,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
             <span class="gpt-ic"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5 C5 1.5 4 2.8 4.2 4.2 C2.8 4 1.5 5 1.5 6.5 C1.5 8 2.8 9 4.2 8.8 C4 10.2 5 11.5 6.5 11.5 C8 11.5 9 10.2 8.8 8.8 C10.2 9 11.5 8 11.5 6.5 C11.5 5 10.2 4 8.8 4.2 C9 2.8 8 1.5 6.5 1.5Z" fill="white" fill-opacity="0.9"/></svg></span>
             <span class="gpt-wm">ChatGPT</span>
           </div>
-          <div class="gpt-menu"><span></span><span></span><span></span></div>
         </div>
         <div class="gpt-conv">
           <div class="gpt-q"><span class="bubble"><span id="simQuery"></span><span class="sim-cursor" id="simCursor"></span></span></div>
@@ -887,58 +885,39 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <div class="section-head fade-in">
       <div class="eyebrow center">왜 지금인가</div>
       <h2 class="headline center">AI 마케팅,<br>지금이 선점 타이밍입니다.</h2>
-      <p class="lead center">채널이 열릴 때 먼저 들어간 매장이 수년간 독점합니다.<br>블로그·SNS·유튜브가 그랬듯, AI도 마찬가지입니다.</p>
+      <p class="lead center"><span class="pc-only">채널이 열릴 때 먼저 들어간 매장이 수년간 독점합니다.<br>블로그·SNS·유튜브가 그랬듯, AI도 마찬가지입니다.</span><span class="mo-only">먼저 들어간 매장이 수년간 독점합니다.<br>AI도 마찬가지입니다.</span></p>
     </div>
 
     <div class="timeline fade-in">
       <div class="tl-item">
         <div class="tl-side">
           <div class="tl-year">2010</div>
-          <div class="tl-chan">네이버<br>블로그·플레이스</div>
         </div>
-        <div class="tl-main">
-          <div class="tl-card">
-            <h3>블로그가 새로운 검색 입구</h3>
-            <p>초기에 자리 잡은 매장은 거의 무료로 수년간 상위를 독점했습니다. <em>지금은 매달 수백만원을 써도 쉽지 않습니다.</em></p>
-          </div>
-        </div>
+        <div class="tl-main"><div class="tl-label">네이버 블로그 · 플레이스</div></div>
       </div>
 
       <div class="tl-item">
         <div class="tl-side">
           <div class="tl-year">2014</div>
-          <div class="tl-chan">SNS ·<br>Instagram</div>
         </div>
-        <div class="tl-main">
-          <div class="tl-card">
-            <h3>인스타를 선점한 브랜드</h3>
-            <p>초기 진입 브랜드는 팔로워를 무료로 쌓았습니다. 지금은 광고비를 써도 효율이 절반 이하입니다.</p>
-          </div>
-        </div>
+        <div class="tl-main"><div class="tl-label">페이스북 · 인스타그램</div></div>
       </div>
 
       <div class="tl-item">
         <div class="tl-side">
           <div class="tl-year">2017</div>
-          <div class="tl-chan">YouTube ·<br>TikTok</div>
         </div>
-        <div class="tl-main">
-          <div class="tl-card">
-            <h3>유튜브·쇼츠를 선점한 채널</h3>
-            <p>이 시기 진입한 채널이 지금의 구독자 자산을 갖고 있습니다. 지금 같은 성장은 사실상 불가능합니다.</p>
-          </div>
-        </div>
+        <div class="tl-main"><div class="tl-label">유튜브 · 틱톡</div></div>
       </div>
 
       <div class="tl-item now">
         <div class="tl-side">
           <div class="tl-year">2026</div>
-          <div class="tl-chan">AI Search</div>
         </div>
         <div class="tl-main">
+          <div class="tl-label">AI 검색</div>
           <div class="tl-card">
-            <h3>AI 검색 · 네 번째 파도</h3>
-            <p>같은 패턴이 반복되고 있습니다. 먼저 최적화한 매장이 먼저 추천되고, 그 자리는 갈수록 비싸집니다.</p>
+            <p>같은 패턴이 반복되고 있습니다. <em>네 번째 파도입니다.</em></p>
           </div>
         </div>
       </div>
@@ -951,7 +930,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 <section class="section section-cream" id="reference">
   <div class="container">
     <div class="section-head fade-in">
-      <div class="eyebrow center">긴말 안 합니다. 데이터로 보여드리겠습니다.</div>
+      <div class="eyebrow center">긴말 안 합니다.<br class="mo-only"> 데이터로 보여드리겠습니다.</div>
       <h2 class="headline center">ChatGPT 추천 최적화 실행 결과</h2>
       <p class="lead center">레퍼런스 공개에 동의한 실제 매장 데이터입니다.</p>
     </div>
@@ -963,13 +942,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     </div>
 
     <div class="ref-slider fade-in">
+      <div class="ref-topnav">
+        <button type="button" class="ref-nav" id="refPrev" aria-label="이전 매장">&#8249;</button>
+        <button type="button" class="ref-nav" id="refNext" aria-label="다음 매장">&#8250;</button>
+      </div>
       <div class="ref-viewport">
         <div class="ref-track" id="refTrack"><!-- 카드는 아래 배열에서 렌더링 --></div>
-      </div>
-      <div class="ref-controls">
-        <button type="button" class="ref-nav" id="refPrev" aria-label="이전 매장">&#8249;</button>
-        <div class="ref-dots" id="refDots" role="tablist" aria-label="매장 선택"></div>
-        <button type="button" class="ref-nav" id="refNext" aria-label="다음 매장">&#8250;</button>
       </div>
     </div>
 
@@ -1108,28 +1086,47 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
     function init() {
       var track = document.getElementById('refTrack');
-      var dotsWrap = document.getElementById('refDots');
       var prev = document.getElementById('refPrev');
       var next = document.getElementById('refNext');
       if (!track) return;
 
       track.innerHTML = REF_STORES.map(buildCard).join('');
-      dotsWrap.innerHTML = REF_STORES.map(function (st, i) {
-        return '<button type="button" class="ref-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" role="tab" aria-label="' + esc(st.name) + '"></button>';
-      }).join('');
-      var dots = Array.prototype.slice.call(dotsWrap.children);
 
       var idx = 0, count = REF_STORES.length;
+      function visible() { return window.innerWidth >= 768 ? 2 : 1; }
+      function maxIdx() { return Math.max(0, count - visible()); }
       function go(i) {
-        idx = Math.max(0, Math.min(count - 1, i));
-        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
-        dots.forEach(function (d, di) { d.classList.toggle('active', di === idx); });
+        idx = Math.max(0, Math.min(maxIdx(), i));
+        track.style.transform = 'translateX(' + (-idx * (100 / visible())) + '%)';
         prev.disabled = (idx === 0);
-        next.disabled = (idx === count - 1);
+        next.disabled = (idx === maxIdx());
       }
-      prev.addEventListener('click', function () { go(idx - 1); });
-      next.addEventListener('click', function () { go(idx + 1); });
-      dots.forEach(function (d) { d.addEventListener('click', function () { go(+d.getAttribute('data-i')); }); });
+      prev.addEventListener('click', function () { stopAuto(); go(idx - 1); });
+      next.addEventListener('click', function () { stopAuto(); go(idx + 1); });
+      window.addEventListener('resize', function () { go(idx); });
+
+      /* 자동 넘김 — PC: 3초 간격 순환(호버 시 정지) · 모바일: 5초 뒤 1회만 */
+      var autoTimer = null;
+      function stopAuto() { if (autoTimer) { clearInterval(autoTimer); clearTimeout(autoTimer); autoTimer = null; } }
+      function startAuto() {
+        stopAuto();
+        if (visible() >= 2) {
+          autoTimer = setInterval(function () { go(idx >= maxIdx() ? 0 : idx + 1); }, 3000);
+        } else {
+          autoTimer = setTimeout(function () { go(idx + 1); autoTimer = null; }, 5000); // 모바일: 한 번만
+        }
+      }
+      var sliderEl = track.closest('.ref-slider');
+      if (sliderEl) {
+        sliderEl.addEventListener('mouseenter', stopAuto);
+        sliderEl.addEventListener('mouseleave', function () { if (visible() >= 2) startAuto(); });
+      }
+      if ('IntersectionObserver' in window) {
+        var aio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { startAuto(); aio.disconnect(); } });
+        }, { threshold: 0.3 });
+        aio.observe(track);
+      } else { startAuto(); }
 
       // 툴팁: hover(CSS) + 탭/클릭·키보드(JS)로 열기
       function closeTips(except) {
@@ -1154,7 +1151,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       vp.addEventListener('touchend', function (e) {
         if (!dragging) return; dragging = false;
         var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
-        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { go(idx + (dx < 0 ? 1 : -1)); }
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { stopAuto(); go(idx + (dx < 0 ? 1 : -1)); }
       }, { passive: true });
 
       go(0);
@@ -1180,14 +1177,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
     <div class="pstep-grid">
       <div class="pstep fade-in">
-        <span class="pstep-num">STEP 1 · 사장님 시간 5분</span>
+        <span class="pstep-num">STEP 1 · 5분</span>
         <h3>무료진단</h3>
-        <ol class="pstep-list">
-          <li>네이버 플레이스 링크 입력</li>
-          <li>매장 분석과 질문 <strong>자동 생성</strong></li>
-          <li><strong>10개 추천 질문 1회 측정</strong></li>
-          <li><strong>노출 점수</strong>와 <strong>경쟁 매장 순위</strong> 확인</li>
-        </ol>
+        <p class="pstep-copy">네이버 플레이스 링크만 넣으면, <strong>나머지는 자동입니다.</strong></p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step4-score.jpg" alt="무료진단 — 노출 점수 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1195,12 +1187,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </div>
 
       <div class="pstep fade-in">
-        <span class="pstep-num">STEP 2 · 사장님 시간 5분</span>
+        <span class="pstep-num">STEP 2 · 5분</span>
         <h3>AI 추천 최적화 신청하기</h3>
-        <ol class="pstep-list">
-          <li><strong>매장 정보 작성</strong><span class="pstep-desc">이 정보로 AI가 우리 매장을 학습합니다</span></li>
-          <li>서비스 <strong>신청 및 결제</strong></li>
-        </ol>
+        <p class="pstep-copy">AI가 학습할 <strong>매장 정보를 작성</strong>하고 신청·결제하면, 사장님 할 일은 끝입니다.</p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step-signup.jpg" alt="AI 추천 최적화 신청하기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1208,13 +1197,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </div>
 
       <div class="pstep fade-in">
-        <span class="pstep-num zero">STEP 3 · 사장님 시간 0분</span>
+        <span class="pstep-num zero">STEP 3 · 0분</span>
         <h3>AI 지속 학습 · 월간 리포트</h3>
-        <ol class="pstep-list">
-          <li><strong>정밀 측정</strong><span class="pstep-desc">15개 질문 × 5회 (추천 10 + 매장 이해도 5)</span></li>
-          <li><strong>AI 지속 학습</strong><span class="pstep-desc">매주 측정 결과를 반영해 매월 계속 개선</span></li>
-          <li><strong>주 1회 측정</strong> 누적 → <strong>매월 1회 리포트</strong> 발송</li>
-        </ol>
+        <p class="pstep-copy">정밀측정(15개 질문 × 5회) 후 <strong>AI 학습 시작</strong> — 매주 측정하고, <strong>매월 리포트</strong>를 보내드립니다.</p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step-report.jpg" alt="AI 지속 학습과 월간 리포트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1258,61 +1243,50 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 BLIND-END: 구 진행 방식 -->
 
 <!-- ═══════════════ 7. 얼리버드 + 가격 ═══════════════ -->
-<section class="section" id="pricing">
+<section class="section section-soft" id="pricing">
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">가격 안내</div>
-      <h2 class="headline center">지금은 얼리버드 기간입니다.</h2>
+      <h2 class="headline center">지금은 1차 얼리버드 기간입니다.</h2>
       <p class="lead center">무료진단으로 현재 상태를 확인하신 뒤, 얼리버드로 시작하실 수 있습니다.</p>
     </div>
 
     <div class="price-grid fade-in">
       <div class="price-card featured">
-        <span class="price-flag">지금 · 얼리버드</span>
+        <span class="price-flag">1차 얼리버드 · ~7/31</span>
         <div class="price-name">매장 플랜</div>
         <div class="price-old">₩190,000</div>
         <div class="price-amt deal">₩133,000<span class="per"> /월 · 매장당</span></div>
         <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
         <div class="price-keep">구독 유지 기간 내내, 정가가 바뀌어도 <strong>30% 할인율 유지</strong></div>
         <div class="price-multi">1곳이든 여러 곳이든, 운영하는 <strong>매장 수만큼 구독</strong>합니다. (한 계정으로 함께 관리)</div>
+        <div class="price-benefits">
+          <div class="pb-head">얼리버드 혜택 <span class="pb-dday">1차 마감 7/31</span></div>
+          <ul>
+            <li><strong>평생 30% 할인</strong> — 구독 유지 기간 내내 할인율 그대로</li>
+            <li><strong>얼리버드 전용 인증마크</strong> — 초기 파트너 표시</li>
+            <li><strong>상위 모델 무료 체험</strong> — 출시 시 기간 한정 제공</li>
+            <li>전체 기간 7/14 ~ 8/31 (1차 마감 7/31) · 목표 매장 수 도달 시 조기 종료될 수 있습니다</li>
+          </ul>
+        </div>
         <dl class="price-spec">
-          <div><dt>최적화 AI</dt><dd>ChatGPT</dd></div>
+          <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정 (상위 요금제 별도 안내)</span></dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
           <div><dt>측정 질문 수</dt><dd>15개 (추천 10 + 매장 이해도 5)</dd></div>
           <div><dt>측정 횟수</dt><dd>5회</dd></div>
           <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
           <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
         </dl>
-        <div class="price-benefits">
-          <div class="pb-head">얼리버드 혜택 <span class="pb-dday"><span class="js-dday"></span> · 8/31 마감</span></div>
-          <ul>
-            <li><strong>얼리버드 전용 인증마크</strong> — 초기 파트너 표시</li>
-            <li><strong>상위 모델 무료 체험</strong> — 출시 시 기간 한정 제공</li>
-            <li>기간 7/14 ~ 8/31 · 목표 매장 수 도달 시 조기 종료될 수 있습니다</li>
-          </ul>
-        </div>
-      </div>
-      <div class="price-card">
-        <div class="price-name">프랜차이즈 · 대량 등록</div>
-        <div class="price-amt soon">별도 문의</div>
-        <div class="price-vat">10개 매장 이상 일괄 등록 시</div>
-        <div class="price-target">프랜차이즈 본사, 여러 매장을 운영하시는 경우 추천합니다.</div>
-        <ul class="price-feats">
-          <li>상품 구성은 <strong>매장 플랜과 동일</strong></li>
-          <li><strong>본사 상위 계정</strong> — 브랜드(최상위) · 직영점 · 가맹점 상·하위 계정 구분 관리</li>
-          <li><strong>대량 등록 할인</strong> 적용</li>
-        </ul>
-        <div class="price-desc-foot">카카오채널로 문의해 주세요.</div>
       </div>
     </div>
+
+    <!-- 프랜차이즈·대량 등록 안내 -->
+    <p class="price-franchise fade-in">프랜차이즈 본사·대량 등록(10개 매장 이상)은 <strong>카카오채널로 별도 문의</strong>해 주세요.</p>
 
     <!-- 접수 제한 공지 -->
     <div class="price-notice fade-in">
       같은 지역·업종 <strong>3개 이상 접수 불가</strong> · 진행 전 카카오채널로 문의해 주세요.
     </div>
-
-    <!-- 상위 요금제 로드맵 각주 -->
-    <p class="price-foot fade-in">※ 멀티 AI(제미나이 · 퍼플렉시티 · 클로드 · 네이버) 상위 요금제는 출시 시 별도 안내됩니다.</p>
 
     <!-- 얼리버드 유의사항 (접기) -->
     <details class="price-terms fade-in">
@@ -1395,8 +1369,8 @@ BLIND-END: 구 진행 방식 -->
       <div class="faq-item">
         <button class="faq-q">환불 정책이 어떻게 되나요?<span class="ico"></span></button>
         <div class="faq-a"><div class="faq-a-inner">
-          서비스 신청 및 결제가 진행되면 정밀 측정 후, AI 학습이 시작됩니다.<br>
-          AI 학습을 위한 <strong>매장 정보 확정 후에는 중도 환불이 불가</strong>하오니, 확정 전 신중히 진행해 주시기 바랍니다.
+          매장 정보 확정(토크비 승인) <strong>전에는 전액 환불</strong>되며, 승인 후에는 AI 학습이 시작되어 <strong>환불이 어렵습니다.</strong><br>
+          자세한 내용은 <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로 문의해 주세요.
         </div></div>
       </div>
       <div class="faq-item">
@@ -1590,6 +1564,9 @@ BLIND-END: #contact -->
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#3C1E1E" d="M12 3.2C6.9 3.2 3 6.44 3 10.35c0 2.5 1.68 4.7 4.2 5.98-.18.63-.66 2.35-.76 2.72-.12.46.17.45.36.33.15-.1 2.4-1.63 3.37-2.29.6.09 1.2.13 1.83.13 5.1 0 9-3.24 9-7.15S17.1 3.2 12 3.2z"/></svg>
 </button>
 
+<!-- 탑스크롤 버튼 -->
+<button type="button" id="topFab" class="top-fab" aria-label="맨 위로">↑</button>
+
 <script>
 'use strict';
 
@@ -1612,22 +1589,39 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     a.setAttribute('rel', 'noopener');
   });
 
-  /* ── 얼리버드 D-day 카운트다운 (마감 2026-08-31 기준 자동 계산 · 하단바 + 가격 섹션) ── */
+  /* ── 1차 얼리버드 실시간 카운트다운 (2026-07-31 23:59:59 마감 · 하단바) ── */
   (function () {
-    var deadline = new Date(2026, 7, 31); // 월 0-index: 7 = 8월
-    var today = new Date();
-    deadline.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
-    var days = Math.ceil((deadline - today) / 86400000);
-    var txt = days > 0 ? ('D-' + days) : (days === 0 ? 'D-DAY' : '마감');
-    var ddayEl = document.getElementById('bcpDday');
-    if (ddayEl) ddayEl.textContent = txt;
-    document.querySelectorAll('.js-dday').forEach(function (el) { el.textContent = txt; });
+    var el = document.getElementById('bcpDday');
+    if (!el) return;
+    var deadline = new Date(2026, 6, 31, 23, 59, 59).getTime(); // 월 0-index: 6 = 7월
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var diff = deadline - Date.now();
+      if (diff <= 0) { el.textContent = '1차 마감'; clearInterval(timer); return; }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor(diff % 86400000 / 3600000);
+      var m = Math.floor(diff % 3600000 / 60000);
+      var s = Math.floor(diff % 60000 / 1000);
+      el.textContent = d + '일 ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    var timer = setInterval(tick, 1000);
   })();
 
-  /* ── 하단바 2단계 CTA — 가격 섹션(혜택·스펙)을 본 뒤에만 무료진단으로 연결 ── */
+  /* ── 탑스크롤 버튼 — 600px 이상 스크롤 시 표시 ── */
+  (function () {
+    var btn = document.getElementById('topFab');
+    if (!btn) return;
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('show', window.scrollY > 600);
+    }, { passive: true });
+    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+
+  /* ── 하단바 2단계 CTA — 가격 섹션을 본 뒤에만 무료진단으로 연결 + 배경색 전환 ── */
   (function () {
     var btn = document.getElementById('bctaBtn');
+    var bar = document.getElementById('bottomCta');
     var pricing = document.getElementById('pricing');
     if (!btn || !pricing) return;
     var switched = false;
@@ -1639,6 +1633,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       var s = btn.querySelector('.bcta-short');
       if (f) f.textContent = '무료진단 후 얼리버드 시작';
       if (s) s.textContent = '무료진단 시작';
+      if (bar) bar.classList.add('dark'); // 전환 인지: 어두운 배경으로
     }
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
