@@ -134,7 +134,7 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "매장 플랜",
+      "name": "GPT 플랜",
       "price": "133000",
       "priceCurrency": "KRW",
       "description": "매장당 월 구독. 얼리버드 30% 적용가 (정가 190,000원), VAT 별도. ChatGPT 노출 측정 · 최적화 실행 · 월간 리포트. 1곳이든 여러 곳이든 운영하는 매장 수만큼 구독하며, 한 계정으로 함께 관리."
@@ -142,7 +142,7 @@
     {
       "@type": "Offer",
       "name": "프랜차이즈 · 대량 등록",
-      "description": "10개 매장 이상 일괄 등록 시. 프랜차이즈 본사·다수 매장 운영자 대상. 상품 구성은 매장 플랜과 동일하며, 본사 상위 계정으로 브랜드(최상위)·직영점·가맹점 상·하위 계정 구분 관리, 대량 등록 할인 적용. 카카오채널로 별도 문의."
+      "description": "10개 매장 이상 일괄 등록 시. 프랜차이즈 본사·다수 매장 운영자 대상. 상품 구성은 GPT 플랜과 동일하며, 본사 상위 계정으로 브랜드(최상위)·직영점·가맹점 상·하위 계정 구분 관리, 대량 등록 할인 적용. 카카오채널로 별도 문의."
     }
   ]
 }
@@ -156,10 +156,10 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "무료 진단과 매장 플랜(유료)은 어떤 차이인가요?",
+      "name": "무료 진단과 GPT 플랜(유료)은 어떤 차이인가요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "무료 진단은 10개 추천 질문을 1회 측정해, 지금 우리 매장이 ChatGPT에서 어떻게 보이는지 스냅샷으로 확인하는 것입니다. 매장 플랜(유료)은 15개 질문(추천 10 + 매장 이해도 5) × 5회 정밀측정을 매주 반복하고, 매장을 대신해 최적화를 실행하며, 매월 리포트로 변화를 관리합니다. 대부분의 파트너사는 무료 진단으로 격차를 확인한 뒤 매장 플랜으로 전환합니다."
+        "text": "무료 진단은 10개 추천 질문을 1회 측정해, 지금 우리 매장이 ChatGPT에서 어떻게 보이는지 스냅샷으로 확인하는 것입니다. GPT 플랜(유료)은 15개 질문(추천 10 + 매장 이해도 5) × 5회 정밀측정을 매주 반복하고, 매장을 대신해 최적화를 실행하며, 매월 리포트로 변화를 관리합니다. 대부분의 파트너사는 무료 진단으로 격차를 확인한 뒤 GPT 플랜으로 전환합니다."
       }
     },
     {
@@ -606,20 +606,16 @@ strong { font-weight: 700; }
 .price-amt .per { font-size: 14px; color: var(--ink-muted); font-weight: 500; }
 .price-vat { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
 .price-old { font-family: var(--f-mono); font-size: 16px; font-weight: 600; color: var(--ink-light); text-decoration: line-through; margin-bottom: 2px; }
-.price-amt.deal { color: var(--accent); }
-.price-keep { margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent-deep); }
+.price-deal-tag { display: inline-block; margin-left: 10px; font-family: var(--f-body); font-size: 12.5px; font-weight: 800; color: var(--accent-deep); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; vertical-align: middle; letter-spacing: 0; white-space: nowrap; }
 .price-spec { margin: 16px 0 0; padding-top: 16px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .price-spec > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; line-height: 1.5; }
 .price-spec dt { color: var(--ink-muted); font-weight: 600; flex-shrink: 0; }
 .price-spec dd { margin: 0; color: var(--ink); font-weight: 700; text-align: right; }
-.price-multi { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-soft); font-size: 13px; color: var(--ink-mid); line-height: 1.55; }
-.price-multi strong { color: var(--ink); }
 .price-notice { max-width: 720px; margin: 22px auto 0; padding: 15px 20px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; font-size: 15px; font-weight: 600; color: var(--ink-mid); line-height: 1.6; }
 .price-notice strong { color: var(--accent-deep); }
 
 .price-benefits { margin-top: 16px; padding: 16px 18px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); }
-.pb-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 15px; font-weight: 800; color: var(--accent-deep); margin-bottom: 10px; }
-.pb-dday { font-family: var(--f-mono); font-size: 12px; font-weight: 700; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.pb-head { font-size: 15px; font-weight: 800; color: var(--accent-deep); margin-bottom: 10px; }
 .price-benefits ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 0; padding: 0; }
 .price-benefits li { position: relative; padding-left: 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.55; }
 .price-benefits li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; font-size: 12px; }
@@ -1328,19 +1324,17 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-grid fade-in">
       <div class="price-card featured">
         <span class="price-flag">1차 얼리버드 · ~7/31</span>
-        <div class="price-name">매장 플랜</div>
+        <div class="price-name">GPT 플랜</div>
         <div class="price-old">₩190,000</div>
-        <div class="price-amt deal">₩133,000<span class="per"> /월 · 매장당</span></div>
-        <div class="price-vat">얼리버드 30% 적용 · VAT 별도</div>
-        <div class="price-keep">구독 유지 기간 내내, 정가가 바뀌어도 <strong>30% 할인율 유지</strong></div>
-        <div class="price-multi">1곳이든 여러 곳이든, 운영하는 <strong>매장 수만큼 구독</strong>합니다. (한 계정으로 함께 관리)</div>
+        <div class="price-amt">₩133,000<span class="per"> /월</span><span class="price-deal-tag">얼리버드 30% 적용</span></div>
+        <div class="price-vat">월 구독형 · 매장당 · VAT 별도</div>
         <div class="price-benefits">
-          <div class="pb-head">얼리버드 혜택 <span class="pb-dday">1차 마감 7/31</span></div>
+          <div class="pb-head">얼리버드 혜택</div>
           <ul>
-            <li><strong>평생 30% 할인</strong> — 구독 유지 기간 내내 할인율 그대로</li>
+            <li><strong>평생 30% 할인</strong> — 구독 유지 기간 내내, 정가가 바뀌어도 할인율 그대로</li>
             <li><strong>얼리버드 전용 인증마크</strong> — 초기 파트너 표시</li>
             <li><strong>상위 모델 무료 체험</strong> — 출시 시 기간 한정 제공</li>
-            <li>전체 기간 7/14 ~ 8/31 (1차 마감 7/31) · 목표 매장 수 도달 시 조기 종료될 수 있습니다</li>
+            <li>전체 기간 7/14 ~ 8/31 · 목표 매장 수 도달 시 조기 종료될 수 있습니다</li>
           </ul>
         </div>
         <dl class="price-spec">
@@ -1366,7 +1360,7 @@ BLIND-END: 구 진행 방식 -->
     <details class="price-terms fade-in">
       <summary><span class="pt-ic">!</span><span class="pt-title">얼리버드 유의사항</span><span class="pt-hint">눌러서 확인</span></summary>
       <ol>
-        <li>얼리버드 할인은 <strong>매장 플랜 기준</strong>이며, 구독 유지 기간 내내 할인율이 적용됩니다. 정가가 변경되어도 할인율은 유지됩니다.</li>
+        <li>얼리버드 할인은 <strong>GPT 플랜 기준</strong>이며, 구독 유지 기간 내내 할인율이 적용됩니다. 정가가 변경되어도 할인율은 유지됩니다.</li>
         <li>멀티 AI <strong>상위 요금제</strong> 출시 시 할인 정책은 별도 안내됩니다.</li>
         <li><strong>프랜차이즈 · 대량 등록</strong>의 할인은 별도 견적 기준이며, 얼리버드 할인과의 중복 적용 여부는 상담 시 안내됩니다.</li>
         <li>구독 해지 · 결제 실패 · 명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며, 재가입 시 정가가 적용됩니다.</li>
@@ -1415,10 +1409,10 @@ BLIND-END: 구 진행 방식 -->
     </div>
     <div class="faq-list fade-in">
       <div class="faq-item">
-        <button class="faq-q">무료 진단과 매장 플랜(유료)은 어떤 차이인가요?<span class="ico"></span></button>
+        <button class="faq-q">무료 진단과 GPT 플랜(유료)은 어떤 차이인가요?<span class="ico"></span></button>
         <div class="faq-a"><div class="faq-a-inner">
           <strong>무료 진단</strong>은 10개 추천 질문을 1회 측정해, 지금 우리 매장이 ChatGPT에서 어떻게 보이는지 스냅샷으로 확인하는 것입니다.<br><br>
-          <strong>매장 플랜(유료)</strong>은 15개 질문(추천 10 + 매장 이해도 5) × 5회 정밀측정을 매주 반복하고, 매장을 대신해 최적화를 실행하며, 매월 리포트로 변화를 관리합니다. 대부분의 파트너사는 무료 진단으로 격차를 확인한 뒤 매장 플랜으로 전환합니다.
+          <strong>GPT 플랜(유료)</strong>은 15개 질문(추천 10 + 매장 이해도 5) × 5회 정밀측정을 매주 반복하고, 매장을 대신해 최적화를 실행하며, 매월 리포트로 변화를 관리합니다. 대부분의 파트너사는 무료 진단으로 격차를 확인한 뒤 GPT 플랜으로 전환합니다.
         </div></div>
       </div>
       <div class="faq-item">
