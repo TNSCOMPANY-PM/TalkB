@@ -441,23 +441,6 @@ strong { font-weight: 700; }
 .hero-cta .btn { min-width: 200px; }
 .hero-note { margin-top: 18px; font-size: 14px; color: var(--ink-muted); }
 
-/* PC: 히어로 2단 — 좌 카피·CTA / 우 ChatGPT 목업 */
-@media (min-width: 1024px) {
-  .hero { padding: 76px 0 72px; }
-  .hero-inner {
-    max-width: 1100px; text-align: left;
-    display: grid; grid-template-columns: 1fr 560px; column-gap: 60px;
-    grid-template-areas: "title mock" "sub mock" "cta mock" ". simnote" "biz biz";
-    align-items: center;
-  }
-  .hero-title { grid-area: title; align-self: end; }
-  .hero-sub { grid-area: sub; margin: 20px 0 0; }
-  .hero-cta { grid-area: cta; justify-content: flex-start; align-self: start; }
-  .gpt-mock { grid-area: mock; margin: 0; max-width: 560px; }
-  .sim-note { grid-area: simnote; text-align: center; }
-  .biz-notice { grid-area: biz; }
-}
-
 /* GPT mockup */
 /* ChatGPT 시뮬레이션 — app.talkb.co.kr/proposal 디자인 준거 */
 .gpt-mock {
@@ -879,7 +862,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       </p>
 
       <div class="hero-cta">
-        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">내 매장 무료진단 시작하기</a>
+        <a href="#pricing" class="btn btn-primary btn-lg">1차 얼리버드 ~7/31 혜택보기</a>
       </div>
 
       <!-- GPT mockup -->
@@ -1297,7 +1280,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <div class="pstep fade-in">
         <span class="pstep-num">STEP 3</span>
         <h3>서비스 실행</h3>
-        <p class="pstep-copy">정밀 진단 후, AI 학습 진행<br><strong>매월 리포트 발송</strong></p>
+        <p class="pstep-copy">정밀 진단 후, AI 학습 진행<br><strong>매월 종합 리포트 발행</strong></p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step-report.jpg" alt="서비스 실행 — 정밀 진단 후 AI 학습 진행" onerror="this.parentNode.style.display='none';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1652,7 +1635,7 @@ BLIND-END: #contact -->
   <div class="bottom-cta-inner">
     <div class="bottom-cta-promo">
       <span class="bcp-hook">지금이 가장 혜택이 높아요.</span>
-      <span class="bcp-timer">얼리버드 마감까지 <span class="bcp-count" id="bcpDday" aria-live="polite"></span></span>
+      <span class="bcp-timer">1차 얼리버드 마감까지 <span class="bcp-count" id="bcpDday" aria-live="polite"></span></span>
     </div>
     <a href="#pricing" id="bctaBtn" class="btn btn-primary bottom-cta-primary">혜택보기</a>
   </div>
