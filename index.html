@@ -439,6 +439,7 @@ strong { font-weight: 700; }
 }
 .hero-cta { display: flex; gap: 12px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
 .hero-cta .btn { min-width: 200px; }
+.hero-deadline { margin-top: 13px; font-size: 14.5px; font-weight: 600; color: var(--ink-mid); text-align: center; line-height: 1.6; word-break: keep-all; }
 .hero-note { margin-top: 18px; font-size: 14px; color: var(--ink-muted); }
 
 /* GPT mockup */
@@ -864,6 +865,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary btn-lg">1차 얼리버드 ~7/31 혜택보기</a>
       </div>
+      <p class="hero-deadline">지금이 가장 혜택이 높아요 · 1차 얼리버드 마감까지 <span class="bcp-count" id="heroDday" aria-live="polite"></span></p>
 
       <!-- GPT mockup -->
       <div class="gpt-mock">
@@ -1671,20 +1673,21 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     a.setAttribute('rel', 'noopener');
   });
 
-  /* ── 1차 얼리버드 실시간 카운트다운 (2026-07-31 23:59:59 마감 · 하단바) ── */
+  /* ── 1차 얼리버드 실시간 카운트다운 (2026-07-31 23:59:59 마감 · 하단바 + 히어로) ── */
   (function () {
-    var el = document.getElementById('bcpDday');
-    if (!el) return;
+    var els = [document.getElementById('bcpDday'), document.getElementById('heroDday')].filter(Boolean);
+    if (!els.length) return;
     var deadline = new Date(2026, 6, 31, 23, 59, 59).getTime(); // 월 0-index: 6 = 7월
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function write(txt) { els.forEach(function (el) { el.textContent = txt; }); }
     function tick() {
       var diff = deadline - Date.now();
-      if (diff <= 0) { el.textContent = '1차 마감'; clearInterval(timer); return; }
+      if (diff <= 0) { write('1차 마감'); clearInterval(timer); return; }
       var d = Math.floor(diff / 86400000);
       var h = Math.floor(diff % 86400000 / 3600000);
       var m = Math.floor(diff % 3600000 / 60000);
       var s = Math.floor(diff % 60000 / 1000);
-      el.textContent = d + '일 ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+      write(d + '일 ' + pad(h) + ':' + pad(m) + ':' + pad(s));
     }
     tick();
     var timer = setInterval(tick, 1000);
