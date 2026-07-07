@@ -620,20 +620,15 @@ strong { font-weight: 700; }
 .price-benefits li { position: relative; padding-left: 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.55; }
 .price-benefits li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; font-size: 12px; }
 .price-benefits strong { color: var(--ink); }
-.price-terms { max-width: 720px; margin: 26px auto 0; background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--sh-sm); overflow: hidden; }
-.price-terms summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; padding: 15px 20px; font-size: 15px; font-weight: 700; color: var(--ink); -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
-.price-terms summary:hover { background: var(--bg-soft); }
-.price-terms summary::-webkit-details-marker { display: none; }
-.pt-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-deep); font-size: 12px; font-weight: 800; }
-.pt-title { flex: 1 1 auto; }
-.pt-hint { font-size: 12.5px; font-weight: 600; color: var(--ink-muted); }
-.price-terms summary::after { content: '▾'; font-size: 12px; color: var(--ink-muted); transition: transform 0.2s; }
-.price-terms[open] summary::after { transform: rotate(180deg); }
-.price-terms[open] .pt-hint { display: none; }
-.price-terms ol { list-style: none; counter-reset: t; margin: 0; padding: 4px 20px 18px 20px; border-top: 1px solid var(--line-soft); }
-.price-terms li { counter-increment: t; position: relative; padding-left: 22px; font-size: 13.5px; line-height: 1.6; color: var(--ink-mid); margin-top: 8px; }
-.price-terms li::before { content: counter(t) "."; position: absolute; left: 0; color: var(--ink-muted); font-family: var(--f-mono); }
-.price-terms li strong { color: var(--ink); }
+.pb-warn { margin-top: 12px; display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #FCEBEB; border-radius: 10px; font-size: 13.5px; font-weight: 700; color: #A32D2D; line-height: 1.5; word-break: keep-all; }
+.pb-warn strong { color: #A32D2D; font-weight: 800; }
+.pb-warn-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; background: #A32D2D; color: #fff; font-size: 11px; font-weight: 800; }
+.pb-terms { margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(232,93,58,0.25); }
+.pb-terms-head { font-size: 13px; font-weight: 800; color: var(--ink-mid); margin-bottom: 6px; }
+.pb-terms ol { list-style: none; counter-reset: t; margin: 0; padding: 0; }
+.pb-terms li { counter-increment: t; position: relative; padding-left: 17px; font-size: 12.5px; line-height: 1.55; color: var(--ink-muted); margin-top: 5px; }
+.pb-terms li::before { content: counter(t) "."; position: absolute; left: 0; font-family: var(--f-mono); }
+.pb-terms li strong { color: var(--ink-mid); }
 
 /* === TRUST BADGES === */
 .trust-label { display: flex; align-items: center; width: fit-content; margin: 0 auto 26px; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); background: #fff; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 8px 18px; box-shadow: 0 2px 10px rgba(232,93,58,0.12), 0 1px 3px rgba(20,17,15,0.05); line-height: 1.4; }
@@ -892,12 +887,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   #timing .tm-chart h3 { font-size: clamp(20px, 5vw, 28px); font-weight: 800; color: var(--ink); line-height: 1.4; }
   #timing .tm-chart-sub { margin-top: 8px; font-size: 15px; color: var(--ink-muted); }
   #timing .tm-svg { display: block; width: 100%; max-width: 660px; height: auto; margin: 24px auto 0; font-family: var(--f-body); }
-  #timing .tm-chart-note { margin-top: 14px; font-size: 15px; color: var(--ink-muted); }
-
-  #timing .tm-databox { margin: 56px auto 0; max-width: 760px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-lg); padding: 34px 32px; text-align: center; }
-  #timing .tm-data-main { font-size: 19px; color: var(--ink-soft); line-height: 1.6; word-break: keep-all; }
-  #timing .tm-data-main strong { font-weight: 800; color: var(--ink); }
-  #timing .tm-data-final { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(232, 93, 58, 0.18); font-size: clamp(17px, 4.4vw, 20px); font-weight: 800; color: var(--accent-deep); line-height: 1.5; word-break: keep-all; }
 
   @media (max-width: 767px) {
     #timing .tm-table th { font-size: 12px; padding: 0 4px 10px; }
@@ -907,8 +896,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     #timing .tm-yr { font-size: 13px; }
     #timing .tm-badge { font-size: 11.5px; padding: 3px 8px; }
     #timing .tm-chart { margin-top: 56px; }
-    #timing .tm-databox { padding: 26px 20px; }
-    #timing .tm-data-main { font-size: 17px; }
   }
   </style>
   <div class="container">
@@ -960,31 +947,28 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <div class="tm-chart fade-in">
       <h3>생성형 AI 검색, 빠르게 늘고 있습니다</h3>
       <p class="tm-chart-sub">2025.3 → 2025.12 · 오픈서베이 AI 검색 트렌드 리포트 2026</p>
-      <svg class="tm-svg" viewBox="0 0 480 270" role="img" aria-label="생성형 AI 검색 이용률 변화. ChatGPT 39.6%에서 54.5%로, 제미나이 9.5%에서 28.9%로 3배 상승">
-        <line x1="100" y1="230" x2="380" y2="230" stroke="#E9E4DA" stroke-width="1.5"/>
+      <svg class="tm-svg" viewBox="0 0 640 280" role="img" aria-label="생성형 AI 검색 이용률 변화. ChatGPT 39.6%에서 54.5%로, 제미나이 9.5%에서 28.9%로 3배 상승. 2026년 네이버·카카오 AI 검색 시작">
+        <line x1="95" y1="230" x2="620" y2="230" stroke="#E9E4DA" stroke-width="1.5"/>
+        <rect x="462" y="24" width="158" height="206" rx="14" fill="#FFF1EC"/>
+        <line x1="462" y1="24" x2="462" y2="230" stroke="#E85D3A" stroke-width="2" stroke-dasharray="5 5" opacity="0.45"/>
         <line x1="110" y1="198" x2="370" y2="134" stroke="#F09A6B" stroke-width="3" stroke-linecap="round"/>
         <line x1="110" y1="98" x2="370" y2="48" stroke="#E85D3A" stroke-width="4.5" stroke-linecap="round"/>
         <circle cx="110" cy="198" r="5" fill="#F09A6B" stroke="#fff" stroke-width="2"/>
         <circle cx="370" cy="134" r="6" fill="#F09A6B" stroke="#fff" stroke-width="2"/>
         <circle cx="110" cy="98" r="5" fill="#E85D3A" stroke="#fff" stroke-width="2"/>
         <circle cx="370" cy="48" r="6.5" fill="#E85D3A" stroke="#fff" stroke-width="2"/>
-        <text x="98" y="104" text-anchor="end" font-size="18" font-weight="700" fill="#55504A">39.6%</text>
-        <text x="98" y="204" text-anchor="end" font-size="18" font-weight="700" fill="#55504A">9.5%</text>
-        <text x="382" y="54" text-anchor="start" font-size="19" font-weight="800" fill="#14110F">54.5%</text>
-        <text x="382" y="140" text-anchor="start" font-size="19" font-weight="800" fill="#14110F">28.9%</text>
-        <text x="240" y="52" text-anchor="middle" font-size="18" font-weight="800" fill="#14110F">ChatGPT</text>
-        <text x="240" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#55504A">제미나이 · 3배 ↑</text>
-        <text x="110" y="256" text-anchor="middle" font-size="18" fill="#8A857D">2025.3</text>
-        <text x="370" y="256" text-anchor="middle" font-size="18" fill="#8A857D">2025.12</text>
+        <text x="98" y="104" text-anchor="end" font-size="23" font-weight="700" fill="#55504A">39.6%</text>
+        <text x="98" y="204" text-anchor="end" font-size="23" font-weight="700" fill="#55504A">9.5%</text>
+        <text x="382" y="54" text-anchor="start" font-size="24" font-weight="800" fill="#14110F">54.5%</text>
+        <text x="382" y="140" text-anchor="start" font-size="24" font-weight="800" fill="#14110F">28.9%</text>
+        <text x="240" y="52" text-anchor="middle" font-size="23" font-weight="800" fill="#14110F">ChatGPT</text>
+        <text x="240" y="196" text-anchor="middle" font-size="23" font-weight="700" fill="#55504A">제미나이 · 3배 ↑</text>
+        <text x="541" y="112" text-anchor="middle" font-size="23" font-weight="800" fill="#14110F">네이버·카카오</text>
+        <text x="541" y="144" text-anchor="middle" font-size="23" font-weight="800" fill="#C94422">AI 검색 시작</text>
+        <text x="110" y="258" text-anchor="middle" font-size="23" fill="#8A857D">2025.3</text>
+        <text x="370" y="258" text-anchor="middle" font-size="23" fill="#8A857D">2025.12</text>
+        <text x="541" y="258" text-anchor="middle" font-size="23" font-weight="800" fill="#E85D3A">2026</text>
       </svg>
-      <p class="tm-chart-note">조사된 검색 서비스 중 생성형 AI만 이용률이 늘었습니다</p>
-    </div>
-
-    <div class="tm-databox fade-in">
-      <div class="tm-data-item">
-        <p class="tm-data-main">네이버·카카오도 생성형 AI 검색 확대에 속도를 내고 있습니다</p>
-      </div>
-      <div class="tm-data-final">토크비는 그 AI가 우리 매장을 추천하게 만듭니다</div>
     </div>
 
   </div>
@@ -1235,7 +1219,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">진행 절차</div>
-      <h2 class="headline center">우리 매장 AI 추천 최적화, 이렇게 진행됩니다</h2>
+      <h2 class="headline center">AI 추천 최적화, 이렇게 진행됩니다</h2>
       <p class="lead center">소중한 사장님 시간을 지켜 드립니다. <strong class="lead-punch">딱! 10분만 투자하세요.</strong></p>
     </div>
 
@@ -1243,7 +1227,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <div class="pstep fade-in">
         <span class="pstep-num">STEP 1 · 5분</span>
         <h3>무료진단</h3>
-        <p class="pstep-copy">네이버 플레이스 링크만 넣으면, <strong>나머지는 자동입니다.</strong></p>
+        <p class="pstep-copy">네이버 플레이스 링크만 넣으면 끝<br><strong>질문 생성 · 진단 결과 확인</strong></p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step4-score.jpg" alt="무료진단 — 노출 점수 확인" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1252,20 +1236,20 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
       <div class="pstep fade-in">
         <span class="pstep-num">STEP 2 · 5분</span>
-        <h3>AI 추천 최적화 신청하기</h3>
-        <p class="pstep-copy">AI가 학습할 <strong>매장 정보를 작성</strong>하고 신청·결제하면, 사장님 할 일은 끝입니다.</p>
+        <h3>얼리버드 신청하기</h3>
+        <p class="pstep-copy">AI가 학습할 매장 정보 작성<br><strong>얼리버드 신청 · 결제</strong></p>
         <div class="pstep-fig">
-          <img src="images/diagnosis/step-signup.jpg" alt="AI 추천 최적화 신청하기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="images/diagnosis/step-signup.jpg" alt="얼리버드 신청하기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
         </div>
       </div>
 
       <div class="pstep fade-in">
-        <span class="pstep-num zero">STEP 3 · 0분</span>
-        <h3>AI 지속 학습 · 월간 리포트</h3>
-        <p class="pstep-copy">정밀측정(15개 질문 × 5회) 후 <strong>AI 학습 시작</strong> — 매주 측정하고, <strong>매월 리포트</strong>를 보내드립니다.</p>
+        <span class="pstep-num zero">STEP 3</span>
+        <h3>정밀측정 후 AI 학습 시작</h3>
+        <p class="pstep-copy"><strong>매주 측정 · 매월 리포트 발송</strong></p>
         <div class="pstep-fig">
-          <img src="images/diagnosis/step-report.jpg" alt="AI 지속 학습과 월간 리포트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="images/diagnosis/step-report.jpg" alt="정밀측정 후 AI 학습 시작 — 매주 측정, 매월 리포트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
         </div>
       </div>
@@ -1322,15 +1306,6 @@ BLIND-END: 구 진행 방식 -->
         <div class="price-old">₩190,000</div>
         <div class="price-amt">₩133,000<span class="per"> /월</span><span class="price-deal-tag">얼리버드 30% 적용</span></div>
         <div class="price-vat">월 구독형 · 매장당 · VAT 별도</div>
-        <div class="price-benefits">
-          <div class="pb-head">얼리버드 혜택</div>
-          <ul>
-            <li><strong>평생 30% 할인</strong> — 구독 유지 기간 내내, 정가가 바뀌어도 할인율 그대로</li>
-            <li><strong>얼리버드 전용 인증마크</strong> — 초기 파트너 표시</li>
-            <li><strong>상위 모델 무료 체험</strong> — 출시 시 기간 한정 제공</li>
-            <li>전체 기간 7/14 ~ 8/31 · 목표 매장 수 도달 시 조기 종료될 수 있습니다</li>
-          </ul>
-        </div>
         <dl class="price-spec">
           <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정 (상위 요금제 별도 안내)</span></dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
@@ -1339,6 +1314,25 @@ BLIND-END: 구 진행 방식 -->
           <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
           <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
         </dl>
+        <div class="price-benefits">
+          <div class="pb-head">얼리버드 혜택</div>
+          <ul>
+            <li><strong>평생 30% 할인</strong> — 구독 유지 기간 내내, 정가가 바뀌어도 할인율 그대로</li>
+            <li><strong>얼리버드 전용 인증마크</strong> — 초기 파트너 표시</li>
+            <li><strong>상위 모델 무료 체험</strong> — 출시 시 기간 한정 제공</li>
+          </ul>
+          <div class="pb-warn"><span class="pb-warn-ic">!</span><span>기간 내 목표 매장 수 도달 시 <strong>조기 종료</strong>될 수 있습니다</span></div>
+          <div class="pb-terms">
+            <div class="pb-terms-head">유의사항</div>
+            <ol>
+              <li>얼리버드 할인은 <strong>GPT 플랜 기준</strong>이며, 구독 유지 기간 내내 할인율이 적용됩니다. 정가가 변경되어도 할인율은 유지됩니다.</li>
+              <li>멀티 AI <strong>상위 요금제</strong> 출시 시 할인 정책은 별도 안내됩니다.</li>
+              <li><strong>프랜차이즈 · 대량 등록</strong>의 할인은 별도 견적 기준이며, 얼리버드 할인과의 중복 적용 여부는 상담 시 안내됩니다.</li>
+              <li>구독 해지 · 결제 실패 · 명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며, 재가입 시 정가가 적용됩니다.</li>
+              <li>결제 완료 후 할인 소급 적용·변경은 불가합니다.</li>
+            </ol>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1349,18 +1343,6 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-notice fade-in">
       같은 지역·업종 <strong>3개 이상 접수 불가</strong> · 진행 전 카카오채널로 문의해 주세요.
     </div>
-
-    <!-- 얼리버드 유의사항 (접기) -->
-    <details class="price-terms fade-in">
-      <summary><span class="pt-ic">!</span><span class="pt-title">얼리버드 유의사항</span><span class="pt-hint">눌러서 확인</span></summary>
-      <ol>
-        <li>얼리버드 할인은 <strong>GPT 플랜 기준</strong>이며, 구독 유지 기간 내내 할인율이 적용됩니다. 정가가 변경되어도 할인율은 유지됩니다.</li>
-        <li>멀티 AI <strong>상위 요금제</strong> 출시 시 할인 정책은 별도 안내됩니다.</li>
-        <li><strong>프랜차이즈 · 대량 등록</strong>의 할인은 별도 견적 기준이며, 얼리버드 할인과의 중복 적용 여부는 상담 시 안내됩니다.</li>
-        <li>구독 해지 · 결제 실패 · 명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며, 재가입 시 정가가 적용됩니다.</li>
-        <li>결제 완료 후 할인 소급 적용·변경은 불가합니다.</li>
-      </ol>
-    </details>
   </div>
 </section>
 
@@ -1459,7 +1441,7 @@ BLIND-END: 구 진행 방식 -->
     <div class="faq-item">
       <button class="faq-q">얼리버드 혜택은 구체적으로 어떤 건가요?<span class="ico"></span></button>
       <div class="faq-a"><div class="faq-a-inner">
-        얼리버드 기간(7/14~8/31)에 시작하시면 ① <strong>30% 평생 할인</strong>(구독 유지 기간 내내, 정가가 바뀌어도 할인율 유지), ② <strong>얼리버드 전용 인증마크</strong>(초기 파트너 표시), ③ <strong>상위 모델 출시 시 기간 한정 무료 체험</strong> 혜택이 적용됩니다. 목표 매장 수 도달 시 조기 종료될 수 있습니다.
+        얼리버드 기간(1차 마감 7/31)에 시작하시면 ① <strong>30% 평생 할인</strong>(구독 유지 기간 내내, 정가가 바뀌어도 할인율 유지), ② <strong>얼리버드 전용 인증마크</strong>(초기 파트너 표시), ③ <strong>상위 모델 출시 시 기간 한정 무료 체험</strong> 혜택이 적용됩니다. 목표 매장 수 도달 시 조기 종료될 수 있습니다.
       </div></div>
     </div>
     <div class="faq-item">
