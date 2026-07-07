@@ -881,46 +881,127 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
 <!-- ═══════════════ 2. 왜 지금 (타임라인) ═══════════════ -->
 <section class="section" id="timing">
+  <style>
+  /* ── #timing 전용 (선점 타이밍: 표 + 그래프 + 데이터 박스) ── */
+  #timing .tm-table-wrap { margin: 44px auto 0; max-width: 760px; }
+  #timing .tm-table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: center; }
+  #timing .tm-table th { font-size: 14px; font-weight: 700; color: var(--ink-muted); padding: 0 8px 12px; border-bottom: 2px solid var(--line); }
+  #timing .tm-table td { padding: 16px 8px; border-bottom: 1px solid var(--line-soft); font-size: 16px; color: var(--ink-mid); word-break: keep-all; }
+  #timing .tm-table th:first-child, #timing .tm-table td:first-child { text-align: left; padding-left: 12px; }
+  #timing .tm-ch { font-weight: 800; color: var(--ink); font-size: 17px; }
+  #timing .tm-yr { font-family: var(--f-mono); font-size: 15px; }
+  #timing .tm-eff.down { color: var(--ink-muted); }
+  #timing .tm-eff.up { font-weight: 800; color: var(--accent-deep); }
+  #timing .tm-badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+  #timing .tm-badge.sat { background: #FCEBEB; color: #A32D2D; }
+  #timing .tm-badge.low { background: #1D9E75; color: #fff; }
+  #timing tr.tm-now td { background: var(--accent-paper); border-top: 1.5px solid #F2A98C; border-bottom: 1.5px solid #F2A98C; }
+  #timing tr.tm-now td:first-child { border-left: 1.5px solid #F2A98C; border-radius: var(--r-sm) 0 0 var(--r-sm); }
+  #timing tr.tm-now td:last-child { border-right: 1.5px solid #F2A98C; border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+
+  #timing .tm-chart { margin: 64px auto 0; max-width: 600px; text-align: center; }
+  #timing .tm-chart h3 { font-size: clamp(19px, 4.6vw, 24px); font-weight: 800; color: var(--ink); line-height: 1.4; }
+  #timing .tm-chart-sub { margin-top: 8px; font-size: 14px; color: var(--ink-muted); }
+  #timing .tm-svg { display: block; width: 100%; max-width: 480px; height: auto; margin: 20px auto 0; font-family: var(--f-body); }
+  #timing .tm-chart-note { margin-top: 12px; font-size: 14px; color: var(--ink-muted); }
+
+  #timing .tm-databox { margin: 56px auto 0; max-width: 760px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-lg); padding: 34px 32px; text-align: center; }
+  #timing .tm-data-main { font-size: 19px; color: var(--ink-soft); line-height: 1.6; word-break: keep-all; }
+  #timing .tm-data-main strong { font-weight: 800; color: var(--ink); }
+  #timing .tm-data-src { margin-top: 6px; font-size: 14px; color: var(--ink-muted); }
+  #timing .tm-data-item + .tm-data-item { margin-top: 18px; }
+  #timing .tm-data-final { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(232, 93, 58, 0.18); font-size: clamp(17px, 4.4vw, 20px); font-weight: 800; color: var(--accent-deep); line-height: 1.5; word-break: keep-all; }
+
+  @media (max-width: 767px) {
+    #timing .tm-table th { font-size: 12px; padding: 0 4px 10px; }
+    #timing .tm-table td { font-size: 13.5px; padding: 13px 4px; }
+    #timing .tm-table th:first-child, #timing .tm-table td:first-child { padding-left: 6px; }
+    #timing .tm-ch { font-size: 14.5px; }
+    #timing .tm-yr { font-size: 13px; }
+    #timing .tm-badge { font-size: 11.5px; padding: 3px 8px; }
+    #timing .tm-chart { margin-top: 56px; }
+    #timing .tm-databox { padding: 26px 20px; }
+    #timing .tm-data-main { font-size: 17px; }
+  }
+  </style>
   <div class="container">
     <div class="section-head fade-in">
       <div class="eyebrow center">왜 지금인가</div>
-      <h2 class="headline center">AI 마케팅,<br>지금이 선점 타이밍입니다.</h2>
-      <p class="lead center"><span class="pc-only">채널이 열릴 때 먼저 들어간 매장이 수년간 독점합니다.<br>블로그·SNS·유튜브가 그랬듯, AI도 마찬가지입니다.</span><span class="mo-only">먼저 들어간 매장이 수년간 독점합니다.<br>AI도 마찬가지입니다.</span></p>
+      <h2 class="headline center">AI 마케팅,<br>지금이 선점 타이밍입니다</h2>
+      <p class="lead center">채널이 열릴 때 먼저 들어간 매장이 그 시장을 선점했습니다</p>
     </div>
 
-    <div class="timeline fade-in">
-      <div class="tl-item">
-        <div class="tl-side">
-          <div class="tl-year">2010</div>
-        </div>
-        <div class="tl-main"><div class="tl-label">네이버 블로그 · 플레이스</div></div>
-      </div>
+    <div class="tm-table-wrap fade-in">
+      <table class="tm-table">
+        <thead>
+          <tr>
+            <th>채널</th>
+            <th>시작</th>
+            <th>경쟁</th>
+            <th>비용 대비 효율</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tm-ch">네이버</td>
+            <td class="tm-yr">2010</td>
+            <td><span class="tm-badge sat">포화</span></td>
+            <td class="tm-eff down">낮음 ↓</td>
+          </tr>
+          <tr>
+            <td class="tm-ch">인스타그램</td>
+            <td class="tm-yr">2014</td>
+            <td><span class="tm-badge sat">포화</span></td>
+            <td class="tm-eff down">낮음 ↓</td>
+          </tr>
+          <tr>
+            <td class="tm-ch">유튜브</td>
+            <td class="tm-yr">2017</td>
+            <td><span class="tm-badge sat">포화</span></td>
+            <td class="tm-eff down">낮음 ↓</td>
+          </tr>
+          <tr class="tm-now">
+            <td class="tm-ch">AI 검색</td>
+            <td class="tm-yr">2026</td>
+            <td><span class="tm-badge low">경쟁 적음</span></td>
+            <td class="tm-eff up">적은 비용 선점 ↑</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="tl-item">
-        <div class="tl-side">
-          <div class="tl-year">2014</div>
-        </div>
-        <div class="tl-main"><div class="tl-label">페이스북 · 인스타그램</div></div>
-      </div>
+    <div class="tm-chart fade-in">
+      <h3>생성형 AI 검색, 빠르게 늘고 있습니다</h3>
+      <p class="tm-chart-sub">2025.3 → 2025.12 · 오픈서베이 AI 검색 트렌드 리포트 2026</p>
+      <svg class="tm-svg" viewBox="0 0 480 270" role="img" aria-label="생성형 AI 검색 이용률 변화. ChatGPT 39.6%에서 54.5%로, 제미나이 9.5%에서 28.9%로 3배 상승">
+        <line x1="100" y1="230" x2="380" y2="230" stroke="#E9E4DA" stroke-width="1.5"/>
+        <line x1="110" y1="198" x2="370" y2="134" stroke="#F09A6B" stroke-width="3" stroke-linecap="round"/>
+        <line x1="110" y1="98" x2="370" y2="48" stroke="#E85D3A" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="110" cy="198" r="5" fill="#F09A6B" stroke="#fff" stroke-width="2"/>
+        <circle cx="370" cy="134" r="6" fill="#F09A6B" stroke="#fff" stroke-width="2"/>
+        <circle cx="110" cy="98" r="5" fill="#E85D3A" stroke="#fff" stroke-width="2"/>
+        <circle cx="370" cy="48" r="6.5" fill="#E85D3A" stroke="#fff" stroke-width="2"/>
+        <text x="98" y="104" text-anchor="end" font-size="18" font-weight="700" fill="#55504A">39.6%</text>
+        <text x="98" y="204" text-anchor="end" font-size="18" font-weight="700" fill="#55504A">9.5%</text>
+        <text x="382" y="54" text-anchor="start" font-size="19" font-weight="800" fill="#14110F">54.5%</text>
+        <text x="382" y="140" text-anchor="start" font-size="19" font-weight="800" fill="#14110F">28.9%</text>
+        <text x="240" y="52" text-anchor="middle" font-size="18" font-weight="800" fill="#14110F">ChatGPT</text>
+        <text x="240" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#55504A">제미나이 · 3배 ↑</text>
+        <text x="110" y="256" text-anchor="middle" font-size="18" fill="#8A857D">2025.3</text>
+        <text x="370" y="256" text-anchor="middle" font-size="18" fill="#8A857D">2025.12</text>
+      </svg>
+      <p class="tm-chart-note">조사된 검색 서비스 중 생성형 AI만 이용률이 늘었습니다</p>
+    </div>
 
-      <div class="tl-item">
-        <div class="tl-side">
-          <div class="tl-year">2017</div>
-        </div>
-        <div class="tl-main"><div class="tl-label">유튜브 · 틱톡</div></div>
+    <div class="tm-databox fade-in">
+      <div class="tm-data-item">
+        <p class="tm-data-main"><strong>미국 소비자 22%, 이미 AI로 식당을 고릅니다</strong></p>
+        <p class="tm-data-src">도어대시 2026 레스토랑 산업 트렌드 리포트</p>
       </div>
-
-      <div class="tl-item now">
-        <div class="tl-side">
-          <div class="tl-year">2026</div>
-        </div>
-        <div class="tl-main">
-          <div class="tl-label">AI 검색</div>
-          <div class="tl-card">
-            <p>같은 패턴이 반복되고 있습니다. <em>네 번째 파도입니다.</em></p>
-          </div>
-        </div>
+      <div class="tm-data-item">
+        <p class="tm-data-main">네이버·카카오도 생성형 AI 검색 확대에 속도를 내고 있습니다</p>
       </div>
+      <div class="tm-data-final">토크비는 그 AI가 우리 매장을 추천하게 만듭니다</div>
     </div>
 
   </div>
