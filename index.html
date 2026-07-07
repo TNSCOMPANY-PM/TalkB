@@ -717,19 +717,14 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 /* === STICKY CTA === */
 .bottom-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 95; background: rgba(255,255,255,0.96); backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(20,17,15,0.07); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); transition: background 0.45s ease, border-color 0.45s ease; }
 .bottom-cta.dark { background: rgba(22,18,15,0.96); border-top-color: rgba(255,255,255,0.08); }
-.bottom-cta.dark .bcp-price { color: #fff; }
-.bottom-cta.dark .bcp-price .old { color: rgba(255,255,255,0.4); }
-.bottom-cta.dark .bcp-price .per { color: rgba(255,255,255,0.55); }
+.bottom-cta.dark .bcp-hook { color: #fff; }
+.bottom-cta.dark .bcp-timer { color: rgba(255,255,255,0.72); }
 .bottom-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.bottom-cta-promo { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 auto; }
-.bcp-price { font-family: var(--f-mono); font-weight: 700; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: baseline; gap: 6px; }
-.bcp-price .old { font-size: 13.5px; font-weight: 600; color: var(--ink-light); text-decoration: line-through; }
-.bcp-price .arw { color: var(--accent); font-size: 14px; }
-.bcp-price strong { color: var(--accent); font-size: 18px; font-weight: 700; }
-.bcp-price .per { font-size: 12px; color: var(--ink-muted); font-weight: 600; }
-.bcp-dday { flex-shrink: 0; font-variant-numeric: tabular-nums; font-family: var(--f-mono); font-size: 14px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.bottom-cta-promo { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; flex: 1 1 auto; }
+.bcp-hook { font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.3; word-break: keep-all; }
+.bcp-timer { font-size: 13.5px; font-weight: 600; color: var(--ink-mid); line-height: 1.35; word-break: keep-all; }
+.bcp-count { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 14px; font-weight: 800; color: var(--accent); white-space: nowrap; }
 .bottom-cta .btn { flex: 0 0 auto; padding: 13px 22px; font-size: 16px; white-space: nowrap; }
-.bcta-short { display: none; }
 /* 카카오 상담 FAB (우측 하단 고정, sticky 바 위) */
 .kakao-fab { position: fixed; right: 20px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 96; width: 56px; height: 56px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: #FEE500; box-shadow: 0 6px 20px rgba(20,17,15,0.22); display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease, box-shadow 0.15s ease; -webkit-tap-highlight-color: transparent; }
 .kakao-fab:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(20,17,15,0.28); }
@@ -791,14 +786,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .footer-grid > div:first-child { grid-column: 1 / -1; }
   .footer-biz { grid-template-columns: 1fr; }
   .footer-biz-row.wide { grid-column: auto; }
-  .bottom-cta-inner { gap: 10px; }
-  .bottom-cta-promo { gap: 7px; }
-  .bcp-price .old, .bcp-price .arw { display: none; }
-  .bcp-price strong { font-size: 16px; }
-  .bcp-dday { font-size: 12.5px; padding: 2px 8px; }
-  .bottom-cta .btn { padding: 12px 13px; font-size: 14px; }
-  .bcta-full { display: none; }
-  .bcta-short { display: inline; }
+  .bottom-cta-inner { gap: 8px; }
+  .bottom-cta-promo { gap: 1px; }
+  .bcp-hook { font-size: 13px; }
+  .bcp-timer { font-size: 12px; }
+  .bcp-count { font-size: 12.5px; }
+  .bottom-cta .btn { padding: 11px 12px; font-size: 13px; }
 }
 @media (max-width: 400px) {
   .container { padding: 0 16px; }
@@ -899,11 +892,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   #timing tr.tm-now td:first-child { border-left: 1.5px solid #F2A98C; border-radius: var(--r-sm) 0 0 var(--r-sm); }
   #timing tr.tm-now td:last-child { border-right: 1.5px solid #F2A98C; border-radius: 0 var(--r-sm) var(--r-sm) 0; }
 
-  #timing .tm-chart { margin: 64px auto 0; max-width: 600px; text-align: center; }
-  #timing .tm-chart h3 { font-size: clamp(19px, 4.6vw, 24px); font-weight: 800; color: var(--ink); line-height: 1.4; }
-  #timing .tm-chart-sub { margin-top: 8px; font-size: 14px; color: var(--ink-muted); }
-  #timing .tm-svg { display: block; width: 100%; max-width: 480px; height: auto; margin: 20px auto 0; font-family: var(--f-body); }
-  #timing .tm-chart-note { margin-top: 12px; font-size: 14px; color: var(--ink-muted); }
+  #timing .tm-chart { margin: 72px auto 0; max-width: 780px; text-align: center; }
+  #timing .tm-chart h3 { font-size: clamp(20px, 5vw, 28px); font-weight: 800; color: var(--ink); line-height: 1.4; }
+  #timing .tm-chart-sub { margin-top: 8px; font-size: 15px; color: var(--ink-muted); }
+  #timing .tm-svg { display: block; width: 100%; max-width: 660px; height: auto; margin: 24px auto 0; font-family: var(--f-body); }
+  #timing .tm-chart-note { margin-top: 14px; font-size: 15px; color: var(--ink-muted); }
 
   #timing .tm-databox { margin: 56px auto 0; max-width: 760px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-lg); padding: 34px 32px; text-align: center; }
   #timing .tm-data-main { font-size: 19px; color: var(--ink-soft); line-height: 1.6; word-break: keep-all; }
@@ -1633,10 +1626,10 @@ BLIND-END: #contact -->
 <div class="bottom-cta" id="bottomCta">
   <div class="bottom-cta-inner">
     <div class="bottom-cta-promo">
-      <span class="bcp-price"><span class="old">₩190,000</span><span class="arw">→</span><strong>₩133,000</strong><span class="per">/월</span></span>
-      <span class="bcp-dday" id="bcpDday" aria-live="polite"></span>
+      <span class="bcp-hook">지금이 가장 혜택이 높아요.</span>
+      <span class="bcp-timer">얼리버드 마감까지 <span class="bcp-count" id="bcpDday" aria-live="polite"></span></span>
     </div>
-    <a href="#pricing" id="bctaBtn" class="btn btn-primary bottom-cta-primary"><span class="bcta-full">얼리버드 혜택 보기</span><span class="bcta-short">혜택 보기</span></a>
+    <a href="#pricing" id="bctaBtn" class="btn btn-primary bottom-cta-primary">혜택보기</a>
   </div>
 </div>
 
@@ -1710,10 +1703,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       if (switched) return;
       switched = true;
       btn.setAttribute('href', 'https://app.talkb.co.kr/onboard');
-      var f = btn.querySelector('.bcta-full');
-      var s = btn.querySelector('.bcta-short');
-      if (f) f.textContent = '무료진단 후 얼리버드 시작';
-      if (s) s.textContent = '무료진단 시작';
+      btn.textContent = '무료진단 후 시작하기';
       if (bar) bar.classList.add('dark'); // 전환 인지: 어두운 배경으로
     }
     if ('IntersectionObserver' in window) {
