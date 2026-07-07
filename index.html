@@ -606,7 +606,21 @@ strong { font-weight: 700; }
 .price-amt .per { font-size: 14px; color: var(--ink-muted); font-weight: 500; }
 .price-vat { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
 .price-old { font-family: var(--f-mono); font-size: 16px; font-weight: 600; color: var(--ink-light); text-decoration: line-through; margin-bottom: 2px; }
-.price-deal-tag { display: inline-block; margin-left: 10px; font-family: var(--f-body); font-size: 12.5px; font-weight: 800; color: var(--accent-deep); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; vertical-align: middle; letter-spacing: 0; white-space: nowrap; }
+.price-deal-tag { display: inline-block; font-family: var(--f-body); font-size: 12.5px; font-weight: 800; color: var(--accent-deep); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; letter-spacing: 0; white-space: nowrap; }
+.price-deal-tag-block { align-self: flex-start; margin-top: 10px; }
+.price-head { display: flex; flex-direction: column; align-items: flex-start; }
+.price-cols { display: flex; flex-direction: column; }
+
+/* PC: 가격 카드 2단 구성 — 좌 가격 · 우 스펙, 혜택은 전체 폭 */
+@media (min-width: 1024px) {
+  .price-grid { max-width: 880px; }
+  .price-franchise, .price-notice { max-width: 880px; }
+  .price-card.featured { padding: 34px 38px; }
+  .price-cols { flex-direction: row; align-items: center; gap: 0; }
+  .price-head { flex: 0 0 290px; }
+  .price-cols .price-spec { flex: 1 1 auto; margin: 0 0 0 40px; padding: 0 0 0 40px; border-top: none; border-left: 1px solid var(--line-soft); }
+  .price-benefits { margin-top: 24px; }
+}
 .price-spec { margin: 16px 0 0; padding-top: 16px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .price-spec > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; line-height: 1.5; }
 .price-spec dt { color: var(--ink-muted); font-weight: 600; flex-shrink: 0; }
@@ -1246,10 +1260,10 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
       <div class="pstep fade-in">
         <span class="pstep-num zero">STEP 3</span>
-        <h3>정밀측정 후 AI 학습 시작</h3>
-        <p class="pstep-copy"><strong>매주 측정 · 매월 리포트 발송</strong></p>
+        <h3>서비스 실행</h3>
+        <p class="pstep-copy">정밀 진단 후, <strong>AI 학습 진행</strong></p>
         <div class="pstep-fig">
-          <img src="images/diagnosis/step-report.jpg" alt="정밀측정 후 AI 학습 시작 — 매주 측정, 매월 리포트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="images/diagnosis/step-report.jpg" alt="서비스 실행 — 정밀 진단 후 AI 학습 진행" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="pstep-ph">이미지 준비 중</div>
         </div>
       </div>
@@ -1302,18 +1316,23 @@ BLIND-END: 구 진행 방식 -->
     <div class="price-grid fade-in">
       <div class="price-card featured">
         <span class="price-flag">1차 얼리버드 · ~7/31</span>
-        <div class="price-name">GPT 플랜</div>
-        <div class="price-old">₩190,000</div>
-        <div class="price-amt">₩133,000<span class="per"> /월</span><span class="price-deal-tag">얼리버드 30% 적용</span></div>
-        <div class="price-vat">월 구독형 · 매장당 · VAT 별도</div>
-        <dl class="price-spec">
+        <div class="price-cols">
+          <div class="price-head">
+            <div class="price-name">GPT 플랜</div>
+            <div class="price-old">₩190,000</div>
+            <div class="price-amt">₩133,000<span class="per"> /월</span></div>
+            <div class="price-deal-tag price-deal-tag-block">얼리버드 30% 적용</div>
+            <div class="price-vat">월 구독형 · 매장당 · VAT 별도</div>
+          </div>
+          <dl class="price-spec">
           <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정 (상위 요금제 별도 안내)</span></dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
           <div><dt>측정 질문 수</dt><dd>15개 (추천 10 + 매장 이해도 5)</dd></div>
           <div><dt>측정 횟수</dt><dd>5회</dd></div>
           <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
           <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
-        </dl>
+          </dl>
+        </div>
         <div class="price-benefits">
           <div class="pb-head">얼리버드 혜택</div>
           <ul>
@@ -1341,7 +1360,7 @@ BLIND-END: 구 진행 방식 -->
 
     <!-- 접수 제한 공지 -->
     <div class="price-notice fade-in">
-      같은 지역·업종 <strong>3개 이상 접수 불가</strong> · 진행 전 카카오채널로 문의해 주세요.
+      같은 지역·업종 <strong>3개 이상 접수 불가</strong>로 진행이 어려울 수 있습니다.
     </div>
   </div>
 </section>
