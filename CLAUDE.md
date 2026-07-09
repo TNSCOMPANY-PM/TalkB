@@ -47,7 +47,7 @@
 | 영문 태그라인 | Make AI Talk Your Brand |
 | 한글 태그라인 | AI가 당신의 브랜드를 말하게 |
 | 도메인 | talkb.co.kr |
-| 이메일 | adm@tnscompany.co.kr |
+| 이메일 | adm.tnscompany@gmail.com |
 
 ### ⚠ 절대 금지 표기
 - ❌ TalkB AI (한 단어 취급) — TalkB 단독 + AI는 분야 표기
