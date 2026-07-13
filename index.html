@@ -584,6 +584,29 @@ strong { font-weight: 700; }
 .ref-store-loc { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); vertical-align: 2px; }
 .ref-quote { margin-top: 14px; padding: 13px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
 .ref-quote .rq-label { font-style: normal; font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 5px; }
+/* 실제 질문·답변 변화 아코디언 */
+.ref-qa { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg-soft); }
+.ref-qa summary { list-style: none; cursor: pointer; padding: 12px 14px; display: flex; align-items: center; gap: 10px; -webkit-tap-highlight-color: transparent; }
+.ref-qa summary::-webkit-details-marker { display: none; }
+.rqa-quote { flex: 1; font-size: 14px; font-style: italic; color: var(--ink-soft); line-height: 1.6; border-left: 3px solid var(--accent); padding-left: 12px; }
+.rqa-quote b { display: block; font-style: normal; font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+.rqa-toggle { flex-shrink: 0; font-size: 12.5px; font-weight: 800; color: var(--accent-deep); white-space: nowrap; }
+.ref-qa[open] .rqa-toggle .c { display: none; }
+.ref-qa:not([open]) .rqa-toggle .o { display: none; }
+.rqa-body { border-top: 1px solid var(--line-soft); background: #fff; padding: 13px 14px 14px; }
+.rqa-q { font-size: 13.5px; font-weight: 800; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
+.rqa-q .gap { font-weight: 600; color: var(--ink-muted); font-size: 12px; }
+.rqa-blk { border-radius: 10px; padding: 11px 13px; font-size: 12.5px; line-height: 1.6; }
+.rqa-blk + .rqa-blk { margin-top: 8px; }
+.rqa-before { background: var(--bg-soft); border: 1px dashed var(--line); color: var(--ink-mid); }
+.rqa-after { background: var(--accent-paper); border: 1.5px solid var(--accent-soft); color: var(--ink-soft); }
+.rqa-tag { display: inline-block; font-size: 11px; font-weight: 800; border-radius: 999px; padding: 2px 9px; margin-bottom: 6px; }
+.rqa-before .rqa-tag { background: var(--gauge-before); color: var(--ink-mid); }
+.rqa-after .rqa-tag { background: var(--accent); color: #fff; }
+.rqa-miss { font-weight: 800; color: #A32D2D; margin-bottom: 4px; font-size: 12.5px; }
+.rqa-ex { font-style: italic; }
+.rqa-ex mark { background: var(--accent-soft); color: var(--accent-deep); font-weight: 800; padding: 0 3px; border-radius: 4px; font-style: normal; }
+.rqa-fine { margin-top: 9px; font-size: 11px; color: var(--ink-muted); }
 .ref-store-period { margin-top: 8px; line-height: 1.3; }
 .ref-period-main { font-family: var(--f-body); font-size: 18px; font-weight: 800; color: var(--accent); }
 .ref-period-date { font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--ink-mid); margin-left: 2px; }
@@ -1066,7 +1089,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         periodMain: '빠른 초기 반응 · 2주 진행 결과',
         periodDate: '2026.07.01 ~ 2026.07.13',
         trend: [ {d:'7/1',v:0}, {d:'7/6',v:6.7}, {d:'7/13',v:23.3} ],
-        from: '0%', to: '23.3%'
+        from: '0%', to: '23.3%',
+        qa: {
+          q: '용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘', gap: '2주',
+          before: { d: '7/1', miss: '경쟁 감자탕집만 추천', ex: '용인시 처인구 모현읍 일대에서 가족과 함께 식사하기 좋은 감자탕 맛집 추천입니다. ① ㄱ○○ 원당감자탕 ② ㅇ○○○집 …' },
+          after: { d: '7/13', rank: '1순위', ex: '추천 맛집 1: 인생뼈다귀 본점 — 주차장 넉넉(15대 이상), 발렛 파킹 가능. 놀이방·유아의자 등 가족 편의시설 완비, 최대 80명 단체석·룸 구비…' }
+        }
       },
       {
         name: '오공김밥 일산탄현점',
@@ -1076,7 +1104,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         periodMain: '6주 진행 결과',
         periodDate: '2026.06.01 ~ 2026.07.13',
         trend: [ {d:'6/1',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:0}, {d:'6/29',v:76.7}, {d:'7/6',v:76.7}, {d:'7/13',v:96.7} ],
-        from: '0%', to: '96.7%'
+        from: '0%', to: '96.7%',
+        qa: {
+          q: '일산 탄현동에서 혼밥하기 좋은 분식집 추천해주세요', gap: '6주',
+          before: { d: '6/1', miss: '경쟁 분식점 5곳만 추천', ex: '일산 서구 탄현동에서 혼자 편하게 분식을 즐기기 좋은 식당을 추천드릴게요. ① ㄷ○○마라탕 ② ㅅ○○ 찹쌀순대 ③ ㅇ○ 떡볶이 …' },
+          after: { d: '7/13', rank: '1순위', ex: '① 오공김밥 일산탄현점 — 리뷰 100개 중 6명이 ‘혼밥하기 좋아요’를 직접 언급했을 만큼 1인 식사에 매우 적합한 곳입니다. 58가지 김밥과 세트 메뉴, 탄현역 인근 접근성…' }
+        }
       },
       {
         name: '덮밥장사장 대치역점',
@@ -1086,7 +1119,12 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         periodMain: '6주 진행 결과',
         periodDate: '2026.06.02 ~ 2026.07.13',
         trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90}, {d:'7/6',v:96.7}, {d:'7/13',v:93.3} ],
-        from: '0%', to: '93.3%'
+        from: '0%', to: '93.3%',
+        qa: {
+          q: '대치역 근처 캐주얼하고 가성비 좋은 맛집 추천해주세요', gap: '6주',
+          before: { d: '6/2', miss: '경쟁 3곳만 추천', ex: '대치역 근처에서 캐주얼하면서도 가성비 좋은 식당을 찾으신다면 아래 추천을 참고해보세요. ① ㄷ○하루 ② ㄷ○정육식당 …' },
+          after: { d: '7/13', rank: '1순위', ex: '① 덮밥장사장 대치역점 — 일본식 캐주얼 덮밥 전문점으로 깔끔하고 혼밥에 최적화된 구성. 키오스크 주문과 1인석 구조, 대치역 1번 출구 도보 3분…' }
+        }
       },
       {
         name: '한신우동 본점',
@@ -1186,6 +1224,22 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         '<span class="ref-tip-bubble" role="tooltip">' + esc(text) + '</span></span>';
     }
 
+    function buildQA(st) {
+      var a = st.qa;
+      var afterEx = esc(a.after.ex).replace(esc(st.name), '<mark>' + esc(st.name) + '</mark>');
+      return '<details class="ref-qa">' +
+        '<summary>' +
+          '<span class="rqa-quote"><b>AI가 실제로 이렇게 추천했습니다</b>&ldquo;' + esc(st.quote) + '&rdquo;</span>' +
+          '<span class="rqa-toggle"><span class="c">답변 변화 보기 ▾</span><span class="o">접기 ▴</span></span>' +
+        '</summary>' +
+        '<div class="rqa-body">' +
+          '<div class="rqa-q">Q. &ldquo;' + esc(a.q) + '&rdquo; <span class="gap">— 같은 질문, ' + esc(a.gap) + ' 간격</span></div>' +
+          '<div class="rqa-blk rqa-before"><span class="rqa-tag">' + esc(a.before.d) + ' 첫 측정</span><div class="rqa-miss">우리 매장 미언급 · ' + esc(a.before.miss) + '</div><div class="rqa-ex">&ldquo;' + esc(a.before.ex) + '&rdquo;</div></div>' +
+          '<div class="rqa-blk rqa-after"><span class="rqa-tag">' + esc(a.after.d) + ' 최신 측정 · ' + esc(a.after.rank) + '</span><div class="rqa-ex">&ldquo;' + afterEx + '&rdquo;</div></div>' +
+          '<div class="rqa-fine">※ 측정 시점의 실제 ChatGPT 답변 발췌이며, 세션에 따라 표현이 달라질 수 있습니다. 경쟁 매장명은 가렸습니다.</div>' +
+        '</div></details>';
+    }
+
     function buildCard(st) {
       return '<div class="ref-slide"><div class="ref-store">' +
         '<div class="ref-store-head">' +
@@ -1198,7 +1252,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           '<div class="ref-rate-label">ChatGPT 추천률' + tip(TIP_RATE) + '</div>' +
           '<div class="ref-rate-nums"><span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span></div>' +
         '</div>' +
-        (st.quote ? '<div class="ref-quote"><div class="rq-label">AI가 실제로 이렇게 추천했습니다</div>&ldquo;' + esc(st.quote) + '&rdquo;</div>' : '') +
+        (st.qa ? buildQA(st) : (st.quote ? '<div class="ref-quote"><div class="rq-label">AI가 실제로 이렇게 추천했습니다</div>&ldquo;' + esc(st.quote) + '&rdquo;</div>' : '')) +
         '</div></div>';
     }
 
