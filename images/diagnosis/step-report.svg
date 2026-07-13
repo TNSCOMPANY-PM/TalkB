@@ -24,8 +24,7 @@
   <text x="275" y="60" font-size="9.5" fill="#8B95A1" text-anchor="middle">다음 미션</text>
 
   <!-- title -->
-  <text x="28" y="92" font-size="17" font-weight="800" fill="#191F28">덮밥장사장 대치역점</text>
-  <text x="28" y="110" font-size="9.5" fill="#8B95A1">AI 검색 5회 측정 · 검색 시나리오 150건 분석</text>
+  <text x="28" y="96" font-size="17" font-weight="800" fill="#191F28">덮밥장사장 대치역점</text>
 
   <!-- highlight box -->
   <rect x="28" y="120" width="274" height="60" rx="10" fill="#FFF6F2" stroke="#FFE3D6"/>
