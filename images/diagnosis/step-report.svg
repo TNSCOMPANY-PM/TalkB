@@ -1,0 +1,64 @@
+<svg width="330" height="440" viewBox="0 0 330 440" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">
+  <defs>
+    <filter id="s3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#191F28" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <!-- card -->
+  <rect x="8" y="8" width="314" height="424" rx="18" fill="#ffffff" stroke="#ECEEF1" stroke-width="1" filter="url(#s3)"/>
+
+  <!-- brand + month -->
+  <text x="28" y="36" font-size="11" font-weight="800" fill="#E85D3A">TalkB 토크비</text>
+  <text x="302" y="36" font-size="9.5" fill="#8B95A1" text-anchor="end">월간 리포트 · 2026년 6월</text>
+
+  <!-- tab chips -->
+  <rect x="28" y="46" width="40" height="20" rx="10" fill="#E85D3A"/>
+  <text x="48" y="60" font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">핵심</text>
+  <rect x="72" y="46" width="52" height="20" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="98" y="60" font-size="9.5" fill="#8B95A1" text-anchor="middle">노출 추이</text>
+  <rect x="128" y="46" width="52" height="20" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="154" y="60" font-size="9.5" fill="#8B95A1" text-anchor="middle">검색 노출</text>
+  <rect x="184" y="46" width="60" height="20" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="214" y="60" font-size="9.5" fill="#8B95A1" text-anchor="middle">경쟁·리뷰</text>
+  <rect x="248" y="46" width="54" height="20" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="275" y="60" font-size="9.5" fill="#8B95A1" text-anchor="middle">다음 미션</text>
+
+  <!-- title -->
+  <text x="28" y="92" font-size="17" font-weight="800" fill="#191F28">덮밥장사장 대치역점</text>
+  <text x="28" y="110" font-size="9.5" fill="#8B95A1">AI 검색 5회 측정 · 검색 시나리오 150건 분석</text>
+
+  <!-- highlight box -->
+  <rect x="28" y="120" width="274" height="60" rx="10" fill="#FFF6F2" stroke="#FFE3D6"/>
+  <text x="40" y="140" font-size="10.5" font-weight="800" fill="#E85D3A">📈 이번 달, 좋아지고 있어요</text>
+  <text x="40" y="157" font-size="10.5" fill="#3C4551">함께 노출된 경쟁 매장 중 <tspan font-weight="800" fill="#191F28">노출 1위</tspan>예요.</text>
+  <text x="40" y="172" font-size="10.5" fill="#3C4551">추천 노출률 0% → <tspan font-weight="800" fill="#191F28">90%</tspan> · 추천 시 평균 1.2위</text>
+
+  <!-- metric cards -->
+  <!-- card 1 -->
+  <rect x="28" y="194" width="86" height="90" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="40" y="214" font-size="9" fill="#8B95A1">추천 노출률</text>
+  <text x="40" y="248" font-size="25" font-weight="800" fill="#191F28">90%</text>
+  <text x="40" y="270" font-size="8.5" font-weight="700" fill="#22A05B">▲ +90%p</text>
+  <!-- card 2 -->
+  <rect x="122" y="194" width="86" height="90" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="134" y="214" font-size="9" fill="#8B95A1">평균 추천 순위</text>
+  <text x="134" y="248" font-size="25" font-weight="800" fill="#191F28">1.2위</text>
+  <text x="134" y="270" font-size="8.5" fill="#8B95A1">보통 이 순위</text>
+  <!-- card 3 -->
+  <rect x="216" y="194" width="86" height="90" rx="10" fill="#fff" stroke="#ECEEF1"/>
+  <text x="228" y="214" font-size="9" fill="#8B95A1">1위 추천률</text>
+  <text x="228" y="248" font-size="25" font-weight="800" fill="#191F28">87%</text>
+  <text x="228" y="270" font-size="8.5" fill="#8B95A1">맨 위 노출</text>
+
+  <!-- next-mission bar -->
+  <rect x="28" y="302" width="274" height="40" rx="10" fill="#F7F8FA"/>
+  <text x="42" y="326" font-size="10.5" fill="#3C4551">✓ 다음 달 미션 3개 도착 · <tspan font-weight="700" fill="#191F28">PDF 리포트 제공</tspan></text>
+
+  <!-- pagination dots -->
+  <circle cx="152" cy="368" r="4" fill="#E85D3A"/>
+  <circle cx="166" cy="368" r="3" fill="#E3E6EA"/>
+  <circle cx="178" cy="368" r="3" fill="#E3E6EA"/>
+  <circle cx="190" cy="368" r="3" fill="#E3E6EA"/>
+
+  <text x="165" y="398" font-size="9.5" fill="#B8BFC8" text-anchor="middle">매월 1일 자동 발행</text>
+</svg>
