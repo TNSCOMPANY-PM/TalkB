@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 비공개 페이지: 검색엔진 수집·색인 차단 -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+<title>FCEO 45기 특별 혜택 — 토크비</title>
+<meta name="theme-color" content="#E85D3A">
+<meta name="description" content="FCEO 45기 전용 페이지">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+<style>
+  :root{
+    --ink:#171412;
+    --ink-soft:#5C544E;
+    --ink-faint:#9A928B;
+    --paper:#FBF9F7;
+    --line:#E7E1DB;
+    --brand:#E85D3A;
+    --brand-deep:#C4451F;
+    --brand-tint:#FDEDE7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:64px 24px 96px}
+
+  .brand{font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--brand)}
+  .brand span{color:var(--ink-faint);font-weight:600;margin-left:8px}
+
+  .badge{
+    display:inline-block;margin-top:44px;
+    font-size:12px;font-weight:700;letter-spacing:.08em;
+    color:var(--brand-deep);background:var(--brand-tint);
+    border-radius:999px;padding:7px 14px;
+  }
+
+  h1{margin-top:20px;font-size:34px;font-weight:800;letter-spacing:-.035em;line-height:1.3}
+  h1 em{font-style:normal;color:var(--brand)}
+
+  /* 시그니처: 45기 = 45% */
+  .figure{
+    margin-top:48px;border:1px solid var(--line);background:#fff;
+    border-radius:20px;padding:40px 32px;text-align:center;
+  }
+  .figure .big{font-size:76px;font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--brand)}
+  .figure .big small{font-size:34px;font-weight:800;margin-left:2px}
+  .figure .cap{margin-top:10px;font-size:15px;font-weight:700}
+
+  .max{
+    margin-top:18px;display:inline-block;
+    font-size:13px;font-weight:700;letter-spacing:-.01em;
+    color:var(--brand-deep);background:var(--brand-tint);
+    border-radius:8px;padding:8px 14px;
+  }
+
+  .price{
+    margin-top:26px;padding-top:26px;border-top:1px dashed var(--line);
+    display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;
+  }
+  .price .was{font-size:17px;color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1.5px}
+  .price .arrow{color:var(--ink-faint);font-size:15px}
+  .price .now{font-size:32px;font-weight:800;letter-spacing:-.03em}
+  .price .now b{color:var(--brand)}
+  .price .per{font-size:15px;color:var(--ink-soft);font-weight:600}
+  .vat{margin-top:10px;font-size:12px;color:var(--ink-faint)}
+
+  /* 적용 방법 2갈래 */
+  .cases{margin-top:40px;display:grid;gap:12px}
+  .case{border:1px solid var(--line);background:#fff;border-radius:16px;padding:24px 26px}
+  .case .lbl{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--brand-deep)}
+  .case p{margin-top:8px;font-size:16px;color:var(--ink-soft);letter-spacing:-.01em}
+  .case p strong{color:var(--ink);font-weight:700}
+
+  .deadline{
+    margin-top:32px;text-align:center;background:var(--ink);color:#fff;
+    border-radius:16px;padding:28px 24px;
+  }
+  .deadline .d{font-size:23px;font-weight:800;letter-spacing:-.025em;line-height:1.4}
+  .deadline .s{margin-top:8px;font-size:14px;color:#B8AFA8}
+
+  /* 문의 */
+  .apply{margin-top:56px;padding-top:36px;border-top:2px solid var(--ink);text-align:center}
+  .apply .lbl{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink-faint)}
+  .apply .who{margin-top:12px;font-size:24px;font-weight:800;letter-spacing:-.03em}
+  .apply .who em{font-style:normal;color:var(--brand)}
+  .apply .tel{
+    display:inline-block;margin-top:18px;
+    font-size:30px;font-weight:800;letter-spacing:-.02em;
+    color:var(--ink);text-decoration:none;
+    border-bottom:3px solid var(--brand);padding-bottom:2px;
+  }
+  .apply .tel:hover,.apply .tel:focus-visible{color:var(--brand)}
+  .apply .kakao{margin-top:16px;font-size:16px;color:var(--ink-soft);font-weight:600}
+  .apply .sub{margin-top:14px;font-size:15px;color:var(--ink-soft)}
+
+  .foot{margin-top:64px;text-align:center;font-size:12px;color:var(--ink-faint);line-height:1.8}
+
+  a:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:4px}
+
+  @media (max-width:520px){
+    .wrap{padding:44px 20px 72px}
+    h1{font-size:27px}
+    .figure{padding:32px 22px}
+    .figure .big{font-size:60px}
+    .price .now{font-size:27px}
+    .deadline .d{font-size:19px}
+    .apply .tel{font-size:26px}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="brand">TalkB<span>토크비</span></div>
+
+  <div class="badge">FCEO 45기 전용</div>
+
+  <h1>45기 여러분만을 위한<br><em>특별한 혜택</em>을 준비했습니다</h1>
+
+  <section class="figure">
+    <div class="big">45<small>%</small></div>
+    <div class="cap">평생 할인</div>
+
+    <div class="max">토크비 최대 할인 · 이보다 큰 할인은 없습니다</div>
+
+    <div class="price">
+      <span class="was">190,000원</span>
+      <span class="arrow">→</span>
+      <span class="now"><b>104,500</b>원</span>
+      <span class="per">/ 월</span>
+    </div>
+    <div class="vat">월 구독형(약정 없음) · 매장당 · VAT 별도</div>
+  </section>
+
+  <div class="cases">
+    <div class="case">
+      <div class="lbl">무료 파일럿 진행 중인 매장</div>
+      <p><strong>8월 31일까지 무료</strong>로 제공됩니다.<br>
+      45기 특별 혜택 신청 시, <strong>9월 1일부터</strong> 위 할인가로 적용됩니다.</p>
+    </div>
+    <div class="case">
+      <div class="lbl">매장을 추가하시는 경우</div>
+      <p>결제 후 <strong>바로 서비스가 시작</strong>됩니다.<br>
+      프랜차이즈 본사 추가 매장도 동일하게 적용됩니다.</p>
+    </div>
+  </div>
+
+  <div class="deadline">
+    <div class="d">7월 31일까지 신청하신 분께<br>적용해 드립니다</div>
+    <div class="s">FCEO 45기 한정</div>
+  </div>
+
+  <section class="apply">
+    <div class="lbl">신청 방법</div>
+    <div class="who"><em>김태정 대표</em>에게 문의</div>
+    <a class="tel" href="tel:010-8767-4932">010-8767-4932</a>
+    <p class="kakao">또는 카카오톡으로 연락 주세요</p>
+    <p class="sub">궁금하신 점도 편하게 말씀 주세요.</p>
+  </section>
+
+  <div class="foot">
+    (주)티앤에스컴퍼니 · 맛집 전문 AI 추천 최적화 솔루션<br>
+    FCEO 45기 전용 안내 페이지입니다.
+  </div>
+
+</main>
+</body>
+</html>
