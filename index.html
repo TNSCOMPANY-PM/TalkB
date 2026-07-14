@@ -2089,5 +2089,26 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
 })();
 </script>
 
+<!-- GA4 CTA 클릭 이벤트 추적 (히어로 / 하단바 스크롤 / 하단바 무료진단) -->
+<script>
+(function () {
+  'use strict';
+  function send(name) {
+    if (typeof gtag === 'function') gtag('event', name);
+  }
+  var hero = document.querySelector('.hero-cta .btn');
+  if (hero) {
+    hero.addEventListener('click', function () { send('hero_cta_click'); });
+  }
+  var bcta = document.getElementById('bctaBtn');
+  if (bcta) {
+    bcta.addEventListener('click', function () {
+      var href = bcta.getAttribute('href') || '';
+      send(href.indexOf('onboard') !== -1 ? 'bottom_cta_onboard_click' : 'bottom_cta_click');
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
