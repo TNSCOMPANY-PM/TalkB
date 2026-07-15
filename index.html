@@ -554,6 +554,7 @@ strong { font-weight: 700; }
 .pstep h3 { font-size: 22px; font-weight: 800; margin-bottom: 14px; line-height: 1.4; }
 .pstep-copy { flex: 1; font-size: 17px; color: var(--ink-mid); line-height: 1.62; }
 .pstep-copy strong { color: var(--ink); font-weight: 700; }
+.pstep-now { display: inline-block; margin-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); line-height: 1.5; word-break: keep-all; } /* 사전 접수 기간 한시 표기 — 8/3 결제 오픈 시 제거 */
 .pstep-fig { margin-top: 18px; }
 .pstep-fig img { display: block; width: 100%; max-width: 100%; border-radius: var(--r-md); border: 1px solid var(--line); }
 .pstep-ph { display: none; align-items: center; justify-content: center; width: 100%; min-height: 150px; border-radius: var(--r-md); border: 1px dashed var(--line); background: repeating-linear-gradient(45deg, var(--bg-soft), var(--bg-soft) 12px, #F1ECE2 12px, #F1ECE2 24px); font-family: var(--f-mono); font-size: 13px; color: var(--ink-muted); }
@@ -1415,7 +1416,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <div class="pstep fade-in">
         <span class="pstep-num">STEP 2 · 5분</span>
         <h3>얼리버드 신청하기</h3>
-        <p class="pstep-copy">AI가 학습할 매장 정보 작성<br><strong>얼리버드 신청 · 결제</strong></p>
+        <p class="pstep-copy">AI가 학습할 매장 정보 작성<br><strong>얼리버드 신청 · 결제</strong><br><span class="pstep-now">현재 사전 접수 기간 · 결제 오픈 8월 3일(예정)</span></p>
         <div class="pstep-fig">
           <img src="images/diagnosis/step-signup.svg" alt="얼리버드 신청하기 — AI가 학습할 매장 정보 작성" onerror="this.parentNode.style.display='none';">
           <div class="pstep-ph">이미지 준비 중</div>
@@ -1848,9 +1849,23 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     var deadline = new Date(2026, 6, 31, 23, 59, 59).getTime(); // 월 0-index: 6 = 7월
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
     function write(txt) { els.forEach(function (el) { el.textContent = txt; }); }
+    /* 마감 후: 타이머 칸에 긴 문구를 넣으면 레이아웃이 깨지므로 칩·하단바를 마감 상태로 통째로 전환 */
+    function closePrereg() {
+      window.PREREG_CLOSED = true;
+      var hb = document.querySelector('.hero-badge');
+      if (hb) hb.innerHTML = '<span class="dot"></span>사전 접수 마감 · 8월 3일(예정) 결제 오픈';
+      var hook = document.querySelector('.bcp-hook');
+      if (hook) hook.textContent = '1차 사전 접수가 마감되었습니다.';
+      var tl = document.querySelector('.bcp-timer');
+      if (tl) tl.textContent = '결제 오픈 8월 3일(예정) · 카카오채널에서 안내드립니다';
+      var c = document.getElementById('bcpDday');
+      if (c) c.textContent = '';
+      var btn = document.getElementById('bctaBtn');
+      if (btn && btn.textContent === '얼리버드 사전 접수하기') btn.textContent = '카카오채널 문의하기';
+    }
     function tick() {
       var diff = deadline - Date.now();
-      if (diff <= 0) { write('사전 접수 마감 · 8월 3일(예정) 결제 오픈'); clearInterval(timer); return; }
+      if (diff <= 0) { closePrereg(); clearInterval(timer); return; }
       var d = Math.floor(diff / 86400000);
       var h = Math.floor(diff % 86400000 / 3600000);
       var m = Math.floor(diff % 3600000 / 60000);
@@ -1895,7 +1910,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       btn.setAttribute('href', KAKAO_CHANNEL_URL);
       btn.setAttribute('target', '_blank');
       btn.setAttribute('rel', 'noopener');
-      btn.textContent = '얼리버드 사전 접수하기';
+      btn.textContent = window.PREREG_CLOSED ? '카카오채널 문의하기' : '얼리버드 사전 접수하기';
       if (bar) bar.classList.add('dark'); // 전환 인지: 어두운 배경으로
     }
     if ('IntersectionObserver' in window) {
