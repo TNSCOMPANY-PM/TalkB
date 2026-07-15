@@ -2124,7 +2124,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
 })();
 </script>
 
-<!-- GA4 CTA 클릭 이벤트 추적 (히어로 / 하단바 스크롤 / 하단바 무료진단) -->
+<!-- GA4 CTA 클릭 이벤트 추적 (히어로 / 하단바 스크롤 / 하단바 무료진단·사전 접수 / 사전 접수 박스) -->
 <script>
 (function () {
   'use strict';
@@ -2139,8 +2139,14 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
   if (bcta) {
     bcta.addEventListener('click', function () {
       var href = bcta.getAttribute('href') || '';
-      send(href.indexOf('onboard') !== -1 ? 'bottom_cta_onboard_click' : 'bottom_cta_click');
+      if (href.indexOf('onboard') !== -1) send('bottom_cta_onboard_click');
+      else if (href.indexOf('pf.kakao') !== -1) send('bottom_cta_prereg_click');
+      else send('bottom_cta_click');
     });
+  }
+  var prereg = document.querySelector('.prereg-btn');
+  if (prereg) {
+    prereg.addEventListener('click', function () { send('prereg_box_click'); });
   }
 })();
 </script>
