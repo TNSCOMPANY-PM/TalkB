@@ -17,209 +17,266 @@
 <meta name="googlebot" content="noindex, nofollow">
 
 <title>FCEO 45기 전용 혜택 — 토크비</title>
-<meta name="theme-color" content="#E85D3A">
+<meta name="theme-color" content="#131009">
 <meta name="description" content="FCEO 45기 전용 비공개 페이지">
-<meta property="og:title" content="FCEO 45기 전용 혜택 — 토크비">
-<meta property="og:description" content="45기 동기분들께만 공유되는 비공개 페이지입니다.">
+
+<!-- 카톡 공유 미리보기: 혜택(45%)이 드러나지 않는 티저 이미지 고정 -->
+<meta property="og:title" content="FCEO 45기 전용 비공개 페이지 — 토크비">
+<meta property="og:description" content="초대받은 동기분들께만 공유되는 링크입니다. 혜택은 페이지에서 직접 확인하세요.">
+<meta property="og:image" content="https://talkb.co.kr/fceo45/og-teaser.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 
 <style>
   :root{
-    --ink:#171412;
-    --ink-soft:#5C544E;
-    --ink-faint:#9A928B;
-    --paper:#FBF9F7;
-    --line:#E7E1DB;
+    --bg:#131009;
+    --panel:#1D1913;
+    --panel2:#221D16;
+    --line:rgba(201,162,124,.22);
+    --gold:#C9A27C;
+    --gold-hi:#E2C39D;
+    --gold-soft:rgba(201,162,124,.09);
     --brand:#E85D3A;
     --brand-deep:#C4451F;
-    --brand-tint:#FDEDE7;
+    --brand-glow:rgba(232,93,58,.35);
+    --paper:#FBF6EF;
+    --ink-hi:#F4EDE4;
+    --ink:#D8CFC4;
+    --ink-soft:#A2968A;
+    --ink-faint:#7A6F64;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
     font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-    background:var(--paper);
+    background:
+      radial-gradient(900px 620px at 50% -8%, rgba(201,162,124,.10), rgba(201,162,124,0) 62%),
+      radial-gradient(820px 560px at 50% 104%, rgba(232,93,58,.14), rgba(232,93,58,0) 66%),
+      var(--bg);
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
     line-height:1.6;
   }
-  .wrap{max-width:640px;margin:0 auto;padding:64px 24px 96px}
+  .wrap{max-width:640px;margin:0 auto;padding:60px 24px 96px}
+
+  /* 스크롤 리빌 */
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .rv.on{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
   .brand{font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--brand)}
   .brand span{color:var(--ink-faint);font-weight:600;margin-left:8px}
 
-  /* ① 시크릿 헤더 */
+  /* ① 시크릿 헤더 — 초대장 */
   .secret{
-    margin-top:44px;border:1.5px dashed var(--brand);background:var(--brand-tint);
-    border-radius:14px;padding:16px 18px;
+    margin-top:42px;position:relative;
+    border:1.5px solid var(--line);background:var(--gold-soft);
+    border-radius:16px;padding:22px 20px 20px;text-align:center;
   }
-  .secret .b{font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--brand-deep)}
-  .secret p{margin-top:5px;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+  .secret::before{
+    content:'PRIVATE INVITATION';
+    position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    background:var(--bg);color:var(--gold);padding:0 14px;
+    font-size:11px;font-weight:700;letter-spacing:.3em;white-space:nowrap;
+  }
+  .secret .b{font-size:15px;font-weight:800;letter-spacing:.02em;color:var(--gold-hi)}
+  .secret p{margin-top:7px;font-size:13.5px;color:var(--ink-soft);line-height:1.65}
 
-  h1{margin-top:24px;font-size:34px;font-weight:800;letter-spacing:-.035em;line-height:1.3}
-  h1 em{font-style:normal;color:var(--brand)}
+  h1{margin-top:30px;font-size:34px;font-weight:800;letter-spacing:-.035em;line-height:1.32;color:var(--ink-hi)}
+  h1 em{font-style:normal;color:var(--brand);text-shadow:0 0 34px var(--brand-glow)}
 
-  .sec-lbl{margin-top:56px;font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--brand-deep)}
+  .sec-lbl{
+    margin-top:60px;display:flex;align-items:center;gap:14px;
+    font-size:12.5px;font-weight:800;letter-spacing:.16em;color:var(--gold);
+  }
+  .sec-lbl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 
-  /* ② 인사말 편지 */
+  /* ② 인사말 — 크림 페이퍼 레터 */
   .letter{
-    margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;
-    padding:30px 28px;
+    margin-top:16px;background:var(--paper);border-radius:20px;
+    padding:32px 28px;box-shadow:0 24px 60px rgba(0,0,0,.4);
+    position:relative;
   }
-  .letter p{font-size:15.5px;color:var(--ink-soft);letter-spacing:-.01em;line-height:1.75}
+  .letter::before{
+    content:'';position:absolute;top:0;left:28px;right:28px;height:3px;
+    background:linear-gradient(90deg,var(--brand),rgba(232,93,58,0));border-radius:0 0 4px 4px;
+  }
+  .letter p{font-size:15.5px;color:#4A423B;letter-spacing:-.01em;line-height:1.78}
   .letter p+p{margin-top:14px}
-  .letter p strong{color:var(--ink);font-weight:700}
-  .letter .sign{margin-top:20px;text-align:right;font-size:15px;font-weight:800;color:var(--ink)}
+  .letter p strong{color:#171412;font-weight:700}
+  .letter .sign{margin-top:22px;text-align:right;font-size:15px;font-weight:800;color:#171412}
 
   /* ③ 감사 명단 */
-  .thanks{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 28px}
-  .thanks .grp{font-size:13px;font-weight:800;color:var(--brand-deep);letter-spacing:.02em}
-  .thanks .grp.g2{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line)}
-  .thanks ul{list-style:none;margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:7px 14px}
+  .thanks{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px}
+  .thanks .grp{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.06em}
+  .thanks .grp.g2{margin-top:24px;padding-top:22px;border-top:1px dashed var(--line)}
+  .thanks ul{list-style:none;margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
   .thanks li{font-size:14.5px;color:var(--ink-soft);letter-spacing:-.01em;word-break:keep-all}
-  .thanks li b{color:var(--ink);font-weight:700}
-  .thanks .note{margin-top:18px;font-size:13px;color:var(--ink-faint)}
+  .thanks li b{color:var(--ink-hi);font-weight:700}
+  .thanks .note{margin-top:20px;font-size:13px;color:var(--ink-faint)}
 
   /* ④ 토크비 소개 */
-  .about{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 28px}
+  .about{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px}
   .about ol{list-style:none;counter-reset:a}
-  .about li{counter-increment:a;position:relative;padding-left:34px;font-size:15.5px;color:var(--ink-soft);letter-spacing:-.01em;line-height:1.7}
-  .about li+li{margin-top:12px}
+  .about li{counter-increment:a;position:relative;padding-left:36px;font-size:15.5px;color:var(--ink-soft);letter-spacing:-.01em;line-height:1.7}
+  .about li+li{margin-top:14px}
   .about li::before{
-    content:counter(a);position:absolute;left:0;top:3px;width:23px;height:23px;border-radius:50%;
-    background:var(--brand);color:#fff;font-size:13px;font-weight:800;
+    content:counter(a);position:absolute;left:0;top:3px;width:24px;height:24px;border-radius:50%;
+    background:linear-gradient(135deg,var(--brand),var(--brand-deep));color:#fff;font-size:13px;font-weight:800;
     display:inline-flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 14px var(--brand-glow);
   }
-  .about li strong{color:var(--ink);font-weight:700}
-  .about .ref{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink-faint)}
-  .about .ref a{color:var(--brand-deep);font-weight:700}
+  .about li strong{color:var(--ink-hi);font-weight:700}
+  .about .ref{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink-faint)}
+  .about .ref b{color:var(--gold-hi);font-weight:800}
+  .about .ref a{color:var(--brand);font-weight:700}
 
   /* ⑤ 스크래치 카드 */
-  .scratch-hint{margin-top:14px;text-align:center;font-size:14.5px;font-weight:700;color:var(--brand-deep)}
+  .scratch-hint{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:var(--gold-hi)}
+  .scratch-hint .down{display:inline-block;animation:hintPulse 1.6s ease-in-out infinite}
+  @keyframes hintPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
   .figure{
-    margin-top:10px;border:1px solid var(--line);background:#fff;
-    border-radius:20px;padding:40px 32px;text-align:center;
-    position:relative;overflow:hidden;
+    margin-top:12px;border-radius:20px;padding:42px 32px;text-align:center;
+    background:var(--paper);position:relative;overflow:hidden;
+    box-shadow:0 0 0 1.5px rgba(201,162,124,.4),0 0 44px rgba(232,93,58,.16),0 26px 60px rgba(0,0,0,.45);
   }
   .figure .big{font-size:76px;font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--brand)}
   .figure .big small{font-size:34px;font-weight:800;margin-left:2px}
-  .figure .cap{margin-top:10px;font-size:15px;font-weight:700}
+  .figure .cap{margin-top:10px;font-size:15px;font-weight:700;color:#171412}
   .max{
     margin-top:18px;display:inline-block;
     font-size:13px;font-weight:700;letter-spacing:-.01em;
-    color:var(--brand-deep);background:var(--brand-tint);
+    color:var(--brand-deep);background:#FDEDE7;
     border-radius:8px;padding:8px 14px;
   }
   .price{
-    margin-top:26px;padding-top:26px;border-top:1px dashed var(--line);
+    margin-top:26px;padding-top:26px;border-top:1px dashed #E0D6CD;
     display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;
   }
-  .price .was{font-size:17px;color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1.5px}
-  .price .arrow{color:var(--ink-faint);font-size:15px}
-  .price .now{font-size:32px;font-weight:800;letter-spacing:-.03em}
+  .price .was{font-size:17px;color:#9A928B;text-decoration:line-through;text-decoration-thickness:1.5px}
+  .price .arrow{color:#9A928B;font-size:15px}
+  .price .now{font-size:32px;font-weight:800;letter-spacing:-.03em;color:#171412}
   .price .now b{color:var(--brand)}
-  .price .per{font-size:15px;color:var(--ink-soft);font-weight:600}
-  .vat{margin-top:10px;font-size:12px;color:var(--ink-faint)}
+  .price .per{font-size:15px;color:#5C544E;font-weight:600}
+  .vat{margin-top:10px;font-size:12px;color:#9A928B}
   #scratchCv{
     position:absolute;inset:0;width:100%;height:100%;border-radius:20px;
     touch-action:none;cursor:grab;transition:opacity .6s ease;
   }
   #scratchCv.done{opacity:0;pointer-events:none}
-  .scratch-skip{
-    margin-top:10px;text-align:center;font-size:12.5px;
-  }
+  .scratch-skip{margin-top:12px;text-align:center;font-size:12.5px}
   .scratch-skip button{
     background:none;border:none;font-family:inherit;font-size:12.5px;
     color:var(--ink-faint);text-decoration:underline;cursor:pointer;
   }
 
   /* ⑥ 비교표 */
-  .cmp{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .cmp{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
   .cmp table{width:100%;border-collapse:collapse}
-  .cmp th,.cmp td{padding:13px 14px;text-align:center;font-size:14.5px;border-bottom:1px solid var(--line)}
-  .cmp thead th{font-size:13px;font-weight:800;background:var(--paper);color:var(--ink-soft)}
-  .cmp thead th.hl{color:#fff;background:var(--brand)}
-  .cmp tbody th{font-weight:700;color:var(--ink-soft);font-size:13.5px;background:var(--paper)}
-  .cmp td.hl{font-weight:800;color:var(--brand-deep);background:var(--brand-tint)}
+  .cmp th,.cmp td{padding:14px;text-align:center;font-size:14.5px;border-bottom:1px solid rgba(201,162,124,.12)}
+  .cmp thead th{font-size:13px;font-weight:800;color:var(--ink-soft);background:var(--panel2)}
+  .cmp thead th.hl{color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-deep))}
+  .cmp tbody th{font-weight:700;color:var(--ink-faint);font-size:13.5px;background:var(--panel2)}
+  .cmp tbody td{color:var(--ink-soft)}
+  .cmp td.hl{font-weight:800;color:#FFD9CB;background:rgba(232,93,58,.14)}
   .cmp tr:last-child th,.cmp tr:last-child td{border-bottom:none}
-  .cmp-note{margin:12px 4px 0;font-size:12.5px;color:var(--ink-faint);line-height:1.65}
+  .cmp-note{margin:14px 4px 0;font-size:12.5px;color:var(--ink-faint);line-height:1.7}
 
   /* ⑦ 상황별 안내 */
-  .cases{margin-top:14px;display:grid;gap:12px}
-  .case{border:1px solid var(--line);background:#fff;border-radius:16px;padding:24px 26px}
-  .case .lbl{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--brand-deep)}
-  .case p{margin-top:8px;font-size:15.5px;color:var(--ink-soft);letter-spacing:-.01em}
-  .case p strong{color:var(--ink);font-weight:700}
+  .cases{margin-top:16px;display:grid;gap:12px}
+  .case{
+    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--brand);
+    border-radius:16px;padding:24px 26px;
+  }
+  .case .lbl{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--brand)}
+  .case p{margin-top:9px;font-size:15px;color:var(--ink-soft);letter-spacing:-.01em}
+  .case p strong{color:var(--ink-hi);font-weight:700}
 
   /* ⑧ 가맹점 추천 */
-  .fr{margin-top:14px;background:#fff;border:1.5px solid var(--brand);border-radius:20px;padding:26px 28px}
-  .fr h2{font-size:19px;font-weight:800;letter-spacing:-.025em;line-height:1.4}
+  .fr{
+    margin-top:16px;background:var(--panel);border-radius:20px;padding:28px;
+    box-shadow:0 0 0 1.5px rgba(232,93,58,.5),0 0 38px rgba(232,93,58,.12);
+  }
+  .fr h2{font-size:20px;font-weight:800;letter-spacing:-.025em;line-height:1.4;color:var(--ink-hi)}
   .fr h2 em{font-style:normal;color:var(--brand)}
-  .fr>p{margin-top:10px;font-size:15px;color:var(--ink-soft);letter-spacing:-.01em}
-  .fr>p strong{color:var(--ink);font-weight:700}
-  .fr .how{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
-  .fr .how-lbl{font-size:12.5px;font-weight:800;color:var(--brand-deep);letter-spacing:.03em}
-  .fr ol{list-style:none;counter-reset:f;margin-top:8px}
-  .fr ol li{counter-increment:f;position:relative;padding-left:26px;font-size:14px;color:var(--ink-soft);line-height:1.65;word-break:keep-all}
-  .fr ol li+li{margin-top:7px}
+  .fr>p{margin-top:12px;font-size:14.5px;color:var(--ink-soft);letter-spacing:-.01em}
+  .fr>p strong{color:var(--ink-hi);font-weight:700}
+  .fr .how{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line)}
+  .fr .how-lbl{font-size:12.5px;font-weight:800;color:var(--gold);letter-spacing:.08em}
+  .fr ol{list-style:none;counter-reset:f;margin-top:10px}
+  .fr ol li{counter-increment:f;position:relative;padding-left:27px;font-size:14px;color:var(--ink-soft);line-height:1.66;word-break:keep-all}
+  .fr ol li+li{margin-top:8px}
   .fr ol li::before{
     content:counter(f);position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;
-    background:var(--brand);color:#fff;font-size:11px;font-weight:800;
+    background:linear-gradient(135deg,var(--brand),var(--brand-deep));color:#fff;font-size:11px;font-weight:800;
     display:inline-flex;align-items:center;justify-content:center;
   }
-  .fr ol li strong{color:var(--ink);font-weight:700}
-  .fr .co{margin-top:14px;font-size:13.5px;color:var(--brand-deep);background:var(--brand-tint);border-radius:10px;padding:11px 14px;font-weight:600;line-height:1.6}
-  .fr .card-sample{margin-top:18px}
-  .fr .card-sample img{width:100%;max-width:420px;display:block;margin:0 auto;border-radius:16px;border:1px solid var(--line);box-shadow:0 10px 28px rgba(23,20,18,.1)}
-  .fr .card-sample figcaption{margin-top:10px;font-size:12.5px;color:var(--ink-faint);text-align:center}
-  .fr .partner{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-soft);line-height:1.7;word-break:keep-all}
-  .fr .partner strong{color:var(--ink);font-weight:700}
+  .fr ol li strong{color:var(--ink-hi);font-weight:700}
+  .fr .card-sample{margin-top:20px}
+  .fr .card-sample img{
+    width:100%;max-width:420px;display:block;margin:0 auto;border-radius:16px;
+    box-shadow:0 0 0 1px var(--line),0 20px 50px rgba(0,0,0,.5);
+  }
+  .fr .card-sample figcaption{margin-top:11px;font-size:12.5px;color:var(--ink-faint);text-align:center}
+  .fr .co{
+    margin-top:16px;font-size:13.5px;color:var(--gold-hi);background:var(--gold-soft);
+    border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-weight:600;line-height:1.6;
+  }
+  .fr .partner{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-soft);line-height:1.72;word-break:keep-all}
+  .fr .partner strong{color:var(--ink-hi);font-weight:700}
 
   /* 사전 접수 데드라인 */
   .deadline{
-    margin-top:32px;text-align:center;background:var(--ink);color:#fff;
-    border-radius:16px;padding:28px 24px;
+    margin-top:36px;text-align:center;color:#fff;
+    background:linear-gradient(135deg,var(--brand) 0%,var(--brand-deep) 100%);
+    border-radius:18px;padding:30px 24px;
+    box-shadow:0 18px 50px rgba(232,93,58,.3);
   }
   .deadline .d{font-size:23px;font-weight:800;letter-spacing:-.025em;line-height:1.4}
-  .deadline .s{margin-top:8px;font-size:14px;color:#B8AFA8;line-height:1.6}
+  .deadline .s{margin-top:9px;font-size:13.5px;color:#FFD9CB;line-height:1.65}
 
   /* ⑨ 신청·문의 */
-  .apply{margin-top:56px;padding-top:36px;border-top:2px solid var(--ink);text-align:center}
-  .apply .lbl{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink-faint)}
+  .apply{margin-top:60px;padding-top:38px;border-top:1px solid var(--line);text-align:center}
+  .apply .lbl{font-size:12.5px;font-weight:800;letter-spacing:.2em;color:var(--gold)}
   .kakao-btn{
-    display:block;margin:18px auto 0;max-width:420px;
-    background:var(--brand);color:#fff;text-decoration:none;
+    display:block;margin:20px auto 0;max-width:420px;
+    background:linear-gradient(135deg,var(--brand),var(--brand-deep));color:#fff;text-decoration:none;
     font-size:17px;font-weight:800;letter-spacing:-.01em;
-    border-radius:14px;padding:17px 20px;
+    border-radius:14px;padding:18px 20px;
+    box-shadow:0 12px 36px rgba(232,93,58,.35);
+    transition:transform .2s ease,box-shadow .2s ease;
   }
-  .kakao-btn:hover{background:var(--brand-deep)}
-  .first-msg{margin-top:14px;font-size:14px;color:var(--ink-soft);line-height:1.65}
+  .kakao-btn:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(232,93,58,.45)}
+  .first-msg{margin-top:16px;font-size:14px;color:var(--ink-soft);line-height:1.7}
   .first-msg code{
-    font-family:inherit;background:#fff;border:1px solid var(--line);border-radius:8px;
-    padding:3px 9px;font-weight:700;color:var(--ink);font-size:13.5px;
+    font-family:inherit;background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:3px 10px;font-weight:700;color:var(--gold-hi);font-size:13.5px;
   }
-  .direct{margin-top:26px;padding-top:22px;border-top:1px dashed var(--line)}
+  .direct{margin-top:28px;padding-top:24px;border-top:1px dashed var(--line)}
   .direct .who{font-size:15px;font-weight:700;color:var(--ink-soft)}
   .direct .who em{font-style:normal;color:var(--brand)}
   .direct .tel{
-    display:inline-block;margin-top:8px;
+    display:inline-block;margin-top:10px;
     font-size:24px;font-weight:800;letter-spacing:-.02em;
-    color:var(--ink);text-decoration:none;
+    color:var(--ink-hi);text-decoration:none;
     border-bottom:3px solid var(--brand);padding-bottom:2px;
   }
   .direct .tel:hover,.direct .tel:focus-visible{color:var(--brand)}
-  .more{margin-top:26px;font-size:14px;color:var(--ink-soft)}
-  .more a{color:var(--brand-deep);font-weight:800}
+  .more{margin-top:28px;font-size:14px;color:var(--ink-soft)}
+  .more a{color:var(--gold-hi);font-weight:800}
 
-  .foot{margin-top:64px;text-align:center;font-size:12px;color:var(--ink-faint);line-height:1.8}
+  .foot{margin-top:66px;text-align:center;font-size:12px;color:var(--ink-faint);line-height:1.8}
 
   a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:4px}
 
   @media (max-width:520px){
     .wrap{padding:44px 20px 72px}
     h1{font-size:27px}
-    .figure{padding:32px 22px}
+    .figure{padding:34px 22px}
     .figure .big{font-size:60px}
     .price .now{font-size:27px}
     .deadline .d{font-size:19px}
@@ -236,16 +293,16 @@
   <div class="brand">TalkB<span>토크비</span></div>
 
   <!-- ① 시크릿 헤더 -->
-  <div class="secret">
+  <div class="secret rv">
     <div class="b">🔒 FCEO 45기 전용 · 비공개 페이지</div>
     <p>이 페이지는 검색되지 않으며, 45기 동기분들께만 링크로 공유됩니다.<br>외부 공개 페이지에는 없는 혜택이 담겨 있습니다.</p>
   </div>
 
-  <h1>45기 여러분만을 위한<br><em>특별한 혜택</em>을 준비했습니다</h1>
+  <h1 class="rv">45기 여러분만을 위한<br><em>특별한 혜택</em>을 준비했습니다</h1>
 
   <!-- ② 대표 인사말 -->
-  <div class="sec-lbl">대표 인사말</div>
-  <section class="letter">
+  <div class="sec-lbl rv">대표 인사말</div>
+  <section class="letter rv">
     <p>안녕하세요, 45기 김태정입니다.</p>
     <p>토크비(TalkB)는 <strong>"AI에게 우리 브랜드(매장)를 말하게(Talk) 하다"</strong>라는 뜻으로, 2024년에 기획한 프로젝트입니다. FCEO 45기 활동을 하며 F&amp;B 전문 AI 추천 최적화 서비스로 완성해 이제 세상에 내놓습니다.</p>
     <p>파일럿에 참여해 주시고 레퍼런스 활용까지 동의해 주신 대표님들께 깊은 감사의 말씀을 드립니다. AI 추천 최적화는 AI 시대의 새로운 마케팅 흐름이 될 것이라 확신하며, 토크비는 <strong>F&amp;B 전문 AI 추천 최적화 업계 1위</strong>를 목표로 하고 있습니다.</p>
@@ -255,8 +312,8 @@
   </section>
 
   <!-- ③ 파일럿 감사 명단 -->
-  <div class="sec-lbl">시작에 큰 힘이 되어주신 파일럿 동기분들</div>
-  <section class="thanks">
+  <div class="sec-lbl rv">시작에 큰 힘이 되어주신 파일럿 동기분들</div>
+  <section class="thanks rv">
     <div class="grp">1차 파일럿</div>
     <ul>
       <li>덮밥장사장 <b>주원형 대표님</b></li>
@@ -279,20 +336,20 @@
   </section>
 
   <!-- ④ 토크비 소개 (자립형) -->
-  <div class="sec-lbl">토크비가 하는 일</div>
-  <section class="about">
+  <div class="sec-lbl rv">토크비가 하는 일</div>
+  <section class="about rv">
     <ol>
       <li>손님들은 이제 ChatGPT에게 <strong>"○○역 근처 맛집"</strong>을 묻습니다.</li>
       <li>토크비는 우리 매장이 AI에게 추천되는지 <strong>매주 15개 질문 × 5회 실측</strong>하고, 추천되도록 <strong>최적화를 대신 실행</strong>합니다.</li>
       <li>변화는 <strong>매월 Before/After 리포트</strong>로 확인하실 수 있습니다.</li>
     </ol>
-    <p class="ref">파일럿 8개 매장 평균 노출률 7% → 70% (실측 데이터) · 자세한 내용은 <a href="https://talkb.co.kr" target="_blank" rel="noopener">talkb.co.kr</a></p>
+    <p class="ref">파일럿 8개 매장 평균 노출률 <b>7% → 70%</b> (실측 데이터) · 자세한 내용은 <a href="https://talkb.co.kr" target="_blank" rel="noopener">talkb.co.kr</a></p>
   </section>
 
   <!-- ⑤ 스크래치 카드 -->
-  <div class="sec-lbl">45기 전용 혜택</div>
-  <p class="scratch-hint">아래 카드를 긁어서 45기 전용 혜택을 확인하세요 👇</p>
-  <section class="figure" id="scratchBox">
+  <div class="sec-lbl rv">45기 전용 혜택</div>
+  <p class="scratch-hint rv">아래 카드를 긁어서 45기 전용 혜택을 확인하세요 <span class="down">👇</span></p>
+  <section class="figure rv" id="scratchBox">
     <div class="big">45<small>%</small></div>
     <div class="cap">평생 할인</div>
 
@@ -307,11 +364,11 @@
     <div class="vat">월 구독형(약정 없음) · 매장당 · VAT 별도</div>
     <canvas id="scratchCv" aria-hidden="true"></canvas>
   </section>
-  <p class="scratch-skip"><button type="button" id="scratchSkip">긁지 않고 바로 보기</button></p>
+  <p class="scratch-skip rv"><button type="button" id="scratchSkip">긁지 않고 바로 보기</button></p>
 
   <!-- ⑥ 비교표 -->
-  <div class="sec-lbl">일반 얼리버드와 무엇이 다른가요?</div>
-  <section class="cmp">
+  <div class="sec-lbl rv">일반 얼리버드와 무엇이 다른가요?</div>
+  <section class="cmp rv">
     <table>
       <thead>
         <tr><th></th><th>일반 얼리버드</th><th class="hl">FCEO 45기</th></tr>
@@ -323,17 +380,17 @@
       </tbody>
     </table>
   </section>
-  <p class="cmp-note">· 우선 배정은 45기 대표님의 매장 및 브랜드(직영점·가맹점 포함) 전체에 적용됩니다.<br>· 얼리버드 전용 인증마크, 상위 모델 출시 시 기간 한정 무료 체험은 동일하게 적용됩니다.</p>
+  <p class="cmp-note rv">· 우선 배정은 45기 대표님의 매장 및 브랜드(직영점·가맹점 포함) 전체에 적용됩니다.<br>· 얼리버드 전용 인증마크, 상위 모델 출시 시 기간 한정 무료 체험은 동일하게 적용됩니다.</p>
 
   <!-- ⑦ 내 상황별 안내 -->
-  <div class="sec-lbl">내 상황에 맞게 확인하세요</div>
+  <div class="sec-lbl rv">내 상황에 맞게 확인하세요</div>
   <div class="cases">
-    <div class="case">
+    <div class="case rv">
       <div class="lbl">1 · 무료 파일럿 진행 중인 매장</div>
       <p><strong>8월 31일까지 무료</strong>로 계속 제공됩니다. 지금 하실 일은 없습니다.<br>
       9월부터 계속 이용을 원하시면 카카오채널로 말씀만 주세요 — <strong>9월 1일부터 45% 할인가(104,500원/월)</strong>로 이어지며, 8월 요금은 없습니다.</p>
     </div>
-    <div class="case">
+    <div class="case rv">
       <div class="lbl">2 · 신규로 진행 원하시는 매장</div>
       <p><strong>7월 31일까지 사전 접수</strong> → 결제 오픈(8월 3일 예정) 시 결제하시면 바로 서비스가 시작되고 <strong>45%가 평생 적용</strong>됩니다.<br>
       사전 접수는 결제가 아니며, 일정 변경 시 개별 안내드립니다.</p>
@@ -341,8 +398,8 @@
   </div>
 
   <!-- ⑧ 가맹점 추천 혜택 -->
-  <div class="sec-lbl">본사 대표님께 — 가맹점 추천 혜택</div>
-  <section class="fr">
+  <div class="sec-lbl rv">본사 대표님께 — 가맹점 추천 혜택</div>
+  <section class="fr rv">
     <h2>가맹점에도 <em>45기 혜택을 그대로</em> 드립니다</h2>
     <p>본사 대표님이 가맹점에 토크비를 추천하시면, 가맹점도 일반 얼리버드(30%)가 아닌 <strong>45% 평생 할인 + 우선 배정</strong>이 적용됩니다.</p>
     <p><strong>"본사가 가맹점을 위해 준비한 혜택"</strong>으로 전달되도록, 브랜드명이 들어간 추천 카드와 안내 문구 제작을 토크비가 적극 지원합니다.</p>
@@ -365,18 +422,18 @@
   </section>
 
   <!-- 사전 접수 데드라인 -->
-  <div class="deadline">
+  <div class="deadline rv">
     <div class="d">7월 31일까지 사전 접수하신 분께<br>적용해 드립니다</div>
     <div class="s">FCEO 45기 한정 · 결제 오픈 8월 3일(예정)<br>사전 접수는 결제가 아니며, 일정 변경 시 개별 안내드립니다</div>
   </div>
 
   <!-- ⑨ 신청·문의 -->
-  <section class="apply">
+  <section class="apply rv">
     <div class="lbl">신청 · 문의</div>
     <a class="kakao-btn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener">카카오채널로 45기 혜택 신청하기</a>
     <p class="first-msg">첫 메시지를 <code>45기 혜택 적용 — 매장명 · 성함</code>으로 남겨주시면<br>확인 후 바로 안내드립니다.</p>
     <div class="direct">
-      <div class="who"><em>김태정 대표</em> 다이렉트 문의</div><br>
+      <div class="who"><em>김태정 대표</em> 다이렉트 문의</div>
       <a class="tel" href="tel:010-8767-4932">010-8767-4932</a>
     </div>
     <p class="more">서비스가 궁금하시면 — 실측 레퍼런스·가격·FAQ<br><a href="https://talkb.co.kr" target="_blank" rel="noopener">talkb.co.kr 메인페이지 보기</a></p>
@@ -390,6 +447,22 @@
 </main>
 
 <script>
+/* ── 스크롤 리빌 ── */
+(function () {
+  'use strict';
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('on'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
 /* ── 45% 스크래치 카드 ──
    - 마우스·터치로 긁으면 하단 혜택이 드러남. 55% 이상 긁으면 자동 전체 공개.
    - ?open=1 로 접근하거나 '바로 보기' 클릭 시 즉시 공개 (미리보기·접근성 폴백). */
@@ -417,25 +490,34 @@
     cv.width = Math.round(w * dpr);
     cv.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    /* 커버: 브랜드 오렌지 그라데이션 + 은박 질감 점 */
+    /* 커버: 다크 골드 포일 */
     var g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, '#E85D3A');
-    g.addColorStop(0.55, '#D9502E');
-    g.addColorStop(1, '#C4451F');
+    g.addColorStop(0, '#2B241B');
+    g.addColorStop(0.5, '#1E1913');
+    g.addColorStop(1, '#26201700' === '' ? '#262017' : '#262017');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = 'rgba(255,255,255,0.08)';
-    for (var i = 0; i < 140; i++) {
-      var x = (i * 97) % w, y = (i * 53) % h, r = 1 + (i % 3);
+    /* 골드 입자 */
+    for (var i = 0; i < 170; i++) {
+      var x = (i * 89) % w, y = (i * 47) % h, r = 0.8 + (i % 3) * 0.7;
+      ctx.fillStyle = i % 4 === 0 ? 'rgba(201,162,124,0.28)' : 'rgba(201,162,124,0.10)';
       ctx.beginPath(); ctx.arc(x, y, r, 0, 6.3); ctx.fill();
     }
-    ctx.fillStyle = '#fff';
+    /* 테두리 라인 */
+    ctx.strokeStyle = 'rgba(201,162,124,0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(14.5, 14.5, w - 29, h - 29);
     ctx.textAlign = 'center';
-    ctx.font = '800 21px Pretendard, sans-serif';
-    ctx.fillText('여기를 긁어보세요', w / 2, h / 2 - 8);
+    ctx.fillStyle = '#C9A27C';
+    ctx.font = '700 13px Pretendard, sans-serif';
+    var sp = 'S E C R E T';
+    ctx.fillText(sp, w / 2, h / 2 - 34);
+    ctx.fillStyle = '#F4EDE4';
+    ctx.font = '800 22px Pretendard, sans-serif';
+    ctx.fillText('여기를 긁어보세요', w / 2, h / 2 - 4);
+    ctx.fillStyle = 'rgba(244,237,228,0.6)';
     ctx.font = '600 14px Pretendard, sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    ctx.fillText('45기 전용 혜택이 숨어 있습니다', w / 2, h / 2 + 18);
+    ctx.fillText('45기 전용 혜택이 숨어 있습니다', w / 2, h / 2 + 24);
   }
 
   var strokes = 0;
