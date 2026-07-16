@@ -215,6 +215,22 @@
         "@type": "Answer",
         "text": "카카오채널(https://pf.kakao.com/_JxlWTX/chat)로 해지 요청을 하시면 다음 구독일부터 결제가 진행되지 않습니다. 이미 결제하신 남은 기간까지는 정상 서비스되며, 위약금은 없습니다."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "네이버 플레이스 상위인데도 필요한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "플레이스 순위와 AI 추천은 별개입니다. 실제 측정에서 네이버 지도 1위 매장이 ChatGPT 답변에 한 번도 나오지 않은(0%) 사례도 있습니다. AI는 플레이스 순위가 아니라 자기 기준으로 매장을 고릅니다. 무료진단으로 확인해 보세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "이미 유명한 매장인데도 필요한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "사람들에게 유명한 것과 AI가 아는 것은 다릅니다. 네이버 블로그·바이럴 마케팅을 아무리 쌓아도 AI에게는 닿지 않는 경우가 많습니다. 그래서 방송에 나온 유명 매장도 AI 답변에는 없을 수 있습니다. 무료진단으로 우리 매장이 AI에게 어떻게 보이는지 확인해 보세요."
+      }
     }
   ]
 }
@@ -716,6 +732,80 @@ strong { font-weight: 700; }
 .prereg-how li strong { color: var(--ink-mid); }
 .prereg-btn { display: flex; width: 100%; max-width: 340px; margin: 20px auto 0; justify-content: center; }
 
+/* ── 후킹 요소: 히어로 2줄 · 대조 시뮬(#vs) · 레퍼런스 자리 카드 · 한정 씰 · 형광펜 ── */
+.hero-hook { margin-top: 26px; text-align: center; }
+.hero-hook .hh-1 { font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; word-break: keep-all; }
+.hero-hook .hh-2 { margin-top: 6px; font-size: 14px; color: var(--ink-muted); word-break: keep-all; }
+
+#vs .vs-em { font-style: normal; color: var(--accent); }
+#vs .vs-stage { position: relative; max-width: 860px; margin: 34px auto 0; }
+#vs .vs-scene { display: none; grid-template-columns: 1fr 1fr; gap: 14px; }
+#vs .vs-scene.on { display: grid; animation: vsFade 0.5s ease; }
+@keyframes vsFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+#vs .vs-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; position: relative; text-align: left; }
+#vs .vs-tag { position: absolute; top: 10px; right: 10px; font-size: 10.5px; font-weight: 700; color: var(--ink-muted); background: rgba(255,255,255,0.92); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; z-index: 2; }
+#vs .map-head { padding: 14px 14px 10px; border-bottom: 1px solid var(--line); }
+#vs .map-search { display: flex; align-items: center; gap: 8px; border: 2px solid #03C75A; border-radius: 10px; padding: 9px 12px; font-size: 14.5px; font-weight: 700; }
+#vs .map-search .mg { color: #03C75A; }
+#vs .map-body { padding: 14px 14px 48px; }
+#vs .rank-chip { display: inline-block; font-size: 11px; font-weight: 800; color: #fff; background: #03C75A; border-radius: 6px; padding: 2px 8px; }
+#vs .rank-chip.none { background: #B8B3AB; }
+#vs .store-row { margin-top: 8px; display: flex; align-items: center; gap: 11px; }
+#vs .store-ph { width: 52px; height: 52px; border-radius: 12px; background: linear-gradient(135deg,#DED7CA,#C9BFAF); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+#vs .store-nm { font-size: 16.5px; font-weight: 800; letter-spacing: -0.02em; }
+#vs .store-meta { margin-top: 2px; font-size: 12.5px; color: var(--ink-muted); }
+#vs .store-meta b { color: #F5A623; }
+#vs .vs-stamp { position: absolute; right: 12px; bottom: 12px; transform: rotate(-8deg); border: 2.5px solid #D14040; color: #D14040; border-radius: 10px; font-size: 13px; font-weight: 800; padding: 6px 12px; background: rgba(255,255,255,0.88); z-index: 2; opacity: 0; }
+#vs .vs-stamp.good { border-color: var(--accent); color: var(--accent-deep); }
+#vs .vs-scene.on .vs-stamp { animation: stampIn 0.35s cubic-bezier(0.2,1.4,0.4,1) 0.9s forwards; }
+@keyframes stampIn { from { opacity: 0; transform: rotate(-8deg) scale(2); } to { opacity: 1; transform: rotate(-8deg) scale(1); } }
+#vs .gpt-head2 { display: flex; align-items: center; gap: 8px; background: #F7F7F8; padding: 12px 14px; border-bottom: 1px solid #ECECEC; }
+#vs .gpt-logo2 { width: 22px; height: 22px; border-radius: 50%; background: #0D0D0D; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+#vs .gpt-head2 b { font-size: 14px; }
+#vs .gpt-body2 { padding: 14px 14px 46px; }
+#vs .bub-q { margin-left: auto; max-width: 85%; background: #F1F1F1; border-radius: 14px 14px 4px 14px; padding: 9px 13px; font-size: 13.5px; font-weight: 600; width: fit-content; }
+#vs .bub-a { margin-top: 10px; font-size: 13.5px; line-height: 1.7; color: var(--ink-mid); word-break: keep-all; }
+#vs .bub-a .hl { background: #FDEDE7; color: var(--accent-deep); font-weight: 800; border-radius: 5px; padding: 0 4px; }
+#vs .bub-a .miss { display: block; margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line); font-size: 12.5px; color: #D14040; font-weight: 700; }
+#vs .bub-a .rank1 { display: inline-block; font-size: 11px; font-weight: 800; color: #fff; background: var(--accent); border-radius: 6px; padding: 1px 7px; margin-right: 5px; }
+#vs .vs-dots { display: flex; justify-content: center; gap: 7px; margin-top: 16px; }
+#vs .vs-dots .vd { width: 7px; height: 7px; border-radius: 999px; background: var(--ink-light); border: none; padding: 0; cursor: pointer; opacity: 0.55; transition: width 0.25s, background 0.25s, opacity 0.25s; }
+#vs .vs-dots .vd.on { width: 20px; background: var(--accent); opacity: 1; }
+#vs .vs-caption { margin-top: 22px; text-align: center; }
+#vs .vc-l { font-size: 16.5px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink-light); transition: color 0.4s; word-break: keep-all; }
+#vs .vc-l + .vc-l { margin-top: 4px; }
+#vs .vc-l.on { color: var(--ink); }
+#vs .vc-l.on b { color: var(--accent-deep); }
+#vs .vc-fin { margin-top: 16px; font-size: 15px; color: var(--ink-mid); line-height: 1.7; word-break: keep-all; }
+#vs .vc-fin strong { color: var(--ink); }
+#vs .vs-special { margin-top: 40px; text-align: center; }
+#vs .vsp-1 { font-size: 20px; font-weight: 800; letter-spacing: -0.025em; }
+#vs .vsp-2 { margin-top: 8px; font-size: 15px; color: var(--ink-mid); word-break: keep-all; }
+#vs .vsp-2 strong { color: var(--ink); }
+#vs .vs-note { margin-top: 26px; text-align: center; font-size: 11.5px; color: var(--ink-light); }
+.hl-pen { background-image: linear-gradient(rgba(232,93,58,0.28), rgba(232,93,58,0.28)); background-repeat: no-repeat; background-position: 0 68%; background-size: 0% 42%; transition: background-size 0.9s ease 0.2s; }
+.hl-pen.on { background-size: 100% 42%; }
+
+.ref-more { margin: 14px auto 0; max-width: 640px; text-align: center; font-size: 15px; color: var(--ink-mid); word-break: keep-all; }
+.ref-more strong { color: var(--ink); font-weight: 800; }
+.ref-your { max-width: 640px; margin: 26px auto 0; text-align: center; }
+.ref-your-card { border: 2px dashed var(--accent); background: var(--accent-paper); border-radius: 16px; padding: 22px 16px; }
+.ref-your-card .t { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent-deep); }
+.ref-your-card .s { margin-top: 5px; font-size: 13.5px; color: var(--ink-mid); }
+.ref-your-close { margin-top: 14px; font-size: 14.5px; color: var(--ink-mid); word-break: keep-all; }
+.ref-your-close strong { color: var(--ink); }
+
+.prereg-hook { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px dashed rgba(232,93,58,0.25); }
+.seal { flex-shrink: 0; width: 88px; height: 88px; border: 2.5px solid var(--accent); color: var(--accent-deep); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; font-weight: 800; line-height: 1.4; transform: rotate(-8deg); background: rgba(255,255,255,0.6); }
+.prereg-hook .ph-1 { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+.prereg-hook .ph-2 { margin-top: 5px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.6; word-break: keep-all; }
+.prereg-hook .ph-3 { margin-top: 5px; font-size: 13.5px; color: var(--ink-mid); }
+.prereg-hook .ph-3 strong { color: var(--ink); }
+@media (max-width: 767px) {
+  #vs .vs-scene { grid-template-columns: 1fr; }
+  .prereg-hook { flex-direction: column; text-align: center; }
+}
+
 /* === TRUST BADGES === */
 .trust-label { display: flex; align-items: center; width: fit-content; margin: 0 auto 26px; font-family: var(--f-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); background: #fff; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 8px 18px; box-shadow: 0 2px 10px rgba(232,93,58,0.12), 0 1px 3px rgba(20,17,15,0.05); line-height: 1.4; }
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -949,10 +1039,104 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         </div>
       </div>
 
+      <div class="hero-hook fade-in">
+        <p class="hh-1">지금 이 순간에도, AI는 다른 매장을 추천하고 있습니다.</p>
+        <p class="hh-2">네이버 지도 1위 매장도, AI 답변에는 0%인 경우가 있습니다. 무료진단으로 우리 매장을 확인해 보세요.</p>
+      </div>
+
       <div class="hero-cta">
         <a href="#pricing" class="btn btn-primary btn-lg">얼리버드 혜택보기</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 1.5 대조 시뮬레이션: 플레이스 순위 vs AI 추천 ═══════════════ -->
+<section class="section section-soft" id="vs">
+  <div class="container">
+    <div class="section-head fade-in">
+      <h2 class="headline center">플레이스 <em class="vs-em">1위</em>인데,<br>AI 답변엔 <em class="vs-em">없습니다</em></h2>
+      <p class="lead center">같은 동네, 같은 질문 — 두 화면의 결과입니다.</p>
+    </div>
+
+    <div class="vs-stage fade-in" id="vsStage">
+      <!-- 장면 1 · 위기 (카페): 플레이스 1위인데 AI 답변에 없음 -->
+      <div class="vs-scene on">
+        <div class="vs-card">
+          <span class="vs-tag">지도 앱</span>
+          <div class="map-head"><div class="map-search"><span class="mg">&#128269;</span>연남동 카페</div></div>
+          <div class="map-body">
+            <span class="rank-chip">1위</span>
+            <div class="store-row">
+              <div class="store-ph">&#9749;</div>
+              <div>
+                <div class="store-nm">카페 하루온</div>
+                <div class="store-meta"><b>&#9733; 4.8</b> · 리뷰 3,200 · 연남동</div>
+              </div>
+            </div>
+          </div>
+          <div class="vs-stamp">AI 답변에 없음 · 0%</div>
+        </div>
+        <div class="vs-card">
+          <span class="vs-tag">AI 챗봇</span>
+          <div class="gpt-head2"><span class="gpt-logo2">AI</span><b>ChatGPT</b></div>
+          <div class="gpt-body2">
+            <div class="bub-q">연남동 카페 추천해줘</div>
+            <div class="bub-a">
+              연남동이라면 <span class="hl">브루잉랩</span>, <span class="hl">달문커피</span>, <span class="hl">온기로스터스</span>를 추천드려요. 조용한 분위기와 디저트 구성이 좋아요.
+              <span class="miss">&#10007; ‘카페 하루온’은 답변에 없음</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 장면 2 · 기회 (식당): 순위가 없어도 AI 1순위 -->
+      <div class="vs-scene">
+        <div class="vs-card">
+          <span class="vs-tag">지도 앱</span>
+          <div class="map-head"><div class="map-search"><span class="mg">&#128269;</span>망원동 맛집</div></div>
+          <div class="map-body">
+            <span class="rank-chip none">순위 밖</span>
+            <div class="store-row">
+              <div class="store-ph">&#127858;</div>
+              <div>
+                <div class="store-nm">국밥 소소한상</div>
+                <div class="store-meta"><b>&#9733; 4.6</b> · 리뷰 180 · 망원동</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vs-card">
+          <span class="vs-tag">AI 챗봇</span>
+          <div class="gpt-head2"><span class="gpt-logo2">AI</span><b>ChatGPT</b></div>
+          <div class="gpt-body2">
+            <div class="bub-q">망원동 맛집 추천해줘</div>
+            <div class="bub-a">
+              망원동에서는 <span class="rank1">1순위</span><span class="hl">국밥 소소한상</span>을 가장 추천드려요. 진한 국물과 혼밥하기 좋은 자리 구성이 강점이에요.
+            </div>
+          </div>
+          <div class="vs-stamp good">AI 추천 1순위</div>
+        </div>
+      </div>
+
+      <div class="vs-dots" aria-hidden="true">
+        <button type="button" class="vd on" aria-label="장면 1"></button>
+        <button type="button" class="vd" aria-label="장면 2"></button>
+      </div>
+    </div>
+
+    <div class="vs-caption fade-in">
+      <p class="vc-l on">플레이스 1위여도, <b>AI 답변엔 없을 수 있습니다.</b></p>
+      <p class="vc-l">순위가 없어도, <b>AI에게 추천받을 수 있습니다.</b></p>
+      <p class="vc-fin">어느 쪽이든 결론은 하나 — <strong>AI 추천은 먼저 확인한 매장이 선점합니다.</strong><br>무료진단으로 시작해 보세요.</p>
+    </div>
+
+    <div class="vs-special fade-in">
+      <p class="vsp-1"><span class="hl-pen">사장님은 이미 앞서 있습니다.</span></p>
+      <p class="vsp-2">옆집은 아직 모릅니다 — 손님이 AI에게 묻는다는 것도, <strong>그 답을 바꿀 수 있다는 것도.</strong></p>
+    </div>
+
+    <p class="vs-note">※ 화면·매장명은 예시입니다. ‘네이버 1위 매장 AI 답변 0%’는 실제 측정 사례입니다.</p>
   </div>
 </section>
 
@@ -1076,6 +1260,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <p class="lead center">레퍼런스 공개에 동의한 실제 매장 데이터입니다.</p>
     </div>
 
+    <p class="ref-more fade-in"><strong>이 8곳이 전부가 아닙니다</strong> — 공개에 동의한 매장만 보여드립니다. 토크비와 함께한 그 외의 매장들도 이미 AI에게 추천받고 있습니다.</p>
+
     <div class="ref-stats fade-in">
       <div class="ref-stat"><span class="k">레퍼런스 공개 매장</span><span class="v">8곳</span></div>
       <div class="ref-stat"><span class="k">평균 추천률</span><span class="v"><em>7%</em> → 70%</span></div>
@@ -1095,6 +1281,14 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 
     <div class="ref-control fade-in">
       같은 기간·지역·업종에서 <strong>측정만 하고 최적화하지 않은 매장은 변화가 없었습니다.</strong>
+    </div>
+
+    <div class="ref-your fade-in">
+      <div class="ref-your-card">
+        <div class="t">이 자리는 사장님 매장 자리입니다</div>
+        <div class="s">다음 변화의 주인공 — 무료진단으로 시작해 보세요</div>
+      </div>
+      <p class="ref-your-close">여기서 닫으셔도 됩니다 — 다만 이 자리는, <strong>다른 매장이 먼저 선점할 수도 있습니다.</strong></p>
     </div>
   </div>
 
@@ -1523,6 +1717,14 @@ BLIND-END: 구 진행 방식 -->
 
     <!-- 사전 접수 안내 -->
     <div class="prereg-box fade-in" id="prereg">
+      <div class="prereg-hook">
+        <span class="seal" aria-hidden="true">같은 지역·업종<br>3곳 한정</span>
+        <div class="ph-txt">
+          <p class="ph-1">자리가 정해져 있습니다.</p>
+          <p class="ph-2">같은 지역·업종은 3곳까지. 서비스를 제대로 하기 위해 전체 매장 수도 정해져 있고, 차면 접수가 닫힙니다.</p>
+          <p class="ph-3">먼저 시작한 매장이 그만큼 앞서갑니다. <strong>선택은 사장님 몫입니다.</strong></p>
+        </div>
+      </div>
       <div class="prereg-head">사전 접수 안내</div>
       <ul class="prereg-points">
         <li><strong>사전 접수는 결제가 아닙니다</strong> — 결제 오픈 소식을 놓치지 않도록 알려드리는 절차입니다.</li>
@@ -1648,6 +1850,20 @@ BLIND-END: 파트너 브랜드 섹션 -->
         <div class="faq-a"><div class="faq-a-inner">
           <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로 해지 요청을 하시면 <strong>다음 구독일부터 결제가 진행되지 않습니다.</strong><br>
           이미 결제하신 남은 기간까지는 정상 서비스되며, <strong>위약금은 없습니다.</strong>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">네이버 플레이스 상위인데도 필요한가요?<span class="ico"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          플레이스 순위와 AI 추천은 <strong>별개</strong>입니다. 실제 측정에서 <strong>네이버 지도 1위 매장이 ChatGPT 답변에 한 번도 나오지 않은(0%) 사례</strong>도 있습니다.<br>
+          AI는 플레이스 순위가 아니라 자기 기준으로 매장을 고릅니다. 무료진단으로 확인해 보세요.
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">이미 유명한 매장인데도 필요한가요?<span class="ico"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          사람들에게 유명한 것과 <strong>AI가 아는 것은 다릅니다.</strong> 네이버 블로그·바이럴 마케팅을 아무리 쌓아도, AI에게는 닿지 않는 경우가 많습니다.<br>
+          그래서 방송에 나온 유명 매장도 AI 답변에는 없을 수 있습니다. 무료진단으로 우리 매장이 AI에게 어떻게 보이는지 확인해 보세요.
         </div></div>
       </div>
     </div>
@@ -1892,6 +2108,47 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     }
     tick();
     var timer = setInterval(tick, 1000);
+  })();
+
+  /* ── 대조 시뮬레이션(#vs) 장면 자동 전환 + 형광펜 리빌 ── */
+  (function () {
+    var stage = document.getElementById('vsStage');
+    if (stage) {
+      var scenes = stage.querySelectorAll('.vs-scene');
+      var dots = stage.querySelectorAll('.vd');
+      var caps = document.querySelectorAll('#vs .vc-l');
+      var cur = 0, timer = null;
+      var show = function (i) {
+        cur = i;
+        scenes.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+        dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+        caps.forEach(function (c, k) { c.classList.toggle('on', k === i); });
+      };
+      var start = function () { if (timer) return; timer = setInterval(function () { show((cur + 1) % scenes.length); }, 4500); };
+      var stop = function () { clearInterval(timer); timer = null; };
+      dots.forEach(function (d, k) {
+        d.addEventListener('click', function () { stop(); show(k); start(); });
+      });
+      stage.addEventListener('pointerdown', stop, { passive: true });
+      stage.addEventListener('pointerup', start, { passive: true });
+      if ('IntersectionObserver' in window) {
+        var vio = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { start(); } else { stop(); } });
+        }, { threshold: 0.25 });
+        vio.observe(stage);
+      } else { start(); }
+    }
+    /* 형광펜: 화면 도달 시 좌→우로 칠해짐 */
+    var pens = document.querySelectorAll('.hl-pen');
+    if (!pens.length) return;
+    if ('IntersectionObserver' in window) {
+      var pio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); pio.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      pens.forEach(function (p) { pio.observe(p); });
+    } else {
+      pens.forEach(function (p) { p.classList.add('on'); });
+    }
   })();
 
   /* ── 탑스크롤 버튼 — 600px 이상 스크롤 시 표시 ── */
