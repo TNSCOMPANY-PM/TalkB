@@ -205,7 +205,7 @@
       "name": "환불 정책이 어떻게 되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "결제 후 서비스가 즉시 실행되어 환불이 어렵습니다. 내용을 확인하신 후 신중히 결정해 주시기 바랍니다. 궁금하신 점은 카카오채널(https://pf.kakao.com/_JxlWTX/chat)로 문의해 주세요."
+        "text": "결제 즉시 서비스가 시작되기 때문에 시작된 해당 월 대금은 환불되지 않습니다. 아직 시작되지 않은 기간의 대금은 전액 환불됩니다. 자세한 기준은 이용약관의 환불·해지 조항에 있으며, 환불 요청은 카카오채널(https://pf.kakao.com/_JxlWTX/chat)로 접수하실 수 있습니다."
       }
     },
     {
@@ -213,7 +213,7 @@
       "name": "정기 구독 해지는 어떻게 하나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "카카오채널(https://pf.kakao.com/_JxlWTX/chat)로 해지 요청을 하시면 다음 구독일부터 결제가 진행되지 않습니다. 이미 결제하신 남은 기간까지는 정상 서비스되며, 위약금은 없습니다."
+        "text": "마이페이지(구독·결제)에서 언제든 직접 해지할 수 있으며, 카카오채널(https://pf.kakao.com/_JxlWTX/chat)로도 요청 가능합니다. 해지해도 이미 결제된 기간이 끝날 때까지 서비스는 정상 제공되고, 다음 결제일부터 결제되지 않습니다. 위약금은 없습니다."
       }
     },
     {
@@ -714,6 +714,11 @@ strong { font-weight: 700; }
 .pb-warn-ic { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; background: #A32D2D; color: #fff; font-size: 11px; font-weight: 800; }
 .pb-terms { margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(232,93,58,0.25); }
 .pb-terms-head { font-size: 13px; font-weight: 800; color: var(--ink-mid); margin-bottom: 6px; }
+.pb-fold summary { font-size: 13px; font-weight: 800; color: var(--ink-mid); cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; user-select: none; }
+.pb-fold summary::-webkit-details-marker { display: none; }
+.pb-fold summary::after { content: '▾'; font-size: 11px; color: var(--ink-muted); transition: transform 0.2s; }
+.pb-fold[open] summary::after { transform: rotate(180deg); }
+.pb-fold[open] summary { margin-bottom: 6px; }
 .pb-terms ol { list-style: none; counter-reset: t; margin: 0; padding: 0; }
 .pb-terms li { counter-increment: t; position: relative; padding-left: 17px; font-size: 12.5px; line-height: 1.55; color: var(--ink-muted); margin-top: 5px; }
 .pb-terms li::before { content: counter(t) "."; position: absolute; left: 0; font-family: var(--f-mono); }
@@ -757,7 +762,11 @@ strong { font-weight: 700; }
 #vs .store-meta b { color: #F5A623; }
 #vs .vs-stamp { position: absolute; right: 12px; bottom: 12px; transform: rotate(-8deg); border: 2.5px solid #D14040; color: #D14040; border-radius: 10px; font-size: 13px; font-weight: 800; padding: 6px 12px; background: rgba(255,255,255,0.88); z-index: 2; opacity: 0; }
 #vs .vs-stamp.good { border-color: var(--accent); color: var(--accent-deep); }
-#vs .vs-scene.on .vs-stamp { animation: stampIn 0.35s cubic-bezier(0.2,1.4,0.4,1) 0.9s forwards; }
+#vs .vs-stamp.naver { border-color: #03C75A; color: #069B4A; }
+#vs .vs-stamp.none2 { border-color: #9A928B; color: #6E675F; }
+#vs .vs-scene.on .vs-stamp { animation: stampIn 0.35s cubic-bezier(0.2,1.4,0.4,1) 1.0s forwards; }
+#vs .vs-scene.on .vs-stamp.first { animation-delay: 0.4s; }
+#vs .vs-innote { margin-top: 12px; text-align: center; font-size: 11.5px; color: var(--ink-light); }
 @keyframes stampIn { from { opacity: 0; transform: rotate(-8deg) scale(2); } to { opacity: 1; transform: rotate(-8deg) scale(1); } }
 #vs .gpt-head2 { display: flex; align-items: center; gap: 8px; background: #F7F7F8; padding: 12px 14px; border-bottom: 1px solid #ECECEC; }
 #vs .gpt-logo2 { width: 22px; height: 22px; border-radius: 50%; background: #0D0D0D; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
@@ -789,7 +798,8 @@ strong { font-weight: 700; }
 .ref-more { margin: 14px auto 0; max-width: 640px; text-align: center; font-size: 15px; color: var(--ink-mid); word-break: keep-all; }
 .ref-more strong { color: var(--ink); font-weight: 800; }
 .ref-your { max-width: 640px; margin: 26px auto 0; text-align: center; }
-.ref-your-card { border: 2px dashed var(--accent); background: var(--accent-paper); border-radius: 16px; padding: 22px 16px; }
+.ref-your-card { border: 2px dashed var(--accent); background: var(--accent-paper); border-radius: 16px; padding: 22px 16px; animation: yourPulse 1.9s ease 0.6s 2; }
+@keyframes yourPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(232,93,58,0); } 50% { box-shadow: 0 0 0 8px rgba(232,93,58,0.14); } }
 .ref-your-card .t { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent-deep); }
 .ref-your-card .s { margin-top: 5px; font-size: 13.5px; color: var(--ink-mid); }
 .ref-your-close { margin-top: 14px; font-size: 14.5px; color: var(--ink-mid); word-break: keep-all; }
@@ -1066,7 +1076,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <span class="vs-tag">지도 앱</span>
           <div class="map-head"><div class="map-search"><span class="mg">&#128269;</span>연남동 카페</div></div>
           <div class="map-body">
-            <span class="rank-chip">1위</span>
             <div class="store-row">
               <div class="store-ph">&#9749;</div>
               <div>
@@ -1075,18 +1084,17 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
               </div>
             </div>
           </div>
-          <div class="vs-stamp">AI 답변에 없음 · 0%</div>
+          <div class="vs-stamp first naver">플레이스 1위</div>
         </div>
         <div class="vs-card">
-          <span class="vs-tag">AI 챗봇</span>
-          <div class="gpt-head2"><span class="gpt-logo2">AI</span><b>ChatGPT</b></div>
+          <div class="gpt-head2"><span class="gpt-logo2"><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5 C5 1.5 4 2.8 4.2 4.2 C2.8 4 1.5 5 1.5 6.5 C1.5 8 2.8 9 4.2 8.8 C4 10.2 5 11.5 6.5 11.5 C8 11.5 9 10.2 8.8 8.8 C10.2 9 11.5 8 11.5 6.5 C11.5 5 10.2 4 8.8 4.2 C9 2.8 8 1.5 6.5 1.5Z" fill="white" fill-opacity="0.9"/></svg></span><b>ChatGPT</b></div>
           <div class="gpt-body2">
             <div class="bub-q">연남동 카페 추천해줘</div>
             <div class="bub-a">
               연남동이라면 <span class="hl">브루잉랩</span>, <span class="hl">달문커피</span>, <span class="hl">온기로스터스</span>를 추천드려요. 조용한 분위기와 디저트 구성이 좋아요.
-              <span class="miss">&#10007; ‘카페 하루온’은 답변에 없음</span>
             </div>
           </div>
+          <div class="vs-stamp">AI 답변에 없음 · 0%</div>
         </div>
       </div>
 
@@ -1096,7 +1104,6 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
           <span class="vs-tag">지도 앱</span>
           <div class="map-head"><div class="map-search"><span class="mg">&#128269;</span>망원동 맛집</div></div>
           <div class="map-body">
-            <span class="rank-chip none">순위 밖</span>
             <div class="store-row">
               <div class="store-ph">&#127858;</div>
               <div>
@@ -1105,14 +1112,14 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
               </div>
             </div>
           </div>
+          <div class="vs-stamp first none2">플레이스 순위 밖</div>
         </div>
         <div class="vs-card">
-          <span class="vs-tag">AI 챗봇</span>
-          <div class="gpt-head2"><span class="gpt-logo2">AI</span><b>ChatGPT</b></div>
+          <div class="gpt-head2"><span class="gpt-logo2"><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5 C5 1.5 4 2.8 4.2 4.2 C2.8 4 1.5 5 1.5 6.5 C1.5 8 2.8 9 4.2 8.8 C4 10.2 5 11.5 6.5 11.5 C8 11.5 9 10.2 8.8 8.8 C10.2 9 11.5 8 11.5 6.5 C11.5 5 10.2 4 8.8 4.2 C9 2.8 8 1.5 6.5 1.5Z" fill="white" fill-opacity="0.9"/></svg></span><b>ChatGPT</b></div>
           <div class="gpt-body2">
             <div class="bub-q">망원동 맛집 추천해줘</div>
             <div class="bub-a">
-              망원동에서는 <span class="rank1">1순위</span><span class="hl">국밥 소소한상</span>을 가장 추천드려요. 진한 국물과 혼밥하기 좋은 자리 구성이 강점이에요.
+              망원동에서는 <span class="hl">국밥 소소한상</span>을 가장 추천드려요. 진한 국물과 혼밥하기 좋은 자리 구성이 강점이에요.
             </div>
           </div>
           <div class="vs-stamp good">AI 추천 1순위</div>
@@ -1123,20 +1130,19 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
         <button type="button" class="vd on" aria-label="장면 1"></button>
         <button type="button" class="vd" aria-label="장면 2"></button>
       </div>
+      <p class="vs-innote">※ 매장명은 예시이며, 결과는 실제 측정 사례입니다.</p>
     </div>
 
     <div class="vs-caption fade-in">
       <p class="vc-l on">플레이스 1위여도, <b>AI 답변엔 없을 수 있습니다.</b></p>
       <p class="vc-l">순위가 없어도, <b>AI에게 추천받을 수 있습니다.</b></p>
-      <p class="vc-fin">어느 쪽이든 결론은 하나 — <strong>AI 추천은 먼저 확인한 매장이 선점합니다.</strong><br>무료진단으로 시작해 보세요.</p>
+      <p class="vc-fin">어느 쪽이든 결론은 하나 — <strong>AI 추천은 먼저 확인한 매장이 선점합니다.</strong></p>
     </div>
 
     <div class="vs-special fade-in">
       <p class="vsp-1"><span class="hl-pen">사장님은 이미 앞서 있습니다.</span></p>
       <p class="vsp-2">옆집은 아직 모릅니다 — 손님이 AI에게 묻는다는 것도, <strong>그 답을 바꿀 수 있다는 것도.</strong></p>
     </div>
-
-    <p class="vs-note">※ 화면·매장명은 예시입니다. ‘네이버 1위 매장 AI 답변 0%’는 실제 측정 사례입니다.</p>
   </div>
 </section>
 
@@ -1260,7 +1266,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
       <p class="lead center">레퍼런스 공개에 동의한 실제 매장 데이터입니다.</p>
     </div>
 
-    <p class="ref-more fade-in"><strong>이 8곳이 전부가 아닙니다</strong> — 공개에 동의한 매장만 보여드립니다. 토크비와 함께한 그 외의 매장들도 이미 AI에게 추천받고 있습니다.</p>
+    <p class="ref-more fade-in"><strong>레퍼런스 공개 매장이 전부가 아닙니다</strong> — 토크비와 함께한 그 외의 매장들도 이미 AI에게 추천받고 있습니다.</p>
 
     <div class="ref-stats fade-in">
       <div class="ref-stat"><span class="k">레퍼런스 공개 매장</span><span class="v">8곳</span></div>
@@ -1286,9 +1292,8 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     <div class="ref-your fade-in">
       <div class="ref-your-card">
         <div class="t">이 자리는 사장님 매장 자리입니다</div>
-        <div class="s">다음 변화의 주인공 — 무료진단으로 시작해 보세요</div>
+        <div class="s">다음 변화의 주인공이 되어 보세요.</div>
       </div>
-      <p class="ref-your-close">여기서 닫으셔도 됩니다 — 다만 이 자리는, <strong>다른 매장이 먼저 선점할 수도 있습니다.</strong></p>
     </div>
   </div>
 
@@ -1700,7 +1705,8 @@ BLIND-END: 구 진행 방식 -->
           </ul>
           <div class="pb-warn"><span class="pb-warn-ic">!</span><span>원활한 서비스 제공을 위해 1차 얼리버드로 접수 가능한 매장 수는 제한되어 있습니다. 한도에 도달하면 <strong>결제 완료 순으로 예고 없이 마감</strong>될 수 있습니다.</span></div>
           <div class="pb-terms">
-            <div class="pb-terms-head">유의사항</div>
+            <details class="pb-fold">
+            <summary>유의사항 자세히 보기</summary>
             <ol>
               <li>사전 접수는 결제가 아니며, 얼리버드 혜택은 결제 오픈 후 <strong>결제 완료 순(선착순)</strong>으로 확정됩니다.</li>
               <li>결제 오픈 일정(8월 3일 예정)은 운영 상황에 따라 변경될 수 있으며, 변경 시 사전 접수하신 분께 개별 안내드립니다.</li>
@@ -1710,6 +1716,7 @@ BLIND-END: 구 진행 방식 -->
               <li>구독 해지 · 결제 실패 · 명의 변경 시 얼리버드 권한(할인율·인증마크)은 소멸되며, 재가입 시 정가가 적용됩니다.</li>
               <li>결제 완료 후 할인 소급 적용·변경은 불가합니다.</li>
             </ol>
+            </details>
           </div>
         </div>
       </div>
@@ -1721,8 +1728,8 @@ BLIND-END: 구 진행 방식 -->
         <span class="seal" aria-hidden="true">같은 지역·업종<br>3곳 한정</span>
         <div class="ph-txt">
           <p class="ph-1">자리가 정해져 있습니다.</p>
-          <p class="ph-2">같은 지역·업종은 3곳까지. 서비스를 제대로 하기 위해 전체 매장 수도 정해져 있고, 차면 접수가 닫힙니다.</p>
-          <p class="ph-3">먼저 시작한 매장이 그만큼 앞서갑니다. <strong>선택은 사장님 몫입니다.</strong></p>
+          <p class="ph-2">서비스를 제대로 하기 위해, 받을 수 있는 매장 수가 정해져 있습니다.</p>
+          <p class="ph-3"><strong>선택은 사장님 몫입니다.</strong></p>
         </div>
       </div>
       <div class="prereg-head">사전 접수 안내</div>
@@ -1741,11 +1748,6 @@ BLIND-END: 구 진행 방식 -->
 
     <!-- 프랜차이즈·대량 등록 안내 -->
     <p class="price-franchise fade-in">프랜차이즈 본사·대량 등록(10개 매장 이상)은 <strong>카카오채널로 별도 문의</strong>해 주세요.</p>
-
-    <!-- 접수 제한 공지 -->
-    <div class="price-notice fade-in">
-      같은 지역·업종 <strong>3개 이상 접수 불가</strong>로 진행이 어려울 수 있습니다.
-    </div>
 
     <!-- 업종 안내 (구 히어로 하단) -->
     <div class="biz-notice fade-in">토크비는 맛집(음식점·카페·술집) 전문 서비스입니다. 그 외 업종은 서비스 제공이 어렵습니다.</div>
@@ -1841,15 +1843,15 @@ BLIND-END: 파트너 브랜드 섹션 -->
       <div class="faq-item">
         <button class="faq-q">환불 정책이 어떻게 되나요?<span class="ico"></span></button>
         <div class="faq-a"><div class="faq-a-inner">
-          결제 후 서비스가 <strong>즉시 실행되어 환불이 어렵습니다.</strong> 내용을 확인하신 후 신중히 결정해 주시기 바랍니다.<br>
-          궁금하신 점은 <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로 문의해 주세요.
+          결제 즉시 서비스가 시작되기 때문에, <strong>시작된 해당 월 대금은 환불되지 않습니다.</strong> 아직 시작되지 않은 기간의 대금은 <strong>전액 환불</strong>됩니다.<br>
+          자세한 기준은 이용약관의 환불·해지 조항에 있으며, 환불 요청은 <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로 접수하실 수 있습니다.
         </div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">정기 구독 해지는 어떻게 하나요?<span class="ico"></span></button>
         <div class="faq-a"><div class="faq-a-inner">
-          <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로 해지 요청을 하시면 <strong>다음 구독일부터 결제가 진행되지 않습니다.</strong><br>
-          이미 결제하신 남은 기간까지는 정상 서비스되며, <strong>위약금은 없습니다.</strong>
+          <strong>마이페이지(구독·결제)에서 언제든 직접 해지</strong>할 수 있으며, <a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널</a>로도 요청 가능합니다.<br>
+          해지해도 이미 결제된 기간이 끝날 때까지 서비스는 정상 제공되고, <strong>다음 결제일부터 결제되지 않습니다. 위약금은 없습니다.</strong>
         </div></div>
       </div>
       <div class="faq-item">
