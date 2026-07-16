@@ -784,12 +784,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 .footer-links li { margin-bottom: 9px; }
 .footer-links a { font-size: 14px; color: rgba(255,255,255,0.68); transition: color .15s; }
 .footer-links a:hover { color: var(--accent); }
-.footer-biz { margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.1); display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px 30px; }
-.footer-biz-row { display: flex; gap: 12px; font-size: 14px; }
-.footer-biz-row.wide { grid-column: 1 / -1; }
-.footer-biz-label { flex-shrink: 0; width: 100px; color: rgba(255,255,255,0.4); }
-.footer-biz-value { color: rgba(255,255,255,0.7); }
-.footer-biz-value a { color: rgba(255,255,255,0.7); }
+.footer-biz { margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.1); }
+.footer-biz-info { margin: 0; font-size: 13px; line-height: 1.85; color: rgba(255,255,255,0.5); }
+.footer-biz-info b { color: rgba(255,255,255,0.75); font-weight: 700; }
+.footer-biz-links { margin: 9px 0 0; font-size: 13px; }
+.footer-biz-links a { color: rgba(255,255,255,0.72); }
 .footer-bottom { margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.45); }
 
 /* === STICKY CTA === */
@@ -1804,17 +1803,10 @@ BLIND-END: #contact -->
 
     <!-- 사업자 정보 (전자상거래법 제10조 표시사항) -->
     <div class="footer-biz">
-      <div class="footer-biz-row"><span class="footer-biz-label">상호</span><span class="footer-biz-value">(주)티앤에스컴퍼니</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">대표자</span><span class="footer-biz-value">김태정</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">사업자등록번호</span><span class="footer-biz-value">455-86-00636</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">통신판매업신고</span><span class="footer-biz-value">제2020-서울강서-0981호</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">법인등록번호</span><span class="footer-biz-value">110111-6223103</span></div>
-      <div class="footer-biz-row wide"><span class="footer-biz-label">사업장 소재지</span><span class="footer-biz-value">서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">전화</span><span class="footer-biz-value"><a href="tel:1833-4150" style="color:inherit;">1833-4150</a></span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">이메일</span><span class="footer-biz-value"><a href="mailto:adm.tnscompany@gmail.com" style="color:inherit;">adm.tnscompany@gmail.com</a></span></div>
-      <div class="footer-biz-row wide"><span class="footer-biz-label">업무시간</span><span class="footer-biz-value">평일 09:00 ~ 18:00 · 점심 13:00 ~ 14:00</span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">문의 채널</span><span class="footer-biz-value"><a href="#kakao-channel-placeholder" class="js-kakao-link" target="_blank" rel="noopener">카카오채널 상담</a></span></div>
-      <div class="footer-biz-row"><span class="footer-biz-label">약관·방침</span><span class="footer-biz-value"><a href="https://app.talkb.co.kr/terms" target="_blank" rel="noopener">이용약관</a> · <a href="privacy.html">개인정보 처리방침</a></span></div>
+      <p class="footer-biz-info">
+        <b>(주)티앤에스컴퍼니</b> · 대표 김태정 · 사업자등록번호 455-86-00636 · 통신판매업신고 제2020-서울강서-0981호 · 서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인) · <a href="tel:1833-4150" style="color:inherit;">1833-4150</a> · <a href="mailto:adm.tnscompany@gmail.com" style="color:inherit;">adm.tnscompany@gmail.com</a>
+      </p>
+      <p class="footer-biz-links"><a href="https://app.talkb.co.kr/terms" target="_blank" rel="noopener">이용약관</a> · <a href="privacy.html">개인정보 처리방침</a></p>
     </div>
 
     <div class="footer-bottom">
