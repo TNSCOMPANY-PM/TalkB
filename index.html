@@ -603,11 +603,12 @@ strong { font-weight: 700; }
   .ref-slide { flex: 0 0 100%; min-width: 100%; padding: 0 6px; }
 }
 .ref-store { background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); padding: var(--card-pad); box-shadow: var(--sh-sm); }
-.ref-store-head { display: flex; align-items: center; gap: 12px; padding-right: 90px; }
+.ref-store-head { display: flex; align-items: center; gap: 12px; padding-right: 90px; min-height: 60px; }
 .ref-store-ph { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(20,17,15,0.18); }
 .ref-store-name { font-size: 22px; font-weight: 800; color: var(--ink); }
-.ref-store-loc { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); vertical-align: 2px; }
+.ref-store-loc { display: block; margin-top: 3px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
 .ref-quote { margin-top: 14px; padding: 13px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+@media (min-width: 768px) { .ref-quote { min-height: 96px; } }
 .ref-quote .rq-label { font-style: normal; font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 5px; }
 /* 실제 질문·답변 변화 아코디언 */
 .ref-qa { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg-soft); }
