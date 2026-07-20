@@ -768,10 +768,19 @@ strong { font-weight: 700; }
 #vs .vs-scene.on .vs-stamp.first { animation-delay: 0.4s; }
 #vs .gpt-note2 { margin-left: auto; font-size: 10px; color: var(--ink-muted); font-weight: 600; }
 
-/* 가격 복권: 정가 커버 → 긁거나 클릭 시 얼리버드 가격 공개 */
-.price-reveal { position: relative; border-radius: 12px; }
-.price-reveal #priceCv { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); border-radius: 12px; touch-action: none; cursor: pointer; transition: opacity 0.6s ease; z-index: 3; }
-.price-reveal #priceCv.done { opacity: 0; pointer-events: none; }
+/* 가격 복권: 정가 은박 커버 → 긁거나 클릭 시 얼리버드 가격 공개 */
+.price-reveal { position: relative; border-radius: 14px; padding: 30px 0 34px; }
+.price-reveal #priceCv { position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px); border-radius: 14px; touch-action: none; cursor: pointer; transition: opacity 0.6s ease; z-index: 3; box-shadow: 0 4px 18px rgba(60,64,72,0.25); }
+.price-reveal #priceCv.done { opacity: 0; pointer-events: none; box-shadow: none; }
+/* 은박 반짝임 스윕 */
+.price-reveal::after { content: ''; position: absolute; inset: -4px; border-radius: 14px; background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.55) 46%, transparent 60%); background-size: 240% 100%; animation: shineSweep 2.6s ease-in-out infinite; pointer-events: none; z-index: 4; }
+.price-reveal.revealed::after { display: none; }
+@keyframes shineSweep { 0% { background-position: 120% 0; } 55% { background-position: -120% 0; } 100% { background-position: -120% 0; } }
+/* 동전 힌트 */
+.price-reveal .coin-hint { position: absolute; z-index: 5; font-size: 34px; right: 10%; top: 52%; pointer-events: none; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.25)); animation: coinWiggle 1.7s ease-in-out infinite; }
+@keyframes coinWiggle { 0%, 100% { transform: translate(0,0) rotate(-18deg); } 25% { transform: translate(-30px,12px) rotate(-30deg); } 50% { transform: translate(8px,24px) rotate(-6deg); } 75% { transform: translate(-16px,6px) rotate(-24deg); } }
+.price-reveal.touched .coin-hint, .price-reveal.revealed .coin-hint { display: none; }
+.price-deal-tag .life { font-style: normal; font-weight: 900; text-decoration: underline; text-underline-offset: 2.5px; text-decoration-thickness: 2px; }
 #vs .vsp-3 { margin-top: 14px; font-size: 16px; color: var(--ink-mid); }
 #vs .vsp-3 strong { color: var(--accent-deep); }
 @keyframes stampIn { from { opacity: 0; transform: rotate(-8deg) scale(2); } to { opacity: 1; transform: rotate(-8deg) scale(1); } }
@@ -1695,8 +1704,9 @@ BLIND-END: 구 진행 방식 -->
             <div class="price-reveal" id="priceReveal">
               <div class="price-old">₩190,000</div>
               <div class="price-amt">₩133,000<span class="per"> /월</span></div>
-              <div class="price-deal-tag price-deal-tag-block">얼리버드 30% 적용</div>
+              <div class="price-deal-tag price-deal-tag-block">얼리버드 30% <em class="life">평생</em> 적용</div>
               <canvas id="priceCv" aria-hidden="true"></canvas>
+              <span class="coin-hint" aria-hidden="true">&#129689;</span>
             </div>
             <div class="price-vat">월 구독형(약정 없음) · 매장당 · VAT 별도</div>
           </div>
@@ -2128,9 +2138,11 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     function reveal() {
       if (done) return;
       done = true;
+      box.classList.add('revealed');
       cv.classList.add('done');
       setTimeout(function () { if (cv.parentNode) cv.remove(); }, 700);
     }
+    /* 복권 은박 커버 */
     function paint() {
       var rect = cv.getBoundingClientRect();
       var w = rect.width, h = rect.height;
@@ -2138,31 +2150,71 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       cv.width = Math.round(w * dpr);
       cv.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      /* 은박 그라데이션 */
       var g = ctx.createLinearGradient(0, 0, w, h);
-      g.addColorStop(0, '#E85D3A');
-      g.addColorStop(0.55, '#D9502E');
-      g.addColorStop(1, '#C4451F');
+      g.addColorStop(0, '#E9EAEE');
+      g.addColorStop(0.45, '#C9CCD3');
+      g.addColorStop(0.75, '#B3B7C0');
+      g.addColorStop(1, '#C6C9D0');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = 'rgba(255,255,255,0.09)';
-      for (var i = 0; i < 120; i++) {
-        var x = (i * 97) % w, y = (i * 53) % h, r = 1 + (i % 3);
+      /* 사선 광택 줄무늬 */
+      ctx.save();
+      ctx.globalAlpha = 0.18;
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 7;
+      for (var s = -h; s < w + h; s += 34) {
+        ctx.beginPath(); ctx.moveTo(s, h + 6); ctx.lineTo(s + h, -6); ctx.stroke();
+      }
+      ctx.restore();
+      /* 은박 입자 */
+      ctx.fillStyle = 'rgba(70,74,84,0.10)';
+      for (var i = 0; i < 150; i++) {
+        var x = (i * 97) % w, y = (i * 53) % h, r = 0.8 + (i % 3) * 0.7;
         ctx.beginPath(); ctx.arc(x, y, r, 0, 6.3); ctx.fill();
       }
-      /* 폰트는 커버 폭에 비례 — 좁은 화면에서도 잘림 없음 */
-      var fs1 = Math.max(11, Math.min(13, w * 0.038));
-      var fs2 = Math.max(20, Math.min(30, w * 0.082));
-      var fs3 = Math.max(10.5, Math.min(12.5, w * 0.036));
-      ctx.textAlign = 'center';
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
-      ctx.font = '700 ' + fs1 + 'px Pretendard, sans-serif';
-      ctx.fillText('얼리버드 종료 후 정가', w / 2, h / 2 - fs2 * 0.95);
+      /* 긁기 영역 점선 테두리 */
+      ctx.save();
+      ctx.strokeStyle = 'rgba(90,95,105,0.55)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([6, 5]);
+      ctx.strokeRect(9, 9, w - 18, h - 18);
+      ctx.restore();
+      /* 상단 주황 칩 */
+      var fs1 = Math.max(11, Math.min(12.5, w * 0.036));
+      ctx.font = '800 ' + fs1 + 'px Pretendard, sans-serif';
+      var chipTxt = '긁는 복권';
+      var tw = ctx.measureText(chipTxt).width;
+      var chipW = tw + 26, chipH = fs1 + 12, chipX = (w - chipW) / 2, chipY = 16;
+      ctx.fillStyle = '#E85D3A';
+      ctx.beginPath();
+      if (ctx.roundRect) { ctx.roundRect(chipX, chipY, chipW, chipH, chipH / 2); } else { ctx.rect(chipX, chipY, chipW, chipH); }
+      ctx.fill();
       ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(chipTxt, w / 2, chipY + chipH / 2 + 0.5);
+      ctx.textBaseline = 'alphabetic';
+      /* 정가 + 안내 */
+      var fs2 = Math.max(20, Math.min(30, w * 0.082));
+      var fs3 = Math.max(11, Math.min(13, w * 0.037));
+      var cy = h / 2 + 8;
+      ctx.fillStyle = '#565B66';
+      ctx.font = '700 ' + fs1 + 'px Pretendard, sans-serif';
+      ctx.fillText('얼리버드 종료 후 정가', w / 2, cy - fs2 * 0.9);
+      ctx.fillStyle = '#2E323B';
       ctx.font = '800 ' + fs2 + 'px Pretendard, sans-serif';
-      ctx.fillText('₩190,000 /월', w / 2, h / 2 + fs2 * 0.25);
-      ctx.fillStyle = 'rgba(255,255,255,0.92)';
-      ctx.font = '700 ' + fs3 + 'px Pretendard, sans-serif';
-      ctx.fillText('긁거나 눌러서 지금 가격 확인', w / 2, h / 2 + fs2);
+      ctx.fillText('₩190,000 /월', w / 2, cy + fs2 * 0.3);
+      ctx.fillStyle = '#C4451F';
+      ctx.font = '800 ' + fs3 + 'px Pretendard, sans-serif';
+      ctx.fillText('동전으로 긁듯 긁어보세요', w / 2, cy + fs2 * 1.35);
+      /* 미리 긁힌 흔적 — 밑의 얼리버드 태그(주황)가 살짝 비침 */
+      ctx.globalCompositeOperation = 'destination-out';
+      var px = w * 0.22, py = h * 0.72;
+      [[0, 0, 10], [-11, 6, 8], [8, 9, 7]].forEach(function (o) {
+        ctx.beginPath(); ctx.arc(px + o[0], py + o[1], o[2], 0, 6.3); ctx.fill();
+      });
+      ctx.globalCompositeOperation = 'source-over';
     }
     var strokes = 0;
     function clearedRatio() {
@@ -2189,6 +2241,7 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
     var down = false, moved = 0, sx = 0, sy = 0;
     cv.addEventListener('pointerdown', function (e) {
       down = true; moved = 0; sx = e.clientX; sy = e.clientY;
+      box.classList.add('touched');
       scratchAt(e.clientX, e.clientY);
       e.preventDefault();
     });
