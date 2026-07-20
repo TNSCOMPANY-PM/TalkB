@@ -674,7 +674,7 @@ strong { font-weight: 700; }
 .price-card.featured { border: 2px solid var(--accent); box-shadow: 0 12px 40px rgba(232,93,58,0.14), var(--sh-md); position: relative; }
 .price-flag { position: absolute; top: -12px; left: 24px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; font-family: var(--f-mono); padding: 4px 12px; border-radius: 999px; }
 .price-name { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
-.spec-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: var(--ink-muted); text-align: right; }
+.spec-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: var(--ink-muted); text-align: left; word-break: keep-all; line-height: 1.5; }
 .price-franchise { margin: 18px auto 0; max-width: 600px; text-align: center; font-size: 15px; color: var(--ink-mid); line-height: 1.6; }
 .price-franchise strong { color: var(--ink); }
 .price-amt { font-family: var(--f-mono); font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
@@ -770,7 +770,10 @@ strong { font-weight: 700; }
 #vs .gpt-note2 { margin-left: auto; font-size: 10px; color: var(--ink-muted); font-weight: 600; }
 
 /* 가격 복권: 정가 은박 커버 → 긁거나 클릭 시 얼리버드 가격 공개 */
-.price-reveal { position: relative; border-radius: 14px; padding: 30px 0 34px; }
+.price-reveal { position: relative; border-radius: 14px; padding: 30px 0 34px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; }
+.price-reveal .price-old { font-size: 19px; margin-bottom: 4px; }
+.price-reveal .price-amt { font-size: 44px; }
+.price-reveal .price-amt .per { font-size: 17px; }
 .price-reveal #priceCv { position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px); border-radius: 14px; touch-action: none; cursor: pointer; transition: opacity 0.6s ease; z-index: 3; box-shadow: 0 4px 18px rgba(60,64,72,0.25); }
 .price-reveal #priceCv.done { opacity: 0; pointer-events: none; box-shadow: none; }
 /* 은박 반짝임 스윕 */
@@ -1712,7 +1715,7 @@ BLIND-END: 구 진행 방식 -->
             <div class="price-vat">월 구독형(약정 없음) · 매장당 · VAT 별도</div>
           </div>
           <dl class="price-spec">
-          <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정 (상위 요금제 별도 안내)</span></dd></div>
+          <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정<br>(상위 요금제 별도 안내)</span></dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
           <div><dt>측정 질문 수</dt><dd>15개 (추천 10 + 매장 이해도 5)</dd></div>
           <div><dt>측정 횟수</dt><dd>5회</dd></div>
@@ -1750,14 +1753,12 @@ BLIND-END: 구 진행 방식 -->
       <div class="prereg-hook">
         <span class="seal" aria-hidden="true">같은 지역·업종<br>3곳 한정</span>
         <div class="ph-txt">
-          <p class="ph-1">자리가 정해져 있습니다.</p>
-          <p class="ph-2">서비스를 제대로 하기 위해, 받을 수 있는 매장 수가 정해져 있습니다.</p>
-          <p class="ph-3"><strong>선택은 사장님 몫입니다.</strong></p>
+          <p class="ph-1">원활한 서비스 제공을 위해 서비스 가능 매장 수는 한정적입니다.</p>
         </div>
       </div>
       <div class="prereg-head">얼리버드 신청 안내</div>
       <ul class="prereg-points">
-        <li><strong>무료진단부터 신청·결제까지 온라인으로 바로</strong> 진행되며, 결제 완료와 동시에 서비스가 시작됩니다.</li>
+        <li><strong>무료진단부터 신청·결제까지 실시간으로 바로 진행 가능</strong>하며, 결제 완료와 동시에 서비스가 시작됩니다.</li>
         <li>얼리버드 혜택은 <strong>결제 완료 순(선착순)</strong>으로 확정됩니다.</li>
       </ul>
       <div class="prereg-how-head">신청 방법</div>
@@ -2279,6 +2280,8 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       });
       stage.addEventListener('pointerdown', stop, { passive: true });
       stage.addEventListener('pointerup', start, { passive: true });
+      /* 모바일 스크롤 시 pointerup 대신 pointercancel 발생 — 회전 정지 방치 방지 */
+      stage.addEventListener('pointercancel', start, { passive: true });
       if ('IntersectionObserver' in window) {
         var vio = new IntersectionObserver(function (es) {
           es.forEach(function (e) { if (e.isIntersecting) { start(); } else { stop(); } });
