@@ -1,3 +1,7 @@
+# env / secrets (절대 커밋 금지)
+.env
+.env.*
+*.pull
 _internal/
 DEPLOY_GUIDE.md
 HOW_TO_USE.md
