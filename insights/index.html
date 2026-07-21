@@ -38,6 +38,12 @@ header { padding:28px 0 0; display:flex; align-items:center; justify-content:spa
 .hero { padding:44px 0 10px; }
 h1 { font-size:clamp(24px,4.6vw,34px); font-weight:800; letter-spacing:-.02em; }
 .sub { margin-top:10px; font-size:15.5px; color:var(--mid); max-width:640px; }
+.data-strip { margin-top:22px; display:flex; align-items:center; gap:12px; background:linear-gradient(90deg,#FFF6F2,#FAF8F4); border:1px solid var(--line); border-radius:14px; padding:14px 18px; text-decoration:none; color:inherit; transition:border-color .15s; }
+.data-strip:hover { border-color:var(--brand); }
+.ds-badge { flex:none; font-size:11px; font-weight:800; letter-spacing:.08em; color:#fff; background:var(--brand); border-radius:6px; padding:4px 8px; }
+.ds-text { font-size:14px; color:var(--mid); }
+.ds-text b { color:var(--ink); }
+.ds-arrow { margin-left:auto; color:var(--brand); font-weight:700; }
 .sec { margin-top:38px; }
 .sec h2 { font-size:13px; font-weight:800; color:var(--faint); letter-spacing:.08em; text-transform:uppercase; }
 .grid { margin-top:14px; display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; }
@@ -66,6 +72,12 @@ footer a { color:var(--mid); }
     <h1>토크비 인사이트</h1>
     <p class="sub">손님들이 ChatGPT에 맛집을 묻는 시대 — 외식업 사장님과 프랜차이즈 본사를 위한 실측 기반 인사이트입니다.</p>
   </section>
+
+  <a class="data-strip" href="https://talkb.co.kr/resources.html">
+    <span class="ds-badge">DATA</span>
+    <span class="ds-text"><b>데이터로 보는 AI 검색 시대</b> — 한국 시장 데이터·검색 행동 변화·마케팅 비용 구조 총정리</span>
+    <span class="ds-arrow">→</span>
+  </a>
 
   <section class="sec">
     <h2>시작하기 · 시장 이해</h2>
