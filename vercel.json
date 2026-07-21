@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/insights",                                 "destination": "/insights/",                                 "permanent": true },
     { "source": "/ai-restaurant",                            "destination": "/",                                          "permanent": true },
     { "source": "/ai-restaurant/",                           "destination": "/",                                          "permanent": true },
     { "source": "/ai-restaurant/:path+",                     "destination": "/",                                          "permanent": true },

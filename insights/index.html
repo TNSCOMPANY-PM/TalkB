@@ -14,6 +14,7 @@
 <meta property="og:image" content="https://talkb.co.kr/og-image.png?v=3">
 <meta property="og:site_name" content="TalkB">
 <meta property="og:locale" content="ko_KR">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -25,99 +26,179 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
-:root { --bg:#FFFFFF; --soft:#FAF8F4; --line:#EDE7DF; --ink:#191F28; --mid:#4A423A; --faint:#9A928B; --brand:#E85D3A; --deep:#C4451F; }
+:root {
+  --bg:#FFFFFF; --soft:#FAF8F4; --cream:#F6F2EA; --line:#EDE7DF;
+  --ink:#191F28; --mid:#4A423A; --faint:#9A928B;
+  --brand:#E85D3A; --deep:#C4451F; --brand-soft:#FDEDE7; --brand-paper:#FFF7F3;
+  --f-mono:'JetBrains Mono',Menlo,monospace;
+}
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Pretendard',-apple-system,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; }
-.wrap { max-width:1000px; margin:0 auto; padding:0 22px; }
-header { padding:28px 0 0; display:flex; align-items:center; justify-content:space-between; }
-.logo { font-weight:800; font-size:18px; color:var(--ink); text-decoration:none; }
+body { font-family:'Pretendard',-apple-system,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+.wrap { max-width:1040px; margin:0 auto; padding:0 22px; }
+
+/* nav */
+.nav { position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(16px); border-bottom:1px solid var(--line); }
+.nav-inner { max-width:1040px; margin:0 auto; padding:13px 22px; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-weight:800; font-size:18px; letter-spacing:-.02em; }
 .logo b { color:var(--brand); }
-.top-cta { font-size:13.5px; font-weight:700; color:#fff; background:var(--brand); padding:9px 16px; border-radius:999px; text-decoration:none; white-space:nowrap; }
-.hero { padding:44px 0 10px; }
-h1 { font-size:clamp(24px,4.6vw,34px); font-weight:800; letter-spacing:-.02em; }
-.sub { margin-top:10px; font-size:15.5px; color:var(--mid); max-width:640px; }
-.data-strip { margin-top:22px; display:flex; align-items:center; gap:12px; background:linear-gradient(90deg,#FFF6F2,#FAF8F4); border:1px solid var(--line); border-radius:14px; padding:14px 18px; text-decoration:none; color:inherit; transition:border-color .15s; }
+.logo span { font-size:12px; color:var(--faint); font-weight:500; margin-left:6px; }
+.nav-cta { font-size:13px; font-weight:700; color:#fff; background:var(--brand); padding:9px 18px; border-radius:999px; box-shadow:0 2px 10px rgba(232,93,58,.22); white-space:nowrap; }
+
+/* hero */
+.hero { padding:52px 0 8px; }
+.eyebrow { font-family:var(--f-mono); font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--brand); text-transform:uppercase; }
+h1 { margin-top:10px; font-size:clamp(26px,4.8vw,38px); font-weight:800; letter-spacing:-.03em; line-height:1.2; }
+.sub { margin-top:12px; font-size:15.5px; color:var(--mid); max-width:620px; }
+
+/* data strip */
+.data-strip { margin-top:26px; display:flex; align-items:center; gap:12px; background:linear-gradient(90deg,#FFF6F2,#FAF8F4); border:1px solid var(--line); border-radius:14px; padding:14px 18px; transition:border-color .15s; }
 .data-strip:hover { border-color:var(--brand); }
-.ds-badge { flex:none; font-size:11px; font-weight:800; letter-spacing:.08em; color:#fff; background:var(--brand); border-radius:6px; padding:4px 8px; }
+.ds-badge { flex:none; font-family:var(--f-mono); font-size:10.5px; font-weight:700; letter-spacing:.08em; color:#fff; background:var(--brand); border-radius:6px; padding:4px 8px; }
 .ds-text { font-size:14px; color:var(--mid); }
 .ds-text b { color:var(--ink); }
-.ds-arrow { margin-left:auto; color:var(--brand); font-weight:700; }
-.sec { margin-top:38px; }
-.sec h2 { font-size:13px; font-weight:800; color:var(--faint); letter-spacing:.08em; text-transform:uppercase; }
-.grid { margin-top:14px; display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; }
-.card { display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; text-decoration:none; color:inherit; background:#fff; transition:border-color .15s, transform .15s; }
-.card:hover { border-color:var(--brand); transform:translateY(-2px); }
-.thumb { aspect-ratio:1200/630; width:100%; object-fit:cover; display:block; background:var(--soft); }
-.card-body { padding:15px 17px 17px; }
-.card h3 { font-size:16px; font-weight:700; letter-spacing:-.01em; line-height:1.4; }
-.card p { margin-top:6px; font-size:13.5px; color:var(--mid); }
-.cta-band { margin:44px 0 0; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:22px; text-align:center; }
-.cta-band strong { font-size:17px; }
-.cta-band p { margin-top:6px; font-size:14px; color:var(--mid); }
-.cta-band a { display:inline-block; margin-top:14px; background:var(--brand); color:#fff; text-decoration:none; font-weight:700; font-size:15px; padding:13px 30px; border-radius:12px; }
-footer { margin-top:52px; border-top:1px solid var(--line); padding:26px 0 46px; font-size:13px; color:var(--faint); }
-footer a { color:var(--mid); }
+.ds-arrow { margin-left:auto; color:var(--brand); font-weight:700; flex:none; }
+
+/* section */
+.sec { margin-top:44px; }
+.sec-head { display:flex; align-items:baseline; gap:10px; }
+.sec-head h2 { font-size:19px; font-weight:800; letter-spacing:-.02em; }
+.sec-head .cnt { font-family:var(--f-mono); font-size:12px; color:var(--faint); }
+.sec-desc { margin-top:4px; font-size:13.5px; color:var(--faint); }
+
+/* cards */
+.grid { margin-top:16px; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; }
+.card { display:flex; flex-direction:column; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#fff; transition:border-color .15s, transform .15s, box-shadow .15s; }
+.card:hover { border-color:var(--brand); transform:translateY(-3px); box-shadow:0 10px 28px rgba(25,31,40,.07); }
+.cover { position:relative; padding:22px 20px 20px; min-height:118px; display:flex; flex-direction:column; justify-content:flex-end; border-bottom:1px solid var(--line); }
+.cover .tag { position:absolute; top:16px; left:20px; font-family:var(--f-mono); font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+.cover .big { font-size:clamp(24px,2.6vw,30px); font-weight:800; letter-spacing:-.03em; line-height:1.1; }
+.cover .small { margin-top:3px; font-size:12.5px; }
+/* cover themes per group */
+.t-market .cover { background:linear-gradient(135deg,#FFF3EE, #FBE9E2); }
+.t-market .tag { color:var(--deep); } .t-market .big { color:var(--deep); } .t-market .small { color:#B0623F; }
+.t-action .cover { background:linear-gradient(135deg,#20242C,#2E333D); border-bottom-color:#20242C; }
+.t-action .tag { color:#F2A98F; } .t-action .big { color:#FFFFFF; } .t-action .small { color:#AEB4BF; }
+.t-platform .cover { background:linear-gradient(135deg,#F6F2EA,#FAF8F4); }
+.t-platform .tag { color:var(--faint); } .t-platform .big { color:var(--ink); } .t-platform .small { color:var(--faint); }
+.card-body { padding:16px 20px 18px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.card-body h3 { font-size:16px; font-weight:700; letter-spacing:-.01em; line-height:1.45; }
+.card-body p { font-size:13.5px; color:var(--mid); }
+.card-more { margin-top:auto; padding-top:10px; font-size:12.5px; font-weight:700; color:var(--brand); }
+
+/* cta */
+.cta-band { margin:56px 0 0; background:var(--soft); border:1px solid var(--line); border-radius:20px; padding:34px 24px; text-align:center; }
+.cta-band strong { font-size:19px; letter-spacing:-.02em; }
+.cta-band p { margin-top:8px; font-size:14px; color:var(--mid); }
+.cta-band a { display:inline-block; margin-top:18px; background:var(--brand); color:#fff; font-weight:700; font-size:15px; padding:14px 34px; border-radius:12px; box-shadow:0 4px 18px rgba(232,93,58,.28); }
+
+footer { margin-top:56px; border-top:1px solid var(--line); padding:28px 0 48px; font-size:13px; color:var(--faint); }
+footer a { color:var(--mid); border-bottom:1px solid var(--line); }
 </style>
 </head>
 <body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="https://talkb.co.kr/"><b>Talk</b>B<span>토크비 인사이트</span></a>
+    <a class="nav-cta" href="https://talkb.co.kr/#final-cta">무료진단 0원</a>
+  </div>
+</nav>
+
 <div class="wrap">
-  <header>
-    <a class="logo" href="https://talkb.co.kr/"><b>Talk</b>B 토크비</a>
-    <a class="top-cta" href="https://talkb.co.kr/#final-cta">무료진단 0원</a>
-  </header>
 
   <section class="hero">
-    <h1>토크비 인사이트</h1>
-    <p class="sub">손님들이 ChatGPT에 맛집을 묻는 시대 — 외식업 사장님과 프랜차이즈 본사를 위한 실측 기반 인사이트입니다.</p>
+    <div class="eyebrow">TalkB Insights</div>
+    <h1>손님들이 ChatGPT에 맛집을 묻는 시대,<br>사장님이 알아야 할 것들</h1>
+    <p class="sub">외식업 사장님과 프랜차이즈 본사를 위한 실측 데이터 기반 인사이트 — 전부 무료로 공개합니다.</p>
   </section>
 
   <a class="data-strip" href="https://talkb.co.kr/resources.html">
     <span class="ds-badge">DATA</span>
-    <span class="ds-text"><b>데이터로 보는 AI 검색 시대</b> — 한국 시장 데이터·검색 행동 변화·마케팅 비용 구조 총정리</span>
+    <span class="ds-text"><b>데이터로 보는 AI 검색 시대</b> — 한국 시장 데이터·검색 행동 변화·비용 구조 총정리</span>
     <span class="ds-arrow">→</span>
   </a>
 
   <section class="sec">
-    <h2>시작하기 · 시장 이해</h2>
+    <div class="sec-head"><h2>시장 이해</h2><span class="cnt">05</span></div>
+    <p class="sec-desc">지금 무슨 일이 벌어지고 있는지 — 데이터로 먼저 확인하세요.</p>
     <div class="grid">
-      <a class="card" href="korea-ai-search-2026.html"><img class="thumb" src="../og-insights-korea.png" alt="한국인 AI 검색 이용률 2026" loading="lazy"><div class="card-body"><h3>한국인 AI 검색 이용률 2026 — F&amp;B가 알아야 할 것</h3><p>ChatGPT 이용률 54.5%, 주 1회 이상 72%. 데이터로 보는 손님들의 변화.</p></div></a>
-      <a class="card" href="zero-click-era-fnb.html"><img class="thumb" src="../og-insights-zero-click.png" alt="제로 클릭 시대의 F&B" loading="lazy"><div class="card-body"><h3>제로 클릭 시대의 F&amp;B</h3><p>검색의 80%가 클릭 없이 끝난다 — 트래픽 대신 측정해야 할 새 지표.</p></div></a>
-      <a class="card" href="ai-answer-4-stages.html"><img class="thumb" src="../og-insights-ai-stages.png" alt="AI 답변 4단계 원리" loading="lazy"><div class="card-body"><h3>AI 답변 4단계 원리</h3><p>ChatGPT가 답변을 만드는 과정과, 우리 매장이 어디서 빠지는지.</p></div></a>
-      <a class="card" href="geo-guide.html"><img class="thumb" src="../og-insights-geo.png" alt="GEO 한국어 완전 가이드" loading="lazy"><div class="card-body"><h3>GEO란 무엇인가 — 한국어 완전 가이드</h3><p>AI 답변에 인용되는 원리와 외식업 적용 방법. Princeton 연구 기반.</p></div></a>
-      <a class="card" href="seo-geo-aeo-comparison.html"><img class="thumb" src="../og-insights-seo-geo-aeo.png" alt="SEO vs GEO vs AEO" loading="lazy"><div class="card-body"><h3>SEO vs GEO vs AEO</h3><p>무엇이 다르고 어떻게 함께 가는가.</p></div></a>
+      <a class="card t-market" href="/insights/korea-ai-search-2026.html">
+        <div class="cover"><span class="tag">Research · 2026</span><div class="big">54.5%</div><div class="small">한국인 ChatGPT 이용 경험률</div></div>
+        <div class="card-body"><h3>한국인 AI 검색 이용률 2026 — F&amp;B가 알아야 할 것</h3><p>네이버는 하락세, ChatGPT는 과반 돌파. 데이터로 보는 손님들의 변화.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-market" href="/insights/zero-click-era-fnb.html">
+        <div class="cover"><span class="tag">Research</span><div class="big">제로 클릭</div><div class="small">검색의 80%가 클릭 없이 끝난다</div></div>
+        <div class="card-body"><h3>제로 클릭 시대의 F&amp;B</h3><p>트래픽이 사라지는 시대, 대신 측정해야 할 7가지 새 지표.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-market" href="/insights/ai-answer-4-stages.html">
+        <div class="cover"><span class="tag">원리</span><div class="big">AI 답변 4단계</div><div class="small">질문 → 검색 → 선별 → 답변</div></div>
+        <div class="card-body"><h3>AI 답변 4단계 원리</h3><p>ChatGPT가 답을 만드는 과정과, 우리 매장이 어디서 빠지는지.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-market" href="/insights/geo-guide.html">
+        <div class="cover"><span class="tag">가이드</span><div class="big">GEO</div><div class="small">AI 답변에 인용되는 원리</div></div>
+        <div class="card-body"><h3>GEO란 무엇인가 — 한국어 완전 가이드</h3><p>Princeton 연구 기반, 외식업 적용 방법까지.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-market" href="/insights/seo-geo-aeo-comparison.html">
+        <div class="cover"><span class="tag">비교</span><div class="big">SEO · GEO · AEO</div><div class="small">뭐가 다르고 뭘 해야 하나</div></div>
+        <div class="card-body"><h3>SEO vs GEO vs AEO</h3><p>세 영역의 차이와 함께 가는 법.</p><span class="card-more">읽기 →</span></div>
+      </a>
     </div>
   </section>
 
   <section class="sec">
-    <h2>매장·본사 실전</h2>
+    <div class="sec-head"><h2>매장·본사 실전</h2><span class="cnt">04</span></div>
+    <p class="sec-desc">오늘 우리 매장에 바로 적용할 수 있는 것들.</p>
     <div class="grid">
-      <a class="card" href="local-store-checklist.html"><img class="thumb" src="../og-insights-local-checklist.png" alt="독립매장 AI 검색 체크리스트" loading="lazy"><div class="card-body"><h3>독립매장 로컬 AI 검색 체크리스트 25항목</h3><p>사장님이 직접 점검하는 인터랙티브 체크리스트 + 셀프 점수 진단.</p></div></a>
-      <a class="card" href="situational-query-response.html"><img class="thumb" src="../og-situational-query.png" alt="상황형 쿼리 대응 구조" loading="lazy"><div class="card-body"><h3>상황형 쿼리 "광장동 조용한 한식당" 대응 구조</h3><p>지역·분위기·동반자 결합 질문에서 인용되는 방법.</p></div></a>
-      <a class="card" href="franchise-hq-ai-citation.html"><img class="thumb" src="../og-franchise-hq.png" alt="프랜차이즈 본사 AI 인용 전략" loading="lazy"><div class="card-body"><h3>프랜차이즈 본사가 AI에 인용되게 만드는 법</h3><p>가맹모집 차별화를 위한 본사 브랜드 AI 인용 전략.</p></div></a>
-      <a class="card" href="chatgpt-citation-conditions.html"><img class="thumb" src="../og-chatgpt-citation.png" alt="ChatGPT 인용 6가지 조건" loading="lazy"><div class="card-body"><h3>ChatGPT가 인용하는 콘텐츠 6가지 조건</h3><p>Princeton·BrightEdge 교차 분석으로 도출한 인용 조건과 적용법.</p></div></a>
+      <a class="card t-action" href="/insights/local-store-checklist.html">
+        <div class="cover"><span class="tag">Checklist</span><div class="big">25항목</div><div class="small">독립매장 셀프 점검 + 점수 진단</div></div>
+        <div class="card-body"><h3>독립매장 로컬 AI 검색 체크리스트</h3><p>사장님이 직접 점검하는 인터랙티브 체크리스트.</p><span class="card-more">점검하기 →</span></div>
+      </a>
+      <a class="card t-action" href="/insights/situational-query-response.html">
+        <div class="cover"><span class="tag">실전</span><div class="big">"조용한 한식당"</div><div class="small">상황형 질문에 내 매장이 뜨려면</div></div>
+        <div class="card-body"><h3>상황형 쿼리 대응 구조</h3><p>지역·분위기·동반자 결합 질문에서 인용되는 방법.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-action" href="/insights/franchise-hq-ai-citation.html">
+        <div class="cover"><span class="tag">Franchise HQ</span><div class="big">본사 전략</div><div class="small">가맹모집이 달라지는 AI 인용 설계</div></div>
+        <div class="card-body"><h3>프랜차이즈 본사가 AI에 인용되게 만드는 법</h3><p>공정위 공시 활용부터 실측 사례까지.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-action" href="/insights/chatgpt-citation-conditions.html">
+        <div class="cover"><span class="tag">Research</span><div class="big">6가지 조건</div><div class="small">ChatGPT가 인용하는 콘텐츠</div></div>
+        <div class="card-body"><h3>ChatGPT가 인용하는 콘텐츠 6가지 조건</h3><p>Princeton·BrightEdge 교차 분석과 적용법.</p><span class="card-more">읽기 →</span></div>
+      </a>
     </div>
   </section>
 
   <section class="sec">
-    <h2>플랫폼별 가이드</h2>
+    <div class="sec-head"><h2>플랫폼별 가이드</h2><span class="cnt">02</span></div>
+    <p class="sec-desc">플랫폼마다 인용 방식이 다릅니다.</p>
     <div class="grid">
-      <a class="card" href="perplexity-citation-structure.html"><img class="thumb" src="../og-insights-perplexity.png" alt="Perplexity 인용 구조" loading="lazy"><div class="card-body"><h3>Perplexity에서 내 브랜드가 출처로 뜨는 구조</h3><p>답변당 평균 5개 인용 시대의 진입 방법.</p></div></a>
-      <a class="card" href="google-aio-gemini-guide.html"><img class="thumb" src="../og-insights-gemini.png" alt="Google AI Overview·Gemini 가이드" loading="lazy"><div class="card-body"><h3>Google AI Overview · Gemini 최적화 가이드</h3><p>즉시 실행 작업 6가지와 한국 시장 고려사항.</p></div></a>
+      <a class="card t-platform" href="/insights/perplexity-citation-structure.html">
+        <div class="cover"><span class="tag">Platform</span><div class="big">Perplexity</div><div class="small">답변당 평균 5개 인용</div></div>
+        <div class="card-body"><h3>Perplexity에서 내 브랜드가 출처로 뜨는 구조</h3><p>인용 진입 방법과 신선도 가중치.</p><span class="card-more">읽기 →</span></div>
+      </a>
+      <a class="card t-platform" href="/insights/google-aio-gemini-guide.html">
+        <div class="cover"><span class="tag">Platform</span><div class="big">AI Overview</div><div class="small">Google · Gemini 대응</div></div>
+        <div class="card-body"><h3>Google AI Overview · Gemini 최적화 가이드</h3><p>즉시 실행 작업 6가지와 한국 시장 고려사항.</p><span class="card-more">읽기 →</span></div>
+      </a>
     </div>
   </section>
 
   <div class="cta-band">
     <strong>우리 매장은 지금 ChatGPT에서 어떻게 보일까요?</strong>
-    <p>추천 질문 10개 실측 — 무료진단 0원, 1분 신청.</p>
+    <p>손님처럼 묻는 추천 질문 10개 실측 — 무료진단 0원, 1분 신청.</p>
     <a href="https://talkb.co.kr/#final-cta">무료진단 신청하기 →</a>
   </div>
 
   <footer>
     <p>(주)티앤에스컴퍼니 · 맛집 전문 AI 추천 최적화 서비스 토크비</p>
-    <p style="margin-top:6px"><a href="https://talkb.co.kr/">토크비 홈</a> · <a href="https://talkb.co.kr/resources.html">자료실</a> · <a href="https://pf.kakao.com/_JxlWTX/chat">카카오채널 문의</a></p>
+    <p style="margin-top:6px"><a href="https://talkb.co.kr/">토크비 홈</a> · <a href="https://talkb.co.kr/resources.html">데이터로 보는 AI 검색 시대</a> · <a href="https://pf.kakao.com/_JxlWTX/chat">카카오채널 문의</a></p>
   </footer>
+
 </div>
 </body>
 </html>
