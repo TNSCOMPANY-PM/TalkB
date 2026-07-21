@@ -1014,6 +1014,26 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .proc-grid { grid-template-columns: 1fr; }
 }
 </style>
+<!-- 토크비 퍼널 계측(2026-07-21) — visitor_id 생성 + 랜딩 조회/CTA 비콘 + 크로스도메인 vid 링커.
+     진실의 원천 = app.talkb.co.kr DB(GA와 병행). 원문 IP는 앱 서버가 해시로만 저장. -->
+<script>
+(function(){
+  var API = "https://app.talkb.co.kr/api/track";
+  var vid = null;
+  try { vid = localStorage.getItem("tb_vid"); if(!vid){ vid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+"-"+Math.random().toString(36).slice(2)); localStorage.setItem("tb_vid", vid); } } catch(e){}
+  var p = new URLSearchParams(location.search);
+  function beacon(payload){ try { navigator.sendBeacon(API, JSON.stringify(payload)); } catch(e){} }
+  beacon({ event:"landing_view", visitor_id:vid, utm_source:p.get("utm_source"), utm_medium:p.get("utm_medium"), utm_campaign:p.get("utm_campaign"), referrer:document.referrer||null });
+  function wire(){
+    document.querySelectorAll('a[href*="app.talkb.co.kr/onboard"]').forEach(function(a){
+      // 쿠키 공유 불가 → vid를 URL로 넘겨 앱 미들웨어가 퍼스트파티 쿠키로 저장
+      try { var u = new URL(a.href); if(vid && !u.searchParams.get("vid")){ u.searchParams.set("vid", vid); a.setAttribute("href", u.toString()); } } catch(e){}
+      a.addEventListener("click", function(){ beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:(a.className||"").slice(0,40) } }); });
+    });
+  }
+  if(document.readyState !== "loading") wire(); else document.addEventListener("DOMContentLoaded", wire);
+})();
+</script>
 </head>
 
 <body>
