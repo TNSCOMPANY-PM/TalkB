@@ -1,5 +1,7 @@
 {
   "redirects": [
+    { "source": "/ai-restaurant",                            "destination": "/",                                          "permanent": true },
+    { "source": "/ai-restaurant/:path*",                     "destination": "/",                                          "permanent": true },
     { "source": "/insights-geo-guide.html",                  "destination": "/insights/geo-guide.html",                  "permanent": true },
     { "source": "/insights-seo-geo-aeo-comparison.html",     "destination": "/insights/seo-geo-aeo-comparison.html",     "permanent": true },
     { "source": "/insights-ai-answer-4-stages.html",         "destination": "/insights/ai-answer-4-stages.html",         "permanent": true },
