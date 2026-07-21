@@ -18,6 +18,15 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Insights · 실전 가이드 -->
+  <url>
+    <loc>https://talkb.co.kr/insights/naver-review-delete.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
 
   <!-- Insights · Pillar 01 · GEO 기초 -->
   <url>
