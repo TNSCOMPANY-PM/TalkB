@@ -1039,14 +1039,18 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   var p = new URLSearchParams(location.search);
   function beacon(payload){ try { navigator.sendBeacon(API, JSON.stringify(payload)); } catch(e){} }
   beacon({ event:"landing_view", visitor_id:vid, utm_source:p.get("utm_source"), utm_medium:p.get("utm_medium"), utm_campaign:p.get("utm_campaign"), referrer:document.referrer||null });
-  function wire(){
-    document.querySelectorAll('a[href*="app.talkb.co.kr/onboard"]').forEach(function(a){
-      // 쿠키 공유 불가 → vid를 URL로 넘겨 앱 미들웨어가 퍼스트파티 쿠키로 저장
-      try { var u = new URL(a.href); if(vid && !u.searchParams.get("vid")){ u.searchParams.set("vid", vid); a.setAttribute("href", u.toString()); } } catch(e){}
-      a.addEventListener("click", function(){ beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:(((a.textContent||"").replace(/\s+/g," ").trim())||a.className||"").slice(0,40) } }); });
-    });
-  }
+  // 쿠키 공유 불가 → vid를 URL로 넘겨 앱 미들웨어가 퍼스트파티 쿠키로 저장
+  function linkVid(a){ try { var u = new URL(a.href); if(vid && !u.searchParams.get("vid")){ u.searchParams.set("vid", vid); a.setAttribute("href", u.toString()); } } catch(e){} }
+  function wire(){ document.querySelectorAll('a[href*="app.talkb.co.kr/onboard"]').forEach(linkVid); }
   if(document.readyState !== "loading") wire(); else document.addEventListener("DOMContentLoaded", wire);
+  // 클릭 계측은 위임(capture) — 하단바처럼 로드 후에 href가 온보드로 바뀌는 버튼도 잡는다(2026-07-23).
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    var a = t && t.closest ? t.closest('a[href*="app.talkb.co.kr/onboard"]') : null;
+    if(!a) return;
+    linkVid(a); // 늦게 바뀐 버튼도 이동 직전에 vid 부착
+    beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:(((a.textContent||"").replace(/\s+/g," ").trim())||a.className||"").slice(0,40) } });
+  }, true);
 })();
 </script>
 <!-- Meta Pixel -->
