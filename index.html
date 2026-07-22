@@ -2734,7 +2734,7 @@ document.addEventListener('click', function(e){
   var a = e.target && e.target.closest ? e.target.closest('a') : null;
   if(!a || typeof fbq !== 'function') return;
   var href = a.getAttribute('href') || '';
-  if(href.indexOf('app.talkb.co.kr/onboard') > -1){ fbq('track','InitiateCheckout'); }
+  if(href.indexOf('app.talkb.co.kr/onboard') > -1){ fbq('trackCustom','CTAClick_FreeDiagnosis'); }
   else if(a.classList.contains('js-kakao-link') || href.indexOf('pf.kakao.com') > -1){ fbq('track','Contact'); }
 }, true);
 </script>
