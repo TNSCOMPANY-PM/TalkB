@@ -1047,6 +1047,23 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   if(document.readyState !== "loading") wire(); else document.addEventListener("DOMContentLoaded", wire);
 })();
 </script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2189753755124222');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel -->
 </head>
 
 <body>
@@ -2710,5 +2727,15 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
 })();
 </script>
 
+<script>
+/* Meta Pixel 전환 이벤트 — 무료진단 클릭·카카오 문의 클릭 */
+document.addEventListener('click', function(e){
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if(!a || typeof fbq !== 'function') return;
+  var href = a.getAttribute('href') || '';
+  if(href.indexOf('app.talkb.co.kr/onboard') > -1){ fbq('track','InitiateCheckout'); }
+  else if(a.classList.contains('js-kakao-link') || href.indexOf('pf.kakao.com') > -1){ fbq('track','Contact'); }
+}, true);
+</script>
 </body>
 </html>
