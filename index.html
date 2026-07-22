@@ -1028,7 +1028,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
     document.querySelectorAll('a[href*="app.talkb.co.kr/onboard"]').forEach(function(a){
       // 쿠키 공유 불가 → vid를 URL로 넘겨 앱 미들웨어가 퍼스트파티 쿠키로 저장
       try { var u = new URL(a.href); if(vid && !u.searchParams.get("vid")){ u.searchParams.set("vid", vid); a.setAttribute("href", u.toString()); } } catch(e){}
-      a.addEventListener("click", function(){ beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:(a.className||"").slice(0,40) } }); });
+      a.addEventListener("click", function(){ beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:(((a.textContent||"").replace(/\s+/g," ").trim())||a.className||"").slice(0,40) } }); });
     });
   }
   if(document.readyState !== "loading") wire(); else document.addEventListener("DOMContentLoaded", wire);
