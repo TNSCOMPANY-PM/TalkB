@@ -2750,6 +2750,11 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
   if (prereg) {
     prereg.addEventListener('click', function () { send('prereg_box_click'); });
   }
+  /* 최하단 온보드 CTA — 픽셀·퍼널DB는 위임으로 잡히는데 GA만 누락이던 버튼(2026-07-23) */
+  var finalCta = document.querySelector('.final-actions .btn');
+  if (finalCta) {
+    finalCta.addEventListener('click', function () { send('final_cta_onboard_click'); });
+  }
 })();
 </script>
 
