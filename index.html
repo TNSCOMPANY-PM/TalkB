@@ -1044,12 +1044,19 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   function wire(){ document.querySelectorAll('a[href*="app.talkb.co.kr/onboard"]').forEach(linkVid); }
   if(document.readyState !== "loading") wire(); else document.addEventListener("DOMContentLoaded", wire);
   // 클릭 계측은 위임(capture) — 하단바처럼 로드 후에 href가 온보드로 바뀌는 버튼도 잡는다(2026-07-23).
+  function ctaLabel(a){ return (((a.textContent||"").replace(/\s+/g," ").trim())||a.className||"").slice(0,40); }
   document.addEventListener("click", function(e){
     var t = e.target;
-    var a = t && t.closest ? t.closest('a[href*="app.talkb.co.kr/onboard"]') : null;
-    if(!a) return;
-    linkVid(a); // 늦게 바뀐 버튼도 이동 직전에 vid 부착
-    beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:(((a.textContent||"").replace(/\s+/g," ").trim())||a.className||"").slice(0,40) } });
+    if(!t || !t.closest) return;
+    var a = t.closest('a[href*="app.talkb.co.kr/onboard"]');
+    if(a){
+      linkVid(a); // 늦게 바뀐 버튼도 이동 직전에 vid 부착
+      beacon({ event:"landing_cta_click", visitor_id:vid, props:{ cta:ctaLabel(a) } });
+      return;
+    }
+    // 혜택보기(#pricing 스크롤) — 가격 관심 신호. 가격 보기 전/후 이탈 구분용(2026-07-23).
+    var p2 = t.closest('a[href="#pricing"]');
+    if(p2) beacon({ event:"landing_pricing_click", visitor_id:vid, props:{ cta:ctaLabel(p2) } });
   }, true);
 })();
 </script>
