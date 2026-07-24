@@ -744,29 +744,31 @@ strong { font-weight: 700; }
   .price-grid { max-width: 880px; }
   .price-franchise, .price-notice, .biz-notice { max-width: 880px; }
   .price-card.featured { padding: 34px 38px; }
-  /* 스펙 dl → 측정·실행 2축 카드로 대체(2026-07-24). price-cols는 이제 가격만 담아
-     세로 유지(구 2컬럼 340px 고정 제거). 2축은 .spec-axes에서 자체 2열 그리드. */
+  /* 좌 가격 · 우 스펙(측정·실행 2축) 2컬럼 복원(2026-07-24) */
+  .price-cols { flex-direction: row; align-items: stretch; gap: 0; }
+  .price-head { flex: 0 0 340px; }
+  .price-head .price-reveal { flex: 1; display: flex; flex-direction: column; justify-content: center; align-self: stretch; width: 100%; }
+  .price-cols .price-spec-wrap { flex: 1 1 auto; margin: 0 0 0 40px; padding: 0 0 0 40px; border-left: 1px solid var(--line-soft); }
   .price-benefits { margin-top: 24px; }
 }
 .price-spec { margin: 16px 0 0; padding-top: 16px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .price-spec > div { display: grid; grid-template-columns: 128px 1fr; align-items: baseline; gap: 12px; font-size: 14px; line-height: 1.5; }
 .price-spec dt { color: var(--ink-muted); font-weight: 600; }
 .price-spec dd { margin: 0; color: var(--ink); font-weight: 700; text-align: left; }
-/* 측정·실행 2축 카드 — 상품이 뭘 하는지(측정/실행) 한눈에. 방법은 추상화 */
-.spec-note-top { margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--line-soft); font-size: 13.5px; color: var(--ink-mid); font-weight: 600; }
+/* 측정·실행 2축 — 상품이 뭘 하는지(측정/실행). 방법은 추상화. 우측 스펙 컬럼 안 세로 배치 */
+.spec-note-top { font-size: 13.5px; color: var(--ink-mid); font-weight: 600; }
 .spec-note-top b { color: var(--ink); font-weight: 800; }
 .spec-note-ext { font-size: 12px; color: var(--ink-muted); font-weight: 500; }
-.spec-axes { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
-.spec-axis { padding: 16px 18px; border-radius: var(--r-md); border: 1px solid var(--line); background: #fff; }
+.spec-axis { margin-top: 14px; padding: 14px 16px; border-radius: var(--r-md); border: 1px solid var(--line); background: #fff; }
 .spec-axis--key { background: var(--accent-paper); border-color: var(--accent-soft); }
-.spec-axis-head { font-size: 15px; font-weight: 800; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.spec-axis-head { font-size: 14.5px; font-weight: 800; color: var(--ink); display: flex; align-items: center; gap: 8px; }
 .spec-axis-tag { flex-shrink: 0; font-size: 12px; font-weight: 800; color: #fff; background: var(--ink-mid); border-radius: 6px; padding: 3px 9px; }
 .spec-axis-tag--key { background: var(--accent); }
-.spec-axis-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.spec-axis-list li { position: relative; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.55; word-break: keep-all; }
-.spec-axis-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 800; }
+.spec-axis-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.spec-axis-list li { position: relative; padding-left: 20px; font-size: 13.5px; color: var(--ink); line-height: 1.5; word-break: keep-all; }
+.spec-axis-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; color: var(--accent); font-weight: 800; }
 .spec-axis-list b { color: var(--accent-deep); font-weight: 700; }
-@media (min-width: 768px) { .spec-axes { grid-template-columns: 1fr 1fr; } }
+.spec-axis-sub { display: block; font-size: 11.5px; font-weight: 500; color: var(--ink-muted); margin-top: 2px; line-height: 1.45; }
 .price-notice { max-width: 720px; margin: 22px auto 0; padding: 15px 20px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; font-size: 15px; font-weight: 600; color: var(--ink-mid); line-height: 1.6; }
 .price-notice strong { color: var(--accent-deep); }
 
@@ -1990,28 +1992,26 @@ BLIND-END: 구 진행 방식 -->
             </div>
             <div class="price-vat">월 구독형(약정 없음) · 매장당 · VAT 별도</div>
           </div>
-        </div>
-        <div class="spec-note-top">대상 AI · <b>ChatGPT</b> <span class="spec-note-ext">(제미나이 · 네이버 등 확장 예정 · 상위 요금제 별도 안내)</span></div>
 
-        <!-- 측정·실행 2축 구조 — 상품이 뭘 하는지 한눈에. 방법은 추상화(노하우 은폐) -->
-        <div class="spec-axes">
-          <div class="spec-axis">
-            <div class="spec-axis-head"><span class="spec-axis-tag">측정</span>지금 어떻게 나오는지 확인</div>
-            <ul class="spec-axis-list">
-              <li><b>15개 질문</b>(추천 10 + 매장 이해도 5)을 <b>매주 5회</b> 실측</li>
-              <li>손님 시점으로 물어 <b>진짜 노출률</b> 확인</li>
-              <li>함께 추천된 <b>경쟁 매장 10개</b> 분석</li>
-              <li>매월 <b>Before / After 종합 리포트</b></li>
-            </ul>
-          </div>
-          <div class="spec-axis spec-axis--key">
-            <div class="spec-axis-head"><span class="spec-axis-tag spec-axis-tag--key">실행</span>추천되도록 직접 바꿈</div>
-            <ul class="spec-axis-list">
-              <li>매장 정보를 <b>AI가 읽을 수 있게 정리·구축</b></li>
-              <li>AI가 참고하는 <b>우리 매장 콘텐츠를 지속 발행</b></li>
-              <li>외부에서 <b>우리 매장이 언급되도록</b> 노출 확대</li>
-              <li>매주 다시 측정하며 <b>노출률이 오르도록</b> 지속 관리</li>
-            </ul>
+          <!-- 우측 스펙 — 측정·실행 2축. 방법은 추상화(노하우 은폐) -->
+          <div class="price-spec-wrap">
+            <div class="spec-note-top">대상 AI · <b>ChatGPT</b> <span class="spec-note-ext">(제미나이 · 네이버 등 확장 예정 · 상위 요금제 별도 안내)</span></div>
+            <div class="spec-axis">
+              <div class="spec-axis-head"><span class="spec-axis-tag">측정</span>지금 어떻게 나오는지 확인</div>
+              <ul class="spec-axis-list">
+                <li>손님 시점으로 <b>AI에게 질문</b><span class="spec-axis-sub">15개 질문(추천 10 + 매장 이해도 5)을 매주 5회 실측</span></li>
+                <li><b>추천률·경쟁 매장</b> 비교 분석</li>
+                <li>매월 <b>Before / After 종합 리포트</b></li>
+              </ul>
+            </div>
+            <div class="spec-axis spec-axis--key">
+              <div class="spec-axis-head"><span class="spec-axis-tag spec-axis-tag--key">최적화 실행</span></div>
+              <ul class="spec-axis-list">
+                <li>매장 정보를 <b>AI가 읽을 수 있게 정리·구축</b></li>
+                <li>AI가 <b>우리 매장을 추천할 수 있게 학습</b></li>
+                <li>AI 학습 데이터 <b>지속 발행·확대·개선</b></li>
+              </ul>
+            </div>
           </div>
         </div>
 
