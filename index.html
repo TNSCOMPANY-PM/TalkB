@@ -177,6 +177,14 @@
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "제가 직접 ChatGPT에 검색하는 것과 토크비 진단은 뭐가 다른가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "결과가 다릅니다. ChatGPT는 사장님과의 대화 이력을 기억하기 때문에, 사장님이 본인 매장을 자주 언급했다면 사장님 화면에서는 우리 매장이 잘 나옵니다. 하지만 사장님을 처음 만나는 손님의 ChatGPT는 그 기억이 없어 다르게 답합니다. 토크비는 사장님 계정이 아니라 아무 기억도 없는 손님 시점에서, 매장 이름을 빼고 손님처럼 질문해 측정합니다. 그래서 사장님이 직접 검색할 때와 달리, 진짜 잠재 손님이 보는 실제 결과를 보여드립니다."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "무료 진단과 GPT 플랜(유료)은 어떤 차이인가요?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -699,7 +707,7 @@ strong { font-weight: 700; }
 /* 가격 하단 3대 안내 카드 (접수한도·업종·대량등록) */
 .price-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 720px; margin: 26px auto 0; }
 .pinfo-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 18px; text-align: center; }
-.pinfo-card--accent { border-color: var(--accent-soft); background: var(--accent-paper); }
+.pinfo-card--accent { border-color: var(--accent-soft); }
 .pinfo-seal { display: inline-flex; align-items: baseline; justify-content: center; width: 46px; height: 46px; border: 2.5px solid var(--accent); border-radius: 50%; color: var(--accent-deep); font-size: 22px; font-weight: 800; line-height: 1; margin-bottom: 12px; }
 .pinfo-seal small { font-size: 11px; font-weight: 700; margin-left: 1px; }
 .pinfo-ic { display: block; font-size: 30px; line-height: 1; margin-bottom: 12px; }
@@ -2081,6 +2089,14 @@ BLIND-END: 파트너 브랜드 섹션 -->
       <h2 class="headline center">자주 묻는 질문</h2>
     </div>
     <div class="faq-list fade-in">
+      <div class="faq-item">
+        <button class="faq-q">직접 ChatGPT에 검색하는 것과 토크비 진단은 뭐가 다른가요?<span class="ico"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <strong>결과가 다릅니다.</strong> ChatGPT는 사장님과의 <strong>대화 이력을 기억</strong>합니다. 사장님이 본인 매장을 자주 언급했다면, 사장님 화면에서 우리 매장이 잘 나오는 건 당연해요.<br><br>
+          하지만 <strong>사장님을 처음 만나는 손님</strong>의 ChatGPT는 그 기억이 없어 다르게 답합니다. 토크비는 사장님 계정이 아니라 <strong>아무 기억도 없는 손님 시점</strong>에서, 매장 이름을 빼고 손님처럼 물어 측정합니다.<br><br>
+          그래서 사장님이 직접 검색할 때와 달리, <strong>진짜 잠재 손님이 보는 실제 결과</strong>를 보여드립니다.
+        </div></div>
+      </div>
       <div class="faq-item">
         <button class="faq-q">무료 진단과 GPT 플랜(유료)은 어떤 차이인가요?<span class="ico"></span></button>
         <div class="faq-a"><div class="faq-a-inner">
