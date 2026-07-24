@@ -494,8 +494,11 @@ strong { font-weight: 700; }
   color: var(--ink-mid); margin: 20px auto 0; max-width: 760px; word-break: keep-all;
 }
 .hero-sub strong { color: var(--accent-deep); font-weight: 800; }
-.hero-cta { display: flex; gap: 12px; justify-content: center; margin-top: 80px; flex-wrap: wrap; }
+.hero-cta { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 32px; }
 .hero-cta .btn { min-width: 200px; }
+.hero-cta-note { font-size: 12.5px; color: var(--ink-muted); word-break: keep-all; margin: 0; }
+.hero-cta-sub { font-size: 13px; font-weight: 700; color: var(--ink-muted); text-decoration: none; padding: 10px 14px; margin-top: 2px; }
+.hero-cta-sub:hover { color: var(--accent); }
 @media (min-width: 1024px) {
   .hero-inner { max-width: 980px; }
 }
@@ -990,7 +993,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .section { padding: 64px 0; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
+  .hero-cta { width: 100%; }
   .hero-cta .btn { width: 100%; min-width: 0; }
+  .hero-cta-sub { width: auto; }
   .gpt-conv { min-height: 240px; }
   .prob-grid { grid-template-columns: 1fr; }
   .tl-side { width: 62px; }
@@ -1164,7 +1169,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       </div>
 
       <div class="hero-cta">
-        <a href="#pricing" class="btn btn-primary btn-lg">얼리버드 혜택보기</a>
+        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg hero-cta-primary">우리 매장 AI 노출 무료로 확인하기</a>
+        <p class="hero-cta-note">가입 없이 매장 이름만 입력하면 됩니다</p>
+        <a href="#pricing" class="hero-cta-sub">얼리버드 혜택 보기 →</a>
       </div>
     </div>
   </div>
@@ -2208,7 +2215,7 @@ BLIND-END: #contact -->
       </div>
       <span class="bcp-count" id="bcpDday" aria-live="polite"></span>
     </div>
-    <a href="#pricing" id="bctaBtn" class="btn btn-primary bottom-cta-primary">혜택보기</a>
+    <a href="https://app.talkb.co.kr/onboard" id="bctaBtn" class="btn btn-primary bottom-cta-primary">무료로 진단받기</a>
   </div>
 </div>
 
@@ -2261,8 +2268,9 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
       if (tl) tl.textContent = '다음 소식은 카카오채널에서 안내드립니다';
       var c = document.getElementById('bcpDday');
       if (c) c.textContent = '';
+      /* 온보드로 향하는 상태(초기 '무료로 진단받기' 포함)면 마감 후 카카오채널로 전환 */
       var btn = document.getElementById('bctaBtn');
-      if (btn && btn.textContent === '무료진단 후 얼리버드 신청하기') {
+      if (btn && (btn.getAttribute('href') || '').indexOf('/onboard') !== -1) {
         btn.textContent = '카카오채널 문의하기';
         btn.setAttribute('href', KAKAO_CHANNEL_URL);
         btn.setAttribute('target', '_blank');
@@ -2492,12 +2500,9 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
         btn.setAttribute('target', '_blank');
         btn.setAttribute('rel', 'noopener');
         btn.textContent = '카카오채널 문의하기';
-      } else {
-        btn.setAttribute('href', 'https://app.talkb.co.kr/onboard');
-        btn.removeAttribute('target');
-        btn.removeAttribute('rel');
-        btn.textContent = '무료진단 후 얼리버드 신청하기';
       }
+      /* 마감 전에는 문구를 덮어쓰지 않는다 — 초기 상태부터 이미 무료진단(/onboard)이므로
+         '신청·결제' 문구로 되돌리면 진입 문턱만 높아진다(2026-07-24). 배경 전환만 유지. */
       if (bar) bar.classList.add('dark'); // 전환 인지: 어두운 배경으로
     }
     if ('IntersectionObserver' in window) {
@@ -2733,9 +2738,15 @@ const INQUIRY_API = 'https://app.talkb.co.kr/api/inquiries';
   function send(name) {
     if (typeof gtag === 'function') gtag('event', name);
   }
-  var hero = document.querySelector('.hero-cta .btn');
+  /* 히어로 주CTA — 2026-07-24 무료진단(/onboard)으로 전환. 이벤트명도 분리해
+     이전 '얼리버드 혜택보기(#pricing)' 시절 데이터와 섞이지 않게 한다. */
+  var hero = document.querySelector('.hero-cta .hero-cta-primary');
   if (hero) {
-    hero.addEventListener('click', function () { send('hero_cta_click'); });
+    hero.addEventListener('click', function () { send('hero_cta_onboard_click'); });
+  }
+  var heroSub = document.querySelector('.hero-cta .hero-cta-sub');
+  if (heroSub) {
+    heroSub.addEventListener('click', function () { send('hero_cta_pricing_click'); });
   }
   var bcta = document.getElementById('bctaBtn');
   if (bcta) {
