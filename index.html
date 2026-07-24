@@ -996,10 +996,13 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   /* 히어로 첫 화면 압축 — CTA를 fold 안으로(2026-07-24).
      데스크톱 여백(padding 100px·목업 margin 50px 등)을 그대로 쓰면
      모바일에서 CTA 도달 전 900px 가까이 소모되어 버튼이 잘려 보임. */
-  .hero { padding: 28px 0 40px; }
-  .hero-badge { font-size: 12px; padding: 6px 12px; margin-bottom: 14px; }
-  .hero-sub { margin-top: 14px; }
-  .gpt-mock { margin-top: 22px; }
+  .hero { padding: 24px 0 40px; }
+  .hero-badge { font-size: 12px; padding: 6px 12px; margin-bottom: 12px; }
+  /* 헤드라인이 3줄(네이버 1등이어도, / ChatGPT엔 / 안 나올 수 있습니다)이라
+     기본 clamp(6.2vw)로는 CTA가 fold 밖으로 밀림. 26px로 고정 압축(2026-07-24) */
+  .hero-title { font-size: 26px; line-height: 1.25; }
+  .hero-sub { margin-top: 12px; font-size: 14.5px; }
+  .gpt-mock { margin-top: 18px; }
   /* 높이 고정 — min-height는 하한만 정해 답변 길이(3~4줄)마다 박스가 늘었다 줄며
      페이지가 흔들렸음. 세트 중 최대치로 못 박아 레이아웃 시프트를 0으로. */
   .gpt-conv { height: 200px; min-height: 0; padding: 14px 13px 13px; }
@@ -1044,9 +1047,13 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .container { padding: 0 16px; }
   /* 좁은 화면일수록 답변이 길어져 높이가 필요하지만, 268px은 CTA를 fold 밖으로
      밀어냄. 타이틀·서브를 함께 줄여 첫 화면 안에서 균형을 맞춘다(2026-07-24). */
-  .gpt-conv { height: 215px; }
-  .hero-title { font-size: 30px; }
-  .hero-sub { font-size: 15px; }
+  .gpt-conv { height: 190px; }
+  /* 좁은 화면: 목업 높이를 줄인 만큼 대화 폰트도 낮춰 답변이 잘리지 않게 */
+  .gpt-q .bubble { font-size: 14px; padding: 9px 13px; }
+  .gpt-a .txt { font-size: 13.5px; line-height: 1.55; }
+  .hero-title { font-size: 24px; }
+  .hero-sub { font-size: 14px; }
+  .hero-hook .hh-2 { font-size: 12.5px; }
   .proc-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -1158,7 +1165,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
   <div class="container">
     <div class="hero-inner fade-in">
       <div class="hero-badge"><span class="dot"></span>1차 얼리버드 신청 · 마감까지 <span class="bcp-count" id="heroDday" aria-live="polite"></span></div>
-      <h1 class="hero-title">AI가 우리 매장을 <br class="mo-only"><em>추천하고 있나요?</em></h1>
+      <h1 class="hero-title">네이버 1등이어도,<br>ChatGPT엔 <em>안 나올 수 있습니다</em></h1>
       <p class="hero-sub">손님들은 이제 AI에게 맛집을 묻습니다.<br class="mo-only"> <strong>토크비가 우리 매장을 추천하게 만듭니다.</strong></p>
 
       <!-- GPT mockup -->
@@ -1180,13 +1187,13 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       </div>
 
       <div class="hero-hook fade-in">
-        <p class="hh-1">지금 이 순간에도, AI는 다른 매장을 추천하고 있습니다.</p>
-        <p class="hh-2">네이버 지도 1위 매장도, AI 답변에는 0%인 경우가 있습니다. 무료진단으로 우리 매장을 확인해 보세요.</p>
+        <p class="hh-1">내 가게는 ChatGPT에 나올까요?</p>
+        <p class="hh-2">지금 이 순간에도 ChatGPT는 다른 매장을 추천하고 있습니다. 매장명만 있으면 바로 확인할 수 있어요.</p>
       </div>
 
       <div class="hero-cta">
-        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg hero-cta-primary">우리 매장 AI 노출 무료로 확인하기</a>
-        <p class="hero-cta-note">가입 없이 매장 이름만 입력하면 됩니다</p>
+        <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg hero-cta-primary">무료진단 0원 · 실시간 결과 확인</a>
+        <p class="hero-cta-note">가입 없이 매장명만 입력하면 됩니다</p>
         <a href="#pricing" class="hero-cta-sub">얼리버드 혜택 보기 →</a>
       </div>
     </div>
@@ -2226,8 +2233,8 @@ BLIND-END: #contact -->
   <div class="bottom-cta-inner">
     <div class="bottom-cta-promo">
       <div class="bcp-copy">
-        <span class="bcp-hook">AI가 우리 매장을 추천하고 있을까요?</span>
-        <span class="bcp-timer">가입 없이 매장 이름만 · 진단 0원</span>
+        <span class="bcp-hook">ChatGPT가 우리 매장을 추천하고 있을까요?</span>
+        <span class="bcp-timer">매장명만 있으면 끝! 진단 0원 · 실시간 확인</span>
       </div>
     </div>
     <a href="https://app.talkb.co.kr/onboard" id="bctaBtn" class="btn btn-primary bottom-cta-primary">우리 매장 무료 진단</a>
