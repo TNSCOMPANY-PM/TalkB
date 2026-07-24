@@ -708,8 +708,8 @@ strong { font-weight: 700; }
 .price-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 720px; margin: 26px auto 0; }
 .pinfo-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 18px; text-align: center; }
 .pinfo-card--accent { border-color: var(--accent-soft); }
-.pinfo-seal { display: inline-flex; align-items: baseline; justify-content: center; width: 46px; height: 46px; border: 2.5px solid var(--accent); border-radius: 50%; color: var(--accent-deep); font-size: 22px; font-weight: 800; line-height: 1; margin-bottom: 12px; }
-.pinfo-seal small { font-size: 11px; font-weight: 700; margin-left: 1px; }
+.pinfo-seal { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 21px; font-weight: 900; line-height: 0.95; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(232,93,58,0.35); }
+.pinfo-seal small { font-size: 9.5px; font-weight: 800; letter-spacing: 0.02em; margin-top: 1px; }
 .pinfo-ic { display: block; font-size: 30px; line-height: 1; margin-bottom: 12px; }
 .pinfo-title { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 7px; word-break: keep-all; }
 .pinfo-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; word-break: keep-all; }
@@ -2006,7 +2006,7 @@ BLIND-END: 구 진행 방식 -->
     <!-- 접수·업종·대량등록 3대 안내 카드 (2026-07-24: 텍스트 나열 → 3열 카드로 정리) -->
     <div class="price-info-grid fade-in" id="prereg">
       <div class="pinfo-card pinfo-card--accent">
-        <span class="pinfo-seal">3<small>곳</small></span>
+        <span class="pinfo-seal">3<small>곳 한정</small></span>
         <div class="pinfo-body">
           <h4 class="pinfo-title">같은 지역·업종 3곳 한정</h4>
           <p class="pinfo-desc">사장님끼리 AI 추천 자리를 두고 경쟁하지 않도록, 진행 가능 매장 수를 한정합니다.</p>
