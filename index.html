@@ -993,10 +993,20 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .section { padding: 64px 0; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
-  .hero-cta { width: 100%; }
+  /* 히어로 첫 화면 압축 — CTA를 fold 안으로(2026-07-24).
+     데스크톱 여백(padding 100px·목업 margin 50px 등)을 그대로 쓰면
+     모바일에서 CTA 도달 전 900px 가까이 소모되어 버튼이 잘려 보임. */
+  .hero { padding: 28px 0 40px; }
+  .hero-badge { font-size: 12px; padding: 6px 12px; margin-bottom: 14px; }
+  .hero-sub { margin-top: 14px; }
+  .gpt-mock { margin-top: 22px; }
+  .gpt-conv { min-height: 175px; padding: 14px 13px 13px; }
+  .hero-hook { margin-top: 18px; }
+  .hero-hook .hh-1 { font-size: 15.5px; }
+  .hero-hook .hh-2 { font-size: 13px; }
+  .hero-cta { width: 100%; margin-top: 20px; }
   .hero-cta .btn { width: 100%; min-width: 0; }
   .hero-cta-sub { width: auto; }
-  .gpt-conv { min-height: 240px; }
   .prob-grid { grid-template-columns: 1fr; }
   .tl-side { width: 62px; }
   .tl-year { font-size: 18px; }
@@ -1030,7 +1040,11 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
 }
 @media (max-width: 400px) {
   .container { padding: 0 16px; }
-  .gpt-conv { min-height: 268px; }
+  /* 좁은 화면일수록 답변이 길어져 높이가 필요하지만, 268px은 CTA를 fold 밖으로
+     밀어냄. 타이틀·서브를 함께 줄여 첫 화면 안에서 균형을 맞춘다(2026-07-24). */
+  .gpt-conv { min-height: 200px; }
+  .hero-title { font-size: 30px; }
+  .hero-sub { font-size: 15px; }
   .proc-grid { grid-template-columns: 1fr; }
 }
 </style>
