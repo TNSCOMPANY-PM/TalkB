@@ -696,6 +696,24 @@ strong { font-weight: 700; }
 .spec-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: var(--ink-muted); text-align: left; word-break: keep-all; line-height: 1.5; }
 .price-franchise { margin: 18px auto 0; max-width: 600px; text-align: center; font-size: 15px; color: var(--ink-mid); line-height: 1.6; }
 .price-franchise strong { color: var(--ink); }
+/* 가격 하단 3대 안내 카드 (접수한도·업종·대량등록) */
+.price-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 720px; margin: 26px auto 0; }
+.pinfo-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 18px; text-align: center; }
+.pinfo-card--accent { border-color: var(--accent-soft); background: var(--accent-paper); }
+.pinfo-seal { display: inline-flex; align-items: baseline; justify-content: center; width: 46px; height: 46px; border: 2.5px solid var(--accent); border-radius: 50%; color: var(--accent-deep); font-size: 22px; font-weight: 800; line-height: 1; margin-bottom: 12px; }
+.pinfo-seal small { font-size: 11px; font-weight: 700; margin-left: 1px; }
+.pinfo-ic { display: block; font-size: 30px; line-height: 1; margin-bottom: 12px; }
+.pinfo-title { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 7px; word-break: keep-all; }
+.pinfo-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; word-break: keep-all; }
+.pinfo-desc strong { color: var(--accent-deep); font-weight: 700; }
+@media (max-width: 767px) {
+  .price-info-grid { grid-template-columns: 1fr; gap: 10px; max-width: 420px; }
+  .pinfo-card { display: flex; align-items: center; gap: 14px; text-align: left; padding: 16px 18px; }
+  .pinfo-seal, .pinfo-ic { margin-bottom: 0; flex-shrink: 0; }
+  .pinfo-ic { font-size: 26px; width: 46px; text-align: center; }
+  .pinfo-body { min-width: 0; }
+  .pinfo-title { margin-bottom: 3px; }
+}
 .price-amt { font-family: var(--f-mono); font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
 .price-amt .per { font-size: 14px; color: var(--ink-muted); font-weight: 500; }
 .price-vat { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
@@ -1977,21 +1995,30 @@ BLIND-END: 구 진행 방식 -->
       </div>
     </div>
 
-    <!-- 접수 한도 안내 (2026-07-24: 신청·결제 절차 안내는 가격 박스와 중복이라 삭제, 3곳 한정만 유지) -->
-    <div class="prereg-box prereg-box--limit fade-in" id="prereg">
-      <div class="prereg-hook prereg-hook--solo">
-        <span class="seal" aria-hidden="true">같은 지역·업종<br>3곳 한정</span>
-        <div class="ph-txt">
-          <p class="ph-1">같은 지역·업종은 <strong>3곳까지만</strong> 받습니다. 사장님끼리 AI 추천 자리를 두고 경쟁하지 않도록, 진행 가능 매장 수를 한정합니다.</p>
+    <!-- 접수·업종·대량등록 3대 안내 카드 (2026-07-24: 텍스트 나열 → 3열 카드로 정리) -->
+    <div class="price-info-grid fade-in" id="prereg">
+      <div class="pinfo-card pinfo-card--accent">
+        <span class="pinfo-seal">3<small>곳</small></span>
+        <div class="pinfo-body">
+          <h4 class="pinfo-title">같은 지역·업종 3곳 한정</h4>
+          <p class="pinfo-desc">사장님끼리 AI 추천 자리를 두고 경쟁하지 않도록, 진행 가능 매장 수를 한정합니다.</p>
+        </div>
+      </div>
+      <div class="pinfo-card">
+        <span class="pinfo-ic" aria-hidden="true">🍽️</span>
+        <div class="pinfo-body">
+          <h4 class="pinfo-title">맛집 전문 서비스</h4>
+          <p class="pinfo-desc">음식점·카페·술집 등 외식업 전용입니다. 그 외 업종은 제공이 어렵습니다.</p>
+        </div>
+      </div>
+      <div class="pinfo-card">
+        <span class="pinfo-ic" aria-hidden="true">🏢</span>
+        <div class="pinfo-body">
+          <h4 class="pinfo-title">프랜차이즈 · 대량 등록</h4>
+          <p class="pinfo-desc">본사·10개 매장 이상 일괄 등록은 <strong>카카오채널로 별도 문의</strong>해 주세요.</p>
         </div>
       </div>
     </div>
-
-    <!-- 프랜차이즈·대량 등록 안내 -->
-    <p class="price-franchise fade-in">프랜차이즈 본사·대량 등록(10개 매장 이상)은 <strong>카카오채널로 별도 문의</strong>해 주세요.</p>
-
-    <!-- 업종 안내 (구 히어로 하단) -->
-    <div class="biz-notice fade-in">토크비는 맛집(음식점·카페·술집) 전문 서비스입니다. 그 외 업종은 서비스 제공이 어렵습니다.</div>
   </div>
 </section>
 
@@ -2146,63 +2173,6 @@ BLIND-END: 파트너 브랜드 섹션 -->
   </div>
 </section>
 
-<!-- ═══════════════ 10. 최종 CTA + 문의 폼 (카카오 전환 준비: 전체 임시 블라인드 · 삭제 아님 · 복원용) ═══════════════ -->
-<!-- BLIND-START: #contact 최종 CTA + 문의 폼 (카카오 전환 확정 후 복원/대체)
-<section class="section final-cta" id="contact">
-  <div class="container">
-    <div class="final-grid">
-      <div class="final-copy fade-in">
-        <div class="eyebrow">지금 확인하세요</div>
-        <h2 class="headline">우리 가게가 ChatGPT에<br><em>나오는지</em>, 먼저 확인하세요.</h2>
-        <ul class="final-list">
-          <li>무료 진단으로 지금 ChatGPT 노출 상태 확인</li>
-          <li>손님처럼 묻는 15개 질문으로 실측</li>
-          <li>얼리버드 기간 등록 매장은 구독 유지 기간 내내 <em>평생</em> <em>30%</em> 할인 적용</li>
-          <li>초기 파트너 전용 인증마크 제공</li>
-        </ul>
-        <div class="final-actions">
-          <a href="https://app.talkb.co.kr/onboard" class="btn btn-primary btn-lg">AI 추천률, 실시간 무료진단</a>
-        </div>
-      </div>
-
-      <div class="form-card fade-in">
-        <span class="form-badge">무료 문의</span>
-        <h3 class="form-title">문의하기</h3>
-        <p class="form-sub">아래 정보를 남겨주시면 담당자가 연락드립니다.</p>
-        <form id="inquiryForm" novalidate>
-          <div class="form-field">
-            <label for="inq_store">매장명 <span class="req">*</span></label>
-            <input type="text" id="inq_store" placeholder="예: 광장동가온" autocomplete="organization">
-          </div>
-          <div class="form-field">
-            <label for="inq_location">매장 위치</label>
-            <input type="text" id="inq_location" placeholder="예: 서울 광진구 광장동" autocomplete="address-level2">
-          </div>
-          <div class="form-field">
-            <label for="inq_name">성함 <span class="req">*</span></label>
-            <input type="text" id="inq_name" placeholder="이름" autocomplete="name">
-          </div>
-          <div class="form-field">
-            <label for="inq_position">직책</label>
-            <input type="text" id="inq_position" placeholder="예: 대표, 점장" autocomplete="organization-title">
-          </div>
-          <div class="form-field">
-            <label for="inq_phone">연락처 (휴대폰) <span class="req">*</span></label>
-            <input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel">
-          </div>
-          <div class="form-field">
-            <label for="inq_inquiry">문의내용</label>
-            <textarea id="inq_inquiry" placeholder="궁금하신 점이나 매장 상황을 자유롭게 남겨주세요."></textarea>
-          </div>
-          <button type="submit" id="inqSubmit" class="btn btn-primary btn-lg btn-block">문의 남기기</button>
-          <div class="form-status" id="inqStatus"></div>
-        </form>
-        <p class="form-note">제출 시 개인정보 처리방침에 동의합니다. 상담 목적 외 이용하지 않습니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-BLIND-END: #contact -->
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
