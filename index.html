@@ -754,6 +754,11 @@ strong { font-weight: 700; }
 .price-spec > div { display: grid; grid-template-columns: 128px 1fr; align-items: baseline; gap: 12px; font-size: 14px; line-height: 1.5; }
 .price-spec dt { color: var(--ink-muted); font-weight: 600; }
 .price-spec dd { margin: 0; color: var(--ink); font-weight: 700; text-align: left; }
+/* 핵심 최적화 항목 강조 — '측정만 하는 게 아니라 실행한다'를 시각적으로 드러냄 */
+.price-spec .spec-key { background: var(--accent-paper); border-radius: 8px; padding: 8px 10px; margin: 0 -10px; }
+.price-spec .spec-key dt { color: var(--accent-deep); font-weight: 800; }
+.price-spec .spec-key dt::before { content: "★ "; font-size: 11px; }
+.price-spec .spec-sub { display: block; font-size: 12px; font-weight: 600; color: var(--ink-mid); margin-top: 2px; line-height: 1.5; }
 .price-notice { max-width: 720px; margin: 22px auto 0; padding: 15px 20px; background: var(--accent-paper); border: 1.5px solid var(--accent-soft); border-radius: var(--r-md); text-align: center; font-size: 15px; font-weight: 600; color: var(--ink-mid); line-height: 1.6; }
 .price-notice strong { color: var(--accent-deep); }
 
@@ -1978,12 +1983,12 @@ BLIND-END: 구 진행 방식 -->
             <div class="price-vat">월 구독형(약정 없음) · 매장당 · VAT 별도</div>
           </div>
           <dl class="price-spec">
-          <div><dt>최적화 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정<br>(상위 요금제 별도 안내)</span></dd></div>
+          <div><dt>대상 AI</dt><dd>ChatGPT<span class="spec-note">제미나이 · 네이버 등 확장 예정<br>(상위 요금제 별도 안내)</span></dd></div>
+          <div><dt>AI 노출 측정</dt><dd>15개 질문(추천 10 + 매장 이해도 5) · 매주 5회</dd></div>
           <div><dt>경쟁 매장 분석</dt><dd>10개</dd></div>
-          <div><dt>측정 질문 수</dt><dd>15개 (추천 10 + 매장 이해도 5)</dd></div>
-          <div><dt>측정 횟수</dt><dd>5회</dd></div>
-          <div><dt>측정 기준</dt><dd>매주 1회</dd></div>
-          <div><dt>종합 리포트 발행</dt><dd>매월 1회</dd></div>
+          <div class="spec-key"><dt>AI 학습 최적화</dt><dd>매장 정보를 AI가 읽을 수 있게 정리·구축<span class="spec-sub">ChatGPT가 우리 매장을 추천하게 만드는 핵심 작업</span></dd></div>
+          <div class="spec-key"><dt>추천 콘텐츠 발행</dt><dd>매장을 대신해 지속 발행<span class="spec-sub">AI가 참고하는 우리 매장 정보를 계속 쌓아요</span></dd></div>
+          <div><dt>종합 리포트</dt><dd>매월 Before / After</dd></div>
           </dl>
         </div>
 
@@ -1994,8 +1999,7 @@ BLIND-END: 구 진행 방식 -->
             <b>무료진단</b> <span class="arw">→</span> 결과 확인 <span class="arw">→</span> <b>얼리버드 신청</b>
           </div>
           <p class="price-cta-note">
-            먼저 <strong>무료로</strong> 우리 매장이 ChatGPT에 나오는지 확인해요.<br>
-            진단만 받아보셔도 괜찮아요 — 마음에 드시면 그 자리에서 바로 신청하실 수 있어요.
+            <strong>무료진단만 받아보셔도 괜찮아요.</strong> 마음에 드시면 그 자리에서 바로 신청하세요.
           </p>
         </div>
 
