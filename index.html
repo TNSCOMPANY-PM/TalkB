@@ -1047,12 +1047,13 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .container { padding: 0 16px; }
   /* 좁은 화면일수록 답변이 길어져 높이가 필요하지만, 268px은 CTA를 fold 밖으로
      밀어냄. 타이틀·서브를 함께 줄여 첫 화면 안에서 균형을 맞춘다(2026-07-24). */
-  .gpt-conv { height: 190px; }
+  .gpt-conv { height: 182px; }
   /* 좁은 화면: 목업 높이를 줄인 만큼 대화 폰트도 낮춰 답변이 잘리지 않게 */
-  .gpt-q .bubble { font-size: 14px; padding: 9px 13px; }
-  .gpt-a .txt { font-size: 13.5px; line-height: 1.55; }
+  .gpt-q .bubble { font-size: 13.5px; padding: 8px 12px; }
+  .gpt-a .txt { font-size: 13px; line-height: 1.5; }
   .hero-title { font-size: 24px; }
   .hero-sub { font-size: 14px; }
+  .hero-hook { margin-top: 14px; }
   .hero-hook .hh-2 { font-size: 12.5px; }
   /* CTA 문구가 길어져(우리 매장 ChatGPT 노출 무료 확인) 좁은 화면 2줄 방지 */
   .hero-cta .btn-lg { font-size: 16px; padding: 15px 16px; }
@@ -1191,7 +1192,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 
       <div class="hero-hook fade-in">
         <p class="hh-1">우리 매장은 ChatGPT에 나올까요?</p>
-        <p class="hh-2">지금 이 순간에도 ChatGPT는 다른 매장을 추천하고 있습니다. 매장명만 넣으면 우리 매장이 나오는지 바로 확인해요.</p>
+        <p class="hh-2"><b style="color:var(--accent-deep)">"직접 검색하니 나오던데?"</b> 그건 ChatGPT가 사장님을 기억하기 때문. 처음 오는 손님에겐 다르게 답합니다.</p>
       </div>
 
       <div class="hero-cta">
@@ -1285,6 +1286,58 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
+
+<!-- ═══════════════ 1.7 직접 검색은 착각 (핵심 반론) ═══════════════ -->
+<section class="section section-soft" id="myth">
+  <div class="container">
+    <div class="myth-card fade-in">
+      <div class="myth-eyebrow">잠깐, 이런 생각 드시죠?</div>
+      <h2 class="myth-q">"직접 검색해보니<br>우리 매장 잘 나오던데요?"</h2>
+      <p class="myth-a">
+        ChatGPT는 <strong>대화 이력을 기억</strong>합니다. 사장님이 본인 매장을 자주 언급했다면,
+        사장님 화면에서 잘 나오는 건 당연해요. 하지만 <strong>사장님을 처음 만나는 손님</strong>의
+        ChatGPT는 다르게 답합니다.
+      </p>
+      <div class="myth-split">
+        <div class="myth-col myth-col-x">
+          <div class="myth-col-tag">사장님이 검색하면</div>
+          <div class="myth-col-face">😊</div>
+          <div class="myth-col-txt">기억 때문에<br>우리 매장이 잘 나옴</div>
+        </div>
+        <div class="myth-col myth-col-o">
+          <div class="myth-col-tag">손님이 검색하면</div>
+          <div class="myth-col-face">🤔</div>
+          <div class="myth-col-txt">기억이 없어<br>다른 매장을 추천</div>
+        </div>
+      </div>
+      <p class="myth-close">
+        토크비는 사장님 계정이 아니라, <strong>아무 기억도 없는 손님 시점</strong>에서 측정합니다.
+        진짜 잠재 손님이 보는 결과를 그대로 보여드려요.
+      </p>
+    </div>
+  </div>
+</section>
+<style>
+#myth .myth-card { max-width: 680px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: var(--card-radius); box-shadow: var(--sh-sm); padding: clamp(28px, 6vw, 44px) clamp(20px, 5vw, 40px); text-align: center; }
+#myth .myth-eyebrow { display: inline-block; font-size: 13px; font-weight: 700; color: var(--accent-deep); background: var(--accent-soft); padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
+#myth .myth-q { font-size: clamp(22px, 5.6vw, 32px); font-weight: 800; line-height: 1.3; letter-spacing: -0.025em; color: var(--ink); word-break: keep-all; }
+#myth .myth-a { font-size: clamp(15px, 3.9vw, 17px); line-height: 1.7; color: var(--ink-mid); margin: 18px auto 0; max-width: 560px; word-break: keep-all; }
+#myth .myth-a strong { color: var(--ink); font-weight: 800; }
+#myth .myth-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px auto 0; max-width: 480px; }
+#myth .myth-col { border-radius: var(--r-md); padding: 20px 14px; }
+#myth .myth-col-x { background: #FDECE7; border: 1px solid var(--accent-soft); }
+#myth .myth-col-o { background: var(--bg-soft); border: 1px solid var(--line); }
+#myth .myth-col-tag { font-size: 12.5px; font-weight: 700; color: var(--ink-mid); margin-bottom: 10px; }
+#myth .myth-col-face { font-size: 30px; line-height: 1; margin-bottom: 10px; }
+#myth .myth-col-txt { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.5; word-break: keep-all; }
+#myth .myth-col-x .myth-col-tag { color: var(--accent-deep); }
+#myth .myth-close { font-size: clamp(14px, 3.7vw, 16px); line-height: 1.7; color: var(--ink-mid); margin: 26px auto 0; max-width: 560px; word-break: keep-all; }
+#myth .myth-close strong { color: var(--accent-deep); font-weight: 800; }
+@media (max-width: 400px) {
+  #myth .myth-split { gap: 8px; }
+  #myth .myth-col { padding: 16px 10px; }
+}
+</style>
 
 <!-- ═══════════════ 2. 왜 지금 (타임라인) ═══════════════ -->
 <section class="section" id="timing">
