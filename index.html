@@ -517,7 +517,7 @@ strong { font-weight: 700; }
 .gpt-ic { width: 22px; height: 22px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .gpt-wm { font-size: 18px; font-weight: 700; color: #111; letter-spacing: -0.02em; }
 /* 대화 영역 — 답변 표시 시 크기로 고정하여 페이지 흔들림 방지 */
-.gpt-conv { padding: 18px 16px 16px; background: #fff; min-height: 190px; }
+.gpt-conv { padding: 18px 16px 16px; background: #fff; height: 190px; }
 .gpt-q { display: flex; justify-content: flex-end; margin-bottom: 14px; }
 .gpt-q .bubble { background: #f4f4f4; border-radius: 18px 18px 4px 18px; padding: 11px 16px; max-width: 84%; font-size: 18px; color: #111; line-height: 1.5; }
 .sim-cursor { display: inline-block; width: 2px; height: 16px; background: #111; margin-left: 2px; vertical-align: middle; animation: cursor-blink .8s step-end infinite; }
@@ -1000,7 +1000,9 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .hero-badge { font-size: 12px; padding: 6px 12px; margin-bottom: 14px; }
   .hero-sub { margin-top: 14px; }
   .gpt-mock { margin-top: 22px; }
-  .gpt-conv { min-height: 175px; padding: 14px 13px 13px; }
+  /* 높이 고정 — min-height는 하한만 정해 답변 길이(3~4줄)마다 박스가 늘었다 줄며
+     페이지가 흔들렸음. 세트 중 최대치로 못 박아 레이아웃 시프트를 0으로. */
+  .gpt-conv { height: 200px; min-height: 0; padding: 14px 13px 13px; }
   .hero-hook { margin-top: 18px; }
   .hero-hook .hh-1 { font-size: 15.5px; }
   .hero-hook .hh-2 { font-size: 13px; }
@@ -1042,7 +1044,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .container { padding: 0 16px; }
   /* 좁은 화면일수록 답변이 길어져 높이가 필요하지만, 268px은 CTA를 fold 밖으로
      밀어냄. 타이틀·서브를 함께 줄여 첫 화면 안에서 균형을 맞춘다(2026-07-24). */
-  .gpt-conv { min-height: 200px; }
+  .gpt-conv { height: 215px; }
   .hero-title { font-size: 30px; }
   .hero-sub { font-size: 15px; }
   .proc-grid { grid-template-columns: 1fr; }
