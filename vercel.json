@@ -1,5 +1,7 @@
 {
   "redirects": [
+    { "source": "/ig",                                       "destination": "/?utm_source=instagram&utm_medium=profile",  "permanent": false },
+    { "source": "/dm",                                       "destination": "/?utm_source=instagram&utm_medium=dm&utm_campaign=reference_feed", "permanent": false },
     { "source": "/insights",                                 "destination": "/insights/",                                 "permanent": true },
     { "source": "/ai-restaurant",                            "destination": "/",                                          "permanent": true },
     { "source": "/ai-restaurant/",                           "destination": "/",                                          "permanent": true },
