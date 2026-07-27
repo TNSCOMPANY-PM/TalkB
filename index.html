@@ -615,7 +615,9 @@ strong { font-weight: 700; }
 #process.admin-tone .pstep-ph { border-color: #D9DEE4; background: repeating-linear-gradient(45deg, #F2F4F6, #F2F4F6 12px, #E9EDF1 12px, #E9EDF1 24px); color: #8B95A1; }
 
 /* === REFERENCE (매장 카드 슬라이드) === */
-.ref-stats { display: flex; justify-content: center; align-items: stretch; gap: 12px; margin-top: 34px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.ref-stats { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 12px; margin-top: 34px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.ref-stat { min-width: 140px; }
+.ref-stat .v.ref-stat-date { font-size: 15px; }
 .ref-stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 14px 10px; text-align: center; box-shadow: var(--sh-sm); }
 .ref-stat .k { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); margin-bottom: 5px; line-height: 1.35; }
 .ref-stat .v { display: block; font-family: var(--f-mono); font-size: 18px; font-weight: 700; color: var(--accent); white-space: nowrap; }
@@ -903,8 +905,17 @@ strong { font-weight: 700; }
 .ref-review-quote strong { color: var(--accent-deep); }
 .ref-review-by { margin-top: 12px; font-size: 13px; font-weight: 800; color: var(--ink); }
 .ref-review-rate { margin-top: 3px; font-size: 12.5px; color: var(--ink-mid); }
-.ref-review-best { max-width: 720px; margin: 14px auto 0; text-align: center; border-left: none; border: 1px solid var(--accent); border-radius: 16px; padding: 26px 22px 22px; }
-.ref-review-best .ref-review-quote { font-size: 16.5px; }
+.ref-review-best { position: relative; max-width: 720px; margin: 16px auto 0; text-align: center; border-left: none; border: 1px solid var(--accent-soft); background: #fff; border-radius: 20px; padding: 30px 24px 26px; box-shadow: 0 14px 40px rgba(232,93,58,0.10), 0 2px 8px rgba(20,17,15,0.04); }
+.ref-review-best::before { content: ""; position: absolute; top: 0; left: 24px; right: 24px; height: 3px; border-radius: 0 0 6px 6px; background: linear-gradient(90deg, var(--accent), #F09A6B); }
+.rrb-mark { font-family: Georgia, 'Times New Roman', serif; font-size: 54px; line-height: 0.55; color: var(--accent); margin-bottom: 12px; }
+.ref-review-best .ref-review-quote { font-size: 17px; line-height: 1.85; color: var(--ink); font-weight: 500; }
+.ref-review-best .ref-review-quote strong { color: var(--accent-deep); background-image: linear-gradient(rgba(232,93,58,0.16), rgba(232,93,58,0.16)); background-repeat: no-repeat; background-position: 0 72%; background-size: 100% 38%; }
+.rrb-who { margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.rrb-ph { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 10px rgba(20,17,15,0.18); flex-shrink: 0; }
+.rrb-meta { text-align: left; }
+.ref-review-best .ref-review-by { margin-top: 0; font-size: 14px; }
+.ref-review-best .ref-review-badge { margin-left: 0; margin-top: 5px; }
+@media (min-width: 768px) { .ref-review-best { padding: 38px 48px 30px; } .ref-review-best .ref-review-quote { font-size: 18.5px; } }
 .ref-review-badge { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 800; color: var(--accent-deep); background: var(--accent-paper); border: 1px solid var(--accent); border-radius: 999px; padding: 3px 9px; vertical-align: 1px; white-space: nowrap; }
 .ref-reviews-note { margin: 10px 0 0; text-align: center; font-size: 11.5px; color: var(--ink-light); }
 
@@ -1092,9 +1103,10 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   .trust-badge .ti { font-size: 16px; word-break: keep-all; }
   .eyebrow.ref-eyebrow { font-size: 11.5px; letter-spacing: 0.02em; padding: 7px 12px; white-space: nowrap; }
   .ref-stats { gap: 8px; }
-  .ref-stat { padding: 12px 6px; }
+  .ref-stat { padding: 12px 6px; min-width: 130px; }
   .ref-stat .k { font-size: 11.5px; }
   .ref-stat .v { font-size: 15.5px; }
+  .ref-stat .v.ref-stat-date { font-size: 13.5px; }
   .ref-period-date { display: block; margin-left: 0; margin-top: 2px; }
   .ref-store-loc { display: block; margin-left: 0; margin-top: 3px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 26px 20px; }
@@ -1530,6 +1542,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       <div class="ref-stat"><span class="k">레퍼런스 공개 매장</span><span class="v">11곳</span></div>
       <div class="ref-stat"><span class="k">평균 추천률</span><span class="v"><em>9%</em> → 79%</span></div>
       <div class="ref-stat"><span class="k">추천률 상승</span><span class="v">전 매장</span></div>
+      <div class="ref-stat"><span class="k">레퍼런스 최신화</span><span class="v ref-stat-date">26년 7월 27일</span></div>
     </div>
     <p class="ref-stats-note fade-in">※ 평균 추천률은 6주 이상 진행한 7곳 기준 · 신규 진행 매장 4곳 포함 전 매장이 시작 대비 상승했습니다.</p>
 
@@ -1547,12 +1560,19 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     <div class="ref-reviews fade-in">
       <div class="ref-reviews-title">베스트 후기</div>
       <div class="ref-review ref-review-best">
-        <blockquote class="ref-review-quote">&ldquo;ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.&rdquo;</blockquote>
-        <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
+        <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
+        <blockquote class="ref-review-quote">ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.</blockquote>
+        <div class="rrb-who">
+          <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8a8a4891c7c0-g0-31c114a9.png" alt="탐라담 영종도점" loading="lazy" onerror="this.style.display='none';">
+          <div class="rrb-meta">
+            <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님</div>
+            <span class="ref-review-badge">✓ 실명·실매장 후기</span>
+          </div>
+        </div>
       </div>
       <div class="ref-reviews-grid">
         <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;토크비로 GPT 최적화하고 매출이 늘었어요. 실제로 GPT 보고 찾아왔는지 손님들에게 확인 중이에요.&rdquo;</blockquote>
+          <blockquote class="ref-review-quote">&ldquo;토크비 서비스 진행하고 GPT 보고 전화했다는 손님이 늘었어요. 감사합니다.&rdquo;</blockquote>
           <div class="ref-review-by">강남 고기집 대표 (익명)</div>
         </div>
         <div class="ref-review">
