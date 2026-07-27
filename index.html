@@ -1122,7 +1122,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 
   try { vid = localStorage.getItem("tb_vid"); if(!vid){ vid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+"-"+Math.random().toString(36).slice(2)); localStorage.setItem("tb_vid", vid); } } catch(e){}
   var p = new URLSearchParams(location.search);
   function beacon(payload){ try { navigator.sendBeacon(API, JSON.stringify(payload)); } catch(e){} }
-  beacon({ event:"landing_view", visitor_id:vid, utm_source:p.get("utm_source"), utm_medium:p.get("utm_medium"), utm_campaign:p.get("utm_campaign"), referrer:document.referrer||null });
+  beacon({ event:"landing_view", visitor_id:vid, utm_source:p.get("utm_source"), utm_medium:p.get("utm_medium"), utm_campaign:p.get("utm_campaign"), utm_content:p.get("utm_content"), referrer:document.referrer||null });
   // 레퍼럴(2026-07-23) — ?ref=CODE 로 온 방문자는 30일 기억, 온보드 이동 시 링크에 실어 앱 쿠키로 전달
   var REF_KEY = "tb_ref", REF_TS = "tb_ref_ts";
   try {
