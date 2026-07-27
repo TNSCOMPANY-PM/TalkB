@@ -903,6 +903,9 @@ strong { font-weight: 700; }
 .ref-review-quote strong { color: var(--accent-deep); }
 .ref-review-by { margin-top: 12px; font-size: 13px; font-weight: 800; color: var(--ink); }
 .ref-review-rate { margin-top: 3px; font-size: 12.5px; color: var(--ink-mid); }
+.ref-review-best { max-width: 720px; margin: 14px auto 0; text-align: center; border-left: none; border: 1px solid var(--accent); border-radius: 16px; padding: 26px 22px 22px; }
+.ref-review-best .ref-review-quote { font-size: 16.5px; }
+.ref-review-badge { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 800; color: var(--accent-deep); background: var(--accent-paper); border: 1px solid var(--accent); border-radius: 999px; padding: 3px 9px; vertical-align: 1px; white-space: nowrap; }
 .ref-reviews-note { margin: 10px 0 0; text-align: center; font-size: 11.5px; color: var(--ink-light); }
 
 .prereg-hook { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px dashed rgba(232,93,58,0.25); }
@@ -1542,20 +1545,22 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     </div>
 
     <div class="ref-reviews fade-in">
-      <div class="ref-reviews-title">사장님이 직접 남긴 이용 후기</div>
+      <div class="ref-reviews-title">베스트 후기</div>
+      <div class="ref-review ref-review-best">
+        <blockquote class="ref-review-quote">&ldquo;ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.&rdquo;</blockquote>
+        <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
+      </div>
       <div class="ref-reviews-grid">
         <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.&rdquo;</blockquote>
-          <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님</div>
-          <div class="ref-review-rate">시작 추천률 0% → 33.3% (8주 후)</div>
+          <blockquote class="ref-review-quote">&ldquo;토크비로 GPT 최적화하고 매출이 늘었어요. 실제로 GPT 보고 찾아왔는지 손님들에게 확인 중이에요.&rdquo;</blockquote>
+          <div class="ref-review-by">강남 고기집 대표 (익명)</div>
         </div>
         <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;점차 답변률이 올라가는 거 같아 기대가 큽니다ㅎㅎ&rdquo;</blockquote>
-          <div class="ref-review-by">부대찌개대사관 마곡직영점 · 전선용 본사 대표</div>
-          <div class="ref-review-rate">시작 추천률 56.7% → 70% (4주 후)</div>
+          <blockquote class="ref-review-quote">&ldquo;AI 보고 찾아왔다는 손님이 종종 확인됩니다. 계속 잘 부탁드립니다.&rdquo;</blockquote>
+          <div class="ref-review-by">여의도 레스토랑 대표 (익명)</div>
         </div>
       </div>
-      <p class="ref-reviews-note">※ 매장명·성함 공개에 동의한 실제 이용 후기입니다.</p>
+      <p class="ref-reviews-note">※ 실명 후기는 매장명·성함 공개에, 익명 후기는 익명 게시에 동의한 실제 이용 후기입니다.</p>
     </div>
 
     <div class="ref-your fade-in">
