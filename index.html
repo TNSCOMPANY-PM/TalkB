@@ -893,6 +893,17 @@ strong { font-weight: 700; }
 .ref-your-card .s { margin-top: 5px; font-size: 13.5px; color: var(--ink-mid); }
 .ref-your-close { margin-top: 14px; font-size: 14.5px; color: var(--ink-mid); word-break: keep-all; }
 .ref-your-close strong { color: var(--ink); }
+.ref-subnote { margin-top: 12px; padding: 10px 14px; background: var(--accent-paper); border: 1px dashed var(--accent); border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--accent-deep); line-height: 1.55; word-break: keep-all; }
+.ref-reviews { max-width: 860px; margin: 30px auto 0; }
+.ref-reviews-title { text-align: center; font-size: 15px; font-weight: 800; color: var(--ink); }
+.ref-reviews-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
+@media (min-width: 768px) { .ref-reviews-grid { grid-template-columns: 1fr 1fr; } }
+.ref-review { padding: 18px 18px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; }
+.ref-review-quote { margin: 0; font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all; }
+.ref-review-quote strong { color: var(--accent-deep); }
+.ref-review-by { margin-top: 12px; font-size: 13px; font-weight: 800; color: var(--ink); }
+.ref-review-rate { margin-top: 3px; font-size: 12.5px; color: var(--ink-mid); }
+.ref-reviews-note { margin: 10px 0 0; text-align: center; font-size: 11.5px; color: var(--ink-light); }
 
 .prereg-hook { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px dashed rgba(232,93,58,0.25); }
 /* 접수 한도 단독 표시(신청 절차 삭제 후) — 하단 점선·여백 제거하고 박스 패딩 축소 */
@@ -1513,11 +1524,11 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     <p class="ref-more fade-in">레퍼런스 공개에 동의한 실제 매장 데이터이며, <strong>그 외 다수의 매장들도 이미 AI에게 추천받고 있습니다.</strong></p>
 
     <div class="ref-stats fade-in">
-      <div class="ref-stat"><span class="k">레퍼런스 공개 매장</span><span class="v">12곳</span></div>
-      <div class="ref-stat"><span class="k">평균 추천률</span><span class="v"><em>7%</em> → 73%</span></div>
+      <div class="ref-stat"><span class="k">레퍼런스 공개 매장</span><span class="v">11곳</span></div>
+      <div class="ref-stat"><span class="k">평균 추천률</span><span class="v"><em>9%</em> → 79%</span></div>
       <div class="ref-stat"><span class="k">추천률 상승</span><span class="v">전 매장</span></div>
     </div>
-    <p class="ref-stats-note fade-in">※ 평균 추천률은 6주 이상 진행한 8곳 기준 · 신규 진행 매장 4곳 포함 전 매장이 시작 대비 상승했습니다.</p>
+    <p class="ref-stats-note fade-in">※ 평균 추천률은 6주 이상 진행한 7곳 기준 · 신규 진행 매장 4곳 포함 전 매장이 시작 대비 상승했습니다.</p>
 
     <div class="ref-slider fade-in">
       <div class="ref-topnav">
@@ -1528,6 +1539,23 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         <div class="ref-track" id="refTrack"><!-- 카드는 아래 배열에서 렌더링 --></div>
       </div>
       <div class="ref-dots" id="refDots" aria-hidden="true"></div>
+    </div>
+
+    <div class="ref-reviews fade-in">
+      <div class="ref-reviews-title">사장님이 직접 남긴 이용 후기</div>
+      <div class="ref-reviews-grid">
+        <div class="ref-review">
+          <blockquote class="ref-review-quote">&ldquo;ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.&rdquo;</blockquote>
+          <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님</div>
+          <div class="ref-review-rate">시작 추천률 0% → 33.3% (8주 후)</div>
+        </div>
+        <div class="ref-review">
+          <blockquote class="ref-review-quote">&ldquo;점차 답변률이 올라가는 거 같아 기대가 큽니다ㅎㅎ&rdquo;</blockquote>
+          <div class="ref-review-by">부대찌개대사관 마곡직영점 · 전선용 본사 대표</div>
+          <div class="ref-review-rate">시작 추천률 56.7% → 70% (4주 후)</div>
+        </div>
+      </div>
+      <p class="ref-reviews-note">※ 매장명·성함 공개에 동의한 실제 이용 후기입니다.</p>
     </div>
 
     <div class="ref-your fade-in">
@@ -1547,10 +1575,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '용인 모현읍 · 감자탕',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/420c1d087bc2-g1-84c0b208.jpg',
         quote: '주차장과 놀이방, 단체석까지 갖춰 가족 모임에 가장 적합한 감자탕 맛집으로 추천드립니다.',
-        periodMain: '빠른 초기 반응 · 3주 진행 결과',
-        periodDate: '2026.07.01 ~ 2026.07.20',
-        trend: [ {d:'7/1',v:0}, {d:'7/6',v:6.7}, {d:'7/13',v:23.3}, {d:'7/20',v:53.3} ],
-        from: '0%', to: '53.3%',
+        periodMain: '빠른 초기 반응 · 4주 진행 결과',
+        periodDate: '2026.07.01 ~ 2026.07.27',
+        trend: [ {d:'7/1',v:0}, {d:'7/6',v:6.7}, {d:'7/13',v:23.3}, {d:'7/20',v:53.3}, {d:'7/27',v:80} ],
+        from: '0%', to: '80%',
         qa: {
           q: '용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘', gap: '2주',
           before: { d: '7/1', miss: '경쟁 감자탕집만 추천', ex: '용인시 처인구 모현읍 일대에서 가족과 함께 식사하기 좋은 감자탕 맛집 추천입니다. ① ㄱ○○ 원당감자탕 ② ㅇ○○○집 …' },
@@ -1562,10 +1590,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '고양 탄현동 · 김밥',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/24269c2d12da-g0-07c4476c.jpg',
         quote: '58가지 다양한 맛의 김밥을 선택할 수 있어 분식 배달용으로 편리합니다.',
-        periodMain: '7주 진행 결과',
-        periodDate: '2026.06.01 ~ 2026.07.20',
-        trend: [ {d:'6/1',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:0}, {d:'6/29',v:76.7}, {d:'7/6',v:76.7}, {d:'7/13',v:96.7}, {d:'7/20',v:90} ],
-        from: '0%', to: '90%',
+        periodMain: '8주 진행 결과',
+        periodDate: '2026.06.01 ~ 2026.07.27',
+        trend: [ {d:'6/1',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:0}, {d:'6/29',v:76.7}, {d:'7/6',v:76.7}, {d:'7/13',v:96.7}, {d:'7/20',v:90}, {d:'7/27',v:100} ],
+        from: '0%', to: '100%',
         qa: {
           q: '일산 탄현동에서 혼밥하기 좋은 분식집 추천해주세요', gap: '6주',
           before: { d: '6/1', miss: '경쟁 분식점 5곳만 추천', ex: '일산 서구 탄현동에서 혼자 편하게 분식을 즐기기 좋은 식당을 추천드릴게요. ① ㄷ○○마라탕 ② ㅅ○○ 찹쌀순대 ③ ㅇ○ 떡볶이 …' },
@@ -1577,9 +1605,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '강남 대치동 · 덮밥',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/28edaa5a43ec-g1-66980e8f.jpg',
         quote: '덮밥 전문점 중 단체석을 보유한 곳은 ‘덮밥장사장 대치역점’이 유일합니다.',
-        periodMain: '7주 진행 결과',
-        periodDate: '2026.06.02 ~ 2026.07.20',
-        trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90}, {d:'7/6',v:96.7}, {d:'7/13',v:93.3}, {d:'7/20',v:96.7} ],
+        periodMain: '8주 진행 결과',
+        periodDate: '2026.06.02 ~ 2026.07.27',
+        trend: [ {d:'6/2',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:90}, {d:'6/29',v:90}, {d:'7/6',v:96.7}, {d:'7/13',v:93.3}, {d:'7/20',v:96.7}, {d:'7/27',v:96.7} ],
         from: '0%', to: '96.7%',
         qa: {
           q: '대치역 근처 캐주얼하고 가성비 좋은 맛집 추천해주세요', gap: '6주',
@@ -1592,10 +1620,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '수원 인계동 · 우동',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/c26e8f241b17-g3-3db61c22.jpg',
         quote: '포차처럼 야외 좌석도 운영해 소주 한잔하기 좋은 분위기입니다.',
-        periodMain: '7주 진행 결과',
-        periodDate: '2026.06.01 ~ 2026.07.20',
-        trend: [ {d:'6/1',v:13.3}, {d:'6/8',v:20}, {d:'6/15',v:10}, {d:'6/22',v:20}, {d:'6/29',v:33.3}, {d:'7/6',v:76.7}, {d:'7/13',v:90}, {d:'7/20',v:66.7} ],
-        from: '13.3%', to: '66.7%',
+        periodMain: '8주 진행 결과',
+        periodDate: '2026.06.01 ~ 2026.07.27',
+        trend: [ {d:'6/1',v:13.3}, {d:'6/8',v:20}, {d:'6/15',v:10}, {d:'6/22',v:20}, {d:'6/29',v:33.3}, {d:'7/6',v:76.7}, {d:'7/13',v:90}, {d:'7/20',v:66.7}, {d:'7/27',v:86.7} ],
+        from: '13.3%', to: '86.7%',
         qa: {
           q: '수원시청 주차 가능한 맛집 추천해주세요', gap: '2주',
           before: { d: '6/29', miss: '경쟁 맛집 5곳만 추천', ex: '수원시청 인근에서 주차가 편리한 맛집들을 종류별로 엄선한 추천 리스트입니다. ① ㄴ○○○아구찜 ② ㅈ○손만두 ③ ㅍ○정육식당 …' },
@@ -1607,10 +1635,11 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '광진 광장동 · 한식',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/5e238801610f-g3-a3b53b8c.jpg',
         quote: '통유리 구조로 한강과 벚꽃길 조망이 가능하며, 비즈니스 모임에 적합합니다.',
-        periodMain: '7주 진행 결과',
-        periodDate: '2026.06.02 ~ 2026.07.20',
-        trend: [ {d:'6/2',v:26.7}, {d:'6/8',v:26.7}, {d:'6/15',v:33.3}, {d:'6/22',v:76.7}, {d:'6/29',v:76.7}, {d:'7/6',v:73.3}, {d:'7/13',v:90}, {d:'7/20',v:93.3} ],
-        from: '26.7%', to: '93.3%',
+        periodMain: '8주 진행 결과',
+        periodDate: '2026.06.02 ~ 2026.07.27',
+        trend: [ {d:'6/2',v:26.7}, {d:'6/8',v:26.7}, {d:'6/15',v:33.3}, {d:'6/22',v:76.7}, {d:'6/29',v:76.7}, {d:'7/6',v:73.3}, {d:'7/13',v:90}, {d:'7/20',v:93.3}, {d:'7/27',v:96.7} ],
+        from: '26.7%', to: '96.7%',
+        subNote: '같은 대표님의 추가 매장 ‘광장동가온 명동성당점’ — 등록 진행 3주 만에 추천률 50% 달성',
         qa: {
           q: '워커힐호텔 근처 주차 가능한 한식집 추천해주세요', gap: '6주',
           before: { d: '6/2', miss: '경쟁 2곳만 추천', ex: '워커힐 호텔 인근에는 주차가 가능한 고급 한식당이 있어 편리하게 이용하실 수 있습니다. ■ ㅇ○ (워커힐호텔 2층) ■ ㄷ○○ …' },
@@ -1622,10 +1651,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '고양 성사동 · 게장',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/dea97ee98f05-g1-cdb2126f.jpg',
         quote: '국내산 꽃게를 활용한 무한리필 세트를 즐길 수 있어 가성비가 뛰어납니다.',
-        periodMain: '6주 진행 결과',
-        periodDate: '2026.06.05 ~ 2026.07.20',
-        trend: [ {d:'6/5',v:0}, {d:'6/8',v:0}, {d:'6/15',v:3.3}, {d:'6/22',v:60}, {d:'6/29',v:60}, {d:'7/6',v:60}, {d:'7/13',v:66.7}, {d:'7/20',v:70} ],
-        from: '0%', to: '70%',
+        periodMain: '7주 진행 결과',
+        periodDate: '2026.06.05 ~ 2026.07.27',
+        trend: [ {d:'6/5',v:0}, {d:'6/8',v:0}, {d:'6/15',v:3.3}, {d:'6/22',v:60}, {d:'6/29',v:60}, {d:'7/6',v:60}, {d:'7/13',v:66.7}, {d:'7/20',v:70}, {d:'7/27',v:73.3} ],
+        from: '0%', to: '73.3%',
         qa: {
           q: '일산에서 연인과 가기 좋은 게장 무한리필 맛집 알려주세요', gap: '5주',
           before: { d: '6/5', miss: '경쟁 게장집만 추천', ex: '일산에서 연인과 함께 즐기기 좋은 게장 무한리필 맛집으로는 ㄷ○간장게장을 강력히 추천드립니다. 분위기 좋은 데이트 장소로도 훌륭한 선택이 …' },
@@ -1637,9 +1666,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '수원 오목천동 · 도넛',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/6e3174c9c092-g0-796a7d48.jpg',
         quote: '‘수원에서 도넛 하면 바로 떠오르는 곳’이라 불릴 정도로 널리 알려진 인기 맛집입니다.',
-        periodMain: '7주 진행 결과',
-        periodDate: '2026.06.03 ~ 2026.07.20',
-        trend: [ {d:'6/3',v:20}, {d:'6/8',v:13.3}, {d:'6/15',v:13.3}, {d:'6/22',v:10}, {d:'6/29',v:20}, {d:'7/6',v:53.3}, {d:'7/13',v:60}, {d:'7/20',v:66.7} ],
+        periodMain: '8주 진행 결과',
+        periodDate: '2026.06.03 ~ 2026.07.27',
+        trend: [ {d:'6/3',v:20}, {d:'6/8',v:13.3}, {d:'6/15',v:13.3}, {d:'6/22',v:10}, {d:'6/29',v:20}, {d:'7/6',v:53.3}, {d:'7/13',v:60}, {d:'7/20',v:66.7}, {d:'7/27',v:66.7} ],
         from: '20%', to: '66.7%',
         qa: {
           q: '수원 대형카페 추천해주세요', gap: '6주',
@@ -1652,10 +1681,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '인천 영종도 · 고기요리',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8a8a4891c7c0-g0-31c114a9.png',
         quote: '가족 외식에 적합한 고깃집을 찾으신다면 탐라담 영종도점을 첫 번째로 추천드립니다.',
-        periodMain: '7주 진행 결과',
-        periodDate: '2026.06.01 ~ 2026.07.20',
-        trend: [ {d:'6/1',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:10}, {d:'6/29',v:16.7}, {d:'7/6',v:23.3}, {d:'7/13',v:40}, {d:'7/20',v:46.7} ],
-        from: '0%', to: '46.7%',
+        periodMain: '8주 진행 결과',
+        periodDate: '2026.06.01 ~ 2026.07.27',
+        trend: [ {d:'6/1',v:0}, {d:'6/8',v:0}, {d:'6/15',v:0}, {d:'6/22',v:10}, {d:'6/29',v:16.7}, {d:'7/6',v:23.3}, {d:'7/13',v:40}, {d:'7/20',v:46.7}, {d:'7/27',v:33.3} ],
+        from: '0%', to: '33.3%',
         qa: {
           q: '영종도 파라다이스 근처 가족 외식하기 좋은 고깃집 추천해주세요', gap: '6주',
           before: { d: '6/1', miss: '적합한 고깃집 없음 · 차선책만 안내', ex: '가족 외식에 좋은 고깃집은 검색 결과에 명확히 나타나지 않았지만, 차선책으로 고려할 수 있는 외식 장소들을 추천드릴 수 있습니다. ① ㅎ○갈비 ② ㅈ○구이 …' },
@@ -1667,10 +1696,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '종로 종각 · 김밥',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/0233b642924d-g0-7fef904c.jpg',
         quote: '꼬마김밥이 5줄에 약 4,000원으로 저렴하고, 재료의 신선도와 가성비에서 높은 평가를 받습니다.',
-        periodMain: '3주 진행 결과',
-        periodDate: '2026.06.30 ~ 2026.07.20',
-        trend: [ {d:'6/30',v:10}, {d:'7/6',v:10}, {d:'7/13',v:10}, {d:'7/20',v:50} ],
-        from: '10%', to: '50%',
+        periodMain: '4주 진행 결과',
+        periodDate: '2026.06.30 ~ 2026.07.27',
+        trend: [ {d:'6/30',v:10}, {d:'7/6',v:10}, {d:'7/13',v:10}, {d:'7/20',v:50}, {d:'7/27',v:60} ],
+        from: '10%', to: '60%',
         qa: {
           q: '종각 젊음의거리 근처 직장인 점심 먹기 좋은 맛집 추천해줘', gap: '3주',
           before: { d: '6/30', miss: '경쟁 맛집만 추천', ex: '종각역 ‘젊음의 거리’ 인근에서 직장인 점심으로 즐길 수 있는 맛집들을 정리해 드릴게요. ① ㅇ○ ○○찜닭 종로점 — 젊음의 거리 중앙에 위치해 접근이 편리하며 …' },
@@ -1682,10 +1711,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '서울 마곡 · 부대찌개',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/871d5c26b750-g0-92e2dd13.jpg',
         quote: '마곡 최대 규모의 부대찌개 전문점으로 최대 98명까지 수용 가능하고, 식사 시 2시간 무료 주차를 제공합니다.',
-        periodMain: '3주 진행 결과',
-        periodDate: '2026.06.29 ~ 2026.07.20',
-        trend: [ {d:'6/29',v:56.7}, {d:'7/6',v:43.3}, {d:'7/13',v:43.3}, {d:'7/20',v:63.3} ],
-        from: '56.7%', to: '63.3%',
+        periodMain: '4주 진행 결과',
+        periodDate: '2026.06.29 ~ 2026.07.27',
+        trend: [ {d:'6/29',v:56.7}, {d:'7/6',v:43.3}, {d:'7/13',v:43.3}, {d:'7/20',v:63.3}, {d:'7/27',v:70} ],
+        from: '56.7%', to: '70%',
         qa: {
           q: '발산역 근처 친구들과 점심 먹기 좋은 부대찌개집 추천해줘', gap: '1주',
           before: { d: '7/13', miss: '2주 연속 답변 제외 · 경쟁 매장만 추천', ex: '발산역 근처에서 친구들과 점심으로 즐기기 좋은 부대찌개 맛집을 소개해드릴게요. ① ㄱ○식당 — 송탄식 부대찌개를 정통 스타일로 맛볼 수 있는 곳으로, 햄과 소시지가 풍부하게 …' },
@@ -1697,29 +1726,14 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         loc: '인천 인하대역 · 부대찌개',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8cdf5d986f24-g0-d8274f87.png',
         quote: '좌식석을 최대 52명까지 수용할 수 있어 회식 등 단체 모임에 매우 적합한 송탄식 부대찌개 전문점입니다.',
-        periodMain: '빠른 초기 반응 · 3주 진행 결과',
-        periodDate: '2026.06.29 ~ 2026.07.20',
-        trend: [ {d:'6/29',v:0}, {d:'7/6',v:0}, {d:'7/13',v:0}, {d:'7/20',v:23.3} ],
-        from: '0%', to: '23.3%',
+        periodMain: '빠른 초기 반응 · 4주 진행 결과',
+        periodDate: '2026.06.29 ~ 2026.07.27',
+        trend: [ {d:'6/29',v:0}, {d:'7/6',v:0}, {d:'7/13',v:0}, {d:'7/20',v:23.3}, {d:'7/27',v:26.7} ],
+        from: '0%', to: '26.7%',
         qa: {
           q: '인하대역 먹자골목에서 직장 동료와 회식하기 좋은 부대찌개집 추천해줘', gap: '3주',
           before: { d: '6/29', miss: '경쟁 부대찌개집만 추천', ex: '인하대역 인근 ‘먹자골목’에는 회식하기 좋은 가성비 좋은 찌개 전문점이 몇 군데 있습니다. ① ㅇ○○ 부대찌개 — 인하대역 6번 출구에서 도보 약 5분 …' },
           after: { d: '7/20', rank: '1순위', ex: '■ 부대찌개대사관 인하대역점 — 송탄식 부대찌개 전문점으로 2인 메뉴가 약 26,000원대. 좌식석을 최대 52명까지 수용할 수 있어 회식 등 단체 모임에 매우 적합…' }
-        }
-      },
-      {
-        name: '푸드브리즈 법동점',
-        loc: '대전 법동 · 도시락',
-        img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/3f6304e5347b-g0-13cec46d.jpg',
-        quote: '당일 제조를 원칙으로 하는 한식 도시락 전문점으로, 구독형 5Days 도시락과 자체 배달을 운영합니다.',
-        periodMain: '빠른 초기 반응 · 3주 진행 결과',
-        periodDate: '2026.07.03 ~ 2026.07.20',
-        trend: [ {d:'7/3',v:0}, {d:'7/6',v:0}, {d:'7/13',v:0}, {d:'7/20',v:20} ],
-        from: '0%', to: '20%',
-        qa: {
-          q: '대전 법동 도시락 맛집 추천해줘', gap: '3주',
-          before: { d: '7/3', miss: '전문점이 없다며 대안만 안내', ex: '법동 지역은 온라인 정보상 대표적인 “도시락 전문점”이 별도로 언급된 곳이 적은 편입니다. 대안으로 ① ㅈ○○(청국장 전문) …' },
-          after: { d: '7/20', rank: '1순위', ex: '푸드브리즈 법동점 — 당일 제조를 원칙으로 하는 한식 도시락 전문점. 5Days 도시락(평일 5일 배달·8,000원)과 오늘의 김밥(4,000원) 등 실용적인 구성…' }
         }
       }
     ];
@@ -1756,7 +1770,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         if (i === 0 || last) {
           s += '<text x="' + x + '" y="' + (y - 12) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="700" fill="' + (last ? ACCENT : VALTXT) + '">' + fmt(p.v) + '</text>';
         }
-        s += '<text x="' + x + '" y="' + (yBot + 20) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="600" fill="' + AXIS + '">' + p.d + '</text>';
+        if (n < 9 || i % 2 === 0 || last) {
+          s += '<text x="' + x + '" y="' + (yBot + 20) + '" text-anchor="middle" font-family="monospace" font-size="14" font-weight="600" fill="' + AXIS + '">' + p.d + '</text>';
+        }
       });
       s += '</svg>';
       return s;
@@ -1798,6 +1814,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
           '<div class="ref-rate-label">ChatGPT 추천률' + tip(TIP_RATE) + '</div>' +
           '<div class="ref-rate-nums"><span class="from">' + esc(st.from) + '</span><span class="arw">→</span><span class="to">' + esc(st.to) + '</span></div>' +
         '</div>' +
+        (st.subNote ? '<div class="ref-subnote">' + esc(st.subNote) + '</div>' : '') +
         (st.qa ? buildQA(st) : (st.quote ? '<div class="ref-quote"><div class="rq-label">AI가 실제로 이렇게 추천했습니다</div>&ldquo;' + esc(st.quote) + '&rdquo;</div>' : '')) +
         '</div></div>';
     }
