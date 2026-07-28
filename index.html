@@ -634,6 +634,7 @@ strong { font-weight: 700; }
 .ref-store-head { display: flex; align-items: center; gap: 12px; padding-right: 90px; min-height: 60px; }
 .ref-store-ph { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(20,17,15,0.18); }
 .ref-store-name { font-size: 22px; font-weight: 800; color: var(--ink); }
+.ref-store-badge { display: inline-block; margin-left: 6px; font-size: 11.5px; font-weight: 800; color: var(--accent-deep); background: var(--accent-paper); border: 1px solid var(--accent); border-radius: 999px; padding: 3px 9px; vertical-align: 3px; white-space: nowrap; }
 .ref-store-loc { display: block; margin-top: 3px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
 .ref-quote { margin-top: 14px; padding: 13px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
 @media (min-width: 768px) { .ref-quote { min-height: 96px; } }
@@ -1577,15 +1578,15 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       </div>
       <div class="ref-reviews-grid">
         <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;토크비 서비스 진행하고 GPT 보고 전화했다는 손님이 늘었어요. 감사합니다.&rdquo;</blockquote>
-          <div class="ref-review-by">강남 고기집 대표 (익명)</div>
+          <blockquote class="ref-review-quote">&ldquo;ChatGPT에서 저희 매장이 <strong>두 번째로 추천</strong>되는 걸 확인했어요. 네이버로 두 번째 추천되려면 엄청난 비용이 드는데, 토크비는 <strong>저렴한 금액으로 매장 홍보</strong>를 가능하게 해 주네요.&rdquo;</blockquote>
+          <div class="ref-review-by">부대찌개대사관 인하대역점 <span class="ref-review-badge">🆕 신규 오픈 매장</span></div>
         </div>
         <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;AI 보고 찾아왔다는 손님이 종종 확인됩니다. 계속 잘 부탁드립니다.&rdquo;</blockquote>
-          <div class="ref-review-by">여의도 레스토랑 대표 (익명)</div>
+          <blockquote class="ref-review-quote">&ldquo;답변률도 좋아지고, 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인 거 같아요. 앞으로도 기대가 됩니다!&rdquo;</blockquote>
+          <div class="ref-review-by">인생뼈다귀 본점 · 이현민 대표 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
         </div>
       </div>
-      <p class="ref-reviews-note">※ 실명 후기는 매장명·성함 공개에, 익명 후기는 익명 게시에 동의한 실제 이용 후기입니다.</p>
+      <p class="ref-reviews-note">※ 모든 후기는 각 사장님이 동의한 공개 범위(매장명·성함)에 따라 게시된 실제 이용 후기입니다.</p>
     </div>
 
     <div class="ref-your fade-in">
@@ -1753,6 +1754,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       },
       {
         name: '부대찌개대사관 인하대역점',
+        badge: '🆕 신규 오픈 매장',
         loc: '인천 인하대역 · 부대찌개',
         img: 'https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8cdf5d986f24-g0-d8274f87.png',
         quote: '좌식석을 최대 52명까지 수용할 수 있어 회식 등 단체 모임에 매우 적합한 송탄식 부대찌개 전문점입니다.',
@@ -1836,7 +1838,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       return '<div class="ref-slide"><div class="ref-store">' +
         '<div class="ref-store-head">' +
         (st.img ? '<img class="ref-store-ph" src="' + esc(st.img) + '" alt="' + esc(st.name) + '" loading="lazy" onerror="this.style.display=\'none\';">' : '') +
-        '<div class="ref-store-name">' + esc(st.name) + (st.loc ? '<span class="ref-store-loc">' + esc(st.loc) + '</span>' : '') + '</div>' +
+        '<div class="ref-store-name">' + esc(st.name) + (st.badge ? ' <span class="ref-store-badge">' + esc(st.badge) + '</span>' : '') + (st.loc ? '<span class="ref-store-loc">' + esc(st.loc) + '</span>' : '') + '</div>' +
         '</div>' +
         '<div class="ref-store-period"><strong class="ref-period-main">' + esc(st.periodMain) + '</strong> <span class="ref-period-date">(' + esc(st.periodDate) + ')</span></div>' +
         '<div class="ref-chart">' + buildChart(st.trend) + '</div>' +
