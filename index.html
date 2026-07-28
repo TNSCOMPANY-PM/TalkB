@@ -2041,9 +2041,13 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     }
     render();
     track.addEventListener('scroll', sync, { passive: true });
+    // 조작(스와이프·도트) 후 15초 자동 정지 + 데스크톱은 올려두는 동안 정지 — 읽는 중 끊김 방지(2026-07-28)
+    var hovering = false;
+    rot.addEventListener('mouseenter', function () { hovering = true; });
+    rot.addEventListener('mouseleave', function () { hovering = false; });
     function mark() { last = Date.now(); }
     ['touchstart', 'pointerdown', 'wheel'].forEach(function (ev) { track.addEventListener(ev, mark, { passive: true }); });
-    if (!reduced) setInterval(function () { if (Date.now() - last < 7500) return; goTo((idx + 1) % n); }, 8000);
+    if (!reduced) setInterval(function () { if (hovering || Date.now() - last < 15000) return; goTo((idx + 1) % n); }, 8000);
   })();
   </script>
 </section>
