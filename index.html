@@ -919,6 +919,14 @@ strong { font-weight: 700; }
 @media (min-width: 768px) { .ref-review-best { padding: 38px 48px 30px; } .ref-review-best .ref-review-quote { font-size: 18.5px; } }
 .ref-review-badge { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 800; color: var(--accent-deep); background: var(--accent-paper); border: 1px solid var(--accent); border-radius: 999px; padding: 3px 9px; vertical-align: 1px; white-space: nowrap; }
 .ref-reviews-note { margin: 10px 0 0; text-align: center; font-size: 11.5px; color: var(--ink-light); }
+/* 후기 로테이터 — 패널을 grid 한 칸에 겹쳐 높이 = 가장 긴 후기(아래 콘텐츠 안 튀게), 페이드 전환 */
+.ref-rot-panes { display: grid; }
+.ref-rot-pane { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s .45s; }
+.ref-rot-pane.on { opacity: 1; visibility: visible; transition: opacity .45s ease; }
+.ref-rot-dots { display: flex; justify-content: center; margin-top: 4px; }
+.ref-rot-dot { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; cursor: pointer; }
+.ref-rot-dot span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background .2s; }
+.ref-rot-dot.on span { background: var(--accent); }
 
 .prereg-hook { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px dashed rgba(232,93,58,0.25); }
 /* 접수 한도 단독 표시(신청 절차 삭제 후) — 하단 점선·여백 제거하고 박스 패딩 축소 */
@@ -1565,30 +1573,55 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 
     <div class="ref-reviews fade-in">
       <div class="ref-reviews-title">베스트 후기</div>
-      <div class="ref-review ref-review-best">
-        <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
-        <blockquote class="ref-review-quote">ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.</blockquote>
-        <div class="rrb-who">
-          <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8a8a4891c7c0-g0-31c114a9.png" alt="탐라담 영종도점" loading="lazy" onerror="this.style.display='none';">
-          <div class="rrb-meta">
-            <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님</div>
-            <span class="ref-review-badge">✓ 실명·실매장 후기</span>
+      <!-- 후기 로테이터 — 같은 크기 한 슬롯 페이드 전환(8초·터치 정지·도트), 온보딩 결과 화면과 동일 패턴 (2026-07-28) -->
+      <div class="ref-rot" id="refRot">
+        <div class="ref-rot-panes">
+          <div class="ref-review ref-review-best ref-rot-pane on">
+            <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="ref-review-quote">ChatGPT에게 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <strong>12명 예약</strong>하시는 분도 생기고, <strong>전화 문의도 많이 늘었어요</strong>.</blockquote>
+            <div class="rrb-who">
+              <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8a8a4891c7c0-g0-31c114a9.png" alt="탐라담 영종도점" loading="lazy" onerror="this.style.display='none';">
+              <div class="rrb-meta">
+                <div class="ref-review-by">탐라담 영종도점 · 백지혜 사장님</div>
+                <span class="ref-review-badge">✓ 실명·실매장 후기</span>
+              </div>
+            </div>
+          </div>
+          <div class="ref-review ref-review-best ref-rot-pane">
+            <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="ref-review-quote">ChatGPT에서 저희 매장이 <strong>두 번째로 추천</strong>되는 걸 확인했어요. 네이버로 두 번째 추천되려면 엄청난 비용이 드는데, 토크비는 <strong>저렴한 금액으로 매장 홍보</strong>를 가능하게 해 주네요.</blockquote>
+            <div class="rrb-who">
+              <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/8cdf5d986f24-g0-d8274f87.png" alt="부대찌개대사관 인하대역점" loading="lazy" onerror="this.style.display='none';">
+              <div class="rrb-meta">
+                <div class="ref-review-by">부대찌개대사관 인하대역점</div>
+                <span class="ref-review-badge">🆕 신규 오픈 매장</span>
+              </div>
+            </div>
+          </div>
+          <div class="ref-review ref-review-best ref-rot-pane">
+            <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="ref-review-quote">답변률도 좋아지고, 바뀌는 시대에 맞게 <strong>발빠르게 준비할 수 있는 좋은 시스템</strong>인 거 같아요. 앞으로도 기대가 됩니다!</blockquote>
+            <div class="rrb-who">
+              <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/420c1d087bc2-g1-84c0b208.jpg" alt="인생뼈다귀 본점" loading="lazy" onerror="this.style.display='none';">
+              <div class="rrb-meta">
+                <div class="ref-review-by">인생뼈다귀 본점 · 이현민 대표</div>
+                <span class="ref-review-badge">✓ 실명·실매장 후기</span>
+              </div>
+            </div>
+          </div>
+          <div class="ref-review ref-review-best ref-rot-pane">
+            <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="ref-review-quote">점차 <strong>답변률이 올라가는</strong> 거 같아 기대가 큽니다ㅎㅎ</blockquote>
+            <div class="rrb-who">
+              <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/871d5c26b750-g0-92e2dd13.jpg" alt="부대찌개대사관 마곡직영점" loading="lazy" onerror="this.style.display='none';">
+              <div class="rrb-meta">
+                <div class="ref-review-by">부대찌개대사관 마곡직영점 · 전선용 본사 대표</div>
+                <span class="ref-review-badge">✓ 실명·실매장 후기</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="ref-reviews-grid">
-        <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;ChatGPT에서 저희 매장이 <strong>두 번째로 추천</strong>되는 걸 확인했어요. 네이버로 두 번째 추천되려면 엄청난 비용이 드는데, 토크비는 <strong>저렴한 금액으로 매장 홍보</strong>를 가능하게 해 주네요.&rdquo;</blockquote>
-          <div class="ref-review-by">부대찌개대사관 인하대역점 <span class="ref-review-badge">🆕 신규 오픈 매장</span></div>
-        </div>
-        <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;답변률도 좋아지고, 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인 거 같아요. 앞으로도 기대가 됩니다!&rdquo;</blockquote>
-          <div class="ref-review-by">인생뼈다귀 본점 · 이현민 대표 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
-        </div>
-        <div class="ref-review">
-          <blockquote class="ref-review-quote">&ldquo;점차 답변률이 올라가는 거 같아 기대가 큽니다ㅎㅎ&rdquo;</blockquote>
-          <div class="ref-review-by">부대찌개대사관 마곡직영점 · 전선용 본사 대표 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
-        </div>
+        <div class="ref-rot-dots" aria-label="후기 넘기기"></div>
       </div>
       <p class="ref-reviews-note">※ 모든 후기는 각 사장님이 동의한 공개 범위(매장명·성함)에 따라 게시된 실제 이용 후기입니다.</p>
     </div>
@@ -1941,6 +1974,51 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     } else {
       init();
     }
+  })();
+  </script>
+
+  <script>
+  (function () {
+    // 후기 로테이터 — 8초 자동 페이드 전환, 터치·호버 중 정지, 도트 수동 전환, reduced-motion이면 자동 전환 없음
+    var rot = document.getElementById('refRot');
+    if (!rot) return;
+    var panes = rot.querySelectorAll('.ref-rot-pane');
+    var dotsEl = rot.querySelector('.ref-rot-dots');
+    if (panes.length < 2 || !dotsEl) return;
+    var idx = 0, timer = null, dots = [];
+    var reduced = false;
+    try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    function show(n) {
+      idx = n;
+      for (var i = 0; i < panes.length; i++) {
+        panes[i].classList.toggle('on', i === idx);
+        panes[i].setAttribute('aria-hidden', i === idx ? 'false' : 'true');
+        dots[i].classList.toggle('on', i === idx);
+      }
+    }
+    function schedule() {
+      if (reduced) return;
+      clearTimeout(timer);
+      timer = setTimeout(function () { show((idx + 1) % panes.length); schedule(); }, 8000);
+    }
+    for (var i = 0; i < panes.length; i++) {
+      (function (n) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'ref-rot-dot' + (n === 0 ? ' on' : '');
+        b.setAttribute('aria-label', '후기 ' + (n + 1) + ' 보기');
+        b.appendChild(document.createElement('span'));
+        b.addEventListener('click', function () { show(n); schedule(); });
+        dotsEl.appendChild(b);
+        dots.push(b);
+      })(i);
+    }
+    show(0);
+    rot.addEventListener('mouseenter', function () { clearTimeout(timer); });
+    rot.addEventListener('mouseleave', schedule);
+    rot.addEventListener('touchstart', function () { clearTimeout(timer); }, { passive: true });
+    rot.addEventListener('touchend', schedule, { passive: true });
+    schedule();
   })();
   </script>
 </section>
