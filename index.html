@@ -900,7 +900,7 @@ strong { font-weight: 700; }
 .ref-reviews { max-width: 860px; margin: 30px auto 0; }
 .ref-reviews-title { text-align: center; font-size: 15px; font-weight: 800; color: var(--ink); }
 .ref-reviews-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
-@media (min-width: 768px) { .ref-reviews-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 768px) { .ref-reviews-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
 .ref-review { padding: 18px 18px 16px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; }
 .ref-review-quote { margin: 0; font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all; }
 .ref-review-quote strong { color: var(--accent-deep); }
@@ -1584,6 +1584,10 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
         <div class="ref-review">
           <blockquote class="ref-review-quote">&ldquo;답변률도 좋아지고, 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인 거 같아요. 앞으로도 기대가 됩니다!&rdquo;</blockquote>
           <div class="ref-review-by">인생뼈다귀 본점 · 이현민 대표 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
+        </div>
+        <div class="ref-review">
+          <blockquote class="ref-review-quote">&ldquo;점차 답변률이 올라가는 거 같아 기대가 큽니다ㅎㅎ&rdquo;</blockquote>
+          <div class="ref-review-by">부대찌개대사관 마곡직영점 · 전선용 본사 대표 <span class="ref-review-badge">✓ 실명·실매장 후기</span></div>
         </div>
       </div>
       <p class="ref-reviews-note">※ 모든 후기는 각 사장님이 동의한 공개 범위(매장명·성함)에 따라 게시된 실제 이용 후기입니다.</p>
