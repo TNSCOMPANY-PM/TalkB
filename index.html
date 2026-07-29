@@ -50,8 +50,11 @@
 <meta name="twitter:description" content="1차 얼리버드 신청 ~7/31 · 평생 30% 할인">
 <meta name="twitter:image" content="https://talkb.co.kr/og-image.png?v=3">
 
-<!-- Favicon (배포 시 실제 파일로 교체) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E85D3A'/%3E%3Ctext x='50' y='70' font-size='60' font-family='system-ui,sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/images/brand/talkb-symbol.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/brand/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/brand/apple-touch-icon-180.png">
 
 <!-- JSON-LD · Organization (회사 정보) -->
 <script type="application/ld+json">
@@ -450,7 +453,9 @@ strong { font-weight: 700; }
   align-items: center;
   justify-content: space-between;
 }
-.nav-brand { display: flex; flex-direction: column; justify-content: center; gap: 1px; font-weight: 800; line-height: 1.12; }
+.nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; line-height: 1.12; }
+.nav-brand-symbol { width: 26px; height: 26px; flex-shrink: 0; }
+.nav-brand-text { display: flex; flex-direction: column; justify-content: center; gap: 1px; }
 .nav-brand-top { display: flex; align-items: center; gap: 5px; }
 .nav-brand-main { font-size: 19px; letter-spacing: -0.02em; }
 .nav-brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
@@ -1007,7 +1012,8 @@ strong { font-weight: 700; }
 /* === FOOTER === */
 footer { background: var(--ink); color: rgba(255,255,255,0.72); padding: 54px 0 30px; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 30px; }
-.footer-brand { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.footer-brand { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.footer-brand-symbol { width: 24px; height: 24px; flex-shrink: 0; }
 .footer-brand .kr { font-size: 14px; color: rgba(255,255,255,0.5); margin-left: 6px; font-weight: 600; }
 .footer-tag { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); margin-bottom: 14px; }
 .footer-company { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
@@ -1234,8 +1240,11 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 <nav class="topnav" id="topnav">
   <div class="nav-inner">
     <a href="#" class="nav-brand">
-      <span class="nav-brand-top"><span class="nav-brand-main">TalkB</span><span class="nav-brand-dot"></span><span class="nav-brand-kr">토크비</span></span>
-      <span class="nav-brand-slogan">맛집 전문 AI 추천 최적화 솔루션</span>
+      <img class="nav-brand-symbol" src="/images/brand/talkb-symbol.svg" alt="" width="26" height="26">
+      <span class="nav-brand-text">
+        <span class="nav-brand-top"><span class="nav-brand-main">TalkB</span><span class="nav-brand-dot"></span><span class="nav-brand-kr">토크비</span></span>
+        <span class="nav-brand-slogan">맛집 전문 AI 추천 최적화 솔루션</span>
+      </span>
     </a>
     <ul class="nav-links">
       <li><a href="#timing">왜 지금</a></li>
@@ -1631,7 +1640,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
           </div>
           <div class="ref-review ref-review-best">
             <div class="rrb-mark" aria-hidden="true">&ldquo;</div>
-            <blockquote class="ref-review-quote">점차 <strong>답변률이 올라가는</strong> 거 같아 기대가 큽니다ㅎㅎ</blockquote>
+            <blockquote class="ref-review-quote">AI 추천률이 약 <strong>56%에서 70%까지</strong> 개선되었습니다. 특히 이전에는 맛집 관련 질문에 노출되지 않았는데 현재는 <strong>맛집 질문에도 추천되기 시작</strong>해 변화를 체감하고 있습니다. AI 노출을 고민하는 매장이라면 적극 추천해볼 만한 서비스입니다.</blockquote>
             <div class="rrb-who">
               <img class="rrb-ph" src="https://cdodmwqxhcemmqzqzfyt.supabase.co/storage/v1/object/public/yeogi-images/posts/871d5c26b750-g0-92e2dd13.jpg" alt="부대찌개대사관 마곡직영점" loading="lazy" onerror="this.style.display='none';">
               <div class="rrb-meta">
@@ -2093,7 +2102,7 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="sec-quote fade-in">
-      <p>&ldquo;점차 <strong>답변률이 올라가는</strong> 거 같아 기대가 큽니다.&rdquo;</p>
+      <p>&ldquo;AI 추천률이 약 <strong>56%에서 70%까지</strong> 개선되었습니다. 특히 이전에는 맛집 관련 질문에 노출되지 않았는데 현재는 <strong>맛집 질문에도 추천되기 시작</strong>해 변화를 체감하고 있습니다. AI 노출을 고민하는 매장이라면 적극 추천해볼 만한 서비스입니다.&rdquo;</p>
       <cite>— 부대찌개대사관 마곡직영점 · 전선용 본사 대표 (실명 공개 동의 후기)</cite>
     </div>
   </div>
@@ -2414,7 +2423,7 @@ BLIND-END: 파트너 브랜드 섹션 -->
 <footer>
   <div class="container">
     <div class="footer-head">
-      <div class="footer-brand">TalkB<span class="kr">토크비</span></div>
+      <div class="footer-brand"><img class="footer-brand-symbol" src="/images/brand/talkb-symbol-white.svg" alt="" width="24" height="24">TalkB<span class="kr">토크비</span></div>
       <p class="footer-tag">"ChatGPT가 우리 매장을 추천하게."</p>
     </div>
 
