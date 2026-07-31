@@ -1,0 +1,29 @@
+# 정가 전환 자동 배포(2026-08-01 00:00 KST) — feat/regular-pricing 브랜치를 자정에 main으로 자동 머지.
+# 랜딩은 정적 HTML이라 코드 시각 게이트가 불가능 → 예약 머지로 전환(사장 지시 2026-07-30).
+# 실행 후 이 파일은 삭제해도 됨. 수동 실행: GitHub → Actions → 이 워크플로 → Run workflow.
+name: regular-pricing-cutover
+on:
+  schedule:
+    - cron: "0 15 31 7 *" # 7/31 15:00 UTC = 8/1 00:00 KST
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: merge cutover branch into main
+        run: |
+          # 연도 가드 — 크론은 연도를 못 박으니 2026년에만 실행(이듬해 오발동 방지)
+          if [ "$(date -u +%Y)" != "2026" ]; then echo "not 2026 — skip"; exit 0; fi
+          git config user.name "talkb-cutover"
+          git config user.email "adm.tnscompany@gmail.com"
+          if git merge origin/feat/regular-pricing --no-edit; then
+            git push origin main
+            echo "cutover merged & pushed — Vercel auto deploy"
+          else
+            echo "merge conflict — manual intervention needed"; exit 1
+          fi
