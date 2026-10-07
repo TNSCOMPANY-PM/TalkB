@@ -52,7 +52,7 @@
   "author": { "@type": "Person", "name": "김태정", "jobTitle": "대표", "worksFor": { "@type": "Organization", "name": "TalkB" } },
   "publisher": { "@type": "Organization", "name": "TalkB", "logo": { "@type": "ImageObject", "url": "https://talkb.co.kr/logo.png" } },
   "datePublished": "2026-04-25",
-  "dateModified": "2026-04-25",
+  "dateModified": "2026-10-07",
   "inLanguage": "ko-KR",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://talkb.co.kr/insights/perplexity-citation-structure.html" }
 }
@@ -65,42 +65,26 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Perplexity는 ChatGPT와 어떻게 다른가요?",
+      "name": "Perplexity는 한국어 콘텐츠를 잘 인용하나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Perplexity는 모든 답변을 실시간 웹 검색 후 생성하는 답변 엔진입니다. ChatGPT가 학습 데이터 기반 응답과 실시간 검색을 혼용하는 반면, Perplexity는 100% RAG 기반이고 답변마다 출처 링크를 항상 표시합니다. 답변당 평균 인용 수도 다릅니다 - ChatGPT 10.42개, Google AI Overview 9.26개, Perplexity 5.01개. 적은 만큼 각 인용이 차지하는 가중치가 큽니다."
+        "text": "한국어 학습량이 영어보다 적어 초기 반응 속도는 영어 대비 1~2주 정도 늦습니다. 다만 한국어 콘텐츠라도 신선도·구조·외부 권위 3박자가 갖춰지면 영어 콘텐츠와 유사한 인용률을 보입니다. TalkB 파일럿 12곳(2026년 6~7월) 모두 한국어 콘텐츠 기반입니다."
       }
     },
     {
       "@type": "Question",
-      "name": "Perplexity의 Sonar 모델은 무엇인가요?",
+      "name": "Perplexity Pages 기능은 활용해야 하나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sonar는 Perplexity가 자체 개발한 검색 특화 LLM 시리즈입니다. 외부 모델(GPT-4, Claude 등)도 함께 사용하지만 Perplexity의 핵심 차별점은 검색-순위-생성 전 과정이 통합된 Sonar 시스템입니다. Sonar는 신선도(recency)를 다른 어떤 신호보다 강하게 가중하며, 같은 콘텐츠라도 30일 이내 업데이트된 것을 그렇지 않은 것보다 3.2배 우선합니다."
+        "text": "Perplexity Pages는 사용자가 직접 큐레이션한 답변 페이지를 만드는 기능입니다. 활용 시 자체 도메인 콘텐츠가 Pages에 인용되어 자연스러운 출처가 됩니다. 다만 한국 사용자 비중이 적어 직접적 효과는 제한적이며, 글로벌 B2B 영업이 있는 브랜드만 우선순위 검토 권장."
       }
     },
     {
       "@type": "Question",
-      "name": "Perplexity는 어떤 도메인을 가장 많이 인용하나요?",
+      "name": "Perplexity 인용이 늘면 다른 AI에서도 자동으로 인용되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yext의 2025년 10월 6.8백만 인용 분석에 따르면 Perplexity는 뉴스·저널리즘 사이트 비중이 큽니다. Gemini는 자체 브랜드 도메인이 52.15%로 최고지만, Perplexity는 외부 권위 출처(언론·전문 사이트·Wikipedia·정부 도메인)에서 인용을 많이 가져옵니다. 도메인 연수도 차이가 있어 Perplexity는 10~15년 도메인을 26.16% 비중으로 인용해 신생 도메인에도 진입 기회가 있습니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "F&B 브랜드가 Perplexity 인용을 늘리는 가장 빠른 방법은?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "신선도 관리가 가장 빠른 효과를 냅니다. Perplexity의 분석 데이터에서 인용 페이지의 76.4%가 30일 이내 업데이트된 콘텐츠였습니다. 따라서 본사·매장의 핵심 페이지(About, FAQ, 메뉴, 가격 정보)에 마지막 업데이트 일자를 명시하고 분기 1회 이상 실제로 갱신하는 것이 첫 단계입니다. 그 다음이 BLUF 형식 작성, JSON-LD 적용, 외부 매체 노출 순으로 진행됩니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "TalkB는 Perplexity 인용을 어떻게 측정하나요?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "TalkB의 정기 실측은 ChatGPT 중심으로, 매주 손님 시점 질문 15개 × 5회를 측정합니다. Perplexity는 주요 AI 플랫폼(ChatGPT·Perplexity·Gemini 등) 중 가장 빠르게 변화를 보이는 플랫폼이며, TalkB 파일럿 기준 콘텐츠 작업 후 2~4주 내 초기 변화가 관찰됩니다. ChatGPT는 8~12주 소요되는 것과 대비됩니다."
+        "text": "부분적으로 그렇습니다. Perplexity가 인용한 페이지가 Google AI Overview에 영향을 주는 사례가 관찰되며, 약 4~8주 후 Google AI Overview에 반영되는 패턴이 있습니다. ChatGPT는 학습 데이터 갱신 주기가 길어 자동 반영 효과가 가장 약합니다."
       }
     }
   ]
@@ -113,7 +97,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "TalkB", "item": "https://talkb.co.kr/" },
-    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/#resources" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/insights/" },
     { "@type": "ListItem", "position": 3, "name": "Perplexity 인용 구조" }
   ]
 }
@@ -261,16 +245,16 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="../index.html" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
-    <a href="https://app.talkb.co.kr/onboard" class="nav-cta">무료 진단</a>
+    <a href="/" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
+    <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" class="nav-cta" data-pos="nav">카톡 상담</a>
   </div>
 </nav>
 
 <article class="article">
 
   <div class="article-breadcrumb">
-    <a href="../index.html">TalkB</a><span class="sep">/</span>
-    <a href="../index.html#resources">Insights</a><span class="sep">/</span>
+    <a href="/">TalkB</a><span class="sep">/</span>
+    <a href="/insights/">Insights</a><span class="sep">/</span>
     <span>AI 플랫폼 실전</span>
   </div>
 
@@ -474,9 +458,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     <div class="article-cta-label">Perplexity Audit</div>
     <h3>Perplexity에서 우리 브랜드는<br>몇 번 인용되고 있을까?</h3>
     <p>
-      1:1 무료 상담에서 Perplexity 인용 현황 진단 + 신선도·외부 권위·구조 3축 점수를 산출해 드립니다. 30분 통화로 어느 작업이 가장 시급한지 도출됩니다.
+      카톡으로 매장 이름만 보내 주시면, 손님처럼 묻는 추천 질문 10개로 우리 매장이 ChatGPT에 몇 번 나오는지 무료로 세어 드려요.
     </p>
-    <a href="https://app.talkb.co.kr/onboard" class="article-cta-btn">Perplexity 진단 신청</a>
+    <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" class="article-cta-btn" data-pos="article">카톡으로 무료 리포트 받기</a>
   </div>
 
   <div class="sources">
@@ -514,9 +498,11 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 </article>
 
 <footer class="footer">
-  © 2026 (주)티앤에스컴퍼니 · TalkB — 맛집 브랜드를 위한 AI 검색 최적화 파트너사.<br>
-  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
-  <a href="../index.html">talkb.co.kr</a> · <a href="mailto:adm.tnscompany@gmail.com">adm.tnscompany@gmail.com</a>
+  © 2026 TalkB · 맛집 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">(주)티앤에스컴퍼니 · 대표 김태정 · 사업자등록번호 455-86-00636 · 통신판매업신고 제2020-서울강서-0981호</span><br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계가 없는 독립 서비스입니다.</span><br>
+  <a href="/">talkb.co.kr</a> · <a href="mailto:adm.tnscompany@gmail.com">adm.tnscompany@gmail.com</a>
 </footer>
 
 <script>

@@ -1,0 +1,114 @@
+{
+  "updatedAt": "2026-10-07T08:21:13.052Z",
+  "periodFrom": "2026년 9월 30일",
+  "periodTo": "2026년 10월 7일",
+  "updatedDot": "2026.10.7",
+  "stores": {
+    "ogong": {
+      "key": "ogong",
+      "name": "오공김밥 일산탄현점",
+      "area": "고양 일산서구",
+      "cat": "분식",
+      "baselinePct": 0,
+      "nowPct": 84.8,
+      "base10": 0,
+      "now10": 8,
+      "runs": 125
+    },
+    "gaon": {
+      "key": "gaon",
+      "name": "광장동가온",
+      "area": "서울 광진구",
+      "cat": "한식",
+      "baselinePct": 26.7,
+      "nowPct": 73.6,
+      "base10": 3,
+      "now10": 7,
+      "runs": 125
+    },
+    "insaeng": {
+      "key": "insaeng",
+      "name": "인생뼈다귀 본점",
+      "area": "용인 처인구",
+      "cat": "감자탕",
+      "baselinePct": 0,
+      "nowPct": 68.6,
+      "base10": 0,
+      "now10": 7,
+      "runs": 121
+    },
+    "sunbi": {
+      "key": "sunbi",
+      "name": "선비꼬마김밥 종각직영점",
+      "area": "서울 종로구",
+      "cat": "분식",
+      "baselinePct": 10,
+      "nowPct": 68,
+      "base10": 1,
+      "now10": 7,
+      "runs": 75
+    },
+    "donas": {
+      "key": "donas",
+      "name": "도나스데이 본점",
+      "area": "수원 권선구",
+      "cat": "대형 카페",
+      "baselinePct": 20,
+      "nowPct": 50,
+      "base10": 2,
+      "now10": 5,
+      "runs": 120
+    },
+    "hansin": {
+      "key": "hansin",
+      "name": "한신우동 본점",
+      "area": "수원 팔달구",
+      "cat": "우동·야식",
+      "baselinePct": 13.3,
+      "nowPct": 51.4,
+      "base10": 1,
+      "now10": 5,
+      "runs": 105
+    }
+  },
+  "featured": {
+    "hero": {
+      "runs": 10,
+      "rank1": 10,
+      "label": "10번 중 10번",
+      "all": true
+    },
+    "ba": {
+      "runs": 10,
+      "rank1": 8,
+      "label": "10번 중 8번",
+      "all": false
+    },
+    "c1": {
+      "runs": 10,
+      "rank1": 8,
+      "label": "10번 중 8번",
+      "all": false
+    },
+    "c2": {
+      "runs": 10,
+      "rank1": 10,
+      "label": "10번 중 10번",
+      "all": true
+    },
+    "c3": {
+      "runs": 10,
+      "rank1": 9,
+      "label": "10번 중 9번",
+      "all": false
+    }
+  },
+  "warnings": [],
+  "avg": {
+    "basePct": 11.7,
+    "nowPct": 66.1,
+    "base10": 1,
+    "now10": 7
+  },
+  "storeCount": 6
+}

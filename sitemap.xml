@@ -5,7 +5,7 @@
   <!-- 메인 페이지 -->
   <url>
     <loc>https://talkb.co.kr/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -125,11 +125,5 @@
   </url>
 
   <!-- 개인정보 처리방침 -->
-  <url>
-    <loc>https://talkb.co.kr/privacy.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
 
 </urlset>

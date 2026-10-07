@@ -52,7 +52,7 @@
   "author": { "@type": "Person", "name": "김태정", "jobTitle": "대표", "worksFor": { "@type": "Organization", "name": "TalkB" } },
   "publisher": { "@type": "Organization", "name": "TalkB", "logo": { "@type": "ImageObject", "url": "https://talkb.co.kr/logo.png" } },
   "datePublished": "2026-04-25",
-  "dateModified": "2026-04-25",
+  "dateModified": "2026-10-07",
   "inLanguage": "ko-KR",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://talkb.co.kr/insights/ai-answer-4-stages.html" }
 }
@@ -65,42 +65,26 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "RAG가 무엇인가요?",
+      "name": "우리는 콘텐츠 양이 적은데 4단계 다 통과 가능한가요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "RAG(Retrieval-Augmented Generation)는 AI가 답변을 만들기 전에 외부 지식 소스(웹·데이터베이스·문서)를 검색해 관련 자료를 가져온 후, 그 자료를 근거로 답변을 생성하는 방식입니다. 2020년 Meta AI 논문에서 처음 정립된 후 ChatGPT 검색·Perplexity·Google AI Overview 등 거의 모든 AI 답변 시스템의 표준이 됐습니다. 2025년 IBM·McKinsey 보고서 기준 기업 LLM 배포의 67%가 어떤 형태로든 RAG를 사용합니다."
+        "text": "가능합니다. 양보다 각 페이지의 자기완결성이 중요합니다. 한 페이지가 한 질문에 충분히 답하는 구조면 양이 적어도 인용됩니다. 다만 도메인 권위는 콘텐츠 누적에 비례하므로, 최소한의 핵심 페이지(About, FAQ, 주요 서비스 설명) 5~10개는 갖춰져 있어야 합니다."
       }
     },
     {
       "@type": "Question",
-      "name": "Perplexity가 답변당 페이지 10개를 방문하지만 3-4개만 인용한다는 건 무슨 뜻인가요?",
+      "name": "RAG가 뭔지 모르고도 GEO 작업 효과를 볼 수 있나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Perplexity는 사용자 질문 1건당 약 10개 후보 페이지를 검색해 가져오지만, 그 중 답변에 실제 인용·링크되는 페이지는 평균 3~4개에 불과합니다. 즉 검색에 잡히는 것(Retrieval)과 인용되는 것(Citation)은 별개의 게이트가 있다는 뜻이며, 두 게이트를 모두 통과해야 답변에 노출됩니다. ChatGPT는 답변당 평균 10.42개, Google AI Overview는 9.26개 인용 표시."
+        "text": "네. 4단계 원리는 \"왜 이 작업이 필요한지\" 이해하기 위한 배경이지, 작업 자체는 구체적 체크리스트로 진행됩니다. 다만 원리를 알면 왜 어떤 작업이 효과 있고 어떤 작업이 효과 없는지를 직관적으로 판단할 수 있어 의사결정이 빨라집니다."
       }
     },
     {
       "@type": "Question",
-      "name": "AI가 답변을 만드는 4단계는 무엇인가요?",
+      "name": "ChatGPT는 RAG를 안 쓰고 답변할 때도 있다는데 어떻게 대응하나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "1단계 Query Parsing(질문 해석): 사용자 질문의 의도를 파악하고 여러 하위 쿼리로 분해. 2단계 Retrieval(검색·인출): 외부 웹·데이터베이스에서 관련 후보 페이지 수십 개 가져옴. 3단계 Re-ranking(재순위 매김): 후보 페이지를 권위·신선도·구조·관련도 등으로 재정렬해 상위 3~5개 선별. 4단계 Generation(생성·인용): 선별된 페이지에서 핵심 정보를 추출해 답변을 작성하고 출처를 표시. 각 단계에서 우리 콘텐츠가 떨어지면 다음 단계로 못 갑니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "콘텐츠가 4단계 중 어느 단계에서 떨어지는지 어떻게 알 수 있나요?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "AI 플랫폼이 내부 로그를 공개하지 않아 정확히는 알기 어렵지만 추정 가능한 신호가 있습니다. 1단계(Query Parsing)에서 떨어지는 경우는 콘텐츠 주제와 사용자 질문의 표현 차이 때문이고, 2단계(Retrieval)에서 떨어지는 경우는 robots.txt 차단·인덱싱 부재·도메인 권위 부족 때문입니다. 3단계(Re-ranking)에서 떨어지는 경우는 콘텐츠 구조·신선도·인용 부족 때문이고, 4단계(Generation)에서 떨어지는 경우는 추출 가능한 명확한 답변 문장이 본문 첫 30%에 없기 때문입니다. TalkB의 손님 시점 질문 실측(매주 15개 질문 × 5회)은 어느 단계에서 떨어지는지 패턴화해 진단합니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "RAG는 ChatGPT 학습 데이터와 어떻게 다른가요?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ChatGPT는 두 가지 응답 방식을 가집니다. 첫째는 학습 기반 응답으로, 모델이 학습된 시점까지의 웹 콘텐츠를 패턴으로 기억해 실시간 검색 없이 답변. 둘째는 RAG 기반 응답으로, OAI-SearchBot이 사용자 질문에 맞춰 웹을 실시간 검색해 최신 정보를 가져옴. 학습 기반 응답에 들어가려면 이미 인터넷에 콘텐츠가 누적되어야 하고, RAG 기반 응답에 들어가려면 현재 시점에 검색되고 인용 가능한 구조여야 합니다. Perplexity·Gemini는 거의 100% RAG 기반이고, ChatGPT는 두 방식을 혼용합니다."
+        "text": "학습 기반 응답에 들어가려면 학습 데이터에 우리 콘텐츠가 누적되어야 합니다. 이는 단기 작업으로 안 되고, 오랜 기간 동안 인터넷 곳곳에 일관된 정보가 쌓이는 것이 핵심입니다. 그래서 GEO는 단기 SEO보다 누적 게임에 가깝고, 그 누적의 시작점이 4단계 게이트 모두를 통과하는 콘텐츠를 정기적으로 발행하는 것입니다."
       }
     }
   ]
@@ -113,7 +97,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "TalkB", "item": "https://talkb.co.kr/" },
-    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/#resources" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/insights/" },
     { "@type": "ListItem", "position": 3, "name": "AI 답변 4단계 원리" }
   ]
 }
@@ -269,16 +253,16 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="../index.html" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
-    <a href="https://app.talkb.co.kr/onboard" class="nav-cta">무료 진단</a>
+    <a href="/" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
+    <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" class="nav-cta" data-pos="nav">카톡 상담</a>
   </div>
 </nav>
 
 <article class="article">
 
   <div class="article-breadcrumb">
-    <a href="../index.html">TalkB</a><span class="sep">/</span>
-    <a href="../index.html#resources">Insights</a><span class="sep">/</span>
+    <a href="/">TalkB</a><span class="sep">/</span>
+    <a href="/insights/">Insights</a><span class="sep">/</span>
     <span>GEO 기초</span>
   </div>
 
@@ -502,9 +486,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     <div class="article-cta-label">Stage Diagnosis</div>
     <h3>우리 사이트는 4단계 중<br>어디서 떨어지고 있을까?</h3>
     <p>
-      무료진단(0원)으로 지금 ChatGPT 노출 현황을 실측해 드립니다. 추천 질문 10개 1회 측정으로 어느 단계 작업을 우선해야 할지 명확해집니다.
+      카톡으로 매장 이름만 보내 주시면, 손님처럼 묻는 추천 질문 10개로 우리 매장이 ChatGPT에 몇 번 나오는지 무료로 세어 드려요.
     </p>
-    <a href="https://app.talkb.co.kr/onboard" class="article-cta-btn">단계 진단 신청</a>
+    <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" class="article-cta-btn" data-pos="article">카톡으로 무료 리포트 받기</a>
   </div>
 
   <div class="sources">
@@ -542,9 +526,11 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 </article>
 
 <footer class="footer">
-  © 2026 (주)티앤에스컴퍼니 · TalkB — 맛집 브랜드를 위한 AI 검색 최적화 파트너사.<br>
-  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
-  <a href="../index.html">talkb.co.kr</a> · <a href="mailto:adm.tnscompany@gmail.com">adm.tnscompany@gmail.com</a>
+  © 2026 TalkB · 맛집 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">(주)티앤에스컴퍼니 · 대표 김태정 · 사업자등록번호 455-86-00636 · 통신판매업신고 제2020-서울강서-0981호</span><br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계가 없는 독립 서비스입니다.</span><br>
+  <a href="/">talkb.co.kr</a> · <a href="mailto:adm.tnscompany@gmail.com">adm.tnscompany@gmail.com</a>
 </footer>
 
 <script>

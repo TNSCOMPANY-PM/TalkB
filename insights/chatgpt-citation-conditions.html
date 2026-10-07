@@ -58,7 +58,7 @@
     "logo": { "@type": "ImageObject", "url": "https://talkb.co.kr/logo.png" }
   },
   "datePublished": "2026-04-24",
-  "dateModified": "2026-04-24",
+  "dateModified": "2026-10-07",
   "inLanguage": "ko-KR",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://talkb.co.kr/insights/chatgpt-citation-conditions.html" },
   "citation": [
@@ -75,42 +75,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "ChatGPT가 콘텐츠를 인용하는 원리는 무엇인가요?",
+      "name": "6가지 조건 중 가장 중요한 것은?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ChatGPT는 두 가지 소스 메커니즘을 사용합니다. 첫째는 학습 데이터 기반 응답으로, 모델 학습 시점까지의 웹 콘텐츠를 패턴으로 기억합니다. 둘째는 실시간 웹 브라우징으로, OAI-SearchBot이 현재 웹을 검색해 최신 정보를 인용합니다. 최근 연구에 따르면 ChatGPT는 답변 10개 중 2개에만 직접 인용 링크를 포함하고 나머지는 학습된 지식을 녹여 답하는 방식이어서, 브랜드 언급 자체가 직접 인용보다 중요한 지표가 됩니다."
+        "text": "모든 조건이 연결되어 있지만 2번(헤더 계층)과 5번(JSON-LD)이 가장 즉각적 효과를 냅니다. 콘텐츠 심도와 원본 통계(1·3번)는 쓰는 데 시간이 걸리는 반면, 헤더 재구성과 JSON-LD 삽입은 기존 콘텐츠에 구조만 얹으면 되어 단기 개선이 큽니다. 다만 장기적으로는 1번(심층 콘텐츠)이 누적 권위를 만들어 ChatGPT 인용에 결정적 영향을 줍니다."
       }
     },
     {
       "@type": "Question",
-      "name": "AI가 인용하는 콘텐츠의 공통점은 무엇인가요?",
+      "name": "콘텐츠가 20,000자 미만이면 인용이 안 되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ConvertMate 2026 벤치마크(12,500건 쿼리·8,000개 도메인 분석)가 확인한 5가지 핵심 특성은 다음과 같습니다. 첫째, 20,000자 이상의 포괄적 심층 콘텐츠는 4.3배 더 많이 인용됩니다. 둘째, 구조화 헤더 계층은 인용 페이지의 68.7%에서 확인됩니다. 셋째, 원본 통계·데이터 포함은 Princeton 연구 기준 최대 40%의 가시성 향상 효과가 있습니다. 넷째, 30일 이내 업데이트 콘텐츠는 3.2배 많이 인용됩니다. 다섯째, JSON-LD 구조화 데이터 마크업은 인용 페이지의 61%에서 사용됩니다."
+        "text": "반드시 안 되는 건 아닙니다. ConvertMate 데이터는 \"4.3배 더 많이\"이지 \"전혀 안 됨\"이 아닙니다. 핵심은 해당 질문에 대한 답을 그 페이지 안에서 완결해서 주는 것이지 단순 단어 수가 아닙니다. 짧아도 답변의 완결성과 구체성이 충분하면 인용됩니다. 단, 동일 주제를 다룬 경쟁 페이지가 길고 심도 있는 경우에는 분명히 불리합니다."
       }
     },
     {
       "@type": "Question",
-      "name": "ChatGPT와 Perplexity, AI Overview의 인용 패턴이 다른가요?",
+      "name": "llms.txt는 꼭 만들어야 하나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "네, 플랫폼별로 인용 행태가 뚜렷하게 다릅니다. Perplexity는 답변당 평균 5개 이상의 인용 링크를 명시하는 인용 중심 플랫폼입니다. ChatGPT는 답변 10개 중 2개 정도만 직접 인용 링크를 표시하고 나머지는 브랜드만 언급합니다. Google AI Overview는 중간 수준으로 브랜드 언급과 인용 링크를 혼합합니다. 또 ChatGPT가 인용하는 페이지 중 Google 검색 상위 10위에 드는 비율은 6.82%에 불과하며, 가장 많이 인용되는 ChatGPT 출처의 28.3%는 Google에서 아예 순위조차 없습니다."
+        "text": "2026년 현재 llms.txt는 업계 표준으로 굳어가는 중이지만 필수는 아닙니다. OpenAI·Anthropic·Google 모두 표준 robots.txt로 크롤러 제어를 처리하며, llms.txt는 추가 보완 역할입니다. 다만 AI 크롤러 전용 사이트 요약을 제공하면 \"이 사이트가 AI 시대에 맞춘 사이트\"라는 시그널이 되어 간접 효과가 있습니다. 추가 비용이 크지 않으니 두는 쪽을 추천합니다."
       }
     },
     {
       "@type": "Question",
-      "name": "F&B 업종에도 같은 인용 원리가 적용되나요?",
+      "name": "한국어 콘텐츠도 동일한 조건이 적용되나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "기본 원리는 동일하지만 식당업은 특수한 점이 있습니다. BrightEdge 2026년 2월 조사에서 식당업 쿼리의 78%가 Google AI Overview를 트리거하며, 2025년 3월 코어 업데이트에서 식당업 AI Overview 노출률은 +387% 폭증했습니다. F&B 특유의 상황형 쿼리(예: '강남 저녁 데이트 한식당')가 AI 답변 형식과 잘 맞기 때문입니다. 단 AI Overview에 인용되는 식당업 페이지 중 Google 상위 100위에 드는 비율은 약 24%에 불과해, F&B 브랜드는 전통 SEO와 별개로 GEO를 진행해야 합니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "TalkB는 6가지 조건을 어떻게 실측하나요?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "TalkB는 파트너 브랜드 사이트를 6가지 조건별로 진단해 0~100점 스코어로 산출합니다. 콘텐츠 심도(20,000자 기준), 헤더 계층 구조, 원본 통계 포함 여부, 최종 업데이트 일자, JSON-LD 스키마 적용, robots.txt·llms.txt 설정을 각각 점검합니다. 그 후 ChatGPT에서 손님 시점 질문을 실측(매주 15개 질문 × 5회)해 실제 인용률을 측정하고, 구조 점수와 인용률의 상관관계를 추적합니다."
+        "text": "네, 6가지 조건의 구조적 성격은 언어와 무관합니다. 다만 절대적 콘텐츠 양 기준(20,000자)은 한국어의 경우 표현 밀도가 영어보다 높아 약간 낮은 글자 수에서도 유사 효과가 관찰됩니다. 또 한국어 AI 답변은 아직 일부 플랫폼(특히 Perplexity)에서 영어 답변 대비 학습량이 적어, 초기 인용률 반응이 더 느릴 수 있습니다. TalkB는 이 특성을 감안해 한국어 권위 출처(공정위·KOSIS·KCC 등)를 우선 인용하도록 설계합니다."
       }
     }
   ]
@@ -124,7 +116,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "TalkB", "item": "https://talkb.co.kr/" },
-    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/#resources" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://talkb.co.kr/insights/" },
     { "@type": "ListItem", "position": 3, "name": "ChatGPT가 인용하는 콘텐츠 6가지 조건" }
   ]
 }
@@ -316,16 +308,16 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="../index.html" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
-    <a href="https://app.talkb.co.kr/onboard" class="nav-cta">무료 진단</a>
+    <a href="/" class="nav-brand">TalkB<span class="mark"></span><span class="nav-brand-kr">토크비</span></a>
+    <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" class="nav-cta" data-pos="nav">카톡 상담</a>
   </div>
 </nav>
 
 <article class="article">
 
   <div class="article-breadcrumb">
-    <a href="../index.html">TalkB</a><span class="sep">/</span>
-    <a href="../index.html#resources">Insights</a><span class="sep">/</span>
+    <a href="/">TalkB</a><span class="sep">/</span>
+    <a href="/insights/">Insights</a><span class="sep">/</span>
     <span>AI 플랫폼 실전</span>
   </div>
 
@@ -559,9 +551,9 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
     <div class="article-cta-label">6-Condition Audit</div>
     <h3>우리 사이트 6가지 조건,<br>몇 점일까?</h3>
     <p>
-      1:1 상담에서 귀 브랜드 사이트의 6가지 조건 점수를 무료로 진단해 드립니다. 30분 내 전체 구조 점수와 가장 취약한 2~3개 영역이 도출됩니다.
+      카톡으로 매장 이름만 보내 주시면, 손님처럼 묻는 추천 질문 10개로 우리 매장이 ChatGPT에 몇 번 나오는지 무료로 세어 드려요.
     </p>
-    <a href="https://app.talkb.co.kr/onboard" class="article-cta-btn">무료 진단 신청</a>
+    <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" class="article-cta-btn" data-pos="article">카톡으로 무료 리포트 받기</a>
   </div>
 
   <div class="sources">
@@ -599,9 +591,11 @@ src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
 </article>
 
 <footer class="footer">
-  © 2026 (주)티앤에스컴퍼니 · TalkB — 맛집 브랜드를 위한 AI 검색 최적화 파트너사.<br>
-  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">대표 김태정 · 사업자등록번호 455-86-00636 · 서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
-  <a href="../index.html">talkb.co.kr</a> · <a href="mailto:adm.tnscompany@gmail.com">adm.tnscompany@gmail.com</a>
+  © 2026 TalkB · 맛집 브랜드를 위한 AI 검색 최적화 파트너사.<br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">(주)티앤에스컴퍼니 · 대표 김태정 · 사업자등록번호 455-86-00636 · 통신판매업신고 제2020-서울강서-0981호</span><br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">서울특별시 강서구 공항대로 247, A동 12층 1209호</span><br>
+  <span style="font-size: 11px; color: var(--ink-light); letter-spacing: -0.005em;">ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계가 없는 독립 서비스입니다.</span><br>
+  <a href="/">talkb.co.kr</a> · <a href="mailto:adm.tnscompany@gmail.com">adm.tnscompany@gmail.com</a>
 </footer>
 
 
