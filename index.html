@@ -249,9 +249,16 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .bar{height:8px;border-radius:6px;background:#EEF0F3;overflow:hidden;position:relative}
 .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--accent)}
 .bar i.b{background:#C9CED6}
-.qr{display:none;align-items:center;gap:14px;margin-top:20px;padding:12px 16px 12px 12px;border:1px solid var(--line);border-radius:16px;width:max-content;max-width:100%}
-.qr img{width:84px;height:84px;display:block}
-.qr p{font-size:14px;color:var(--ink-mid);line-height:1.6}
+.float{position:fixed;right:24px;bottom:24px;z-index:7;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.float-qr{position:relative;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 30px 12px 12px;box-shadow:0 8px 28px rgba(25,31,40,.14)}
+.float-qr img{width:76px;height:76px;display:block}
+.float-qr p{font-size:13.5px;color:var(--ink-mid);line-height:1.55;margin:0}
+.float-qr button{position:absolute;top:4px;right:4px;width:28px;height:28px;border:0;background:transparent;color:var(--muted);font-size:18px;line-height:1;cursor:pointer;border-radius:8px}
+.float-qr button:hover{background:var(--soft)}
+.float-qr.hide{display:none}
+.float-kakao{display:inline-flex;align-items:center;gap:8px;min-height:56px;padding:0 20px 0 16px;border-radius:999px;background:var(--kakao);color:#191919;font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(25,31,40,.20)}
+.float-kakao:hover{color:#191919;background:#F5DC00}
+.float-kakao svg{width:26px;height:26px}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"top fig" "bottom fig";column-gap:56px;align-items:center;padding-top:64px;padding-bottom:72px}
 .hero-top{grid-area:top;align-self:end}
 .hero-bottom{grid-area:bottom;align-self:start}
@@ -269,7 +276,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot .wrap{padding-top:32px;padding-bottom:40px;font-size:13px;color:var(--muted);line-height:1.9}
 .foot b{color:var(--ink)}
 .foot a{text-decoration:underline;text-underline-offset:2px}
-@media (min-width:901px){.qr{display:flex}}
+@media (max-width:640px){.float{display:none}}
+@media (max-width:900px){.float-qr{display:none}}
 @media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "fig" "bottom";row-gap:20px;padding-top:36px}.row{grid-template-columns:1fr 1fr}.row .bar-cell{grid-column:1 / -1}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.row{grid-template-columns:1fr}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
@@ -328,7 +336,6 @@ fbq('track', 'PageView');
 <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F7A4A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>전문가 상담</span>
 <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F7A4A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>평일 09~18시</span>
 </div>
-<div class="qr"><img src="/images/kakao-chat-qr.svg" alt="토크비 카카오톡 상담 QR 코드" width="84" height="84"><p>휴대폰으로 찍으면<br>카톡 상담이 열려요.</p></div>
 </div>
 
 <div class="hero-fig">
@@ -526,6 +533,11 @@ fbq('track', 'PageView');
 </div>
 </footer>
 
+<div class="float" aria-label="카카오톡 상담">
+<div class="float-qr" id="floatQr"><img src="/images/kakao-chat-qr.svg" alt="토크비 카카오톡 상담 QR 코드" width="76" height="76"><p>휴대폰으로 찍으면<br>카톡 상담이 열려요.</p><button type="button" aria-label="QR 닫기" id="floatQrClose">×</button></div>
+<a class="float-kakao" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="float"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡 상담</a>
+</div>
+
 <div class="sticky" id="sticky">
 <a class="price" href="#price">가격</a>
 <a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="sticky">카톡으로 무료 리포트 받기</a>
@@ -541,6 +553,14 @@ fbq('track', 'PageView');
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ seen[e.target.id || e.target.className] = e.isIntersecting; }); var hide = Object.keys(seen).some(function(k){ return seen[k]; }); st.classList.toggle("hide", hide); });
   ["final"].forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
   var f = document.querySelector(".foot"); if (f) io.observe(f);
+})();
+</script>
+<script>
+(function(){
+  var q = document.getElementById("floatQr"), c = document.getElementById("floatQrClose");
+  if (!q || !c) return;
+  try { if (localStorage.getItem("tb_qr_closed") === "1") q.classList.add("hide"); } catch(e) {}
+  c.addEventListener("click", function(){ q.classList.add("hide"); try { localStorage.setItem("tb_qr_closed", "1"); } catch(e) {} });
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>
