@@ -241,6 +241,14 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .terms .hot{background:var(--accent-soft);box-shadow:inset 0 0 0 1px #FBD5C6}
 .terms .hot b{color:var(--deep)}
 .define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
+.cs-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px}
+.cs-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:min(560px,70vw)}
+.cs-dots button{width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cs-dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:#D1D6DB;transition:width .2s,background .2s}
+.cs-dots button[aria-selected="true"]::before{width:22px;border-radius:999px;background:var(--accent)}
+.cs-arr{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#fff;font-size:22px;line-height:1;color:var(--ink);cursor:pointer;flex:none}
+.cs-arr:hover{border-color:var(--ink)}
+@media (max-width:640px){.cs-dots{flex-wrap:nowrap;gap:0;max-width:none}.cs-dots button{width:13px}.cs-dots button::before{width:6px;height:6px}.cs-dots button[aria-selected="true"]::before{width:14px}.cs-nav{gap:6px}}
 .cs-roll{display:flex;overflow-x:auto;scrollbar-width:none;margin-top:28px;padding:4px 0 8px}
 .cs-roll::-webkit-scrollbar{display:none}
 .cs-track{display:flex;gap:16px;padding-left:16px;flex:none}
@@ -496,6 +504,7 @@ fbq('track', 'PageView');
 <button type="button" class="cs" data-src="/images/cases/18.jpg?v=2" data-alt="ChatGPT 답변 원문: 고양시 한식 냉면 추천해줘 · 평진양 5번 중 3번 1순위"><span class="cs-q">“고양시 한식 냉면 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>평진양</b></span><span class="cs-n">5번 중 3번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
 </div>
 </div>
+<div class="cs-nav"><button type="button" class="cs-arr" id="csPrev" aria-label="이전 사례">‹</button><div class="cs-dots" id="csDots" role="tablist" aria-label="사례 고르기"></div><button type="button" class="cs-arr" id="csNext" aria-label="다음 사례">›</button></div>
 </section>
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
@@ -662,6 +671,27 @@ fbq('track', 'PageView');
     requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
+  // 점과 이전/다음
+  var cards = track.querySelectorAll(".cs"), dots = document.getElementById("csDots"), cur = -1;
+  function stepW(){ return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 296; }
+  function goTo(n){
+    n = (n + cards.length) % cards.length;
+    pause(); roll.scrollTo({ left: cards[n].offsetLeft - cards[0].offsetLeft, behavior: still ? "auto" : "smooth" }); resume();
+  }
+  if (dots) {
+    cards.forEach(function(c, n){
+      var d = document.createElement("button"); d.type = "button"; d.setAttribute("role", "tab");
+      d.setAttribute("aria-label", (n + 1) + "번째 사례"); d.addEventListener("click", function(){ goTo(n); });
+      dots.appendChild(d);
+    });
+    (function mark(){
+      var n = Math.round((roll.scrollLeft % track.scrollWidth) / stepW()) % cards.length;
+      if (n !== cur) { cur = n; dots.querySelectorAll("button").forEach(function(d, k){ d.setAttribute("aria-selected", k === n ? "true" : "false"); }); }
+      requestAnimationFrame(mark);
+    })();
+    document.getElementById("csPrev").addEventListener("click", function(){ goTo(cur - 1); });
+    document.getElementById("csNext").addEventListener("click", function(){ goTo(cur + 1); });
+  }
   document.addEventListener("click", function(e){
     var b = e.target.closest && e.target.closest(".cs, .shot"); if (!b || !view) return;
     img.src = b.getAttribute("data-src"); img.alt = b.getAttribute("data-alt");

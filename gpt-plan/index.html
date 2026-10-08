@@ -321,6 +321,14 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .terms .hot{background:var(--accent-soft);box-shadow:inset 0 0 0 1px #FBD5C6}
 .terms .hot b{color:var(--deep)}
 .define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
+.cs-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px}
+.cs-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:min(560px,70vw)}
+.cs-dots button{width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cs-dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:#D1D6DB;transition:width .2s,background .2s}
+.cs-dots button[aria-selected="true"]::before{width:22px;border-radius:999px;background:var(--accent)}
+.cs-arr{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#fff;font-size:22px;line-height:1;color:var(--ink);cursor:pointer;flex:none}
+.cs-arr:hover{border-color:var(--ink)}
+@media (max-width:640px){.cs-dots{flex-wrap:nowrap;gap:0;max-width:none}.cs-dots button{width:13px}.cs-dots button::before{width:6px;height:6px}.cs-dots button[aria-selected="true"]::before{width:14px}.cs-nav{gap:6px}}
 .cs-roll{display:flex;overflow-x:auto;scrollbar-width:none;margin-top:28px;padding:4px 0 8px}
 .cs-roll::-webkit-scrollbar{display:none}
 .cs-track{display:flex;gap:16px;padding-left:16px;flex:none}
