@@ -258,6 +258,10 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .cs-x{position:sticky;top:8px;float:right;margin:8px 8px -48px 0;width:40px;height:40px;border:0;border-radius:50%;background:rgba(25,31,40,.75);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:1}
 .ask{margin-top:18px;display:inline-flex;background:#fff;border:1px solid #FBD5C6;border-radius:999px;padding:10px 18px;font-size:15.5px;font-weight:700;line-height:1.5}
 .fc .badge{margin-bottom:12px}
+.shot{position:relative;display:block;width:100%;height:230px;padding:0;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;cursor:zoom-in;text-align:left}
+.shot img{display:block;width:100%;height:auto}
+.shot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(rgba(255,255,255,0),#fff 75%)}
+.shot span{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:1;background:var(--ink);color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:6px 12px;white-space:nowrap}
 .fc .fa mark{background:#FFE58A;font-weight:800;padding:0 2px;border-radius:3px}
 .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
 .fc{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
@@ -430,8 +434,8 @@ fbq('track', 'PageView');
 <div class="flow">
 <article class="fc">
 <span class="fn">1</span>
-<span class="badge b-gray">2026년 7월 1일 · 시작 전</span>
-<div class="fv"><p class="fa">가족과 함께 식사하기 좋은 감자탕 맛집 추천입니다.<br>① ㄱ○○ 원당감자탕<br>② ㅇ○○○집 …</p></div>
+<span class="badge b-gray">2026년 7월 4일 · 시작 전</span>
+<button type="button" class="shot" data-src="/images/cases/insaeng-before.jpg" data-alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음"><img src="/images/cases/insaeng-before.jpg" alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음" width="840" height="2847" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
 <h3>ChatGPT가 우리 가게를<br>몰랐어요</h3>
 </article>
 <article class="fc">
@@ -442,8 +446,8 @@ fbq('track', 'PageView');
 </article>
 <article class="fc fc-on">
 <span class="fn">3</span>
-<span class="badge b-acc">2026년 10월 5일 · 지금</span>
-<div class="fv"><p class="fa">가족 외식이라면 <mark>인생뼈다귀 본점</mark>을 1순위로 추천해요 … 8인 룸 3개 / 놀이방·유아의자 / 15대 이상 주차 + 발렛파킹</p></div>
+<span class="badge b-acc">2026년 10월 6일 · 지금</span>
+<button type="button" class="shot" data-src="/images/cases/insaeng-now.jpg" data-alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위"><img src="/images/cases/insaeng-now.jpg" alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위" width="840" height="2228" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
 <h3>같은 질문 {{featured.ba.label}}<br>1순위로 추천돼요</h3>
 </article>
 </div>
@@ -656,8 +660,8 @@ fbq('track', 'PageView');
     requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
-  roll.addEventListener("click", function(e){
-    var b = e.target.closest && e.target.closest(".cs"); if (!b || !view) return;
+  document.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest(".cs, .shot"); if (!b || !view) return;
     img.src = b.getAttribute("data-src"); img.alt = b.getAttribute("data-alt");
     if (view.showModal) view.showModal(); else view.setAttribute("open", "");
     pause();
