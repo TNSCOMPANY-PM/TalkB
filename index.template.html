@@ -159,6 +159,8 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    { "@type": "Question", "name": "토크비는 정확히 뭘 해 주나요?", "acceptedAnswer": { "@type": "Answer", "text": "요즘 손님들은 ‘근처 맛집 추천해줘’를 ChatGPT에도 물어봐요. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 우리 가게가 추천되는지 세고, 메뉴·가격·주차 같은 가게 정보를 ChatGPT가 찾기 쉽게 정리해 추천이 늘도록 도와요." } },
+    { "@type": "Question", "name": "GEO가 뭔가요?", "acceptedAnswer": { "@type": "Answer", "text": "GEO(생성형 엔진 최적화)는 ChatGPT 같은 AI의 답변에 우리 가게가 나오게 하는 일이에요. 네이버 상위 노출의 ChatGPT 버전이라고 보시면 돼요." } },
     { "@type": "Question", "name": "제가 직접 ChatGPT에 검색하면 나오는데요?", "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT는 대화 이력을 기억해서 사장님 화면에서는 잘 나올 수 있어요. 토크비는 기록이 없는 새 대화에서 매장 이름을 빼고 손님처럼 물어 확인해요." } },
     { "@type": "Question", "name": "네이버 AI 브리핑이나 제미나이도 보나요?", "acceptedAnswer": { "@type": "Answer", "text": "지금은 손님이 가장 많이 쓰는 ChatGPT를 기준으로 측정하고 있어요. 다른 AI는 측정이 준비되는 대로 따로 안내해 드릴게요." } },
     { "@type": "Question", "name": "얼마나 지나야 달라지나요?", "acceptedAnswer": { "@type": "Answer", "text": "빠른 가게는 1~2주 안에 변화가 보이기 시작하고, 추천이 자리 잡기까지는 보통 1~3개월이 걸려요. 상권과 업종에 따라 속도는 달라요." } },
@@ -342,7 +344,7 @@ fbq('track', 'PageView');
 <section class="wrap hero">
 <div class="hero-top">
 <h1 class="h1"><span class="va"><span class="l">옆 가게는</span><span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span><span class="l">사장님 가게는요?</span></span><span class="vb"><span class="l">손님이 ChatGPT에</span><span class="l">동네 맛집을 물으면,</span><span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span></h1>
-<p class="define">토크비(TalkB)는 식당·프랜차이즈 전용 ChatGPT 추천 노출 관리 서비스입니다.</p>
+<p class="define">토크비(TalkB)는 손님이 ChatGPT에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스예요.</p>
 </div>
 <div class="hero-bottom">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 28px">
@@ -365,25 +367,25 @@ fbq('track', 'PageView');
 <p style="color: #6B7684">2순위: ㄷ○○집 …</p>
 </div>
 </div>
-<figcaption style="padding: 14px 20px; background: #FFF6F2; border-top: 1px solid #FBD5C6; font-size: 14px">손님이 많이 찾는 수원 질문 · <b class="tnum">최근 7일 {{featured.hero.label}}</b> 1위</figcaption>
+<figcaption style="padding: 14px 20px; background: #FFF6F2; border-top: 1px solid #FBD5C6; font-size: 14px">같은 질문을 10번 물었더니 <b class="tnum">{{featured.hero.label}}</b> 1순위로 추천 · 최근 7일</figcaption>
 </figure>
 </div>
 </section>
 
 <section class="sec" style="background: #FFF6F2">
 <div class="wrap">
-<h2 class="h2">석 달 전엔<br>다른 가게만 나왔어요</h2>
-<p style="margin-top: 22px; display: inline-flex; background: #fff; border: 1px solid #FBD5C6; border-radius: 999px; padding: 10px 18px; font-size: 16px; font-weight: 700">손님 질문 · 용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘</p>
+<h2 class="h2">석 달 전 ChatGPT는<br>다른 가게만 추천했어요</h2>
+<p style="margin-top: 22px; display: inline-flex; background: #fff; border: 1px solid #FBD5C6; border-radius: 999px; padding: 10px 18px; font-size: 16px; font-weight: 700">손님이 물은 질문 · 용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘</p>
 <div class="two" style="margin-top: 18px">
 <div class="card" style="box-shadow: none">
 <span class="badge b-gray">2026년 7월 1일 · 시작 전</span>
 <p class="gpt-a" style="margin-top: 14px">용인시 처인구 모현읍 일대에서 가족과 함께 식사하기 좋은 감자탕 맛집 추천입니다. ① ㄱ○○ 원당감자탕 ② ㅇ○○○집 …</p>
-<p style="margin-top: 14px; font-size: 14px; font-weight: 700; color: #6B7684">우리 가게 없음</p>
+<p style="margin-top: 14px; font-size: 14px; font-weight: 700; color: #6B7684">인생뼈다귀 본점은 추천되지 않음</p>
 </div>
 <div class="card" style="border-color: #FBD5C6">
 <span class="badge b-acc">2026년 10월 5일 · 지금</span>
 <p class="gpt-a" style="margin-top: 14px">용인 모현읍에서 가족 외식이라면, 제가 보기엔 <mark>인생뼈다귀 본점</mark>을 1순위로 추천해요 … 8인 룸 3개 / 놀이방·유아의자 구비 / 15대 이상 주차 + 발렛파킹</p>
-<p style="margin-top: 14px; font-size: 14px; font-weight: 700; color: #C94422">최근 7일 {{featured.ba.label}} 1위</p>
+<p style="margin-top: 14px; font-size: 14px; font-weight: 700; color: #C94422">지금은 같은 질문 {{featured.ba.label}} 1순위로 추천</p>
 </div>
 </div>
 </div>
@@ -394,7 +396,7 @@ fbq('track', 'PageView');
 <div>
 <p style="font-size: 15px; color: #B0B8C1">이용 매장 {{storeCount}}곳 평균</p>
 <p class="tnum" style="font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin-top: 6px">손님 질문 10번 중 <span style="color: #B0B8C1">{{avg.base10}}번</span> → <span style="color: #FF9C80">{{avg.now10}}번</span></p>
-<p style="font-size: 14px; color: #B0B8C1; margin-top: 6px">ChatGPT 추천 횟수 · 첫 측정과 최근 7일 비교</p>
+<p style="font-size: 14px; color: #B0B8C1; margin-top: 6px">같은 질문을 10번 물었을 때 ChatGPT가 추천한 횟수 · 시작 전 → 지금</p>
 </div>
 <figure style="margin: 0; background: rgba(255,255,255,.06); border-radius: 20px; padding: 26px">
 <blockquote style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.6">“토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <span style="color: #FF9C80">12명 예약</span>하시는 분도 생기고, 전화 문의도 많이 늘었어요.”</blockquote>
@@ -405,25 +407,25 @@ fbq('track', 'PageView');
 
 <section class="sec" id="proof">
 <div class="wrap">
-<h2 class="h2">분식, 카페, 한정식도<br>1위로 나왔어요</h2>
+<h2 class="h2">분식, 카페, 한식도<br>1순위로 추천돼요</h2>
 <div class="three" style="margin-top: 32px">
 <article class="card">
 <p style="font-size: 13px; color: #6B7684">수원 · 대형 카페</p>
 <h3 style="font-size: 18px; font-weight: 800; margin-top: 8px">“수원 주말에 드라이브 가기 좋은 카페 추천해주세요”</h3>
 <p class="gpt-a" style="margin-top: 12px; font-size: 14.5px"><mark>도나스데이 본점</mark> · 넓은 주차장이 장점이고 루프탑·야외 공간도 있어서…</p>
-<span class="badge b-acc" style="margin-top: 14px">{{featured.c1.label}} 1위</span>
+<span class="badge b-acc" style="margin-top: 14px">{{featured.c1.label}} 1순위</span>
 </article>
 <article class="card">
 <p style="font-size: 13px; color: #6B7684">고양 탄현역 · 분식</p>
 <h3 style="font-size: 18px; font-weight: 800; margin-top: 8px">“탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요”</h3>
 <p class="gpt-a" style="margin-top: 12px; font-size: 14.5px"><mark>오공김밥 일산탄현점</mark> · 가장 무난한 1순위예요. 김밥 종류가 58가지 정도로 다양하고…</p>
-<span class="badge b-acc" style="margin-top: 14px">{{featured.c2.label}} 1위</span>
+<span class="badge b-acc" style="margin-top: 14px">{{featured.c2.label}} 1순위</span>
 </article>
 <article class="card">
 <p style="font-size: 13px; color: #6B7684">서울 광장동 · 한식</p>
 <h3 style="font-size: 18px; font-weight: 800; margin-top: 8px">“광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요”</h3>
 <p class="gpt-a" style="margin-top: 12px; font-size: 14.5px">1. <mark>광장동가온</mark> · 가장 무난한 1순위 · 룸 4~15명, 단체석 최대 40명…</p>
-<span class="badge b-acc" style="margin-top: 14px">{{featured.c3.label}} 1위</span>
+<span class="badge b-acc" style="margin-top: 14px">{{featured.c3.label}} 1순위</span>
 </article>
 </div>
 </div>
@@ -453,7 +455,7 @@ fbq('track', 'PageView');
 <div style="display: grid; gap: 28px; margin-top: 36px">
 <div class="step"><span class="num">1</span><div><h3 style="font-size: 19px; font-weight: 800"><a class="step-link" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="step1">카톡으로 플레이스 링크 보내기 <span aria-hidden="true">→</span></a></h3></div></div>
 <div class="step"><span class="num">2</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 무료 리포트 받기</h3></div></div>
-<div class="step"><span class="num">3</span><div><h3 style="font-size: 19px; font-weight: 800">시작하면 매주 측정, 매달 리포트</h3></div></div>
+<div class="step"><span class="num">3</span><div><h3 style="font-size: 19px; font-weight: 800">시작하면 매주 확인, 매달 결과 보고</h3></div></div>
 </div>
 </div>
 <aside class="card" style="background: #FFF6F2; border-color: #FBD5C6">
@@ -494,9 +496,9 @@ fbq('track', 'PageView');
 </div>
 <p style="font-size: 14px; color: #6B7684; margin-top: 4px">매장당 · VAT 별도</p>
 <ul style="list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; font-size: 16px">
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>손님 질문 15개를 매주 5번씩 ChatGPT에 물어 측정</li>
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매장 정보를 AI가 읽기 좋게 정리하고 계속 보강</li>
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매달 시작 전과 비교한 리포트, 결과 설명은 카톡으로</li>
+<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>손님이 물을 만한 질문 15개를 매주 5번씩 ChatGPT에 직접 물어봐요</li>
+<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>메뉴·가격·주차 같은 가게 정보를 ChatGPT가 찾기 쉽게 정리해요</li>
+<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매달 시작 전과 비교한 결과를 카톡으로 설명해 드려요</li>
 </ul>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px">
 <span class="badge b-ok">약정 없음 · 언제든 해지</span>
@@ -514,7 +516,9 @@ fbq('track', 'PageView');
 <p class="eyebrow">자주 묻는 질문</p>
 <h2 class="h2" style="font-size: 30px">궁금한 건 카톡으로 물어보셔도 돼요</h2>
 <div style="margin-top: 24px">
-<details class="faq" open><summary>제가 직접 ChatGPT에 검색하면 나오는데요?</summary><p>ChatGPT는 대화 이력을 기억해서 사장님 화면에서는 잘 나올 수 있어요. 토크비는 기록이 없는 새 대화에서 매장 이름을 빼고 손님처럼 물어 확인해요.</p></details>
+<details class="faq" open><summary>토크비는 정확히 뭘 해 주나요?</summary><p>요즘 손님들은 ‘근처 맛집 추천해줘’를 ChatGPT에도 물어봐요. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 우리 가게가 추천되는지 세고, 메뉴·가격·주차 같은 가게 정보를 ChatGPT가 찾기 쉽게 정리해 추천이 늘도록 도와요.</p></details>
+<details class="faq"><summary>GEO가 뭔가요?</summary><p>GEO(생성형 엔진 최적화)는 ChatGPT 같은 AI의 답변에 우리 가게가 나오게 하는 일이에요. 네이버 상위 노출의 ChatGPT 버전이라고 보시면 돼요.</p></details>
+<details class="faq"><summary>제가 직접 ChatGPT에 검색하면 나오는데요?</summary><p>ChatGPT는 대화 이력을 기억해서 사장님 화면에서는 잘 나올 수 있어요. 토크비는 기록이 없는 새 대화에서 매장 이름을 빼고 손님처럼 물어 확인해요.</p></details>
 <details class="faq"><summary>네이버 AI 브리핑이나 제미나이도 보나요?</summary><p>지금은 손님이 가장 많이 쓰는 ChatGPT를 기준으로 측정하고 있어요. 다른 AI는 측정이 준비되는 대로 따로 안내해 드릴게요.</p></details>
 <details class="faq"><summary>얼마나 지나야 달라지나요?</summary><p>빠른 가게는 1~2주 안에 변화가 보이기 시작하고, 추천이 자리 잡기까지는 보통 1~3개월이 걸려요. 상권과 업종에 따라 속도는 달라요.</p></details>
 <details class="faq"><summary>네이버 플레이스 상위인데도 필요한가요?</summary><p>플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요.</p></details>
