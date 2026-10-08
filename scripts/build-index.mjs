@@ -1,7 +1,7 @@
 // 템플릿 + data/references.json → index.html · llms.txt (2026-10-07)
 // {{경로}} 자리표시를 JSON 값으로 채운다. 못 채운 자리가 하나라도 있으면 실패한다(빈칸이 그대로 배포되지 않게).
 // 사이트맵의 홈 lastmod 도 수치 갱신일로 맞춘다.
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,7 +24,16 @@ function fill(tplName, outName) {
   writeFileSync(join(ROOT, outName), text);
   console.log(`${outName} 생성`, text.length, "bytes");
 }
+// 상품 상세(/gpt-plan/)는 홈과 같은 스타일을 쓴다 · 홈 템플릿의 <style>을 그대로 가져온다
+{
+  const home = readFileSync(join(ROOT, "index.template.html"), "utf8");
+  const m = /<style>([\s\S]*?)<\/style>/.exec(home);
+  if (!m) { console.error("홈 템플릿에서 <style>을 찾지 못함"); process.exit(1); }
+  data.landingCss = m[1].trim();
+}
 fill("index.template.html", "index.html");
+mkdirSync(join(ROOT, "gpt-plan"), { recursive: true });
+fill("gpt-plan.template.html", "gpt-plan/index.html");
 fill("llms.template.txt", "llms.txt");
 
 // 사이트맵 홈 lastmod

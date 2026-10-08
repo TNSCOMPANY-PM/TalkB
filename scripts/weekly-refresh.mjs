@@ -22,9 +22,9 @@ try {
   const bad = Object.values(data.stores).filter((s) => s.now10 == null);
   if (bad.length) { log("측정값 없는 매장이 있어 커밋하지 않음: " + bad.map((s) => s.name).join(", ")); process.exit(2); }
   sh("node scripts/build-index.mjs");
-  const changed = sh("git status --porcelain -- data/references.json index.html llms.txt sitemap.xml").trim();
+  const changed = sh("git status --porcelain -- data/references.json index.html gpt-plan/index.html llms.txt sitemap.xml").trim();
   if (!changed) { log("변경 없음"); process.exit(0); }
-  sh("git add data/references.json index.html llms.txt sitemap.xml");
+  sh("git add data/references.json index.html gpt-plan/index.html llms.txt sitemap.xml");
   sh(`git commit -q -m "chore(랜딩): 레퍼런스 주간 자동 갱신 ${data.updatedDot}"`);
   sh("git push -q origin main");
   log(`커밋·푸시 완료 · 평균 ${data.avg.base10}→${data.avg.now10} · ${data.periodTo}`);

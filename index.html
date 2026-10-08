@@ -256,7 +256,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .cs-view::backdrop{background:rgba(25,31,40,.6)}
 .cs-view img{display:block;width:100%;height:auto}
 .cs-x{position:sticky;top:8px;float:right;margin:8px 8px -48px 0;width:40px;height:40px;border:0;border-radius:50%;background:rgba(25,31,40,.75);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:1}
-.flow-sec{padding-top:24px}
+.ask{margin-top:18px;display:inline-flex;background:#fff;border:1px solid #FBD5C6;border-radius:999px;padding:10px 18px;font-size:15.5px;font-weight:700;line-height:1.5}
+.fc .badge{margin-bottom:12px}
+.fc .fa mark{background:#FFE58A;font-weight:800;padding:0 2px;border-radius:3px}
 .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
 .fc{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
 .fc-on{border-color:#FBD5C6;box-shadow:0 8px 24px rgba(201,68,34,.10)}
@@ -289,6 +291,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .rp-row b{color:var(--deep)}
 .step-link{display:inline-block;padding:8px 0;color:var(--ink);text-decoration:underline;text-decoration-color:var(--kakao);text-decoration-thickness:4px;text-underline-offset:5px}
 .step-link:hover{color:var(--deep)}
+.plan-link{display:inline-flex;align-items:center;gap:6px;margin-top:26px;min-height:46px;padding:0 20px;border:1.5px solid var(--ink);border-radius:999px;font-weight:800;font-size:15.5px;color:var(--ink)}
+.back-link{display:inline-block;padding:8px 0;font-size:14.5px;font-weight:700;color:var(--ink-mid);text-decoration:underline;text-underline-offset:3px}
+.plan-link:hover{background:var(--ink);color:#fff}
 .num{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--deep);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
 .faq{border-bottom:1px solid var(--line);padding:20px 0}
 .faq summary{font-size:17px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -417,44 +422,30 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section class="sec flow-sec">
+<section class="sec" id="proof" style="background: #FFF6F2">
 <div class="wrap">
 <h2 class="h2">이렇게 바뀝니다</h2>
+<p class="lead">용인 모현의 감자탕집, 인생뼈다귀 본점의 실제 사례예요.</p>
+<p class="ask">손님이 물은 질문 · “용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”</p>
 <div class="flow">
 <article class="fc">
 <span class="fn">1</span>
-<div class="fv"><p class="fq">“동네 고깃집 추천해줘”</p><p class="fa">① ㄱ○○갈비<br>② ㅅ○○식당<br>③ ㅎ○○숯불</p></div>
-<h3>지금은 ChatGPT가<br>우리 가게를 잘 몰라요</h3>
+<span class="badge b-gray">2026년 7월 1일 · 시작 전</span>
+<div class="fv"><p class="fa">가족과 함께 식사하기 좋은 감자탕 맛집 추천입니다.<br>① ㄱ○○ 원당감자탕<br>② ㅇ○○○집 …</p></div>
+<h3>ChatGPT가 우리 가게를<br>몰랐어요</h3>
 </article>
 <article class="fc">
 <span class="fn">2</span>
-<div class="fv"><p class="tags"><span>메뉴</span><span>가격</span><span>주차</span><span>룸</span><span>영업시간</span><span>대표 메뉴 사진</span></p></div>
-<h3>토크비가 가게 정보를<br>ChatGPT가 읽게 정리해요</h3>
+<span class="badge b-gray">토크비 시작</span>
+<div class="fv"><p class="tags"><span>8인 룸 3개</span><span>놀이방·유아의자</span><span>주차 15대 이상</span><span>발렛파킹</span><span>대표 메뉴·가격</span></p></div>
+<h3>가게 정보를<br>ChatGPT가 읽게 정리했어요</h3>
 </article>
 <article class="fc fc-on">
 <span class="fn">3</span>
-<div class="fv"><p class="fq">“동네 고깃집 추천해줘”</p><p class="fa">① <mark>우리 가게</mark><br>② ㄱ○○갈비<br>③ ㅅ○○식당</p></div>
-<h3>손님이 물으면<br>우리 가게가 나와요</h3>
-</article>
-</div>
-</div>
-</section>
-
-<section class="sec" id="proof" style="background: #FFF6F2">
-<div class="wrap">
-<h2 class="h2">석 달 전 ChatGPT는<br>다른 가게만 추천했어요</h2>
-<p style="margin-top: 22px; display: inline-flex; background: #fff; border: 1px solid #FBD5C6; border-radius: 999px; padding: 10px 18px; font-size: 16px; font-weight: 700">손님이 물은 질문 · 용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘</p>
-<div class="two" style="margin-top: 18px">
-<div class="card" style="box-shadow: none">
-<span class="badge b-gray">2026년 7월 1일 · 시작 전</span>
-<p class="gpt-a" style="margin-top: 14px">용인시 처인구 모현읍 일대에서 가족과 함께 식사하기 좋은 감자탕 맛집 추천입니다. ① ㄱ○○ 원당감자탕 ② ㅇ○○○집 …</p>
-<p style="margin-top: 14px; font-size: 14px; font-weight: 700; color: #6B7684">인생뼈다귀 본점은 추천되지 않음</p>
-</div>
-<div class="card" style="border-color: #FBD5C6">
 <span class="badge b-acc">2026년 10월 5일 · 지금</span>
-<p class="gpt-a" style="margin-top: 14px">용인 모현읍에서 가족 외식이라면, 제가 보기엔 <mark>인생뼈다귀 본점</mark>을 1순위로 추천해요 … 8인 룸 3개 / 놀이방·유아의자 구비 / 15대 이상 주차 + 발렛파킹</p>
-<p style="margin-top: 14px; font-size: 14px; font-weight: 700; color: #C94422">지금은 같은 질문 10번 중 9번 1순위로 추천</p>
-</div>
+<div class="fv"><p class="fa">가족 외식이라면 <mark>인생뼈다귀 본점</mark>을 1순위로 추천해요 … 8인 룸 3개 / 놀이방·유아의자 / 15대 이상 주차 + 발렛파킹</p></div>
+<h3>같은 질문 10번 중 9번<br>1순위로 추천돼요</h3>
+</article>
 </div>
 </div>
 </section>
@@ -512,6 +503,7 @@ fbq('track', 'PageView');
 <div class="step"><span class="num">2</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 무료 리포트 받기</h3></div></div>
 <div class="step"><span class="num">3</span><div><h3 style="font-size: 19px; font-weight: 800">시작하면 매주 확인, 매달 결과 보고</h3></div></div>
 </div>
+<a class="plan-link" href="/gpt-plan/" data-pos="how-plan">GPT 플랜 자세히 보기 <span aria-hidden="true">→</span></a>
 </div>
 <aside class="card" style="background: #FFF6F2; border-color: #FBD5C6">
 <div class="rp" role="img" aria-label="무료 리포트 예시: 손님 질문 10개 중 2개에서 추천, 대신 추천된 가게 3곳">
@@ -561,7 +553,8 @@ fbq('track', 'PageView');
 <p class="hot"><b>3곳까지만</b>같은 동네·같은 업종</p>
 </div>
 <a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price" style="margin-top: 22px; width: 100%">카톡으로 무료 리포트 받기</a>
-<p style="font-size: 13px; color: #6B7684; margin-top: 12px; text-align: center">프랜차이즈 본사나 매장 10개 이상은 카톡 별도 문의</p>
+<p style="margin-top: 12px; text-align: center"><a class="back-link" href="/gpt-plan/" data-pos="price-plan">포함 내용 자세히 보기 →</a></p>
+<p style="font-size: 13px; color: #6B7684; margin-top: 4px; text-align: center">프랜차이즈 본사나 매장 10개 이상은 카톡 별도 문의</p>
 </div>
 </div>
 </section>
