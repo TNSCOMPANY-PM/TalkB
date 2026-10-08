@@ -168,7 +168,7 @@
     { "@type": "Question", "name": "네이버 플레이스 상위인데도 필요한가요?", "acceptedAnswer": { "@type": "Answer", "text": "플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요." } },
     { "@type": "Question", "name": "상담은 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "카카오톡 채널 ‘토크비’로 네이버 플레이스 링크를 보내 주시면 돼요(https://pf.kakao.com/_JxlWTX/chat). 영업일 09:00~18:00에 전문가가 직접 상담해 드려요." } },
     { "@type": "Question", "name": "상담 없이 직접 먼저 해 보고 싶어요.", "acceptedAnswer": { "@type": "Answer", "text": "토크비 앱에서 매장 이름만 넣으면 무료 진단을 직접 해 보실 수 있어요. 셀프 무료 진단하러 가기(https://app.talkb.co.kr/onboard)" } },
-    { "@type": "Question", "name": "숫자는 어떻게 센 건가요?", "acceptedAnswer": { "@type": "Answer", "text": "로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다." } },
+    { "@type": "Question", "name": "추천 횟수는 어떻게 확인하나요?", "acceptedAnswer": { "@type": "Answer", "text": "로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다." } },
     { "@type": "Question", "name": "블로그 체험단이나 네이버 광고랑 뭐가 다른가요?", "acceptedAnswer": { "@type": "Answer", "text": "체험단과 네이버 광고는 네이버에서 검색하는 손님에게 보여요. 토크비는 ChatGPT에 물어보는 손님에게 우리 가게가 답으로 나오게 해요. 둘은 따로 움직여서, 네이버 상위인 가게가 ChatGPT에는 안 나오는 경우가 많아요." } },
     { "@type": "Question", "name": "해지와 환불은 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "약정 없이 언제든 해지할 수 있고, 결제한 기간이 끝날 때까지 그대로 이용하실 수 있어요. 결제 확인 후 영업일 3일 이내에는 사유와 상관없이 전액 환불해 드려요. 그 이후에는 서비스가 이미 시작되어 환불이 불가해요." } }
   ]
@@ -232,12 +232,6 @@ section[id]{scroll-margin-top:80px}
 mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:0 3px}
 .reassure{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:14px;color:var(--muted)}
 .reassure span{display:inline-flex;align-items:center;gap:6px}
-.stat{margin-top:10px;font-size:13.5px;color:var(--muted)}
-.stat a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
-.how{margin-top:12px;font-size:13.5px;color:var(--muted)}
-.how summary{cursor:pointer;display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:3px;list-style:none}
-.how summary::-webkit-details-marker{display:none}
-.how p{margin-top:6px;line-height:1.65;max-width:520px}
 .define{margin-top:16px;font-size:14.5px;color:var(--muted);line-height:1.7;max-width:560px}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:999px;padding:5px 11px}
 .b-ok{background:var(--ok-soft);color:var(--ok)}
@@ -359,7 +353,6 @@ fbq('track', 'PageView');
 <div class="hero-top">
 <h1 class="h1"><span class="va"><span class="l">옆 가게는</span><span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span><span class="l">사장님 가게는요?</span></span><span class="vb"><span class="l">손님이 ChatGPT에</span><span class="l">동네 맛집을 물으면,</span><span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span></h1>
 <p class="define">토크비(TalkB)는 손님이 ChatGPT에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스예요.</p>
-<p class="stat">한국인 54.5%가 ChatGPT를 써 봤어요 · <a href="/insights/korea-ai-search-2026.html">오픈서베이 2026</a></p>
 </div>
 <div class="hero-bottom">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 28px">
@@ -384,7 +377,6 @@ fbq('track', 'PageView');
 </div>
 <figcaption style="padding: 14px 20px; background: #FFF6F2; border-top: 1px solid #FBD5C6; font-size: 14px">같은 질문을 10번 물었더니 <b class="tnum">10번 중 10번</b> 1순위로 추천 · 최근 7일</figcaption>
 </figure>
-<details class="how"><summary>어떻게 셌나요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다.</p></details>
 </div>
 </section>
 
@@ -544,7 +536,7 @@ fbq('track', 'PageView');
 <details class="faq"><summary>네이버 플레이스 상위인데도 필요한가요?</summary><p>플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요.</p></details>
 <details class="faq"><summary>상담은 어떻게 하나요?</summary><p>카카오톡 채널 ‘토크비’로 네이버 플레이스 링크를 보내 주시면 돼요. 영업일 09:00~18:00에 전문가가 직접 상담해 드려요. <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="faq">카톡으로 상담하기</a></p></details>
 <details class="faq"><summary>상담 없이 직접 먼저 해 보고 싶어요.</summary><p>토크비 앱에서 매장 이름만 넣으면 무료 진단을 직접 해 보실 수 있어요. <a href="https://app.talkb.co.kr/onboard" data-pos="faq-self">셀프 무료 진단하러 가기</a></p></details>
-<details class="faq"><summary>숫자는 어떻게 센 건가요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다.</p></details>
+<details class="faq"><summary>추천 횟수는 어떻게 확인하나요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다.</p></details>
 <details class="faq"><summary>블로그 체험단이나 네이버 광고랑 뭐가 다른가요?</summary><p>체험단과 네이버 광고는 네이버에서 검색하는 손님에게 보여요. 토크비는 ChatGPT에 물어보는 손님에게 우리 가게가 답으로 나오게 해요. 둘은 따로 움직여서, 네이버 상위인 가게가 ChatGPT에는 안 나오는 경우가 많아요. <a href="/insights/local-store-checklist.html">독립 매장 AI 노출 체크리스트</a></p></details>
 <details class="faq"><summary>해지와 환불은 어떻게 하나요?</summary><p>약정 없이 언제든 해지할 수 있고, 결제한 기간이 끝날 때까지 그대로 이용하실 수 있어요. 결제 확인 후 영업일 3일 이내에는 사유와 상관없이 전액 환불해 드려요. 그 이후에는 서비스가 이미 시작되어 환불이 불가해요.</p></details>
 </div>
