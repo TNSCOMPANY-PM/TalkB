@@ -257,11 +257,15 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .faq[open] summary::after{content:"−"}
 .faq p{margin-top:10px;font-size:15.5px;color:var(--ink-mid);line-height:1.75}
 .faq p a{color:var(--deep);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 220px;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 88px 88px;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.row-h{padding:12px 0 10px}
+.row-h p{font-size:13px;font-weight:700;color:var(--muted)}
+.row-h p+p,.row .was,.row .now{text-align:right}
+.row .was{font-size:18px;font-weight:700;color:#8B95A1}
+.row .now{font-size:22px;font-weight:800;color:var(--deep)}
 .row:last-child{border-bottom:0}
 .row .nm{font-size:17px;font-weight:800}
 .row .meta{font-size:13.5px;color:var(--muted)}
-.row .val{font-size:20px;font-weight:800}
 .bar{height:8px;border-radius:6px;background:#EEF0F3;overflow:hidden;position:relative}
 .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--accent)}
 .bar i.b{background:#C9CED6}
@@ -294,8 +298,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "fig" "bottom";row-gap:20px;padding-top:52px}.row{grid-template-columns:1fr 1fr}.row .bar-cell{grid-column:1 / -1}}
-@media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.row{grid-template-columns:1fr}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "fig" "bottom";row-gap:20px;padding-top:52px}.row{grid-template-columns:minmax(0,1fr) 56px 56px;gap:8px}.row .now{font-size:19px}.row .was{font-size:16px}}
+@media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.row{grid-template-columns:minmax(0,1fr) 52px 52px;gap:8px}.row .nm{font-size:16px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
 .sticky.hide{transform:translateY(110%)}}
@@ -388,7 +392,7 @@ fbq('track', 'PageView');
 <section style="background: #191F28; color: #fff">
 <div class="wrap two" style="gap: 32px; padding-top: 56px; padding-bottom: 56px; align-items: center">
 <div>
-<p style="font-size: 15px; color: #B0B8C1">지금 이용 중인 매장 {{storeCount}}곳 평균</p>
+<p style="font-size: 15px; color: #B0B8C1">이용 매장 {{storeCount}}곳 평균</p>
 <p class="tnum" style="font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin-top: 6px">손님 질문 10번 중 <span style="color: #B0B8C1">{{avg.base10}}번</span> → <span style="color: #FF9C80">{{avg.now10}}번</span></p>
 <p style="font-size: 14px; color: #B0B8C1; margin-top: 6px">ChatGPT 추천 횟수 · 첫 측정과 최근 7일 비교</p>
 </div>
@@ -427,15 +431,16 @@ fbq('track', 'PageView');
 
 <section class="sec" id="stores" style="background: #F7F8FA">
 <div class="wrap">
-<h2 class="h2">지금 이용 중인<br>{{storeCount}}곳 전부예요</h2>
-<p class="lead">덜 오른 곳까지 그대로 보여 드려요. 손님 질문 10번 중 추천된 횟수예요.</p>
+<h2 class="h2">이용 매장은<br>이만큼 늘었어요</h2>
+<p class="lead">손님처럼 같은 질문을 10번 물었을 때, ChatGPT가 그 가게를 추천한 횟수예요.</p>
 <div class="card" style="margin-top: 28px; padding: 8px 28px; box-shadow: none">
-<div class="row"><div><p class="nm">{{stores.ogong.name}}</p><p class="meta">{{stores.ogong.area}} · {{stores.ogong.cat}}</p></div><p class="val tnum">{{stores.ogong.base10}}번 → {{stores.ogong.now10}}번</p><div class="bar-cell"><div class="bar"><i class="{{stores.ogong.barClass}}" style="width: {{stores.ogong.bar}}%"></i></div></div></div>
-<div class="row"><div><p class="nm">{{stores.gaon.name}}</p><p class="meta">{{stores.gaon.area}} · {{stores.gaon.cat}}</p></div><p class="val tnum">{{stores.gaon.base10}}번 → {{stores.gaon.now10}}번</p><div class="bar-cell"><div class="bar"><i class="{{stores.gaon.barClass}}" style="width: {{stores.gaon.bar}}%"></i></div></div></div>
-<div class="row"><div><p class="nm">{{stores.insaeng.name}}</p><p class="meta">{{stores.insaeng.area}} · {{stores.insaeng.cat}}</p></div><p class="val tnum">{{stores.insaeng.base10}}번 → {{stores.insaeng.now10}}번</p><div class="bar-cell"><div class="bar"><i class="{{stores.insaeng.barClass}}" style="width: {{stores.insaeng.bar}}%"></i></div></div></div>
-<div class="row"><div><p class="nm">{{stores.sunbi.name}}</p><p class="meta">{{stores.sunbi.area}} · {{stores.sunbi.cat}}</p></div><p class="val tnum">{{stores.sunbi.base10}}번 → {{stores.sunbi.now10}}번</p><div class="bar-cell"><div class="bar"><i class="{{stores.sunbi.barClass}}" style="width: {{stores.sunbi.bar}}%"></i></div></div></div>
-<div class="row"><div><p class="nm">{{stores.donas.name}}</p><p class="meta">{{stores.donas.area}} · {{stores.donas.cat}}</p></div><p class="val tnum">{{stores.donas.base10}}번 → {{stores.donas.now10}}번</p><div class="bar-cell"><div class="bar"><i class="{{stores.donas.barClass}}" style="width: {{stores.donas.bar}}%"></i></div></div></div>
-<div class="row"><div><p class="nm">{{stores.hansin.name}}</p><p class="meta">{{stores.hansin.area}} · {{stores.hansin.cat}}</p></div><p class="val tnum">{{stores.hansin.base10}}번 → {{stores.hansin.now10}}번</p><div class="bar-cell"><div class="bar"><i class="{{stores.hansin.barClass}}" style="width: {{stores.hansin.bar}}%"></i></div></div></div>
+<div class="row row-h"><p>매장</p><p>시작 전</p><p>지금</p></div>
+<div class="row"><div><p class="nm">{{stores.ogong.name}}</p><p class="meta">{{stores.ogong.area}} · {{stores.ogong.cat}}</p></div><p class="was tnum">{{stores.ogong.base10}}번</p><p class="now tnum">{{stores.ogong.now10}}번</p></div>
+<div class="row"><div><p class="nm">{{stores.gaon.name}}</p><p class="meta">{{stores.gaon.area}} · {{stores.gaon.cat}}</p></div><p class="was tnum">{{stores.gaon.base10}}번</p><p class="now tnum">{{stores.gaon.now10}}번</p></div>
+<div class="row"><div><p class="nm">{{stores.insaeng.name}}</p><p class="meta">{{stores.insaeng.area}} · {{stores.insaeng.cat}}</p></div><p class="was tnum">{{stores.insaeng.base10}}번</p><p class="now tnum">{{stores.insaeng.now10}}번</p></div>
+<div class="row"><div><p class="nm">{{stores.sunbi.name}}</p><p class="meta">{{stores.sunbi.area}} · {{stores.sunbi.cat}}</p></div><p class="was tnum">{{stores.sunbi.base10}}번</p><p class="now tnum">{{stores.sunbi.now10}}번</p></div>
+<div class="row"><div><p class="nm">{{stores.donas.name}}</p><p class="meta">{{stores.donas.area}} · {{stores.donas.cat}}</p></div><p class="was tnum">{{stores.donas.base10}}번</p><p class="now tnum">{{stores.donas.now10}}번</p></div>
+<div class="row"><div><p class="nm">{{stores.hansin.name}}</p><p class="meta">{{stores.hansin.area}} · {{stores.hansin.cat}}</p></div><p class="was tnum">{{stores.hansin.base10}}번</p><p class="now tnum">{{stores.hansin.now10}}번</p></div>
 </div>
 </div>
 </section>

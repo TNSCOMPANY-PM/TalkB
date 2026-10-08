@@ -10,7 +10,7 @@
 - 상담 없이 직접 해 보기: https://app.talkb.co.kr/onboard (매장 이름으로 셀프 무료 진단)
 - 전화: 1833-4150 (영업일 09:00~18:00)
 
-## 실측 성과 (지금 이용 중인 매장 {{storeCount}}곳 · 손님 질문 10번 중 ChatGPT가 추천한 횟수)
+## 실측 성과 (이용 매장 {{storeCount}}곳 · 손님 질문 10번 중 ChatGPT가 추천한 횟수)
 
 시작은 매장별 첫 측정(2026년 6~7월), 지금은 최근 7일({{periodFrom}}~{{periodTo}}) 실측입니다. 평균 {{avg.base10}}번 → {{avg.now10}}번({{avg.basePct}}% → {{avg.nowPct}}%).
 
