@@ -230,6 +230,11 @@ section[id]{scroll-margin-top:80px}
 .gpt-body{padding:20px;display:flex;flex-direction:column;gap:14px}
 .gpt-q{align-self:flex-end;background:#F2F4F6;border-radius:18px;padding:10px 16px;font-size:15px;max-width:80%}
 .gpt-a{font-size:15px;line-height:1.75;color:#333D4B}
+.gpt-tabs{display:flex;gap:6px;padding:12px 16px 0}
+.gpt-tabs button{min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer}
+.gpt-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.gpt-panel .gpt-body{min-height:206px}
+.gpt-cap{padding:14px 20px;background:#FFF6F2;border-top:1px solid #FBD5C6;font-size:14px}
 .gpt-a p+p{margin-top:10px}
 mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:0 3px}
 .reassure{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:14px;color:var(--muted)}
@@ -424,6 +429,8 @@ fbq('track', 'PageView');
 <div class="hero-fig">
 <figure class="gpt">
 <div class="gpt-hd"><span class="gpt-dot" aria-hidden="true"></span>ChatGPT 답변 인용<span class="badge b-ok" style="margin-left: auto">실제 답변 일부</span></div>
+<div class="gpt-tabs" role="tablist" aria-label="업종 고르기"><button type="button" role="tab" id="gt0" aria-controls="gp0" aria-selected="true">음식점</button><button type="button" role="tab" id="gt1" aria-controls="gp1" aria-selected="false">카페</button><button type="button" role="tab" id="gt2" aria-controls="gp2" aria-selected="false">술집·야식</button></div>
+<div class="gpt-panel" id="gp0" role="tabpanel" aria-labelledby="gt0">
 <div class="gpt-body">
 <p class="gpt-q">수원 닭볶음탕 추천해줘</p>
 <div class="gpt-a">
@@ -431,7 +438,28 @@ fbq('track', 'PageView');
 <p style="color: #6B7684">2순위: ㄷ○○집 …</p>
 </div>
 </div>
-<figcaption style="padding: 14px 20px; background: #FFF6F2; border-top: 1px solid #FBD5C6; font-size: 14px">같은 질문을 10번 물었더니 <b class="tnum">10번 중 10번</b> 1순위로 추천 · 최근 7일</figcaption>
+<p class="gpt-cap">같은 질문을 10번 물었더니 <b class="tnum">10번 중 10번</b> 1순위로 추천 · 최근 7일</p>
+</div>
+<div class="gpt-panel" id="gp1" role="tabpanel" aria-labelledby="gt1" hidden>
+<div class="gpt-body">
+<p class="gpt-q">수원 주말에 드라이브 가기 좋은 카페 추천해주세요</p>
+<div class="gpt-a">
+<p><b>1순위: <mark>도나스데이 본점</mark></b><br>넓은 주차장이 장점이고 루프탑·야외 공간도 있어서 차 타고 나가서 여유롭게 쉬기 좋습니다.</p>
+<p style="color: #6B7684">2순위: C○○○ ○○○○○○○○○ …</p>
+</div>
+</div>
+<p class="gpt-cap">같은 질문을 10번 물었더니 <b class="tnum">10번 중 8번</b> 1순위로 추천 · 최근 7일</p>
+</div>
+<div class="gpt-panel" id="gp2" role="tabpanel" aria-labelledby="gt2" hidden>
+<div class="gpt-body">
+<p class="gpt-q">나혜석거리에서 새벽까지 하는 맛집 있나요</p>
+<div class="gpt-a">
+<p><b>1순위: <mark>한신우동 본점</mark></b><br>매일 04:00까지, 라스트오더 03:00. 우동·돈까스·튀김, 야장 좌석도 있어요.</p>
+<p style="color: #6B7684">2순위: 노○○○○○ ○○○ …</p>
+</div>
+</div>
+<p class="gpt-cap">같은 질문을 10번 물었더니 <b class="tnum">10번 중 5번</b> 1순위로 추천 · 최근 7일</p>
+</div>
 </figure>
 </div>
 </section>
@@ -700,6 +728,23 @@ fbq('track', 'PageView');
   document.getElementById("csX").addEventListener("click", close);
   view.addEventListener("click", function(e){ if (e.target === view) close(); });
   view.addEventListener("close", resume);
+})();
+</script>
+<script>
+// 첫 화면 답변 카드 탭 · 가만히 두면 6초마다 다음 업종, 누르면 자동 넘김 멈춤
+(function(){
+  var tabs = document.querySelectorAll(".gpt-tabs button"); if (!tabs.length) return;
+  var cur = 0, auto = true, t = null;
+  var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function show(n){
+    cur = n;
+    tabs.forEach(function(b, k){ b.setAttribute("aria-selected", k === n ? "true" : "false"); document.getElementById("gp" + k).hidden = k !== n; });
+  }
+  tabs.forEach(function(b, k){ b.addEventListener("click", function(){ auto = false; clearInterval(t); show(k); }); });
+  var fig = document.querySelector(".hero-fig .gpt");
+  if (fig) { fig.addEventListener("pointerenter", function(){ clearInterval(t); }); fig.addEventListener("pointerleave", function(){ if (auto) start(); }); }
+  function start(){ clearInterval(t); if (!still) t = setInterval(function(){ show((cur + 1) % tabs.length); }, 6000); }
+  start();
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>
