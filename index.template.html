@@ -232,6 +232,9 @@ section[id]{scroll-margin-top:80px}
 mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:0 3px}
 .reassure{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:14px;color:var(--muted)}
 .reassure span{display:inline-flex;align-items:center;gap:6px}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:20px}
+.terms p{background:#F2FAF5;border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--muted);line-height:1.45}
+.terms b{display:block;font-size:14.5px;color:var(--ok);margin-bottom:2px}
 .define{margin-top:16px;font-size:14.5px;color:var(--muted);line-height:1.7;max-width:560px}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:999px;padding:5px 11px}
 .b-ok{background:var(--ok-soft);color:var(--ok)}
@@ -510,15 +513,13 @@ fbq('track', 'PageView');
 <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>AI에 추천되도록 가게 정보 정리·보강을 대신 해 드려요</li>
 <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매달 시작 전·후를 비교한 리포트를 보내 드려요</li>
 </ul>
-<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px">
-<span class="badge b-ok">약정 없음 · 언제든 해지</span>
-<span class="badge b-ok">결제 확인 후 영업일 3일 안에 전액 환불</span>
-<span class="badge b-ok">무료 리포트 먼저</span>
-<span class="badge b-acc">같은 동네·같은 업종은 3곳까지만</span>
+<div class="terms">
+<p><b>약정 없음</b>언제든 해지</p>
+<p><b>전액 환불</b>결제 확인 후 영업일 3일 안</p>
+<p><b>3곳까지만</b>같은 동네·같은 업종</p>
 </div>
-<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price" style="margin-top: 22px; width: 100%">먼저 무료 리포트 받아 보기</a>
+<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price" style="margin-top: 22px; width: 100%">카톡으로 무료 리포트 받기</a>
 <p style="font-size: 13px; color: #6B7684; margin-top: 12px; text-align: center">프랜차이즈 본사나 매장 10개 이상은 카톡 별도 문의</p>
-<p style="font-size: 12.5px; color: #8B95A1; margin-top: 6px; text-align: center">2016년부터 운영 · (주)티앤에스컴퍼니 · 특허 제10-2804310호</p>
 </div>
 </div>
 </section>
