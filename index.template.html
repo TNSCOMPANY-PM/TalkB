@@ -163,11 +163,11 @@
     { "@type": "Question", "name": "토크비는 정확히 뭘 해 주나요?", "acceptedAnswer": { "@type": "Answer", "text": "요즘 손님들은 ‘근처 맛집 추천해줘’를 ChatGPT 같은 AI에도 물어봐요. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 우리 가게가 추천되는지 세고, 메뉴·가격·주차 같은 가게 정보를 AI가 찾기 쉽게 정리해 추천이 늘도록 도와요." } },
     { "@type": "Question", "name": "GEO가 뭔가요?", "acceptedAnswer": { "@type": "Answer", "text": "GEO(생성형 엔진 최적화)는 ChatGPT 같은 AI의 답변에 우리 가게가 나오게 하는 일이에요. 네이버 상위 노출의 AI 버전이라고 보시면 돼요." } },
     { "@type": "Question", "name": "제가 직접 ChatGPT에 검색하면 나오는데요?", "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT는 대화 이력을 기억해서 사장님 화면에서는 잘 나올 수 있어요. 토크비는 기록이 없는 새 대화에서 매장 이름을 빼고 손님처럼 물어 확인해요." } },
-    { "@type": "Question", "name": "네이버 AI 브리핑이나 제미나이도 보나요?", "acceptedAnswer": { "@type": "Answer", "text": "정리한 가게 정보는 Gemini, Claude, Perplexity 같은 다른 AI에도 함께 학습돼요. 측정과 리포트는 손님이 가장 많이 쓰는 ChatGPT를 기준으로 해요." } },
+    { "@type": "Question", "name": "네이버 AI 브리핑이나 제미나이도 보나요?", "acceptedAnswer": { "@type": "Answer", "text": "정리한 가게 정보는 Gemini, Claude, Perplexity 같은 다른 AI에도 함께 학습돼요. 다만 AI마다 반영 속도가 달라서 ChatGPT보다 늦게 나타날 수 있어요. 측정과 리포트는 손님이 가장 많이 쓰는 ChatGPT를 기준으로 해요." } },
     { "@type": "Question", "name": "얼마나 지나야 달라지나요?", "acceptedAnswer": { "@type": "Answer", "text": "빠른 가게는 1~2주 안에 변화가 보이기 시작하고, 추천이 자리 잡기까지는 보통 1~3개월이 걸려요. 상권과 업종에 따라 속도는 달라요." } },
     { "@type": "Question", "name": "네이버 플레이스 상위인데도 필요한가요?", "acceptedAnswer": { "@type": "Answer", "text": "플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요." } },
     { "@type": "Question", "name": "상담은 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "카카오톡 채널 ‘토크비’로 네이버 플레이스 링크를 보내 주시면 돼요(https://pf.kakao.com/_JxlWTX/chat). 영업일 09:00~18:00에 전문가가 직접 상담해 드려요." } },
-    { "@type": "Question", "name": "추천 횟수는 어떻게 확인하나요?", "acceptedAnswer": { "@type": "Answer", "text": "로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다." } },
+    { "@type": "Question", "name": "추천 횟수는 어떻게 확인하나요?", "acceptedAnswer": { "@type": "Answer", "text": "로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 물어요. ChatGPT 답변은 물을 때마다 달라서 같은 질문을 매주 5번씩 묻고, 최근 7일 동안 물은 횟수 중 우리 가게가 나온 횟수를 세요." } },
     { "@type": "Question", "name": "블로그 체험단이나 네이버 광고랑 뭐가 다른가요?", "acceptedAnswer": { "@type": "Answer", "text": "체험단과 네이버 광고는 네이버에서 검색하는 손님에게 보여요. 토크비는 ChatGPT 같은 AI에 물어보는 손님에게 우리 가게가 답으로 나오게 해요. 둘은 따로 움직여서, 네이버 상위인 가게가 AI 답변에는 안 나오는 경우가 많아요." } },
     { "@type": "Question", "name": "해지와 환불은 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "약정 없이 언제든 해지할 수 있고, 결제한 기간이 끝날 때까지 그대로 이용하실 수 있어요. 결제 확인 후 영업일 3일 이내에는 사유와 상관없이 전액 환불해 드려요. 그 이후에는 서비스가 이미 시작되어 환불이 불가해요." } }
   ]
@@ -423,7 +423,7 @@ fbq('track', 'PageView');
 
 <div class="hero-fig">
 <figure class="gpt">
-<div class="gpt-hd"><span class="gpt-dot" aria-hidden="true"></span>ChatGPT 답변 인용<span class="badge b-ok" style="margin-left: auto">실제 답변 일부 · {{updatedDot}}</span></div>
+<div class="gpt-hd"><span class="gpt-dot" aria-hidden="true"></span>ChatGPT 답변 인용<span class="badge b-ok" style="margin-left: auto">실제 답변 일부</span></div>
 <div class="gpt-body">
 <p class="gpt-q">수원 닭볶음탕 추천해줘</p>
 <div class="gpt-a">
@@ -445,7 +445,7 @@ fbq('track', 'PageView');
 <article class="fc">
 <span class="fn">1</span>
 <span class="badge b-gray">2026년 7월 4일 · 시작 전</span>
-<button type="button" class="shot" data-src="/images/cases/insaeng-before.jpg?v=2" data-alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음"><img src="/images/cases/insaeng-before.jpg?v=2" alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음" width="840" height="2847" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
+<button type="button" class="shot" data-src="/images/cases/insaeng-before.jpg?v=3" data-alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음"><img src="/images/cases/insaeng-before.jpg?v=3" alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음" width="840" height="2847" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
 <h3>ChatGPT가 우리 가게를<br>몰랐어요</h3>
 </article>
 <article class="fc">
@@ -457,7 +457,7 @@ fbq('track', 'PageView');
 <article class="fc fc-on">
 <span class="fn">3</span>
 <span class="badge b-acc">2026년 10월 6일 · 지금</span>
-<button type="button" class="shot" data-src="/images/cases/insaeng-now.jpg?v=2" data-alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위"><img src="/images/cases/insaeng-now.jpg?v=2" alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위" width="840" height="2228" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
+<button type="button" class="shot" data-src="/images/cases/insaeng-now.jpg?v=3" data-alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위"><img src="/images/cases/insaeng-now.jpg?v=3" alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위" width="840" height="2228" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
 <h3>같은 질문 {{featured.ba.label}}<br>1순위로 추천돼요</h3>
 </article>
 </div>
@@ -472,7 +472,7 @@ fbq('track', 'PageView');
 <blockquote style="margin: 0; font-size: clamp(22px, 2.6vw, 28px); font-weight: 800; line-height: 1.5">“토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <span style="color: #FF9C80">12명 예약</span>하시는 분도 생기고, 전화 문의도 많이 늘었어요.”</blockquote>
 <figcaption style="margin-top: 14px; font-size: 14px; color: #B0B8C1">탐라담 영종도점 · 백지혜 사장님 · 2026년 6월부터 이용 중</figcaption>
 </figure>
-<p style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 16px; color: #B0B8C1">이용 매장 {{storeCount}}곳 평균 · 손님 질문 10번 중 ChatGPT 추천 <b class="tnum" style="color: #fff">{{avg.base10}}번 → <span style="color: #FF9C80">{{avg.now10}}번</span></b></p>
+<p style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 16px; color: #B0B8C1">대표 매장 {{storeCount}}곳 평균 · 손님 질문 10번 중 ChatGPT 추천 <b class="tnum" style="color: #fff">{{avg.base10}}번 → <span style="color: #FF9C80">{{avg.now10}}번</span></b></p>
 </div>
 </section>
 
@@ -483,24 +483,22 @@ fbq('track', 'PageView');
 </div>
 <div class="cs-roll" id="csRoll">
 <div class="cs-track" id="csTrack">
-<button type="button" class="cs" data-src="/images/cases/01.jpg?v=2" data-alt="ChatGPT 답변 원문: 수원 닭볶음탕 추천해줘 · 도시농원 수원인계본점 10번 중 10번 1순위"><span class="cs-q">“수원 닭볶음탕 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도시농원 수원인계본점</b></span><span class="cs-n">10번 중 10번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/02.jpg?v=2" data-alt="ChatGPT 답변 원문: 서오릉 냉면 추천해줘 · 평진양 5번 중 5번 1순위"><span class="cs-q">“서오릉 냉면 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>평진양</b></span><span class="cs-n">5번 중 5번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/03.jpg?v=2" data-alt="ChatGPT 답변 원문: 종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘 · 선비꼬마김밥 종각직영점 5번 중 5번 1순위"><span class="cs-q">“종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>선비꼬마김밥 종각직영점</b></span><span class="cs-n">5번 중 5번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/04.jpg?v=2" data-alt="ChatGPT 답변 원문: 수원 시청역 근처 닭볶음탕 추천해줘 · 도시농원 수원인계본점 10번 중 10번 1순위"><span class="cs-q">“수원 시청역 근처 닭볶음탕 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도시농원 수원인계본점</b></span><span class="cs-n">10번 중 10번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/05.jpg?v=2" data-alt="ChatGPT 답변 원문: 명동성당 근처 예약 가능한 한식당 어디인가요 · 광장동가온 명동성당점 10번 중 10번 1순위"><span class="cs-q">“명동성당 근처 예약 가능한 한식당 어디인가요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온 명동성당점</b></span><span class="cs-n">10번 중 10번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/06.jpg?v=2" data-alt="ChatGPT 답변 원문: 탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요 · 오공김밥 일산탄현점 10번 중 10번 1순위"><span class="cs-q">“탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>오공김밥 일산탄현점</b></span><span class="cs-n">10번 중 10번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/07.jpg?v=2" data-alt="ChatGPT 답변 원문: 광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요 · 광장동가온 10번 중 9번 1순위"><span class="cs-q">“광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온</b></span><span class="cs-n">10번 중 9번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/08.jpg?v=2" data-alt="ChatGPT 답변 원문: 광장동 뷰 좋은 한식집 추천해주세요 · 광장동가온 10번 중 9번 1순위"><span class="cs-q">“광장동 뷰 좋은 한식집 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온</b></span><span class="cs-n">10번 중 9번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/09.jpg?v=2" data-alt="ChatGPT 답변 원문: 수원 주말에 드라이브 가기 좋은 카페 추천해주세요 · 도나스데이 본점 10번 중 8번 1순위"><span class="cs-q">“수원 주말에 드라이브 가기 좋은 카페 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도나스데이 본점</b></span><span class="cs-n">10번 중 8번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/10.jpg?v=2" data-alt="ChatGPT 답변 원문: 창원가로수길 근처 맛집 추천해줘 · 오프트 포르니 5번 중 4번 1순위"><span class="cs-q">“창원가로수길 근처 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>오프트 포르니</b></span><span class="cs-n">5번 중 4번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/11.jpg?v=2" data-alt="ChatGPT 답변 원문: 종각역 혼밥하기 좋은 분식집 추천해줘 · 선비꼬마김밥 종각직영점 5번 중 4번 1순위"><span class="cs-q">“종각역 혼밥하기 좋은 분식집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>선비꼬마김밥 종각직영점</b></span><span class="cs-n">5번 중 4번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/12.jpg?v=2" data-alt="ChatGPT 답변 원문: 용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘 · 인생뼈다귀 본점 10번 중 8번 1순위"><span class="cs-q">“용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>인생뼈다귀 본점</b></span><span class="cs-n">10번 중 8번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/13.jpg?v=2" data-alt="ChatGPT 답변 원문: 용인 모현에서 놀이방 있는 감자탕 맛집 추천해줘 · 인생뼈다귀 본점 5번 중 4번 1순위"><span class="cs-q">“용인 모현에서 놀이방 있는 감자탕 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>인생뼈다귀 본점</b></span><span class="cs-n">5번 중 4번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/14.jpg?v=2" data-alt="ChatGPT 답변 원문: 명동성당 근처 단체석 있는 한식당 알려주세요 · 광장동가온 명동성당점 10번 중 8번 1순위"><span class="cs-q">“명동성당 근처 단체석 있는 한식당 알려주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온 명동성당점</b></span><span class="cs-n">10번 중 8번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/15.jpg?v=2" data-alt="ChatGPT 답변 원문: 처인구 역북동 도넛 맛집 추천해줘 · 도나스데이 용인역북점 5번 중 4번 1순위"><span class="cs-q">“처인구 역북동 도넛 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도나스데이 용인역북점</b></span><span class="cs-n">5번 중 4번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/16.jpg?v=2" data-alt="ChatGPT 답변 원문: 일산 탄현동 배달 주문하기 좋은 분식 추천해주세요 · 오공김밥 일산탄현점 10번 중 8번 1순위"><span class="cs-q">“일산 탄현동 배달 주문하기 좋은 분식 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>오공김밥 일산탄현점</b></span><span class="cs-n">10번 중 8번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/17.jpg?v=2" data-alt="ChatGPT 답변 원문: 수원 도넛맛집 추천해줘 · 도나스데이 본점 10번 중 7번 1순위"><span class="cs-q">“수원 도넛맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도나스데이 본점</b></span><span class="cs-n">10번 중 7번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
-<button type="button" class="cs" data-src="/images/cases/18.jpg?v=2" data-alt="ChatGPT 답변 원문: 고양시 한식 냉면 추천해줘 · 평진양 5번 중 3번 1순위"><span class="cs-q">“고양시 한식 냉면 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>평진양</b></span><span class="cs-n">5번 중 3번 1순위</span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/01.jpg?v=3" data-alt="ChatGPT 답변 원문: 수원 닭볶음탕 추천해줘 · 도시농원 수원인계본점 1순위"><span class="cs-q">“수원 닭볶음탕 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도시농원 수원인계본점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/02.jpg?v=3" data-alt="ChatGPT 답변 원문: 서오릉 냉면 추천해줘 · 평진양 1순위"><span class="cs-q">“서오릉 냉면 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>평진양</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/03.jpg?v=3" data-alt="ChatGPT 답변 원문: 종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘 · 선비꼬마김밥 종각직영점 1순위"><span class="cs-q">“종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>선비꼬마김밥 종각직영점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/04.jpg?v=3" data-alt="ChatGPT 답변 원문: 수원 시청역 근처 닭볶음탕 추천해줘 · 도시농원 수원인계본점 1순위"><span class="cs-q">“수원 시청역 근처 닭볶음탕 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도시농원 수원인계본점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/05.jpg?v=3" data-alt="ChatGPT 답변 원문: 명동성당 근처 예약 가능한 한식당 어디인가요 · 광장동가온 명동성당점 1순위"><span class="cs-q">“명동성당 근처 예약 가능한 한식당 어디인가요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온 명동성당점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/06.jpg?v=3" data-alt="ChatGPT 답변 원문: 탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요 · 오공김밥 일산탄현점 1순위"><span class="cs-q">“탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>오공김밥 일산탄현점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/07.jpg?v=3" data-alt="ChatGPT 답변 원문: 광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요 · 광장동가온 1순위"><span class="cs-q">“광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/08.jpg?v=3" data-alt="ChatGPT 답변 원문: 광장동 뷰 좋은 한식집 추천해주세요 · 광장동가온 1순위"><span class="cs-q">“광장동 뷰 좋은 한식집 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/09.jpg?v=3" data-alt="ChatGPT 답변 원문: 수원 주말에 드라이브 가기 좋은 카페 추천해주세요 · 도나스데이 본점 1순위"><span class="cs-q">“수원 주말에 드라이브 가기 좋은 카페 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도나스데이 본점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/10.jpg?v=3" data-alt="ChatGPT 답변 원문: 창원가로수길 근처 맛집 추천해줘 · 오프트 포르니 1순위"><span class="cs-q">“창원가로수길 근처 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>오프트 포르니</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/11.jpg?v=3" data-alt="ChatGPT 답변 원문: 종각역 혼밥하기 좋은 분식집 추천해줘 · 선비꼬마김밥 종각직영점 1순위"><span class="cs-q">“종각역 혼밥하기 좋은 분식집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>선비꼬마김밥 종각직영점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/12.jpg?v=3" data-alt="ChatGPT 답변 원문: 용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘 · 인생뼈다귀 본점 1순위"><span class="cs-q">“용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>인생뼈다귀 본점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/13.jpg?v=3" data-alt="ChatGPT 답변 원문: 용인 모현에서 놀이방 있는 감자탕 맛집 추천해줘 · 인생뼈다귀 본점 1순위"><span class="cs-q">“용인 모현에서 놀이방 있는 감자탕 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>인생뼈다귀 본점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/14.jpg?v=3" data-alt="ChatGPT 답변 원문: 명동성당 근처 단체석 있는 한식당 알려주세요 · 광장동가온 명동성당점 1순위"><span class="cs-q">“명동성당 근처 단체석 있는 한식당 알려주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>광장동가온 명동성당점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/15.jpg?v=3" data-alt="ChatGPT 답변 원문: 처인구 역북동 도넛 맛집 추천해줘 · 도나스데이 용인역북점 1순위"><span class="cs-q">“처인구 역북동 도넛 맛집 추천해줘”</span><span class="cs-r"><span class="cs-b">1순위</span><b>도나스데이 용인역북점</b></span><span class="cs-o">원문 보기 ›</span></button>
+<button type="button" class="cs" data-src="/images/cases/16.jpg?v=3" data-alt="ChatGPT 답변 원문: 일산 탄현동 배달 주문하기 좋은 분식 추천해주세요 · 오공김밥 일산탄현점 1순위"><span class="cs-q">“일산 탄현동 배달 주문하기 좋은 분식 추천해주세요”</span><span class="cs-r"><span class="cs-b">1순위</span><b>오공김밥 일산탄현점</b></span><span class="cs-o">원문 보기 ›</span></button>
 </div>
 </div>
 <div class="cs-nav"><button type="button" class="cs-arr" id="csPrev" aria-label="이전 사례">‹</button><div class="cs-dots" id="csDots" role="tablist" aria-label="사례 고르기"></div><button type="button" class="cs-arr" id="csNext" aria-label="다음 사례">›</button></div>
@@ -581,11 +579,11 @@ fbq('track', 'PageView');
 <details class="faq" open><summary>토크비는 정확히 뭘 해 주나요?</summary><p>요즘 손님들은 ‘근처 맛집 추천해줘’를 ChatGPT 같은 AI에도 물어봐요. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 우리 가게가 추천되는지 세고, 메뉴·가격·주차 같은 가게 정보를 AI가 찾기 쉽게 정리해 추천이 늘도록 도와요.</p></details>
 <details class="faq"><summary>GEO가 뭔가요?</summary><p>GEO(생성형 엔진 최적화)는 ChatGPT 같은 AI의 답변에 우리 가게가 나오게 하는 일이에요. 네이버 상위 노출의 AI 버전이라고 보시면 돼요.</p></details>
 <details class="faq"><summary>제가 직접 ChatGPT에 검색하면 나오는데요?</summary><p>ChatGPT는 대화 이력을 기억해서 사장님 화면에서는 잘 나올 수 있어요. 토크비는 기록이 없는 새 대화에서 매장 이름을 빼고 손님처럼 물어 확인해요.</p></details>
-<details class="faq"><summary>네이버 AI 브리핑이나 제미나이도 보나요?</summary><p>정리한 가게 정보는 Gemini, Claude, Perplexity 같은 다른 AI에도 함께 학습돼요. 측정과 리포트는 손님이 가장 많이 쓰는 ChatGPT를 기준으로 해요.</p></details>
+<details class="faq"><summary>네이버 AI 브리핑이나 제미나이도 보나요?</summary><p>정리한 가게 정보는 Gemini, Claude, Perplexity 같은 다른 AI에도 함께 학습돼요. 다만 AI마다 반영 속도가 달라서 ChatGPT보다 늦게 나타날 수 있어요. 측정과 리포트는 손님이 가장 많이 쓰는 ChatGPT를 기준으로 해요.</p></details>
 <details class="faq"><summary>얼마나 지나야 달라지나요?</summary><p>빠른 가게는 1~2주 안에 변화가 보이기 시작하고, 추천이 자리 잡기까지는 보통 1~3개월이 걸려요. 상권과 업종에 따라 속도는 달라요.</p></details>
 <details class="faq"><summary>네이버 플레이스 상위인데도 필요한가요?</summary><p>플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요.</p></details>
 <details class="faq"><summary>상담은 어떻게 하나요?</summary><p>카카오톡 채널 ‘토크비’로 네이버 플레이스 링크를 보내 주시면 돼요. 영업일 09:00~18:00에 전문가가 직접 상담해 드려요. <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="faq">카톡으로 상담하기</a></p></details>
-<details class="faq"><summary>추천 횟수는 어떻게 확인하나요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 묻고, 같은 질문을 10번 반복해 우리 가게가 나온 횟수를 셉니다. ChatGPT 답변은 물을 때마다 달라서 한 번이 아니라 여러 번 묻습니다.</p></details>
+<details class="faq"><summary>추천 횟수는 어떻게 확인하나요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 물어요. ChatGPT 답변은 물을 때마다 달라서 같은 질문을 매주 5번씩 묻고, 최근 7일 동안 물은 횟수 중 우리 가게가 나온 횟수를 세요.</p></details>
 <details class="faq"><summary>블로그 체험단이나 네이버 광고랑 뭐가 다른가요?</summary><p>체험단과 네이버 광고는 네이버에서 검색하는 손님에게 보여요. 토크비는 ChatGPT 같은 AI에 물어보는 손님에게 우리 가게가 답으로 나오게 해요. 둘은 따로 움직여서, 네이버 상위인 가게가 AI 답변에는 안 나오는 경우가 많아요.</p></details>
 <details class="faq"><summary>해지와 환불은 어떻게 하나요?</summary><p>약정 없이 언제든 해지할 수 있고, 결제한 기간이 끝날 때까지 그대로 이용하실 수 있어요. 결제 확인 후 영업일 3일 이내에는 사유와 상관없이 전액 환불해 드려요. 그 이후에는 서비스가 이미 시작되어 환불이 불가해요.</p></details>
 </div>
