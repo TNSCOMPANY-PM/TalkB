@@ -269,6 +269,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .fn{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--deep);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
 .fv{background:var(--soft);border-radius:12px;padding:14px;min-height:112px}
 .fc .fv{height:230px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.fc .fv:has(.tags){align-items:flex-start;justify-content:flex-start;position:relative;overflow:hidden}
+.fc .fv:has(.tags)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(rgba(247,248,250,0),var(--soft) 80%);pointer-events:none}
 .fq{display:inline-block;background:#fff;border-radius:10px;padding:4px 10px;font-size:13px;font-weight:600}
 .fa{margin-top:8px;font-size:14px;line-height:1.7;color:var(--ink-mid)}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -442,7 +444,7 @@ fbq('track', 'PageView');
 <article class="fc">
 <span class="fn">2</span>
 <span class="badge b-gray">토크비 시작</span>
-<div class="fv"><p class="tags"><span>8인 룸 3개</span><span>최대 80명</span><span>놀이방</span><span>유아의자</span><span>유아용 식기</span><span>주차 15대 이상</span><span>발렛파킹</span><span>감자탕 소 31,000원</span><span>뼈해장국 11,000원</span><span>월~토 08~22시</span><span>브레이크타임 14:30~16:00</span></p></div>
+<div class="fv"><p class="tags"><span>8인 룸 3개</span><span>최대 80명</span><span>놀이방</span><span>유아의자</span><span>유아용 식기</span><span>주차 15대 이상</span><span>발렛파킹</span><span>감자탕 소 31,000원</span><span>뼈해장국 11,000원</span><span>월~토 08~22시</span><span>브레이크타임 14:30~16:00</span><span>라스트오더</span><span>예약 안내</span><span>단체석</span><span>웨이팅</span><span>포장</span><span>배달</span><span>콜키지</span><span>반려동물</span><span>결제 수단</span><span>대표 메뉴 사진</span><span>좌석 수</span><span>찾아오는 길</span></p></div>
 <h3>가게 정보를<br>ChatGPT가 읽게 정리했어요</h3>
 </article>
 <article class="fc fc-on">
