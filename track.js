@@ -68,4 +68,29 @@
       try { if (window.fbq) fbq("trackCustom", "CTAClick_FreeDiagnosis"); } catch (e4) {}
     }
   }, true);
+
+  // 중간 행동 3개(2026-10-08 레드팀) · 리타게팅 세분화용 · GA4·Meta 픽셀만, 앱 퍼널에는 보내지 않는다
+  function mid(name) {
+    try { if (window.gtag) gtag("event", name, { page_path: location.pathname, variant: variant }); } catch (e) {}
+    try { if (window.fbq) fbq("trackCustom", name); } catch (e) {}
+  }
+  var scrolled = false;
+  window.addEventListener("scroll", function () {
+    if (scrolled) return;
+    var h = document.documentElement.scrollHeight - innerHeight;
+    if (h > 0 && scrollY / h >= 0.5) { scrolled = true; mid("scroll_50"); }
+  }, { passive: true });
+  function onReady(fn) { if (document.readyState !== "loading") fn(); else document.addEventListener("DOMContentLoaded", fn); }
+  onReady(function () {
+    var price = document.getElementById("price");
+    if (price && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { mid("price_view"); io.disconnect(); } }, { threshold: 0.3 });
+      io.observe(price);
+    }
+    var faqSeen = false;
+    document.addEventListener("toggle", function (e) {
+      var d = e.target; if (faqSeen || !d || !d.classList || !d.classList.contains("faq") || !d.open) return;
+      faqSeen = true; mid("faq_open");
+    }, true);
+  });
 })();
