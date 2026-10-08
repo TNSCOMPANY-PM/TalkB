@@ -245,6 +245,27 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .terms .hot{background:var(--accent-soft);box-shadow:inset 0 0 0 1px #FBD5C6}
 .terms .hot b{color:var(--deep)}
 .define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
+.upd{display:inline-block;margin-bottom:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--ok)}
+.avg{margin-top:14px;font-size:15.5px;color:var(--ink-mid)}
+.avg b{color:var(--ink)}
+.avg .now{color:var(--deep)}
+.rv-top{margin:28px 0 0;padding:0}
+.rv-top blockquote{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:800;line-height:1.55}
+.rv-top figcaption{margin-top:12px;font-size:14px;color:#B0B8C1}
+.rv-img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:12px;margin-bottom:14px}
+.rv-top-ph{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
+.rv-top-ph .rv-img{margin:0;border-radius:18px}
+.rv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.rv{margin:0;background:rgba(255,255,255,.06);border-radius:18px;padding:20px}
+.rv blockquote{margin:0;font-size:15.5px;line-height:1.7;color:#E5E8EB}
+.rv figcaption{margin-top:12px;font-size:13.5px;color:#B0B8C1}
+.rp-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.rp-tabs button{min-height:38px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.rp-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.rp-views{margin-top:16px;max-width:860px}
+.rp-shot{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden;cursor:zoom-in;box-shadow:0 10px 30px rgba(25,31,40,.08)}
+.rp-shot img{display:block;width:100%;height:auto}
+.rp-shot[hidden]{display:none}
 .cs-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px}
 .cs-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:min(560px,70vw)}
 .cs-dots button{width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -367,7 +388,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.cs{width:78vw;max-width:300px}}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.rv-top-ph{grid-template-columns:1fr;gap:16px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
@@ -397,8 +418,10 @@ fbq('track', 'PageView');
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
 <nav class="nav" aria-label="주요 메뉴">
 <a class="nl" href="#proof">실제 답변</a>
-<a class="nl" href="#stores">이용 매장</a>
+<a class="nl" href="#stores">함께하는 가게</a>
+<a class="nl" href="#reviews">후기</a>
 <a class="nl" href="#how">진행 방식</a>
+<a class="nl" href="#report">리포트</a>
 <a class="nl" href="#price">가격</a>
 <a class="nl" href="#faq">자주 묻는 질문</a>
 </nav>
@@ -492,22 +515,12 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-
-
-<section style="background: #191F28; color: #fff">
-<div class="wrap" style="padding-top: 56px; padding-bottom: 56px; max-width: 880px">
-<figure style="margin: 0; padding: 0">
-<blockquote style="margin: 0; font-size: clamp(22px, 2.6vw, 28px); font-weight: 800; line-height: 1.5">“토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <span style="color: #FF9C80">12명 예약</span>하시는 분도 생기고, 전화 문의도 많이 늘었어요.”</blockquote>
-<figcaption style="margin-top: 14px; font-size: 14px; color: #B0B8C1">탐라담 영종도점 · 백지혜 사장님 · 2026년 6월부터 이용 중</figcaption>
-</figure>
-<p style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 16px; color: #B0B8C1">대표 매장 {{storeCount}}곳 평균 · 손님 질문 10번 중 ChatGPT 추천 <b class="tnum" style="color: #fff">{{avg.base10}}번 → <span style="color: #FF9C80">{{avg.now10}}번</span></b></p>
-</div>
-</section>
-
 <section class="sec" id="stores" style="background: #F7F8FA">
 <div class="wrap">
-<h2 class="h2">다른 사장님 가게는<br>이렇게 나옵니다</h2>
+<p class="upd">최신 업데이트 {{updatedDotPad}}</p>
+<h2 class="h2">토크비와 함께하는 가게는<br>이렇게 나옵니다</h2>
 <p class="lead">질문마다 ChatGPT가 1순위로 꼽은 가게예요. 누르면 실제 답변을 볼 수 있어요.</p>
+<p class="avg">대표 매장 {{storeCount}}곳 평균 · 손님 질문 10번 중 ChatGPT 추천 <b class="tnum">{{avg.base10}}번 → <span class="now">{{avg.now10}}번</span></b></p>
 </div>
 <div class="cs-roll" id="csRoll">
 <div class="cs-track" id="csTrack">
@@ -533,6 +546,29 @@ fbq('track', 'PageView');
 </div>
 <div class="cs-nav"><button type="button" class="cs-arr" id="csPrev" aria-label="이전 사례">‹</button><div class="cs-dots" id="csDots" role="tablist" aria-label="사례 고르기"></div><button type="button" class="cs-arr" id="csNext" aria-label="다음 사례">›</button></div>
 </section>
+
+<section class="sec" id="reviews" style="background: #191F28; color: #fff">
+<div class="wrap">
+<h2 class="h2" style="color: #fff">사장님들이 직접 남긴 후기</h2>
+<p class="lead" style="color: #B0B8C1">남겨 주신 후기 8개를 그대로 옮겼어요.</p>
+<figure class="rv-top rv-top-ph"><img class="rv-img" src="/images/reviews/tamladam.jpg" alt="탐라담 영종도점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“지피티에게 저희 동네 고기집이라던가 맛집을 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 지피티에서 추천받고 연락 하셨다고 12명 예약 하시는 분도 생기고 전화 문의도 많이 늘었어요! 종종 지피티 추천 받았다고 얘기해주시는분도 있어서 너무 기분좋아요ㅎㅎ”</blockquote><figcaption>탐라담 영종도점 · 백지혜 사장님</figcaption></div></figure>
+<div class="rv-grid">
+<figure class="rv"><img class="rv-img" src="/images/reviews/insaeng.jpg" alt="인생뼈다귀 본점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“답변률도 좋아지고 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인거 같아요 !!발빨라진느낌이라고 해야할까요?!! 앞으로도 기대가 됩니다 !! ㅎㅎㅎ”</blockquote><figcaption>인생뼈다귀 본점 · 이현민 사장님</figcaption></figure>
+<figure class="rv"><img class="rv-img" src="/images/reviews/ilsan-gejang.jpg" alt="일산게장집 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“ChatGpt를 활용한 마케팅도 기본적으로 수반되어야 한다 생각됩니다. 맛있는 음식을 만들기만 잘해서는 성공이 어려운 현재의 시대! 토크B가 많은 도움이 되고있습니다^^”</blockquote><figcaption>일산게장집 · 장동식 사장님</figcaption></figure>
+<figure class="rv"><img class="rv-img" src="/images/reviews/budae-inha.jpg" alt="부대찌개대사관 인하대역점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“ChatGPT에서 저희 매장이 두번째로 추천되는 걸 확인했어요. 네이버로 두번째 추천될려면 엄청난 비용이 드는데~~ 토크비 서비스는 저렴한 금액으로 매장 홍보를 가능하게 해 주네요. ChatGPT 검색이 더 활성화 되면 고객 유입이 더 늘어날 것으로 기대됩니다.”</blockquote><figcaption>부대찌개대사관 인하대역점</figcaption></figure>
+<figure class="rv"><img class="rv-img" src="/images/reviews/budae-magok.jpg" alt="부대찌개대사관 마곡직영점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“점차 답변률이 올라가는거 같아 기대가 큽니다ㅎㅎ”</blockquote><figcaption>부대찌개대사관 마곡직영점 · 전선용 대표</figcaption></figure>
+<figure class="rv"><img class="rv-img" src="/images/reviews/hansin.jpg" alt="한신우동 본점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“파일럿을 진행하면서 변화된 수치 및 개선내용이 영업 또는 가맹모집에 어떤 영향을 미쳤는지에 대한 자료 지표를 쉽게 확인했으면 좋겠습니다.”</blockquote><figcaption>한신우동 본점 · 민치호 본부장</figcaption></figure>
+<figure class="rv"><blockquote>“경기가 안 좋아서 매출에 직접적인 효과는 보지 못한 것 같아요. 손님들이 검색을 ai를 통해서 많이 하는지 궁금해요. 맛집은 아직까지는 네이버 위주로 돌아가는지 그 비율에 따라서 기대효과를 가늠할 수 있을거 같아요.”</blockquote><figcaption>오공김밥 일산탄현점 · 조항돈 사장님</figcaption></figure>
+<figure class="rv"><blockquote>“아직 실감이 나지 않아요 ㅎㅎ”</blockquote><figcaption>푸드브리즈 법동점</figcaption></figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 
@@ -564,6 +600,21 @@ fbq('track', 'PageView');
 </div>
 <a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="how" style="margin-top: 22px; width: 100%">카톡으로 무료 리포트 받기</a>
 </aside>
+</div>
+</section>
+
+<section class="sec" id="report" style="background: #FFF6F2">
+<div class="wrap">
+<h2 class="h2">매달 이런 리포트를 받아요</h2>
+<p class="lead">인생뼈다귀 본점이 받은 2026년 9월 실제 리포트예요. 다른 가게 이름은 가렸어요.</p>
+<div class="rp-tabs" role="tablist" aria-label="리포트 쪽 고르기"><button type="button" role="tab" id="rt0" aria-controls="rv0" aria-selected="true">핵심 요약</button><button type="button" role="tab" id="rt1" aria-controls="rv1" aria-selected="false">추천률 추이</button><button type="button" role="tab" id="rt2" aria-controls="rv2" aria-selected="false">AI가 소개하는 방식</button><button type="button" role="tab" id="rt3" aria-controls="rv3" aria-selected="false">경쟁 매장 비교</button><button type="button" role="tab" id="rt4" aria-controls="rv4" aria-selected="false">다음 미션</button></div>
+<div class="rp-views">
+<button type="button" class="rp-shot" id="rv0" role="tabpanel" aria-labelledby="rt0" data-src="/images/report/p1.jpg" data-alt="월간 리포트 샘플 · 핵심 요약"><img src="/images/report/p1.jpg" alt="월간 리포트 샘플 · 핵심 요약" width="1360" height="776" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv1" role="tabpanel" aria-labelledby="rt1" data-src="/images/report/p2.jpg" data-alt="월간 리포트 샘플 · 추천률 추이" hidden><img src="/images/report/p2.jpg" alt="월간 리포트 샘플 · 추천률 추이" width="1360" height="720" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv2" role="tabpanel" aria-labelledby="rt2" data-src="/images/report/p3.jpg" data-alt="월간 리포트 샘플 · AI가 소개하는 방식" hidden><img src="/images/report/p3.jpg" alt="월간 리포트 샘플 · AI가 소개하는 방식" width="1360" height="1230" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv3" role="tabpanel" aria-labelledby="rt3" data-src="/images/report/p6.jpg" data-alt="월간 리포트 샘플 · 경쟁 매장 비교" hidden><img src="/images/report/p6.jpg" alt="월간 리포트 샘플 · 경쟁 매장 비교" width="1360" height="548" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv4" role="tabpanel" aria-labelledby="rt4" data-src="/images/report/p7.jpg" data-alt="월간 리포트 샘플 · 다음 미션" hidden><img src="/images/report/p7.jpg" alt="월간 리포트 샘플 · 다음 미션" width="1360" height="786" loading="lazy" decoding="async"></button>
+</div>
 </div>
 </section>
 
@@ -719,7 +770,7 @@ fbq('track', 'PageView');
     document.getElementById("csNext").addEventListener("click", function(){ goTo(cur + 1); });
   }
   document.addEventListener("click", function(e){
-    var b = e.target.closest && e.target.closest(".cs, .shot"); if (!b || !view) return;
+    var b = e.target.closest && e.target.closest(".cs, .shot, .rp-shot"); if (!b || !view) return;
     img.src = b.getAttribute("data-src"); img.alt = b.getAttribute("data-alt");
     if (view.showModal) view.showModal(); else view.setAttribute("open", "");
     pause();
@@ -745,6 +796,14 @@ fbq('track', 'PageView');
   if (fig) { fig.addEventListener("pointerenter", function(){ clearInterval(t); }); fig.addEventListener("pointerleave", function(){ if (auto) start(); }); }
   function start(){ clearInterval(t); if (!still) t = setInterval(function(){ show((cur + 1) % tabs.length); }, 6000); }
   start();
+})();
+</script>
+<script>
+(function(){
+  var tabs = document.querySelectorAll(".rp-tabs button");
+  tabs.forEach(function(b, k){ b.addEventListener("click", function(){
+    tabs.forEach(function(x, j){ x.setAttribute("aria-selected", j === k ? "true" : "false"); document.getElementById("rv" + j).hidden = j !== k; });
+  }); });
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>

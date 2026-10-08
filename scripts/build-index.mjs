@@ -15,6 +15,11 @@ for (const s of Object.values(data.stores)) {
   s.barClass = (s.nowPct ?? 0) >= 60 ? "" : "b";
 }
 
+// 화면 표기용 날짜(한국시간 · 2026.10.08 꼴)
+{
+  const k = new Date(new Date(data.updatedAt).getTime() + 9 * 3600000);
+  data.updatedDotPad = `${k.getUTCFullYear()}.${String(k.getUTCMonth() + 1).padStart(2, "0")}.${String(k.getUTCDate()).padStart(2, "0")}`;
+}
 const get = (path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), data);
 function fill(tplName, outName) {
   let text = readFileSync(join(ROOT, tplName), "utf8");
