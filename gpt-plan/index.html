@@ -325,6 +325,17 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .rv-top{margin:28px 0 0;padding:0}
 .rv-top blockquote{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:800;line-height:1.55}
 .rv-top figcaption{margin-top:12px;font-size:14px;color:#B0B8C1}
+.rs-wrap{margin-top:28px;min-height:300px}
+.rs{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:28px;align-items:center;margin:0}
+.rs[hidden]{display:none}
+.rs .rv-img{margin:0;border-radius:18px}
+.rs-noimg{grid-template-columns:1fr;max-width:820px}
+.rs blockquote{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:800;line-height:1.55}
+.rs figcaption{margin-top:12px;font-size:14px;color:#B0B8C1}
+.rs-nav{display:flex;align-items:center;gap:14px;margin-top:22px}
+.rs-arr{width:44px;height:44px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:transparent;color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.rs-arr:hover{background:rgba(255,255,255,.1)}
+.rs-count{font-size:14px;color:#B0B8C1;min-width:44px;text-align:center}
 .rv-img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:12px;margin-bottom:14px}
 .rv-top-ph{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
 .rv-top-ph .rv-img{margin:0;border-radius:18px}
@@ -461,7 +472,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.rv-top-ph{grid-template-columns:1fr;gap:16px}.cs{width:78vw;max-width:300px}}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.rs{grid-template-columns:1fr;gap:16px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
@@ -577,13 +588,13 @@ fbq('track', 'PageView');
 <div class="wrap">
 <h2 class="h2">매달 이런 리포트를 받아요</h2>
 <p class="lead">인생뼈다귀 본점이 받은 2026년 9월 실제 리포트예요. 다른 가게 이름은 가렸어요.</p>
-<div class="rp-tabs" role="tablist" aria-label="리포트 쪽 고르기"><button type="button" role="tab" id="rt0" aria-controls="rv0" aria-selected="true">핵심 요약</button><button type="button" role="tab" id="rt1" aria-controls="rv1" aria-selected="false">추천률 추이</button><button type="button" role="tab" id="rt2" aria-controls="rv2" aria-selected="false">AI가 소개하는 방식</button><button type="button" role="tab" id="rt3" aria-controls="rv3" aria-selected="false">경쟁 매장 비교</button><button type="button" role="tab" id="rt4" aria-controls="rv4" aria-selected="false">다음 미션</button></div>
+<div class="rp-tabs" role="tablist" aria-label="리포트 쪽 고르기"><button type="button" role="tab" id="rt0" aria-controls="rv0" aria-selected="true">핵심 요약</button><button type="button" role="tab" id="rt1" aria-controls="rv1" aria-selected="false">추천률 추이</button><button type="button" role="tab" id="rt2" aria-controls="rv2" aria-selected="false">AI가 소개하는 방식</button><button type="button" role="tab" id="rt3" aria-controls="rv3" aria-selected="false">경쟁 매장 비교</button><button type="button" role="tab" id="rt4" aria-controls="rv4" aria-selected="false">다음 달 계획</button></div>
 <div class="rp-views">
 <button type="button" class="rp-shot" id="rv0" role="tabpanel" aria-labelledby="rt0" data-src="/images/report/p1.jpg"><img src="/images/report/p1.jpg" alt="월간 리포트 샘플 · 핵심 요약" width="1360" height="776" loading="lazy" decoding="async"></button>
 <button type="button" class="rp-shot" id="rv1" role="tabpanel" aria-labelledby="rt1" data-src="/images/report/p2.jpg" hidden><img src="/images/report/p2.jpg" alt="월간 리포트 샘플 · 추천률 추이" width="1360" height="720" loading="lazy" decoding="async"></button>
 <button type="button" class="rp-shot" id="rv2" role="tabpanel" aria-labelledby="rt2" data-src="/images/report/p3.jpg" hidden><img src="/images/report/p3.jpg" alt="월간 리포트 샘플 · AI가 소개하는 방식" width="1360" height="1230" loading="lazy" decoding="async"></button>
 <button type="button" class="rp-shot" id="rv3" role="tabpanel" aria-labelledby="rt3" data-src="/images/report/p6.jpg" hidden><img src="/images/report/p6.jpg" alt="월간 리포트 샘플 · 경쟁 매장 비교" width="1360" height="548" loading="lazy" decoding="async"></button>
-<button type="button" class="rp-shot" id="rv4" role="tabpanel" aria-labelledby="rt4" data-src="/images/report/p7.jpg" hidden><img src="/images/report/p7.jpg" alt="월간 리포트 샘플 · 다음 미션" width="1360" height="786" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv4" role="tabpanel" aria-labelledby="rt4" data-src="/images/report/p7.jpg?v=2" hidden><img src="/images/report/p7.jpg?v=2" alt="월간 리포트 샘플 · 다음 달 계획" width="1360" height="807" loading="lazy" decoding="async"></button>
 </div>
 </div>
 <div class="wrap see" style="margin-top: 56px">

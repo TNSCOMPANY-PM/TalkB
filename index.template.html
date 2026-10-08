@@ -252,6 +252,17 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .rv-top{margin:28px 0 0;padding:0}
 .rv-top blockquote{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:800;line-height:1.55}
 .rv-top figcaption{margin-top:12px;font-size:14px;color:#B0B8C1}
+.rs-wrap{margin-top:28px;min-height:300px}
+.rs{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:28px;align-items:center;margin:0}
+.rs[hidden]{display:none}
+.rs .rv-img{margin:0;border-radius:18px}
+.rs-noimg{grid-template-columns:1fr;max-width:820px}
+.rs blockquote{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:800;line-height:1.55}
+.rs figcaption{margin-top:12px;font-size:14px;color:#B0B8C1}
+.rs-nav{display:flex;align-items:center;gap:14px;margin-top:22px}
+.rs-arr{width:44px;height:44px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:transparent;color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.rs-arr:hover{background:rgba(255,255,255,.1)}
+.rs-count{font-size:14px;color:#B0B8C1;min-width:44px;text-align:center}
 .rv-img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:12px;margin-bottom:14px}
 .rv-top-ph{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
 .rv-top-ph .rv-img{margin:0;border-radius:18px}
@@ -388,7 +399,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.rv-top-ph{grid-template-columns:1fr;gap:16px}.cs{width:78vw;max-width:300px}}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.rs{grid-template-columns:1fr;gap:16px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
@@ -551,16 +562,17 @@ fbq('track', 'PageView');
 <div class="wrap">
 <h2 class="h2" style="color: #fff">사장님들이 직접 남긴 후기</h2>
 <p class="lead" style="color: #B0B8C1">남겨 주신 후기 8개를 그대로 옮겼어요.</p>
-<figure class="rv-top rv-top-ph"><img class="rv-img" src="/images/reviews/tamladam.jpg" alt="탐라담 영종도점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“지피티에게 저희 동네 고기집이라던가 맛집을 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 지피티에서 추천받고 연락 하셨다고 12명 예약 하시는 분도 생기고 전화 문의도 많이 늘었어요! 종종 지피티 추천 받았다고 얘기해주시는분도 있어서 너무 기분좋아요ㅎㅎ”</blockquote><figcaption>탐라담 영종도점 · 백지혜 사장님</figcaption></div></figure>
-<div class="rv-grid">
-<figure class="rv"><img class="rv-img" src="/images/reviews/insaeng.jpg" alt="인생뼈다귀 본점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“답변률도 좋아지고 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인거 같아요 !!발빨라진느낌이라고 해야할까요?!! 앞으로도 기대가 됩니다 !! ㅎㅎㅎ”</blockquote><figcaption>인생뼈다귀 본점 · 이현민 사장님</figcaption></figure>
-<figure class="rv"><img class="rv-img" src="/images/reviews/ilsan-gejang.jpg" alt="일산게장집 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“ChatGpt를 활용한 마케팅도 기본적으로 수반되어야 한다 생각됩니다. 맛있는 음식을 만들기만 잘해서는 성공이 어려운 현재의 시대! 토크B가 많은 도움이 되고있습니다^^”</blockquote><figcaption>일산게장집 · 장동식 사장님</figcaption></figure>
-<figure class="rv"><img class="rv-img" src="/images/reviews/budae-inha.jpg" alt="부대찌개대사관 인하대역점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“ChatGPT에서 저희 매장이 두번째로 추천되는 걸 확인했어요. 네이버로 두번째 추천될려면 엄청난 비용이 드는데~~ 토크비 서비스는 저렴한 금액으로 매장 홍보를 가능하게 해 주네요. ChatGPT 검색이 더 활성화 되면 고객 유입이 더 늘어날 것으로 기대됩니다.”</blockquote><figcaption>부대찌개대사관 인하대역점</figcaption></figure>
-<figure class="rv"><img class="rv-img" src="/images/reviews/budae-magok.jpg" alt="부대찌개대사관 마곡직영점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“점차 답변률이 올라가는거 같아 기대가 큽니다ㅎㅎ”</blockquote><figcaption>부대찌개대사관 마곡직영점 · 전선용 대표</figcaption></figure>
-<figure class="rv"><img class="rv-img" src="/images/reviews/hansin.jpg" alt="한신우동 본점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><blockquote>“파일럿을 진행하면서 변화된 수치 및 개선내용이 영업 또는 가맹모집에 어떤 영향을 미쳤는지에 대한 자료 지표를 쉽게 확인했으면 좋겠습니다.”</blockquote><figcaption>한신우동 본점 · 민치호 본부장</figcaption></figure>
-<figure class="rv"><blockquote>“경기가 안 좋아서 매출에 직접적인 효과는 보지 못한 것 같아요. 손님들이 검색을 ai를 통해서 많이 하는지 궁금해요. 맛집은 아직까지는 네이버 위주로 돌아가는지 그 비율에 따라서 기대효과를 가늠할 수 있을거 같아요.”</blockquote><figcaption>오공김밥 일산탄현점 · 조항돈 사장님</figcaption></figure>
-<figure class="rv"><blockquote>“아직 실감이 나지 않아요 ㅎㅎ”</blockquote><figcaption>푸드브리즈 법동점</figcaption></figure>
+<div class="rs-wrap" aria-live="polite">
+<figure class="rs" id="rs0" role="group" aria-roledescription="후기" aria-label="1 / 8"><img class="rv-img" src="/images/reviews/tamladam.jpg" alt="탐라담 영종도점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“지피티에게 저희 동네 고기집이라던가 맛집을 물어보면 항상 다른 경쟁업체만 얘기했었는데, 토크비 이용 후에 지피티에서 추천받고 연락 하셨다고 12명 예약 하시는 분도 생기고 전화 문의도 많이 늘었어요! 종종 지피티 추천 받았다고 얘기해주시는분도 있어서 너무 기분좋아요ㅎㅎ”</blockquote><figcaption>탐라담 영종도점 · 백지혜 사장님</figcaption></div></figure>
+<figure class="rs" id="rs1" role="group" aria-roledescription="후기" aria-label="2 / 8" hidden><img class="rv-img" src="/images/reviews/insaeng.jpg" alt="인생뼈다귀 본점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“답변률도 좋아지고 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인거 같아요 !!발빨라진느낌이라고 해야할까요?!! 앞으로도 기대가 됩니다 !! ㅎㅎㅎ”</blockquote><figcaption>인생뼈다귀 본점 · 이현민 사장님</figcaption></div></figure>
+<figure class="rs" id="rs2" role="group" aria-roledescription="후기" aria-label="3 / 8" hidden><img class="rv-img" src="/images/reviews/ilsan-gejang.jpg" alt="일산게장집 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“ChatGpt를 활용한 마케팅도 기본적으로 수반되어야 한다 생각됩니다. 맛있는 음식을 만들기만 잘해서는 성공이 어려운 현재의 시대! 토크B가 많은 도움이 되고있습니다^^”</blockquote><figcaption>일산게장집 · 장동식 사장님</figcaption></div></figure>
+<figure class="rs" id="rs3" role="group" aria-roledescription="후기" aria-label="4 / 8" hidden><img class="rv-img" src="/images/reviews/budae-inha.jpg" alt="부대찌개대사관 인하대역점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“ChatGPT에서 저희 매장이 두번째로 추천되는 걸 확인했어요. 네이버로 두번째 추천될려면 엄청난 비용이 드는데~~ 토크비 서비스는 저렴한 금액으로 매장 홍보를 가능하게 해 주네요. ChatGPT 검색이 더 활성화 되면 고객 유입이 더 늘어날 것으로 기대됩니다.”</blockquote><figcaption>부대찌개대사관 인하대역점</figcaption></div></figure>
+<figure class="rs" id="rs4" role="group" aria-roledescription="후기" aria-label="5 / 8" hidden><img class="rv-img" src="/images/reviews/budae-magok.jpg" alt="부대찌개대사관 마곡직영점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“점차 답변률이 올라가는거 같아 기대가 큽니다ㅎㅎ”</blockquote><figcaption>부대찌개대사관 마곡직영점 · 전선용 대표</figcaption></div></figure>
+<figure class="rs" id="rs5" role="group" aria-roledescription="후기" aria-label="6 / 8" hidden><img class="rv-img" src="/images/reviews/hansin.jpg" alt="한신우동 본점 매장 사진" width="640" height="400" loading="lazy" decoding="async"><div><blockquote>“파일럿을 진행하면서 변화된 수치 및 개선내용이 영업 또는 가맹모집에 어떤 영향을 미쳤는지에 대한 자료 지표를 쉽게 확인했으면 좋겠습니다.”</blockquote><figcaption>한신우동 본점 · 민치호 본부장</figcaption></div></figure>
+<figure class="rs rs-noimg" id="rs6" role="group" aria-roledescription="후기" aria-label="7 / 8" hidden><div><blockquote>“경기가 안 좋아서 매출에 직접적인 효과는 보지 못한 것 같아요. 손님들이 검색을 ai를 통해서 많이 하는지 궁금해요. 맛집은 아직까지는 네이버 위주로 돌아가는지 그 비율에 따라서 기대효과를 가늠할 수 있을거 같아요.”</blockquote><figcaption>오공김밥 일산탄현점 · 조항돈 사장님</figcaption></div></figure>
+<figure class="rs rs-noimg" id="rs7" role="group" aria-roledescription="후기" aria-label="8 / 8" hidden><div><blockquote>“아직 실감이 나지 않아요 ㅎㅎ”</blockquote><figcaption>푸드브리즈 법동점</figcaption></div></figure>
 </div>
+<div class="rs-nav"><button type="button" class="rs-arr" id="rsPrev" aria-label="이전 후기">‹</button><span class="rs-count tnum" id="rsCount">1 / 8</span><button type="button" class="rs-arr" id="rsNext" aria-label="다음 후기">›</button></div>
 </div>
 </section>
 
@@ -607,13 +619,13 @@ fbq('track', 'PageView');
 <div class="wrap">
 <h2 class="h2">매달 이런 리포트를 받아요</h2>
 <p class="lead">인생뼈다귀 본점이 받은 2026년 9월 실제 리포트예요. 다른 가게 이름은 가렸어요.</p>
-<div class="rp-tabs" role="tablist" aria-label="리포트 쪽 고르기"><button type="button" role="tab" id="rt0" aria-controls="rv0" aria-selected="true">핵심 요약</button><button type="button" role="tab" id="rt1" aria-controls="rv1" aria-selected="false">추천률 추이</button><button type="button" role="tab" id="rt2" aria-controls="rv2" aria-selected="false">AI가 소개하는 방식</button><button type="button" role="tab" id="rt3" aria-controls="rv3" aria-selected="false">경쟁 매장 비교</button><button type="button" role="tab" id="rt4" aria-controls="rv4" aria-selected="false">다음 미션</button></div>
+<div class="rp-tabs" role="tablist" aria-label="리포트 쪽 고르기"><button type="button" role="tab" id="rt0" aria-controls="rv0" aria-selected="true">핵심 요약</button><button type="button" role="tab" id="rt1" aria-controls="rv1" aria-selected="false">추천률 추이</button><button type="button" role="tab" id="rt2" aria-controls="rv2" aria-selected="false">AI가 소개하는 방식</button><button type="button" role="tab" id="rt3" aria-controls="rv3" aria-selected="false">경쟁 매장 비교</button><button type="button" role="tab" id="rt4" aria-controls="rv4" aria-selected="false">다음 달 계획</button></div>
 <div class="rp-views">
 <button type="button" class="rp-shot" id="rv0" role="tabpanel" aria-labelledby="rt0" data-src="/images/report/p1.jpg" data-alt="월간 리포트 샘플 · 핵심 요약"><img src="/images/report/p1.jpg" alt="월간 리포트 샘플 · 핵심 요약" width="1360" height="776" loading="lazy" decoding="async"></button>
 <button type="button" class="rp-shot" id="rv1" role="tabpanel" aria-labelledby="rt1" data-src="/images/report/p2.jpg" data-alt="월간 리포트 샘플 · 추천률 추이" hidden><img src="/images/report/p2.jpg" alt="월간 리포트 샘플 · 추천률 추이" width="1360" height="720" loading="lazy" decoding="async"></button>
 <button type="button" class="rp-shot" id="rv2" role="tabpanel" aria-labelledby="rt2" data-src="/images/report/p3.jpg" data-alt="월간 리포트 샘플 · AI가 소개하는 방식" hidden><img src="/images/report/p3.jpg" alt="월간 리포트 샘플 · AI가 소개하는 방식" width="1360" height="1230" loading="lazy" decoding="async"></button>
 <button type="button" class="rp-shot" id="rv3" role="tabpanel" aria-labelledby="rt3" data-src="/images/report/p6.jpg" data-alt="월간 리포트 샘플 · 경쟁 매장 비교" hidden><img src="/images/report/p6.jpg" alt="월간 리포트 샘플 · 경쟁 매장 비교" width="1360" height="548" loading="lazy" decoding="async"></button>
-<button type="button" class="rp-shot" id="rv4" role="tabpanel" aria-labelledby="rt4" data-src="/images/report/p7.jpg" data-alt="월간 리포트 샘플 · 다음 미션" hidden><img src="/images/report/p7.jpg" alt="월간 리포트 샘플 · 다음 미션" width="1360" height="786" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv4" role="tabpanel" aria-labelledby="rt4" data-src="/images/report/p7.jpg?v=2" data-alt="월간 리포트 샘플 · 다음 달 계획" hidden><img src="/images/report/p7.jpg?v=2" alt="월간 리포트 샘플 · 다음 달 계획" width="1360" height="807" loading="lazy" decoding="async"></button>
 </div>
 </div>
 </section>
@@ -804,6 +816,16 @@ fbq('track', 'PageView');
   tabs.forEach(function(b, k){ b.addEventListener("click", function(){
     tabs.forEach(function(x, j){ x.setAttribute("aria-selected", j === k ? "true" : "false"); document.getElementById("rv" + j).hidden = j !== k; });
   }); });
+})();
+</script>
+<script>
+// 후기 넘김 · 화살표로 한 장씩
+(function(){
+  var sl = document.querySelectorAll(".rs"), cur = 0, cnt = document.getElementById("rsCount");
+  if (!sl.length) return;
+  function show(n){ cur = (n + sl.length) % sl.length; sl.forEach(function(x, k){ x.hidden = k !== cur; }); if (cnt) cnt.textContent = (cur + 1) + " / " + sl.length; }
+  document.getElementById("rsPrev").addEventListener("click", function(){ show(cur - 1); });
+  document.getElementById("rsNext").addEventListener("click", function(){ show(cur + 1); });
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>
