@@ -297,6 +297,17 @@
 .steps5 p{margin-top:6px;color:var(--ink-mid);font-size:14.5px;line-height:1.6}
 .promise{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;font-size:16px;line-height:1.7;color:var(--ink-mid)}
 .promise b{color:var(--ink)}
+.rp-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.rp-tabs button{min-height:38px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:14.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.rp-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.rp-views{margin-top:16px;max-width:860px}
+.rp-shot{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden;cursor:zoom-in;box-shadow:0 10px 30px rgba(25,31,40,.08)}
+.rp-shot img{display:block;width:100%;height:auto}
+.rp-shot[hidden]{display:none}
+.cs-view{border:0;padding:0;border-radius:16px;width:min(1000px,96vw);max-height:92vh;overflow:auto;background:#fff}
+.cs-view::backdrop{background:rgba(25,31,40,.6)}
+.cs-view img{display:block;width:100%;height:auto}
+.cs-x{position:sticky;top:8px;float:right;margin:8px 8px -48px 0;width:40px;height:40px;border:0;border-radius:50%;background:rgba(25,31,40,.75);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:1}
 .back{display:inline-block;padding:8px 0;color:var(--ink-mid);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:900px){.inc{grid-template-columns:1fr 1fr}.steps5{grid-template-columns:1fr 1fr}.see{grid-template-columns:1fr}}
 @media (max-width:640px){.inc,.steps5{grid-template-columns:1fr}.qa div{grid-template-columns:1fr;gap:4px}}
@@ -365,22 +376,19 @@ fbq('track', 'PageView');
 </section>
 
 <section class="sec" id="report">
-<div class="wrap see">
-<div>
-<h2 class="h2">매달 리포트에<br>이런 내용이 들어가요</h2>
-<ul class="chk" style="margin-top: 22px">
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>AI 추천률과 월초 대비 변화</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>평균 추천 순위와 1위 추천률</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>측정 회차별 추천률 추이</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>ChatGPT가 우리 가게를 소개하는 방식</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>잘 나오는 질문과 아쉬운 질문</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>질문 유형별 성과</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>질문별 답변 요약</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>ChatGPT가 우리 가게를 얼마나 정확히 아는지</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>경쟁 매장 비교</li>
-<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>다음 달에 할 일과 매장 정보 점검</li>
-</ul>
+<div class="wrap">
+<h2 class="h2">매달 이런 리포트를 받아요</h2>
+<p class="lead">인생뼈다귀 본점이 받은 2026년 9월 실제 리포트예요. 다른 가게 이름은 가렸어요.</p>
+<div class="rp-tabs" role="tablist" aria-label="리포트 쪽 고르기"><button type="button" role="tab" id="rt0" aria-controls="rv0" aria-selected="true">핵심 요약</button><button type="button" role="tab" id="rt1" aria-controls="rv1" aria-selected="false">추천률 추이</button><button type="button" role="tab" id="rt2" aria-controls="rv2" aria-selected="false">AI가 소개하는 방식</button><button type="button" role="tab" id="rt3" aria-controls="rv3" aria-selected="false">경쟁 매장 비교</button><button type="button" role="tab" id="rt4" aria-controls="rv4" aria-selected="false">다음 미션</button></div>
+<div class="rp-views">
+<button type="button" class="rp-shot" id="rv0" role="tabpanel" aria-labelledby="rt0" data-src="/images/report/p1.jpg"><img src="/images/report/p1.jpg" alt="월간 리포트 샘플 · 핵심 요약" width="1360" height="776" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv1" role="tabpanel" aria-labelledby="rt1" data-src="/images/report/p2.jpg" hidden><img src="/images/report/p2.jpg" alt="월간 리포트 샘플 · 추천률 추이" width="1360" height="720" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv2" role="tabpanel" aria-labelledby="rt2" data-src="/images/report/p3.jpg" hidden><img src="/images/report/p3.jpg" alt="월간 리포트 샘플 · AI가 소개하는 방식" width="1360" height="1230" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv3" role="tabpanel" aria-labelledby="rt3" data-src="/images/report/p6.jpg" hidden><img src="/images/report/p6.jpg" alt="월간 리포트 샘플 · 경쟁 매장 비교" width="1360" height="548" loading="lazy" decoding="async"></button>
+<button type="button" class="rp-shot" id="rv4" role="tabpanel" aria-labelledby="rt4" data-src="/images/report/p7.jpg" hidden><img src="/images/report/p7.jpg" alt="월간 리포트 샘플 · 다음 미션" width="1360" height="786" loading="lazy" decoding="async"></button>
 </div>
+</div>
+<div class="wrap see" style="margin-top: 56px">
 <div>
 <h2 class="h2" style="font-size: 26px">마이페이지에서는</h2>
 <ul class="chk" style="margin-top: 18px">
@@ -390,7 +398,9 @@ fbq('track', 'PageView');
 <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매주 30초짜리 ‘이번 주 질문’ 하나</li>
 <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>가게 정보 채우기와 리포트 PDF</li>
 </ul>
-<h2 class="h2" style="font-size: 26px; margin-top: 36px">카톡으로 받는 알림</h2>
+</div>
+<div>
+<h2 class="h2" style="font-size: 26px">카톡으로 받는 알림</h2>
 <ul class="tl">
 <li><b>시작할 때</b><span>결제 금액, 결제 수단, 측정 요일, 다음 결제일</span></li>
 <li><b>첫 측정이 끝나면</b><span>지금 우리 가게가 ChatGPT에 나오는 비율</span></li>
@@ -456,6 +466,12 @@ fbq('track', 'PageView');
 </div>
 </footer>
 
+<dialog class="cs-view" id="csView" aria-label="리포트 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
+<div class="float" aria-label="카카오톡 상담">
+<div class="float-qr" id="floatQr"><img src="/images/kakao-chat-qr.svg" alt="토크비 카카오톡 상담 QR 코드" width="76" height="76"><p>휴대폰으로 찍으면<br>카톡 상담이 열려요.</p><button type="button" aria-label="QR 닫기" id="floatQrClose">×</button></div>
+<a class="float-kakao" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-float"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡 상담</a>
+</div>
+
 <div class="sticky" id="sticky"><a class="price" href="/">홈</a><a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-sticky">카톡으로 무료 리포트 받기</a></div>
 </div>
 
@@ -466,6 +482,28 @@ fbq('track', 'PageView');
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ seen[e.target.id || e.target.className] = e.isIntersecting; }); st.classList.toggle("hide", Object.keys(seen).some(function(k){ return seen[k]; })); });
   ["final"].forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
   var f = document.querySelector(".foot"); if (f) io.observe(f);
+})();
+</script>
+<script>
+(function(){
+  var q = document.getElementById("floatQr"), c = document.getElementById("floatQrClose");
+  if (q && c) {
+    try { if (localStorage.getItem("tb_qr_closed") === "1") q.classList.add("hide"); } catch(e) {}
+    c.addEventListener("click", function(){ q.classList.add("hide"); try { localStorage.setItem("tb_qr_closed", "1"); } catch(e) {} });
+  }
+  // 리포트 샘플 탭 · 누르면 크게
+  var tabs = document.querySelectorAll(".rp-tabs button");
+  tabs.forEach(function(b, k){ b.addEventListener("click", function(){
+    tabs.forEach(function(x, j){ x.setAttribute("aria-selected", j === k ? "true" : "false"); document.getElementById("rv" + j).hidden = j !== k; });
+  }); });
+  var view = document.getElementById("csView"), img = document.getElementById("csImg");
+  document.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest(".rp-shot"); if (!b || !view) return;
+    img.src = b.getAttribute("data-src"); img.alt = b.querySelector("img").alt;
+    if (view.showModal) view.showModal(); else view.setAttribute("open", "");
+  });
+  function close(){ if (view.close) view.close(); else view.removeAttribute("open"); }
+  if (view) { document.getElementById("csX").addEventListener("click", close); view.addEventListener("click", function(e){ if (e.target === view) close(); }); }
 })();
 </script>
 <script src="/track.js" defer></script>
