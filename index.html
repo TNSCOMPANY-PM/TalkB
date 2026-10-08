@@ -259,15 +259,18 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .faq[open] summary::after{content:"−"}
 .faq p{margin-top:10px;font-size:15.5px;color:var(--ink-mid);line-height:1.75}
 .faq p a{color:var(--deep);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.row{display:grid;grid-template-columns:minmax(0,1fr) 88px 88px;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
-.row-h{padding:12px 0 10px}
-.row-h p{font-size:13px;font-weight:700;color:var(--muted)}
-.row-h p+p,.row .was,.row .now{text-align:right}
-.row .was{font-size:18px;font-weight:700;color:#8B95A1}
-.row .now{font-size:22px;font-weight:800;color:var(--deep)}
-.row:last-child{border-bottom:0}
-.row .nm{font-size:17px;font-weight:800}
-.row .meta{font-size:13.5px;color:var(--muted)}
+.sc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.sc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+.sc .nm{font-size:17px;font-weight:800}
+.sc .meta{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+.sc-row{display:grid;grid-template-columns:44px minmax(0,1fr) 40px;gap:10px;align-items:center;margin-top:8px}
+.sc-row .lb{font-size:13px;color:var(--muted);font-weight:700}
+.sc-row b{text-align:right;font-size:16px}
+.sc-row b.was{color:#8B95A1}
+.sc-row b.now{color:var(--deep);font-size:18px}
+.tens{position:relative;height:12px;background:#E5E8EB;-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent calc(10% - 3px) 10%);mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent calc(10% - 3px) 10%)}
+.tens i{position:absolute;left:0;top:0;bottom:0;background:#8B95A1}
+.tens.now i{background:var(--accent)}
 .bar{height:8px;border-radius:6px;background:#EEF0F3;overflow:hidden;position:relative}
 .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--accent)}
 .bar i.b{background:#C9CED6}
@@ -300,8 +303,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "fig" "bottom";row-gap:20px;padding-top:52px}.row{grid-template-columns:minmax(0,1fr) 56px 56px;gap:8px}.row .now{font-size:19px}.row .was{font-size:16px}}
-@media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.row{grid-template-columns:minmax(0,1fr) 52px 52px;gap:8px}.row .nm{font-size:16px}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "fig" "bottom";row-gap:20px;padding-top:52px}.sc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
 .sticky.hide{transform:translateY(110%)}}
@@ -396,7 +399,7 @@ fbq('track', 'PageView');
 <div>
 <p style="font-size: 15px; color: #B0B8C1">이용 매장 6곳 평균</p>
 <p class="tnum" style="font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin-top: 6px">손님 질문 10번 중 <span style="color: #B0B8C1">1번</span> → <span style="color: #FF9C80">7번</span></p>
-<p style="font-size: 14px; color: #B0B8C1; margin-top: 6px">같은 질문을 10번 물었을 때 ChatGPT가 추천한 횟수 · 시작 전 → 지금</p>
+<p style="font-size: 14px; color: #B0B8C1; margin-top: 6px">손님 질문 10번 중 ChatGPT가 추천한 횟수 · 시작 전 → 지금</p>
 </div>
 <figure style="margin: 0; background: rgba(255,255,255,.06); border-radius: 20px; padding: 26px">
 <blockquote style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.6">“토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <span style="color: #FF9C80">12명 예약</span>하시는 분도 생기고, 전화 문의도 많이 늘었어요.”</blockquote>
@@ -433,16 +436,39 @@ fbq('track', 'PageView');
 
 <section class="sec" id="stores" style="background: #F7F8FA">
 <div class="wrap">
-<h2 class="h2">이용 매장은<br>이만큼 늘었어요</h2>
-<p class="lead">손님처럼 같은 질문을 10번 물었을 때, ChatGPT가 그 가게를 추천한 횟수예요.</p>
-<div class="card" style="margin-top: 28px; padding: 8px 28px; box-shadow: none">
-<div class="row row-h"><p>매장</p><p>시작 전</p><p>지금</p></div>
-<div class="row"><div><p class="nm">오공김밥 일산탄현점</p><p class="meta">고양 일산서구 · 분식</p></div><p class="was tnum">0번</p><p class="now tnum">8번</p></div>
-<div class="row"><div><p class="nm">광장동가온</p><p class="meta">서울 광진구 · 한식</p></div><p class="was tnum">3번</p><p class="now tnum">7번</p></div>
-<div class="row"><div><p class="nm">인생뼈다귀 본점</p><p class="meta">용인 처인구 · 감자탕</p></div><p class="was tnum">0번</p><p class="now tnum">7번</p></div>
-<div class="row"><div><p class="nm">선비꼬마김밥 종각직영점</p><p class="meta">서울 종로구 · 분식</p></div><p class="was tnum">1번</p><p class="now tnum">7번</p></div>
-<div class="row"><div><p class="nm">도나스데이 본점</p><p class="meta">수원 권선구 · 대형 카페</p></div><p class="was tnum">2번</p><p class="now tnum">5번</p></div>
-<div class="row"><div><p class="nm">한신우동 본점</p><p class="meta">수원 팔달구 · 우동·야식</p></div><p class="was tnum">1번</p><p class="now tnum">5번</p></div>
+<h2 class="h2">다른 사장님 가게는<br>이렇게 바뀌었어요</h2>
+<p class="lead">손님이 물을 만한 질문을 ChatGPT에 10번 물으면, 몇 번이나 그 가게를 추천하는지 셌어요.</p>
+<div class="sc-grid">
+<article class="sc">
+<p class="nm">오공김밥 일산탄현점</p><p class="meta">고양 일산서구 · 분식</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(0 * 10%)"></i></span><b class="was tnum">0번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(8 * 10%)"></i></span><b class="now tnum">8번</b></div>
+</article>
+<article class="sc">
+<p class="nm">광장동가온</p><p class="meta">서울 광진구 · 한식</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(3 * 10%)"></i></span><b class="was tnum">3번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(7 * 10%)"></i></span><b class="now tnum">7번</b></div>
+</article>
+<article class="sc">
+<p class="nm">인생뼈다귀 본점</p><p class="meta">용인 처인구 · 감자탕</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(0 * 10%)"></i></span><b class="was tnum">0번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(7 * 10%)"></i></span><b class="now tnum">7번</b></div>
+</article>
+<article class="sc">
+<p class="nm">선비꼬마김밥 종각직영점</p><p class="meta">서울 종로구 · 분식</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(1 * 10%)"></i></span><b class="was tnum">1번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(7 * 10%)"></i></span><b class="now tnum">7번</b></div>
+</article>
+<article class="sc">
+<p class="nm">도나스데이 본점</p><p class="meta">수원 권선구 · 대형 카페</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(2 * 10%)"></i></span><b class="was tnum">2번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(5 * 10%)"></i></span><b class="now tnum">5번</b></div>
+</article>
+<article class="sc">
+<p class="nm">한신우동 본점</p><p class="meta">수원 팔달구 · 우동·야식</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(1 * 10%)"></i></span><b class="was tnum">1번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(5 * 10%)"></i></span><b class="now tnum">5번</b></div>
+</article>
 </div>
 </div>
 </section>
