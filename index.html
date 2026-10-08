@@ -240,7 +240,23 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .terms b{display:block;font-size:14.5px;color:var(--ok);margin-bottom:2px}
 .terms .hot{background:var(--accent-soft);box-shadow:inset 0 0 0 1px #FBD5C6}
 .terms .hot b{color:var(--deep)}
-.define{margin-top:16px;font-size:14.5px;color:var(--muted);line-height:1.7;max-width:560px}
+.define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
+.sc-more{display:none}
+.sc-open .sc-more{display:block}
+.sc-btn{display:block;margin:18px auto 0;min-height:44px;padding:0 22px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:700;font-size:15px;color:var(--ink-mid);cursor:pointer}
+.sc-open .sc-btn{display:none}
+.flow-sec{padding-top:24px}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.fc{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.fc-on{border-color:#FBD5C6;box-shadow:0 8px 24px rgba(201,68,34,.10)}
+.fn{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--deep);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.fv{background:var(--soft);border-radius:12px;padding:14px;min-height:112px}
+.fq{display:inline-block;background:#fff;border-radius:10px;padding:4px 10px;font-size:13px;font-weight:600}
+.fa{margin-top:8px;font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700}
+.fc h3{margin-top:14px;font-size:18px;font-weight:800;line-height:1.4}
+.define b{color:var(--ink);font-weight:800}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:999px;padding:5px 11px}
 .b-ok{background:var(--ok-soft);color:var(--ok)}
 .b-acc{background:var(--accent-soft);color:var(--deep)}
@@ -316,7 +332,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
@@ -362,7 +378,7 @@ fbq('track', 'PageView');
 <h1 class="h1" id="h1"><span class="va"><span class="l">옆 가게는</span> <span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span> <span class="l">사장님 가게는요?</span></span></h1>
 <template id="h1b"><span class="vb"><span class="l">손님이 ChatGPT에</span> <span class="l">동네 맛집을 물으면,</span> <span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span></template>
 <script>if (window.TB_VARIANT === "h1-b") { document.getElementById("h1").innerHTML = document.getElementById("h1b").innerHTML; }</script>
-<p class="define">토크비(TalkB)는 손님이 ChatGPT에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스예요.</p>
+<p class="define">토크비(TalkB)는 손님이 ChatGPT에 맛집을 물을 때 우리 가게가 나오도록, 메뉴·가격·주차·룸 같은 가게 정보를 ChatGPT가 읽는 곳에 정리해 드려요. <b>사장님은 카톡만 보시면 됩니다.</b></p>
 </div>
 <div class="hero-bottom">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 28px">
@@ -390,6 +406,29 @@ fbq('track', 'PageView');
 </div>
 </section>
 
+<section class="sec flow-sec">
+<div class="wrap">
+<h2 class="h2">이렇게 바뀝니다</h2>
+<div class="flow">
+<article class="fc">
+<span class="fn">1</span>
+<div class="fv"><p class="fq">“동네 고깃집 추천해줘”</p><p class="fa">① ㄱ○○갈비<br>② ㅅ○○식당<br>③ ㅎ○○숯불</p></div>
+<h3>지금은 ChatGPT가<br>우리 가게를 잘 몰라요</h3>
+</article>
+<article class="fc">
+<span class="fn">2</span>
+<div class="fv"><p class="tags"><span>메뉴</span><span>가격</span><span>주차</span><span>룸</span><span>영업시간</span><span>대표 메뉴 사진</span></p></div>
+<h3>토크비가 가게 정보를<br>ChatGPT가 읽게 정리해요</h3>
+</article>
+<article class="fc fc-on">
+<span class="fn">3</span>
+<div class="fv"><p class="fq">“동네 고깃집 추천해줘”</p><p class="fa">① <mark>우리 가게</mark><br>② ㄱ○○갈비<br>③ ㅅ○○식당</p></div>
+<h3>손님이 물으면<br>우리 가게가 나와요</h3>
+</article>
+</div>
+</div>
+</section>
+
 <section class="sec" id="proof" style="background: #FFF6F2">
 <div class="wrap">
 <h2 class="h2">석 달 전 ChatGPT는<br>다른 가게만 추천했어요</h2>
@@ -409,17 +448,15 @@ fbq('track', 'PageView');
 </div>
 </section>
 
+
+
 <section style="background: #191F28; color: #fff">
-<div class="wrap two" style="gap: 32px; padding-top: 56px; padding-bottom: 56px; align-items: center">
-<div>
-<p style="font-size: 15px; color: #B0B8C1">이용 매장 6곳 평균</p>
-<p class="tnum" style="font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin-top: 6px">손님 질문 10번 중 <span style="color: #B0B8C1">1번</span> → <span style="color: #FF9C80">7번</span></p>
-<p style="font-size: 14px; color: #B0B8C1; margin-top: 6px">손님 질문 10번 중 ChatGPT가 추천한 횟수 · 시작 전 → 지금</p>
-</div>
-<figure style="margin: 0; background: rgba(255,255,255,.06); border-radius: 20px; padding: 26px">
-<blockquote style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.6">“토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <span style="color: #FF9C80">12명 예약</span>하시는 분도 생기고, 전화 문의도 많이 늘었어요.”</blockquote>
+<div class="wrap" style="padding-top: 56px; padding-bottom: 56px; max-width: 880px">
+<figure style="margin: 0; padding: 0">
+<blockquote style="margin: 0; font-size: clamp(22px, 2.6vw, 28px); font-weight: 800; line-height: 1.5">“토크비 이용 후에 ChatGPT에서 추천받고 연락했다며 <span style="color: #FF9C80">12명 예약</span>하시는 분도 생기고, 전화 문의도 많이 늘었어요.”</blockquote>
 <figcaption style="margin-top: 14px; font-size: 14px; color: #B0B8C1">탐라담 영종도점 · 백지혜 사장님 · 2026년 6월부터 이용 중</figcaption>
 </figure>
+<p style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 16px; color: #B0B8C1">이용 매장 6곳 평균 · 손님 질문 10번 중 ChatGPT 추천 <b class="tnum" style="color: #fff">1번 → <span style="color: #FF9C80">7번</span></b></p>
 </div>
 </section>
 
@@ -441,30 +478,31 @@ fbq('track', 'PageView');
 <p class="sc-q">“광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요”<br><b>이 질문은 10번 중 9번 1순위</b></p>
 </article>
 <article class="sc">
-<p class="nm">인생뼈다귀 본점</p><p class="meta">용인 처인구 · 감자탕</p>
-<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(0 * 10%)"></i></span><b class="was tnum">0번</b></div>
-<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(6 * 10%)"></i></span><b class="now tnum">6번</b></div>
-<p class="sc-q">“용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”<br><b>이 질문은 10번 중 9번 1순위</b></p>
-</article>
-<article class="sc">
 <p class="nm">선비꼬마김밥 종각직영점</p><p class="meta">서울 종로구 · 분식</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(1 * 10%)"></i></span><b class="was tnum">1번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(7 * 10%)"></i></span><b class="now tnum">7번</b></div>
 <p class="sc-q">“종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘”<br><b>이 질문은 5번 중 5번 1순위</b></p>
 </article>
-<article class="sc">
+<article class="sc sc-more">
+<p class="nm">인생뼈다귀 본점</p><p class="meta">용인 처인구 · 감자탕</p>
+<div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(0 * 10%)"></i></span><b class="was tnum">0번</b></div>
+<div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(6 * 10%)"></i></span><b class="now tnum">6번</b></div>
+<p class="sc-q">“용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”<br><b>이 질문은 10번 중 9번 1순위</b></p>
+</article>
+<article class="sc sc-more">
 <p class="nm">도나스데이 본점</p><p class="meta">수원 권선구 · 대형 카페</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(2 * 10%)"></i></span><b class="was tnum">2번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(5 * 10%)"></i></span><b class="now tnum">5번</b></div>
 <p class="sc-q">“수원 주말에 드라이브 가기 좋은 카페 추천해주세요”<br><b>이 질문은 10번 중 8번 1순위</b></p>
 </article>
-<article class="sc">
+<article class="sc sc-more">
 <p class="nm">한신우동 본점</p><p class="meta">수원 팔달구 · 우동·야식</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc(1 * 10%)"></i></span><b class="was tnum">1번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc(5 * 10%)"></i></span><b class="now tnum">5번</b></div>
 <p class="sc-q">“나혜석거리에서 새벽까지 하는 맛집 있나요”<br><b>이 질문은 10번 중 5번 1순위</b></p>
 </article>
 </div>
+<button type="button" class="sc-btn" id="scMore">3곳 더 보기</button>
 </div>
 </section>
 
@@ -472,7 +510,7 @@ fbq('track', 'PageView');
 <div class="wrap two" style="gap: 56px; align-items: start">
 <div>
 <p class="eyebrow">진행 방식</p>
-<h2 class="h2">사장님은 카톡만 보시면 돼요</h2>
+<h2 class="h2">사장님은 카톡만 보시면 됩니다</h2>
 <div style="display: grid; gap: 28px; margin-top: 36px">
 <div class="step"><span class="num">1</span><div><h3 style="font-size: 19px; font-weight: 800"><a class="step-link" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="step1">카톡으로 플레이스 링크 보내기 <span aria-hidden="true">→</span></a></h3></div></div>
 <div class="step"><span class="num">2</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 무료 리포트 받기</h3></div></div>
@@ -602,6 +640,9 @@ fbq('track', 'PageView');
   try { if (localStorage.getItem("tb_qr_closed") === "1") q.classList.add("hide"); } catch(e) {}
   c.addEventListener("click", function(){ q.classList.add("hide"); try { localStorage.setItem("tb_qr_closed", "1"); } catch(e) {} });
 })();
+</script>
+<script>
+(function(){ var b = document.getElementById("scMore"); if (b) b.addEventListener("click", function(){ document.getElementById("stores").classList.add("sc-open"); }); })();
 </script>
 <script src="/track.js" data-home="1" defer></script>
 </body>
