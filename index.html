@@ -268,6 +268,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .fc-on{border-color:#FBD5C6;box-shadow:0 8px 24px rgba(201,68,34,.10)}
 .fn{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--deep);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
 .fv{background:var(--soft);border-radius:12px;padding:14px;min-height:112px}
+.fc .fv{height:230px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
 .fq{display:inline-block;background:#fff;border-radius:10px;padding:4px 10px;font-size:13px;font-weight:600}
 .fa{margin-top:8px;font-size:14px;line-height:1.7;color:var(--ink-mid)}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -296,7 +297,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .step-link{display:inline-block;padding:8px 0;color:var(--ink);text-decoration:underline;text-decoration-color:var(--kakao);text-decoration-thickness:4px;text-underline-offset:5px}
 .step-link:hover{color:var(--deep)}
 .plan-link{display:inline-flex;align-items:center;gap:6px;margin-top:26px;min-height:46px;padding:0 20px;border:1.5px solid var(--ink);border-radius:999px;font-weight:800;font-size:15.5px;color:var(--ink)}
-.back-link{display:inline-block;padding:8px 0;font-size:14.5px;font-weight:700;color:var(--ink-mid);text-decoration:underline;text-underline-offset:3px}
+.plan-full{display:flex;justify-content:center;width:100%;margin-top:10px;min-height:48px;border-radius:14px}
 .plan-link:hover{background:var(--ink);color:#fff}
 .num{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--deep);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
 .faq{border-bottom:1px solid var(--line);padding:20px 0}
@@ -507,7 +508,6 @@ fbq('track', 'PageView');
 <div class="step"><span class="num">2</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 무료 리포트 받기</h3></div></div>
 <div class="step"><span class="num">3</span><div><h3 style="font-size: 19px; font-weight: 800">시작하면 매주 확인, 매달 결과 보고</h3></div></div>
 </div>
-<a class="plan-link" href="/gpt-plan/" data-pos="how-plan">GPT 플랜 자세히 보기 <span aria-hidden="true">→</span></a>
 </div>
 <aside class="card" style="background: #FFF6F2; border-color: #FBD5C6">
 <div class="rp" role="img" aria-label="무료 리포트 예시: 손님 질문 10개 중 2개에서 추천, 대신 추천된 가게 3곳">
@@ -557,8 +557,8 @@ fbq('track', 'PageView');
 <p class="hot"><b>3곳까지만</b>같은 동네·같은 업종</p>
 </div>
 <a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price" style="margin-top: 22px; width: 100%">카톡으로 무료 리포트 받기</a>
-<p style="margin-top: 12px; text-align: center"><a class="back-link" href="/gpt-plan/" data-pos="price-plan">포함 내용 자세히 보기 →</a></p>
-<p style="font-size: 13px; color: #6B7684; margin-top: 4px; text-align: center">프랜차이즈 본사나 매장 10개 이상은 카톡 별도 문의</p>
+<a class="plan-link plan-full" href="/gpt-plan/" data-pos="price-plan">GPT 플랜 자세히 보기 <span aria-hidden="true">→</span></a>
+<p style="font-size: 13px; color: #6B7684; margin-top: 12px; text-align: center">프랜차이즈 본사나 매장 10개 이상은 카톡 별도 문의</p>
 </div>
 </div>
 </section>
