@@ -268,6 +268,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .sc-row b{text-align:right;font-size:16px}
 .sc-row b.was{color:#8B95A1}
 .sc-row b.now{color:var(--deep);font-size:18px}
+.sc-q{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-mid);line-height:1.55}
+.sc-q b{color:var(--deep);font-size:13px}
 .tens{position:relative;height:12px;background:#E5E8EB;-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent calc(10% - 3px) 10%);mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent calc(10% - 3px) 10%)}
 .tens i{position:absolute;left:0;top:0;bottom:0;background:#8B95A1}
 .tens.now i{background:var(--accent)}
@@ -375,7 +377,7 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section class="sec" style="background: #FFF6F2">
+<section class="sec" id="proof" style="background: #FFF6F2">
 <div class="wrap">
 <h2 class="h2">석 달 전 ChatGPT는<br>다른 가게만 추천했어요</h2>
 <p style="margin-top: 22px; display: inline-flex; background: #fff; border: 1px solid #FBD5C6; border-radius: 999px; padding: 10px 18px; font-size: 16px; font-weight: 700">손님이 물은 질문 · 용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘</p>
@@ -408,32 +410,6 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section class="sec" id="proof">
-<div class="wrap">
-<h2 class="h2">분식, 카페, 한식도<br>1순위로 추천돼요</h2>
-<div class="three" style="margin-top: 32px">
-<article class="card">
-<p style="font-size: 13px; color: #6B7684">수원 · 대형 카페</p>
-<h3 style="font-size: 18px; font-weight: 800; margin-top: 8px">“수원 주말에 드라이브 가기 좋은 카페 추천해주세요”</h3>
-<p class="gpt-a" style="margin-top: 12px; font-size: 14.5px"><mark>도나스데이 본점</mark> · 넓은 주차장이 장점이고 루프탑·야외 공간도 있어서…</p>
-<span class="badge b-acc" style="margin-top: 14px">{{featured.c1.label}} 1순위</span>
-</article>
-<article class="card">
-<p style="font-size: 13px; color: #6B7684">고양 탄현역 · 분식</p>
-<h3 style="font-size: 18px; font-weight: 800; margin-top: 8px">“탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요”</h3>
-<p class="gpt-a" style="margin-top: 12px; font-size: 14.5px"><mark>오공김밥 일산탄현점</mark> · 가장 무난한 1순위예요. 김밥 종류가 58가지 정도로 다양하고…</p>
-<span class="badge b-acc" style="margin-top: 14px">{{featured.c2.label}} 1순위</span>
-</article>
-<article class="card">
-<p style="font-size: 13px; color: #6B7684">서울 광장동 · 한식</p>
-<h3 style="font-size: 18px; font-weight: 800; margin-top: 8px">“광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요”</h3>
-<p class="gpt-a" style="margin-top: 12px; font-size: 14.5px">1. <mark>광장동가온</mark> · 가장 무난한 1순위 · 룸 4~15명, 단체석 최대 40명…</p>
-<span class="badge b-acc" style="margin-top: 14px">{{featured.c3.label}} 1순위</span>
-</article>
-</div>
-</div>
-</section>
-
 <section class="sec" id="stores" style="background: #F7F8FA">
 <div class="wrap">
 <h2 class="h2">다른 사장님 가게는<br>이렇게 바뀌었어요</h2>
@@ -443,31 +419,37 @@ fbq('track', 'PageView');
 <p class="nm">{{stores.ogong.name}}</p><p class="meta">{{stores.ogong.area}} · {{stores.ogong.cat}}</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc({{stores.ogong.base10}} * 10%)"></i></span><b class="was tnum">{{stores.ogong.base10}}번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc({{stores.ogong.now10}} * 10%)"></i></span><b class="now tnum">{{stores.ogong.now10}}번</b></div>
+<p class="sc-q">“탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요”<br><b>{{featured.c2.label}} 1순위로 추천</b></p>
 </article>
 <article class="sc">
 <p class="nm">{{stores.gaon.name}}</p><p class="meta">{{stores.gaon.area}} · {{stores.gaon.cat}}</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc({{stores.gaon.base10}} * 10%)"></i></span><b class="was tnum">{{stores.gaon.base10}}번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc({{stores.gaon.now10}} * 10%)"></i></span><b class="now tnum">{{stores.gaon.now10}}번</b></div>
+<p class="sc-q">“광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요”<br><b>{{featured.c3.label}} 1순위로 추천</b></p>
 </article>
 <article class="sc">
 <p class="nm">{{stores.insaeng.name}}</p><p class="meta">{{stores.insaeng.area}} · {{stores.insaeng.cat}}</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc({{stores.insaeng.base10}} * 10%)"></i></span><b class="was tnum">{{stores.insaeng.base10}}번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc({{stores.insaeng.now10}} * 10%)"></i></span><b class="now tnum">{{stores.insaeng.now10}}번</b></div>
+<p class="sc-q">“용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”<br><b>{{featured.ba.label}} 1순위로 추천</b></p>
 </article>
 <article class="sc">
 <p class="nm">{{stores.sunbi.name}}</p><p class="meta">{{stores.sunbi.area}} · {{stores.sunbi.cat}}</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc({{stores.sunbi.base10}} * 10%)"></i></span><b class="was tnum">{{stores.sunbi.base10}}번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc({{stores.sunbi.now10}} * 10%)"></i></span><b class="now tnum">{{stores.sunbi.now10}}번</b></div>
+<p class="sc-q">“종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘”<br><b>{{featured.s1.label}} 1순위로 추천</b></p>
 </article>
 <article class="sc">
 <p class="nm">{{stores.donas.name}}</p><p class="meta">{{stores.donas.area}} · {{stores.donas.cat}}</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc({{stores.donas.base10}} * 10%)"></i></span><b class="was tnum">{{stores.donas.base10}}번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc({{stores.donas.now10}} * 10%)"></i></span><b class="now tnum">{{stores.donas.now10}}번</b></div>
+<p class="sc-q">“수원 주말에 드라이브 가기 좋은 카페 추천해주세요”<br><b>{{featured.c1.label}} 1순위로 추천</b></p>
 </article>
 <article class="sc">
 <p class="nm">{{stores.hansin.name}}</p><p class="meta">{{stores.hansin.area}} · {{stores.hansin.cat}}</p>
 <div class="sc-row"><span class="lb">시작 전</span><span class="tens"><i style="width: calc({{stores.hansin.base10}} * 10%)"></i></span><b class="was tnum">{{stores.hansin.base10}}번</b></div>
 <div class="sc-row"><span class="lb">지금</span><span class="tens now"><i style="width: calc({{stores.hansin.now10}} * 10%)"></i></span><b class="now tnum">{{stores.hansin.now10}}번</b></div>
+<p class="sc-q">“나혜석거리에서 새벽까지 하는 맛집 있나요”<br><b>{{featured.s2.label}} 1순위로 추천</b></p>
 </article>
 </div>
 </div>

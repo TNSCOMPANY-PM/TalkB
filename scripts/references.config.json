@@ -1,18 +1,84 @@
 {
   "_comment": "랜딩 레퍼런스 수치 설정(2026-10-07) · baseline10 = 시작 첫 측정(2026년 6~7월, 고정값, 10번 중 몇 번) · 매주 scripts/update-references.mjs 가 최근 7일 실측으로 now 를 채운다",
   "stores": [
-    { "key": "ogong", "name": "오공김밥 일산탄현점", "area": "고양 일산서구", "cat": "분식", "baselinePct": 0 },
-    { "key": "gaon", "name": "광장동가온", "area": "서울 광진구", "cat": "한식", "baselinePct": 26.7 },
-    { "key": "insaeng", "name": "인생뼈다귀 본점", "area": "용인 처인구", "cat": "감자탕", "baselinePct": 0 },
-    { "key": "sunbi", "name": "선비꼬마김밥 종각직영점", "area": "서울 종로구", "cat": "분식", "baselinePct": 10 },
-    { "key": "donas", "name": "도나스데이 본점", "area": "수원 권선구", "cat": "대형 카페", "baselinePct": 20 },
-    { "key": "hansin", "name": "한신우동 본점", "area": "수원 팔달구", "cat": "우동·야식", "baselinePct": 13.3 }
+    {
+      "key": "ogong",
+      "name": "오공김밥 일산탄현점",
+      "area": "고양 일산서구",
+      "cat": "분식",
+      "baselinePct": 0
+    },
+    {
+      "key": "gaon",
+      "name": "광장동가온",
+      "area": "서울 광진구",
+      "cat": "한식",
+      "baselinePct": 26.7
+    },
+    {
+      "key": "insaeng",
+      "name": "인생뼈다귀 본점",
+      "area": "용인 처인구",
+      "cat": "감자탕",
+      "baselinePct": 0
+    },
+    {
+      "key": "sunbi",
+      "name": "선비꼬마김밥 종각직영점",
+      "area": "서울 종로구",
+      "cat": "분식",
+      "baselinePct": 10
+    },
+    {
+      "key": "donas",
+      "name": "도나스데이 본점",
+      "area": "수원 권선구",
+      "cat": "대형 카페",
+      "baselinePct": 20
+    },
+    {
+      "key": "hansin",
+      "name": "한신우동 본점",
+      "area": "수원 팔달구",
+      "cat": "우동·야식",
+      "baselinePct": 13.3
+    }
   ],
   "featured": [
-    { "key": "hero", "store": "도시농원 수원인계본점", "question": "수원 닭볶음탕 추천해줘" },
-    { "key": "ba", "store": "인생뼈다귀 본점", "question": "용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘" },
-    { "key": "c1", "store": "도나스데이 본점", "question": "수원 주말에 드라이브 가기 좋은 카페 추천해주세요" },
-    { "key": "c2", "store": "오공김밥 일산탄현점", "question": "탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요" },
-    { "key": "c3", "store": "광장동가온", "question": "광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요" }
+    {
+      "key": "hero",
+      "store": "도시농원 수원인계본점",
+      "question": "수원 닭볶음탕 추천해줘"
+    },
+    {
+      "key": "ba",
+      "store": "인생뼈다귀 본점",
+      "question": "용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘"
+    },
+    {
+      "key": "c1",
+      "store": "도나스데이 본점",
+      "question": "수원 주말에 드라이브 가기 좋은 카페 추천해주세요"
+    },
+    {
+      "key": "c2",
+      "store": "오공김밥 일산탄현점",
+      "question": "탄현역 근처 간편하게 식사할 수 있는 분식집 추천해주세요"
+    },
+    {
+      "key": "c3",
+      "store": "광장동가온",
+      "question": "광장동에서 비즈니스 접대하기 좋은 한식집 알려주세요"
+    },
+    {
+      "key": "s1",
+      "store": "선비꼬마김밥 종각직영점",
+      "question": "종각역 친구와 가볍게 먹기 좋은 분식집 추천해줘"
+    },
+    {
+      "key": "s2",
+      "store": "한신우동 본점",
+      "question": "나혜석거리에서 새벽까지 하는 맛집 있나요"
+    }
   ]
 }

@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-07T08:21:13.052Z",
-  "periodFrom": "2026년 9월 30일",
-  "periodTo": "2026년 10월 7일",
-  "updatedDot": "2026.10.7",
+  "updatedAt": "2026-10-08T01:20:10.218Z",
+  "periodFrom": "2026년 10월 1일",
+  "periodTo": "2026년 10월 8일",
+  "updatedDot": "2026.10.8",
   "stores": {
     "ogong": {
       "key": "ogong",
@@ -32,10 +32,10 @@
       "area": "용인 처인구",
       "cat": "감자탕",
       "baselinePct": 0,
-      "nowPct": 68.6,
+      "nowPct": 61.1,
       "base10": 0,
-      "now10": 7,
-      "runs": 121
+      "now10": 6,
+      "runs": 221
     },
     "sunbi": {
       "key": "sunbi",
@@ -54,10 +54,10 @@
       "area": "수원 권선구",
       "cat": "대형 카페",
       "baselinePct": 20,
-      "nowPct": 50,
+      "nowPct": 53.4,
       "base10": 2,
       "now10": 5,
-      "runs": 120
+      "runs": 131
     },
     "hansin": {
       "key": "hansin",
@@ -65,10 +65,10 @@
       "area": "수원 팔달구",
       "cat": "우동·야식",
       "baselinePct": 13.3,
-      "nowPct": 51.4,
+      "nowPct": 52.7,
       "base10": 1,
       "now10": 5,
-      "runs": 105
+      "runs": 110
     }
   },
   "featured": {
@@ -80,8 +80,8 @@
     },
     "ba": {
       "runs": 10,
-      "rank1": 8,
-      "label": "10번 중 8번",
+      "rank1": 9,
+      "label": "10번 중 9번",
       "all": false
     },
     "c1": {
@@ -101,12 +101,24 @@
       "rank1": 9,
       "label": "10번 중 9번",
       "all": false
+    },
+    "s1": {
+      "runs": 5,
+      "rank1": 5,
+      "label": "5번 중 5번",
+      "all": true
+    },
+    "s2": {
+      "runs": 10,
+      "rank1": 5,
+      "label": "10번 중 5번",
+      "all": false
     }
   },
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 66.1,
+    "nowPct": 65.6,
     "base10": 1,
     "now10": 7
   },
