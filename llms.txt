@@ -57,21 +57,9 @@ ChatGPT 1순위 답변 예(최근 7일, 같은 질문 반복 측정):
 
 ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계가 없는 독립 서비스입니다.
 
-## 인사이트
+## 자료
 
-- [GEO란 무엇인가 · 한국어 완전 가이드 2026](https://talkb.co.kr/insights/geo-guide.html)
-- [SEO vs GEO vs AEO](https://talkb.co.kr/insights/seo-geo-aeo-comparison.html)
-- [AI 답변 4단계 원리](https://talkb.co.kr/insights/ai-answer-4-stages.html)
-- [ChatGPT가 인용하는 콘텐츠 6가지 조건](https://talkb.co.kr/insights/chatgpt-citation-conditions.html)
-- [Perplexity에서 내 브랜드가 출처로 뜨는 구조](https://talkb.co.kr/insights/perplexity-citation-structure.html)
-- [Google AI Overview · Gemini 최적화 공식 가이드](https://talkb.co.kr/insights/google-aio-gemini-guide.html)
-- [한국인 AI 검색 이용률 2026](https://talkb.co.kr/insights/korea-ai-search-2026.html)
-- [제로 클릭 시대의 F&B](https://talkb.co.kr/insights/zero-click-era-fnb.html)
-- [프랜차이즈 본사가 AI에 인용되게 만드는 법](https://talkb.co.kr/insights/franchise-hq-ai-citation.html)
-- [독립매장 로컬 AI 검색 최적화 체크리스트 25항목](https://talkb.co.kr/insights/local-store-checklist.html)
-- [상황형 쿼리 대응 구조](https://talkb.co.kr/insights/situational-query-response.html)
-- [네이버 리뷰 삭제, 되는 것과 안 되는 것](https://talkb.co.kr/insights/naver-review-delete.html)
-- 전체 목록: https://talkb.co.kr/insights/ · 데이터: https://talkb.co.kr/resources.html
+- AI 검색 자료: https://talkb.co.kr/resources.html
 
 ---
 
