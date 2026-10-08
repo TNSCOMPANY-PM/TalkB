@@ -233,6 +233,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .b-acc{background:var(--accent-soft);color:var(--deep)}
 .b-gray{background:#F2F4F6;color:var(--ink-mid)}
 .step{display:flex;gap:18px;align-items:center}
+.step-link{color:var(--ink);text-decoration:underline;text-decoration-color:var(--kakao);text-decoration-thickness:4px;text-underline-offset:5px}
+.step-link:hover{color:var(--deep)}
 .num{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--deep);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
 .faq{border-bottom:1px solid var(--line);padding:20px 0}
 .faq summary{font-size:17px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -434,7 +436,7 @@ fbq('track', 'PageView');
 <p class="eyebrow">진행 방식</p>
 <h2 class="h2">사장님은 카톡만 보시면 돼요</h2>
 <div style="display: grid; gap: 28px; margin-top: 36px">
-<div class="step"><span class="num">1</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 매장 이름 보내기</h3></div></div>
+<div class="step"><span class="num">1</span><div><h3 style="font-size: 19px; font-weight: 800"><a class="step-link" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="step1">카톡으로 매장 이름 보내기 <span aria-hidden="true">→</span></a></h3></div></div>
 <div class="step"><span class="num">2</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 무료 리포트 받기</h3></div></div>
 <div class="step"><span class="num">3</span><div><h3 style="font-size: 19px; font-weight: 800">시작하면 매주 측정, 매달 리포트</h3></div></div>
 </div>
