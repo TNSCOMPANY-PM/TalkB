@@ -245,6 +245,18 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .terms .hot{background:var(--accent-soft);box-shadow:inset 0 0 0 1px #FBD5C6}
 .terms .hot b{color:var(--deep)}
 .define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
+.gr-box{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 16px 8px}
+.gr-svg{display:block;width:100%;height:auto}
+.gr-ax{font-size:12px;fill:#8B95A1}
+.gr-lab{font-size:13.5px;font-weight:800}
+.gr-line{stroke-dasharray:1;stroke-dashoffset:1}
+.gr-dot{opacity:0}
+#growth.on .gr-line{animation:grDraw 1.6s ease forwards}
+#growth.on .gr-dot{animation:grDot .3s ease 1.5s forwards}
+@keyframes grDraw{to{stroke-dashoffset:0}}
+@keyframes grDot{to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.gr-line{stroke-dashoffset:0}.gr-dot{opacity:1}#growth.on .gr-line,#growth.on .gr-dot{animation:none}}
+.gr-note{margin-top:10px;font-size:13px;color:var(--muted)}
 .upd{display:inline-block;margin-bottom:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--ok)}
 .avg{margin-top:14px;font-size:15.5px;color:var(--ink-mid)}
 .avg b{color:var(--ink)}
@@ -557,6 +569,14 @@ fbq('track', 'PageView');
 </div>
 </section>
 
+<section class="sec" id="growth">
+<div class="wrap">
+<h2 class="h2">한 곳만 그런 게 아니에요</h2>
+<p class="lead">토크비와 함께한 가게들의 ChatGPT 추천률이에요. 손님 질문에 우리 가게가 나온 비율을 매주 쟀어요.</p>
+<div class="gr-box"><svg class="gr-svg" viewBox="0 0 760 340" role="img" aria-label="매장 5곳의 ChatGPT 추천률 변화 그래프. 시작 주 0~5%에서 4~8주 뒤 45~65%로 올랐습니다."><line x1="44" x2="610" y1="304" y2="304" stroke="#ECEEF1"/><text x="36" y="308" text-anchor="end" class="gr-ax">0%</text><line x1="44" x2="610" y1="232.5" y2="232.5" stroke="#ECEEF1"/><text x="36" y="236.5" text-anchor="end" class="gr-ax">25%</text><line x1="44" x2="610" y1="161" y2="161" stroke="#ECEEF1"/><text x="36" y="165" text-anchor="end" class="gr-ax">50%</text><line x1="44" x2="610" y1="89.5" y2="89.5" stroke="#ECEEF1"/><text x="36" y="93.5" text-anchor="end" class="gr-ax">75%</text><line x1="44" x2="610" y1="18" y2="18" stroke="#ECEEF1"/><text x="36" y="22" text-anchor="end" class="gr-ax">100%</text><text x="44" y="328" text-anchor="middle" class="gr-ax">시작</text><text x="106.88888888888889" y="328" text-anchor="middle" class="gr-ax">1주</text><text x="169.77777777777777" y="328" text-anchor="middle" class="gr-ax">2주</text><text x="232.66666666666666" y="328" text-anchor="middle" class="gr-ax">3주</text><text x="295.55555555555554" y="328" text-anchor="middle" class="gr-ax">4주</text><text x="358.44444444444446" y="328" text-anchor="middle" class="gr-ax">5주</text><text x="421.3333333333333" y="328" text-anchor="middle" class="gr-ax">6주</text><text x="484.22222222222223" y="328" text-anchor="middle" class="gr-ax">7주</text><text x="547.1111111111111" y="328" text-anchor="middle" class="gr-ax">8주</text><text x="610" y="328" text-anchor="middle" class="gr-ax">9주</text><path class="gr-line" d="M44.0 295.1 L106.9 200.5 L169.8 103.8 L232.7 104.2 L295.6 125.3 L358.4 119.1 L421.3 101.9 L484.2 119.4" stroke="#E85D3A" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="484.2" cy="119.4" r="5" fill="#E85D3A" class="gr-dot"/><path class="gr-line" d="M44.0 294.8 L106.9 273.0 L169.8 251.1 L232.7 198.3 L295.6 134.5" stroke="#F59E0B" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="295.6" cy="134.5" r="5" fill="#F59E0B" class="gr-dot"/><path class="gr-line" d="M44.0 295.1 L106.9 265.2 L169.8 229.6 L232.7 166.4 L295.6 116.8 L358.4 143.8 L421.3 151.6 L484.2 136.3 L547.1 146.0" stroke="#0F7A4A" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="547.1" cy="146.0" r="5" fill="#0F7A4A" class="gr-dot"/><path class="gr-line" d="M44.0 304.0 L106.9 236.5 L169.8 172.7 L232.7 162.6 L295.6 156.9" stroke="#3B82F6" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="295.6" cy="156.9" r="5" fill="#3B82F6" class="gr-dot"/><path class="gr-line" d="M44.0 290.3 L106.9 283.8 L169.8 279.3 L232.7 288.1 L295.6 284.3 L358.4 246.8 L421.3 201.0 L484.2 202.9 L547.1 204.9 L610.0 197.3" stroke="#8B5CF6" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="610.0" cy="197.3" r="5" fill="#8B5CF6" class="gr-dot"/><text x="496.22222222222223" y="123.38700000000001" class="gr-lab" fill="#E85D3A">인생뼈다귀 본점 65%</text><text x="307.55555555555554" y="138.545" class="gr-lab" fill="#F59E0B">부평 삼계탕집 59%</text><text x="559.1111111111111" y="149.985" class="gr-lab" fill="#0F7A4A">광장동가온 명동성당점 55%</text><text x="307.55555555555554" y="160.85299999999998" class="gr-lab" fill="#3B82F6">동네 정육식당 51%</text><text x="622" y="201.322" class="gr-lab" fill="#8B5CF6">오프트 포르니 37%</text></svg></div>
+</div>
+</section>
+
 <section class="sec" id="stores" style="background: #F7F8FA">
 <div class="wrap">
 <p class="upd">최신 업데이트 {{updatedDotPad}}</p>
@@ -848,6 +868,12 @@ fbq('track', 'PageView');
   window.addEventListener("resize", function(){ show(cur); });
   show(0);
 })();
+</script>
+<script>
+// 그래프: 화면에 들어오면 선을 그림
+(function(){ var g = document.getElementById("growth"); if (!g) return;
+  if (!("IntersectionObserver" in window)) { g.classList.add("on"); return; }
+  var io = new IntersectionObserver(function(es){ if (es.some(function(e){ return e.isIntersecting; })) { g.classList.add("on"); io.disconnect(); } }, { threshold: 0.35 }); io.observe(g); })();
 </script>
 <script src="/track.js" data-home="1" defer></script>
 </body>

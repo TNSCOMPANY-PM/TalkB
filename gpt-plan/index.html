@@ -318,6 +318,18 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .terms .hot{background:var(--accent-soft);box-shadow:inset 0 0 0 1px #FBD5C6}
 .terms .hot b{color:var(--deep)}
 .define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
+.gr-box{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 16px 8px}
+.gr-svg{display:block;width:100%;height:auto}
+.gr-ax{font-size:12px;fill:#8B95A1}
+.gr-lab{font-size:13.5px;font-weight:800}
+.gr-line{stroke-dasharray:1;stroke-dashoffset:1}
+.gr-dot{opacity:0}
+#growth.on .gr-line{animation:grDraw 1.6s ease forwards}
+#growth.on .gr-dot{animation:grDot .3s ease 1.5s forwards}
+@keyframes grDraw{to{stroke-dashoffset:0}}
+@keyframes grDot{to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.gr-line{stroke-dashoffset:0}.gr-dot{opacity:1}#growth.on .gr-line,#growth.on .gr-dot{animation:none}}
+.gr-note{margin-top:10px;font-size:13px;color:var(--muted)}
 .upd{display:inline-block;margin-bottom:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--ok)}
 .avg{margin-top:14px;font-size:15.5px;color:var(--ink-mid)}
 .avg b{color:var(--ink)}
