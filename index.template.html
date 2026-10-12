@@ -284,6 +284,7 @@ section[id]{scroll-margin-top:80px}
 .gpt-tabs button{min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer}
 .gpt-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .gpt-panel .gpt-body{min-height:206px}
+.gpt-stack{display:grid}.gpt-stack>.gpt-panel{grid-area:1/1;display:flex;flex-direction:column}.gpt-stack>.gpt-panel[hidden]{display:flex;visibility:hidden}.gpt-stack .gpt-body{flex:1}
 .gpt-cap{padding:14px 20px;background:#FFF6F2;border-top:1px solid #FBD5C6;font-size:14px}
 .gpt-a p+p{margin-top:10px}
 mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:0 3px}
@@ -647,6 +648,7 @@ fbq('track', 'PageView');
 <figure class="gpt">
 <div class="gpt-hd"><span class="gpt-dot" aria-hidden="true"></span>ChatGPT 답변 인용<span class="badge b-ok" style="margin-left: auto">실제 답변 일부</span></div>
 <div class="gpt-tabs" role="tablist" aria-label="업종 고르기"><button type="button" role="tab" id="gt0" aria-controls="gp0" aria-selected="true">음식점</button><button type="button" role="tab" id="gt1" aria-controls="gp1" aria-selected="false">카페</button><button type="button" role="tab" id="gt2" aria-controls="gp2" aria-selected="false">술집·야식</button></div>
+<div class="gpt-stack">
 <div class="gpt-panel" id="gp0" role="tabpanel" aria-labelledby="gt0">
 <div class="gpt-body">
 <p class="gpt-q">수원 닭볶음탕 추천해줘</p>
@@ -676,7 +678,8 @@ fbq('track', 'PageView');
 </div>
 </div>
 <p class="gpt-cap">같은 질문을 {{featured.s2.runs}}번 물었더니 <b class="tnum">{{featured.s2.label}}</b> 1순위로 추천 <span style="white-space:nowrap">· 최근 7일</span></p>
-</div>
+</div></div>
+
 </figure>
 </div>
 </section>
