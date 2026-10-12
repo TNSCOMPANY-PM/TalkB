@@ -371,7 +371,10 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pc-sc{margin-top:12px;font-size:16px;font-weight:800;color:var(--deep)}
 .pc-ex{margin-top:4px;font-size:13.5px;color:var(--muted)}
 .pc-q{margin-top:4px;font-size:15px;color:var(--ink-mid)}
-.pc .kbtn{margin-top:20px;width:100%}
+
+.pt-cta{margin-top:18px;text-align:center}
+.pt-cta .kbtn{width:100%;max-width:520px}
+.pt-cta p{margin-top:8px;font-size:14px;color:var(--muted)}
 .pc-common{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px}
 .pc-ct{font-size:14px;font-weight:800;color:var(--ink)}
 .pc-common ul{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px}
@@ -651,6 +654,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt-fit{font-size:13.5px;color:var(--ink-mid);line-height:1.5}
 .pt tfoot td{padding:18px 14px;border-top:1px solid var(--line)}
 .pt tfoot .kbtn{width:100%;min-height:44px;padding:0 10px;font-size:15px}
+.pt-cta{margin-top:18px;text-align:center}
+.pt-cta .kbtn{width:100%;max-width:520px}
+.pt-cta p{margin-top:8px;font-size:14px;color:var(--muted)}
 .ent{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:#191F28;color:#fff;border-radius:20px;padding:22px 26px}
 .ent b{font-size:18px}
 .ent p{color:#B0B8C1;font-size:15px;margin-top:4px}
@@ -729,10 +735,10 @@ fbq('track', 'PageView');
 <tr><th scope="row">가게 소개 글 발행</th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
 <tr><th scope="row">매달 비교 리포트</th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
 <tr><th scope="row">매주 카톡 알림·전문가 상담</th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
-<tr><th scope="row">Gemini·Claude·Perplexity에도 함께 학습</th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
+<tr><th scope="row">다른 AI(Gemini·Claude 등)에도 함께 학습</th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
 </tbody>
-<tfoot><tr><th scope="row"></th><td><a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-lite"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>상담하기</a></td><td><a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-standard"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>상담하기</a></td><td><a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-plus"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>상담하기</a></td></tr></tfoot>
 </table></div>
+<div class="pt-cta"><a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-table"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 요금제 상담하기</a><p>어떤 요금제가 맞을지 무료 리포트를 보고 같이 정해 드려요.</p></div>
 <div class="ent"><div><b>엔터프라이즈 · 가격 문의</b><p>매장 10개 이상이나 프랜차이즈 본사라면 매장 수와 측정 범위를 맞춤으로 정해요.</p></div><a href="/enterprise/" data-pos="plan-enterprise">엔터프라이즈 자세히 보기 →</a></div>
 </section>
 
