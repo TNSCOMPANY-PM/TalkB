@@ -109,6 +109,26 @@
       "source": "/insights/index.html",
       "destination": "/insights/",
       "permanent": true
+    },
+    {
+      "source": "/gpt-plan",
+      "destination": "/pricing/",
+      "permanent": true
+    },
+    {
+      "source": "/gpt-plan/",
+      "destination": "/pricing/",
+      "permanent": true
+    },
+    {
+      "source": "/enterprise",
+      "destination": "/pricing/",
+      "permanent": true
+    },
+    {
+      "source": "/enterprise/",
+      "destination": "/pricing/",
+      "permanent": true
     }
   ],
   "headers": [

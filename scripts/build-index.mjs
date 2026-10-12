@@ -29,7 +29,7 @@ function fill(tplName, outName) {
   writeFileSync(join(ROOT, outName), text);
   console.log(`${outName} 생성`, text.length, "bytes");
 }
-// 상품 상세(/gpt-plan/)는 홈과 같은 스타일을 쓴다 · 홈 템플릿의 <style>을 그대로 가져온다
+// 요금제(/pricing/)는 홈과 같은 스타일을 쓴다 · 홈 템플릿의 <style>을 그대로 가져온다
 {
   const home = readFileSync(join(ROOT, "index.template.html"), "utf8");
   const m = /<style>([\s\S]*?)<\/style>/.exec(home);
@@ -37,10 +37,8 @@ function fill(tplName, outName) {
   data.landingCss = m[1].trim();
 }
 fill("index.template.html", "index.html");
-mkdirSync(join(ROOT, "gpt-plan"), { recursive: true });
-fill("gpt-plan.template.html", "gpt-plan/index.html");
-mkdirSync(join(ROOT, "enterprise"), { recursive: true });
-fill("enterprise.template.html", "enterprise/index.html");
+mkdirSync(join(ROOT, "pricing"), { recursive: true });
+fill("pricing.template.html", "pricing/index.html");
 fill("llms.template.txt", "llms.txt");
 
 // 사이트맵 홈 lastmod
