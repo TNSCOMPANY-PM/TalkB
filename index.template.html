@@ -304,6 +304,28 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .cs-view::backdrop{background:rgba(25,31,40,.6)}
 .cs-view img{display:block;width:100%;height:auto}
 .cs-x{position:sticky;top:8px;float:right;margin:8px 8px -48px 0;width:40px;height:40px;border:0;border-radius:50%;background:rgba(25,31,40,.75);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:1}
+.ba{display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);align-items:stretch;margin-top:26px}
+.ba-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px 26px;display:flex;flex-direction:column}
+.ba-after{border:2px solid var(--accent);box-shadow:0 14px 34px rgba(232,93,58,.16)}
+.ba-hd{display:flex;align-items:center;gap:10px}
+.ba-tag{font-size:15px;font-weight:800;border-radius:999px;padding:6px 14px;background:#ECEEF1;color:var(--ink-mid)}
+.ba-after .ba-tag{background:var(--accent);color:#fff}
+.ba-date{font-size:14px;color:var(--muted)}
+.ba-q{margin-top:18px;font-size:14px;color:var(--muted);font-weight:700}
+.ba-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.ba-list li{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:700;color:#8B95A1;background:var(--soft);border-radius:12px;padding:12px 14px}
+.ba-list li span{width:28px;height:28px;border-radius:50%;background:#D1D6DB;color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.ba-list li.me{background:#FFE58A;color:var(--ink);font-size:21px;font-weight:800}
+.ba-list li.me span{background:var(--accent)}
+.ba-res{margin-top:16px;font-size:17px;color:var(--ink-mid)}
+.ba-before .ba-res b{color:var(--ink)}
+.ba-after .ba-res b{color:var(--deep);font-size:19px}
+.ba-src{margin-top:auto;padding:14px 0 0;border:0;background:none;text-align:left;font:inherit;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:zoom-in;height:auto;width:auto;overflow:visible}
+.ba-src::after{display:none}
+.ba-src.shot{display:inline-block;height:auto;width:auto;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible;align-self:flex-start}
+.ba-arrow{display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:var(--accent)}
+.ba-did{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 20px}
+.ba-did-t{font-size:14px;font-weight:800;color:var(--deep);margin-bottom:10px}
 .ask{margin-top:18px;display:inline-flex;background:#fff;border:1px solid #FBD5C6;border-radius:999px;padding:10px 18px;font-size:15.5px;font-weight:700;line-height:1.5}
 .fc .badge{margin-bottom:12px}
 .shot{position:relative;display:block;width:100%;height:230px;padding:0;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;cursor:zoom-in;text-align:left}
@@ -403,7 +425,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
@@ -506,26 +528,32 @@ fbq('track', 'PageView');
 <h2 class="h2">이렇게 바뀝니다</h2>
 <p class="lead">용인 모현의 감자탕집, 인생뼈다귀 본점의 실제 사례예요.</p>
 <p class="ask">손님이 물은 질문 · “용인 모현에서 가족과 식사하기 좋은 감자탕 맛집 추천해줘”</p>
-<div class="flow">
-<article class="fc">
-<span class="fn">1</span>
-<span class="badge b-gray">2026년 7월 4일 · 시작 전</span>
-<button type="button" class="shot" data-src="/images/cases/insaeng-before.jpg?v=3" data-alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음"><img src="/images/cases/insaeng-before.jpg?v=3" alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음" width="840" height="2847" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
-<h3>ChatGPT가 우리 가게를<br>몰랐어요</h3>
+<div class="ba">
+<article class="ba-card ba-before">
+<div class="ba-hd"><span class="ba-tag">시작 전</span><span class="ba-date">2026년 7월 4일</span></div>
+<p class="ba-q">ChatGPT가 추천한 감자탕집</p>
+<ol class="ba-list">
+<li><span>1</span>원○○○○</li>
+<li><span>2</span>민○○○○○○○○</li>
+<li><span>3</span>큰○○○○○</li>
+</ol>
+<p class="ba-res">인생뼈다귀 본점 <b>없음</b></p>
+<button type="button" class="ba-src shot" data-src="/images/cases/insaeng-before.jpg?v=3" data-alt="ChatGPT 답변 원문 · 2026년 7월 4일 · 인생뼈다귀 본점이 추천되지 않음">원문 보기 ›</button>
 </article>
-<article class="fc">
-<span class="fn">2</span>
-<span class="badge b-gray">토크비 시작</span>
-<div class="fv"><p class="tags"><span>8인 룸 3개</span><span>최대 80명</span><span>놀이방</span><span>유아의자</span><span>유아용 식기</span><span>주차 15대 이상</span><span>발렛파킹</span><span>감자탕 소 31,000원</span><span>뼈해장국 11,000원</span><span>월~토 08~22시</span><span>브레이크타임 14:30~16:00</span><span>라스트오더</span><span>예약 안내</span><span>단체석</span><span>웨이팅</span><span>포장</span><span>배달</span><span>콜키지</span><span>반려동물</span><span>결제 수단</span><span>대표 메뉴 사진</span><span>좌석 수</span><span>찾아오는 길</span></p></div>
-<h3>가게 정보를<br>AI가 읽기 쉽게 정리했어요</h3>
-</article>
-<article class="fc fc-on">
-<span class="fn">3</span>
-<span class="badge b-acc">2026년 10월 6일 · 지금</span>
-<button type="button" class="shot" data-src="/images/cases/insaeng-now.jpg?v=3" data-alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위"><img src="/images/cases/insaeng-now.jpg?v=3" alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위" width="840" height="2228" loading="lazy" decoding="async"><span>원문 크게 보기</span></button>
-<h3>같은 질문 {{featured.ba.label}}<br>1순위로 추천돼요</h3>
+<div class="ba-arrow" aria-hidden="true">→</div>
+<article class="ba-card ba-after">
+<div class="ba-hd"><span class="ba-tag">지금</span><span class="ba-date">2026년 10월 6일</span></div>
+<p class="ba-q">ChatGPT가 추천한 감자탕집</p>
+<ol class="ba-list">
+<li class="me"><span>1</span>인생뼈다귀 본점</li>
+<li><span>2</span>원○○○○</li>
+<li><span>3</span>매○○ ○○○○○</li>
+</ol>
+<p class="ba-res">같은 질문 <b>{{featured.ba.label}} 1순위</b></p>
+<button type="button" class="ba-src shot" data-src="/images/cases/insaeng-now.jpg?v=3" data-alt="ChatGPT 답변 원문 · 2026년 10월 6일 · 인생뼈다귀 본점 1순위">원문 보기 ›</button>
 </article>
 </div>
+<div class="ba-did"><p class="ba-did-t">그 사이 토크비가 한 일 · 가게 정보를 AI가 읽기 쉽게 정리</p><p class="tags"><span>8인 룸 3개</span><span>최대 80명</span><span>놀이방</span><span>유아의자</span><span>유아용 식기</span><span>주차 15대 이상</span><span>발렛파킹</span><span>감자탕 소 31,000원</span><span>뼈해장국 11,000원</span><span>월~토 08~22시</span><span>브레이크타임 14:30~16:00</span><span>라스트오더</span><span>예약 안내</span><span>단체석</span><span>웨이팅</span><span>포장</span><span>배달</span><span>콜키지</span><span>반려동물</span><span>결제 수단</span><span>대표 메뉴 사진</span><span>좌석 수</span><span>찾아오는 길</span></p></div>
 </div>
 </section>
 
@@ -623,7 +651,7 @@ fbq('track', 'PageView');
 <h2 class="h2">요금은 하나,<br>약정은 없어요</h2>
 <figure style="margin: 26px 0 0; background: #fff; border-radius: 18px; padding: 22px 24px; border: 1px solid #ECEEF1">
 <blockquote style="margin: 0; font-size: 17px; line-height: 1.7">“네이버로 두 번째 추천되려면 엄청난 비용이 드는데, 토크비는 <b>저렴한 금액으로 매장 홍보</b>를 가능하게 해 주네요.”</blockquote>
-<figcaption style="margin-top: 12px; font-size: 14px; color: #6B7684">부대찌개대사관 인하대역점 · 2026년 6월부터 이용 중</figcaption>
+<figcaption style="margin-top: 12px; font-size: 14px; color: #6B7684">부대찌개대사관 인하대역점</figcaption>
 </figure>
 </div>
 <div class="card">
