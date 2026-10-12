@@ -65,7 +65,7 @@
   "email": "adm.tnscompany@gmail.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인)",
+    "streetAddress": "공항대로 247, A동 12층 1209호 <span style="white-space:nowrap">(마곡동, 퀸즈파크나인)</span>",
     "addressLocality": "강서구",
     "addressRegion": "서울특별시",
     "postalCode": "07803",
@@ -271,7 +271,7 @@ section[id]{scroll-margin-top:80px}
 .sub-cta{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:700;color:var(--ink-mid);text-decoration:underline;text-underline-offset:4px}
 .sec{padding:88px 0}
 .eyebrow{font-size:14px;font-weight:800;color:var(--deep);margin-bottom:10px}
-.h2{font-size:clamp(28px,4vw,40px);font-weight:800}
+.h2{font-size:clamp(28px,4vw,40px);font-weight:800;word-break:keep-all;text-wrap:balance}
 .lead{font-size:18px;color:var(--ink-mid);line-height:1.7;margin-top:14px}
 .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.03),0 12px 32px rgba(25,31,40,.06)}
 .gpt{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.04),0 24px 48px rgba(25,31,40,.10);margin:0}
@@ -348,7 +348,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt .ok{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:14px;line-height:1}
 .pt-fit{font-size:13.5px}
 .pt-nw{white-space:nowrap}
-@media (max-width:640px){.pt col.pt-lab{width:27%}.pt th,.pt td{padding:12px 5px}.pt tbody th[scope=row]{font-size:12.5px;padding-left:12px}.pt .pt-hint{font-size:10.5px}.pt-n{font-size:15px}.pt-p b{font-size:16px}.pt-s{font-size:11px}.pt td b{font-size:14px}.pt .ok{width:22px;height:22px;font-size:12px}.pt-g th{padding:10px 12px;font-size:12px}.pt-fit{font-size:11.5px}}
+@media (max-width:640px){.pt-wrap .pt col.pt-lab{width:27%}.pt-wrap .pt th,.pt-wrap .pt td{padding:12px 5px}.pt-wrap .pt tbody th[scope=row]{font-size:12.5px;padding-left:12px}.pt-wrap .pt .pt-hint{font-size:11px}.pt-wrap .pt-n{font-size:15px}.pt-wrap .pt-p b{font-size:16px}.pt-wrap .pt-s{font-size:11px}.pt-wrap .pt td b{font-size:14px}.pt-wrap .pt .ok{width:22px;height:22px;font-size:12px}.pt-wrap .pt-g th{padding:10px 12px;font-size:12px}.pt-wrap .pt-fit{font-size:11.5px}}
 /* /pt-polish */
 .pt-add{max-width:100%;white-space:nowrap}
 .pt-all th,.pt-all td{background:var(--soft)}
@@ -396,7 +396,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .define{margin-top:18px;font-size:17px;color:var(--ink-mid);line-height:1.65;max-width:560px}
 .upd{display:inline-block;margin-bottom:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--ok)}
 .avg{margin-top:14px;font-size:15.5px;color:var(--ink-mid)}
-.avg b{color:var(--ink)}
+.avg b{color:var(--ink);white-space:nowrap}
 .avg .now{color:var(--deep)}
 .rv-top{margin:28px 0 0;padding:0}
 .rv-top blockquote{margin:0;font-size:clamp(20px,2.4vw,26px);font-weight:800;line-height:1.55}
@@ -475,7 +475,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .ba-res{margin-top:16px;font-size:17px;color:var(--ink-mid)}
 .ba-before .ba-res b{color:var(--ink)}
 .ba-after .ba-res b{color:var(--deep);font-size:19px}
-.ba-src{margin-top:auto;padding:14px 0 0;border:0;background:none;text-align:left;font:inherit;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:zoom-in;height:auto;width:auto;overflow:visible}
+.ba-src{margin-top:auto;padding:14px 0 0;border:0;background:none;text-align:left;font:inherit;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:zoom-in;height:auto;width:auto;overflow:visible;min-height:36px}
 .ba-src::after{display:none}
 .ba-src.shot{display:inline-block;height:auto;width:auto;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible;align-self:flex-start}
 .ba-arrow{display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:var(--accent)}
@@ -577,7 +577,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot{background:#F7F8FA;border-top:1px solid var(--line)}
 .foot .wrap{padding-top:32px;padding-bottom:40px;font-size:13px;color:var(--muted);line-height:1.9}
 .foot b{color:var(--ink)}
-.foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
+.foot a{display:inline;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
 @media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.pc-btns .kbtn,.pc-detail{width:100%;min-width:0}.pt{font-size:12.5px}.pt col.pt-lab{width:24%}.pt th,.pt td{padding:10px 5px}.pt thead th{padding:16px 4px 14px}.pt tbody th[scope=row]{padding-left:10px}.pt-p{white-space:normal;font-size:12px}.pt-p b{display:block;font-size:15px}.pt-n{font-size:15px}.pt-s{font-size:11.5px}.pt td b{font-size:15px}.pt-fit{font-size:11.5px}.pt-add{font-size:10.5px;padding:2px 7px}.pc-common ul{grid-template-columns:1fr}.pc-more{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
@@ -627,7 +627,7 @@ fbq('track', 'PageView');
 <h1 class="h1" id="h1"><span class="va"><span class="l">옆 가게는</span> <span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span> <span class="l">사장님 가게는요?</span></span></h1>
 <template id="h1b"><span class="vb"><span class="l">손님이 ChatGPT에</span> <span class="l">동네 맛집을 물으면,</span> <span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span></template>
 <script>if (window.TB_VARIANT === "h1-b") { document.getElementById("h1").innerHTML = document.getElementById("h1b").innerHTML; }</script>
-<p class="define">토크비(TalkB)는 손님이 AI에 맛집을 물을 때 우리 가게가 나오도록,<br>정확한 가게 정보를 AI가 읽기 쉽게 정리해 드려요.</p>
+<p class="define">토크비(TalkB)는 손님이 AI에 맛집을 물을 때 우리 가게가 나오도록, <br class="pc-br">정확한 가게 정보를 AI가 읽기 쉽게 정리해 드려요.</p>
 </div>
 <div class="hero-bottom">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 28px">
@@ -804,7 +804,7 @@ fbq('track', 'PageView');
 <tr><th scope="row">확인하는 손님 상황</th><td class="pt-fit"><span class="pt-add">기본</span>우리 가게에 맞춘 손님 상황 <b>10가지</b></td><td class="pt-fit"><span class="pt-add">라이트에 더해</span>손님이 찾는 상황을 더 넓게 <b>20가지</b></td><td class="pt-fit"><span class="pt-add">스탠다드에 더해</span>더 넓은 상권과 다양한 메뉴까지 <b>40가지</b></td></tr>
 <tr><th scope="row">AI 학습 자료 발행<span class="pt-hint">질문 수에 맞춰 달라져요</span></th><td><b>가볍게</b></td><td><b>기본</b></td><td><b>더 많이</b></td></tr>
 <tr class="pt-g"><th scope="rowgroup" colspan="4">세 요금제 공통</th></tr>
-<tr><th scope="row">AI 이해도 질문 5개<span class="pt-hint">매주 1번</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
+<tr><th scope="row">AI 이해도 <span class="pt-nw">질문 5개</span><span class="pt-hint">매주 1번</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
 <tr><th scope="row">가게 정보 <span class="pt-nw">정리·보강</span><span class="pt-hint">70여 가지</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
 <tr><th scope="row">매달 비교 리포트</th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
 <tr><th scope="row">카톡 알림·전문가 상담<span class="pt-hint">매주</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
@@ -852,9 +852,9 @@ fbq('track', 'PageView');
 <footer class="foot">
 <div class="wrap">
 <p style="font-weight: 800; color: #191F28; font-size: 14px">토크비 (TalkB)</p>
-<p>2016년 설립 · 메인비즈 인증 · ISO 9001·14001 · 특허 제10-2804310호</p>
+<p>2016년 설립 · 메인비즈 인증 · ISO 9001·14001 · <span style="white-space:nowrap">특허 제10-2804310호</span></p>
 <p>(주)티앤에스컴퍼니 · 대표 김태정 · 사업자등록번호 455-86-00636 · 통신판매업신고 제2020-서울강서-0981호</p>
-<p>서울특별시 강서구 공항대로 247, A동 12층 1209호 (마곡동, 퀸즈파크나인) · 전화 <a href="tel:1833-4150">1833-4150</a> (영업일 09:00~18:00 · 점심 13:00~14:00) · adm.tnscompany@gmail.com</p>
+<p>서울특별시 강서구 공항대로 247, A동 12층 1209호 <span style="white-space:nowrap">(마곡동, 퀸즈파크나인)</span> · 전화 <a href="tel:1833-4150">1833-4150</a> (영업일 09:00~18:00 · <span style="white-space:nowrap">점심 13:00~14:00)</span> · adm.tnscompany@gmail.com</p>
 <p><a href="https://app.talkb.co.kr/terms" target="_blank" rel="noopener">이용약관</a>  ·  <a href="/privacy.html">개인정보 처리방침</a>  ·  <a href="/resources.html">AI 검색 자료</a>  ·  <a href="/llms.txt">llms.txt</a></p>
 <p>ChatGPT는 OpenAI의 상표입니다. 토크비는 OpenAI와 제휴·후원 관계가 없는 독립 서비스입니다. 화면의 답변은 토크비가 직접 질문해 받은 실제 결과의 일부이며, 질문 시점과 조건에 따라 달라질 수 있습니다.</p>
 <p>© 2026 (주)티앤에스컴퍼니 · TalkB</p>
