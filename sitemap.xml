@@ -18,6 +18,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- 엔터프라이즈 -->
+  <url>
+    <loc>https://talkb.co.kr/enterprise/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- AI 검색 리서치 자료 페이지 -->
   <url>
     <loc>https://talkb.co.kr/resources.html</loc>

@@ -18,7 +18,7 @@
 <meta name="format-detection" content="telephone=no">
 
 <title>토크비(TalkB) · 식당 ChatGPT 추천 노출 관리 서비스</title>
-<meta name="description" content="토크비(TalkB)는 손님이 AI에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스입니다. 매주 손님 질문 15개를 ChatGPT에 직접 물어 확인하고, 가게 정보 정리·보강과 월간 리포트까지 맡습니다. 매장당 월 190,000원(VAT 별도), 카카오톡으로 상담하세요.">
+<meta name="description" content="토크비(TalkB)는 손님이 AI에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스입니다. 매주 손님 질문을 실제 ChatGPT에 물어 확인하고, 가게 정보 정리·보강과 월간 리포트까지 맡습니다. 라이트 월 190,000원부터(VAT 별도), 카카오톡으로 상담하세요.">
 <meta name="author" content="(주)티앤에스컴퍼니 · TalkB">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="facebook-domain-verification" content="hi2jqt6iwhyz2hury1ejn5zhfp0zh9" />
@@ -139,20 +139,70 @@
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": "https://talkb.co.kr/#service",
-  "name": "토크비 GPT 플랜",
+  "name": "토크비 요금제",
   "serviceType": "ChatGPT 추천 노출 관리",
-  "provider": { "@id": "https://talkb.co.kr/#org" },
-  "areaServed": { "@type": "Country", "name": "대한민국" },
-  "audience": { "@type": "BusinessAudience", "audienceType": "음식점·카페·주점·프랜차이즈" },
-  "description": "매주 손님 질문 15개를 매장 이름 없이 ChatGPT에 5번씩 직접 물어 우리 가게가 추천되는지 확인하고, AI에 추천되도록 가게 정보 정리·보강을 대신 하며, 매달 시작 전·후를 비교한 리포트를 카카오톡으로 보내 드립니다. 같은 동네·같은 업종은 3곳까지만 받습니다.",
-  "offers": {
-    "@type": "Offer",
-    "name": "GPT 플랜",
-    "price": 190000,
-    "priceCurrency": "KRW",
-    "priceSpecification": { "@type": "UnitPriceSpecification", "price": 190000, "priceCurrency": "KRW", "unitText": "매장당 월", "billingDuration": "P1M", "valueAddedTaxIncluded": false },
-    "description": "매장당 월 190,000원(VAT 별도), 약정 없음. 결제 확인 후 영업일 3일 이내 전액 환불."
-  }
+  "provider": {
+    "@id": "https://talkb.co.kr/#org"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "대한민국"
+  },
+  "audience": {
+    "@type": "BusinessAudience",
+    "audienceType": "음식점·카페·주점·프랜차이즈"
+  },
+  "description": "손님이 물을 만한 질문을 매장 이름 없이 매주 3번씩 실제 ChatGPT에 물어 우리 가게가 추천되는지 확인하고, AI에 추천되도록 가게 정보 정리·보강과 소개 글 발행을 대신 하며, 매달 시작 전·후를 비교한 리포트를 보내 드립니다. 라이트·스탠다드·플러스는 질문 수(10·20·40개)와 범위가 다르고, 매장 10개 이상은 엔터프라이즈로 안내합니다.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "라이트",
+      "description": "손님 질문 10개 × 매주 3회 + AI 이해도 질문 5개 × 매주 1회 · 우리 동네 핵심 질문. 약정 없음, 결제 확인 후 영업일 3일 이내 전액 환불.",
+      "price": 190000,
+      "priceCurrency": "KRW",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": 190000,
+        "priceCurrency": "KRW",
+        "unitText": "매장당 월",
+        "billingDuration": "P1M",
+        "valueAddedTaxIncluded": false
+      },
+      "url": "https://talkb.co.kr/gpt-plan/#lite"
+    },
+    {
+      "@type": "Offer",
+      "name": "스탠다드",
+      "description": "손님 질문 20개 × 매주 3회 + AI 이해도 질문 5개 × 매주 1회 · 동네·역·랜드마크까지 넓게. 약정 없음, 결제 확인 후 영업일 3일 이내 전액 환불.",
+      "price": 290000,
+      "priceCurrency": "KRW",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": 290000,
+        "priceCurrency": "KRW",
+        "unitText": "매장당 월",
+        "billingDuration": "P1M",
+        "valueAddedTaxIncluded": false
+      },
+      "url": "https://talkb.co.kr/gpt-plan/#standard"
+    },
+    {
+      "@type": "Offer",
+      "name": "플러스",
+      "description": "손님 질문 40개 × 매주 3회 + AI 이해도 질문 5개 × 매주 1회 · 장소 5곳 + 대표 메뉴 2개까지. 약정 없음, 결제 확인 후 영업일 3일 이내 전액 환불.",
+      "price": 490000,
+      "priceCurrency": "KRW",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": 490000,
+        "priceCurrency": "KRW",
+        "unitText": "매장당 월",
+        "billingDuration": "P1M",
+        "valueAddedTaxIncluded": false
+      },
+      "url": "https://talkb.co.kr/gpt-plan/#plus"
+    }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -167,14 +217,14 @@
     { "@type": "Question", "name": "얼마나 지나야 달라지나요?", "acceptedAnswer": { "@type": "Answer", "text": "빠른 가게는 1~2주 안에 변화가 보이기 시작하고, 추천이 자리 잡기까지는 보통 1~3개월이 걸려요. 상권과 업종에 따라 속도는 달라요." } },
     { "@type": "Question", "name": "네이버 플레이스 상위인데도 필요한가요?", "acceptedAnswer": { "@type": "Answer", "text": "플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요." } },
     { "@type": "Question", "name": "상담은 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "카카오톡 채널 ‘토크비’로 네이버 플레이스 링크를 보내 주시면 돼요(https://pf.kakao.com/_JxlWTX/chat). 영업일 09:00~18:00에 전문가가 직접 상담해 드려요." } },
-    { "@type": "Question", "name": "추천 횟수는 어떻게 확인하나요?", "acceptedAnswer": { "@type": "Answer", "text": "로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 물어요. ChatGPT 답변은 물을 때마다 달라서 같은 질문을 매주 5번씩 묻고, 최근 7일 동안 물은 횟수 중 우리 가게가 나온 횟수를 세요." } },
+    { "@type": "Question", "name": "추천 횟수는 어떻게 확인하나요?", "acceptedAnswer": { "@type": "Answer", "text": "로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 물어요. ChatGPT 답변은 물을 때마다 달라서 같은 질문을 매주 3번씩 묻고, 최근 7일 동안 물은 횟수 중 우리 가게가 나온 횟수를 세요." } },
     { "@type": "Question", "name": "블로그 체험단이나 네이버 광고랑 뭐가 다른가요?", "acceptedAnswer": { "@type": "Answer", "text": "체험단과 네이버 광고는 네이버에서 검색하는 손님에게 보여요. 토크비는 ChatGPT 같은 AI에 물어보는 손님에게 우리 가게가 답으로 나오게 해요. 둘은 따로 움직여서, 네이버 상위인 가게가 AI 답변에는 안 나오는 경우가 많아요." } },
     { "@type": "Question", "name": "해지와 환불은 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "약정 없이 언제든 해지할 수 있고, 결제한 기간이 끝날 때까지 그대로 이용하실 수 있어요. 결제 확인 후 영업일 3일 이내에는 사유와 상관없이 전액 환불해 드려요. 그 이후에는 서비스가 이미 시작되어 환불이 불가해요." } }
   ]
 }
 </script>
 <script type="application/ld+json">
-{ "@context": "https://schema.org", "@type": "WebPage", "@id": "https://talkb.co.kr/#webpage", "url": "https://talkb.co.kr/", "name": "토크비(TalkB) · 식당 ChatGPT 추천 노출 관리 서비스", "description": "토크비(TalkB)는 손님이 AI에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스입니다. 매주 손님 질문 15개를 ChatGPT에 직접 물어 확인하고, 가게 정보 정리·보강과 월간 리포트까지 맡습니다. 매장당 월 190,000원(VAT 별도), 카카오톡으로 상담하세요.", "inLanguage": "ko", "isPartOf": { "@id": "https://talkb.co.kr/#website" }, "about": { "@id": "https://talkb.co.kr/#service" }, "publisher": { "@id": "https://talkb.co.kr/#org" }, "dateModified": "{{updatedAt}}", "primaryImageOfPage": "https://talkb.co.kr/og-image.png?v=4" }
+{ "@context": "https://schema.org", "@type": "WebPage", "@id": "https://talkb.co.kr/#webpage", "url": "https://talkb.co.kr/", "name": "토크비(TalkB) · 식당 ChatGPT 추천 노출 관리 서비스", "description": "토크비(TalkB)는 손님이 AI에 맛집을 물어볼 때 우리 가게가 추천되도록 돕는 식당 전용 서비스입니다. 매주 손님 질문을 실제 ChatGPT에 물어 확인하고, 가게 정보 정리·보강과 월간 리포트까지 맡습니다. 라이트 월 190,000원부터(VAT 별도), 카카오톡으로 상담하세요.", "inLanguage": "ko", "isPartOf": { "@id": "https://talkb.co.kr/#website" }, "about": { "@id": "https://talkb.co.kr/#service" }, "publisher": { "@id": "https://talkb.co.kr/#org" }, "dateModified": "{{updatedAt}}", "primaryImageOfPage": "https://talkb.co.kr/og-image.png?v=4" }
 </script>
 <script type="application/ld+json">
 { "@context": "https://schema.org", "@type": "WebSite", "@id": "https://talkb.co.kr/#website", "name": "토크비", "alternateName": ["TalkB", "토크비(TalkB)"], "url": "https://talkb.co.kr/", "publisher": { "@id": "https://talkb.co.kr/#org" } }
@@ -239,6 +289,21 @@ section[id]{scroll-margin-top:80px}
 mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:0 3px}
 .reassure{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:14px;color:var(--muted)}
 .reassure span{display:inline-flex;align-items:center;gap:6px}
+.pc3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column}
+.pc h3{font-size:20px;font-weight:800}
+.pc-pr{margin-top:8px;font-size:15px;color:var(--muted)}
+.pc-pr b{font-size:32px;color:var(--ink);font-weight:800;letter-spacing:-0.02em;margin-right:4px}
+.pc-sc{margin-top:12px;font-size:16px;font-weight:800;color:var(--deep)}
+.pc-q{margin-top:4px;font-size:15px;color:var(--ink-mid)}
+.pc .kbtn{margin-top:20px;width:100%}
+.pc-common{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 20px;font-size:14.5px;line-height:1.7;color:var(--ink-mid)}
+.pc-common b{color:var(--ink);margin-right:6px}
+.pc-vat{margin-top:10px;font-size:13px;color:var(--muted)}
+.pc-more{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:20px}
+.pc-more .plan-link{margin-top:0}
+.pc-ent{display:inline-block;padding:8px 0;font-size:15px;color:var(--ink-mid);text-decoration:underline;text-underline-offset:3px}
+.pc-ent b{color:var(--ink);margin-right:6px}
 .terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:20px}
 .terms p{background:#F2FAF5;border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--muted);line-height:1.45}
 .terms b{display:block;font-size:14.5px;color:var(--ok);margin-bottom:2px}
@@ -431,7 +496,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot a{display:inline-block;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.float{display:none}}
 @media (max-width:900px){.float-qr{display:none}}
-@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
+@media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.pc3{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
@@ -643,35 +708,45 @@ fbq('track', 'PageView');
 </section>
 
 <section class="sec" id="price" style="background: #F7F8FA">
-<div class="wrap two split" style="grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 56px; align-items: center">
-<div>
+<div class="wrap">
 <p class="eyebrow">가격</p>
-<h2 class="h2">요금은 하나,<br>약정은 없어요</h2>
-<figure style="margin: 26px 0 0; background: #fff; border-radius: 18px; padding: 22px 24px; border: 1px solid #ECEEF1">
-<blockquote style="margin: 0; font-size: 17px; line-height: 1.7">“네이버로 두 번째 추천되려면 엄청난 비용이 드는데, 토크비는 <b>저렴한 금액으로 매장 홍보</b>를 가능하게 해 주네요.”</blockquote>
-<figcaption style="margin-top: 12px; font-size: 14px; color: #6B7684">부대찌개대사관 인하대역점</figcaption>
-</figure>
+<h2 class="h2">가게에 맞게 고르세요</h2>
+<p class="lead">세 요금제 모두 가게 정보 정리, 가게 소개 글, 매달 비교 리포트, 카톡 알림이 들어 있어요. 다른 건 질문 수와 범위예요.</p>
+<div class="pc3">
+<article class="pc">
+<h3>라이트</h3>
+<p class="pc-pr"><b class="tnum">190,000원</b>/ 월</p>
+<p class="pc-sc">우리 동네 핵심 질문</p>
+<p class="pc-q">손님 질문 <b>10개</b> × 매주 3번</p>
+<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price-lite"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>라이트 상담하기</a>
+</article>
+<article class="pc">
+<h3>스탠다드</h3>
+<p class="pc-pr"><b class="tnum">290,000원</b>/ 월</p>
+<p class="pc-sc">동네·역·랜드마크까지 넓게</p>
+<p class="pc-q">손님 질문 <b>20개</b> × 매주 3번</p>
+<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price-standard"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>스탠다드 상담하기</a>
+</article>
+<article class="pc">
+<h3>플러스</h3>
+<p class="pc-pr"><b class="tnum">490,000원</b>/ 월</p>
+<p class="pc-sc">장소 5곳 + 대표 메뉴 2개까지</p>
+<p class="pc-q">손님 질문 <b>40개</b> × 매주 3번</p>
+<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price-plus"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>플러스 상담하기</a>
+</article>
 </div>
-<div class="card">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap">
-<h3 style="font-size: 18px; font-weight: 800">GPT 플랜</h3>
-<p class="tnum" style="font-size: 38px; font-weight: 800; letter-spacing: -0.03em">190,000원<span style="font-size: 16px; color: #6B7684; font-weight: 600"> / 월</span></p>
+<div class="pc-common">
+<p><b>세 요금제 공통</b> AI 이해도 질문 5개 매주 확인 · 가게 정보 70여 가지 정리·보강 · 가게 소개 글 발행 · 매달 비교 리포트 · 매주 카톡 알림 · Gemini, Claude, Perplexity 같은 다른 AI에도 함께 학습 (측정은 ChatGPT 기준)</p>
 </div>
-<p style="font-size: 14px; color: #6B7684; margin-top: 4px">매장당 · VAT 별도</p>
-<ul style="list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; font-size: 16px">
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매주 손님 질문 15개를 5번씩 ChatGPT에 직접 물어 확인해요</li>
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>AI에 추천되도록 가게 정보 정리·보강을 대신 해 드려요</li>
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매달 시작 전·후를 비교한 리포트를 보내 드려요</li>
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>Gemini, Claude, Perplexity 같은 다른 AI에도 함께 학습돼요 (측정은 ChatGPT 기준)</li>
-</ul>
 <div class="terms">
 <p><b>약정 없음</b>언제든 해지</p>
 <p><b>전액 환불</b>결제 확인 후 영업일 3일 안</p>
 <p class="hot"><b>3곳까지만</b>같은 동네·같은 업종</p>
 </div>
-<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price" style="margin-top: 22px; width: 100%">카톡으로 무료 리포트 받기</a>
-<a class="plan-link plan-full" href="/gpt-plan/" data-pos="price-plan">GPT 플랜 자세히 보기 <span aria-hidden="true">→</span></a>
-<p style="font-size: 13px; color: #6B7684; margin-top: 12px; text-align: center">프랜차이즈 본사나 매장 10개 이상은 카톡 별도 문의</p>
+<p class="pc-vat">매장당 · 월 · VAT 별도</p>
+<div class="pc-more">
+<a class="plan-link" href="/gpt-plan/" data-pos="price-plan">요금제 자세히 보기 <span aria-hidden="true">→</span></a>
+<a class="pc-ent" href="/enterprise/" data-pos="price-enterprise"><b>엔터프라이즈</b> 매장 10개 이상·프랜차이즈 본사 · 가격 문의 →</a>
 </div>
 </div>
 </section>
@@ -688,7 +763,7 @@ fbq('track', 'PageView');
 <details class="faq"><summary>얼마나 지나야 달라지나요?</summary><p>빠른 가게는 1~2주 안에 변화가 보이기 시작하고, 추천이 자리 잡기까지는 보통 1~3개월이 걸려요. 상권과 업종에 따라 속도는 달라요.</p></details>
 <details class="faq"><summary>네이버 플레이스 상위인데도 필요한가요?</summary><p>플레이스 순위와 ChatGPT 추천은 따로 움직여요. 네이버 지도 1위인데 ChatGPT에는 한 번도 나오지 않은 매장도 있었어요.</p></details>
 <details class="faq"><summary>상담은 어떻게 하나요?</summary><p>카카오톡 채널 ‘토크비’로 네이버 플레이스 링크를 보내 주시면 돼요. 영업일 09:00~18:00에 전문가가 직접 상담해 드려요. <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="faq">카톡으로 상담하기</a></p></details>
-<details class="faq"><summary>추천 횟수는 어떻게 확인하나요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 물어요. ChatGPT 답변은 물을 때마다 달라서 같은 질문을 매주 5번씩 묻고, 최근 7일 동안 물은 횟수 중 우리 가게가 나온 횟수를 세요.</p></details>
+<details class="faq"><summary>추천 횟수는 어떻게 확인하나요?</summary><p>로그인하지 않은 새 대화에서 매장 이름 없이 손님처럼 물어요. ChatGPT 답변은 물을 때마다 달라서 같은 질문을 매주 3번씩 묻고, 최근 7일 동안 물은 횟수 중 우리 가게가 나온 횟수를 세요.</p></details>
 <details class="faq"><summary>블로그 체험단이나 네이버 광고랑 뭐가 다른가요?</summary><p>체험단과 네이버 광고는 네이버에서 검색하는 손님에게 보여요. 토크비는 ChatGPT 같은 AI에 물어보는 손님에게 우리 가게가 답으로 나오게 해요. 둘은 따로 움직여서, 네이버 상위인 가게가 AI 답변에는 안 나오는 경우가 많아요.</p></details>
 <details class="faq"><summary>해지와 환불은 어떻게 하나요?</summary><p>약정 없이 언제든 해지할 수 있고, 결제한 기간이 끝날 때까지 그대로 이용하실 수 있어요. 결제 확인 후 영업일 3일 이내에는 사유와 상관없이 전액 환불해 드려요. 그 이후에는 서비스가 이미 시작되어 환불이 불가해요.</p></details>
 </div>

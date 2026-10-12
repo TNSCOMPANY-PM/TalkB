@@ -39,6 +39,8 @@ function fill(tplName, outName) {
 fill("index.template.html", "index.html");
 mkdirSync(join(ROOT, "gpt-plan"), { recursive: true });
 fill("gpt-plan.template.html", "gpt-plan/index.html");
+mkdirSync(join(ROOT, "enterprise"), { recursive: true });
+fill("enterprise.template.html", "enterprise/index.html");
 fill("llms.template.txt", "llms.txt");
 
 // 사이트맵 홈 lastmod
