@@ -311,7 +311,13 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt-s{display:block;margin-top:8px;font-size:14px;font-weight:800;color:var(--deep)}
 .pt td b{font-size:18px}
 .pt-fit{font-size:14px;color:var(--ink-mid);line-height:1.5}
-.pt-cta{margin-top:18px;text-align:center}
+.pt-all th,.pt-all td{background:var(--soft)}
+.pt-all td{font-size:14px;color:var(--ink-mid);line-height:1.6}
+.pc-note{margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.7;text-align:center}
+.pc-note b{color:var(--deep)}
+.pc-links{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 28px;margin-top:6px}
+.pc-links a{display:inline-block;padding:8px 0;font-size:15px;font-weight:700;color:var(--ink-mid);text-decoration:underline;text-underline-offset:4px}
+.pt-cta{margin-top:20px;text-align:center}
 .pt-cta .kbtn{width:100%;max-width:520px}
 .pt-cta p{margin-top:8px;font-size:14px;color:var(--muted)}
 .pc-common{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px}
@@ -742,23 +748,11 @@ fbq('track', 'PageView');
 <tbody>
 <tr><th scope="row">손님 질문</th><td><b>10개</b></td><td><b>20개</b></td><td><b>40개</b></td></tr>
 <tr><th scope="row">이런 가게에 맞아요</th><td class="pt-fit">동네 손님이 많은 가게</td><td class="pt-fit">역이나 명소 근처라 찾아오는 손님이 많은 가게</td><td class="pt-fit">대표 메뉴가 둘 이상이거나 여러 상권에서 손님이 오는 가게</td></tr>
+<tr class="pt-all"><th scope="row">세 요금제 공통</th><td colspan="3">AI 이해도 질문 5개 · 가게 정보 70여 가지 정리 · 가게 소개 글 · 매달 비교 리포트 · 매주 카톡 알림 · 다른 AI에도 함께 학습</td></tr>
 </tbody></table></div>
-<p class="pc-vat">모든 요금제 매주 1회 · 질문마다 3번씩 측정 · 매장당 · 월 · VAT 별도</p>
-<div class="pt-cta"><a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 요금제 상담하기</a><p>어떤 요금제가 맞을지 무료 리포트를 보고 같이 정해 드려요.</p></div>
-<div class="pc-common">
-<p class="pc-ct">세 요금제 공통</p>
-<ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>AI 이해도 질문 5개 매주 확인</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>가게 정보 70여 가지 정리·보강</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>가게 소개 글 발행</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매달 비교 리포트</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>매주 카톡 알림·전문가 상담</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E85D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>Gemini·Claude·Perplexity에도 함께 학습</li></ul>
-<p class="pc-cn">측정과 리포트는 ChatGPT 기준이에요.</p>
-</div>
-<div class="terms">
-<p><b>약정 없음</b>언제든 해지</p>
-<p><b>전액 환불</b>결제 확인 후 영업일 3일 안</p>
-<p class="hot"><b>3곳까지만</b>같은 동네·같은 업종</p>
-</div>
-<div class="pc-more">
-<a class="pc-go" href="/pricing/" data-pos="price-plan"><b>요금제 자세히 보기</b><span>요금제별 질문 범위와 비교표</span><i aria-hidden="true">→</i></a>
-<a class="pc-go pc-go-dark" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price-enterprise"><b>엔터프라이즈 · 카카오 채널 문의</b><span>매장 10개 이상·프랜차이즈 본사 · 가격 문의</span><i aria-hidden="true">→</i></a>
-</div>
+<p class="pc-note">매주 1회 · 질문마다 3번씩 측정 · 매장당 · 월 · VAT 별도 · 약정 없음 · 결제 확인 후 영업일 3일 안 전액 환불 · <b>같은 동네·같은 업종은 3곳까지만</b></p>
+<div class="pt-cta"><a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 요금제 상담하기</a></div>
+<p class="pc-links"><a href="/pricing/" data-pos="price-plan">요금제 자세히 보기 →</a><a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price-enterprise">매장 10개 이상은 엔터프라이즈 문의 →</a></p>
 </div>
 </section>
 
