@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-08T01:20:10.218Z",
-  "periodFrom": "2026년 10월 1일",
-  "periodTo": "2026년 10월 8일",
-  "updatedDot": "2026.10.8",
+  "updatedAt": "2026-10-12T00:30:02.774Z",
+  "periodFrom": "2026년 10월 5일",
+  "periodTo": "2026년 10월 12일",
+  "updatedDot": "2026.10.12",
   "stores": {
     "ogong": {
       "key": "ogong",
@@ -10,10 +10,10 @@
       "area": "고양 일산서구",
       "cat": "분식",
       "baselinePct": 0,
-      "nowPct": 84.8,
+      "nowPct": 83.6,
       "base10": 0,
       "now10": 8,
-      "runs": 125
+      "runs": 225
     },
     "gaon": {
       "key": "gaon",
@@ -21,10 +21,10 @@
       "area": "서울 광진구",
       "cat": "한식",
       "baselinePct": 26.7,
-      "nowPct": 73.6,
+      "nowPct": 77,
       "base10": 3,
-      "now10": 7,
-      "runs": 125
+      "now10": 8,
+      "runs": 230
     },
     "insaeng": {
       "key": "insaeng",
@@ -43,10 +43,10 @@
       "area": "서울 종로구",
       "cat": "분식",
       "baselinePct": 10,
-      "nowPct": 68,
+      "nowPct": 69.1,
       "base10": 1,
       "now10": 7,
-      "runs": 75
+      "runs": 223
     },
     "donas": {
       "key": "donas",
@@ -54,10 +54,10 @@
       "area": "수원 권선구",
       "cat": "대형 카페",
       "baselinePct": 20,
-      "nowPct": 53.4,
+      "nowPct": 52.9,
       "base10": 2,
       "now10": 5,
-      "runs": 131
+      "runs": 221
     },
     "hansin": {
       "key": "hansin",
@@ -65,18 +65,18 @@
       "area": "수원 팔달구",
       "cat": "우동·야식",
       "baselinePct": 13.3,
-      "nowPct": 52.7,
+      "nowPct": 59,
       "base10": 1,
-      "now10": 5,
-      "runs": 110
+      "now10": 6,
+      "runs": 222
     }
   },
   "featured": {
     "hero": {
-      "runs": 10,
-      "rank1": 10,
-      "label": "10번 중 10번",
-      "all": true
+      "runs": 20,
+      "rank1": 19,
+      "label": "20번 중 19번",
+      "all": false
     },
     "ba": {
       "runs": 10,
@@ -85,40 +85,40 @@
       "all": false
     },
     "c1": {
-      "runs": 10,
+      "runs": 12,
       "rank1": 8,
-      "label": "10번 중 8번",
+      "label": "12번 중 8번",
       "all": false
     },
     "c2": {
-      "runs": 10,
-      "rank1": 10,
-      "label": "10번 중 10번",
-      "all": true
+      "runs": 15,
+      "rank1": 14,
+      "label": "15번 중 14번",
+      "all": false
     },
     "c3": {
-      "runs": 10,
-      "rank1": 9,
-      "label": "10번 중 9번",
+      "runs": 20,
+      "rank1": 19,
+      "label": "20번 중 19번",
       "all": false
     },
     "s1": {
-      "runs": 5,
-      "rank1": 5,
-      "label": "5번 중 5번",
-      "all": true
+      "runs": 15,
+      "rank1": 14,
+      "label": "15번 중 14번",
+      "all": false
     },
     "s2": {
-      "runs": 10,
-      "rank1": 5,
-      "label": "10번 중 5번",
+      "runs": 15,
+      "rank1": 10,
+      "label": "15번 중 10번",
       "all": false
     }
   },
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 65.6,
+    "nowPct": 67.1,
     "base10": 1,
     "now10": 7
   },
