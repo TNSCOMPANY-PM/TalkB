@@ -238,7 +238,7 @@
    "name": "요금제마다 뭐가 다른가요?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "질문 수와 경쟁도가 달라요. 라이트는 경쟁 낮은 질문 10개, 스탠다드는 경쟁 낮은 질문 16개에 ‘마곡동 감자탕 맛집’처럼 많은 가게가 겨루는 경쟁 높은 질문 4개를 더한 20개, 플러스는 스탠다드 20개에 가게에 맞춘 20개를 더한 40개예요. 질문이 많을수록 AI 학습 자료도 더 많이 발행해요. 가게 정보 정리, 매달 리포트, 카톡 알림은 세 요금제가 같아요."
+    "text": "질문 수와 경쟁도가 달라요. 라이트는 경쟁 중간 질문 10개, 스탠다드는 경쟁 중간 질문 16개에 ‘마곡동 감자탕 맛집’처럼 많은 가게가 겨루는 경쟁 높은 질문 4개를 더한 20개, 플러스는 스탠다드 20개에 가게에 맞춘 20개를 더한 40개예요. 질문이 많을수록 AI 학습 자료도 더 많이 발행해요. 가게 정보 정리, 매달 리포트, 카톡 알림은 세 요금제가 같아요."
    }
   },
   {
@@ -423,18 +423,18 @@
 .pt-scope td:not(:nth-child(3)){background:#FFFCFA}
 .pt-scope th[scope=row]{font-size:16px!important;font-weight:800!important;color:var(--ink)!important}
 .pt-scope .pt-fit{font-size:14.5px;color:var(--ink)}
-.lv{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px}
-.lv:first-child{margin-top:0}
-.lv i{font-style:normal;font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.lvs{display:inline-grid;grid-template-columns:auto auto;column-gap:12px;row-gap:8px;align-items:center;text-align:left}
+.lv{display:contents}
+.lv i{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:4px 0;width:76px;text-align:center;white-space:nowrap}
 .lv-lo{background:#EEF0F3;color:var(--ink-mid)}
 .lv-hi{background:var(--deep);color:#fff}
-.lv b{font-size:16px;font-weight:800}
+.lv-cu{background:#fff;color:var(--deep);box-shadow:inset 0 0 0 1.5px #F7B9A2}
+.lv b{font-size:16px;font-weight:800;color:var(--ink)}
 .lv-on b{color:var(--deep)}
-.lv-off{color:#B0B8C1;font-weight:600}
-.lv-off .lv-hi{background:#F1F2F4;color:#B0B8C1;text-decoration:line-through}
-.lv-plus{font-size:13.5px;color:var(--ink-mid)}
+.lv-off i{background:#F1F2F4;color:#B0B8C1;text-decoration:line-through}
+.lv-off b{color:#B0B8C1;font-weight:600}
 .qh-t{font-style:normal;font-weight:800;color:var(--deep)}
-@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lv{flex-direction:column;gap:3px;margin-top:8px}.lv i{font-size:10.5px;padding:2px 7px}.lv b{font-size:14px}.lv-plus{font-size:11.5px}}
+@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:6px;row-gap:6px}.lv i{font-size:10.5px;width:54px;padding:3px 0}.lv b{font-size:13px}}
 /* /pt-polish */
 .pc-sub{margin-top:8px;font-size:14px;color:var(--muted)}
 .pc-terms{list-style:none;padding:0;margin:18px 0 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
@@ -506,7 +506,7 @@ fbq('track', 'PageView');
 <tbody>
 <tr><th scope="row">손님 질문</th><td><b>10개</b></td><td><b>20개</b></td><td><b>40개</b></td></tr>
 <tr><th scope="row">측정</th><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td></tr>
-<tr class="pt-scope"><th scope="row">질문 경쟁도<span class="pt-hint">경쟁 높은 질문은 ‘동네 맛집’처럼 많은 가게가 겨루는 질문이에요</span></th><td class="pt-fit"><span class="lv"><i class="lv-lo">경쟁 낮음</i><b>10개</b></span><span class="lv lv-off"><i class="lv-hi">경쟁 높음</i>없음</span></td><td class="pt-fit"><span class="lv"><i class="lv-lo">경쟁 낮음</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi">경쟁 높음</i><b>4개</b></span></td><td class="pt-fit"><span class="lv"><i class="lv-lo">경쟁 낮음</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi">경쟁 높음</i><b>4개</b></span><span class="lv lv-plus">+ 가게 맞춤 <b>20개</b></span></td></tr>
+<tr class="pt-scope"><th scope="row">질문 경쟁도<span class="pt-hint">경쟁 높은 질문은 ‘동네 맛집’처럼 많은 가게가 겨루는 질문이에요</span></th><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo">경쟁 중간</i><b>10개</b></span><span class="lv lv-off"><i class="lv-hi">경쟁 높음</i><b>없음</b></span></span></td><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo">경쟁 중간</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi">경쟁 높음</i><b>4개</b></span></span></td><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo">경쟁 중간</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi">경쟁 높음</i><b>4개</b></span><span class="lv lv-plus"><i class="lv-cu">가게 맞춤</i><b>20개</b></span></span></td></tr>
 <tr><th scope="row">AI 학습 자료 발행<span class="pt-hint">질문 수에 맞춰 달라져요</span></th><td><b>가볍게</b></td><td><b>기본</b></td><td><b>더 많이</b></td></tr>
 <tr class="pt-g"><th scope="rowgroup" colspan="4">세 요금제 공통</th></tr>
 <tr><th scope="row">AI 이해도 <span class="pt-nw">질문 5개</span><span class="pt-hint">매주 1번</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
@@ -594,7 +594,7 @@ fbq('track', 'PageView');
 <div style="margin-top: 24px">
 <details class="faq" open><summary>어떤 요금제를 고르면 되나요?</summary><p>무료 리포트는 스탠다드와 같은 손님 질문 20개로 확인해요. 리포트에서 본 경쟁 높은 질문까지 매주 재려면 스탠다드가 맞아요. 질문을 줄여 가볍게 시작하려면 라이트, 상권이 넓거나 메뉴가 다양하면 플러스를 권해요. 무료 리포트를 보고 같이 정하셔도 돼요.</p></details>
 <details class="faq"><summary>무료 리포트는 질문 몇 개로 확인하나요?</summary><p>스탠다드 요금제와 같은 20개, ‘동네 맛집’ 같은 경쟁 높은 질문까지 ChatGPT에 한 번씩 물어봐요. 우리 가게가 몇 개 질문에서 추천되는지와 대신 추천된 가게를 보고 요금제를 고르시면 돼요.</p></details>
-<details class="faq"><summary>요금제마다 뭐가 다른가요?</summary><p>질문 수와 경쟁도가 달라요. 라이트는 경쟁 낮은 질문 10개, 스탠다드는 경쟁 낮은 질문 16개에 ‘마곡동 감자탕 맛집’처럼 많은 가게가 겨루는 경쟁 높은 질문 4개를 더한 20개, 플러스는 스탠다드 20개에 가게에 맞춘 20개를 더한 40개예요. 질문이 많을수록 AI 학습 자료도 더 많이 발행해요. 가게 정보 정리, 매달 리포트, 카톡 알림은 세 요금제가 같아요.</p></details>
+<details class="faq"><summary>요금제마다 뭐가 다른가요?</summary><p>질문 수와 경쟁도가 달라요. 라이트는 경쟁 중간 질문 10개, 스탠다드는 경쟁 중간 질문 16개에 ‘마곡동 감자탕 맛집’처럼 많은 가게가 겨루는 경쟁 높은 질문 4개를 더한 20개, 플러스는 스탠다드 20개에 가게에 맞춘 20개를 더한 40개예요. 질문이 많을수록 AI 학습 자료도 더 많이 발행해요. 가게 정보 정리, 매달 리포트, 카톡 알림은 세 요금제가 같아요.</p></details>
 <details class="faq"><summary>결제는 어떻게 하나요?</summary><p>카드 자동 결제나 무통장 입금 중에 고르실 수 있어요. 가격은 매장당 월 기준이고 VAT 별도예요. 결제 화면에서 VAT를 포함한 금액을 먼저 보여 드려요.</p></details>
 <details class="faq"><summary>요금제를 나중에 바꿀 수 있나요?</summary><p>카톡으로 말씀해 주시면 바꿔 드려요. 올릴 때는 지금 질문은 그대로 두고 질문을 더해서, 시작 전과 비교하는 기준이 이어져요.</p></details>
 <details class="faq"><summary>이미 이용 중인데 요금이 바뀌나요?</summary><p>이미 이용 중인 매장은 요금과 측정 방식이 그대로예요.</p></details>
