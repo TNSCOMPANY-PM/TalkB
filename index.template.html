@@ -580,7 +580,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot .wrap{padding-top:32px;padding-bottom:40px;font-size:13px;color:var(--muted);line-height:1.9}
 .foot b{color:var(--ink)}
 .foot a{display:inline;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
-@media (max-width:640px){.float{display:none}}
+@media (max-width:640px){.float{right:16px;bottom:calc(84px + env(safe-area-inset-bottom))}.float-kakao{min-height:48px;padding:0 16px 0 12px;font-size:14px}.float-kakao svg{width:22px;height:22px}}
 @media (max-width:900px){.float-qr{display:none}}
 @media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.pc-btns .kbtn,.pc-detail{width:100%;min-width:0}.pt{font-size:12.5px}.pt col.pt-lab{width:24%}.pt th,.pt td{padding:10px 5px}.pt thead th{padding:16px 4px 14px}.pt tbody th[scope=row]{padding-left:10px}.pt-p{white-space:normal;font-size:12px}.pt-p b{display:block;font-size:15px}.pt-n{font-size:15px}.pt-s{font-size:11.5px}.pt td b{font-size:15px}.pt-fit{font-size:11.5px}.pt-add{font-size:10.5px;padding:2px 7px}.pc-common ul{grid-template-columns:1fr}.pc-more{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
@@ -589,6 +589,34 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .sticky.hide{transform:translateY(110%)}
 .wrap.hero{padding-top:28px;padding-bottom:56px;row-gap:12px}.define{margin-top:14px;font-size:16px}.hero-bottom > div:first-child{margin-top:22px!important}}
 @media (max-width:400px){.wrap{padding-left:16px;padding-right:16px}.pt-wrap .pt col.pt-lab{width:23%}.pt-wrap .pt th,.pt-wrap .pt td{padding:10px 3px}.pt-wrap .pt tbody th[scope=row]{padding-left:10px;font-size:12px}.pt-wrap .pt thead th{padding-left:2px;padding-right:2px}.pt-wrap .pt-n{font-size:14px}.pt-wrap .pt-p b{font-size:14px;letter-spacing:-0.03em}.pt-wrap .pt-p{font-size:11px}.pt-wrap .pt-s{font-size:10.5px}.pt-wrap .pt-fit{font-size:11px}.pt-wrap .pt td b{font-size:13px}}
+
+.kbtn.fbtn{background:var(--accent);color:#fff}
+.kbtn.fbtn:hover{filter:brightness(.95)}
+.inq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.inq-list{margin-top:20px;display:grid;gap:10px;font-size:16.5px;color:var(--ink-mid)}
+.inq-list{list-style:none;padding:0}.inq-list li{position:relative;padding-left:26px}
+.inq-list li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+.inq-copy .rp{margin-top:28px}
+.inq-card{background:#fff;border:1px solid #FBD5C6;border-radius:22px;padding:28px;box-shadow:0 10px 30px rgba(20,24,31,.06)}
+.inq-card h3{font-size:22px;font-weight:800}
+.inq-sub{margin-top:4px;font-size:15px;color:var(--ink-mid)}
+.inq-f{margin-top:14px}
+.inq-f label{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.inq-f .req{color:var(--accent)}
+.inq-f input,.inq-f textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
+.inq-f input:focus,.inq-f textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+.inq-f textarea{resize:vertical;min-height:84px}
+.inq-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inq-agree{display:flex;gap:8px;align-items:flex-start;margin-top:16px;font-size:14px;color:var(--ink-mid);line-height:1.5;cursor:pointer}
+.inq-agree input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--accent)}
+.inq-agree a{text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.inq-card .kbtn{width:100%;margin-top:18px;cursor:pointer;font-family:inherit;letter-spacing:normal}
+.inq-card .kbtn:disabled{opacity:.6;cursor:default}
+.inq-status{margin-top:12px;font-size:15px;font-weight:700;min-height:1px}
+.inq-status.ok{color:#0F7A4A}
+.inq-status.err{color:var(--deep)}
+@media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
+@media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.inq-copy .rp{display:none}}
 </style>
 
 <!-- Meta Pixel -->
@@ -616,11 +644,10 @@ fbq('track', 'PageView');
 <a class="nl" href="#proof">실제 답변</a>
 <a class="nl" href="#stores">함께하는 가게</a>
 <a class="nl" href="#reviews">후기</a>
-<a class="nl" href="#how">진행 방식</a>
 <a class="nl" href="#price">가격</a>
 <a class="nl" href="#faq">자주 묻는 질문</a>
 </nav>
-<a class="kbtn kbtn-sm" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="header"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡 상담</a>
+<a class="kbtn kbtn-sm fbtn" href="#inquiry" data-pos="header">무료 리포트 신청</a>
 </div>
 </header>
 
@@ -635,7 +662,7 @@ fbq('track', 'PageView');
 </div>
 <div class="hero-bottom">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 28px">
-<a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="hero"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 무료 리포트 받기</a>
+<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="hero">무료 리포트 신청하기</a>
 </div>
 <div class="reassure">
 <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F7A4A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>손님 질문 10개 무료 리포트</span>
@@ -766,36 +793,6 @@ fbq('track', 'PageView');
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 
-<section class="sec" id="how">
-<div class="wrap two" style="gap: 56px; align-items: start">
-<div>
-<p class="eyebrow">진행 방식</p>
-<h2 class="h2">사장님은 카톡만 보시면 됩니다</h2>
-<div style="display: grid; gap: 28px; margin-top: 36px">
-<div class="step"><span class="num">1</span><div><h3 style="font-size: 19px; font-weight: 800"><a class="step-link" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="step1">카톡으로 플레이스 링크 보내기 <span aria-hidden="true">→</span></a></h3></div></div>
-<div class="step"><span class="num">2</span><div><h3 style="font-size: 19px; font-weight: 800">카톡으로 무료 리포트 받기</h3><p style="margin-top: 4px; font-size: 15px; color: var(--ink-mid)">손님 질문 10개를 무료로 물어봐 드려요</p></div></div>
-<div class="step"><span class="num">3</span><div><h3 style="font-size: 19px; font-weight: 800">시작하면 매주 확인, 매달 결과 보고</h3></div></div>
-</div>
-</div>
-<aside class="card" style="background: #FFF6F2; border-color: #FBD5C6">
-<div class="rp" role="img" aria-label="무료 리포트 예시: 손님 질문 10개 중 2개에서 추천, 대신 추천된 가게 3곳">
-<div class="rp-head"><span>무료 리포트 예시</span><b>○○갈비 · 수원 인계동</b></div>
-<div class="rp-sec">
-<p class="rp-k">손님 질문 10개 결과</p>
-<p class="rp-big"><b>10개 중 2개</b>에서 추천됐어요</p>
-<div class="rp-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-</div>
-<div class="rp-sec">
-<p class="rp-k">대신 추천된 가게</p>
-<p class="rp-row"><span>ㄱ○○갈비</span><b>6번</b></p>
-<p class="rp-row"><span>ㅅ○○식당</span><b>4번</b></p>
-<p class="rp-row"><span>ㅎ○○숯불</span><b>3번</b></p>
-</div>
-</div>
-<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="how" style="margin-top: 22px; width: 100%">카톡으로 무료 리포트 받기</a>
-</aside>
-</div>
-</section>
 
 <section class="sec" id="price" style="background: #F7F8FA">
 <div class="wrap">
@@ -819,10 +816,48 @@ fbq('track', 'PageView');
 </table></div>
 <ul class="pc-terms"><li>약정 없음</li><li>결제 확인 후 영업일 3일 안 전액 환불</li><li class="hot">같은 동네·같은 업종 3곳까지만</li></ul>
 <div class="pc-btns">
-<a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 요금제 상담하기</a>
 <a class="pc-detail" href="/pricing/" data-pos="price-plan">요금제 자세히 보기</a>
 </div>
-<p class="pc-ent">매장 10개 이상이면 <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="price-enterprise">엔터프라이즈 문의</a></p>
+<p class="pc-ent">매장 10개 이상이면 <a href="#inquiry" data-pos="price-enterprise">엔터프라이즈 문의</a></p>
+</div>
+</section>
+
+<section class="sec" id="inquiry" style="background: #FFF6F2">
+<div class="wrap inq">
+<div class="inq-copy">
+<p class="eyebrow">무료 리포트</p>
+<h2 class="h2">우리 가게가 ChatGPT에 나오는지 먼저 확인해 보세요</h2>
+<ul class="inq-list"><li>손님이 물을 만한 질문 10개를 ChatGPT에 직접 물어봐요</li><li>우리 가게 대신 추천된 가게까지 알려 드려요</li><li>결과를 보고 전문가가 상담해 드려요</li></ul>
+<div class="rp" role="img" aria-label="무료 리포트 예시: 손님 질문 10개 중 2개에서 추천, 대신 추천된 가게 3곳">
+<div class="rp-head"><span>무료 리포트 예시</span><b>○○갈비 · 수원 인계동</b></div>
+<div class="rp-sec">
+<p class="rp-k">손님 질문 10개 결과</p>
+<p class="rp-big"><b>10개 중 2개</b>에서 추천됐어요</p>
+<div class="rp-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+<div class="rp-sec">
+<p class="rp-k">대신 추천된 가게</p>
+<p class="rp-row"><span>ㄱ○○갈비</span><b>6번</b></p>
+<p class="rp-row"><span>ㅅ○○식당</span><b>4번</b></p>
+<p class="rp-row"><span>ㅎ○○숯불</span><b>3번</b></p>
+</div>
+</div>
+</div>
+<form class="inq-card" id="inquiryForm" novalidate>
+<h3>무료 리포트 신청</h3>
+<p class="inq-sub">남겨 주시면 담당자가 확인하고 연락드려요.</p>
+<div class="inq-f"><label for="inq_store">매장 이름 <span class="req">*</span></label><input type="text" id="inq_store" placeholder="예: 토크비식당 마곡점" autocomplete="organization" required></div>
+<div class="inq-f"><label for="inq_location">매장 위치</label><input type="text" id="inq_location" placeholder="예: 서울 강서구 마곡동" autocomplete="address-level2"></div>
+<div class="inq-2">
+<div class="inq-f"><label for="inq_name">성함 <span class="req">*</span></label><input type="text" id="inq_name" placeholder="이름" autocomplete="name" required></div>
+<div class="inq-f"><label for="inq_position">직책</label><input type="text" id="inq_position" placeholder="예: 대표, 점장" autocomplete="organization-title"></div>
+</div>
+<div class="inq-f"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
+<div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
+<label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
+<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn">무료 리포트 신청하기</button>
+<p class="inq-status" id="inqStatus" role="status" aria-live="polite"></p>
+</form>
 </div>
 </section>
 
@@ -848,8 +883,8 @@ fbq('track', 'PageView');
 <section id="final" style="background: #191F28; color: #fff">
 <div class="wrap" style="padding-top: 80px; padding-bottom: 80px; text-align: center">
 <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 800">우리 가게는 나올까요?</h2>
-<p style="font-size: 17px; color: #B0B8C1; margin-top: 12px">플레이스 링크 하나면 충분해요.</p>
-<a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="final" style="margin-top: 28px"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 무료 리포트 받기</a>
+<p style="font-size: 17px; color: #B0B8C1; margin-top: 12px">매장 이름과 연락처만 남겨 주세요.</p>
+<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="final" style="margin-top: 28px">무료 리포트 신청하기</a>
 </div>
 </section>
 
@@ -874,7 +909,7 @@ fbq('track', 'PageView');
 
 <div class="sticky" id="sticky">
 <a class="price" href="#price">가격</a>
-<a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="sticky">카톡으로 무료 리포트 받기</a>
+<a class="kbtn fbtn" href="#inquiry" data-pos="sticky">무료 리포트 신청하기</a>
 </div>
 
 </div>
@@ -995,6 +1030,28 @@ fbq('track', 'PageView');
   sl.forEach(function(x, k){ x.addEventListener("click", function(){ if (k !== cur) show(k); }); });
   window.addEventListener("resize", function(){ show(cur); });
   show(0);
+})();
+</script>
+<script>
+(function () {
+  var API = "https://app.talkb.co.kr/api/inquiries";
+  var form = document.getElementById("inquiryForm");
+  if (!form) return;
+  var st = document.getElementById("inqStatus"), btn = document.getElementById("inqSubmit");
+  function v(id) { var el = document.getElementById(id); return el ? (el.value || "").trim() : ""; }
+  function show(kind, msg) { st.className = "inq-status " + kind; st.textContent = msg; }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var store = v("inq_store"), name = v("inq_name"), phone = v("inq_phone").replace(/\D/g, "");
+    if (!store || !name || !phone) { show("err", "매장 이름, 성함, 휴대폰 번호를 적어 주세요."); return; }
+    if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
+    if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
+    btn.disabled = true; btn.textContent = "보내는 중…";
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ store_name: store, location: v("inq_location"), applicant_name: name, position: v("inq_position"), phone: phone, inquiry: v("inq_inquiry") }) })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. 담당자가 확인하고 연락드릴게요."); form.reset(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
+      .catch(function () { show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
+      .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
+  });
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>

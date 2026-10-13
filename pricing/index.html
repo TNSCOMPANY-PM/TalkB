@@ -646,7 +646,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .foot .wrap{padding-top:32px;padding-bottom:40px;font-size:13px;color:var(--muted);line-height:1.9}
 .foot b{color:var(--ink)}
 .foot a{display:inline;padding:6px 0;text-decoration:underline;text-underline-offset:2px}
-@media (max-width:640px){.float{display:none}}
+@media (max-width:640px){.float{right:16px;bottom:calc(84px + env(safe-area-inset-bottom))}.float-kakao{min-height:48px;padding:0 16px 0 12px;font-size:14px}.float-kakao svg{width:22px;height:22px}}
 @media (max-width:900px){.float-qr{display:none}}
 @media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.pc-btns .kbtn,.pc-detail{width:100%;min-width:0}.pt{font-size:12.5px}.pt col.pt-lab{width:24%}.pt th,.pt td{padding:10px 5px}.pt thead th{padding:16px 4px 14px}.pt tbody th[scope=row]{padding-left:10px}.pt-p{white-space:normal;font-size:12px}.pt-p b{display:block;font-size:15px}.pt-n{font-size:15px}.pt-s{font-size:11.5px}.pt td b{font-size:15px}.pt-fit{font-size:11.5px}.pt-add{font-size:10.5px;padding:2px 7px}.pc-common ul{grid-template-columns:1fr}.pc-more{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
 @media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
@@ -655,6 +655,34 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .sticky.hide{transform:translateY(110%)}
 .wrap.hero{padding-top:28px;padding-bottom:56px;row-gap:12px}.define{margin-top:14px;font-size:16px}.hero-bottom > div:first-child{margin-top:22px!important}}
 @media (max-width:400px){.wrap{padding-left:16px;padding-right:16px}.pt-wrap .pt col.pt-lab{width:23%}.pt-wrap .pt th,.pt-wrap .pt td{padding:10px 3px}.pt-wrap .pt tbody th[scope=row]{padding-left:10px;font-size:12px}.pt-wrap .pt thead th{padding-left:2px;padding-right:2px}.pt-wrap .pt-n{font-size:14px}.pt-wrap .pt-p b{font-size:14px;letter-spacing:-0.03em}.pt-wrap .pt-p{font-size:11px}.pt-wrap .pt-s{font-size:10.5px}.pt-wrap .pt-fit{font-size:11px}.pt-wrap .pt td b{font-size:13px}}
+
+.kbtn.fbtn{background:var(--accent);color:#fff}
+.kbtn.fbtn:hover{filter:brightness(.95)}
+.inq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.inq-list{margin-top:20px;display:grid;gap:10px;font-size:16.5px;color:var(--ink-mid)}
+.inq-list{list-style:none;padding:0}.inq-list li{position:relative;padding-left:26px}
+.inq-list li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+.inq-copy .rp{margin-top:28px}
+.inq-card{background:#fff;border:1px solid #FBD5C6;border-radius:22px;padding:28px;box-shadow:0 10px 30px rgba(20,24,31,.06)}
+.inq-card h3{font-size:22px;font-weight:800}
+.inq-sub{margin-top:4px;font-size:15px;color:var(--ink-mid)}
+.inq-f{margin-top:14px}
+.inq-f label{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.inq-f .req{color:var(--accent)}
+.inq-f input,.inq-f textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
+.inq-f input:focus,.inq-f textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+.inq-f textarea{resize:vertical;min-height:84px}
+.inq-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inq-agree{display:flex;gap:8px;align-items:flex-start;margin-top:16px;font-size:14px;color:var(--ink-mid);line-height:1.5;cursor:pointer}
+.inq-agree input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--accent)}
+.inq-agree a{text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.inq-card .kbtn{width:100%;margin-top:18px;cursor:pointer;font-family:inherit;letter-spacing:normal}
+.inq-card .kbtn:disabled{opacity:.6;cursor:default}
+.inq-status{margin-top:12px;font-size:15px;font-weight:700;min-height:1px}
+.inq-status.ok{color:#0F7A4A}
+.inq-status.err{color:var(--deep)}
+@media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
+@media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.inq-copy .rp{display:none}}
 .plan-hero{padding-top:56px;padding-bottom:40px}
 .plan-hero .h1{font-size:clamp(30px,4vw,46px)}
 .inc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
@@ -811,7 +839,7 @@ fbq('track', 'PageView');
 <a class="nl" href="#report">리포트</a>
 <a class="nl" href="#faq">결제 전 질문</a>
 </nav>
-<a class="kbtn kbtn-sm" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-header"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡 상담</a>
+<a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="plan-header">무료 리포트 신청</a>
 </div>
 </header>
 
@@ -836,8 +864,8 @@ fbq('track', 'PageView');
 </tbody>
 </table></div>
 <ul class="pc-terms"><li>약정 없음</li><li>결제 확인 후 영업일 3일 안 전액 환불</li><li class="hot">같은 동네·같은 업종 3곳까지만</li></ul>
-<a class="kbtn kbtn-lg pc-one" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-table"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 요금제 상담하기</a>
-<p class="pc-ent">매장 10개 이상이면 <a href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-enterprise">엔터프라이즈 문의</a></p>
+<a class="kbtn kbtn-lg pc-one fbtn" href="/#inquiry" data-pos="plan-table">무료 리포트 신청하기</a>
+<p class="pc-ent">매장 10개 이상이면 <a href="/#inquiry" data-pos="plan-enterprise">엔터프라이즈 문의</a></p>
 </section>
 
 <section class="sec" id="include">
@@ -897,7 +925,7 @@ fbq('track', 'PageView');
 <div class="wrap">
 <h2 class="h2">진행 과정</h2>
 <div class="steps5">
-<article><span class="num">1</span><h3><a class="step-link" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-step1">카톡으로 플레이스 링크 보내기 <span aria-hidden="true">→</span></a></h3><p>가입 없이 링크 하나면 돼요.</p></article>
+<article><span class="num">1</span><h3><a class="step-link" href="/#inquiry" data-pos="plan-step1">무료 리포트 신청 <span aria-hidden="true">→</span></a></h3><p>매장 이름과 연락처만 남기면 돼요.</p></article>
 <article><span class="num">2</span><h3>무료 리포트 받고 요금제 고르기</h3><p>손님 질문 10개 결과를 보고, 가게에 맞는 요금제를 상담해서 골라요.</p></article>
 <article><span class="num">3</span><h3>결제하고 가게 정보 확인</h3><p>카드나 무통장 입금으로 결제하고, 메뉴·주차 같은 가게 정보를 확인해 주세요.</p></article>
 <article><span class="num">4</span><h3>첫 측정</h3><p>결제하면 바로 첫 측정이 시작되고, 운영팀이 결과를 확인해요.</p></article>
@@ -930,8 +958,8 @@ fbq('track', 'PageView');
 <section id="final" style="background: #191F28; color: #fff">
 <div class="wrap" style="padding-top: 64px; padding-bottom: 64px; text-align: center">
 <h2 class="h2" style="color: #fff">어떤 요금제가 맞을지 모르겠다면</h2>
-<p style="margin-top: 10px; color: #B0B8C1">플레이스 링크를 보내 주시면 무료 리포트를 보고 같이 정해 드려요.</p>
-<a class="kbtn kbtn-lg" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-final" style="margin-top: 26px"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡으로 무료 리포트 받기</a>
+<p style="margin-top: 10px; color: #B0B8C1">매장 이름과 연락처를 남겨 주시면 무료 리포트를 보고 같이 정해 드려요.</p>
+<a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="plan-final" style="margin-top: 26px">무료 리포트 신청하기</a>
 </div>
 </section>
 </main>
@@ -954,7 +982,7 @@ fbq('track', 'PageView');
 <a class="float-kakao" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-float"><svg viewBox="0 0 24 24" fill="#191919" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7l-1 3.7c-.1.4.3.7.6.5l4.4-2.9c.4 0 .9.1 1.3.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"></path></svg>카톡 상담</a>
 </div>
 
-<div class="sticky" id="sticky"><a class="price" href="/">홈</a><a class="kbtn" href="https://pf.kakao.com/_JxlWTX/chat" target="_blank" rel="noopener" data-pos="plan-sticky">카톡으로 무료 리포트 받기</a></div>
+<div class="sticky" id="sticky"><a class="price" href="/">홈</a><a class="kbtn fbtn" href="/#inquiry" data-pos="plan-sticky">무료 리포트 신청하기</a></div>
 </div>
 
 <script>
