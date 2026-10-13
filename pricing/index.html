@@ -424,6 +424,21 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt-fit{font-size:13.5px}
 .pt-nw{white-space:nowrap}
 @media (max-width:640px){.pt-wrap .pt col.pt-lab{width:27%}.pt-wrap .pt th,.pt-wrap .pt td{padding:12px 5px}.pt-wrap .pt tbody th[scope=row]{font-size:12.5px;padding-left:12px}.pt-wrap .pt .pt-hint{font-size:11px}.pt-wrap .pt-n{font-size:15px}.pt-wrap .pt-p b{font-size:16px}.pt-wrap .pt-s{font-size:11px}.pt-wrap .pt td b{font-size:14px}.pt-wrap .pt .ok{width:22px;height:22px;font-size:12px}.pt-wrap .pt-g th{padding:10px 12px;font-size:12px}.pt-wrap .pt-fit{font-size:11.5px}}
+.pt-scope th,.pt-scope td{padding-top:22px!important;padding-bottom:22px!important;vertical-align:top!important}
+.pt-scope th[scope=row]{box-shadow:inset 4px 0 0 var(--accent)}
+.pt-scope td:not(:nth-child(3)){background:#FFFCFA}
+.pt-scope th[scope=row]{font-size:16px!important;font-weight:800!important;color:var(--ink)!important}
+.pt-scope .pt-fit{font-size:14.5px;color:var(--ink)}
+.qb{display:flex;gap:2px;height:12px;margin:0 auto 12px;max-width:220px;border-radius:6px;overflow:hidden;background:#EEF0F3}
+.qb i{display:block}
+.qb .qs,.qb-key .qs{background:#F7B9A2}
+.qb .qh,.qb-key .qh{background:var(--deep)}
+.qb .qc,.qb-key .qc{background:repeating-linear-gradient(135deg,#F7B9A2 0 4px,#FCE3D9 4px 8px)}
+.qb-key{display:grid;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:var(--ink-mid)}
+.qb-key span{display:flex;align-items:center;gap:6px}
+.qb-key i{display:inline-block;width:12px;height:8px;border-radius:3px;flex:none}
+.qh-t{font-style:normal;font-weight:800;color:var(--deep)}
+@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.qb{height:10px;margin-bottom:8px}.qb-key{font-size:10.5px}}
 /* /pt-polish */
 .pt-add{max-width:100%;white-space:nowrap}
 .pt-all th,.pt-all td{background:var(--soft)}
@@ -790,6 +805,21 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt-fit{font-size:13.5px}
 .pt-nw{white-space:nowrap}
 @media (max-width:640px){.pt-wrap .pt col.pt-lab{width:27%}.pt-wrap .pt th,.pt-wrap .pt td{padding:12px 5px}.pt-wrap .pt tbody th[scope=row]{font-size:12.5px;padding-left:12px}.pt-wrap .pt .pt-hint{font-size:11px}.pt-wrap .pt-n{font-size:15px}.pt-wrap .pt-p b{font-size:16px}.pt-wrap .pt-s{font-size:11px}.pt-wrap .pt td b{font-size:14px}.pt-wrap .pt .ok{width:22px;height:22px;font-size:12px}.pt-wrap .pt-g th{padding:10px 12px;font-size:12px}.pt-wrap .pt-fit{font-size:11.5px}}
+.pt-scope th,.pt-scope td{padding-top:22px!important;padding-bottom:22px!important;vertical-align:top!important}
+.pt-scope th[scope=row]{box-shadow:inset 4px 0 0 var(--accent)}
+.pt-scope td:not(:nth-child(3)){background:#FFFCFA}
+.pt-scope th[scope=row]{font-size:16px!important;font-weight:800!important;color:var(--ink)!important}
+.pt-scope .pt-fit{font-size:14.5px;color:var(--ink)}
+.qb{display:flex;gap:2px;height:12px;margin:0 auto 12px;max-width:220px;border-radius:6px;overflow:hidden;background:#EEF0F3}
+.qb i{display:block}
+.qb .qs,.qb-key .qs{background:#F7B9A2}
+.qb .qh,.qb-key .qh{background:var(--deep)}
+.qb .qc,.qb-key .qc{background:repeating-linear-gradient(135deg,#F7B9A2 0 4px,#FCE3D9 4px 8px)}
+.qb-key{display:grid;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:var(--ink-mid)}
+.qb-key span{display:flex;align-items:center;gap:6px}
+.qb-key i{display:inline-block;width:12px;height:8px;border-radius:3px;flex:none}
+.qh-t{font-style:normal;font-weight:800;color:var(--deep)}
+@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.qb{height:10px;margin-bottom:8px}.qb-key{font-size:10.5px}}
 /* /pt-polish */
 .pc-sub{margin-top:8px;font-size:14px;color:var(--muted)}
 .pc-terms{list-style:none;padding:0;margin:18px 0 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
@@ -861,7 +891,7 @@ fbq('track', 'PageView');
 <tbody>
 <tr><th scope="row">손님 질문</th><td><b>10개</b></td><td><b>20개</b></td><td><b>40개</b></td></tr>
 <tr><th scope="row">측정</th><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td></tr>
-<tr><th scope="row">질문 범위<span class="pt-hint">큰 질문은 손님이 제일 많이 물어요</span></th><td class="pt-fit"><span class="pt-add">기본</span>구체적인 질문 <b>10개</b></td><td class="pt-fit"><span class="pt-add">큰 질문 포함</span>구체적인 질문 <b>16개</b><br>+ ‘동네 맛집’ 같은 큰 질문 <b>4개</b></td><td class="pt-fit"><span class="pt-add">스탠다드의 두 배</span>스탠다드 20개<br>+ 가게 맞춤 질문 <b>20개</b></td></tr>
+<tr class="pt-scope"><th scope="row">질문 범위<span class="qb-key"><span><i class="qs"></i>구체적인 질문</span><span><i class="qh"></i>큰 질문</span><span><i class="qc"></i>가게 맞춤</span></span></th><td class="pt-fit"><span class="qb" aria-hidden="true"><i class="qs" style="flex:10"></i><i style="flex:30"></i></span><span class="pt-add">기본</span>구체적인 질문 <b>10개</b></td><td class="pt-fit"><span class="qb" aria-hidden="true"><i class="qs" style="flex:16"></i><i class="qh" style="flex:4"></i><i style="flex:20"></i></span><span class="pt-add">큰 질문 포함</span>구체적인 질문 <b>16개</b><br>+ <em class="qh-t">‘동네 맛집’ 같은 큰 질문 4개</em></td><td class="pt-fit"><span class="qb" aria-hidden="true"><i class="qs" style="flex:16"></i><i class="qh" style="flex:4"></i><i class="qc" style="flex:20"></i></span><span class="pt-add">스탠다드의 두 배</span>스탠다드 20개<br>+ 가게 맞춤 질문 <b>20개</b></td></tr>
 <tr><th scope="row">AI 학습 자료 발행<span class="pt-hint">질문 수에 맞춰 달라져요</span></th><td><b>가볍게</b></td><td><b>기본</b></td><td><b>더 많이</b></td></tr>
 <tr class="pt-g"><th scope="rowgroup" colspan="4">세 요금제 공통</th></tr>
 <tr><th scope="row">AI 이해도 <span class="pt-nw">질문 5개</span><span class="pt-hint">매주 1번</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
