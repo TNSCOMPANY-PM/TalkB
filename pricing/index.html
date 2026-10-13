@@ -433,6 +433,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .lv{display:contents}
 .lv i{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:4px 0;width:76px;text-align:center;white-space:nowrap}
 .lv-lo{background:#EEF0F3;color:var(--ink-mid)}
+.pt-m{display:none}
 .lv-hi{background:var(--deep);color:#fff}
 .lv-cu{background:#fff;color:var(--deep);box-shadow:inset 0 0 0 1.5px #F7B9A2}
 .lv b{font-size:16px;font-weight:800;color:var(--ink)}
@@ -440,7 +441,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .lv-off i{background:#F1F2F4;color:#B0B8C1;text-decoration:line-through}
 .lv-off b{color:#B0B8C1;font-weight:600}
 .qh-t{font-style:normal;font-weight:800;color:var(--deep)}
-@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:6px;row-gap:6px}.lv i{font-size:10.5px;width:54px;padding:3px 0}.lv b{font-size:13px}}
+@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:5px;row-gap:6px}.lv-w{display:none}.lv i{font-size:11px;width:38px;padding:3px 0}.lv-cu{width:42px!important}.lv b{font-size:13px}.pt-pc{display:none}.pt-m{display:inline}}
 /* /pt-polish */
 .pt-add{max-width:100%;white-space:nowrap}
 .pt-all th,.pt-all td{background:var(--soft)}
@@ -816,6 +817,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .lv{display:contents}
 .lv i{font-style:normal;font-size:12.5px;font-weight:800;border-radius:999px;padding:4px 0;width:76px;text-align:center;white-space:nowrap}
 .lv-lo{background:#EEF0F3;color:var(--ink-mid)}
+.pt-m{display:none}
 .lv-hi{background:var(--deep);color:#fff}
 .lv-cu{background:#fff;color:var(--deep);box-shadow:inset 0 0 0 1.5px #F7B9A2}
 .lv b{font-size:16px;font-weight:800;color:var(--ink)}
@@ -823,7 +825,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .lv-off i{background:#F1F2F4;color:#B0B8C1;text-decoration:line-through}
 .lv-off b{color:#B0B8C1;font-weight:600}
 .qh-t{font-style:normal;font-weight:800;color:var(--deep)}
-@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:6px;row-gap:6px}.lv i{font-size:10.5px;width:54px;padding:3px 0}.lv b{font-size:13px}}
+@media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:5px;row-gap:6px}.lv-w{display:none}.lv i{font-size:11px;width:38px;padding:3px 0}.lv-cu{width:42px!important}.lv b{font-size:13px}.pt-pc{display:none}.pt-m{display:inline}}
 /* /pt-polish */
 .pc-sub{margin-top:8px;font-size:14px;color:var(--muted)}
 .pc-terms{list-style:none;padding:0;margin:18px 0 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
@@ -895,7 +897,7 @@ fbq('track', 'PageView');
 <tbody>
 <tr><th scope="row">손님 질문</th><td><b>10개</b></td><td><b>20개</b></td><td><b>40개</b></td></tr>
 <tr><th scope="row">측정</th><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td></tr>
-<tr class="pt-scope"><th scope="row">질문 경쟁도<span class="pt-hint">경쟁 높은 질문은 ‘동네 맛집’처럼 많은 가게가 겨루는 질문이에요</span></th><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo">경쟁 중간</i><b>10개</b></span></span></td><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo">경쟁 중간</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi">경쟁 높음</i><b>4개</b></span></span></td><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo">경쟁 중간</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi">경쟁 높음</i><b>4개</b></span><span class="lv lv-plus"><i class="lv-cu">+ 가게 맞춤</i><b>20개</b></span></span></td></tr>
+<tr class="pt-scope"><th scope="row">질문 경쟁도<span class="pt-hint"><span class="pt-pc">경쟁 높은 질문은 ‘동네 맛집’처럼 많은 가게가 겨루는 질문이에요</span><span class="pt-m">‘동네 맛집’처럼 많은 가게가 겨루는 질문</span></span></th><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo"><span class="lv-w">경쟁 </span>중간</i><b>10개</b></span></span></td><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo"><span class="lv-w">경쟁 </span>중간</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi"><span class="lv-w">경쟁 </span>높음</i><b>4개</b></span></span></td><td class="pt-fit"><span class="lvs"><span class="lv"><i class="lv-lo"><span class="lv-w">경쟁 </span>중간</i><b>16개</b></span><span class="lv lv-on"><i class="lv-hi"><span class="lv-w">경쟁 </span>높음</i><b>4개</b></span><span class="lv lv-plus"><i class="lv-cu">+ <span class="lv-w">가게 </span>맞춤</i><b>20개</b></span></span></td></tr>
 <tr><th scope="row">AI 학습 자료 발행<span class="pt-hint">질문 수에 맞춰 달라져요</span></th><td><b>가볍게</b></td><td><b>기본</b></td><td><b>더 많이</b></td></tr>
 <tr class="pt-g"><th scope="rowgroup" colspan="4">세 요금제 공통</th></tr>
 <tr><th scope="row">AI 이해도 <span class="pt-nw">질문 5개</span><span class="pt-hint">매주 1번</span></th><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td><td><span class="ok" aria-label="포함">✓</span></td></tr>
