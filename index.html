@@ -846,12 +846,11 @@ fbq('track', 'PageView');
 <form class="inq-card" id="inquiryForm" novalidate>
 <h3>무료 리포트 신청</h3>
 <p class="inq-sub">남겨 주시면 담당자가 확인하고 연락드려요.</p>
-<div class="inq-f"><label for="inq_store">매장 이름 <span class="req">*</span></label><input type="text" id="inq_store" placeholder="예: 토크비식당 마곡점" autocomplete="organization" required></div>
-<div class="inq-f"><label for="inq_location">매장 위치</label><input type="text" id="inq_location" placeholder="예: 서울 강서구 마곡동" autocomplete="address-level2"></div>
 <div class="inq-2">
 <div class="inq-f"><label for="inq_name">성함 <span class="req">*</span></label><input type="text" id="inq_name" placeholder="이름" autocomplete="name" required></div>
 <div class="inq-f"><label for="inq_position">직책</label><input type="text" id="inq_position" placeholder="예: 대표, 점장" autocomplete="organization-title"></div>
 </div>
+<div class="inq-f"><label for="inq_place">네이버 플레이스 링크 <span class="req">*</span></label><input type="text" id="inq_place" placeholder="예: https://naver.me/xxxxxx" inputmode="url" autocomplete="off" required></div>
 <div class="inq-f"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
 <div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
 <label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
@@ -883,7 +882,7 @@ fbq('track', 'PageView');
 <section id="final" style="background: #191F28; color: #fff">
 <div class="wrap" style="padding-top: 80px; padding-bottom: 80px; text-align: center">
 <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 800">우리 가게는 나올까요?</h2>
-<p style="font-size: 17px; color: #B0B8C1; margin-top: 12px">매장 이름과 연락처만 남겨 주세요.</p>
+<p style="font-size: 17px; color: #B0B8C1; margin-top: 12px">플레이스 링크와 연락처만 남겨 주세요.</p>
 <a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="final" style="margin-top: 28px">무료 리포트 신청하기</a>
 </div>
 </section>
@@ -1037,17 +1036,20 @@ fbq('track', 'PageView');
   var API = "https://app.talkb.co.kr/api/inquiries";
   var form = document.getElementById("inquiryForm");
   if (!form) return;
+  // 휴대폰: 폼이 화면에 있을 땐 플로팅 카톡이 신청 버튼을 가리지 않게 숨김
+  var fl = document.querySelector(".float");
+  if (fl && "IntersectionObserver" in window) new IntersectionObserver(function (es) { fl.style.visibility = (es[0].isIntersecting && innerWidth <= 640) ? "hidden" : ""; }, { threshold: 0.15 }).observe(form);
   var st = document.getElementById("inqStatus"), btn = document.getElementById("inqSubmit");
   function v(id) { var el = document.getElementById(id); return el ? (el.value || "").trim() : ""; }
   function show(kind, msg) { st.className = "inq-status " + kind; st.textContent = msg; }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var store = v("inq_store"), name = v("inq_name"), phone = v("inq_phone").replace(/\D/g, "");
-    if (!store || !name || !phone) { show("err", "매장 이름, 성함, 휴대폰 번호를 적어 주세요."); return; }
+    var place = v("inq_place"), name = v("inq_name"), phone = v("inq_phone").replace(/\D/g, "");
+    if (!name || !place || !phone) { show("err", "성함, 플레이스 링크, 휴대폰 번호를 적어 주세요."); return; }
     if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ store_name: store, location: v("inq_location"), applicant_name: name, position: v("inq_position"), phone: phone, inquiry: v("inq_inquiry") }) })
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, inquiry: v("inq_inquiry") }) })
       .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. 담당자가 확인하고 연락드릴게요."); form.reset(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
       .catch(function () { show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
