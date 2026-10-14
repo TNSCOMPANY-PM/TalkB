@@ -682,6 +682,10 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-f{margin-top:14px}
 .inq-f label{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px}
 .inq-f .req{color:var(--accent)}
+.inq-f select{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
+.inq-call{margin-top:16px;background:#FFF7F3;border-radius:14px;padding:14px 16px}
+.inq-call p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-mid)}
+.inq-call .inq-f{margin-top:10px}
 .inq-f input,.inq-f textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
 .inq-f input:focus,.inq-f textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
 .inq-f textarea{resize:vertical;min-height:84px}
@@ -934,6 +938,13 @@ fbq('track', 'PageView');
 </div>
 <div class="inq-f"><label for="inq_place">네이버 플레이스 링크 <span class="req">*</span></label><input type="text" id="inq_place" placeholder="예: https://naver.me/xxxxxx" inputmode="url" autocomplete="off" required></div>
 <div class="inq-f"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
+<div class="inq-call">
+<p>결과는 통화로 함께 보며 설명해 드려요. 매장 PC로 리포트를 볼 수 있고 통화하기 편한 때를 골라 주세요.</p>
+<div class="inq-2">
+<div class="inq-f"><label for="inq_day">통화 가능한 날 <span class="req">*</span></label><select id="inq_day" required></select></div>
+<div class="inq-f"><label for="inq_time">통화 가능한 시간 <span class="req">*</span></label><select id="inq_time" required></select></div>
+</div>
+</div>
 <div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
 <label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
 <button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn">무료 리포트 신청하기</button>
@@ -1002,7 +1013,8 @@ fbq('track', 'PageView');
   var st = document.getElementById("sticky"); if (!st || !("IntersectionObserver" in window)) return;
   var seen = {};
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ seen[e.target.id || e.target.className] = e.isIntersecting; }); var hide = Object.keys(seen).some(function(k){ return seen[k]; }); st.classList.toggle("hide", hide); });
-  ["final"].forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
+  ["final", "inquiry"].forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
+  var hb = document.querySelector(".hero-bottom .fbtn"); if (hb) { hb.id = hb.id || "heroCta"; io.observe(hb); }
   var f = document.querySelector(".foot"); if (f) io.observe(f);
 })();
 </script>
@@ -1124,16 +1136,44 @@ fbq('track', 'PageView');
   if (fl && "IntersectionObserver" in window) new IntersectionObserver(function (es) { fl.style.visibility = (es[0].isIntersecting && innerWidth <= 640) ? "hidden" : ""; }, { threshold: 0.15 }).observe(form);
   var st = document.getElementById("inqStatus"), btn = document.getElementById("inqSubmit");
   function v(id) { var el = document.getElementById(id); return el ? (el.value || "").trim() : ""; }
+  // 통화 가능한 날 · 시간 (KST · 주말·공휴일 빼고 5영업일 · 30분 · 점심 1~2시 제외)
+  var HOL = "2026-01-01 2026-02-16 2026-02-17 2026-02-18 2026-03-02 2026-05-05 2026-05-25 2026-06-03 2026-08-17 2026-09-24 2026-09-25 2026-09-28 2026-10-05 2026-10-09 2026-12-25 2027-01-01 2027-02-08 2027-02-09 2027-03-01 2027-05-05 2027-05-13 2027-08-16 2027-09-14 2027-09-15 2027-09-16 2027-10-04 2027-10-11 2027-12-27";
+  var SLOTS = []; for (var m = 9 * 60; m < 18 * 60; m += 30) if (m < 13 * 60 || m >= 14 * 60) SLOTS.push(m);
+  var WD = "일월화수목금토";
+  function kstNow() { return new Date(Date.now() + 9 * 3600e3); }
+  function ymd(d) { return d.toISOString().slice(0, 10); }
+  function hm(m) { var hh = Math.floor(m / 60), mm = m % 60; return (hh < 12 ? "오전 " : "오후 ") + (hh > 12 ? hh - 12 : hh) + ":" + (mm ? "30" : "00"); }
+  var dayEl = document.getElementById("inq_day"), timeEl = document.getElementById("inq_time");
+  function nowMin() { var n = kstNow(); return n.getUTCHours() * 60 + n.getUTCMinutes(); }
+  function fillDays() {
+    var n = kstNow(), out = [], d = new Date(Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate()));
+    for (var i = 0; out.length < 5 && i < 20; i++) {
+      var k = ymd(d), wd = d.getUTCDay();
+      if (wd !== 0 && wd !== 6 && HOL.indexOf(k) < 0 && (i > 0 || SLOTS.some(function (s) { return s >= nowMin() + 60; })))
+        out.push({ k: k, t: (i === 0 ? "오늘 · " : "") + (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일 (" + WD[wd] + ")", today: i === 0 });
+      d = new Date(d.getTime() + 864e5);
+    }
+    dayEl.innerHTML = '<option value="">날짜 고르기</option>' + out.map(function (o) { return '<option value="' + o.k + '"' + (o.today ? ' data-today="1"' : "") + ">" + o.t + "</option>"; }).join("");
+  }
+  function fillTimes() {
+    var opt = dayEl.options[dayEl.selectedIndex], today = opt && opt.getAttribute("data-today") === "1", min = today ? nowMin() + 60 : 0, keep = timeEl.value;
+    timeEl.innerHTML = '<option value="">시간 고르기</option>' + SLOTS.filter(function (s) { return s >= min; }).map(function (s) { var v = (s < 600 ? "0" : "") + Math.floor(s / 60) + ":" + (s % 60 ? "30" : "00"); return '<option value="' + v + '">' + hm(s) + " ~ " + hm(s + 30).replace(/^오[전후] /, "") + "</option>"; }).join("");
+    if (keep) timeEl.value = keep;
+  }
+  if (dayEl && timeEl) { fillDays(); fillTimes(); dayEl.addEventListener("change", fillTimes); }
   function show(kind, msg) { st.className = "inq-status " + kind; st.textContent = msg; }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var place = v("inq_place"), name = v("inq_name"), phone = v("inq_phone").replace(/\D/g, "");
     if (!name || !place || !phone) { show("err", "성함, 플레이스 링크, 휴대폰 번호를 적어 주세요."); return; }
     if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
+    var cday = v("inq_day"), ctime = v("inq_time");
+    if (!cday || !ctime) { show("err", "통화 가능한 날과 시간을 골라 주세요."); return; }
+    var callText = dayEl.options[dayEl.selectedIndex].text.replace("오늘 · ", "") + " " + timeEl.options[timeEl.selectedIndex].text;
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, inquiry: v("inq_inquiry") }) })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. 담당자가 확인하고 연락드릴게요."); form.reset(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: cday, preferred_call_slot: ctime, inquiry: ("[희망 통화] " + callText + "\n" + v("inq_inquiry")).trim() }) })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); fillTimes(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
       .catch(function () { show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
   });
