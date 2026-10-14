@@ -547,7 +547,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .cs-q{margin-top:14px}
 .cs-ql{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:4px}
 .cs-o{margin-top:auto;padding-top:14px;font-size:13.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
-.cs-view{border:0;padding:0;border-radius:16px;width:min(480px,94vw);max-width:94vw;max-height:90vh;overflow:auto;background:#fff}
+.cs-view{border:0;padding:0;border-radius:16px;width:min(520px,94vw);max-width:94vw;max-height:90vh;overflow:auto;background:#fff}
 .cs-view::backdrop{background:rgba(25,31,40,.6)}
 .cs-view img{display:block;width:100%;height:auto}
 .cs-x{position:sticky;top:8px;float:right;margin:8px 8px -48px 0;width:40px;height:40px;border:0;border-radius:50%;background:rgba(25,31,40,.75);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:1}
@@ -695,6 +695,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .frs-tabs button{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink-mid);cursor:pointer}
 .frs-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .frs-view{position:relative;height:420px;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#F4F5F7;padding:14px 14px 0}
+.frs-view{cursor:zoom-in}
+.frs-zoom{position:absolute;right:12px;bottom:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;background:rgba(25,31,40,.82);color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:8px 14px;pointer-events:none}
+.frs-zoom::before{content:"";width:11px;height:11px;border:2px solid #fff;border-radius:50%;box-shadow:4px 4px 0 -2.5px #fff}
 .frs-view::after{content:"";position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(rgba(244,245,247,0),#F4F5F7);pointer-events:none}
 .frs-view img[hidden],.cal-picked[hidden],.cal-open[hidden]{display:none!important}
 .frs-view img{display:block;width:100%;max-width:380px;margin:0 auto;height:auto;border-radius:12px}
@@ -932,7 +935,6 @@ fbq('track', 'PageView');
 
 
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
-<dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 
 
 <section class="sec" id="price" style="background: #F7F8FA">
@@ -975,7 +977,7 @@ fbq('track', 'PageView');
 <div class="frs" aria-label="무료 리포트 실제 화면">
 <p class="frs-t">실제 무료 리포트 화면 <span>가게 이름은 가렸어요</span></p>
 <div class="frs-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-i="0">결과 요약</button><button type="button" role="tab" aria-selected="false" data-i="1">질문별 결과</button><button type="button" role="tab" aria-selected="false" data-i="2">대신 추천된 가게</button></div>
-<div class="frs-view"><img src="/images/report/fr-1.jpg" alt="무료 리포트 결과 요약 · 질문 20개 중 몇 개에서 추천됐는지" loading="eager" decoding="async"><img src="/images/report/fr-2.jpg" alt="무료 리포트 질문별 결과 · 추천 1위와 빠짐" loading="lazy" decoding="async" hidden><img src="/images/report/fr-3.jpg" alt="무료 리포트 대신 추천된 가게 · 이름은 가림" loading="lazy" decoding="async" hidden></div>
+<div class="frs-view" role="button" tabindex="0" aria-label="무료 리포트 화면 크게 보기"><img src="/images/report/fr-1.jpg" alt="무료 리포트 결과 요약 · 질문 20개 중 몇 개에서 추천됐는지" loading="eager" decoding="async"><img src="/images/report/fr-2.jpg" alt="무료 리포트 질문별 결과 · 추천 1위와 빠짐" loading="lazy" decoding="async" hidden><img src="/images/report/fr-3.jpg" alt="무료 리포트 대신 추천된 가게 · 이름은 가림" loading="lazy" decoding="async" hidden><span class="frs-zoom">크게 보기</span></div>
 </div>
 <script>(function(){var w=document.currentScript.previousElementSibling,tb=w.querySelectorAll(".frs-tabs button"),im=w.querySelectorAll(".frs-view img");[].forEach.call(tb,function(b){b.addEventListener("click",function(){var i=+b.getAttribute("data-i");[].forEach.call(tb,function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});[].forEach.call(im,function(x,k){x.hidden=k!==i});w.querySelector(".frs-view").scrollTop=0})})})();</script>
 </div>
@@ -1136,12 +1138,14 @@ fbq('track', 'PageView');
     document.getElementById("csNext").addEventListener("click", function(){ goTo(cur + 1); });
   }
   document.addEventListener("click", function(e){
-    var b = e.target.closest && e.target.closest(".cs, .shot, .rp-shot"); if (!b || !view) return;
-    img.src = b.getAttribute("data-src"); img.alt = b.getAttribute("data-alt");
+    var b = e.target.closest && e.target.closest(".cs, .shot, .rp-shot, .frs-view"); if (!b || !view) return;
+    if (b.classList.contains("frs-view")) { var fi = b.querySelector("img:not([hidden])"); if (!fi) return; img.src = fi.src; img.alt = fi.alt; }
+    else { img.src = b.getAttribute("data-src"); img.alt = b.getAttribute("data-alt"); }
     if (view.showModal) view.showModal(); else view.setAttribute("open", "");
     pause();
   });
   function close(){ if (view.close) view.close(); else view.removeAttribute("open"); resume(); }
+  document.addEventListener("keydown", function(e){ if (e.key === "Enter" && e.target.classList && e.target.classList.contains("frs-view")) e.target.click(); });
   document.getElementById("csX").addEventListener("click", close);
   view.addEventListener("click", function(e){ if (e.target === view) close(); });
   view.addEventListener("close", resume);
