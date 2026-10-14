@@ -72,6 +72,8 @@ function fill(tplName, outName) {
 fill("index.template.html", "index.html");
 mkdirSync(join(ROOT, "pricing"), { recursive: true });
 fill("pricing.template.html", "pricing/index.html");
+mkdirSync(join(ROOT, "enterprise"), { recursive: true });
+fill("enterprise.template.html", "enterprise/index.html");
 fill("llms.template.txt", "llms.txt");
 
 // 사이트맵 홈 lastmod

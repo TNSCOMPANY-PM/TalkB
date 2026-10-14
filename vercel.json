@@ -119,16 +119,6 @@
       "source": "/gpt-plan/",
       "destination": "/pricing/",
       "permanent": true
-    },
-    {
-      "source": "/enterprise",
-      "destination": "/pricing/",
-      "permanent": true
-    },
-    {
-      "source": "/enterprise/",
-      "destination": "/pricing/",
-      "permanent": true
     }
   ],
   "headers": [

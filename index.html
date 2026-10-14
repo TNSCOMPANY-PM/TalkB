@@ -964,7 +964,7 @@ fbq('track', 'PageView');
 <div class="pc-btns">
 <a class="pc-detail" href="/pricing/" data-pos="price-plan">요금제 자세히 보기</a>
 </div>
-<p class="pc-ent">매장 10개 이상이면 <a href="#inquiry" data-pos="price-enterprise">엔터프라이즈 문의</a></p>
+<p class="pc-ent">매장 10개 이상이면 <a href="/enterprise/" data-pos="price-enterprise">엔터프라이즈 문의</a></p>
 </div>
 </section>
 
@@ -1231,13 +1231,15 @@ fbq('track', 'PageView');
     dayEl.value = ""; timeEl.value = ""; dayText = ""; timeText = "";
     calTimes.innerHTML = '<p class="cal-hint">날짜를 먼저 골라 주세요</p>';
   }
+  var TAKEN = {};
+  function loadTaken(cb) { fetch(API, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { TAKEN = {}; (j.taken || []).forEach(function (k) { TAKEN[k] = 1; }); if (cb) cb(); }).catch(function () { if (cb) cb(); }); }
   function fillTimes(isToday) {
     var min = isToday ? nowMin() + 60 : 0, html = "", am = true;
     SLOTS.forEach(function (s) {
       if (s >= 12 * 60 && am) { am = false; html += '<span class="cal-sep">오후</span>'; }
       if (s === SLOTS[0]) html = '<span class="cal-sep">오전</span>' + html;
       var t = hm(s).replace(/^오[전후] /, ""), full = hm(s) + " ~ " + hm(s + 30).replace(/^오[전후] /, "");
-      html += '<button type="button" data-v="' + slotVal(s) + '" data-t="' + full + '"' + (s >= min ? "" : " disabled") + ' aria-pressed="false" aria-label="' + full + '">' + t + "</button>";
+      html += '<button type="button" data-v="' + slotVal(s) + '" data-t="' + full + '"' + (s >= min && !TAKEN[dayEl.value + " " + slotVal(s)] ? "" : " disabled") + ' aria-pressed="false" aria-label="' + full + '">' + t + "</button>";
     });
     calTimes.innerHTML = html; timeEl.value = ""; timeText = "";
   }
@@ -1248,8 +1250,8 @@ fbq('track', 'PageView');
   }
   function press(box, btn) { [].forEach.call(box.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); }); }
   if (calDays && calTimes) {
-    fillDays();
-    calDays.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calDays, b); dayEl.value = b.getAttribute("data-k"); dayText = b.getAttribute("data-t"); fillTimes(b.getAttribute("data-today") === "1"); fold(true); });
+    fillDays(); loadTaken();
+    calDays.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calDays, b); dayEl.value = b.getAttribute("data-k"); dayText = b.getAttribute("data-t"); var td = b.getAttribute("data-today") === "1"; fillTimes(td); loadTaken(function () { if (!timeEl.value) fillTimes(td); }); fold(true); });
     document.getElementById("calChange").addEventListener("click", function () { fold(false); });
     calTimes.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calTimes, b); timeEl.value = b.getAttribute("data-v"); timeText = b.getAttribute("data-t"); });
   }
@@ -1265,8 +1267,8 @@ fbq('track', 'PageView');
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
     fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: cday, preferred_call_slot: ctime, inquiry: ("[희망 통화] " + callText + "\n" + v("inq_inquiry")).trim() }) })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
-      .catch(function () { show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
+      .then(function (r) { if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
+      .catch(function (err) { if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
   });
 })();
