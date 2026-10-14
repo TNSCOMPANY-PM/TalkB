@@ -369,8 +369,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .lv-off b{color:#B0B8C1;font-weight:600}
 .qh-t{font-style:normal;font-weight:800;color:var(--deep)}
 @media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:5px;row-gap:6px}.lv-w{display:none}.lv i{font-size:11px;width:38px;padding:3px 0}.lv-cu{width:42px!important}.lv b{font-size:13px}.pt-pc{display:none}.pt-m{display:inline}}
-.pt-was{position:relative;display:inline-block;margin-top:8px;font-size:15px;font-weight:600;color:var(--muted);text-decoration:none}
-.pt-was .pt-z{position:absolute;left:-5px;top:1px;width:calc(100% + 10px);height:calc(100% - 2px);color:#F04438}
+.pt-was{position:relative;display:inline-block;margin-top:8px;padding:0 2px;font-size:17px;font-weight:700;color:#6B7684;text-decoration:none;letter-spacing:-0.01em}
+.pt-was .pt-z{position:absolute;left:-3px;top:2px;width:calc(100% + 6px);height:calc(100% - 4px);color:#F04438;overflow:visible}
 .pt-was-x{visibility:hidden}
 .pt-was+.pt-p{margin-top:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -404,15 +404,16 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pmc-card.on{transform:none;opacity:1}
 .pmc-rec{border:2px solid var(--accent);box-shadow:0 12px 30px rgba(232,93,58,.14)}
 .pmc-card .pt-badge{top:-13px;left:18px;transform:none}
-.pmc-hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pmc-hd{display:flex;flex-direction:column;gap:2px}
 .pmc-n{font-size:18px;font-weight:800}
-.pmc-s{font-size:12.5px;font-weight:700;color:var(--ink-mid);text-align:right}
+.pmc-s{font-size:13px;font-weight:700;color:var(--ink-mid)}
 .pmc-rec .pmc-s{color:var(--deep)}
 .pmc-card .pt-was{margin-top:2px;align-self:flex-start}
 .pmc-p{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:-6px}
 .pmc-p b{font-size:28px;color:var(--ink);font-weight:800;letter-spacing:-0.01em}
 .pmc-per{font-size:13.5px;color:var(--ink-mid)}
 .pmc-per b{color:var(--ink)}
+.pmc-save{display:block;margin-top:2px;color:var(--deep);font-weight:700}
 .pmc-q{margin:4px 0 0;padding-top:12px;border-top:1px solid #EEF0F3;display:flex;flex-direction:column;gap:12px}
 .pmc-q div{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .pmc-q dt{min-width:0}
@@ -685,7 +686,24 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-f select{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
 .inq-call{margin-top:16px;background:#FFF7F3;border-radius:14px;padding:14px 16px}
 .inq-call p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-mid)}
-.inq-call .inq-f{margin-top:10px}
+.inq-call .inq-call-t{font-size:16px;font-weight:800;color:var(--ink)}
+.cal{border:0;margin:14px 0 0;padding:0;min-width:0}
+.cal legend{padding:0;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.cal-month{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.cal-wd,.cal-days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.cal-wd span{text-align:center;font-size:12px;color:var(--muted);font-weight:700}
+.cal-days{margin-top:4px}
+.cal-days button,.cal-times button{min-height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;color:var(--ink);cursor:pointer}
+.cal-days button{font-size:15px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.15}
+.cal-days button small{font-size:10.5px;font-weight:700;color:var(--accent)}
+.cal-days button:disabled,.cal-times button:disabled{background:transparent;border-color:transparent;color:#C4CAD1;cursor:default}
+.cal-days button[aria-pressed="true"],.cal-times button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.cal-days button[aria-pressed="true"] small{color:#fff}
+.cal-times{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.cal-times button{font-size:14px;font-weight:700}
+.cal-times .cal-hint{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
+.cal-sep{grid-column:1/-1;font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
+@media (max-width:640px){.cal-times{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .inq-f input,.inq-f textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
 .inq-f input:focus,.inq-f textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
 .inq-f textarea{resize:vertical;min-height:84px}
@@ -883,7 +901,7 @@ fbq('track', 'PageView');
 <h2 class="h2">가게에 맞게 고르세요</h2>
 <p class="pc-sub">매장당 · 월 · 부가세 별도</p>
 <div class="pt-wrap"><table class="pt"><colgroup><col class="pt-lab"><col><col><col></colgroup>
-<thead><tr><th scope="col" class="pt-c"></th><th scope="col" id="lite"><span class="pt-n">라이트</span><span class="pt-was pt-was-x" aria-hidden="true">&nbsp;</span><span class="pt-p"><b class="tnum">190,000원</b> / 월</span><span class="pt-q">손님 질문 10개</span><span class="pt-s">처음 시작하는 가게</span></th><th scope="col" id="standard" class="pt-rec"><span class="pt-badge">추천</span><span class="pt-n">스탠다드</span><s class="pt-was"><span class="sr">정가 </span>380,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,6 98,6 2,14 98,14" fill="none" stroke="currentColor" stroke-width="2.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></s><span class="pt-p"><b class="tnum">290,000원</b> / 월</span><span class="pt-q">손님 질문 20개</span><span class="pt-s">동네 대표 질문까지 잡고 싶은 가게</span></th><th scope="col" id="plus"><span class="pt-n">플러스</span><s class="pt-was"><span class="sr">정가 </span>760,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,6 98,6 2,14 98,14" fill="none" stroke="currentColor" stroke-width="2.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></s><span class="pt-p"><b class="tnum">490,000원</b> / 월</span><span class="pt-q">손님 질문 40개</span><span class="pt-s">원하는 지역·상황까지 넓게</span></th></tr></thead>
+<thead><tr><th scope="col" class="pt-c"></th><th scope="col" id="lite"><span class="pt-n">라이트</span><span class="pt-was pt-was-x" aria-hidden="true">&nbsp;</span><span class="pt-p"><b class="tnum">190,000원</b> / 월</span><span class="pt-q">손님 질문 10개</span><span class="pt-s">처음 시작하는 가게</span></th><th scope="col" id="standard" class="pt-rec"><span class="pt-badge">추천</span><span class="pt-n">스탠다드</span><s class="pt-was"><span class="sr">정가 </span>380,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="17" x2="100" y2="3" stroke="currentColor" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></s><span class="pt-p"><b class="tnum">290,000원</b> / 월</span><span class="pt-q">손님 질문 20개</span><span class="pt-s">동네 대표 질문까지 잡고 싶은 가게</span></th><th scope="col" id="plus"><span class="pt-n">플러스</span><s class="pt-was"><span class="sr">정가 </span>760,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="17" x2="100" y2="3" stroke="currentColor" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></s><span class="pt-p"><b class="tnum">490,000원</b> / 월</span><span class="pt-q">손님 질문 40개</span><span class="pt-s">원하는 지역·상황까지 넓게</span></th></tr></thead>
 <tbody>
 <tr class="pt-per"><th scope="row">질문 1개당</th><td><b>19,000원</b></td><td><b>14,500원</b><span class="pt-save">라이트보다 4,500원 저렴</span></td><td><b>12,250원</b><span class="pt-save">라이트보다 6,750원 저렴</span></td></tr>
 <tr class="pt-qrow pt-q-hi"><th scope="row"><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></th><td><b class="pt-cnt">2개</b></td><td><b class="pt-cnt">4개</b></td><td><b class="pt-cnt">8개</b></td></tr>
@@ -896,10 +914,10 @@ fbq('track', 'PageView');
 </table></div>
 <div class="pmc" aria-label="요금제 카드">
 <div class="pmc-tabs" role="tablist"><button type="button" role="tab" data-k="lite" aria-selected="false">라이트</button><button type="button" role="tab" data-k="standard" aria-selected="true">스탠다드</button><button type="button" role="tab" data-k="plus" aria-selected="false">플러스</button></div>
-<div class="pmc-track"><article class="pmc-card" data-k="lite"><div class="pmc-hd"><b class="pmc-n">라이트</b><span class="pmc-s">처음 시작하는 가게</span></div><span class="pt-was pt-was-x" aria-hidden="true">&nbsp;</span><div class="pmc-p"><b class="tnum">190,000원</b> / 월</div><div class="pmc-per">손님 질문 10개 · 1개당 <b>19,000원</b></div><dl class="pmc-q"><div><dt><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></dt><dd>2개</dd></div><div><dt><span class="pt-chip pt-chip-mid">경쟁 중간 질문</span><span class="pt-ex">Ex) "마곡 회식하기 좋은 고깃집 추천해 줘"</span></dt><dd>8개</dd></div></dl><div class="pmc-row"><span>AI 학습 자료 발행</span><b>가볍게</b></div><ul class="pmc-common"><li>측정 매주 1회 · 질문마다 3번씩</li><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></article><article class="pmc-card pmc-rec" data-k="standard"><span class="pt-badge">추천</span><div class="pmc-hd"><b class="pmc-n">스탠다드</b><span class="pmc-s">동네 대표 질문까지 잡고 싶은 가게</span></div><s class="pt-was"><span class="sr">정가 </span>380,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,6 98,6 2,14 98,14" fill="none" stroke="currentColor" stroke-width="2.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></s><div class="pmc-p"><b class="tnum">290,000원</b> / 월</div><div class="pmc-per">손님 질문 20개 · 1개당 <b>14,500원</b> · 라이트보다 4,500원 저렴</div><dl class="pmc-q"><div><dt><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></dt><dd>4개</dd></div><div><dt><span class="pt-chip pt-chip-mid">경쟁 중간 질문</span><span class="pt-ex">Ex) "마곡 회식하기 좋은 고깃집 추천해 줘"</span></dt><dd>16개</dd></div></dl><div class="pmc-row"><span>AI 학습 자료 발행</span><b>기본</b></div><ul class="pmc-common"><li>측정 매주 1회 · 질문마다 3번씩</li><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></article><article class="pmc-card" data-k="plus"><div class="pmc-hd"><b class="pmc-n">플러스</b><span class="pmc-s">원하는 지역·상황까지 넓게</span></div><s class="pt-was"><span class="sr">정가 </span>760,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,6 98,6 2,14 98,14" fill="none" stroke="currentColor" stroke-width="2.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></s><div class="pmc-p"><b class="tnum">490,000원</b> / 월</div><div class="pmc-per">손님 질문 40개 · 1개당 <b>12,250원</b> · 라이트보다 6,750원 저렴</div><dl class="pmc-q"><div><dt><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></dt><dd>8개</dd></div><div><dt><span class="pt-chip pt-chip-mid">경쟁 중간 질문</span><span class="pt-ex">Ex) "마곡 회식하기 좋은 고깃집 추천해 줘"</span></dt><dd>16개</dd></div><div><dt><span class="pt-chip pt-chip-cu">가게 맞춤 질문</span><span class="pt-ex">원하는 질문 세팅</span></dt><dd>16개</dd></div></dl><div class="pmc-row"><span>AI 학습 자료 발행</span><b>더 많이</b></div><ul class="pmc-common"><li>측정 매주 1회 · 질문마다 3번씩</li><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></article></div>
+<div class="pmc-track"><article class="pmc-card" data-k="lite"><div class="pmc-hd"><b class="pmc-n">라이트</b><span class="pmc-s">처음 시작하는 가게</span></div><span class="pt-was pt-was-x" aria-hidden="true">&nbsp;</span><div class="pmc-p"><b class="tnum">190,000원</b> / 월</div><div class="pmc-per">손님 질문 10개 · 1개당 <b>19,000원</b></div><dl class="pmc-q"><div><dt><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></dt><dd>2개</dd></div><div><dt><span class="pt-chip pt-chip-mid">경쟁 중간 질문</span><span class="pt-ex">Ex) "마곡 회식하기 좋은 고깃집 추천해 줘"</span></dt><dd>8개</dd></div></dl><div class="pmc-row"><span>AI 학습 자료 발행</span><b>가볍게</b></div><ul class="pmc-common"><li>측정 매주 1회 · 질문마다 3번씩</li><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></article><article class="pmc-card pmc-rec" data-k="standard"><span class="pt-badge">추천</span><div class="pmc-hd"><b class="pmc-n">스탠다드</b><span class="pmc-s">동네 대표 질문까지 잡고 싶은 가게</span></div><s class="pt-was"><span class="sr">정가 </span>380,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="17" x2="100" y2="3" stroke="currentColor" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></s><div class="pmc-p"><b class="tnum">290,000원</b> / 월</div><div class="pmc-per">손님 질문 20개 · 1개당 <b>14,500원</b><span class="pmc-save">라이트보다 4,500원 저렴</span></div><dl class="pmc-q"><div><dt><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></dt><dd>4개</dd></div><div><dt><span class="pt-chip pt-chip-mid">경쟁 중간 질문</span><span class="pt-ex">Ex) "마곡 회식하기 좋은 고깃집 추천해 줘"</span></dt><dd>16개</dd></div></dl><div class="pmc-row"><span>AI 학습 자료 발행</span><b>기본</b></div><ul class="pmc-common"><li>측정 매주 1회 · 질문마다 3번씩</li><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></article><article class="pmc-card" data-k="plus"><div class="pmc-hd"><b class="pmc-n">플러스</b><span class="pmc-s">원하는 지역·상황까지 넓게</span></div><s class="pt-was"><span class="sr">정가 </span>760,000원<svg class="pt-z" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="17" x2="100" y2="3" stroke="currentColor" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></s><div class="pmc-p"><b class="tnum">490,000원</b> / 월</div><div class="pmc-per">손님 질문 40개 · 1개당 <b>12,250원</b><span class="pmc-save">라이트보다 6,750원 저렴</span></div><dl class="pmc-q"><div><dt><span class="pt-chip pt-chip-hi">경쟁 높은 질문</span><span class="pt-ex">Ex) "마곡 고깃집 추천해 줘"</span></dt><dd>8개</dd></div><div><dt><span class="pt-chip pt-chip-mid">경쟁 중간 질문</span><span class="pt-ex">Ex) "마곡 회식하기 좋은 고깃집 추천해 줘"</span></dt><dd>16개</dd></div><div><dt><span class="pt-chip pt-chip-cu">가게 맞춤 질문</span><span class="pt-ex">원하는 질문 세팅</span></dt><dd>16개</dd></div></dl><div class="pmc-row"><span>AI 학습 자료 발행</span><b>더 많이</b></div><ul class="pmc-common"><li>측정 매주 1회 · 질문마다 3번씩</li><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></article></div>
 <div class="pmc-nav"><button type="button" class="pmc-prev" aria-label="이전 요금제">‹</button><span class="pmc-hint">옆으로 넘겨 다른 요금제 보기</span><button type="button" class="pmc-next" aria-label="다음 요금제">›</button></div>
 </div>
-<script>(function(){var w=document.currentScript&&document.currentScript.previousElementSibling;if(!w||!w.classList.contains("pmc"))return;var t=w.querySelector(".pmc-track"),cs=[].slice.call(w.querySelectorAll(".pmc-card")),tb=[].slice.call(w.querySelectorAll(".pmc-tabs button"));function go(i,sm){var c=cs[i];if(!c)return;t.scrollTo({left:c.offsetLeft-(t.clientWidth-c.clientWidth)/2,behavior:sm?"smooth":"auto"})}function cur(){var m=t.scrollLeft+t.clientWidth/2,b=0,d=1e9;cs.forEach(function(c,i){var x=Math.abs(c.offsetLeft+c.clientWidth/2-m);if(x<d){d=x;b=i}});return b}function mark(){var i=cur();tb.forEach(function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});cs.forEach(function(c,k){c.classList.toggle("on",k===i)})}tb.forEach(function(x,k){x.addEventListener("click",function(){go(k,true)})});w.querySelector(".pmc-prev").addEventListener("click",function(){go(Math.max(0,cur()-1),true)});w.querySelector(".pmc-next").addEventListener("click",function(){go(Math.min(cs.length-1,cur()+1),true)});var r;t.addEventListener("scroll",function(){cancelAnimationFrame(r);r=requestAnimationFrame(mark)},{passive:true});function init(){if(t.clientWidth){go(1,false);mark()}}if(document.readyState==="complete")init();else window.addEventListener("load",init);window.addEventListener("resize",function(){if(t.clientWidth)go(cur(),false)})})();</script><!--/pt-->
+<script>(function(){var w=document.currentScript&&document.currentScript.previousElementSibling;if(!w||!w.classList.contains("pmc"))return;var t=w.querySelector(".pmc-track"),cs=[].slice.call(w.querySelectorAll(".pmc-card")),tb=[].slice.call(w.querySelectorAll(".pmc-tabs button"));function go(i,sm){var c=cs[i];if(!c)return;t.scrollTo({left:c.offsetLeft-(t.clientWidth-c.clientWidth)/2,behavior:sm?"smooth":"auto"})}function cur(){var m=t.scrollLeft+t.clientWidth/2,b=0,d=1e9;cs.forEach(function(c,i){var x=Math.abs(c.offsetLeft+c.clientWidth/2-m);if(x<d){d=x;b=i}});return b}function mark(){var i=cur();tb.forEach(function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});cs.forEach(function(c,k){c.classList.toggle("on",k===i)})}tb.forEach(function(x,k){x.addEventListener("click",function(){go(k,true)})});w.querySelector(".pmc-prev").addEventListener("click",function(){go(Math.max(0,cur()-1),true)});w.querySelector(".pmc-next").addEventListener("click",function(){go(Math.min(cs.length-1,cur()+1),true)});var r;t.addEventListener("scroll",function(){cancelAnimationFrame(r);r=requestAnimationFrame(mark)},{passive:true});var touched=false;t.addEventListener("pointerdown",function(){touched=true},{passive:true});function init(){if(!touched&&t.clientWidth){go(1,false);mark()}}init();requestAnimationFrame(init);document.addEventListener("DOMContentLoaded",init);window.addEventListener("load",init);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(init);window.addEventListener("resize",function(){if(t.clientWidth)go(cur(),false)})})();</script><!--/pt-->
 <ul class="pc-terms"><li>약정 없음</li><li>결제 후 3영업일 내 전액 환불 가능</li><li class="hot">같은 동네·같은 업종 3곳까지만</li></ul>
 <div class="pc-btns">
 <a class="pc-detail" href="/pricing/" data-pos="price-plan">요금제 자세히 보기</a>
@@ -939,11 +957,17 @@ fbq('track', 'PageView');
 <div class="inq-f"><label for="inq_place">네이버 플레이스 링크 <span class="req">*</span></label><input type="text" id="inq_place" placeholder="예: https://naver.me/xxxxxx" inputmode="url" autocomplete="off" required></div>
 <div class="inq-f"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
 <div class="inq-call">
-<p>결과는 통화로 함께 보며 설명해 드려요. 매장 PC로 리포트를 볼 수 있고 통화하기 편한 때를 골라 주세요.</p>
-<div class="inq-2">
-<div class="inq-f"><label for="inq_day">통화 가능한 날 <span class="req">*</span></label><select id="inq_day" required></select></div>
-<div class="inq-f"><label for="inq_time">통화 가능한 시간 <span class="req">*</span></label><select id="inq_time" required></select></div>
-</div>
+<p class="inq-call-t">결과를 통화로 설명드려요</p>
+<p>가능한 날짜와 시간에 연락드릴게요</p>
+<fieldset class="cal"><legend>날짜 <span class="req">*</span></legend>
+<div class="cal-month" id="calMonth"></div>
+<div class="cal-wd" aria-hidden="true"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span></div>
+<div class="cal-days" id="calDays"></div>
+</fieldset>
+<fieldset class="cal"><legend>시간 <span class="req">*</span></legend>
+<div class="cal-times" id="calTimes"><p class="cal-hint">날짜를 먼저 골라 주세요</p></div>
+</fieldset>
+<input type="hidden" id="inq_day"><input type="hidden" id="inq_time">
 </div>
 <div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
 <label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
@@ -1144,23 +1168,41 @@ fbq('track', 'PageView');
   function ymd(d) { return d.toISOString().slice(0, 10); }
   function hm(m) { var hh = Math.floor(m / 60), mm = m % 60; return (hh < 12 ? "오전 " : "오후 ") + (hh > 12 ? hh - 12 : hh) + ":" + (mm ? "30" : "00"); }
   var dayEl = document.getElementById("inq_day"), timeEl = document.getElementById("inq_time");
+  var calDays = document.getElementById("calDays"), calTimes = document.getElementById("calTimes"), calMonth = document.getElementById("calMonth");
   function nowMin() { var n = kstNow(); return n.getUTCHours() * 60 + n.getUTCMinutes(); }
+  var dayText = "", timeText = "";
+  function slotVal(s) { return (s < 600 ? "0" : "") + Math.floor(s / 60) + ":" + (s % 60 ? "30" : "00"); }
   function fillDays() {
-    var n = kstNow(), out = [], d = new Date(Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate()));
-    for (var i = 0; out.length < 5 && i < 20; i++) {
-      var k = ymd(d), wd = d.getUTCDay();
-      if (wd !== 0 && wd !== 6 && HOL.indexOf(k) < 0 && (i > 0 || SLOTS.some(function (s) { return s >= nowMin() + 60; })))
-        out.push({ k: k, t: (i === 0 ? "오늘 · " : "") + (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일 (" + WD[wd] + ")", today: i === 0 });
-      d = new Date(d.getTime() + 864e5);
+    var n = kstNow(), today = new Date(Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate()));
+    var mon = new Date(today.getTime() - ((today.getUTCDay() + 6) % 7) * 864e5), html = "", months = {}, open = 0;
+    for (var w = 0; w < 3; w++) for (var k = 0; k < 5; k++) {
+      var d = new Date(mon.getTime() + (w * 7 + k) * 864e5), key = ymd(d), isToday = key === ymd(today);
+      var ok = d >= today && HOL.indexOf(key) < 0 && (!isToday || SLOTS.some(function (s) { return s >= nowMin() + 60; }));
+      if (ok) { open++; months[d.getUTCMonth() + 1] = 1; }
+      var label = (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일 (" + WD[d.getUTCDay()] + ")";
+      html += '<button type="button" data-k="' + key + '" data-t="' + label + '"' + (isToday ? ' data-today="1"' : "") + (ok ? "" : " disabled") + ' aria-pressed="false" aria-label="' + label + '">' + d.getUTCDate() + (isToday ? "<small>오늘</small>" : (d.getUTCDate() === 1 ? "<small>" + (d.getUTCMonth() + 1) + "월</small>" : "")) + "</button>";
     }
-    dayEl.innerHTML = '<option value="">날짜 고르기</option>' + out.map(function (o) { return '<option value="' + o.k + '"' + (o.today ? ' data-today="1"' : "") + ">" + o.t + "</option>"; }).join("");
+    calDays.innerHTML = html;
+    calMonth.textContent = Object.keys(months).map(function (m) { return m + "월"; }).join(" · ");
+    dayEl.value = ""; timeEl.value = ""; dayText = ""; timeText = "";
+    calTimes.innerHTML = '<p class="cal-hint">날짜를 먼저 골라 주세요</p>';
   }
-  function fillTimes() {
-    var opt = dayEl.options[dayEl.selectedIndex], today = opt && opt.getAttribute("data-today") === "1", min = today ? nowMin() + 60 : 0, keep = timeEl.value;
-    timeEl.innerHTML = '<option value="">시간 고르기</option>' + SLOTS.filter(function (s) { return s >= min; }).map(function (s) { var v = (s < 600 ? "0" : "") + Math.floor(s / 60) + ":" + (s % 60 ? "30" : "00"); return '<option value="' + v + '">' + hm(s) + " ~ " + hm(s + 30).replace(/^오[전후] /, "") + "</option>"; }).join("");
-    if (keep) timeEl.value = keep;
+  function fillTimes(isToday) {
+    var min = isToday ? nowMin() + 60 : 0, html = "", am = true;
+    SLOTS.forEach(function (s) {
+      if (s >= 12 * 60 && am) { am = false; html += '<span class="cal-sep">오후</span>'; }
+      if (s === SLOTS[0]) html = '<span class="cal-sep">오전</span>' + html;
+      var t = hm(s).replace(/^오[전후] /, ""), full = hm(s) + " ~ " + hm(s + 30).replace(/^오[전후] /, "");
+      html += '<button type="button" data-v="' + slotVal(s) + '" data-t="' + full + '"' + (s >= min ? "" : " disabled") + ' aria-pressed="false" aria-label="' + full + '">' + t + "</button>";
+    });
+    calTimes.innerHTML = html; timeEl.value = ""; timeText = "";
   }
-  if (dayEl && timeEl) { fillDays(); fillTimes(); dayEl.addEventListener("change", fillTimes); }
+  function press(box, btn) { [].forEach.call(box.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); }); }
+  if (calDays && calTimes) {
+    fillDays();
+    calDays.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calDays, b); dayEl.value = b.getAttribute("data-k"); dayText = b.getAttribute("data-t"); fillTimes(b.getAttribute("data-today") === "1"); });
+    calTimes.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calTimes, b); timeEl.value = b.getAttribute("data-v"); timeText = b.getAttribute("data-t"); });
+  }
   function show(kind, msg) { st.className = "inq-status " + kind; st.textContent = msg; }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1169,11 +1211,11 @@ fbq('track', 'PageView');
     if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
     var cday = v("inq_day"), ctime = v("inq_time");
     if (!cday || !ctime) { show("err", "통화 가능한 날과 시간을 골라 주세요."); return; }
-    var callText = dayEl.options[dayEl.selectedIndex].text.replace("오늘 · ", "") + " " + timeEl.options[timeEl.selectedIndex].text;
+    var callText = dayText + " " + timeText;
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
     fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: cday, preferred_call_slot: ctime, inquiry: ("[희망 통화] " + callText + "\n" + v("inq_inquiry")).trim() }) })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); fillTimes(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
       .catch(function () { show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
   });
