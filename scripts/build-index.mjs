@@ -20,6 +20,39 @@ for (const s of Object.values(data.stores)) {
   const k = new Date(new Date(data.updatedAt).getTime() + 9 * 3600000);
   data.updatedDotPad = `${k.getUTCFullYear()}.${String(k.getUTCMonth() + 1).padStart(2, "0")}.${String(k.getUTCDate()).padStart(2, "0")}`;
 }
+// 공휴일(문의폼 통화 달력에서 빼는 날 · 2026-10-14) · 공공데이터포털 특일 정보(한국천문연구원 getRestDeInfo, 무료)
+//   올해·내년을 받아 data/holidays.json 에 저장(커밋)하고, 못 받으면 저장본을 그대로 쓴다. 주간 갱신 때마다 다시 받아 임시공휴일도 따라간다.
+{
+  const hp = join(ROOT, "data", "holidays.json");
+  let saved = { dates: [], at: null };
+  try { saved = JSON.parse(readFileSync(hp, "utf8")); } catch { /* 처음 */ }
+  let key = process.env.DATA_GO_KR_API_KEY ?? "";
+  if (!key) {
+    try {
+      const line = readFileSync(join(ROOT, "..", "TalkB-app", ".env.local"), "utf8").split(/\r?\n/).find((l) => l.startsWith("DATA_GO_KR_API_KEY="));
+      key = (line ?? "").slice("DATA_GO_KR_API_KEY=".length).trim().replace(/^"|"$/g, "");
+    } catch { /* 키 없음 */ }
+  }
+  if (key) {
+    try {
+      const y = new Date(Date.now() + 9 * 3600000).getUTCFullYear();
+      const dates = [];
+      for (const yr of [y, y + 1]) {
+        const r = await fetch(`https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?serviceKey=${encodeURIComponent(key)}&solYear=${yr}&numOfRows=100&_type=json`, { signal: AbortSignal.timeout(15000) });
+        const j = await r.json();
+        const it = j?.response?.body?.items?.item;
+        const list = (Array.isArray(it) ? it : it ? [it] : []).filter((x) => x.isHoliday === "Y");
+        if (!list.length) throw new Error(`${yr}년 공휴일 0건`);
+        for (const x of list) { const s = String(x.locdate); dates.push(`${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`); }
+      }
+      saved = { dates: [...new Set(dates)].sort(), at: new Date().toISOString(), source: "data.go.kr SpcdeInfoService/getRestDeInfo" };
+      writeFileSync(hp, JSON.stringify(saved, null, 1) + "\n");
+      console.log("공휴일", saved.dates.length, "일 받음");
+    } catch (e) { console.warn("공휴일 API 실패 · 저장본 사용:", e instanceof Error ? e.message : e); }
+  } else console.warn("DATA_GO_KR_API_KEY 없음 · 공휴일 저장본 사용");
+  if (!saved.dates?.length) { console.error("공휴일 목록이 비어 있음(data/holidays.json)"); process.exit(1); }
+  data.holidays = saved.dates.join(" ");
+}
 const get = (path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), data);
 function fill(tplName, outName) {
   let text = readFileSync(join(ROOT, tplName), "utf8");
