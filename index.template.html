@@ -688,6 +688,15 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-list{list-style:none;padding:0}.inq-list li{position:relative;padding-left:26px}
 .inq-list li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
 .inq-copy .rp{margin-top:28px}
+.frs{margin-top:26px}
+.frs-t{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--deep)}
+.frs-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.frs-tabs button{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink-mid);cursor:pointer}
+.frs-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.frs-view{max-height:460px;overflow-y:auto;border:1px solid var(--line);border-radius:18px;background:#F4F5F7;padding:10px}
+.frs-view img[hidden],.cal-picked[hidden],.cal-open[hidden]{display:none!important}
+.frs-view img{display:block;width:100%;max-width:380px;margin:0 auto;height:auto;border-radius:12px}
+.frs-c{margin:8px 0 0;font-size:13.5px;color:var(--muted)}
 .inq-card{background:#fff;border:1px solid #FBD5C6;border-radius:22px;padding:28px;box-shadow:0 10px 30px rgba(20,24,31,.06)}
 .inq-card h3{font-size:22px;font-weight:800}
 .inq-sub{margin-top:4px;font-size:15px;color:var(--ink-mid)}
@@ -742,7 +751,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-copy .h2{font-size:clamp(28px,2.6vw,34px)}
 }
 @media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
-@media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.inq-copy .rp{display:none}}
+@media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.frs-view{max-height:380px}}
 </style>
 
 <!-- Meta Pixel -->
@@ -957,20 +966,13 @@ fbq('track', 'PageView');
 <p class="eyebrow">무료 리포트</p>
 <h2 class="h2">우리 가게가 ChatGPT에 나오는지 먼저 확인해 보세요</h2>
 <ul class="inq-list"><li>‘동네 맛집’ 같은 경쟁 높은 질문까지, 20개를 ChatGPT에 한 번씩 물어봐요</li><li>우리 가게 대신 추천된 가게까지 알려 드려요</li><li>결과를 보고 전문가가 상담해 드려요</li></ul>
-<div class="rp" role="img" aria-label="무료 리포트 예시: 손님 질문 20개 중 4개에서 추천, 대신 추천된 가게 3곳">
-<div class="rp-head"><span>무료 리포트 예시</span><b>○○갈비 · 수원 인계동</b></div>
-<div class="rp-sec">
-<p class="rp-k">손님 질문 20개 결과</p>
-<p class="rp-big"><b>20개 중 4개</b>에서 추천됐어요</p>
-<div class="rp-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="frs" aria-label="무료 리포트 실제 화면">
+<p class="frs-t">실제 무료 리포트 화면</p>
+<div class="frs-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-i="0">결과 요약</button><button type="button" role="tab" aria-selected="false" data-i="1">질문별 결과</button><button type="button" role="tab" aria-selected="false" data-i="2">대신 추천된 가게</button></div>
+<div class="frs-view"><img src="/images/report/fr-1.jpg" alt="무료 리포트 결과 요약 · 질문 20개 중 몇 개에서 추천됐는지" loading="lazy" decoding="async"><img src="/images/report/fr-2.jpg" alt="무료 리포트 질문별 결과 · 추천 1위와 빠짐" loading="lazy" decoding="async" hidden><img src="/images/report/fr-3.jpg" alt="무료 리포트 대신 추천된 가게 · 이름은 가림" loading="lazy" decoding="async" hidden></div>
+<p class="frs-c">카톡으로 받은 링크를 열면 바로 보여요. 가게 이름은 가렸어요.</p>
 </div>
-<div class="rp-sec">
-<p class="rp-k">대신 추천된 가게</p>
-<p class="rp-row"><span>ㄱ○○갈비</span><b>9번</b></p>
-<p class="rp-row"><span>ㅅ○○식당</span><b>6번</b></p>
-<p class="rp-row"><span>ㅎ○○숯불</span><b>4번</b></p>
-</div>
-</div>
+<script>(function(){var w=document.currentScript.previousElementSibling,tb=w.querySelectorAll(".frs-tabs button"),im=w.querySelectorAll(".frs-view img");[].forEach.call(tb,function(b){b.addEventListener("click",function(){var i=+b.getAttribute("data-i");[].forEach.call(tb,function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});[].forEach.call(im,function(x,k){x.hidden=k!==i});w.querySelector(".frs-view").scrollTop=0})})})();</script>
 </div>
 <form class="inq-card" id="inquiryForm" novalidate>
 <h3>무료 리포트 신청</h3>
