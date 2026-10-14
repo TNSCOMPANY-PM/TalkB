@@ -468,6 +468,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt-common-row td{background:#F7F8FA!important;padding:18px!important}
 .pt-common{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 10px;justify-content:center}
 .pt-common li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.pt-common li.pt-br{flex-basis:100%;height:0;padding:0;border:0;background:none}
+.pt-common li.pt-br::before{display:none}
 .pt-common li::before{content:"";width:9px;height:5px;margin-top:-3px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
 .pmc{display:none}
 @media (max-width:640px){
@@ -953,6 +955,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pt-common-row td{background:#F7F8FA!important;padding:18px!important}
 .pt-common{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 10px;justify-content:center}
 .pt-common li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.pt-common li.pt-br{flex-basis:100%;height:0;padding:0;border:0;background:none}
+.pt-common li.pt-br::before{display:none}
 .pt-common li::before{content:"";width:9px;height:5px;margin-top:-3px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
 .pmc{display:none}
 @media (max-width:640px){
@@ -1068,7 +1072,7 @@ fbq('track', 'PageView');
 <tr class="pt-qrow pt-q-cu"><th scope="row"><span class="pt-chip pt-chip-cu">가게 맞춤 질문</span><span class="pt-ex">원하는 질문 세팅</span></th><td><span class="pt-none">없음</span></td><td><span class="pt-none">없음</span></td><td><b class="pt-cnt">16개</b></td></tr>
 <tr><th scope="row">측정</th><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td><td>매주 1회 · 질문마다 3번씩</td></tr>
 <tr><th scope="row">AI 학습 자료 발행</th><td><b>가볍게</b></td><td><b>기본</b></td><td><b>더 많이</b></td></tr>
-<tr class="pt-common-row"><th scope="row">세 요금제 공통</th><td colspan="3"><ul class="pt-common"><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></td></tr>
+<tr class="pt-common-row"><th scope="row">세 요금제 공통</th><td colspan="3"><ul class="pt-common"><li>AI 이해도 질문 5개 · 매주 1번</li><li>가게 정보 70여 가지 정리·보강</li><li>매달 비교 리포트</li><li class="pt-br" aria-hidden="true"></li><li>카톡 알림·전문가 상담</li><li>다른 AI에도 함께 학습</li></ul></td></tr>
 </tbody>
 </table></div>
 <div class="pmc" aria-label="요금제 카드">
