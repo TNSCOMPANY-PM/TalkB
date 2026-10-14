@@ -370,8 +370,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .qh-t{font-style:normal;font-weight:800;color:var(--deep)}
 @media (max-width:640px){.pt-wrap .pt-scope th[scope=row]{font-size:13.5px!important}.pt-wrap .pt-scope .pt-fit{font-size:12px}.lvs{column-gap:5px;row-gap:6px}.lv-w{display:none}.lv i{font-size:11px;width:38px;padding:3px 0}.lv-cu{width:42px!important}.lv b{font-size:13px}.pt-pc{display:none}.pt-m{display:inline}}
 .pt-was{position:relative;display:inline-block;margin-top:8px;padding:0 2px;font-size:17px;font-weight:700;color:#6B7684;text-decoration:none;letter-spacing:-0.01em}
-.pt-arr{position:absolute;left:-6px;top:40%;width:calc(100% + 16px);height:2px;background:#F04438;border-radius:2px;transform:rotate(14deg);transform-origin:0 50%}
-.pt-arr::after{content:"";position:absolute;right:-1px;top:50%;width:8px;height:8px;border-right:2px solid #F04438;border-bottom:2px solid #F04438;transform:translateY(-50%) rotate(-45deg)}
+.pt-arr{position:absolute;left:-3px;right:-3px;top:50%;height:2px;background:#F04438;border-radius:2px;transform:rotate(-9deg)}
 .pt-was-x{visibility:hidden}
 .pt-was+.pt-p{margin-top:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -722,6 +721,17 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-status{margin-top:12px;font-size:15px;font-weight:700;min-height:1px}
 .inq-status.ok{color:#0F7A4A}
 .inq-status.err{color:var(--deep)}
+@media (min-width:1000px){
+.inq{grid-template-columns:minmax(0,.72fr) minmax(0,1.5fr);gap:40px}
+.inq-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:24px;align-items:start}
+.inq-cols .inq-call{margin-top:14px}
+#inquiryForm .inq-f textarea{min-height:120px}
+.cal-days button,.cal-times button{min-height:40px}
+.cal-times button{font-size:13.5px}
+.cal-times{grid-template-columns:repeat(5,minmax(0,1fr))}
+.inq-cols .inq-f textarea{min-height:150px}
+.inq-copy .h2{font-size:clamp(28px,2.6vw,34px)}
+}
 @media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
 @media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.inq-copy .rp{display:none}}
 </style>
@@ -956,12 +966,16 @@ fbq('track', 'PageView');
 <form class="inq-card" id="inquiryForm" novalidate>
 <h3>무료 리포트 신청</h3>
 <p class="inq-sub">남겨 주시면 담당자가 확인하고 연락드려요.</p>
+<div class="inq-cols">
+<div class="inq-left">
 <div class="inq-2">
 <div class="inq-f"><label for="inq_name">성함 <span class="req">*</span></label><input type="text" id="inq_name" placeholder="이름" autocomplete="name" required></div>
 <div class="inq-f"><label for="inq_position">직책</label><input type="text" id="inq_position" placeholder="예: 대표, 점장" autocomplete="organization-title"></div>
 </div>
 <div class="inq-f"><label for="inq_place">네이버 플레이스 링크 <span class="req">*</span></label><input type="text" id="inq_place" placeholder="예: https://naver.me/xxxxxx" inputmode="url" autocomplete="off" required></div>
 <div class="inq-f"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
+<div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
+</div>
 <div class="inq-call">
 <p class="inq-call-t">결과를 통화로 설명드려요</p>
 <p>가능한 날짜와 시간에 연락드릴게요</p>
@@ -975,7 +989,7 @@ fbq('track', 'PageView');
 </fieldset>
 <input type="hidden" id="inq_day"><input type="hidden" id="inq_time">
 </div>
-<div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
+</div>
 <label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
 <button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn">무료 리포트 신청하기</button>
 <p class="inq-status" id="inqStatus" role="status" aria-live="polite"></p>
