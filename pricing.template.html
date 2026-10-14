@@ -531,6 +531,9 @@
 .rp-shot{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden;cursor:zoom-in;box-shadow:0 10px 30px rgba(25,31,40,.08)}
 .rp-shot img{display:block;width:100%;height:auto}
 .rp-shot[hidden]{display:none}
+.rp-shot{position:relative}
+.rp-shot span{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(25,31,40,.82);color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:8px 14px;pointer-events:none}
+.rp-shot span::before{content:"";width:11px;height:11px;border:2px solid #fff;border-radius:50%;box-shadow:4px 4px 0 -2.5px #fff}
 .cs-view{border:0;padding:0;border-radius:16px;width:min(1000px,96vw);max-height:92vh;overflow:auto;background:#fff}
 .cs-view::backdrop{background:rgba(25,31,40,.6)}
 .cs-view img{display:block;width:100%;height:auto}

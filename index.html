@@ -690,13 +690,15 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-copy .rp{margin-top:28px}
 .frs{margin-top:26px}
 .frs-t{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--deep)}
+.frs-t span{margin-left:6px;font-weight:600;color:var(--muted)}
 .frs-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .frs-tabs button{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink-mid);cursor:pointer}
 .frs-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-.frs-view{max-height:460px;overflow-y:auto;border:1px solid var(--line);border-radius:18px;background:#F4F5F7;padding:10px}
+.frs-view{position:relative;height:420px;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#F4F5F7;padding:14px 14px 0}
+.frs-view::after{content:"";position:absolute;left:0;right:0;bottom:0;height:72px;background:linear-gradient(rgba(244,245,247,0),#F4F5F7);pointer-events:none}
 .frs-view img[hidden],.cal-picked[hidden],.cal-open[hidden]{display:none!important}
 .frs-view img{display:block;width:100%;max-width:380px;margin:0 auto;height:auto;border-radius:12px}
-.frs-c{margin:8px 0 0;font-size:13.5px;color:var(--muted)}
+.frs-c{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
 .inq-card{background:#fff;border:1px solid #FBD5C6;border-radius:22px;padding:28px;box-shadow:0 10px 30px rgba(20,24,31,.06)}
 .inq-card h3{font-size:22px;font-weight:800}
 .inq-sub{margin-top:4px;font-size:15px;color:var(--ink-mid)}
@@ -740,6 +742,10 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-status.ok{color:#0F7A4A}
 .inq-status.err{color:var(--deep)}
 @media (min-width:1000px){
+.inq-copy{display:flex;flex-direction:column;align-self:stretch}
+.inq-copy .frs{flex:1;display:flex;flex-direction:column;min-height:0}
+.inq-copy .frs-view{flex:1 1 0;height:auto;min-height:220px}
+.inq-copy .inq-list{gap:6px;margin-top:16px}
 .inq{grid-template-columns:minmax(0,.72fr) minmax(0,1.5fr);gap:40px}
 .inq-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:24px;align-items:start}
 .inq-cols .inq-call{margin-top:14px}
@@ -751,7 +757,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-copy .h2{font-size:clamp(28px,2.6vw,34px)}
 }
 @media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
-@media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.frs-view{max-height:380px}}
+@media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.frs-view{height:360px}}
 </style>
 
 <!-- Meta Pixel -->
@@ -967,10 +973,9 @@ fbq('track', 'PageView');
 <h2 class="h2">우리 가게가 ChatGPT에 나오는지 먼저 확인해 보세요</h2>
 <ul class="inq-list"><li>‘동네 맛집’ 같은 경쟁 높은 질문까지, 20개를 ChatGPT에 한 번씩 물어봐요</li><li>우리 가게 대신 추천된 가게까지 알려 드려요</li><li>결과를 보고 전문가가 상담해 드려요</li></ul>
 <div class="frs" aria-label="무료 리포트 실제 화면">
-<p class="frs-t">실제 무료 리포트 화면</p>
+<p class="frs-t">실제 무료 리포트 화면 <span>가게 이름은 가렸어요</span></p>
 <div class="frs-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-i="0">결과 요약</button><button type="button" role="tab" aria-selected="false" data-i="1">질문별 결과</button><button type="button" role="tab" aria-selected="false" data-i="2">대신 추천된 가게</button></div>
-<div class="frs-view"><img src="/images/report/fr-1.jpg" alt="무료 리포트 결과 요약 · 질문 20개 중 몇 개에서 추천됐는지" loading="lazy" decoding="async"><img src="/images/report/fr-2.jpg" alt="무료 리포트 질문별 결과 · 추천 1위와 빠짐" loading="lazy" decoding="async" hidden><img src="/images/report/fr-3.jpg" alt="무료 리포트 대신 추천된 가게 · 이름은 가림" loading="lazy" decoding="async" hidden></div>
-<p class="frs-c">카톡으로 받은 링크를 열면 바로 보여요. 가게 이름은 가렸어요.</p>
+<div class="frs-view"><img src="/images/report/fr-1.jpg" alt="무료 리포트 결과 요약 · 질문 20개 중 몇 개에서 추천됐는지" loading="eager" decoding="async"><img src="/images/report/fr-2.jpg" alt="무료 리포트 질문별 결과 · 추천 1위와 빠짐" loading="lazy" decoding="async" hidden><img src="/images/report/fr-3.jpg" alt="무료 리포트 대신 추천된 가게 · 이름은 가림" loading="lazy" decoding="async" hidden></div>
 </div>
 <script>(function(){var w=document.currentScript.previousElementSibling,tb=w.querySelectorAll(".frs-tabs button"),im=w.querySelectorAll(".frs-view img");[].forEach.call(tb,function(b){b.addEventListener("click",function(){var i=+b.getAttribute("data-i");[].forEach.call(tb,function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});[].forEach.call(im,function(x,k){x.hidden=k!==i});w.querySelector(".frs-view").scrollTop=0})})})();</script>
 </div>
