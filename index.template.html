@@ -1197,6 +1197,8 @@ fbq('track', 'PageView');
 (function () {
   // Meta Lead 중복 제거용(2026-10-19) · 같은 event_id를 브라우저 픽셀과 서버 전환 API(app /api/inquiries)가 같이 쓴다.
   // _fbp·_fbc는 talkb.co.kr 쿠키라 app. 서버로 안 넘어가서 직접 싣는다.
+  // 유입 경로(2026-10-19) · track.js가 저장한 tb_attr + 방문자 ID · 어드민 퍼널의 유입별 비교에 쓴다
+  function tbAttr() { try { var a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); return a; } catch (e) { return null; } }
   function tbLeadMeta() { var c = function (k) { var m = document.cookie.match(new RegExp("(?:^|; )" + k + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; }; var id = "lead_" + ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + "_" + Math.random().toString(36).slice(2))); return { event_id: id, fbp: c("_fbp"), fbc: c("_fbc"), url: location.href.split("#")[0].slice(0, 300) }; }
   var API = "https://app.talkb.co.kr/api/inquiries";
   var form = document.getElementById("inquiryForm");
@@ -1270,7 +1272,7 @@ fbq('track', 'PageView');
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
     var lead = tbLeadMeta();
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: cday, preferred_call_slot: ctime, inquiry: ("[희망 통화] " + callText + "\n" + v("inq_inquiry")).trim() }) })
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: cday, preferred_call_slot: ctime, inquiry: ("[희망 통화] " + callText + "\n" + v("inq_inquiry")).trim() }) })
       .then(function (r) { if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
       .catch(function (err) { if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });

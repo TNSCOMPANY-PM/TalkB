@@ -22,6 +22,21 @@
   function beacon(payload) { try { if (isTeam()) payload.team = 1; navigator.sendBeacon(API, JSON.stringify(payload)); } catch (e) {} }
   var variant = window.TB_VARIANT || null;
 
+  // 유입 경로 저장(2026-10-19) · 문의폼이 문의와 함께 보낸다(어느 광고·검색에서 온 문의인지 · 어드민 퍼널 유입별 비교).
+  // 광고·검색 꼬리표나 바깥 사이트에서 온 방문만 덮어쓴다 · 나중의 직접 재방문이 광고 유입을 지우지 않게.
+  try {
+    var refHost = ""; try { refHost = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e0) {}
+    var outside = !!refHost && !/(^|\.)talkb\.co\.kr$/.test(refHost);
+    var tagged = !!(p.get("utm_source") || p.get("fbclid") || p.get("gclid"));
+    if (tagged || outside || !localStorage.getItem("tb_attr")) {
+      localStorage.setItem("tb_attr", JSON.stringify({
+        utm_source: p.get("utm_source") || (p.get("fbclid") ? "meta" : p.get("gclid") ? "google" : null),
+        utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"),
+        referrer: outside ? document.referrer.slice(0, 300) : null, landing: location.pathname, at: new Date().toISOString()
+      }));
+    }
+  } catch (e) {}
+
   if (isHome) beacon({ event: "landing_view", visitor_id: vid, utm_source: p.get("utm_source"), utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"), referrer: document.referrer || null, props: { variant: variant } });
 
   var REF_KEY = "tb_ref", REF_TS = "tb_ref_ts";
