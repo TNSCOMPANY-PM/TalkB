@@ -1225,7 +1225,7 @@ fbq('track', 'PageView');
     var mon = new Date(today.getTime() - ((today.getUTCDay() + 6) % 7) * 864e5), html = "", months = {}, open = 0;
     for (var w = 0; w < 3; w++) for (var k = 0; k < 5; k++) {
       var d = new Date(mon.getTime() + (w * 7 + k) * 864e5), key = ymd(d), isToday = key === ymd(today);
-      var ok = d >= today && HOL.indexOf(key) < 0 && (!isToday || SLOTS.some(function (s) { return s >= nowMin() + 30; }));
+      var ok = d >= today && HOL.indexOf(key) < 0 && !CLOSED[key] && (!isToday || SLOTS.some(function (s) { return s >= nowMin() + 30; }));
       if (ok) { open++; months[d.getUTCMonth() + 1] = 1; }
       var label = (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일 (" + WD[d.getUTCDay()] + ")";
       html += '<button type="button" data-k="' + key + '" data-t="' + label + '"' + (isToday ? ' data-today="1"' : "") + (ok ? "" : " disabled") + ' aria-pressed="false" aria-label="' + label + '">' + d.getUTCDate() + (isToday ? "<small>오늘</small>" : (d.getUTCDate() === 1 ? "<small>" + (d.getUTCMonth() + 1) + "월</small>" : "")) + "</button>";
@@ -1236,8 +1236,8 @@ fbq('track', 'PageView');
     dayEl.value = ""; timeEl.value = ""; dayText = ""; timeText = "";
     calTimes.innerHTML = '<p class="cal-hint">날짜를 먼저 골라 주세요</p>';
   }
-  var TAKEN = {};
-  function loadTaken(cb) { fetch(API, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { TAKEN = {}; (j.taken || []).forEach(function (k) { TAKEN[k] = 1; }); if (cb) cb(); }).catch(function () { if (cb) cb(); }); }
+  var TAKEN = {}, CLOSED = {}; /* CLOSED: 운영팀이 하루 막은 날(어드민 통화 예약 시간 · 10/19) */
+  function loadTaken(cb) { fetch(API, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { TAKEN = {}; (j.taken || []).forEach(function (k) { TAKEN[k] = 1; }); CLOSED = {}; (j.closed_days || []).forEach(function (k) { CLOSED[k] = 1; }); if (cb) cb(); }).catch(function () { if (cb) cb(); }); }
   function fillTimes(isToday) {
     var min = isToday ? nowMin() + 30 : 0, html = "", am = true;
     SLOTS.forEach(function (s) {
@@ -1255,7 +1255,7 @@ fbq('track', 'PageView');
   }
   function press(box, btn) { [].forEach.call(box.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); }); }
   if (calDays && calTimes) {
-    fillDays(); loadTaken();
+    fillDays(); loadTaken(function () { if (!dayEl.value) fillDays(); });
     calDays.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calDays, b); dayEl.value = b.getAttribute("data-k"); dayText = b.getAttribute("data-t"); var td = b.getAttribute("data-today") === "1"; fillTimes(td); loadTaken(function () { if (!timeEl.value) fillTimes(td); }); fold(true); });
     document.getElementById("calChange").addEventListener("click", function () { fold(false); });
     calTimes.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calTimes, b); timeEl.value = b.getAttribute("data-v"); timeText = b.getAttribute("data-t"); });
