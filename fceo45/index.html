@@ -286,6 +286,23 @@
     .direct .tel{font-size:22px}
   }
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2189753755124222');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2189753755124222&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 <main class="wrap">
@@ -564,5 +581,7 @@
   if (/[?&]open=1/.test(location.search)) reveal();
 })();
 </script>
+<!-- 카카오 버튼 클릭 = Meta Contact·kakao_click 기록(2026-10-19 광고 세팅 기준) -->
+<script src="/track.js" defer></script>
 </body>
 </html>

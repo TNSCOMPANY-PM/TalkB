@@ -406,6 +406,9 @@ fbq('track', 'PageView');
 </script>
 <script>
 (function () {
+  // Meta Lead 중복 제거용(2026-10-19) · 같은 event_id를 브라우저 픽셀과 서버 전환 API(app /api/inquiries)가 같이 쓴다.
+  // _fbp·_fbc는 talkb.co.kr 쿠키라 app. 서버로 안 넘어가서 직접 싣는다.
+  function tbLeadMeta() { var c = function (k) { var m = document.cookie.match(new RegExp("(?:^|; )" + k + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; }; var id = "lead_" + ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + "_" + Math.random().toString(36).slice(2))); return { event_id: id, fbp: c("_fbp"), fbc: c("_fbc"), url: location.href.split("#")[0].slice(0, 300) }; }
   var API = "https://app.talkb.co.kr/api/inquiries", f = document.getElementById("ent-form"), st = document.getElementById("e_st"), btn = document.getElementById("e_btn");
   function v(id) { return (document.getElementById(id).value || "").trim(); }
   function show(k, m) { st.className = "ent-st " + k; st.textContent = m; }
@@ -417,8 +420,9 @@ fbq('track', 'PageView');
     if (!document.getElementById("e_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     var memo = ["[엔터프라이즈] 매장 " + cnt, v("e_mail") ? "이메일 " + v("e_mail") : "", v("e_msg")].filter(Boolean).join("\n");
     btn.disabled = true; btn.textContent = "보내는 중…";
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ source: "enterprise", store_name: brand, location: "매장 " + cnt, applicant_name: name, position: v("e_pos"), phone: phone, inquiry: memo }) })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "문의가 접수됐어요. 영업일 안에 담당자가 연락드릴게요."); f.reset(); try { if (window.gtag) gtag("event", "enterprise_inquiry", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead"); } catch (e2) {} })
+    var lead = tbLeadMeta();
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, source: "enterprise", store_name: brand, location: "매장 " + cnt, applicant_name: name, position: v("e_pos"), phone: phone, inquiry: memo }) })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "문의가 접수됐어요. 영업일 안에 담당자가 연락드릴게요."); f.reset(); try { if (window.gtag) gtag("event", "enterprise_inquiry", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
       .catch(function () { show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "엔터프라이즈 문의 보내기"; });
   });
