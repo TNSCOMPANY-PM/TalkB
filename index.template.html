@@ -971,7 +971,7 @@ fbq('track', 'PageView');
 <section class="sec" id="inquiry" style="background: #FFF6F2">
 <div class="wrap inq">
 <div class="inq-copy">
-<p class="eyebrow">무료 리포트</p>
+<p class="eyebrow">음식점 · 술집 · 카페 무료 리포트</p>
 <h2 class="h2">우리 가게가 ChatGPT에 나오는지 먼저 확인해 보세요</h2>
 <ul class="inq-list"><li>‘동네 맛집’ 같은 경쟁 높은 질문까지, 20개를 ChatGPT에 한 번씩 물어봐요</li><li>우리 가게 대신 추천된 가게까지 알려 드려요</li><li>결과를 보고 전문가가 상담해 드려요</li></ul>
 <div class="frs" aria-label="무료 리포트 실제 화면">
@@ -983,7 +983,7 @@ fbq('track', 'PageView');
 </div>
 <form class="inq-card" id="inquiryForm" novalidate>
 <h3>무료 리포트 신청</h3>
-<p class="inq-sub">남겨 주시면 담당자가 확인하고 연락드려요.</p>
+<p class="inq-sub">음식점 · 술집 · 카페 사장님이면 남겨 주세요. 담당자가 확인하고 연락드려요.</p>
 <div class="inq-cols">
 <div class="inq-left">
 <div class="inq-2">
@@ -1270,11 +1270,14 @@ fbq('track', 'PageView');
     if (!cday || !ctime) { show("err", "통화 가능한 날과 시간을 골라 주세요."); return; }
     var callText = dayText + " " + timeText;
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
+    // 대상 업종(2026-10-19) · 링크에 종류가 보이면 바로 안내 · 안 보이는 링크는 서버가 확인해 422로 돌려준다
+    var NOT_FOOD = "지금은 음식점 · 술집 · 카페만 신청받고 있어요. 음식점인데 이 안내가 보이면 카카오톡 상담으로 알려 주세요.";
+    if (/place\.naver\.com\/(hairshop|hospital|accommodation|attraction)\//.test(place)) { show("err", NOT_FOOD); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
     var lead = tbLeadMeta();
     fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), place_url: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: cday, preferred_call_slot: ctime, inquiry: ("[희망 통화] " + callText + "\n" + v("inq_inquiry")).trim() }) })
-      .then(function (r) { if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
-      .catch(function (err) { if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
+      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", "신청됐어요. " + callText + "에 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
+      .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
   });
 })();
