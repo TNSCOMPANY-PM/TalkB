@@ -28,6 +28,8 @@ try {
   sh(`git commit -q -m "chore(랜딩): 레퍼런스 주간 자동 갱신 ${data.updatedDot}"`);
   sh("git push -q origin main");
   log(`커밋·푸시 완료 · 평균 ${data.avg.base10}→${data.avg.now10} · ${data.periodTo}`);
+  // IndexNow(빙 · 네이버 등)에 바뀐 주소 알림 · 실패해도 갱신은 성공으로 둔다
+  try { log(sh("node scripts/indexnow.mjs").trim()); } catch (e2) { log("IndexNow 실패(무시): " + String(e2.stderr || e2.message || e2).slice(0, 200)); }
 } catch (e) {
   log("실패: " + String(e.stderr || e.message || e).slice(0, 400));
   process.exit(1);
