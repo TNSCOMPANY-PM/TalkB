@@ -73,7 +73,7 @@ ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계�
 
 ## 자료
 
-- AI 검색 자료: https://talkb.co.kr/resources.html
+- AI 검색 자료: https://talkb.co.kr/resources.html{{llmsGuides}}
 
 ---
 

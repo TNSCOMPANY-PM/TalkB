@@ -1,9 +1,12 @@
 // 템플릿 + data/references.json → index.html · llms.txt (2026-10-07)
 // {{경로}} 자리표시를 JSON 값으로 채운다. 못 채운 자리가 하나라도 있으면 실패한다(빈칸이 그대로 배포되지 않게).
 // 사이트맵의 홈 lastmod 도 수치 갱신일로 맞춘다.
+// 2026-10-20 · DB(talkb_testimonials · talkb_posts)를 읽어 홈 후기와 가이드 글(/guide/ · build-posts.mjs)도 만든다. 읽기만 하고 DB는 바꾸지 않는다.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadLandingDb } from "./landing-db.mjs";
+import { buildGuide, writeManifest, readManifest, applySitemap, llmsSection, fillReviews } from "./build-posts.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(readFileSync(join(ROOT, "data", "references.json"), "utf8"));
@@ -53,9 +56,29 @@ for (const s of Object.values(data.stores)) {
   if (!saved.dates?.length) { console.error("공휴일 목록이 비어 있음(data/holidays.json)"); process.exit(1); }
   data.holidays = saved.dates.join(" ");
 }
+// 랜딩 글 · 홈 후기 DB(2026-10-20 · SQL 191) · 못 읽으면 빌드는 그대로 하고 템플릿 후기 · 지난 글 목록(data/guide-posts.json)을 쓴다
+let db = null;
+try { db = await loadLandingDb(); console.log("랜딩 DB 읽음 · 글", db.posts.length, "· 홈 후기", db.testimonials.length, "· load15", db.load); }
+catch (e) { console.warn("경고 · 랜딩 DB를 못 읽음(템플릿 후기 · 지난 글 목록 사용):", e instanceof Error ? e.message : e); }
+
+// 홈 후기 · build-posts.mjs fillReviews(설명은 거기)
+function homeReviews(text) { const r = fillReviews(text, db); data.reviewsCount = r.count; return r.text; }
+
+// 가이드 글(/guide/) · DB를 읽었으면 다시 만들고 목록을 기록, 못 읽었으면 페이지는 그대로 두고 지난 목록으로 사이트맵 · llms.txt
+let guidePosts;
+if (db) {
+  guidePosts = buildGuide({ rows: db.posts, stores: db.stores, consents: db.consents, partnerNames: db.partnerNames });
+  writeManifest(guidePosts);
+} else {
+  guidePosts = readManifest();
+  console.warn("경고 · 가이드 글은 지난 목록 그대로", guidePosts.length, "편");
+}
+data.llmsGuides = llmsSection(guidePosts);
+
 const get = (path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), data);
-function fill(tplName, outName) {
+function fill(tplName, outName, transform) {
   let text = readFileSync(join(ROOT, tplName), "utf8");
+  if (transform) text = transform(text);
   const bad = [];
   text = text.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (m, p) => { const v = get(p); if (v == null) { bad.push(p); return m; } return String(v); });
   if (bad.length) { console.error(`${tplName} 채우지 못한 자리:`, [...new Set(bad)].join(", ")); process.exit(1); }
@@ -69,7 +92,7 @@ function fill(tplName, outName) {
   if (!m) { console.error("홈 템플릿에서 <style>을 찾지 못함"); process.exit(1); }
   data.landingCss = m[1].trim();
 }
-fill("index.template.html", "index.html");
+fill("index.template.html", "index.html", homeReviews);
 mkdirSync(join(ROOT, "pricing"), { recursive: true });
 fill("pricing.template.html", "pricing/index.html");
 mkdirSync(join(ROOT, "enterprise"), { recursive: true });
@@ -80,6 +103,6 @@ fill("llms.template.txt", "llms.txt");
 const day = new Date(data.updatedAt).toISOString().slice(0, 10);
 const smPath = join(ROOT, "sitemap.xml");
 const sm = readFileSync(smPath, "utf8");
-const sm2 = sm.replace(/(<loc>https:\/\/talkb\.co\.kr\/<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/, `$1${day}$2`);
+const sm2 = applySitemap(sm.replace(/(<loc>https:\/\/talkb\.co\.kr\/<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/, `$1${day}$2`), guidePosts);
 if (sm2 !== sm) { writeFileSync(smPath, sm2); console.log("sitemap 홈 lastmod", day); }
 if (data.warnings?.length) console.warn("경고:", data.warnings.join(" / "));

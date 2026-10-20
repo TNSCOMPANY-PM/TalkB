@@ -54,6 +54,7 @@ section[id]{scroll-margin-top:80px}
 .logo small{font-size:14px;color:var(--muted);font-weight:700}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
+.nl-m{display:none;margin-left:auto;font-size:15px;font-weight:700;color:var(--ink-mid);padding:8px 10px;min-height:44px;align-items:center;border-radius:8px}
 .kbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--kakao);color:#191919;font-weight:800;border-radius:14px;min-height:48px;padding:0 22px;font-size:16px;border:0}
 .kbtn:hover{color:#191919;background:#F5DC00}
 .kbtn-sm{min-height:40px;padding:0 14px;font-size:14px;border-radius:10px}
@@ -467,7 +468,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 @media (max-width:640px){.float{right:16px;bottom:calc(84px + env(safe-area-inset-bottom))}.float-kakao{min-height:48px;padding:0 16px 0 12px;font-size:14px}.float-kakao svg{width:22px;height:22px}}
 @media (max-width:900px){.float-qr{display:none}}
 @media (max-width:900px){.hero,.two,.three,.split{grid-template-columns:1fr !important}.hero{grid-template-areas:"top" "bottom" "fig";row-gap:20px;padding-top:52px}.hero-fig{margin-top:8px}.sc-grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.pc-btns .kbtn,.pc-detail{width:100%;min-width:0}.pt{font-size:12.5px}.pt col.pt-lab{width:24%}.pt th,.pt td{padding:10px 5px}.pt thead th{padding:16px 4px 14px}.pt tbody th[scope=row]{padding-left:10px}.pt-p{white-space:normal;font-size:12px}.pt-p b{display:block;font-size:15px}.pt-n{font-size:15px}.pt-s{font-size:11.5px}.pt td b{font-size:15px}.pt-fit{font-size:11.5px}.pt-add{font-size:10.5px;padding:2px 7px}.pc-common ul{grid-template-columns:1fr}.pc-more{grid-template-columns:1fr}.rv-grid{grid-template-columns:1fr}.ba{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);height:44px}.ba-list li{font-size:17px}.ba-list li.me{font-size:19px}.rs{grid-template-columns:1fr;gap:16px;align-content:start}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.pc-br{display:none}.rs-track .rs{width:84vw;padding:18px}.rs-track{gap:12px}.cs{width:78vw;max-width:300px}}
-@media (max-width:640px){.nav,.hdr .kbtn{display:none}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
+@media (max-width:640px){.nav,.hdr .kbtn{display:none}.nl-m{display:inline-flex}.hdr-in{height:56px;padding:0 16px}.wrap{padding:0 18px}.sec{padding:60px 0}.lead{font-size:16px}.card{padding:22px;border-radius:18px}.kbtn-lg{width:100%}.sc-grid{grid-template-columns:1fr;gap:10px}.sc{padding:16px 18px}.sc .meta{margin-bottom:8px}.sc-row{margin-top:6px}
 .sticky{display:flex;gap:8px;position:sticky;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transition:transform .2s}
 .sticky .kbtn{flex:1}.sticky .price{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink)}
 .sticky.hide{transform:translateY(110%)}
@@ -833,8 +834,10 @@ fbq('track', 'PageView');
 <nav class="nav" aria-label="주요 메뉴">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
+<a class="nl" href="/guide/">가이드</a>
 <a class="nl" href="#ent-form">문의하기</a>
 </nav>
+<a class="nl-m" href="/guide/">가이드</a>
 <a class="kbtn kbtn-sm fbtn" href="#ent-form" data-pos="ent-header">엔터프라이즈 문의</a>
 </div>
 </header>
@@ -884,7 +887,7 @@ fbq('track', 'PageView');
 <p>2016년 설립 · 메인비즈 인증 · ISO 9001·14001 · <span style="white-space:nowrap">특허 제10-2804310호</span></p>
 <p>(주)티앤에스컴퍼니 · 대표 김태정 · 사업자등록번호 455-86-00636 · 통신판매업신고 제2020-서울강서-0981호</p>
 <p>서울특별시 강서구 공항대로 247, A동 12층 1209호 <span style="white-space:nowrap">(마곡동, 퀸즈파크나인)</span> · 전화 <a href="tel:1833-4150">1833-4150</a> (영업일 09:00~18:00 · <span style="white-space:nowrap">점심 13:00~14:00)</span> · adm.tnscompany@gmail.com</p>
-<p><a href="https://app.talkb.co.kr/terms" target="_blank" rel="noopener">이용약관</a>  ·  <a href="/privacy.html">개인정보 처리방침</a>  ·  <a href="/">홈</a></p>
+<p><a href="https://app.talkb.co.kr/terms" target="_blank" rel="noopener">이용약관</a>  ·  <a href="/privacy.html">개인정보 처리방침</a>  ·  <a href="/">홈</a>  ·  <a href="/guide/">가이드</a></p>
 <p>ChatGPT는 OpenAI의 상표입니다. 토크비는 OpenAI와 제휴·후원 관계가 없는 독립 서비스입니다.</p>
 <p>© 2026 (주)티앤에스컴퍼니 · TalkB</p>
 </div>
