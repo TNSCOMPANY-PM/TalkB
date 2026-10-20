@@ -504,3 +504,9 @@ git push
 - 화면 문구는 TalkB-app `lib/korean-copy.ts`의 규칙(토크비 규칙 + im-not-ai AI 티 제거 규칙, MIT)을 따른다. 연결어미(-고, -며, -아서/-어서, -면서) 바로 뒤 쉼표, 이중 피동, "~에서의" 같은 이중 조사, "단순한 X를 넘어", "핵심은 ~입니다" 분열문, 줄표를 쓰지 않는다.
 - 사장님 후기와 ChatGPT 답변 원문은 인용이라 고치지 않는다.
 - 문구를 바꾼 뒤에는 TalkB-app 검사기로 훑는다(검사는 경고용이고 고치는 건 사람이 문장 단위로).
+
+## 랜딩 갱신 · 가이드 글 자동 발행 (2026-10-20 사장 결정)
+- 랜딩 갱신(`scripts/weekly-refresh.mjs`)은 **월 · 목 09:30 두 번** 돈다. Windows 작업 스케줄러 "TalkB landing weekly refresh"(월)와 "TalkB landing weekly refresh (Thu)"(목)가 같은 명령(`scripts/run-weekly-refresh.cmd`)을 부른다.
+- 가이드 글 초안은 TalkB-app 크론(`/api/cron/landing-autodraft`)이 월 · 목 07:00에 한 편씩 만든다. 검사 막힘 0 · 경고 0이고 사람이 승인한 글이 한 편 이상 있으면 자동 승인, 아니면 승인 대기 + 어드민 알림. 승인된 글은 같은 날 09:30 갱신 때 게시된다.
+- 글마다 "숫자로 보기" 그래프(`/guide/{slug}/trend.svg` · `volume.svg`)는 `scripts/build-posts.mjs`가 노리는 검색어 숫자로 그린다(AI 이미지 생성 안 씀). 숫자가 없으면 절을 그리지 않는다.
+- 빌드 안전검사(`build-posts.mjs` preparePost)는 요약 · 본문 · FAQ에 "[숫자 확인 필요]"가 남아 있으면 그 글을 건너뛴다.

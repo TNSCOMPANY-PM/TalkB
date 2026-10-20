@@ -1,6 +1,8 @@
 // 토크비 랜딩 가이드 글(2026-10-20 · PLAN-talkb-landing-content-20261020 §1 · §2-1 · §3-3 · SQL 191)
 //   승인(approved) · 게시(published) 글로 /guide/{slug}/ 와 목록 /guide/ 를 만든다. build-index.mjs 가 부른다.
 //   옛 /insights/ 주소는 vercel.json 에서 /guide/ 로 301(2026-10-20 사장 정정).
+//   글마다 "숫자로 보기" 그래프(/guide/{slug}/trend.svg · volume.svg)를 노리는 검색어 숫자로 그린다(buildCharts · 숫자 없으면 안 그림).
+//   랜딩 갱신은 월 · 목 09:30 두 번(Windows 작업 스케줄러 · scripts/weekly-refresh.mjs) · 가이드 글 자동 초안은 TalkB-app 크론이 월 · 목 07:00.
 //
 //   CLI
 //     node scripts/build-posts.mjs                 · 기본 --dry: data/guide-posts.json 기준으로 "게시로 바꿀 글"만 보여 준다(DB 안 바꿈)
@@ -11,7 +13,7 @@
 //         저장소 밖 import 금지라 필요한 규칙만 복사) + 후기 글 실명 검사(동의 없으면 매장 실명이 어디에도 있으면 안 됨 · 자동 치환 안 함)
 //   걸린 글은 페이지를 만들지 않고 로그만 남긴다. 예전에 만든 페이지가 있으면 지우지 않고 noindex 로 바꿔 둔다.
 //   주의 · 정규식이 들어 있어 node -e · sed로 고치지 않는다
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { nameAllowed } from "./landing-db.mjs";
@@ -26,6 +28,7 @@ const AUTHOR = "토크비 팀";
 const LANDING_FORBIDDEN = ["여기먹자", "정본", "유료", "메디스펙"];
 const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DASH_RE = /[—–]/;
+const NEEDS_NUMBER = "[숫자 확인 필요]"; // AI 초안이 숫자를 못 채운 자리 · 요약 · 본문 · FAQ에 남아 있으면 막힘(10/20)
 function cleanFaq(v) {
   if (!Array.isArray(v)) return [];
   return v.map((x) => ({ q: String(x?.q ?? "").trim(), a: String(x?.a ?? "").trim() })).filter((x) => x.q || x.a).slice(0, 10);
@@ -72,6 +75,7 @@ export function preparePost(row, ctx) {
     for (const w of LANDING_FORBIDDEN) if (text.includes(w)) why.push(`금지어 "${w}"(${field})`);
     if (DASH_RE.test(text)) why.push(`줄표(${field})`);
     if (FORBIDDEN_HOST_RE.test(text)) why.push(`금지 사이트 링크(${field})`);
+    if ((field === "요약" || field === "본문" || field === "FAQ") && text.includes(NEEDS_NUMBER)) why.push(`${NEEDS_NUMBER} 남아 있음(${field})`);
   }
   if (!SLUG_RE.test(slug) || slug.length > 80) why.push(`슬러그 형식(${slug || "비어 있음"})`);
   if (!title) why.push("제목 비어 있음");
@@ -102,8 +106,139 @@ export function preparePost(row, ctx) {
     post: {
       id: row.id, kind: row.kind, vertical: VERTICAL_LABEL[row.vertical] ? row.vertical : "all", slug, title, lines, body_md: body, faq,
       cover, cover_alt: String(row.cover_alt ?? "").trim() || title, status: row.status, datePublished, dateModified,
+      charts: buildCharts(row.target_keywords),
     },
   };
+}
+
+// ── 숫자로 보기 · 글의 노리는 검색어(target_keywords) 숫자로 그리는 SVG(2026-10-20 · AI 이미지 생성 안 씀 · 무료) ──
+//   trend.svg  최대 3개 검색어의 최근 12개월 데이터랩 상대값(가장 많은 달 = 100) 선 그래프
+//   volume.svg 월 조회수가 있는 검색어가 2개 이상이면 가로 막대
+//   색: 주색 #E85D3A · 글자 #191F28 · 회색 격자 · 선 3개는 #E85D3A · #3182F6 · #1F9E78(색약 검사기 통과) + 실선 · 긴 점선 · 짧은 점선으로도 구분
+//   숫자가 없으면 그림도 절도 없다(빈 그래프를 그리지 않음)
+const CH_FONT = "-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif";
+const CH_INK = "#191F28", CH_SUB = "#6B7684", CH_GRID = "#E5E8EB";
+const CH_SERIES = [{ c: "#E85D3A", dash: "" }, { c: "#3182F6", dash: "9 6" }, { c: "#1F9E78", dash: "2 5" }];
+const CH_W = 440;
+const fmtN = (n) => Math.round(Number(n)).toLocaleString("en-US");
+const ymLabel = (p) => { const [y, m] = String(p).split("-"); return `${Number(y)}년 ${Number(m)}월`; };
+// 글자 폭 어림(한글 1 · 영숫자 0.6 · 글자 크기 배수) · 범례 줄바꿈에만 쓴다
+const textW = (s, size) => Array.from(String(s)).reduce((w, ch) => w + (/[ㄱ-힝]/.test(ch) ? 1 : ch === " " ? 0.32 : 0.6), 0) * size;
+
+function chartKeywords(raw) {
+  if (!Array.isArray(raw)) return [];
+  const out = [];
+  for (const x of raw) {
+    const kw = String(x?.kw ?? "").trim();
+    if (!kw || out.some((o) => o.kw === kw)) continue;
+    const monthly = typeof x?.monthly === "number" && Number.isFinite(x.monthly) && x.monthly > 0 ? x.monthly : null;
+    const months = Array.isArray(x?.trend?.months)
+      ? x.trend.months.map((m) => ({ p: String(m?.p ?? "").slice(0, 7), r: Math.max(0, Math.min(100, Number(m?.r) || 0)) })).filter((m) => /^\d{4}-\d{2}$/.test(m.p))
+      : [];
+    const change = typeof x?.trend?.change === "number" && Number.isFinite(x.trend.change) ? x.trend.change : null;
+    out.push({ kw, monthly, months, change, hasTrend: months.length >= 6 && months.some((m) => m.r > 0), checked_at: typeof x?.checked_at === "string" ? x.checked_at : null });
+  }
+  return out;
+}
+
+const changeText = (k) => (k.change != null ? `1년 새 ${k.change}배` : "1년 전엔 거의 없던 말");
+
+export function trendSvg(series) {
+  const months = series[0].months.map((m) => m.p);
+  const n = months.length;
+  // 범례(줄이 넘치면 다음 줄)
+  const LG = 16, legend = [];
+  let lx = 0, ly = 0;
+  for (let i = 0; i < series.length; i++) {
+    const w = 30 + textW(series[i].kw, LG) + 22;
+    if (lx > 0 && lx + w > CH_W) { lx = 0; ly += 28; }
+    legend.push({ x: lx, y: ly, i });
+    lx += w;
+  }
+  const top = 14 + ly + 28 + 14, left = 40, right = CH_W - 14, bottom = top + 200;
+  const H = bottom + 54;
+  const X = (i) => left + (n === 1 ? 0 : (i * (right - left)) / (n - 1));
+  const Y = (r) => bottom - (r / 100) * (bottom - top);
+  const g = [];
+  g.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CH_W} ${H}" width="${CH_W}" height="${H}" font-family="${CH_FONT}">`);
+  g.push(`<rect width="${CH_W}" height="${H}" fill="#fff"/>`);
+  for (const l of legend) {
+    const s = CH_SERIES[l.i], y = 14 + l.y + 10;
+    g.push(`<line x1="${l.x + 2}" y1="${y}" x2="${l.x + 24}" y2="${y}" stroke="${s.c}" stroke-width="3" stroke-linecap="round"${s.dash ? ` stroke-dasharray="${s.dash}"` : ""}/>`);
+    g.push(`<text x="${l.x + 30}" y="${y + 5.5}" font-size="${LG}" fill="${CH_INK}" font-weight="600">${esc(series[l.i].kw)}</text>`);
+  }
+  for (const v of [0, 25, 50, 75, 100]) {
+    g.push(`<line x1="${left}" y1="${Y(v)}" x2="${right}" y2="${Y(v)}" stroke="${v === 0 ? "#C9CDD2" : CH_GRID}" stroke-width="1"/>`);
+    g.push(`<text x="${left - 8}" y="${Y(v) + 5}" font-size="14" fill="${CH_SUB}" text-anchor="end">${v}</text>`);
+  }
+  // 가로축 · 마지막 달부터 두 달 간격 · 해가 바뀌는 첫 표시에 연도
+  let lastYear = null;
+  for (let i = 0; i < n; i++) {
+    if ((n - 1 - i) % 2 !== 0) continue;
+    const [y, m] = months[i].split("-");
+    g.push(`<text x="${X(i)}" y="${bottom + 24}" font-size="15" fill="${CH_SUB}" text-anchor="middle">${Number(m)}월</text>`);
+    if (y !== lastYear) { g.push(`<text x="${X(i)}" y="${bottom + 44}" font-size="13" fill="${CH_SUB}" text-anchor="middle">${y}</text>`); lastYear = y; }
+  }
+  series.forEach((s, si) => {
+    const st = CH_SERIES[si];
+    const pts = s.months.map((m, i) => `${X(i).toFixed(1)},${Y(m.r).toFixed(1)}`).join(" ");
+    g.push(`<polyline points="${pts}" fill="none" stroke="${st.c}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"${st.dash ? ` stroke-dasharray="${st.dash}"` : ""}/>`);
+    const last = s.months[s.months.length - 1];
+    g.push(`<circle cx="${X(s.months.length - 1)}" cy="${Y(last.r)}" r="4.5" fill="${st.c}" stroke="#fff" stroke-width="2"/>`);
+  });
+  g.push(`<text x="${left}" y="${top - 10}" font-size="13" fill="${CH_SUB}">가장 많이 검색된 달 = 100</text>`);
+  g.push("</svg>");
+  return { svg: g.join("\n") + "\n", w: CH_W, h: H };
+}
+
+export function volumeSvg(rows) {
+  const ROW = 58, top = 8, max = Math.max(...rows.map((r) => r.monthly));
+  const barMax = CH_W - 100;
+  const H = top + rows.length * ROW + 6;
+  const g = [`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CH_W} ${H}" width="${CH_W}" height="${H}" font-family="${CH_FONT}">`, `<rect width="${CH_W}" height="${H}" fill="#fff"/>`];
+  rows.forEach((r, i) => {
+    const y = top + i * ROW;
+    const w = Math.max(6, (r.monthly / max) * barMax);
+    g.push(`<text x="0" y="${y + 18}" font-size="16" fill="${CH_INK}" font-weight="600">${esc(r.kw)}</text>`);
+    g.push(`<rect x="0" y="${y + 28}" width="${barMax}" height="18" rx="4" fill="#F2F4F6"/>`);
+    g.push(`<rect x="0" y="${y + 28}" width="${w.toFixed(1)}" height="18" rx="4" fill="#E85D3A"/>`);
+    g.push(`<text x="${(w + 8).toFixed(1)}" y="${y + 43}" font-size="15" fill="${CH_INK}" font-weight="700">${fmtN(r.monthly)}회</text>`);
+  });
+  g.push("</svg>");
+  return { svg: g.join("\n") + "\n", w: CH_W, h: H };
+}
+
+/** 글 한 편의 그래프 · 그릴 숫자가 없으면 null */
+export function buildCharts(rawKeywords) {
+  const kws = chartKeywords(rawKeywords);
+  const tr = kws.filter((k) => k.hasTrend).slice(0, 3);
+  // 같은 기간끼리만 한 그래프에(데이터랩은 한 번에 조회한 묶음끼리 상대값이 맞는다)
+  const trendSeries = tr.filter((k) => k.months.length === tr[0]?.months.length && k.months[0]?.p === tr[0]?.months[0]?.p);
+  const vol = kws.filter((k) => k.monthly != null).sort((a, b) => b.monthly - a.monthly).slice(0, 5);
+  const checked = kws.map((k) => k.checked_at).filter(Boolean).sort().pop() ?? null;
+  const out = { trend: null, volume: null, checkedAt: checked };
+  if (trendSeries.length) {
+    const m = trendSeries[0].months;
+    const period = `${ymLabel(m[0].p)}~${ymLabel(m[m.length - 1].p)}`;
+    out.trend = {
+      ...trendSvg(trendSeries), period,
+      alt: `네이버 데이터랩 검색 추이(${period}): ${trendSeries.map((k) => `${k.kw}${k.monthly != null ? ` 월 ${fmtN(k.monthly)}회,` : ""} ${changeText(k)}`).join(" · ")}`,
+    };
+  }
+  if (vol.length >= 2) {
+    out.volume = { ...volumeSvg(vol), alt: `네이버 월 조회수(PC와 모바일 합계): ${vol.map((k) => `${k.kw} 월 ${fmtN(k.monthly)}회`).join(", ")}` };
+  }
+  return out.trend || out.volume ? out : null;
+}
+
+function chartsSection(p) {
+  const c = p.charts;
+  if (!c) return "";
+  const when = c.checkedAt ? `, ${koDate(c.checkedAt)} 조회` : "";
+  const fig = (file, ch, name, source) => `<figure class="g-fig"><img src="/${GUIDE_DIR}/${p.slug}/${file}" width="${ch.w}" height="${ch.h}" alt="${esc(ch.alt)}" loading="lazy" decoding="async"><figcaption><b>${name}</b> 출처 ${source}${when}</figcaption></figure>`;
+  return `<section class="g-num" aria-labelledby="g-num"><h2 id="g-num">숫자로 보기</h2>
+${c.trend ? fig("trend.svg", c.trend, `검색 추이 (${c.trend.period})`, "네이버 데이터랩") + "\n" : ""}${c.volume ? fig("volume.svg", c.volume, "월 조회수", "네이버 검색광고") + "\n" : ""}</section>
+`;
 }
 
 /** 메타 설명 · 요약 첫 줄부터 90~150자 */
@@ -202,7 +337,13 @@ const GUIDE_CSS = `
 .g-tab[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .tb .g-empty{margin-top:28px;background:var(--soft);border-radius:18px;padding:28px;font-size:18px;font-weight:700}
 .g-list-h{max-width:none}
-@media (max-width:640px){.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}}
+.g-num{margin-top:32px}
+.tb .g-num h2{font-size:24px;font-weight:800;margin-bottom:4px}
+.g-fig{margin:14px 0 0;border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}
+.g-fig img{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
+.g-fig figcaption{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ink-mid);word-break:keep-all}
+.g-fig figcaption b{color:var(--ink);margin-right:6px}
+@media (max-width:640px){.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 `;
 
 function homeParts(root) {
@@ -331,7 +472,7 @@ export function renderPost(H, p, posts) {
 <h1 class="g-h1">${esc(p.title)}</h1>
 <p class="g-by">${AUTHOR} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></p>
 ${p.cover ? `<img class="g-cover" src="${esc(p.cover)}" alt="${esc(p.cover_alt)}" loading="eager" decoding="async">\n` : ""}<div class="g-sum"><b>세 줄 요약</b><ul>${p.lines.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>
-<div class="g-body">
+${chartsSection(p)}<div class="g-body">
 ${mdToHtml(p.body_md)}
 </div>
 <section class="g-sec" aria-labelledby="g-faq"><h2 id="g-faq">자주 묻는 질문</h2>
@@ -443,6 +584,12 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
   for (const p of posts) {
     mkdirSync(join(outRoot, GUIDE_DIR, p.slug), { recursive: true });
     writeFileSync(join(outRoot, GUIDE_DIR, p.slug, "index.html"), renderPost(H, p, posts));
+    // 그래프 · 그릴 숫자가 없어졌으면 예전 파일을 지운다(페이지가 더 이상 가리키지 않음)
+    for (const [file, ch] of [["trend.svg", p.charts?.trend], ["volume.svg", p.charts?.volume]]) {
+      const f = join(outRoot, GUIDE_DIR, p.slug, file);
+      if (ch) writeFileSync(f, ch.svg);
+      else rmSync(f, { force: true });
+    }
   }
   writeFileSync(join(outRoot, GUIDE_DIR, "index.html"), renderList(H, posts));
   const stale = demoteStale(outRoot, slugs);
@@ -525,6 +672,7 @@ export function fillReviews(text, db, warn = console.warn) {
 // ── 시험용 가짜 글(--fixture) · 메모리에서만 ──
 function fixtureRows() {
   const now = "2026-10-20T01:00:00.000Z";
+  const fxMonths = (vals) => vals.map((r, i) => { const d = new Date(Date.UTC(2025, 9 + i, 1)); return { p: d.toISOString().slice(0, 7), r }; });
   const base = { checks: { blockers: [] }, status: "approved", approved_at: now, published_at: null, content_updated_at: now, cover_path: null, cover_alt: null, store_id: null };
   return {
     rows: [
@@ -532,7 +680,13 @@ function fixtureRows() {
         title: "네이버 AI탭에 가게가 나오려면, 식당이 먼저 채울 정보 10가지",
         summary: "네이버 AI탭은 플레이스에 적힌 정보로 가게를 고르기 때문에 빈칸부터 채워야 해요.\n영업시간·주차·메뉴 가격·단체석처럼 손님이 묻는 정보를 먼저 적어요.\n채운 뒤에는 같은 질문을 다시 물어 답이 바뀌는지 확인해요.",
         body_md: "## 네이버 AI탭은 무엇을 보고 가게를 고르나요\n\n손님이 \"주차되는 고깃집\"처럼 물으면 AI탭은 **플레이스 정보와 리뷰**에서 근거를 찾아요.\n\n## 먼저 채울 정보 10가지\n\n1. 영업시간과 휴무일\n2. 주차 가능 여부와 대수\n3. 대표 메뉴 가격\n4. 단체석·룸\n5. 예약 방법\n\n| 정보 | 손님 질문 예 |\n|---|---|\n| 주차 | 주차되는 식당 알려줘 |\n| 룸 | 회식하기 좋은 룸 있는 곳 |\n\n> 토크비 측정은 ChatGPT 기준이라 AI탭 노출을 약속하지 않아요.\n\n자세한 요금은 [요금제](/pricing/)에서 볼 수 있어요.",
-        faq: [{ q: "AI탭에 꼭 나오게 해 주나요?", a: "아니요. 토크비는 ChatGPT 추천을 매주 확인하고 가게 정보를 정리해 드려요. AI탭 노출은 약속하지 않아요." }, { q: "정보를 채우면 바로 바뀌나요?", a: "반영까지 보통 1~3주가 걸려요. 같은 질문을 다시 물어 확인해요." }] },
+        faq: [{ q: "AI탭에 꼭 나오게 해 주나요?", a: "아니요. 토크비는 ChatGPT 추천을 매주 확인하고 가게 정보를 정리해 드려요. AI탭 노출은 약속하지 않아요." }, { q: "정보를 채우면 바로 바뀌나요?", a: "반영까지 보통 1~3주가 걸려요. 같은 질문을 다시 물어 확인해요." }],
+        // 그래프 시험용 가짜 숫자(실제 조회값 아님)
+        target_keywords: [
+          { kw: "네이버 AI탭", monthly: 6070, checked_at: now, trend: { change: null, months: fxMonths([0, 0, 0, 0, 0, 0, 18, 64, 100, 82, 61, 52]) } },
+          { kw: "플레이스 광고", monthly: 4560, checked_at: now, trend: { change: 1.24, months: fxMonths([30, 31, 29, 33, 32, 34, 35, 36, 38, 37, 39, 40]) } },
+          { kw: "당근 광고", monthly: 2850, checked_at: now, trend: { change: 1.25, months: fxMonths([20, 21, 22, 21, 23, 24, 24, 25, 26, 25, 26, 27]) } },
+        ] },
       { ...base, id: "00000000-0000-0000-0000-000000000002", kind: "data", vertical: "cafe", slug: "chatgpt-cafe-reasons-2026-09",
         title: "ChatGPT가 카페를 추천할 때 든 이유 순위 (2026년 9월 답 1,240건)",
         summary: "2026년 9월 ChatGPT 답 1,240건에서 카페 추천 이유를 세어 보니 분위기와 좌석이 가장 많았어요.\n주차·디저트 메뉴가 그다음이었고 가격은 적게 나왔어요.\n가게 정보에 좌석 수와 분위기를 구체적으로 적은 카페가 더 자주 나왔어요.",
@@ -547,6 +701,10 @@ function fixtureRows() {
       { ...base, id: "00000000-0000-0000-0000-000000000004", kind: "case", vertical: "restaurant", slug: "case-should-skip", store_id: "fx-store-1",
         title: "실명 동의 없는 후기 글이 걸러지는지 보는 시험 글",
         summary: "한 줄\n두 줄\n세 줄", body_md: "도시농원 수원인계본점 이야기예요.", faq: [{ q: "a", a: "b" }, { q: "c", a: "d" }] },
+      // 막힘 확인용(렌더되면 안 됨) · AI 초안 자리표시가 남아 있음
+      { ...base, id: "00000000-0000-0000-0000-000000000005", kind: "guide", vertical: "all", slug: "needs-number-should-skip",
+        title: "숫자 확인 자리표시가 남은 글이 걸러지는지 보는 시험 글",
+        summary: "한 줄\n두 줄\n세 줄", body_md: "플레이스 광고는 월 [숫자 확인 필요]회 검색돼요.", faq: [{ q: "a", a: "b" }, { q: "c", a: "d" }] },
     ],
     stores: [{ id: "fx-store-1", name: "도시농원 수원인계본점", aliases: [], region_dong: "인계동", category_main: "닭볶음탕", partner_id: null }],
     consents: [],

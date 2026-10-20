@@ -36,7 +36,7 @@ export async function dbLoad(e) {
   return m ? Number(m[1]) : 0;
 }
 
-export const POST_COLS = "id,kind,vertical,slug,title,summary,body_md,faq,store_id,cover_path,cover_alt,author,status,checks,approved_at,published_at,content_updated_at";
+export const POST_COLS = "id,kind,vertical,slug,title,summary,body_md,faq,target_keywords,store_id,cover_path,cover_alt,author,status,checks,approved_at,published_at,content_updated_at";
 export const TESTIMONIAL_COLS = "id,store_id,store_name,person_label,quote,photo_path,sort";
 
 /**

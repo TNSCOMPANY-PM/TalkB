@@ -1,7 +1,7 @@
-// 주 1회 레퍼런스 자동 갱신(2026-10-08 레드팀 2-5)
+// 레퍼런스 · 가이드 글 자동 갱신(2026-10-08 레드팀 2-5 · 2026-10-20부터 월 · 목 주 2회)
 //   update-references(DB 최근 7일, 부하 가드 내장) → 경고 있으면 커밋 없이 중단 → build-index → 생성 파일만 커밋·푸시(Vercel 자동 배포)
-// 등록: Windows 작업 스케줄러 "TalkB landing weekly refresh" (월 09:30) · 로그: _internal/refresh.log(gitignore)
-// 비용: DB 조회 수십 건/주 · 배포 1회/주
+// 등록: Windows 작업 스케줄러 두 개 · "TalkB landing weekly refresh"(월 09:30) + "TalkB landing weekly refresh (Thu)"(목 09:30, 2026-10-20 가이드 글 주 2편) · 같은 명령 · 로그: _internal/refresh.log(gitignore)
+// 비용: DB 조회 수십 건 × 주 2회 · 배포는 바뀐 게 있을 때만(최대 주 2회)
 import { execSync } from "node:child_process";
 import { readFileSync, appendFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
