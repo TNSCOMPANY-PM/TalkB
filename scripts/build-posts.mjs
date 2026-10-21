@@ -75,8 +75,25 @@ function numValue(s, t) {
   }
   return "";
 }
+// 매장 이름 뒤 조사 · 받침에 맞춰(원본 case-text.ts withJosa · fillStore)
+const JOSA_KEYS = ["으로", "이라", "은", "이", "을", "과", "로", "라", "는", "가", "를", "와"];
+const PAIR = { 은: ["은", "는"], 는: ["은", "는"], 이: ["이", "가"], 가: ["이", "가"], 을: ["을", "를"], 를: ["을", "를"], 과: ["과", "와"], 와: ["과", "와"], 으로: ["으로", "로"], 로: ["으로", "로"], 이라: ["이라", "라"], 라: ["이라", "라"] };
+function finalOf(name) {
+  const ch = Array.from(String(name ?? "").trim()).pop() ?? "";
+  const c = ch.charCodeAt(0) - 0xac00;
+  if (c >= 0 && c < 11172) return c % 28;
+  if (/[013678]/.test(ch)) return ch === "1" || ch === "7" || ch === "8" ? 8 : 1;
+  return 0;
+}
+export function withJosa(name, josa) {
+  const p = PAIR[josa];
+  if (!p) return name + josa;
+  const f = finalOf(name);
+  if (p[0] === "으로") return name + (f === 0 || f === 8 ? "로" : "으로");
+  return name + (f === 0 ? p[1] : p[0]);
+}
 export function fillCase(text, s, storeName) {
-  let out = String(text ?? "").split(STORE_TOKEN).join(storeName);
+  let out = String(text ?? "").replace(new RegExp(`\\{\\{매장\\}\\}(${JOSA_KEYS.join("|")})`, "g"), (_m, j) => withJosa(storeName, j)).split(STORE_TOKEN).join(storeName);
   for (const t of NUM_TOKENS) out = out.split(`{{${t}}}`).join(numValue(s, t));
   return out;
 }
