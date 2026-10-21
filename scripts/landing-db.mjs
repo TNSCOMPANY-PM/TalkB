@@ -56,6 +56,10 @@ export async function loadLandingDb() {
     const part = ids.slice(i, i + 80).join(",");
     stores.push(...await getAll(e, `stores?select=id,name,aliases,region_dong,region_sigungu,category_main,partner_id&id=in.(${part})&order=id`));
     consents.push(...await getAll(e, `reference_name_consents?select=store_id,consented,revoked_at&store_id=in.(${part})&order=store_id`));
+    // 옛 동의 페이지(077 · 10/16 마감) 기록도 인정 · 어드민 loadConsentedIds 와 같은 기준(10/21 · 어드민은 동의 11곳인데 랜딩은 0곳으로 보던 차이)
+    //   새 표에 철회(revoked_at) 줄이 있으면 그쪽이 이긴다(nameAllowed)
+    const legacy = await getAll(e, `consent_submissions?select=store_id&reference_consent=eq.true&store_id=in.(${part})&order=store_id`).catch(() => []);
+    for (const l of legacy) consents.push({ store_id: l.store_id, consented: true, revoked_at: null, legacy: true });
   }
   // 파트너 매장 이름(어드민 검사와 같은 기준 · 세 글자 이상)
   const partnerNames = [...new Set((await getAll(e, "stores?select=id,name&partner_id=not.is.null&order=id")).map((s) => String(s.name ?? "").trim()).filter((n) => n.replace(/\s+/g, "").length >= 3))];
@@ -92,6 +96,7 @@ export function nameAllowed(storeId, stores, consents) {
   if (!storeId) return false;
   const st = stores.find((s) => s.id === storeId);
   if (st?.partner_id) return false;
-  const c = consents.find((x) => x.store_id === storeId);
-  return !!(c && c.consented === true && c.revoked_at == null);
+  const mine = consents.filter((x) => x.store_id === storeId);
+  if (mine.some((x) => !x.legacy && (x.revoked_at != null || x.consented === false))) return false; // 새 표의 철회 · 거부가 우선
+  return mine.some((x) => x.consented === true && x.revoked_at == null);
 }
