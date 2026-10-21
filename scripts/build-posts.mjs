@@ -321,12 +321,13 @@ export function buildCharts(rawKeywords) {
   return out.trend || out.volume ? out : null;
 }
 
-// ── 숫자로 보기 · 한국 사람들의 ChatGPT 사용(data/ai-usage.json · 출처 기사 숫자만) ──
-let AI_USAGE = null;
-try { AI_USAGE = JSON.parse(readFileSync(join(ROOT, "data", "ai-usage.json"), "utf8")); } catch { AI_USAGE = null; }
-const AI_FILES = { trend: "ai-usage-trend.svg", apps: "ai-usage-apps.svg" };
-const manN = (v) => `${Number(v).toLocaleString("en-US")}만`;
-/** 가로 막대 · 강조 줄은 주색 · 나머지 회색(색만이 아니라 굵은 글씨로도 구분) */
+// ── 숫자로 보기 · 글마다 다른 숫자(data/post-numbers.json · 10/21 사장 "모든 글에 같은 내용이 들어가면 안 된다") ──
+//   글 주소(slug)마다 제목 · 글(AI 인용용 문단) · 막대그림 · 화면 캡처(파일이 있을 때만) · 원문 링크 · 숫자는 출처 기사 원문에서 옮긴 것만
+let POST_NUMBERS = {};
+try { POST_NUMBERS = JSON.parse(readFileSync(join(ROOT, "data", "post-numbers.json"), "utf8")); } catch { POST_NUMBERS = {}; }
+const numbersOf = (p) => (!p.industry && POST_NUMBERS[p.slug] && typeof POST_NUMBERS[p.slug] === "object" ? POST_NUMBERS[p.slug] : null);
+const valueText = (r, unit) => (r.label ? r.label : unit === "%" ? `${r.value}%` : unit === "만 명" ? `${Number(r.value).toLocaleString("en-US")}만 명` : `${Number(r.value).toLocaleString("en-US")}${unit}`);
+/** 가로 막대 · 강조 줄은 주색 · 나머지 회색(굵은 글씨로도 구분) */
 export function barSvg(rows, unit) {
   const ROW = 56, top = 8, max = Math.max(...rows.map((r) => r.value)), barMax = CH_W - 120;
   const H = top + rows.length * ROW + 6;
@@ -336,41 +337,36 @@ export function barSvg(rows, unit) {
     g.push(`<text x="0" y="${y + 18}" font-size="16" fill="${CH_INK}" font-weight="${on ? 800 : 600}">${esc(r.name)}</text>`);
     g.push(`<rect x="0" y="${y + 27}" width="${barMax}" height="18" rx="4" fill="#F2F4F6"/>`);
     g.push(`<rect x="0" y="${y + 27}" width="${w.toFixed(1)}" height="18" rx="4" fill="${on ? "#E85D3A" : "#B0B8C1"}"/>`);
-    g.push(`<text x="${(w + 8).toFixed(1)}" y="${y + 42}" font-size="15" fill="${CH_INK}" font-weight="${on ? 800 : 600}">${esc(manN(r.value))} ${esc(unit.replace(/^만 /, ""))}</text>`);
+    g.push(`<text x="${(w + 8).toFixed(1)}" y="${y + 42}" font-size="15" fill="${CH_INK}" font-weight="${on ? 800 : 600}">${esc(valueText(r, unit))}</text>`);
   });
   g.push("</svg>");
   return { svg: g.join("\n") + "\n", w: CH_W, h: H };
 }
-export function aiUsageCharts() {
-  if (!AI_USAGE) return null;
-  const tr = AI_USAGE.trend, ap = AI_USAGE.apps;
-  return {
-    trend: barSvg(tr.points.map((p, i) => ({ name: `${p.label}(${p.note})`, value: p.value, highlight: i === tr.points.length - 1 })), tr.unit),
-    apps: barSvg(ap.rows, ap.unit),
-  };
+/** 글 한 편의 그림 파일들(파일 이름 → svg) */
+export function numbersFiles(p) {
+  const n = numbersOf(p);
+  if (!n) return [];
+  return (Array.isArray(n.figures) ? n.figures : []).filter((f) => /^[\w-]+\.svg$/.test(String(f.file ?? "")) && Array.isArray(f.rows) && f.rows.length).map((f) => ({ file: f.file, fig: f, ...barSvg(f.rows, String(f.unit ?? "")) }));
 }
-/** 가이드 글 공통 · 글로 먼저(AI 인용용) 쓰고 그림 두 장 · 출처는 문장 안에 */
-function aiUsageSection() {
-  if (!AI_USAGE) return "";
-  const c = aiUsageCharts(), tr = AI_USAGE.trend, ap = AI_USAGE.apps, ag = AI_USAGE.ages;
-  const [a, b, last] = [tr.points[0], tr.points[1], tr.points[tr.points.length - 1]];
-  const times = Math.round(b.value / a.value);
-  const chatgpt = ap.rows.find((r) => r.highlight), eats = ap.rows.find((r) => r.name === "쿠팡이츠");
-  const rank = ap.rows.findIndex((r) => r.highlight) + 1;
-  const fifty = ag.rows.find((r) => r.name === "50세 이상");
-  const text = `${tr.source} 조사에서 국내 ChatGPT 앱 월간 사용자는 ${a.label} ${manN(a.value)} 명에서 ${b.label} ${manN(b.value)} 명으로 1년 새 약 ${times}배가 됐습니다. ${last.label} 월평균은 ${manN(last.value)} 명으로, 한국 사람들이 쓰는 앱 가운데 ${rank}번째로 많습니다${eats ? `(쿠팡이츠 ${manN(eats.value)} 명보다 많습니다)` : ""}. 1년 전보다 늘어난 사용자도 ${manN(ap.growth.value)} 명으로 모든 앱 가운데 가장 많았습니다.${fifty ? ` ${ag.asOf} 기준 사용자 가운데 50세 이상도 ${fifty.pct}%입니다.` : ""} 가게를 고르는 손님이 ChatGPT를 열어 볼 일도 그만큼 늘었다고 볼 수 있습니다.`;
-  const fig = (file, ch, name, alt) => `<figure class="g-fig"><img src="/${GUIDE_DIR}/${file}" width="${ch.w}" height="${ch.h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption><b>${esc(name)}</b> 출처 ${esc(tr.source)}</figcaption></figure>`;
-  return `<section class="g-num" aria-labelledby="g-num"><h2 id="g-num">숫자로 보기 · 한국 사람들의 ChatGPT 사용</h2>
-<p style="font-size:16.5px;line-height:1.8;margin:8px 0 0">${esc(text)}</p>
-${fig(AI_FILES.trend, c.trend, tr.title, `${tr.title}: ${tr.points.map((p) => `${p.label} ${manN(p.value)} 명`).join(", ")}`)}
-${fig(AI_FILES.apps, c.apps, ap.title, `${ap.title}: ${ap.rows.map((r) => `${r.name} ${manN(r.value)} 명`).join(", ")}`)}
-<p style="font-size:15px;margin-top:10px">원문: ${[...tr.refs, ap.ref].filter((r, i, all) => all.findIndex((x) => x.url === r.url) === i).map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`).join(" · ")}</p>
+function numbersSection(p, root = ROOT) {
+  const n = numbersOf(p);
+  if (!n) return "";
+  const figs = numbersFiles(p).map((x) => `<figure class="g-fig"><img src="${pathOf(p)}${x.file}" width="${x.w}" height="${x.h}" alt="${esc(`${x.fig.name}: ${x.fig.rows.map((r) => `${r.name} ${valueText(r, String(x.fig.unit ?? ""))}`).join(", ")}`)}" loading="lazy" decoding="async"><figcaption><b>${esc(x.fig.name)}</b> 출처 ${esc(x.fig.source ?? "")}</figcaption></figure>`);
+  // 화면 캡처 · 저장소에 파일이 있을 때만(없으면 그 그림만 빠진다)
+  const img = n.image && /^\/[\w./-]+\.(png|jpe?g|webp)$/.test(String(n.image.src ?? "")) && existsSync(join(root, ...String(n.image.src).split("/").filter(Boolean)))
+    ? `<figure class="g-fig"><img src="${esc(n.image.src)}" alt="${esc(n.image.alt ?? "")}" loading="lazy" decoding="async"><figcaption><b>${esc(n.image.caption ?? "")}</b></figcaption></figure>` : "";
+  const refs = (Array.isArray(n.refs) ? n.refs : []).filter((r) => /^https:\/\//.test(String(r.url ?? "")));
+  return `<section class="g-num" aria-labelledby="g-num"><h2 id="g-num">${esc(n.title ?? "숫자로 보기")}</h2>
+<p style="font-size:16.5px;line-height:1.8;margin:8px 0 0">${esc(n.text ?? "")}</p>
+${img}${figs.join("\n")}
+${refs.length ? `<p style="font-size:15px;margin-top:10px">원문: ${refs.map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`).join(" · ")}</p>` : ""}
 </section>
 `;
 }
 
 function chartsSection(p) {
-  if (!p.industry) return aiUsageSection();
+  if (!p.industry) return numbersSection(p);
+
   const c = p.charts;
   if (!c) return "";
   const when = c.checkedAt ? `, ${koDate(c.checkedAt)} 조회` : "";
@@ -969,11 +965,12 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
       if (ch) writeFileSync(f, ch.svg);
       else rmSync(f, { force: true });
     }
+    // 글마다 다른 '숫자로 보기' 그림(data/post-numbers.json)
+    for (const x of numbersFiles(p)) writeFileSync(dirOf(outRoot, p, x.file), x.svg);
   }
   writeFileSync(join(outRoot, GUIDE_DIR, "index.html"), renderList(H, posts));
-  // 가이드 공통 '숫자로 보기' 그림 두 장
-  const ai = aiUsageCharts();
-  if (ai) { writeFileSync(join(outRoot, GUIDE_DIR, AI_FILES.trend), ai.trend.svg); writeFileSync(join(outRoot, GUIDE_DIR, AI_FILES.apps), ai.apps.svg); }
+  // 예전 공통 그림(10/21 하루) · 이제 글마다 따로
+  for (const old of ["ai-usage-trend.svg", "ai-usage-apps.svg"]) rmSync(join(outRoot, GUIDE_DIR, old), { force: true });
   // 사장님 이야기 업종 목록(글 0편이어도 미리 · noindex)
   mkdirSync(join(outRoot, STORIES_DIR), { recursive: true });
   writeFileSync(join(outRoot, STORIES_DIR, "index.html"), renderCaseHub(H, null, posts));
