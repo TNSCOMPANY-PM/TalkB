@@ -11,13 +11,43 @@
       "permanent": true
     },
     {
-      "source": "/guide",
-      "destination": "/guide/",
+      "source": "/content",
+      "destination": "/content/",
       "permanent": true
     },
     {
-      "source": "/guide/index.html",
-      "destination": "/guide/",
+      "source": "/content/index.html",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/guide",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/guide/",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/guide/:path*",
+      "destination": "/content/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/insights",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/:path*",
+      "destination": "/content/",
       "permanent": true
     },
     {
@@ -28,21 +58,6 @@
     {
       "source": "/stories/index.html",
       "destination": "/stories/",
-      "permanent": true
-    },
-    {
-      "source": "/insights",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights/",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights/:path*",
-      "destination": "/guide/",
       "permanent": true
     },
     {
@@ -83,61 +98,6 @@
     {
       "source": "/fceo45/:path+",
       "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-geo-guide.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-seo-geo-aeo-comparison.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-ai-answer-4-stages.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-franchise-hq-ai-citation.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-local-store-checklist.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-situational-query-response.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-chatgpt-citation-conditions.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-perplexity-citation-structure.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-google-aio-gemini-guide.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-korea-ai-search-2026.html",
-      "destination": "/guide/",
-      "permanent": true
-    },
-    {
-      "source": "/insights-zero-click-era-fnb.html",
-      "destination": "/guide/",
       "permanent": true
     },
     {
