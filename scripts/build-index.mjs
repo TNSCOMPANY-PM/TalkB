@@ -5,8 +5,8 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadLandingDb } from "./landing-db.mjs";
-import { buildGuide, writeManifest, readManifest, applySitemap, llmsSection, fillReviews } from "./build-posts.mjs";
+import { loadLandingDb, fetchCaseAssets } from "./landing-db.mjs";
+import { buildGuide, writeManifest, readManifest, applySitemap, llmsSection, fillReviews, linkHomeCases } from "./build-posts.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(readFileSync(join(ROOT, "data", "references.json"), "utf8"));
@@ -62,12 +62,14 @@ try { db = await loadLandingDb(); console.log("랜딩 DB 읽음 · 글", db.post
 catch (e) { console.warn("경고 · 랜딩 DB를 못 읽음(템플릿 후기 · 지난 글 목록 사용):", e instanceof Error ? e.message : e); }
 
 // 홈 후기 · build-posts.mjs fillReviews(설명은 거기)
-function homeReviews(text) { const r = fillReviews(text, db); data.reviewsCount = r.count; return r.text; }
+function homeReviews(text) { const r = fillReviews(text, db); data.reviewsCount = r.count; return db ? linkHomeCases(r.text, guidePosts ?? [], db.stores) : r.text; }
 
 // 가이드 글(/guide/) · DB를 읽었으면 다시 만들고 목록을 기록, 못 읽었으면 페이지는 그대로 두고 지난 목록으로 사이트맵 · llms.txt
 let guidePosts;
 if (db) {
-  guidePosts = buildGuide({ rows: db.posts, stores: db.stores, consents: db.consents, partnerNames: db.partnerNames });
+  // 후기 글 ChatGPT 답 캡처(저장소 → /guide/{slug}/answer-N.png · 실명 동의를 보고 실명 판 · 가린 판 중 하나)
+  const assets = await fetchCaseAssets(db.posts, db.stores, db.consents).catch((e) => { console.warn("경고 · 후기 글 캡처를 못 받음:", e instanceof Error ? e.message : e); return new Map(); });
+  guidePosts = buildGuide({ rows: db.posts, stores: db.stores, consents: db.consents, partnerNames: db.partnerNames, assets });
   writeManifest(guidePosts);
 } else {
   guidePosts = readManifest();

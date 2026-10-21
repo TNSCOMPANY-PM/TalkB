@@ -36,7 +36,7 @@ export async function dbLoad(e) {
   return m ? Number(m[1]) : 0;
 }
 
-export const POST_COLS = "id,kind,vertical,slug,title,summary,body_md,faq,target_keywords,store_id,cover_path,cover_alt,author,status,checks,approved_at,published_at,content_updated_at";
+export const POST_COLS = "id,kind,vertical,slug,title,summary,body_md,faq,target_keywords,data_snapshot,case_id,store_id,cover_path,cover_alt,author,status,checks,approved_at,published_at,content_updated_at";
 export const TESTIMONIAL_COLS = "id,store_id,store_name,person_label,quote,photo_path,sort";
 
 /**
@@ -60,6 +60,31 @@ export async function loadLandingDb() {
   // 파트너 매장 이름(어드민 검사와 같은 기준 · 세 글자 이상)
   const partnerNames = [...new Set((await getAll(e, "stores?select=id,name&partner_id=not.is.null&order=id")).map((s) => String(s.name ?? "").trim()).filter((n) => n.replace(/\s+/g, "").length >= 3))];
   return { posts, testimonials, stores, consents, partnerNames, load };
+}
+
+/**
+ * 후기 글 ChatGPT 답 캡처 받기(2026-10-21 · PLAN-talkb-case-posts §2-3)
+ *   data_snapshot.captures[] 의 저장소 경로(reference-shots 버킷)를 서비스 키로 받는다 · 서명 주소를 글에 걸지 않는다
+ *   실명 동의가 있으면 실명 판(real), 없거나 철회 · 파트너면 가린 판(masked) · 받은 것만 Map(경로 → Buffer)
+ *   실패한 장은 빠지고(로그) 글은 그대로 만든다
+ */
+export async function fetchCaseAssets(posts, stores, consents, log = console.warn) {
+  const e = dbEnv();
+  const out = new Map();
+  for (const p of posts) {
+    if (p.kind !== "case" || !Array.isArray(p.data_snapshot?.captures)) continue;
+    const real = nameAllowed(p.store_id, stores, consents);
+    for (const c of p.data_snapshot.captures.slice(0, 3)) {
+      const path = real && c.real ? c.real : c.masked;
+      if (!path || out.has(path) || !/^[\w./-]+\.png$/.test(path)) continue;
+      try {
+        const r = await fetch(`${e.U}/storage/v1/object/reference-shots/${path}`, { headers: e.H, signal: AbortSignal.timeout(20000) });
+        if (!r.ok) { log(`캡처 못 받음 · ${p.slug} · ${path} · ${r.status}`); continue; }
+        out.set(path, Buffer.from(await r.arrayBuffer()));
+      } catch (err) { log(`캡처 못 받음 · ${p.slug} · ${path} · ${err instanceof Error ? err.message : err}`); }
+    }
+  }
+  return out;
 }
 
 /** 실명 써도 되나 · 동의 기록이 있고(consented) 철회 안 됐고, 파트너 매장이 아님 */

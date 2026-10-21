@@ -57,6 +57,33 @@ function realNames(st) {
   return [...out];
 }
 
+// ── 후기 글(case) 자리표시 · 원본 TalkB-app/lib/landing-posts/case-text.ts (2026-10-21) · 규칙만 복사 ──
+//   본문 · 제목 · 요약 · FAQ의 {{매장}} 은 실명 동의가 있으면 실명, 없거나 철회 · 파트너면 data_snapshot.maskedName("인계동 ○○ 닭볶음탕")
+//   숫자 자리표시({{n.start}} 등)는 data_snapshot 값으로 · {{결과 그림}} 은 그래프 · 순위 표 · 답 캡처 묶음으로
+const STORE_TOKEN = "{{매장}}";
+const RESULT_MARK = "{{결과 그림}}";
+const NUM_TOKENS = ["n.start", "n.now", "n.responses", "period.weeks", "work.infoFields", "work.contentCount"];
+export const pctText = (n) => { const v = Math.round(Number(n) * 10) / 10; return Number.isInteger(v) ? String(v) : v.toFixed(1); };
+function numValue(s, t) {
+  switch (t) {
+    case "n.start": return pctText(s.n.start);
+    case "n.now": return pctText(s.n.now);
+    case "n.responses": return Number(s.n.responses).toLocaleString("en-US");
+    case "period.weeks": return String(s.period.weeks);
+    case "work.infoFields": return String(s.work?.infoFields ?? 0);
+    case "work.contentCount": return String(s.work?.contentCount ?? 0);
+  }
+  return "";
+}
+export function fillCase(text, s, storeName) {
+  let out = String(text ?? "").split(STORE_TOKEN).join(storeName);
+  for (const t of NUM_TOKENS) out = out.split(`{{${t}}}`).join(numValue(s, t));
+  return out;
+}
+const isSnap = (s) => !!s && typeof s === "object" && typeof s.caseId === "string" && typeof s.n?.start === "number" && typeof s.n?.now === "number" && Array.isArray(s.trend);
+const maskIn = (text, names, masked) => names.reduce((t, n) => t.split(n).join(masked), String(text ?? ""));
+// ── 복사 끝 ──
+
 /**
  * 글 한 줄 → 게시할 모양 또는 건너뛸 이유
  *   ctx: { stores, consents, partnerNames, now }
@@ -93,9 +120,36 @@ export function preparePost(row, ctx) {
       else for (const n of realNames(st)) if (all.includes(n)) { why.push(`실명 동의 없는 매장 이름 "${n}"`); break; }
     }
   }
+  // 후기 글 자리표시 채우기(사례에서 만든 글 · data_snapshot 있음)
+  let kase = null;
+  let fTitle = title, fSummary = summary, fBody = body, fFaq = faq;
+  const hasTokens = /\{\{/.test(all);
+  if (row.kind === "case" && (isSnap(row.data_snapshot) || hasTokens)) {
+    const s = row.data_snapshot;
+    if (!isSnap(s)) why.push("후기 글 숫자 묶음(data_snapshot) 없음");
+    else {
+      const st = ctx.stores.find((x) => x.id === row.store_id);
+      const allowed = nameAllowed(row.store_id, ctx.stores, ctx.consents);
+      const storeName = allowed && st?.name ? String(st.name).trim() : String(s.maskedName ?? "").trim();
+      if (!storeName) why.push("후기 글 가린 이름(maskedName) 없음");
+      const names = allowed || !st ? [] : realNames(st);
+      const f = (t) => maskIn(fillCase(t, s, storeName), names, s.maskedName);
+      fTitle = f(title); fSummary = f(summary); fBody = f(body); fFaq = faq.map((x) => ({ q: f(x.q), a: f(x.a) }));
+      const left = [fTitle, fSummary, fBody.split(RESULT_MARK).join(""), ...fFaq.flatMap((x) => [x.q, x.a])].join("\n").match(/\{\{[^}]*\}\}/g);
+      if (left) why.push(`모르는 자리표시 ${[...new Set(left)].join(", ")}`);
+      kase = {
+        snap: s, storeName, allowed,
+        questions: (Array.isArray(s.questions) ? s.questions : []).map((q) => ({ ...q, q: maskIn(String(q.q ?? "").split(STORE_TOKEN).join(storeName), names, s.maskedName) })),
+        captures: (Array.isArray(s.captures) ? s.captures : []).slice(0, 3).map((c, i) => ({
+          path: allowed && c.real ? c.real : c.masked, file: `answer-${i + 1}.png`, rank: c.rank ?? null, askedAt: c.askedAt ?? null,
+          q: maskIn(String(c.question ?? ""), names, s.maskedName),
+        })),
+      };
+    }
+  }
   if (why.length) return { ok: false, slug, id: row.id, why };
 
-  const lines = summary.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  const lines = fSummary.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
   const nowIso = (ctx.now ?? new Date()).toISOString();
   const datePublished = row.published_at || nowIso;
   const modSrc = row.content_updated_at || row.published_at || row.approved_at || nowIso;
@@ -104,9 +158,11 @@ export function preparePost(row, ctx) {
   return {
     ok: true,
     post: {
-      id: row.id, kind: row.kind, vertical: VERTICAL_LABEL[row.vertical] ? row.vertical : "all", slug, title, lines, body_md: body, faq,
-      cover, cover_alt: String(row.cover_alt ?? "").trim() || title, status: row.status, datePublished, dateModified,
-      charts: buildCharts(row.target_keywords),
+      id: row.id, kind: row.kind, vertical: VERTICAL_LABEL[row.vertical] ? row.vertical : "all", slug, title: fTitle, lines, body_md: fBody, faq: fFaq,
+      cover, cover_alt: String(row.cover_alt ?? "").trim() || fTitle, status: row.status, datePublished, dateModified,
+      storeId: row.store_id ?? null, case: kase,
+      // 후기 글은 검색어 그래프 대신 추천률 그래프(결과 그림)
+      charts: kase ? null : buildCharts(row.target_keywords),
     },
   };
 }
@@ -241,6 +297,59 @@ ${c.trend ? fig("trend.svg", c.trend, `검색 추이 (${c.trend.period})`, "네�
 `;
 }
 
+// ── 후기 글 화면 블록(2026-10-21 · PLAN-talkb-case-posts §2-3) · 숫자는 본문이 아니라 data_snapshot 에서 그린다 ──
+const md = (iso) => { const d = new Date(`${String(iso).slice(0, 10)}T00:00:00Z`); return `${d.getUTCMonth() + 1}월 ${d.getUTCDate()}일`; };
+const yr = (iso) => String(iso).slice(0, 4);
+export function casePeriodText(s) {
+  const a = s.period.from, b = s.period.to;
+  return `${yr(a)}년 ${md(a)} ~ ${yr(a) === yr(b) ? "" : `${yr(b)}년 `}${md(b)}`;
+}
+const rankCell = (r) => (r == null ? "기록 없음" : r === 0 ? "안 나옴" : `${r}위`);
+
+/** 주별 추천률 선 그래프 · 홈 사례 카드와 같은 모양(주색 선 + 옅은 면) · 시작 · 지금 값 표시 */
+export function caseTrendSvg(trend) {
+  const W = 560, H = 230, L = 44, R = W - 16, T = 18, B = H - 40;
+  const v = trend.map((t) => Math.max(0, Math.min(100, Number(t.pct) || 0)));
+  const n = v.length;
+  const X = (i) => L + (n === 1 ? (R - L) / 2 : (i * (R - L)) / (n - 1));
+  const Y = (p) => B - (p / 100) * (B - T);
+  const g = [`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="${CH_FONT}">`, `<rect width="${W}" height="${H}" fill="#fff"/>`];
+  for (const p of [0, 50, 100]) {
+    g.push(`<line x1="${L}" y1="${Y(p)}" x2="${R}" y2="${Y(p)}" stroke="${p === 0 ? "#C9CDD2" : CH_GRID}" stroke-width="1"/>`);
+    g.push(`<text x="${L - 8}" y="${Y(p) + 5}" font-size="13" fill="${CH_SUB}" text-anchor="end">${p}%</text>`);
+  }
+  const pts = v.map((p, i) => `${X(i).toFixed(1)},${Y(p).toFixed(1)}`);
+  if (n > 1) g.push(`<path d="M${pts.join(" L")} L${X(n - 1).toFixed(1)},${B} L${X(0).toFixed(1)},${B} Z" fill="rgba(232,93,58,.12)"/>`);
+  g.push(`<polyline points="${pts.join(" ")}" fill="none" stroke="#E85D3A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`);
+  g.push(`<circle cx="${X(0)}" cy="${Y(v[0])}" r="4.5" fill="#8B95A1" stroke="#fff" stroke-width="2"/>`);
+  g.push(`<circle cx="${X(n - 1)}" cy="${Y(v[n - 1])}" r="5" fill="#E85D3A" stroke="#fff" stroke-width="2"/>`);
+  g.push(`<text x="${X(0)}" y="${B + 22}" font-size="13" fill="${CH_SUB}" text-anchor="start">${md(trend[0].week)}</text>`);
+  if (n > 1) g.push(`<text x="${X(n - 1)}" y="${B + 22}" font-size="13" fill="${CH_SUB}" text-anchor="end">${md(trend[n - 1].week)}</text>`);
+  g.push("</svg>");
+  return { svg: g.join("\n") + "\n", w: W, h: H };
+}
+
+function caseHero(p) {
+  const s = p.case.snap;
+  return `<section class="c-hero" aria-label="결론"><p class="c-k">ChatGPT 추천률</p><p class="c-big tnum"><span class="c-from">${esc(pctText(s.n.start))}%</span><span class="c-arr" aria-hidden="true">→</span><span class="c-to">${esc(pctText(s.n.now))}%</span></p><p class="c-meta">${esc(casePeriodText(s))} · ${esc(String(s.period.weeks))}주 · ChatGPT 실측 · 답 ${esc(Number(s.n.responses).toLocaleString("en-US"))}건</p></section>\n`;
+}
+
+function caseResult(p) {
+  const s = p.case.snap;
+  const tr = s.trend.length ? caseTrendSvg(s.trend) : null;
+  const alt = `${p.case.storeName} 주별 ChatGPT 추천률 ${casePeriodText(s)}: ${pctText(s.n.start)}%에서 ${pctText(s.n.now)}%`;
+  const parts = [];
+  if (tr) parts.push(`<figure class="g-fig"><img src="/${GUIDE_DIR}/${p.slug}/trend.svg" width="${tr.w}" height="${tr.h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption><b>주별 추천률</b> 매주 같은 질문을 ChatGPT에 물어 추천된 비율</figcaption></figure>`);
+  if (p.case.questions.length) {
+    parts.push(`<div class="g-tbl"><table><tr><th>대표 질문</th><th>시작</th><th>지금</th></tr>${p.case.questions.map((q) => `<tr><td>${esc(q.q)}</td><td>${rankCell(q.startRank)}</td><td><b>${rankCell(q.nowRank)}</b></td></tr>`).join("")}</table></div>`);
+  }
+  const shots = p.case.captures.filter((c) => c.ok);
+  if (shots.length) {
+    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><img src="/${GUIDE_DIR}/${p.slug}/${c.file}" width="840" height="1500" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
+  }
+  return `<div class="c-res">\n${parts.join("\n")}\n</div>`;
+}
+
 /** 메타 설명 · 요약 첫 줄부터 90~150자 */
 export function metaDescription(lines) {
   let d = "";
@@ -343,6 +452,19 @@ const GUIDE_CSS = `
 .g-fig img{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
 .g-fig figcaption{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ink-mid);word-break:keep-all}
 .g-fig figcaption b{color:var(--ink);margin-right:6px}
+.c-hero{margin-top:22px;border:1px solid var(--line);border-radius:22px;padding:24px 22px;background:#fff;text-align:center}
+.tb .c-k{font-size:15px;font-weight:800;color:var(--ink-mid)}
+.tb .c-big{margin-top:6px;display:flex;align-items:baseline;justify-content:center;gap:14px;font-weight:800;letter-spacing:-0.03em}
+.c-from{font-size:clamp(34px,6vw,48px);color:#8B95A1}
+.c-arr{font-size:28px;color:var(--ink-mid)}
+.c-to{font-size:clamp(48px,9vw,72px);color:var(--accent)}
+.tb .c-meta{margin-top:8px;font-size:15px;color:var(--ink-mid);word-break:keep-all}
+.c-res{margin:8px 0 24px;display:grid;gap:16px}
+.c-res .g-fig{margin:0}
+.c-shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,300px));gap:12px;justify-content:center}
+.c-shot{margin:0;border:1px solid var(--line);border-radius:16px;padding:10px;background:#fff}
+.c-shot img{display:block;width:100%;height:auto;border-radius:10px}
+.c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
 @media (max-width:640px){.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 `;
 
@@ -438,9 +560,24 @@ function card(p) {
 /** 관련 글 · 같은 업종 먼저, 그다음 공통 글 · 최대 3개(수정일 최근 순) */
 export function related(p, posts) {
   const others = posts.filter((x) => x.slug !== p.slug).sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
+  // 후기 글 · 같은 업종 가이드 2 + 다른 후기 1(PLAN-talkb-case-posts §2-7-4) · 모자라면 나머지 글로 채움
+  if (p.kind === "case") {
+    const guides = others.filter((x) => x.kind !== "case" && (x.vertical === p.vertical || x.vertical === "all")).slice(0, 2);
+    const kase = others.filter((x) => x.kind === "case").slice(0, 1);
+    const picked = [...guides, ...kase];
+    return [...picked, ...others.filter((x) => !picked.includes(x))].slice(0, 3);
+  }
   const same = others.filter((x) => x.vertical === p.vertical);
   const rest = others.filter((x) => x.vertical !== p.vertical && (x.vertical === "all" || p.vertical === "all"));
   return [...same, ...rest].slice(0, 3);
+}
+
+/** 본문 HTML · 후기 글은 {{결과 그림}} 자리에 그래프 · 순위 표 · 캡처(자리가 없으면 본문 끝에) */
+function bodyHtml(p) {
+  const html = mdToHtml(p.body_md);
+  if (!p.case) return html;
+  const mark = `<p>${esc(RESULT_MARK)}</p>`;
+  return html.includes(mark) ? html.split(mark).join(caseResult(p)) : `${html}\n${caseResult(p)}`;
 }
 
 export function renderPost(H, p, posts) {
@@ -471,9 +608,9 @@ export function renderPost(H, p, posts) {
 <div class="g-chips">${chips(p)}</div>
 <h1 class="g-h1">${esc(p.title)}</h1>
 <p class="g-by">${AUTHOR} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></p>
-${p.cover ? `<img class="g-cover" src="${esc(p.cover)}" alt="${esc(p.cover_alt)}" loading="eager" decoding="async">\n` : ""}<div class="g-sum"><b>세 줄 요약</b><ul>${p.lines.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>
+${p.case ? caseHero(p) : ""}${p.cover ? `<img class="g-cover" src="${esc(p.cover)}" alt="${esc(p.cover_alt)}" loading="eager" decoding="async">\n` : ""}<div class="g-sum"><b>세 줄 요약</b><ul>${p.lines.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>
 ${chartsSection(p)}<div class="g-body">
-${mdToHtml(p.body_md)}
+${bodyHtml(p)}
 </div>
 <section class="g-sec" aria-labelledby="g-faq"><h2 id="g-faq">자주 묻는 질문</h2>
 ${p.faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("\n")}
@@ -570,7 +707,7 @@ function demoteStale(outRoot, keep) {
  * 렌더 · rows(DB 줄) → outRoot/guide/ 에 쓰고 게시 목록을 돌려준다
  *   log: 건너뛴 글 · noindex 로 바꾼 글
  */
-export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents, partnerNames, now, log = console.log }) {
+export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents, partnerNames, now, assets = new Map(), log = console.log }) {
   const H = homeParts(root);
   const ready = [];
   for (const r of rows) {
@@ -583,9 +720,20 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
   mkdirSync(join(outRoot, GUIDE_DIR), { recursive: true });
   for (const p of posts) {
     mkdirSync(join(outRoot, GUIDE_DIR, p.slug), { recursive: true });
+    // 후기 글 캡처 · 받은 것만 쓰고(ok) 못 받은 장은 화면에서 뺀다 · 안 쓰는 예전 answer-N.png 는 지운다
+    if (p.case) {
+      for (const c of p.case.captures) {
+        const buf = c.path ? assets.get(c.path) : null;
+        c.ok = !!buf;
+        if (buf) writeFileSync(join(outRoot, GUIDE_DIR, p.slug, c.file), buf);
+        else log(`후기 글 캡처 빠짐 · ${p.slug} · ${c.file}`);
+      }
+      for (let i = p.case.captures.length + 1; i <= 3; i++) rmSync(join(outRoot, GUIDE_DIR, p.slug, `answer-${i}.png`), { force: true });
+    }
     writeFileSync(join(outRoot, GUIDE_DIR, p.slug, "index.html"), renderPost(H, p, posts));
-    // 그래프 · 그릴 숫자가 없어졌으면 예전 파일을 지운다(페이지가 더 이상 가리키지 않음)
-    for (const [file, ch] of [["trend.svg", p.charts?.trend], ["volume.svg", p.charts?.volume]]) {
+    // 그래프 · 그릴 숫자가 없어졌으면 예전 파일을 지운다(페이지가 더 이상 가리키지 않음) · 후기 글은 추천률 그래프를 trend.svg 로
+    const caseTrend = p.case?.snap?.trend?.length ? caseTrendSvg(p.case.snap.trend) : null;
+    for (const [file, ch] of [["trend.svg", caseTrend ?? p.charts?.trend], ["volume.svg", p.charts?.volume]]) {
       const f = join(outRoot, GUIDE_DIR, p.slug, file);
       if (ch) writeFileSync(f, ch.svg);
       else rmSync(f, { force: true });
@@ -600,7 +748,7 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
 
 /** 게시 목록 기록(커밋됨) · 상태 전환과 DB 실패 때 폴백이 읽는다 */
 export function writeManifest(posts) {
-  const m = { posts: posts.map((p) => ({ id: p.id, slug: p.slug, title: p.title, line1: p.lines[0] ?? "", vertical: p.vertical, kind: p.kind, status: p.status, datePublished: p.datePublished, dateModified: p.dateModified })) };
+  const m = { posts: posts.map((p) => ({ id: p.id, slug: p.slug, title: p.title, line1: p.lines[0] ?? "", vertical: p.vertical, kind: p.kind, status: p.status, datePublished: p.datePublished, dateModified: p.dateModified, storeId: p.storeId ?? null })) };
   mkdirSync(dirname(MANIFEST), { recursive: true });
   writeFileSync(MANIFEST, JSON.stringify(m, null, 1) + "\n");
 }
@@ -669,6 +817,27 @@ export function fillReviews(text, db, warn = console.warn) {
   return { count: n, text: text.slice(0, m.index) + figs.join("\n") + text.slice(m.index + m[0].length) };
 }
 
+// 홈 사례 카드 → 후기 글 · 카드 매장 이름(<b>이름</b>)이 후기 글 매장과 같으면 카드 아래 "이 가게 이야기 보기 →"(PLAN-talkb-case-posts §2-7-1)
+//   카드는 버튼(누르면 답 원문)이라 링크를 안에 못 넣는다 → 카드와 링크를 .cs-w 로 묶는다(롤링 스크립트는 .cs offsetLeft 만 봄)
+const CS_LINK_CSS = ".cs-w{display:flex;flex-direction:column;gap:8px;flex:none}.cs-story{padding:0 6px;font-size:14px;font-weight:800;color:var(--deep);text-decoration:underline;text-underline-offset:3px}";
+export function linkHomeCases(text, posts, stores, warn = console.warn) {
+  let out = text, n = 0;
+  for (const p of posts) {
+    if (p.kind !== "case" || !p.storeId) continue;
+    const st = (stores ?? []).find((s) => s.id === p.storeId);
+    const name = String(st?.name ?? "").trim();
+    if (!name) continue;
+    const re = new RegExp(`<button type="button" class="cs"[^>]*>(?:(?!</button>)[\\s\\S])*?<b>${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</b>[\\s\\S]*?</button>`);
+    const m = re.exec(out);
+    if (!m) continue;
+    out = out.slice(0, m.index) + `<div class="cs-w">${m[0]}<a class="cs-story" href="/${GUIDE_DIR}/${p.slug}/" data-pos="case-card">이 가게 이야기 보기 →</a></div>` + out.slice(m.index + m[0].length);
+    n++;
+  }
+  if (n) out = out.replace("</style>", `${CS_LINK_CSS}\n</style>`);
+  else if (posts.some((p) => p.kind === "case")) warn("홈 사례 카드에 이어 붙일 후기 글 카드를 못 찾음(카드 매장 이름이 달라서)");
+  return out;
+}
+
 // ── 시험용 가짜 글(--fixture) · 메모리에서만 ──
 function fixtureRows() {
   const now = "2026-10-20T01:00:00.000Z";
@@ -693,10 +862,17 @@ function fixtureRows() {
         body_md: "## 집계 방법\n\n2026년 9월 1일부터 30일까지 카페 질문 답 1,240건을 셌어요.\n\n| 순위 | 이유 | 건수 |\n|---|---|---|\n| 1 | 분위기·인테리어 | 412건 |\n| 2 | 좌석·공간 | 318건 |\n| 3 | 주차 | 201건 |\n| 4 | 디저트 메뉴 | 187건 |\n\n## 읽는 법\n\n- 분위기는 사진보다 **글로 적힌 설명**이 인용됐어요.\n- 가격 이야기는 적었어요.",
         faq: [{ q: "어떤 질문으로 집계했나요?", a: "매장 이름을 빼고 손님처럼 묻는 카페 질문으로 집계했어요." }, { q: "매장 이름도 볼 수 있나요?", a: "집계 숫자만 공개하고 매장 이름은 쓰지 않아요." }, { q: "다음 집계는 언제인가요?", a: "매달 한 번 같은 방법으로 다시 세어요." }] },
       { ...base, id: "00000000-0000-0000-0000-000000000003", kind: "case", vertical: "restaurant", slug: "case-suwon-dakbokkeumtang", store_id: "fx-store-1",
-        title: "수원 인계동 닭볶음탕집, ChatGPT 추천률 46%에서 63%로 (12주)",
-        summary: "수원 인계동 닭볶음탕집은 12주 만에 ChatGPT 추천률이 46%에서 63%로 올랐어요.\n가게 정보 18개 항목을 정리하고 소개 글을 매주 발행했어요.\n사장님은 예약 전화가 늘었다고 말씀해 주셨어요.",
-        body_md: "## 시작할 때\n\n\"수원 닭볶음탕 추천해줘\" 질문에서 다른 가게가 먼저 나왔어요.\n\n## 한 일\n\n- 메뉴·가격·주차·단체석 정보 18개 항목 정리\n- 소개 글 12편 발행\n\n## 결과\n\n| 기간 | 추천률 |\n|---|---|\n| 시작 4주 | 46% |\n| 최근 4주 | 63% |\n\n> 요즘은 지피티 보고 왔다는 손님이 종종 있어요",
-        faq: [{ q: "어떤 질문으로 쟀나요?", a: "매장 이름 없이 손님처럼 묻는 질문 20개를 매주 물었어요." }, { q: "다른 가게도 이렇게 오르나요?", a: "가게마다 달라요. 무료 리포트로 먼저 확인해 보세요." }] },
+        title: "인계동 닭볶음탕 AI 검색 노출 사례, 추천률 46%에서 63%로",
+        summary: "{{매장}}의 ChatGPT 추천률은 {{n.start}}%에서 {{n.now}}%로 바뀌었습니다.\n{{period.weeks}}주 동안 같은 질문을 매주 물어 답 {{n.responses}}건을 셌습니다.\n가게 정보 {{work.infoFields}}개 항목을 정리했습니다.",
+        body_md: "## 시작할 때\n\n\"수원 닭볶음탕 추천해줘\" 질문에서 처음엔 안 나왔습니다. 닭○○○ 같은 다른 가게가 먼저 나왔습니다.\n\n## 한 일\n\n가게 정보 {{work.infoFields}}개 항목을 정리했습니다. AI가 읽는 가게 소개 자료도 {{work.contentCount}}편 냈습니다.\n\n## 결과\n\n{{period.weeks}}주 동안 추천률이 {{n.start}}%에서 {{n.now}}%로 바뀌었습니다.\n\n{{결과 그림}}\n\n## 사장님 말\n\n> 요즘은 지피티 보고 왔다는 손님이 종종 있어요",
+        faq: [{ q: "어떤 질문으로 쟀나요?", a: "{{매장}}의 손님이 물을 만한 질문을 매주 물었어요." }, { q: "다른 가게도 이렇게 오르나요?", a: "가게마다 달라요. 무료 리포트로 먼저 확인해 보세요." }],
+        // 시험용 가짜 숫자(실측 아님)
+        data_snapshot: { caseId: "fx-case-1", frozenAt: now, engine: "ChatGPT", period: { from: "2026-07-06", to: "2026-10-18", weeks: 15 }, n: { start: 46, now: 63, responses: 1240 },
+          trend: [40, 44, 52, 48, 50, 55, 58, 54, 60, 62, 61, 64, 63, 66, 63].map((pct, i) => ({ week: new Date(Date.UTC(2026, 6, 6 + i * 7)).toISOString().slice(0, 10), pct })),
+          questions: [{ q: "수원 닭볶음탕 추천해줘", startRank: 0, nowRank: 1 }, { q: "인계동 회식 장소 추천해줘", startRank: 4, nowRank: 2 }, { q: "도시농원 수원인계본점 주차 돼?", startRank: null, nowRank: 1 }],
+          before: { q: "수원 닭볶음탕 추천해줘", rival: "닭○○○" },
+          captures: [{ rid: 1, question: "수원 닭볶음탕 추천해줘", rank: 1, askedAt: "2026-10-12T03:00:00Z", masked: "case-posts/fx/1-masked.png", real: null }],
+          work: { infoFields: 18, contentCount: 12, labels: ["대표 메뉴"] }, testimonialId: null, maskedName: "인계동 ○○ 닭볶음탕", rivalNames: [] } },
       // 막힘 확인용(렌더되면 안 됨) · 실명 동의 없는 매장 이름이 본문에 있음
       { ...base, id: "00000000-0000-0000-0000-000000000004", kind: "case", vertical: "restaurant", slug: "case-should-skip", store_id: "fx-store-1",
         title: "실명 동의 없는 후기 글이 걸러지는지 보는 시험 글",
@@ -721,7 +897,8 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
     const out = oi >= 0 ? args[oi + 1] : null;
     if (!out) { console.error("--fixture 는 --out <폴더> 가 필요해요(저장소 밖 임시 폴더)"); process.exit(1); }
     const fx = fixtureRows();
-    const posts = buildGuide({ outRoot: out, ...fx });
+    // 캡처 시험용 그림(실제 답 캡처 대신 홈 사례 이미지 한 장)
+    const posts = buildGuide({ outRoot: out, ...fx, assets: new Map([["case-posts/fx/1-masked.png", readFileSync(join(ROOT, "images", "cases", "01.jpg"))]]) });
     writeFileSync(join(out, "sitemap.preview.xml"), applySitemap(readFileSync(join(ROOT, "sitemap.xml"), "utf8"), posts));
     writeFileSync(join(out, "llms.preview.txt"), llmsSection(posts));
     // 홈 후기 시험 · 지금 홈(index.html)의 후기 자리만 가짜 후기로 바꿔 <out>/index.html 로(예전 5개 + 동의 없는 매장 1 + 동의한 매장 1)
