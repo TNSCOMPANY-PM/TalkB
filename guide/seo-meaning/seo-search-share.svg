@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 238" width="440" height="238" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">
+<rect width="440" height="238" fill="#fff"/>
+<text x="0" y="26" font-size="16" fill="#191F28" font-weight="800">네이버</text>
+<rect x="0" y="35" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="35" width="320.0" height="18" rx="4" fill="#E85D3A"/>
+<text x="328.0" y="50" font-size="15" fill="#191F28" font-weight="800">64.28%</text>
+<text x="0" y="82" font-size="16" fill="#191F28" font-weight="600">구글</text>
+<rect x="0" y="91" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="91" width="141.2" height="18" rx="4" fill="#B0B8C1"/>
+<text x="149.2" y="106" font-size="15" fill="#191F28" font-weight="600">28.37%</text>
+<text x="0" y="138" font-size="16" fill="#191F28" font-weight="600">빙</text>
+<rect x="0" y="147" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="147" width="19.1" height="18" rx="4" fill="#B0B8C1"/>
+<text x="27.1" y="162" font-size="15" fill="#191F28" font-weight="600">3.84%</text>
+<text x="0" y="194" font-size="16" fill="#191F28" font-weight="600">다음</text>
+<rect x="0" y="203" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="203" width="14.4" height="18" rx="4" fill="#B0B8C1"/>
+<text x="22.4" y="218" font-size="15" fill="#191F28" font-weight="600">2.9%</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 294" width="440" height="294" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">
+<rect width="440" height="294" fill="#fff"/>
+<text x="0" y="26" font-size="16" fill="#191F28" font-weight="600">구글</text>
+<rect x="0" y="35" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="35" width="320.0" height="18" rx="4" fill="#B0B8C1"/>
+<text x="328.0" y="50" font-size="15" fill="#191F28" font-weight="600">4,695만 명</text>
+<text x="0" y="82" font-size="16" fill="#191F28" font-weight="600">구글 크롬</text>
+<rect x="0" y="91" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="91" width="293.3" height="18" rx="4" fill="#B0B8C1"/>
+<text x="301.3" y="106" font-size="15" fill="#191F28" font-weight="600">4,303만 명</text>
+<text x="0" y="138" font-size="16" fill="#191F28" font-weight="800">ChatGPT</text>
+<rect x="0" y="147" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="147" width="158.4" height="18" rx="4" fill="#E85D3A"/>
+<text x="166.4" y="162" font-size="15" fill="#191F28" font-weight="800">2,324만 명</text>
+<text x="0" y="194" font-size="16" fill="#191F28" font-weight="600">쿠팡이츠</text>
+<rect x="0" y="203" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="203" width="87.5" height="18" rx="4" fill="#B0B8C1"/>
+<text x="95.5" y="218" font-size="15" fill="#191F28" font-weight="600">1,284만 명</text>
+<text x="0" y="250" font-size="16" fill="#191F28" font-weight="600">카카오페이</text>
+<rect x="0" y="259" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="259" width="75.3" height="18" rx="4" fill="#B0B8C1"/>
+<text x="83.3" y="274" font-size="15" fill="#191F28" font-weight="600">1,105만 명</text>
+</svg>

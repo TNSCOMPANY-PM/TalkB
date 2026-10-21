@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 182" width="440" height="182" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">
+<rect width="440" height="182" fill="#fff"/>
+<text x="0" y="26" font-size="16" fill="#191F28" font-weight="600">2024년 8월(월간 사용자)</text>
+<rect x="0" y="35" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="35" width="56.0" height="18" rx="4" fill="#B0B8C1"/>
+<text x="64.0" y="50" font-size="15" fill="#191F28" font-weight="600">407만 명</text>
+<text x="0" y="82" font-size="16" fill="#191F28" font-weight="600">2025년 8월(월간 사용자)</text>
+<rect x="0" y="91" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="91" width="279.7" height="18" rx="4" fill="#B0B8C1"/>
+<text x="287.7" y="106" font-size="15" fill="#191F28" font-weight="600">2,031만 명</text>
+<text x="0" y="138" font-size="16" fill="#191F28" font-weight="800">2026년 상반기(월평균 사용자)</text>
+<rect x="0" y="147" width="320" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="147" width="320.0" height="18" rx="4" fill="#E85D3A"/>
+<text x="328.0" y="162" font-size="15" fill="#191F28" font-weight="800">2,324만 명</text>
+</svg>

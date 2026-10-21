@@ -3,35 +3,44 @@
   {
    "id": "04b01d11-0e52-44e9-951c-4c99faa0d0a2",
    "slug": "seo-meaning",
-   "title": "SEO 뜻과 SEO 최적화 쉽게 알아보기(맛집 사장님 편)",
+   "title": "SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법",
    "line1": "SEO는 손님이 검색할 때 우리 가게가 잘 보이게 정보를 정리하는 일입니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-10-21T03:01:16.239Z",
-   "dateModified": "2026-10-21T03:01:16.239Z"
+   "status": "published",
+   "datePublished": "2026-10-21T03:01:16.239+00:00",
+   "dateModified": "2026-10-21T05:38:49.476+00:00",
+   "storeId": null,
+   "industry": null,
+   "path": "/guide/seo-meaning/"
   },
   {
    "id": "8ee91f0b-b086-4a46-9343-cd90d46ba037",
    "slug": "aeo-meaning",
-   "title": "AEO 뜻과 AEO 마케팅 쉽게 알아보기(맛집 사장님 편)",
+   "title": "AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법",
    "line1": "AEO는 손님 질문에 대한 답 속에 우리 가게 정보가 쓰이게 하는 일입니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-10-21T03:01:16.273Z",
-   "dateModified": "2026-10-21T03:01:16.273Z"
+   "status": "published",
+   "datePublished": "2026-10-21T03:01:16.273+00:00",
+   "dateModified": "2026-10-21T05:38:49.476+00:00",
+   "storeId": null,
+   "industry": null,
+   "path": "/guide/aeo-meaning/"
   },
   {
    "id": "fa4fd17b-8728-4076-b08a-e55853348a61",
    "slug": "geo-meaning",
-   "title": "GEO 뜻과 GEO 마케팅 쉽게 알아보기(맛집 사장님 편)",
+   "title": "GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법",
    "line1": "GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-10-21T03:01:16.274Z",
-   "dateModified": "2026-10-21T03:01:16.274Z"
+   "status": "published",
+   "datePublished": "2026-10-21T03:01:16.274+00:00",
+   "dateModified": "2026-10-21T05:38:49.476+00:00",
+   "storeId": null,
+   "industry": null,
+   "path": "/guide/geo-meaning/"
   }
  ]
 }

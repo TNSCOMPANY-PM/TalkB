@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T03:01:15.697Z",
+  "updatedAt": "2026-10-21T06:35:11.641Z",
   "periodFrom": "2026년 10월 14일",
   "periodTo": "2026년 10월 20일",
   "updatedDot": "2026.10.20",
@@ -43,10 +43,10 @@
       "area": "서울 종로구",
       "cat": "분식",
       "baselinePct": 10,
-      "nowPct": 77.5,
+      "nowPct": 76,
       "base10": 1,
       "now10": 8,
-      "runs": 80
+      "runs": 75
     },
     "donas": {
       "key": "donas",
@@ -103,9 +103,9 @@
       "all": false
     },
     "s1": {
-      "runs": 6,
-      "rank1": 6,
-      "label": "6번 중 6번",
+      "runs": 5,
+      "rank1": 5,
+      "label": "5번 중 5번",
       "all": true
     },
     "s2": {
@@ -118,7 +118,7 @@
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 67.6,
+    "nowPct": 67.3,
     "base10": 1,
     "now10": 7
   },
