@@ -32,7 +32,9 @@
       localStorage.setItem("tb_attr", JSON.stringify({
         utm_source: p.get("utm_source") || (p.get("fbclid") ? "meta" : p.get("gclid") ? "google" : null),
         utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"),
-        referrer: outside ? document.referrer.slice(0, 300) : null, landing: location.pathname, at: new Date().toISOString()
+        referrer: outside ? document.referrer.slice(0, 300) : null, landing: location.pathname, at: new Date().toISOString(),
+        // 메타 광고 클릭 ID(10/21) · 서버가 _fbc 쿠키가 없을 때 fb.1.{클릭 시각}.{fbclid} 로 만들어 전환 API에 싣는다
+        fbclid: p.get("fbclid") ? p.get("fbclid").slice(0, 500) : null
       }));
     }
   } catch (e) {}
