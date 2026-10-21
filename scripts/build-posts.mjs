@@ -461,7 +461,7 @@ const GUIDE_CSS = `
 .tb .c-meta{margin-top:8px;font-size:15px;color:var(--ink-mid);word-break:keep-all}
 .c-res{margin:8px 0 24px;display:grid;gap:16px}
 .c-res .g-fig{margin:0}
-.c-shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,300px));gap:12px;justify-content:center}
+.c-shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,240px));gap:12px;justify-content:center}
 .c-shot{margin:0;border:1px solid var(--line);border-radius:16px;padding:10px;background:#fff}
 .c-shot img{display:block;width:100%;height:auto;border-radius:10px}
 .c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
