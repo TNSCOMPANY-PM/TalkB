@@ -195,7 +195,8 @@ export function preparePost(row, ctx) {
       topicWords: topicWordsOf(fTitle, row.target_keywords),
       industry: kase ? (INDUSTRY_LABEL[kase.snap.industry] ? kase.snap.industry : "etc") : null,
       // 후기 글은 검색어 그래프 대신 추천률 그래프(결과 그림)
-      charts: kase ? null : buildCharts(row.target_keywords),
+      // 검색어 조회수 그래프는 사장님에게 뜻이 없어 뺐다(10/21) · 가이드는 aiUsageSection 이 공통으로 붙는다
+      charts: null,
     },
   };
 }
@@ -320,7 +321,56 @@ export function buildCharts(rawKeywords) {
   return out.trend || out.volume ? out : null;
 }
 
+// ── 숫자로 보기 · 한국 사람들의 ChatGPT 사용(data/ai-usage.json · 출처 기사 숫자만) ──
+let AI_USAGE = null;
+try { AI_USAGE = JSON.parse(readFileSync(join(ROOT, "data", "ai-usage.json"), "utf8")); } catch { AI_USAGE = null; }
+const AI_FILES = { trend: "ai-usage-trend.svg", apps: "ai-usage-apps.svg" };
+const manN = (v) => `${Number(v).toLocaleString("en-US")}만`;
+/** 가로 막대 · 강조 줄은 주색 · 나머지 회색(색만이 아니라 굵은 글씨로도 구분) */
+export function barSvg(rows, unit) {
+  const ROW = 56, top = 8, max = Math.max(...rows.map((r) => r.value)), barMax = CH_W - 120;
+  const H = top + rows.length * ROW + 6;
+  const g = [`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CH_W} ${H}" width="${CH_W}" height="${H}" font-family="${CH_FONT}">`, `<rect width="${CH_W}" height="${H}" fill="#fff"/>`];
+  rows.forEach((r, i) => {
+    const y = top + i * ROW, w = Math.max(6, (r.value / max) * barMax), on = !!r.highlight;
+    g.push(`<text x="0" y="${y + 18}" font-size="16" fill="${CH_INK}" font-weight="${on ? 800 : 600}">${esc(r.name)}</text>`);
+    g.push(`<rect x="0" y="${y + 27}" width="${barMax}" height="18" rx="4" fill="#F2F4F6"/>`);
+    g.push(`<rect x="0" y="${y + 27}" width="${w.toFixed(1)}" height="18" rx="4" fill="${on ? "#E85D3A" : "#B0B8C1"}"/>`);
+    g.push(`<text x="${(w + 8).toFixed(1)}" y="${y + 42}" font-size="15" fill="${CH_INK}" font-weight="${on ? 800 : 600}">${esc(manN(r.value))} ${esc(unit.replace(/^만 /, ""))}</text>`);
+  });
+  g.push("</svg>");
+  return { svg: g.join("\n") + "\n", w: CH_W, h: H };
+}
+export function aiUsageCharts() {
+  if (!AI_USAGE) return null;
+  const tr = AI_USAGE.trend, ap = AI_USAGE.apps;
+  return {
+    trend: barSvg(tr.points.map((p, i) => ({ name: `${p.label}(${p.note})`, value: p.value, highlight: i === tr.points.length - 1 })), tr.unit),
+    apps: barSvg(ap.rows, ap.unit),
+  };
+}
+/** 가이드 글 공통 · 글로 먼저(AI 인용용) 쓰고 그림 두 장 · 출처는 문장 안에 */
+function aiUsageSection() {
+  if (!AI_USAGE) return "";
+  const c = aiUsageCharts(), tr = AI_USAGE.trend, ap = AI_USAGE.apps, ag = AI_USAGE.ages;
+  const [a, b, last] = [tr.points[0], tr.points[1], tr.points[tr.points.length - 1]];
+  const times = Math.round(b.value / a.value);
+  const chatgpt = ap.rows.find((r) => r.highlight), eats = ap.rows.find((r) => r.name === "쿠팡이츠");
+  const rank = ap.rows.findIndex((r) => r.highlight) + 1;
+  const fifty = ag.rows.find((r) => r.name === "50세 이상");
+  const text = `${tr.source} 조사에서 국내 ChatGPT 앱 월간 사용자는 ${a.label} ${manN(a.value)} 명에서 ${b.label} ${manN(b.value)} 명으로 1년 새 약 ${times}배가 됐습니다. ${last.label} 월평균은 ${manN(last.value)} 명으로, 한국 사람들이 쓰는 앱 가운데 ${rank}번째로 많습니다${eats ? `(쿠팡이츠 ${manN(eats.value)} 명보다 많습니다)` : ""}. 1년 전보다 늘어난 사용자도 ${manN(ap.growth.value)} 명으로 모든 앱 가운데 가장 많았습니다.${fifty ? ` ${ag.asOf} 기준 사용자 가운데 50세 이상도 ${fifty.pct}%입니다.` : ""} 가게를 고르는 손님이 ChatGPT를 열어 볼 일도 그만큼 늘었다고 볼 수 있습니다.`;
+  const fig = (file, ch, name, alt) => `<figure class="g-fig"><img src="/${GUIDE_DIR}/${file}" width="${ch.w}" height="${ch.h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption><b>${esc(name)}</b> 출처 ${esc(tr.source)}</figcaption></figure>`;
+  return `<section class="g-num" aria-labelledby="g-num"><h2 id="g-num">숫자로 보기 · 한국 사람들의 ChatGPT 사용</h2>
+<p style="font-size:16.5px;line-height:1.8;margin:8px 0 0">${esc(text)}</p>
+${fig(AI_FILES.trend, c.trend, tr.title, `${tr.title}: ${tr.points.map((p) => `${p.label} ${manN(p.value)} 명`).join(", ")}`)}
+${fig(AI_FILES.apps, c.apps, ap.title, `${ap.title}: ${ap.rows.map((r) => `${r.name} ${manN(r.value)} 명`).join(", ")}`)}
+<p style="font-size:15px;margin-top:10px">원문: ${[...tr.refs, ap.ref].filter((r, i, all) => all.findIndex((x) => x.url === r.url) === i).map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`).join(" · ")}</p>
+</section>
+`;
+}
+
 function chartsSection(p) {
+  if (!p.industry) return aiUsageSection();
   const c = p.charts;
   if (!c) return "";
   const when = c.checkedAt ? `, ${koDate(c.checkedAt)} 조회` : "";
@@ -921,6 +971,9 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
     }
   }
   writeFileSync(join(outRoot, GUIDE_DIR, "index.html"), renderList(H, posts));
+  // 가이드 공통 '숫자로 보기' 그림 두 장
+  const ai = aiUsageCharts();
+  if (ai) { writeFileSync(join(outRoot, GUIDE_DIR, AI_FILES.trend), ai.trend.svg); writeFileSync(join(outRoot, GUIDE_DIR, AI_FILES.apps), ai.apps.svg); }
   // 사장님 이야기 업종 목록(글 0편이어도 미리 · noindex)
   mkdirSync(join(outRoot, STORIES_DIR), { recursive: true });
   writeFileSync(join(outRoot, STORIES_DIR, "index.html"), renderCaseHub(H, null, posts));
