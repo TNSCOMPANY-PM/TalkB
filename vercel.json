@@ -21,6 +21,16 @@
       "permanent": true
     },
     {
+      "source": "/stories",
+      "destination": "/stories/",
+      "permanent": true
+    },
+    {
+      "source": "/stories/index.html",
+      "destination": "/stories/",
+      "permanent": true
+    },
+    {
       "source": "/insights",
       "destination": "/guide/",
       "permanent": true
