@@ -169,6 +169,7 @@ export function preparePost(row, ctx) {
       if (left) why.push(`모르는 자리표시 ${[...new Set(left)].join(", ")}`);
       kase = {
         snap: s, storeName, allowed,
+        place: allowed && st ? { name: String(st.name).trim(), locality: [st.region_sigungu, st.region_dong].filter(Boolean).join(" ") || null } : null,
         questions: (Array.isArray(s.questions) ? s.questions : []).map((q) => ({ ...q, q: maskIn(String(q.q ?? "").split(STORE_TOKEN).join(storeName), names, s.maskedName) })),
         captures: (Array.isArray(s.captures) ? s.captures : []).slice(0, 3).map((c, i) => ({
           path: allowed && c.real ? c.real : c.masked, file: `answer-${i + 1}.png`, rank: c.rank ?? null, askedAt: c.askedAt ?? null,
@@ -408,7 +409,8 @@ export function mdToHtml(md) {
     const t = lines[i].trim();
     if (!t) { i++; continue; }
     const h = t.match(/^(#{1,4})\s+(.*)$/);
-    if (h) { const lv = Math.min(4, h[1].length + 1); out.push(`<h${lv}>${inline(h[2])}</h${lv}>`); i++; continue; }
+    // # · ## → h2(제목 h1 바로 아래 · 10/21 단계 건너뛰던 것) · ### → h3 · #### → h4
+    if (h) { const lv = Math.min(4, Math.max(2, h[1].length)); out.push(`<h${lv}>${inline(h[2])}</h${lv}>`); i++; continue; }
     if (/^\|/.test(t)) {
       const rows = [];
       while (i < lines.length && /^\|/.test(lines[i].trim())) {
@@ -600,9 +602,11 @@ export function related(p, posts) {
     const picked = [...guides, ...kase];
     return [...picked, ...others.filter((x) => !picked.includes(x))].slice(0, 3);
   }
-  const same = others.filter((x) => x.vertical === p.vertical);
-  const rest = others.filter((x) => x.vertical !== p.vertical && (x.vertical === "all" || p.vertical === "all"));
-  return [...same, ...rest].slice(0, 3);
+  const guidesOnly = others.filter((x) => x.kind !== "case");
+  const same = guidesOnly.filter((x) => x.vertical === p.vertical);
+  const rest = guidesOnly.filter((x) => x.vertical !== p.vertical && (x.vertical === "all" || p.vertical === "all"));
+  const story = others.filter((x) => x.kind === "case").sort((a, b) => Number(b.vertical === p.vertical) - Number(a.vertical === p.vertical))[0];
+  return story ? [...[...same, ...rest].slice(0, 2), story] : [...same, ...rest].slice(0, 3);
 }
 
 /** 본문 HTML · 후기 글은 {{결과 그림}} 자리에 그래프 · 순위 표 · 캡처(자리가 없으면 본문 끝에) */
@@ -624,6 +628,8 @@ export function renderPost(H, p, posts) {
       "@context": "https://schema.org", "@type": "Article", "@id": `${url}#article`, headline: p.title, description: desc,
       datePublished: p.datePublished, dateModified: p.dateModified, inLanguage: "ko",
       author: { "@type": "Organization", name: AUTHOR, url: `${SITE}/` }, publisher: ORG, image: [image], mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      ...(p.case?.place ? { about: { "@type": "Restaurant", name: p.case.place.name, ...(p.case.place.locality ? { address: { "@type": "PostalAddress", addressLocality: p.case.place.locality, addressCountry: "KR" } } : {}) } } : {}),
+      ...(p.case ? { keywords: ["AI 검색 최적화", "ChatGPT 추천", INDUSTRY_LABEL[p.industry] ?? ""].filter(Boolean).join(", ") } : {}),
     },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: p.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
     {
@@ -763,6 +769,13 @@ function demoteStale(outRoot, keep) {
 
 // ── 사장님 이야기(후기 글) 업종 목록 · /guide/case/ 와 /guide/case/{업종}/ 을 업종마다 미리 만든다 ──
 //   글이 0편인 업종은 "준비하고 있어요" + noindex · 사이트맵에서 빠짐 · 글이 올라가면 다음 빌드에서 바로 열린다
+/** 목록 머리 숫자 · 매주 ChatGPT에 같은 질문을 물어 센 가게 N곳 · 평균 추천률 시작 → 지금(각 글 data_snapshot) */
+export function hubStat(list) {
+  const ss = list.map((p) => p.case?.snap).filter(Boolean);
+  if (!ss.length) return "";
+  const avg = (k) => pctText(ss.reduce((n, s) => n + Number(s.n[k] || 0), 0) / ss.length);
+  return `매주 ChatGPT에 같은 질문을 물어 확인한 가게 ${ss.length}곳 · 평균 추천률 ${avg("start")}% → ${avg("now")}%`;
+}
 export function caseHubs(posts) {
   const cases = posts.filter((p) => p.kind === "case" && p.industry);
   return CASE_INDUSTRIES.map(([key, label]) => ({ key, label, posts: cases.filter((p) => p.industry === key) }));
@@ -795,6 +808,7 @@ export function renderCaseHub(H, hub, all) {
 <nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${isRoot ? "<span>사장님 이야기</span>" : `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
 <h1 class="g-h1">${esc(name)}</h1>
 <p class="lead" style="margin-top:12px">${esc(desc)}</p>
+${sorted.length ? `<p style="margin-top:10px;font-size:16px;font-weight:700">${esc(hubStat(sorted))}</p>` : ""}
 ${nav}
 ${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">무료 리포트 신청하기</a></div>
