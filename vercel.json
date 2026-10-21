@@ -31,6 +31,11 @@
       "permanent": true
     },
     {
+      "source": "/guide/:slug/",
+      "destination": "/content/:slug/",
+      "permanent": true
+    },
+    {
       "source": "/guide/:path*",
       "destination": "/content/:path*",
       "permanent": true
@@ -42,6 +47,11 @@
     },
     {
       "source": "/insights/",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/:slug/",
       "destination": "/content/",
       "permanent": true
     },
