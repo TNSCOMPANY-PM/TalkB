@@ -75,12 +75,12 @@ ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계�
 
 - AI 검색 자료: https://talkb.co.kr/resources.html
 
-## 가이드 글
+## 콘텐츠(식당 · 카페 · 술집 사장님 글)
 
-- 목록: https://talkb.co.kr/guide/
-- GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법: https://talkb.co.kr/guide/geo-meaning/ · GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.
-- AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법: https://talkb.co.kr/guide/aeo-meaning/ · AEO는 손님 질문에 대한 답 속에 우리 가게 정보가 쓰이게 하는 일입니다.
-- SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법: https://talkb.co.kr/guide/seo-meaning/ · SEO는 손님이 검색할 때 우리 가게가 잘 보이게 정보를 정리하는 일입니다.
+- 목록: https://talkb.co.kr/content/
+- GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법: https://talkb.co.kr/content/geo-meaning/ · GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.
+- AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법: https://talkb.co.kr/content/aeo-meaning/ · AEO는 손님 질문에 대한 답 속에 우리 가게 정보가 쓰이게 하는 일입니다.
+- SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법: https://talkb.co.kr/content/seo-meaning/ · SEO는 손님이 검색할 때 우리 가게가 잘 보이게 정보를 정리하는 일입니다.
 
 ---
 

@@ -12,7 +12,7 @@
    "dateModified": "2026-10-21T05:38:49.476+00:00",
    "storeId": null,
    "industry": null,
-   "path": "/guide/seo-meaning/"
+   "path": "/content/seo-meaning/"
   },
   {
    "id": "8ee91f0b-b086-4a46-9343-cd90d46ba037",
@@ -26,7 +26,7 @@
    "dateModified": "2026-10-21T05:38:49.476+00:00",
    "storeId": null,
    "industry": null,
-   "path": "/guide/aeo-meaning/"
+   "path": "/content/aeo-meaning/"
   },
   {
    "id": "fa4fd17b-8728-4076-b08a-e55853348a61",
@@ -40,7 +40,7 @@
    "dateModified": "2026-10-21T05:38:49.476+00:00",
    "storeId": null,
    "industry": null,
-   "path": "/guide/geo-meaning/"
+   "path": "/content/geo-meaning/"
   }
  ]
 }
