@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 188" width="440" height="188" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">
+<rect width="440" height="188" fill="#fff"/>
+<text x="0" y="26" font-size="16" fill="#191F28" font-weight="600">AEO</text>
+<rect x="0" y="36" width="340" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="36" width="340.0" height="18" rx="4" fill="#E85D3A"/>
+<text x="348.0" y="51" font-size="15" fill="#191F28" font-weight="700">1,780회</text>
+<text x="0" y="84" font-size="16" fill="#191F28" font-weight="600">AEO 마케팅</text>
+<rect x="0" y="94" width="340" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="94" width="139.4" height="18" rx="4" fill="#E85D3A"/>
+<text x="147.4" y="109" font-size="15" fill="#191F28" font-weight="700">730회</text>
+<text x="0" y="142" font-size="16" fill="#191F28" font-weight="600">AEO 뜻</text>
+<rect x="0" y="152" width="340" height="18" rx="4" fill="#F2F4F6"/>
+<rect x="0" y="152" width="105.1" height="18" rx="4" fill="#E85D3A"/>
+<text x="113.1" y="167" font-size="15" fill="#191F28" font-weight="700">550회</text>
+</svg>

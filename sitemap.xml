@@ -5,7 +5,7 @@
   <!-- 메인 페이지 -->
   <url>
     <loc>https://talkb.co.kr/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -32,4 +32,22 @@
     <loc>https://talkb.co.kr/enterprise/</loc>
     <lastmod>2026-10-14</lastmod>
   </url>
+  <!-- guide:start · scripts/build-posts.mjs 가 만든다(게시 글 1편 이상일 때만) -->
+  <url>
+    <loc>https://talkb.co.kr/guide/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://talkb.co.kr/guide/seo-meaning/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://talkb.co.kr/guide/aeo-meaning/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://talkb.co.kr/guide/geo-meaning/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <!-- guide:end -->
 </urlset>
