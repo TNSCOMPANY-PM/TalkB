@@ -192,6 +192,7 @@ export function preparePost(row, ctx) {
       id: row.id, kind: row.kind, vertical: VERTICAL_LABEL[row.vertical] ? row.vertical : "all", slug, title: fTitle, lines, body_md: fBody, faq: fFaq,
       cover, cover_alt: String(row.cover_alt ?? "").trim() || fTitle, status: row.status, datePublished, dateModified,
       storeId: row.store_id ?? null, case: kase,
+      topicWords: topicWordsOf(fTitle, row.target_keywords),
       industry: kase ? (INDUSTRY_LABEL[kase.snap.industry] ? kase.snap.industry : "etc") : null,
       // 후기 글은 검색어 그래프 대신 추천률 그래프(결과 그림)
       charts: kase ? null : buildCharts(row.target_keywords),
@@ -593,8 +594,21 @@ function card(p) {
 }
 
 /** 관련 글 · 같은 업종 먼저, 그다음 공통 글 · 최대 3개(수정일 최근 순) */
+// 관련 글 · 주제 낱말(제목 · 노리는 검색어)이 많이 겹치는 글 먼저 · 같으면 글마다 다른 고정 순서(링크가 몇 편에 몰리지 않게 · 10/21)
+const STOP = new Set(["가게", "우리", "사장님", "식당", "카페", "술집", "나오는", "나오려면", "쓰는", "하는", "법", "뜻과", "등록", "사례", "AI", "추천"]);
+export function topicWordsOf(title, kws) {
+  const words = [String(title ?? ""), ...(Array.isArray(kws) ? kws.map((k) => String(k?.kw ?? "")) : [])].join(" ")
+    .replace(/[,·()]/g, " ").split(/\s+/).map((w) => w.replace(/(과|와|의|에|을|를|이|가|은|는)$/, "")).filter((w) => w.length >= 2 && !STOP.has(w));
+  return [...new Set(words)];
+}
+const hashOf = (s) => { let h = 2166136261; for (const ch of s) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+function byTopic(p, list) {
+  const mine = new Set(p.topicWords ?? []);
+  const score = (x) => (x.topicWords ?? []).filter((w) => mine.has(w)).length;
+  return [...list].sort((a, b) => score(b) - score(a) || hashOf(p.slug + a.slug) - hashOf(p.slug + b.slug));
+}
 export function related(p, posts) {
-  const others = posts.filter((x) => x.slug !== p.slug).sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
+  const others = byTopic(p, posts.filter((x) => x.slug !== p.slug));
   // 후기 글 · 같은 업종 가이드 2 + 다른 후기 1(PLAN-talkb-case-posts §2-7-4) · 모자라면 나머지 글로 채움
   if (p.kind === "case") {
     const guides = others.filter((x) => x.kind !== "case" && (x.vertical === p.vertical || x.vertical === "all")).slice(0, 2);
