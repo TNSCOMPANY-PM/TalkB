@@ -527,6 +527,10 @@ const GUIDE_CSS = `
 .tb .g-empty{margin-top:28px;background:var(--soft);border-radius:18px;padding:28px;font-size:18px;font-weight:700}
 .g-list-h{max-width:none}
 .g-num{margin-top:32px}
+.g-about{margin-top:56px;background:var(--soft);border:1px solid var(--line);border-radius:22px;padding:26px 28px 10px}
+.tb .g-about-k{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:800;color:var(--ink-mid)}
+.g-about .g-body{margin-top:6px;font-size:16px;line-height:1.75}
+.tb .g-about .g-body h2{font-size:19px;margin:20px 0 6px}
 .tb .g-num h2{font-size:24px;font-weight:800;margin-bottom:4px}
 .g-fig{margin:14px 0 0;border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}
 .g-fig img{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
@@ -545,7 +549,7 @@ const GUIDE_CSS = `
 .c-shot{margin:0;border:1px solid var(--line);border-radius:16px;padding:10px;background:#fff}
 .c-shot img{display:block;width:100%;height:auto;border-radius:10px}
 .c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
-@media (max-width:640px){.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
+@media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 `;
 
 function homeParts(root) {
@@ -738,7 +742,8 @@ const GUIDE_INTRO = (posts) => {
   const groups = GUIDE_TOPICS.map((g) => ({ ...g, list: posts.filter((p) => !used.has(p.slug) && g.re.test(p.title) && used.add(p.slug)) })).filter((g) => g.list.length);
   return [
     { h: "토크비 가이드는 무엇인가요", html: `<p>${esc(GUIDE_DEF)} 손님이 검색창이나 ChatGPT에 "주차 되는 고깃집", "콘센트 있는 카페"처럼 물을 때 우리 가게가 답에 들어가려면 무엇을 하면 되는지를 다룹니다.</p>` },
-    { h: "어떤 주제를 다루나요", html: `<ul>${groups.map((g) => `<li><b>${esc(g.name)}</b>(${esc(g.note)}): ${g.list.map((p) => `<a href="${pathOf(p)}">${esc(p.title)}</a>`).join(", ")}</li>`).join("")}</ul>` },
+    // 글 제목을 다시 늘어놓지 않음(위 카드와 헷갈림 · 10/21)
+    { h: "어떤 주제를 다루나요", html: `<ul>${groups.map((g) => `<li><b>${esc(g.name)}</b>: ${esc(g.note)} · 글 ${g.list.length}편</li>`).join("")}</ul>` },
     { h: "글은 어떻게 만드나요", html: `<p>네이버 · 구글 · OpenAI가 공식으로 밝힌 문서를 읽고, 문서에 있는 내용만 사장님 말로 풀어 씁니다. 글 끝에 원문 링크를 붙입니다. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 가게가 답에 나오는지 확인하는 서비스이고, 그 확인 결과도 글에 씁니다. 새 글은 매주 월요일과 목요일에 올라옵니다.</p>` },
   ];
 };
@@ -751,8 +756,11 @@ const GUIDE_FAQ_ALL = [
 const guideFaq = (hasStories) => GUIDE_FAQ_ALL.filter((x) => hasStories || !x.stories);
 /** 목록 페이지 설명 칸 · 소제목(질문) + 본문 + FAQ */
 function hubIntro(sections, faq) {
-  return `<section class="g-sec g-body" aria-label="이 페이지 설명">
+  // 목록과 떼어 보이게 상자로(10/21 사장 "글 목록이랑 헷갈려")
+  return `<section class="g-about" aria-label="이 페이지 소개"><p class="g-about-k">이 페이지 소개</p>
+<div class="g-body">
 ${sections.map((s) => `<h2>${esc(s.h)}</h2>\n${s.html}`).join("\n")}
+</div>
 </section>${faq.length ? `
 <section class="g-sec" aria-labelledby="g-hub-faq"><h2 id="g-hub-faq">자주 묻는 질문</h2>
 ${faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("\n")}
