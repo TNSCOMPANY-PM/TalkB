@@ -21,6 +21,8 @@ import { nameAllowed } from "./landing-db.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://talkb.co.kr";
 export const GUIDE_DIR = "guide";
+// 사장님 이야기(후기 글) · 가이드와 따로 /stories/{업종}/{slug}/ (10/21 사장 "가이드 밑 말고 새로 · 스토리로")
+export const STORIES_DIR = "stories";
 const MANIFEST = join(ROOT, "data", "guide-posts.json");
 const AUTHOR = "토크비 팀";
 
@@ -46,7 +48,7 @@ export const koDate = (iso) => { const k = kst(iso); return `${k.getUTCFullYear(
 const ymd = (iso) => kst(iso).toISOString().slice(0, 10);
 const urlOf = (slug) => `${SITE}/${GUIDE_DIR}/${slug}/`;
 // 글 주소 · 후기 글은 업종 주소 아래(/guide/case/{업종}/{slug}/ · 10/21 사장 "업종별로 슬러그 미리 파 놓고") · 그 밖은 /guide/{slug}/
-export const pathOf = (p) => (p.kind === "case" && p.industry ? `/${GUIDE_DIR}/case/${p.industry}/${p.slug}/` : `/${GUIDE_DIR}/${p.slug}/`);
+export const pathOf = (p) => (p.kind === "case" && p.industry ? `/${STORIES_DIR}/${p.industry}/${p.slug}/` : `/${GUIDE_DIR}/${p.slug}/`);
 const urlOfP = (p) => `${SITE}${pathOf(p)}`;
 const dirOf = (outRoot, p, ...rest) => join(outRoot, ...pathOf(p).split("/").filter(Boolean), ...rest);
 
@@ -508,7 +510,7 @@ function homeParts(root) {
   return { css: style[1].trim(), ga: ga[0], foot: foot[0], kakao: kakao[0].replace('data-pos="float"', 'data-pos="guide-float"') };
 }
 
-function pageHead(H, { title, desc, canonical, robots, ogType, image, imageAlt, ld }) {
+function pageHead(H, { title, desc, canonical, robots, ogType, image, imageAlt, ld, section = "guide" }) {
   return `<!DOCTYPE html>
 <!-- 생성 파일 · scripts/build-posts.mjs 가 DB(talkb_posts)로 만든다 · 직접 고치지 말 것 -->
 <html lang="ko">
@@ -554,10 +556,12 @@ ${ld.map(jsonLd).join("\n")}
 <nav class="nav" aria-label="주요 메뉴">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
-<a class="nl" href="/${GUIDE_DIR}/" aria-current="page">가이드</a>
+<a class="nl" href="/${GUIDE_DIR}/"${section === "guide" ? ' aria-current="page"' : ""}>가이드</a>
+${H.hasStories ? `<a class="nl" href="/${STORIES_DIR}/"${section === "stories" ? ' aria-current="page"' : ""}>사장님 이야기</a>
+` : ""}
 <a class="nl" href="/#inquiry">문의하기</a>
 </nav>
-<a class="nl-m" href="/${GUIDE_DIR}/">가이드</a>
+${section === "stories" ? `<a class="nl-m" href="/${STORIES_DIR}/">사장님 이야기</a>` : `<a class="nl-m" href="/${GUIDE_DIR}/">가이드</a>`}
 <a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">무료 리포트 신청</a>
 </div>
 </header>
@@ -625,19 +629,18 @@ export function renderPost(H, p, posts) {
     {
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` },
-        { "@type": "ListItem", position: 2, name: "가이드", item: `${SITE}/${GUIDE_DIR}/` },
         ...(p.industry ? [
-          { "@type": "ListItem", position: 3, name: "사장님 이야기", item: `${SITE}/${GUIDE_DIR}/case/` },
-          { "@type": "ListItem", position: 4, name: INDUSTRY_LABEL[p.industry], item: `${SITE}/${GUIDE_DIR}/case/${p.industry}/` },
-        ] : []),
-        { "@type": "ListItem", position: p.industry ? 5 : 3, name: p.title, item: url },
+          { "@type": "ListItem", position: 2, name: "사장님 이야기", item: `${SITE}/${STORIES_DIR}/` },
+          { "@type": "ListItem", position: 3, name: INDUSTRY_LABEL[p.industry], item: `${SITE}/${STORIES_DIR}/${p.industry}/` },
+        ] : [{ "@type": "ListItem", position: 2, name: "가이드", item: `${SITE}/${GUIDE_DIR}/` }]),
+        { "@type": "ListItem", position: p.industry ? 4 : 3, name: p.title, item: url },
       ],
     },
   ];
-  const head = pageHead(H, { title, desc, canonical: url, robots: "index, follow, max-snippet:-1, max-image-preview:large", ogType: "article", image, imageAlt: p.cover ? p.cover_alt : p.title, ld });
+  const head = pageHead(H, { title, desc, canonical: url, robots: "index, follow, max-snippet:-1, max-image-preview:large", ogType: "article", image, imageAlt: p.cover ? p.cover_alt : p.title, ld, section: p.industry ? "stories" : "guide" });
   const main = `<main class="g-main">
 <article class="wrap"><div class="g-art">
-<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/">가이드</a>${p.industry ? `<span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/case/">사장님 이야기</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/case/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : ""}</nav>
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${p.industry ? `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><a href="/${STORIES_DIR}/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : `<a href="/${GUIDE_DIR}/">가이드</a>`}</nav>
 <div class="g-chips">${chips(p)}</div>
 <h1 class="g-h1">${esc(p.title)}</h1>
 <p class="g-by">${AUTHOR} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></p>
@@ -654,8 +657,11 @@ ${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">�
   return head + main + pageTail(H);
 }
 
-const TABS = [["", "전체"], ["restaurant", "식당"], ["cafe", "카페"], ["bar", "술집"], ["case", "후기"]];
-export function renderList(H, posts) {
+const TABS = [["", "전체"], ["restaurant", "식당"], ["cafe", "카페"], ["bar", "술집"]];
+export function renderList(H, all) {
+  // 가이드 목록은 가이드 글만 · 사장님 이야기는 /stories/ 로
+  const posts = all.filter((p) => !p.industry);
+  const hasStories = all.some((p) => p.industry);
   const url = `${SITE}/${GUIDE_DIR}/`;
   const title = "식당·카페·술집 사장님 가이드 | 토크비(TalkB)";
   const desc = "식당·카페·술집 사장님이 플레이스 광고, 리뷰, AI 검색에서 손님을 만나는 방법을 토크비가 매주 확인한 결과로 정리한 가이드예요.";
@@ -668,7 +674,7 @@ export function renderList(H, posts) {
   const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: "식당·카페·술집 사장님 가이드", ld });
   const body = sorted.length
     ? `<div class="g-tabs" role="group" aria-label="업종 고르기" id="gTabs" hidden>${TABS.map(([v, l], i) => `<button type="button" class="g-tab" data-f="${v}" aria-pressed="${i === 0}">${l}</button>`).join("")}</div>
-${sorted.some((p) => p.kind === "case") ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${GUIDE_DIR}/case/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 업종별로 보기 ›</a></p>` : ""}
+${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${STORIES_DIR}/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>` : ""}
 <div class="g-cards" id="gCards">${sorted.map(card).join("")}</div>
 <p class="g-empty" id="gNone" hidden>이 업종 글은 준비하고 있어요.</p>
 <script>
@@ -678,7 +684,7 @@ ${sorted.some((p) => p.kind === "case") ? `<p style="margin-top:14px;font-size:1
   function apply(f){
     var n = 0;
     cards.forEach(function(c){ var v = c.getAttribute("data-v"), k = c.getAttribute("data-k");
-      var on = !f || (f === "case" ? k === "case" : (v === f || v === "all")); c.hidden = !on; if (on) n++; });
+      var on = !f || v === f || v === "all"; c.hidden = !on; if (on) n++; });
     none.hidden = n > 0;
     tabs.querySelectorAll(".g-tab").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-f") === f)); });
   }
@@ -713,8 +719,8 @@ export function applySitemap(sm, posts) {
       const hubs = caseHubs(posts).filter((h) => h.posts.length);
       if (!hubs.length) return [];
       const last = (ps) => ps.reduce((a, p) => (p.dateModified > a ? p.dateModified : a), "");
-      return [`  <url>\n    <loc>${SITE}/${GUIDE_DIR}/case/</loc>\n    <lastmod>${ymd(last(hubs.flatMap((h) => h.posts)))}</lastmod>\n  </url>`,
-        ...hubs.map((h) => `  <url>\n    <loc>${SITE}/${GUIDE_DIR}/case/${h.key}/</loc>\n    <lastmod>${ymd(last(h.posts))}</lastmod>\n  </url>`)];
+      return [`  <url>\n    <loc>${SITE}/${STORIES_DIR}/</loc>\n    <lastmod>${ymd(last(hubs.flatMap((h) => h.posts)))}</lastmod>\n  </url>`,
+        ...hubs.map((h) => `  <url>\n    <loc>${SITE}/${STORIES_DIR}/${h.key}/</loc>\n    <lastmod>${ymd(last(h.posts))}</lastmod>\n  </url>`)];
     })(),
     "  <!-- guide:end -->",
   ].join("\n");
@@ -725,7 +731,12 @@ export function applySitemap(sm, posts) {
 export function llmsSection(posts) {
   if (!posts.length) return "";
   const sorted = [...posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
-  return `\n\n## 가이드 글\n\n- 목록: ${SITE}/${GUIDE_DIR}/\n${sorted.map((p) => `- ${p.title}: ${urlOfP(p)} · ${p.lines[0] ?? ""}`).join("\n")}`;
+  const line = (p) => `- ${p.title}: ${urlOfP(p)} · ${p.lines[0] ?? ""}`;
+  // 사장님 이야기(후기 글 · /stories/)는 따로 묶는다 · manifest 폴백에는 industry 가 없어 주소(path)로 가른다
+  const isStory = (p) => !!p.industry || String(p.path ?? "").startsWith(`/${STORIES_DIR}/`);
+  const g = sorted.filter((p) => !isStory(p)), s = sorted.filter(isStory);
+  return (g.length ? `\n\n## 가이드 글\n\n- 목록: ${SITE}/${GUIDE_DIR}/\n${g.map(line).join("\n")}` : "")
+    + (s.length ? `\n\n## 사장님 이야기(업종별 AI 검색 노출 사례)\n\n- 목록: ${SITE}/${STORIES_DIR}/\n${s.map(line).join("\n")}` : "");
 }
 
 /** 예전에 만든 글 페이지 중 이번에 안 만든 것 → 지우지 않고 noindex */
@@ -742,14 +753,10 @@ function demoteStale(outRoot, keep) {
     out.push(name);
   };
   const subdirs = (p) => (existsSync(p) ? readdirSync(p, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : []);
-  for (const name of subdirs(dir)) {
-    if (name === "case") {
-      for (const ind of subdirs(join(dir, "case"))) for (const slug of subdirs(join(dir, "case", ind))) {
-        if (!keep.has(`/${GUIDE_DIR}/case/${ind}/${slug}/`)) demote(join(dir, "case", ind, slug, "index.html"), `case/${ind}/${slug}`);
-      }
-      continue;
-    }
-    if (!keep.has(`/${GUIDE_DIR}/${name}/`)) demote(join(dir, name, "index.html"), name);
+  for (const name of subdirs(dir)) if (!keep.has(`/${GUIDE_DIR}/${name}/`)) demote(join(dir, name, "index.html"), name);
+  const sdir = join(outRoot, STORIES_DIR);
+  for (const ind of subdirs(sdir)) for (const slug of subdirs(join(sdir, ind))) {
+    if (!keep.has(`/${STORIES_DIR}/${ind}/${slug}/`)) demote(join(sdir, ind, slug, "index.html"), `${STORIES_DIR}/${ind}/${slug}`);
   }
   return out;
 }
@@ -763,7 +770,7 @@ export function caseHubs(posts) {
 export function renderCaseHub(H, hub, all) {
   const isRoot = !hub;
   const list = isRoot ? all.filter((p) => p.kind === "case" && p.industry) : hub.posts;
-  const path = isRoot ? `/${GUIDE_DIR}/case/` : `/${GUIDE_DIR}/case/${hub.key}/`;
+  const path = isRoot ? `/${STORIES_DIR}/` : `/${STORIES_DIR}/${hub.key}/`;
   const url = `${SITE}${path}`;
   const name = isRoot ? "사장님 이야기 · 업종별 AI 검색 노출 사례" : `${hub.label} 사장님 이야기`;
   const title = `${name} | 토크비(TalkB)`;
@@ -776,17 +783,16 @@ export function renderCaseHub(H, hub, all) {
       mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` },
-      { "@type": "ListItem", position: 2, name: "가이드", item: `${SITE}/${GUIDE_DIR}/` },
-      { "@type": "ListItem", position: 3, name: "사장님 이야기", item: `${SITE}/${GUIDE_DIR}/case/` },
-      ...(isRoot ? [] : [{ "@type": "ListItem", position: 4, name: hub.label, item: url }]),
+      { "@type": "ListItem", position: 2, name: "사장님 이야기", item: `${SITE}/${STORIES_DIR}/` },
+      ...(isRoot ? [] : [{ "@type": "ListItem", position: 3, name: hub.label, item: url }]),
     ] },
   ] : [];
-  const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: name, ld });
+  const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: name, ld, section: "stories" });
   const hubs = caseHubs(all);
-  const nav = `<div class="g-tabs">${hubs.filter((h) => h.posts.length).map((h) => `<a class="g-tab" href="/${GUIDE_DIR}/case/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-pressed="true"' : ""} style="display:inline-flex;align-items:center">${esc(h.label)} ${h.posts.length}</a>`).join("")}</div>`;
+  const nav = `<div class="g-tabs">${hubs.filter((h) => h.posts.length).map((h) => `<a class="g-tab" href="/${STORIES_DIR}/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-pressed="true"' : ""} style="display:inline-flex;align-items:center">${esc(h.label)} ${h.posts.length}</a>`).join("")}</div>`;
   const main = `<main class="g-main">
 <div class="wrap">
-<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/">가이드</a><span aria-hidden="true">›</span>${isRoot ? "<span>사장님 이야기</span>" : `<a href="/${GUIDE_DIR}/case/">사장님 이야기</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${isRoot ? "<span>사장님 이야기</span>" : `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
 <h1 class="g-h1">${esc(name)}</h1>
 <p class="lead" style="margin-top:12px">${esc(desc)}</p>
 ${nav}
@@ -812,6 +818,8 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
   const slugs = new Set();
   const posts = ready.filter((p) => (slugs.has(pathOf(p)) ? (log(`글 건너뜀 · ${p.slug} · 같은 주소 중복`), false) : (slugs.add(pathOf(p)), true)));
   mkdirSync(join(outRoot, GUIDE_DIR), { recursive: true });
+  // 머리 메뉴 '사장님 이야기'는 이야기가 1편 이상일 때만
+  H.hasStories = posts.some((p) => p.industry);
   for (const p of posts) {
     mkdirSync(dirOf(outRoot, p), { recursive: true });
     // 후기 글 캡처 · 받은 것만 쓰고(ok) 못 받은 장은 화면에서 뺀다 · 안 쓰는 예전 answer-N.png 는 지운다
@@ -835,11 +843,11 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
   }
   writeFileSync(join(outRoot, GUIDE_DIR, "index.html"), renderList(H, posts));
   // 사장님 이야기 업종 목록(글 0편이어도 미리 · noindex)
-  mkdirSync(join(outRoot, GUIDE_DIR, "case"), { recursive: true });
-  writeFileSync(join(outRoot, GUIDE_DIR, "case", "index.html"), renderCaseHub(H, null, posts));
+  mkdirSync(join(outRoot, STORIES_DIR), { recursive: true });
+  writeFileSync(join(outRoot, STORIES_DIR, "index.html"), renderCaseHub(H, null, posts));
   for (const hub of caseHubs(posts)) {
-    mkdirSync(join(outRoot, GUIDE_DIR, "case", hub.key), { recursive: true });
-    writeFileSync(join(outRoot, GUIDE_DIR, "case", hub.key, "index.html"), renderCaseHub(H, hub, posts));
+    mkdirSync(join(outRoot, STORIES_DIR, hub.key), { recursive: true });
+    writeFileSync(join(outRoot, STORIES_DIR, hub.key, "index.html"), renderCaseHub(H, hub, posts));
   }
   const stale = demoteStale(outRoot, slugs);
   if (stale.length) log(`예전 글 페이지 noindex 로 둠: ${stale.join(", ")}`);
@@ -849,7 +857,7 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
 
 /** 게시 목록 기록(커밋됨) · 상태 전환과 DB 실패 때 폴백이 읽는다 */
 export function writeManifest(posts) {
-  const m = { posts: posts.map((p) => ({ id: p.id, slug: p.slug, title: p.title, line1: p.lines[0] ?? "", vertical: p.vertical, kind: p.kind, status: p.status, datePublished: p.datePublished, dateModified: p.dateModified, storeId: p.storeId ?? null, path: pathOf(p) })) };
+  const m = { posts: posts.map((p) => ({ id: p.id, slug: p.slug, title: p.title, line1: p.lines[0] ?? "", vertical: p.vertical, kind: p.kind, status: p.status, datePublished: p.datePublished, dateModified: p.dateModified, storeId: p.storeId ?? null, industry: p.industry ?? null, path: pathOf(p) })) };
   mkdirSync(dirname(MANIFEST), { recursive: true });
   writeFileSync(MANIFEST, JSON.stringify(m, null, 1) + "\n");
 }

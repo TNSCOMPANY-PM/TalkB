@@ -76,6 +76,8 @@ if (db) {
   console.warn("경고 · 가이드 글은 지난 목록 그대로", guidePosts.length, "편");
 }
 data.llmsGuides = llmsSection(guidePosts);
+// 홈 머리 메뉴 '사장님 이야기'(/stories/) · 이야기가 1편 이상일 때만
+data.storiesNav = guidePosts.some((p) => p.industry || String(p.path ?? "").startsWith("/stories/")) ? '<a class="nl" href="/stories/">사장님 이야기</a>' : "";
 
 const get = (path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), data);
 function fill(tplName, outName, transform) {

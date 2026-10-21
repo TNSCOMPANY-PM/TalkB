@@ -28,7 +28,7 @@ try {
   if (bad.length) { log("측정값 없는 매장이 있어 커밋하지 않음: " + bad.map((s) => s.name).join(", ")); process.exit(2); }
   log(sh("node scripts/build-index.mjs").trim().split("\n").filter((l) => /가이드|글 건너뜀|noindex|랜딩 DB|홈 후기|경고/.test(l)).join(" | ") || "build-index 끝");
   // 생성 파일 · 가이드 글(guide/ · 새 글 폴더와 목록)과 게시 목록(data/guide-posts.json) 포함(2026-10-20)
-  const OUTPUTS = "data/references.json data/holidays.json data/guide-posts.json index.html pricing/index.html enterprise/index.html llms.txt sitemap.xml guide";
+  const OUTPUTS = "data/references.json data/holidays.json data/guide-posts.json index.html pricing/index.html enterprise/index.html llms.txt sitemap.xml guide stories";
   const changed = sh(`git status --porcelain -- ${OUTPUTS}`).trim();
   if (!changed) {
     log("변경 없음");
