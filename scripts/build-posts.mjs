@@ -45,6 +45,10 @@ const kst = (iso) => new Date(new Date(iso).getTime() + 9 * 3600000);
 export const koDate = (iso) => { const k = kst(iso); return `${k.getUTCFullYear()}년 ${k.getUTCMonth() + 1}월 ${k.getUTCDate()}일`; };
 const ymd = (iso) => kst(iso).toISOString().slice(0, 10);
 const urlOf = (slug) => `${SITE}/${GUIDE_DIR}/${slug}/`;
+// 글 주소 · 후기 글은 업종 주소 아래(/guide/case/{업종}/{slug}/ · 10/21 사장 "업종별로 슬러그 미리 파 놓고") · 그 밖은 /guide/{slug}/
+export const pathOf = (p) => (p.kind === "case" && p.industry ? `/${GUIDE_DIR}/case/${p.industry}/${p.slug}/` : `/${GUIDE_DIR}/${p.slug}/`);
+const urlOfP = (p) => `${SITE}${pathOf(p)}`;
+const dirOf = (outRoot, p, ...rest) => join(outRoot, ...pathOf(p).split("/").filter(Boolean), ...rest);
 
 /** 매장 실명 후보(이름 · 별칭 · 지점 뺀 브랜드) · 두 글자 이하는 오탐이 많아 뺀다 */
 function realNames(st) {
@@ -97,6 +101,13 @@ export function fillCase(text, s, storeName) {
   for (const t of NUM_TOKENS) out = out.split(`{{${t}}}`).join(numValue(s, t));
   return out;
 }
+// 후기 글 업종 · 원본 TalkB-app/lib/landing-posts/case-text.ts CASE_INDUSTRIES (2026-10-21) · 업종 주소는 한 번 정하면 바꾸지 않는다(색인)
+export const CASE_INDUSTRIES = [
+  ["bar", "술집"], ["bakery", "베이커리 · 디저트"], ["cafe", "카페"], ["chicken", "닭 요리"], ["seafood", "해산물"], ["meat", "고기구이"],
+  ["soup", "국밥 · 탕"], ["noodle", "면 요리"], ["bunsik", "분식"], ["japanese", "일식"], ["chinese", "중식"], ["western", "양식"],
+  ["asian", "아시아 음식"], ["korean", "한식"], ["etc", "그 밖의 음식점"],
+];
+const INDUSTRY_LABEL = Object.fromEntries(CASE_INDUSTRIES);
 const isSnap = (s) => !!s && typeof s === "object" && typeof s.caseId === "string" && typeof s.n?.start === "number" && typeof s.n?.now === "number" && Array.isArray(s.trend);
 const maskIn = (text, names, masked) => names.reduce((t, n) => t.split(n).join(masked), String(text ?? ""));
 // ── 복사 끝 ──
@@ -178,6 +189,7 @@ export function preparePost(row, ctx) {
       id: row.id, kind: row.kind, vertical: VERTICAL_LABEL[row.vertical] ? row.vertical : "all", slug, title: fTitle, lines, body_md: fBody, faq: fFaq,
       cover, cover_alt: String(row.cover_alt ?? "").trim() || fTitle, status: row.status, datePublished, dateModified,
       storeId: row.store_id ?? null, case: kase,
+      industry: kase ? (INDUSTRY_LABEL[kase.snap.industry] ? kase.snap.industry : "etc") : null,
       // 후기 글은 검색어 그래프 대신 추천률 그래프(결과 그림)
       charts: kase ? null : buildCharts(row.target_keywords),
     },
@@ -308,7 +320,7 @@ function chartsSection(p) {
   const c = p.charts;
   if (!c) return "";
   const when = c.checkedAt ? `, ${koDate(c.checkedAt)} 조회` : "";
-  const fig = (file, ch, name, source) => `<figure class="g-fig"><img src="/${GUIDE_DIR}/${p.slug}/${file}" width="${ch.w}" height="${ch.h}" alt="${esc(ch.alt)}" loading="lazy" decoding="async"><figcaption><b>${name}</b> 출처 ${source}${when}</figcaption></figure>`;
+  const fig = (file, ch, name, source) => `<figure class="g-fig"><img src="${pathOf(p)}${file}" width="${ch.w}" height="${ch.h}" alt="${esc(ch.alt)}" loading="lazy" decoding="async"><figcaption><b>${name}</b> 출처 ${source}${when}</figcaption></figure>`;
   return `<section class="g-num" aria-labelledby="g-num"><h2 id="g-num">숫자로 보기</h2>
 ${c.trend ? fig("trend.svg", c.trend, `검색 추이 (${c.trend.period})`, "네이버 데이터랩") + "\n" : ""}${c.volume ? fig("volume.svg", c.volume, "월 조회수", "네이버 검색광고") + "\n" : ""}</section>
 `;
@@ -356,13 +368,13 @@ function caseResult(p) {
   const tr = s.trend.length ? caseTrendSvg(s.trend) : null;
   const alt = `${p.case.storeName} 주별 ChatGPT 추천률 ${casePeriodText(s)}: ${pctText(s.n.start)}%에서 ${pctText(s.n.now)}%`;
   const parts = [];
-  if (tr) parts.push(`<figure class="g-fig"><img src="/${GUIDE_DIR}/${p.slug}/trend.svg" width="${tr.w}" height="${tr.h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption><b>주별 추천률</b> 매주 같은 질문을 ChatGPT에 물어 추천된 비율</figcaption></figure>`);
+  if (tr) parts.push(`<figure class="g-fig"><img src="${pathOf(p)}trend.svg" width="${tr.w}" height="${tr.h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption><b>주별 추천률</b> 매주 같은 질문을 ChatGPT에 물어 추천된 비율</figcaption></figure>`);
   if (p.case.questions.length) {
     parts.push(`<div class="g-tbl"><table><tr><th>대표 질문</th><th>시작</th><th>지금</th></tr>${p.case.questions.map((q) => `<tr><td>${esc(q.q)}</td><td>${rankCell(q.startRank)}</td><td><b>${rankCell(q.nowRank)}</b></td></tr>`).join("")}</table></div>`);
   }
   const shots = p.case.captures.filter((c) => c.ok);
   if (shots.length) {
-    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><img src="/${GUIDE_DIR}/${p.slug}/${c.file}" width="840" height="1500" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
+    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><img src="${pathOf(p)}${c.file}" width="840" height="1500" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
   }
   return `<div class="c-res">\n${parts.join("\n")}\n</div>`;
 }
@@ -571,7 +583,7 @@ const absImg = (p) => (p ? (p.startsWith("/") ? SITE + p : p) : `${SITE}/og-imag
 const chips = (p) => `<span class="g-chip">${VERTICAL_LABEL[p.vertical]}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`;
 
 function card(p) {
-  return `<a class="g-card" href="/${GUIDE_DIR}/${p.slug}/" data-v="${p.vertical}" data-k="${p.kind}"><div class="g-chips" style="margin-top:0">${chips(p)}</div><h3>${esc(p.title)}</h3><p>${esc(p.lines[0] ?? "")}</p><p class="d">${koDate(p.dateModified)} 수정</p></a>`;
+  return `<a class="g-card" href="${pathOf(p)}" data-v="${p.vertical}" data-k="${p.kind}"><div class="g-chips" style="margin-top:0">${chips(p)}</div><h3>${esc(p.title)}</h3><p>${esc(p.lines[0] ?? "")}</p><p class="d">${koDate(p.dateModified)} 수정</p></a>`;
 }
 
 /** 관련 글 · 같은 업종 먼저, 그다음 공통 글 · 최대 3개(수정일 최근 순) */
@@ -598,7 +610,7 @@ function bodyHtml(p) {
 }
 
 export function renderPost(H, p, posts) {
-  const url = urlOf(p.slug);
+  const url = urlOfP(p);
   const title = `${p.title} | 토크비(TalkB)`;
   const desc = metaDescription(p.lines);
   const image = absImg(p.cover);
@@ -614,14 +626,18 @@ export function renderPost(H, p, posts) {
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` },
         { "@type": "ListItem", position: 2, name: "가이드", item: `${SITE}/${GUIDE_DIR}/` },
-        { "@type": "ListItem", position: 3, name: p.title, item: url },
+        ...(p.industry ? [
+          { "@type": "ListItem", position: 3, name: "사장님 이야기", item: `${SITE}/${GUIDE_DIR}/case/` },
+          { "@type": "ListItem", position: 4, name: INDUSTRY_LABEL[p.industry], item: `${SITE}/${GUIDE_DIR}/case/${p.industry}/` },
+        ] : []),
+        { "@type": "ListItem", position: p.industry ? 5 : 3, name: p.title, item: url },
       ],
     },
   ];
   const head = pageHead(H, { title, desc, canonical: url, robots: "index, follow, max-snippet:-1, max-image-preview:large", ogType: "article", image, imageAlt: p.cover ? p.cover_alt : p.title, ld });
   const main = `<main class="g-main">
 <article class="wrap"><div class="g-art">
-<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/">가이드</a></nav>
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/">가이드</a>${p.industry ? `<span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/case/">사장님 이야기</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/case/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : ""}</nav>
 <div class="g-chips">${chips(p)}</div>
 <h1 class="g-h1">${esc(p.title)}</h1>
 <p class="g-by">${AUTHOR} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></p>
@@ -646,12 +662,13 @@ export function renderList(H, posts) {
   const sorted = [...posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
   const ld = sorted.length ? [
     { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name: "식당·카페·술집 사장님 가이드", description: desc, inLanguage: "ko", publisher: ORG,
-      mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOf(p.slug), name: p.title })) } },
+      mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` }, { "@type": "ListItem", position: 2, name: "가이드", item: url }] },
   ] : [];
   const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: "식당·카페·술집 사장님 가이드", ld });
   const body = sorted.length
     ? `<div class="g-tabs" role="group" aria-label="업종 고르기" id="gTabs" hidden>${TABS.map(([v, l], i) => `<button type="button" class="g-tab" data-f="${v}" aria-pressed="${i === 0}">${l}</button>`).join("")}</div>
+${sorted.some((p) => p.kind === "case") ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${GUIDE_DIR}/case/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 업종별로 보기 ›</a></p>` : ""}
 <div class="g-cards" id="gCards">${sorted.map(card).join("")}</div>
 <p class="g-empty" id="gNone" hidden>이 업종 글은 준비하고 있어요.</p>
 <script>
@@ -690,7 +707,15 @@ export function applySitemap(sm, posts) {
   const block = [
     "  <!-- guide:start · scripts/build-posts.mjs 가 만든다(게시 글 1편 이상일 때만) -->",
     `  <url>\n    <loc>${SITE}/${GUIDE_DIR}/</loc>\n    <lastmod>${ymd(latest)}</lastmod>\n  </url>`,
-    ...posts.map((p) => `  <url>\n    <loc>${urlOf(p.slug)}</loc>\n    <lastmod>${ymd(p.dateModified)}</lastmod>\n  </url>`),
+    ...posts.map((p) => `  <url>\n    <loc>${urlOfP(p)}</loc>\n    <lastmod>${ymd(p.dateModified)}</lastmod>\n  </url>`),
+    // 사장님 이야기 목록 · 글이 있는 업종만
+    ...(() => {
+      const hubs = caseHubs(posts).filter((h) => h.posts.length);
+      if (!hubs.length) return [];
+      const last = (ps) => ps.reduce((a, p) => (p.dateModified > a ? p.dateModified : a), "");
+      return [`  <url>\n    <loc>${SITE}/${GUIDE_DIR}/case/</loc>\n    <lastmod>${ymd(last(hubs.flatMap((h) => h.posts)))}</lastmod>\n  </url>`,
+        ...hubs.map((h) => `  <url>\n    <loc>${SITE}/${GUIDE_DIR}/case/${h.key}/</loc>\n    <lastmod>${ymd(last(h.posts))}</lastmod>\n  </url>`)];
+    })(),
     "  <!-- guide:end -->",
   ].join("\n");
   return out.replace(/\n?<\/urlset>/, `\n${block}\n</urlset>`);
@@ -700,24 +725,76 @@ export function applySitemap(sm, posts) {
 export function llmsSection(posts) {
   if (!posts.length) return "";
   const sorted = [...posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
-  return `\n\n## 가이드 글\n\n- 목록: ${SITE}/${GUIDE_DIR}/\n${sorted.map((p) => `- ${p.title}: ${urlOf(p.slug)} · ${p.lines[0] ?? ""}`).join("\n")}`;
+  return `\n\n## 가이드 글\n\n- 목록: ${SITE}/${GUIDE_DIR}/\n${sorted.map((p) => `- ${p.title}: ${urlOfP(p)} · ${p.lines[0] ?? ""}`).join("\n")}`;
 }
 
 /** 예전에 만든 글 페이지 중 이번에 안 만든 것 → 지우지 않고 noindex */
+//   keep: 이번에 만든 글 주소(pathOf) · /guide/{slug}/ 와 후기 글 /guide/case/{업종}/{slug}/ 둘 다 본다(업종 목록 페이지는 글이 아님)
 function demoteStale(outRoot, keep) {
   const dir = join(outRoot, GUIDE_DIR);
   if (!existsSync(dir)) return [];
   const out = [];
-  for (const d of readdirSync(dir, { withFileTypes: true })) {
-    if (!d.isDirectory() || keep.has(d.name)) continue;
-    const f = join(dir, d.name, "index.html");
-    if (!existsSync(f)) continue;
+  const demote = (f, name) => {
+    if (!existsSync(f)) return;
     const t = readFileSync(f, "utf8");
     const t2 = t.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, follow">');
     if (t2 !== t) writeFileSync(f, t2);
-    out.push(d.name);
+    out.push(name);
+  };
+  const subdirs = (p) => (existsSync(p) ? readdirSync(p, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : []);
+  for (const name of subdirs(dir)) {
+    if (name === "case") {
+      for (const ind of subdirs(join(dir, "case"))) for (const slug of subdirs(join(dir, "case", ind))) {
+        if (!keep.has(`/${GUIDE_DIR}/case/${ind}/${slug}/`)) demote(join(dir, "case", ind, slug, "index.html"), `case/${ind}/${slug}`);
+      }
+      continue;
+    }
+    if (!keep.has(`/${GUIDE_DIR}/${name}/`)) demote(join(dir, name, "index.html"), name);
   }
   return out;
+}
+
+// ── 사장님 이야기(후기 글) 업종 목록 · /guide/case/ 와 /guide/case/{업종}/ 을 업종마다 미리 만든다 ──
+//   글이 0편인 업종은 "준비하고 있어요" + noindex · 사이트맵에서 빠짐 · 글이 올라가면 다음 빌드에서 바로 열린다
+export function caseHubs(posts) {
+  const cases = posts.filter((p) => p.kind === "case" && p.industry);
+  return CASE_INDUSTRIES.map(([key, label]) => ({ key, label, posts: cases.filter((p) => p.industry === key) }));
+}
+export function renderCaseHub(H, hub, all) {
+  const isRoot = !hub;
+  const list = isRoot ? all.filter((p) => p.kind === "case" && p.industry) : hub.posts;
+  const path = isRoot ? `/${GUIDE_DIR}/case/` : `/${GUIDE_DIR}/case/${hub.key}/`;
+  const url = `${SITE}${path}`;
+  const name = isRoot ? "사장님 이야기 · 업종별 AI 검색 노출 사례" : `${hub.label} 사장님 이야기`;
+  const title = `${name} | 토크비(TalkB)`;
+  const desc = isRoot
+    ? "식당 · 카페 · 술집 사장님 가게가 ChatGPT 추천에 나오기까지 토크비가 한 일과 달라진 숫자를 업종별로 모았어요."
+    : `${hub.label} 사장님 가게가 ChatGPT 추천에 나오기까지 토크비가 한 일과 달라진 숫자를 모았어요.`;
+  const sorted = [...list].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
+  const ld = sorted.length ? [
+    { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name, description: desc, inLanguage: "ko", publisher: ORG,
+      mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "가이드", item: `${SITE}/${GUIDE_DIR}/` },
+      { "@type": "ListItem", position: 3, name: "사장님 이야기", item: `${SITE}/${GUIDE_DIR}/case/` },
+      ...(isRoot ? [] : [{ "@type": "ListItem", position: 4, name: hub.label, item: url }]),
+    ] },
+  ] : [];
+  const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: name, ld });
+  const hubs = caseHubs(all);
+  const nav = `<div class="g-tabs">${hubs.filter((h) => h.posts.length).map((h) => `<a class="g-tab" href="/${GUIDE_DIR}/case/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-pressed="true"' : ""} style="display:inline-flex;align-items:center">${esc(h.label)} ${h.posts.length}</a>`).join("")}</div>`;
+  const main = `<main class="g-main">
+<div class="wrap">
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="/${GUIDE_DIR}/">가이드</a><span aria-hidden="true">›</span>${isRoot ? "<span>사장님 이야기</span>" : `<a href="/${GUIDE_DIR}/case/">사장님 이야기</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
+<h1 class="g-h1">${esc(name)}</h1>
+<p class="lead" style="margin-top:12px">${esc(desc)}</p>
+${nav}
+${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
+<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">무료 리포트 신청하기</a></div>
+</div>
+</main>`;
+  return head + main + pageTail(H);
 }
 
 /**
@@ -733,30 +810,37 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
     else log(`글 건너뜀 · ${res.slug || res.id} · ${res.why.join(" / ")}`);
   }
   const slugs = new Set();
-  const posts = ready.filter((p) => (slugs.has(p.slug) ? (log(`글 건너뜀 · ${p.slug} · 같은 슬러그 중복`), false) : (slugs.add(p.slug), true)));
+  const posts = ready.filter((p) => (slugs.has(pathOf(p)) ? (log(`글 건너뜀 · ${p.slug} · 같은 주소 중복`), false) : (slugs.add(pathOf(p)), true)));
   mkdirSync(join(outRoot, GUIDE_DIR), { recursive: true });
   for (const p of posts) {
-    mkdirSync(join(outRoot, GUIDE_DIR, p.slug), { recursive: true });
+    mkdirSync(dirOf(outRoot, p), { recursive: true });
     // 후기 글 캡처 · 받은 것만 쓰고(ok) 못 받은 장은 화면에서 뺀다 · 안 쓰는 예전 answer-N.png 는 지운다
     if (p.case) {
       for (const c of p.case.captures) {
         const buf = c.path ? assets.get(c.path) : null;
         c.ok = !!buf;
-        if (buf) writeFileSync(join(outRoot, GUIDE_DIR, p.slug, c.file), buf);
+        if (buf) writeFileSync(dirOf(outRoot, p, c.file), buf);
         else log(`후기 글 캡처 빠짐 · ${p.slug} · ${c.file}`);
       }
-      for (let i = p.case.captures.length + 1; i <= 3; i++) rmSync(join(outRoot, GUIDE_DIR, p.slug, `answer-${i}.png`), { force: true });
+      for (let i = p.case.captures.length + 1; i <= 3; i++) rmSync(dirOf(outRoot, p, `answer-${i}.png`), { force: true });
     }
-    writeFileSync(join(outRoot, GUIDE_DIR, p.slug, "index.html"), renderPost(H, p, posts));
+    writeFileSync(dirOf(outRoot, p, "index.html"), renderPost(H, p, posts));
     // 그래프 · 그릴 숫자가 없어졌으면 예전 파일을 지운다(페이지가 더 이상 가리키지 않음) · 후기 글은 추천률 그래프를 trend.svg 로
     const caseTrend = p.case?.snap?.trend?.length ? caseTrendSvg(p.case.snap.trend) : null;
     for (const [file, ch] of [["trend.svg", caseTrend ?? p.charts?.trend], ["volume.svg", p.charts?.volume]]) {
-      const f = join(outRoot, GUIDE_DIR, p.slug, file);
+      const f = dirOf(outRoot, p, file);
       if (ch) writeFileSync(f, ch.svg);
       else rmSync(f, { force: true });
     }
   }
   writeFileSync(join(outRoot, GUIDE_DIR, "index.html"), renderList(H, posts));
+  // 사장님 이야기 업종 목록(글 0편이어도 미리 · noindex)
+  mkdirSync(join(outRoot, GUIDE_DIR, "case"), { recursive: true });
+  writeFileSync(join(outRoot, GUIDE_DIR, "case", "index.html"), renderCaseHub(H, null, posts));
+  for (const hub of caseHubs(posts)) {
+    mkdirSync(join(outRoot, GUIDE_DIR, "case", hub.key), { recursive: true });
+    writeFileSync(join(outRoot, GUIDE_DIR, "case", hub.key, "index.html"), renderCaseHub(H, hub, posts));
+  }
   const stale = demoteStale(outRoot, slugs);
   if (stale.length) log(`예전 글 페이지 noindex 로 둠: ${stale.join(", ")}`);
   log(`가이드 글 ${posts.length}편 생성${posts.length ? "" : " · 목록 noindex"}`);
@@ -765,7 +849,7 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
 
 /** 게시 목록 기록(커밋됨) · 상태 전환과 DB 실패 때 폴백이 읽는다 */
 export function writeManifest(posts) {
-  const m = { posts: posts.map((p) => ({ id: p.id, slug: p.slug, title: p.title, line1: p.lines[0] ?? "", vertical: p.vertical, kind: p.kind, status: p.status, datePublished: p.datePublished, dateModified: p.dateModified, storeId: p.storeId ?? null })) };
+  const m = { posts: posts.map((p) => ({ id: p.id, slug: p.slug, title: p.title, line1: p.lines[0] ?? "", vertical: p.vertical, kind: p.kind, status: p.status, datePublished: p.datePublished, dateModified: p.dateModified, storeId: p.storeId ?? null, path: pathOf(p) })) };
   mkdirSync(dirname(MANIFEST), { recursive: true });
   writeFileSync(MANIFEST, JSON.stringify(m, null, 1) + "\n");
 }
@@ -787,7 +871,7 @@ async function commitStatus(commit) {
     if (!r.ok) { console.error(`상태 전환 실패 · ${p.slug} · ${JSON.stringify(j).slice(0, 200)}`); continue; }
     if (!Array.isArray(j) || !j.length) { console.log(`건너뜀 · ${p.slug} · 이미 승인 상태가 아님`); continue; }
     await fetch(`${e.U}/rest/v1/talkb_posts?id=eq.${p.id}&published_at=is.null`, { method: "PATCH", headers: H, body: JSON.stringify({ published_at: p.datePublished }) });
-    const ev = await fetch(`${e.U}/rest/v1/talkb_post_events`, { method: "POST", headers: H, body: JSON.stringify({ post_id: p.id, action: "publish", actor: "landing-build", note: urlOf(p.slug) }) });
+    const ev = await fetch(`${e.U}/rest/v1/talkb_post_events`, { method: "POST", headers: H, body: JSON.stringify({ post_id: p.id, action: "publish", actor: "landing-build", note: p.path ? `${SITE}${p.path}` : urlOf(p.slug) }) });
     console.log(`게시로 바꿈 · ${p.slug}${ev.ok ? "" : " · 기록 실패"}`);
   }
 }
@@ -847,7 +931,7 @@ export function linkHomeCases(text, posts, stores, warn = console.warn) {
     const re = new RegExp(`<button type="button" class="cs"[^>]*>(?:(?!</button>)[\\s\\S])*?<b>${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</b>[\\s\\S]*?</button>`);
     const m = re.exec(out);
     if (!m) continue;
-    out = out.slice(0, m.index) + `<div class="cs-w">${m[0]}<a class="cs-story" href="/${GUIDE_DIR}/${p.slug}/" data-pos="case-card">이 가게 이야기 보기 →</a></div>` + out.slice(m.index + m[0].length);
+    out = out.slice(0, m.index) + `<div class="cs-w">${m[0]}<a class="cs-story" href="${pathOf(p)}" data-pos="case-card">이 가게 이야기 보기 →</a></div>` + out.slice(m.index + m[0].length);
     n++;
   }
   if (n) out = out.replace("</style>", `${CS_LINK_CSS}\n</style>`);
@@ -889,7 +973,7 @@ function fixtureRows() {
           questions: [{ q: "수원 닭볶음탕 추천해줘", startRank: 0, nowRank: 1 }, { q: "인계동 회식 장소 추천해줘", startRank: 4, nowRank: 2 }, { q: "도시농원 수원인계본점 주차 돼?", startRank: null, nowRank: 1 }],
           before: { q: "수원 닭볶음탕 추천해줘", rival: "닭○○○" },
           captures: [{ rid: 1, question: "수원 닭볶음탕 추천해줘", rank: 1, askedAt: "2026-10-12T03:00:00Z", masked: "case-posts/fx/1-masked.png", real: null }],
-          work: { infoFields: 18, contentCount: 12, labels: ["대표 메뉴"] }, testimonialId: null, maskedName: "인계동 ○○ 닭볶음탕", rivalNames: [] } },
+          work: { infoFields: 18, contentCount: 12, labels: ["대표 메뉴"] }, testimonialId: null, maskedName: "인계동 ○○ 닭볶음탕", rivalNames: [], industry: "chicken" } },
       // 막힘 확인용(렌더되면 안 됨) · 실명 동의 없는 매장 이름이 본문에 있음
       { ...base, id: "00000000-0000-0000-0000-000000000004", kind: "case", vertical: "restaurant", slug: "case-should-skip", store_id: "fx-store-1",
         title: "실명 동의 없는 후기 글이 걸러지는지 보는 시험 글",
