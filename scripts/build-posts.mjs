@@ -678,16 +678,52 @@ ${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">�
 }
 
 const TABS = [["", "전체"], ["restaurant", "식당"], ["cafe", "카페"], ["bar", "술집"]];
+// ── 목록 페이지 설명 글(10/21 사장 "이 페이지가 뭔지 정의 · AI가 더 잘 찾아오게") · 화면 본문과 FAQPage 구조화 데이터가 같은 문장 ──
+const GUIDE_DEF = "토크비 가이드는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.";
+// 다루는 주제 묶음 · 제목으로 나눈다(글이 있는 묶음만 보임)
+const GUIDE_TOPICS = [
+  { name: "검색에 잘 나오기", note: "SEO · 네이버 검색 · 홈페이지 등록", re: /SEO|서치어드바이저|네이버/ },
+  { name: "AI 답변에 나오기", note: "AEO · GEO · ChatGPT · AI 검색 최적화", re: /AEO|GEO|ChatGPT|챗GPT|AI 검색/ },
+  { name: "구글 지도 · 구글 AI", note: "구글 비즈니스 프로필 · AI 모드 · AI 개요", re: /구글/ },
+  { name: "가게 정보 · 소개글", note: "소개글 · 메뉴 · 영업시간 정리", re: /소개글|정보|플레이스|메뉴/ },
+];
+const GUIDE_INTRO = (posts) => {
+  const used = new Set();
+  const groups = GUIDE_TOPICS.map((g) => ({ ...g, list: posts.filter((p) => !used.has(p.slug) && g.re.test(p.title) && used.add(p.slug)) })).filter((g) => g.list.length);
+  return [
+    { h: "토크비 가이드는 무엇인가요", html: `<p>${esc(GUIDE_DEF)} 손님이 검색창이나 ChatGPT에 "주차 되는 고깃집", "콘센트 있는 카페"처럼 물을 때 우리 가게가 답에 들어가려면 무엇을 하면 되는지를 다룹니다.</p>` },
+    { h: "어떤 주제를 다루나요", html: `<ul>${groups.map((g) => `<li><b>${esc(g.name)}</b>(${esc(g.note)}): ${g.list.map((p) => `<a href="${pathOf(p)}">${esc(p.title)}</a>`).join(", ")}</li>`).join("")}</ul>` },
+    { h: "글은 어떻게 만드나요", html: `<p>네이버 · 구글 · OpenAI가 공식으로 밝힌 문서를 읽고, 문서에 있는 내용만 사장님 말로 풀어 씁니다. 글 끝에 원문 링크를 붙입니다. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 가게가 답에 나오는지 확인하는 서비스이고, 그 확인 결과도 글에 씁니다. 새 글은 매주 월요일과 목요일에 올라옵니다.</p>` },
+  ];
+};
+// 사장님 이야기 질문은 이야기가 1편 이상일 때만(없는 걸 있다고 하지 않게)
+const GUIDE_FAQ_ALL = [
+  { q: "토크비 가이드는 누구를 위한 글인가요?", a: "식당 · 카페 · 술집을 운영하는 사장님을 위한 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 쉬운 말로 쓰고, 오늘 바로 해 볼 수 있는 일을 먼저 적습니다." },
+  { q: "SEO, AEO, GEO는 무엇이 다른가요?", a: "SEO는 검색 결과 목록에 가게가 잘 보이게 하는 일입니다. AEO는 검색 결과 위에 바로 뜨는 답에, GEO는 ChatGPT 같은 AI가 만든 답에 가게가 들어가게 하는 일입니다. 셋 다 가게 정보를 정확하게 적어 두는 것에서 시작합니다." },
+  { stories: true, q: "실제로 AI 추천이 달라진 가게가 있나요?", a: "있습니다. 매주 같은 질문으로 ChatGPT 추천을 확인한 가게들의 기록을 사장님 이야기(talkb.co.kr/stories/)에 업종별로 모았습니다." },
+];
+const guideFaq = (hasStories) => GUIDE_FAQ_ALL.filter((x) => hasStories || !x.stories);
+/** 목록 페이지 설명 칸 · 소제목(질문) + 본문 + FAQ */
+function hubIntro(sections, faq) {
+  return `<section class="g-sec g-body" aria-label="이 페이지 설명">
+${sections.map((s) => `<h2>${esc(s.h)}</h2>\n${s.html}`).join("\n")}
+</section>${faq.length ? `
+<section class="g-sec" aria-labelledby="g-hub-faq"><h2 id="g-hub-faq">자주 묻는 질문</h2>
+${faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("\n")}
+</section>` : ""}`;
+}
+
 export function renderList(H, all) {
   // 가이드 목록은 가이드 글만 · 사장님 이야기는 /stories/ 로
   const posts = all.filter((p) => !p.industry);
   const hasStories = all.some((p) => p.industry);
   const url = `${SITE}/${GUIDE_DIR}/`;
   const title = "식당·카페·술집 사장님 가이드 | 토크비(TalkB)";
-  const desc = "식당·카페·술집 사장님이 플레이스 광고, 리뷰, AI 검색에서 손님을 만나는 방법을 토크비가 매주 확인한 결과로 정리한 가이드예요.";
+  const desc = GUIDE_DEF;
   const sorted = [...posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
   const ld = sorted.length ? [
-    { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name: "식당·카페·술집 사장님 가이드", description: desc, inLanguage: "ko", publisher: ORG,
+    { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: guideFaq(hasStories).map((q) => ({ "@type": "Question", name: q.q, acceptedAnswer: { "@type": "Answer", text: q.a } })) },
+    { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name: "식당·카페·술집 사장님 가이드", description: desc, inLanguage: "ko", publisher: ORG, about: ["SEO", "AEO", "GEO", "AI 검색 최적화", "네이버 검색", "구글 비즈니스 프로필"],
       mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` }, { "@type": "ListItem", position: 2, name: "가이드", item: url }] },
   ] : [];
@@ -716,8 +752,9 @@ ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a hre
 <div class="wrap">
 <nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><span>가이드</span></nav>
 <h1 class="g-h1">식당·카페·술집 사장님 가이드</h1>
-<p class="lead" style="margin-top:12px">플레이스 광고, 리뷰, AI 검색에서 손님을 만나는 방법을 매주 확인한 결과로 정리해요.</p>
+<p class="lead" style="margin-top:12px">${esc(GUIDE_DEF)}</p>
 ${body}
+${sorted.length ? hubIntro(GUIDE_INTRO(sorted), guideFaq(hasStories)) : ""}
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-list-cta">무료 리포트 신청하기</a></div>
 </div>
 </main>`;
@@ -790,6 +827,19 @@ export function hubStat(list) {
   const avg = (k) => pctText(ss.reduce((n, s) => n + Number(s.n[k] || 0), 0) / ss.length);
   return `매주 ChatGPT에 같은 질문을 물어 확인한 가게 ${ss.length}곳 · 평균 추천률 ${avg("start")}% → ${avg("now")}%`;
 }
+// 사장님 이야기 목록 설명 글 · 무엇인지 · 숫자를 어떻게 재는지(GEO · AEO 인용용 정의 문장)
+const STORY_INTRO = (label) => [
+  { h: label ? `${label} 사장님 이야기는 무엇인가요` : "토크비 사장님 이야기는 무엇인가요",
+    html: `<p>${label ? `${esc(label)} 사장님 이야기는 ${esc(label)} 가게가` : "토크비 사장님 이야기는 식당 · 카페 · 술집이"} ChatGPT 추천에 나오기까지 무엇을 했고 숫자가 어떻게 달라졌는지 실제 측정 기록으로 정리한 글입니다. 가게마다 처음 상황, 한 일, 달라진 추천률, 실제 ChatGPT 답 화면을 담았습니다.</p>` },
+  { h: "추천률은 어떻게 재나요",
+    html: "<p>추천률은 손님이 물을 만한 같은 질문을 매주 ChatGPT에 직접 물어, 답에 그 가게가 나온 비율입니다. 질문에는 가게 이름을 넣지 않고 \"동네 + 상황 + 메뉴\"처럼 실제 손님 말투로 묻습니다. 글에 적힌 숫자는 모두 이 측정 기록에서 나온 값이고, 글마다 측정 기간과 근거 답 수를 함께 적습니다.</p>" },
+];
+const STORY_FAQ = [
+  { q: "가게 이름이 가려진 글은 왜 그런가요?", a: "실명 공개에 동의한 가게만 이름을 씁니다. 동의가 없으면 \"동네 ○○ 업종\"처럼 가려서 씁니다. 숫자와 내용은 같습니다." },
+  { q: "사장님 말은 어떻게 받은 건가요?", a: "사장님이 직접 보내 준 후기를 고치지 않고 그대로 옮깁니다. 후기가 없는 가게는 그 칸을 비워 둡니다." },
+  { q: "우리 가게도 이렇게 오를 수 있나요?", a: "가게와 동네, 질문에 따라 다릅니다. 약속할 수는 없고, 지금 우리 가게가 ChatGPT 답에 나오는지는 무료 리포트로 먼저 확인할 수 있습니다." },
+];
+
 export function caseHubs(posts) {
   const cases = posts.filter((p) => p.kind === "case" && p.industry);
   return CASE_INDUSTRIES.map(([key, label]) => ({ key, label, posts: cases.filter((p) => p.industry === key) }));
@@ -806,6 +856,7 @@ export function renderCaseHub(H, hub, all) {
     : `${hub.label} 사장님 가게가 ChatGPT 추천에 나오기까지 토크비가 한 일과 달라진 숫자를 모았어요.`;
   const sorted = [...list].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
   const ld = sorted.length ? [
+    ...(isRoot ? [{ "@context": "https://schema.org", "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: STORY_FAQ.map((q) => ({ "@type": "Question", name: q.q, acceptedAnswer: { "@type": "Answer", text: q.a } })) }] : []),
     { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name, description: desc, inLanguage: "ko", publisher: ORG,
       mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
@@ -824,7 +875,7 @@ export function renderCaseHub(H, hub, all) {
 <p class="lead" style="margin-top:12px">${esc(desc)}</p>
 ${sorted.length ? `<p style="margin-top:10px;font-size:16px;font-weight:700">${esc(hubStat(sorted))}</p>` : ""}
 ${nav}
-${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
+${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>${hubIntro(STORY_INTRO(isRoot ? null : hub.label), isRoot ? STORY_FAQ : [])}` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">무료 리포트 신청하기</a></div>
 </div>
 </main>`;
