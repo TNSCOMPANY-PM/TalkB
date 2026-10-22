@@ -186,6 +186,8 @@
         if (best < maxIdx && cur !== null && S.flags.backtracks.length < 20) S.flags.backtracks.push([secs[cur].k, k, t()]);
         cur = best; if (best > maxIdx) maxIdx = best; S.exit_section = k; dirty = true;
       }
+      // 떠날 때 보던 자리(10/22) · 화면 가운데가 지금 구역의 위에서 몇 % 지점인가 · 어드민 캐릭터 세로 자리
+      if (cur !== null) { var cr = secs[cur].el.getBoundingClientRect(), ey = Math.max(0, Math.min(1, (vh / 2 - cr.top) / Math.max(1, cr.height))); ey = Math.round(ey * 100) / 100; if (ey !== S.flags.exit_y) S.flags.exit_y = ey; }
       var docH = document.documentElement.scrollHeight, pct = Math.min(100, Math.round((scrollY + vh) / Math.max(1, docH) * 100));
       if (pct > S.max_scroll_pct) { S.max_scroll_pct = pct; dirty = true; }
       if (!mobile && mx >= 0 && n - mAt < 2000) {
