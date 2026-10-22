@@ -2,7 +2,8 @@
    - tb_vid(방문자), tb_team(팀 기기 제외), tb_ref(할인코드 30일)는 종전 규칙 그대로
    - 홈(<script data-home="1">)만 landing_view 를 보낸다 · 퍼널 1단계 = 홈 방문(종전 정의 유지)
    - 카카오 상담 버튼(pf.kakao.com) 클릭 = kakao_click · props: pos(버튼 위치), page, variant(제목 A/B)
-   - 앱 셀프 진단(app.talkb.co.kr/onboard) 클릭 = landing_cta_click(종전 이벤트) + vid·ref 꼬리표 */
+   - 앱 셀프 진단(app.talkb.co.kr/onboard) 클릭 = landing_cta_click(종전 이벤트) + vid·ref 꼬리표
+   - 랜딩 행동 세션 요약(10/22) = /api/track/session · 맨 아래 블록 */
 (function () {
   var API = "https://app.talkb.co.kr/api/track";
   var me = document.currentScript;
@@ -110,4 +111,182 @@
       faqSeen = true; mid("faq_open");
     }, true);
   });
+
+  // 랜딩 행동 세션 요약(2026-10-22 · SQL 193 · PLAN-talkb-landing-behavior) · 방문 한 번 = 행 하나를 덮어쓴다
+  // 어느 구역까지 봤나 · 얼마나 머물렀나 · 무엇을 눌렀나 · 무엇 위에서 망설였나 · 어디서 나갔나
+  // 폼 입력값은 읽지 않는다(칸을 눌렀는지·썼는지만) · 마우스는 원본 궤적 대신 구역별 20×20 칸 수
+  // Clarity(무료 화면 녹화)는 CLARITY_ID 를 채우면 켜진다 · 팀 기기는 녹화하지 않는다
+  var CLARITY_ID = "";
+  (function () {
+    var SES_API = "https://app.talkb.co.kr/api/track/session";
+    var now = function () { return Date.now(); };
+    var T0 = now(), sid = null, returning = false;
+    try {
+      var old = JSON.parse(sessionStorage.getItem("tb_sid") || "null");
+      if (old && old.id && T0 - old.at < 30 * 60000) sid = old.id;
+    } catch (e) {}
+    if (!sid) sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (T0.toString(36) + "-" + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2));
+    function touch() { try { sessionStorage.setItem("tb_sid", JSON.stringify({ id: sid, at: now() })); } catch (e) {} }
+    touch();
+    try { returning = !!localStorage.getItem("tb_seen"); localStorage.setItem("tb_seen", "1"); } catch (e) {}
+    window.TB_SID = sid;
+
+    if (CLARITY_ID && !isTeam()) {
+      (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, "clarity", "script", CLARITY_ID);
+      try { clarity("identify", vid || sid, sid); clarity("set", "sid", sid); if (variant) clarity("set", "variant", variant); } catch (e) {}
+    }
+
+    var mobile = (window.matchMedia && matchMedia("(pointer: coarse)").matches) || innerWidth <= 640;
+    var S = { sections: {}, path: [], clicks: [], hesitations: [], cta_seen: {}, form: { fields: {}, last: null, submitted: false }, faq_open: [], heat: {},
+      flags: { rage: 0, dead: 0, exit_intent: 0, copies: [], tab_hidden_ms: 0, backtracks: [], pauses: [] }, max_scroll_pct: 0, exit_section: null };
+    var secs = [], cur = null, maxIdx = -1, dirty = true, sent = 0, mx = -1, my = -1, mAt = 0, hiddenAt = 0;
+    function t() { return now() - T0; }
+    function el2name(el) {
+      var n = el.getAttribute("data-track") || el.getAttribute("data-pos") || el.id;
+      if (!n) n = ((el.textContent || "").replace(/\s+/g, " ").trim()).slice(0, 24) || el.tagName.toLowerCase();
+      return n.slice(0, 40);
+    }
+    function secAt(pageY) {
+      for (var i = 0; i < secs.length; i++) { var r = secs[i].el.getBoundingClientRect(), top = r.top + scrollY; if (pageY >= top && pageY < top + r.height) return { k: secs[i].k, i: i, top: top, h: r.height }; }
+      return null;
+    }
+    function rel(pageX, pageY) {
+      var s = secAt(pageY); if (!s) return null;
+      return { sec: s.k, x: Math.round(pageX / Math.max(1, document.documentElement.clientWidth) * 1000) / 1000, y: Math.round((pageY - s.top) / Math.max(1, s.h) * 1000) / 1000, s: s };
+    }
+
+    // 0.25초마다 · 화면에 보인 구역 · 머문 시간 · 지나온 길 · 마우스 칸 · 스크롤 깊이(탭이 숨겨져 있으면 쉰다)
+    var lastTick = now(), lastScrollAt = now(), pausedAt = -1;
+    function tick() {
+      var n = now(), dt = n - lastTick; lastTick = n;
+      if (document.hidden || !secs.length) return;
+      var vh = innerHeight, best = null, bestV = 0;
+      for (var i = 0; i < secs.length; i++) {
+        var r = secs[i].el.getBoundingClientRect(), v = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+        if (v >= Math.min(r.height * 0.5, vh * 0.5) && v > 0) {
+          var o = S.sections[secs[i].k] || (S.sections[secs[i].k] = { first_ms: t(), ms: 0, visits: 0 });
+          o.ms += Math.min(dt, 1000);
+        }
+        if (v > bestV) { bestV = v; best = i; }
+      }
+      if (best !== null && best !== cur) {
+        var k = secs[best].k;
+        if (S.path.length < 60) S.path.push([k, t()]);
+        S.sections[k] = S.sections[k] || { first_ms: t(), ms: 0, visits: 0 };
+        S.sections[k].visits++;
+        if (best < maxIdx && cur !== null && S.flags.backtracks.length < 20) S.flags.backtracks.push([secs[cur].k, k, t()]);
+        cur = best; if (best > maxIdx) maxIdx = best; S.exit_section = k; dirty = true;
+      }
+      var docH = document.documentElement.scrollHeight, pct = Math.min(100, Math.round((scrollY + vh) / Math.max(1, docH) * 100));
+      if (pct > S.max_scroll_pct) { S.max_scroll_pct = pct; dirty = true; }
+      if (!mobile && mx >= 0 && n - mAt < 2000) {
+        var p = rel(mx + scrollX, my + scrollY);
+        if (p) { var h = S.heat[p.sec] || (S.heat[p.sec] = {}), c = Math.min(19, Math.floor(p.y * 20)) * 20 + Math.min(19, Math.floor(p.x * 20)); h[c] = (h[c] || 0) + 1; dirty = true; }
+      }
+      if (mobile && pausedAt !== lastScrollAt && n - lastScrollAt > 1500) {
+        pausedAt = lastScrollAt;
+        var q = rel(innerWidth / 2 + scrollX, scrollY + vh / 2);
+        if (q && S.flags.pauses.length < 30) { S.flags.pauses.push([q.sec, q.y, t()]); dirty = true; }
+      }
+    }
+    addEventListener("scroll", function () { lastScrollAt = now(); }, { passive: true });
+    addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; mAt = now(); }, { passive: true });
+
+    // 클릭 · 헛클릭(눌러도 1초 안에 아무 변화 없음) · 화난 클릭(1초 안 30px 안에서 3번)
+    var recent = [], mutated = false;
+    if ("MutationObserver" in window) new MutationObserver(function () { mutated = true; }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, characterData: true });
+    document.addEventListener("click", function (e) {
+      var tg = e.target; if (!tg || !tg.closest) return;
+      var act = tg.closest("a,button,input,select,textarea,label,summary,[role=button],[role=tab],[onclick],[data-track]");
+      var name = act ? el2name(act) : el2name(tg.closest("[id],[class]") || tg);
+      var p = rel(e.pageX, e.pageY), ent = { el: name, sec: p ? p.sec : null, x: p ? p.x : null, y: p ? p.y : null, t: t() };
+      if (S.clicks.length < 50) S.clicks.push(ent);
+      if (hov && hov.el === (act || null)) hov.clicked = true;
+      var n = now(); recent = recent.filter(function (r) { return n - r.at < 1000 && Math.abs(r.x - e.clientX) < 30 && Math.abs(r.y - e.clientY) < 30; });
+      recent.push({ at: n, x: e.clientX, y: e.clientY });
+      if (recent.length === 3) S.flags.rage++;
+      if (!act) {
+        mutated = false; var y0 = scrollY;
+        setTimeout(function () { if (!mutated && scrollY === y0) { ent.d = 1; S.flags.dead++; dirty = true; } }, 1000);
+      }
+      dirty = true;
+    }, true);
+
+    // 망설임 · 버튼 위에 1초 넘게 머물다가 누르지 않음(PC)
+    var hov = null, CTA = "a[data-pos],a.kbtn,button[type=submit],[data-track],.pc-detail";
+    document.addEventListener("mouseover", function (e) {
+      var b = e.target && e.target.closest && e.target.closest(CTA); if (!b || (hov && hov.el === b)) return;
+      hov = { el: b, at: now(), clicked: false };
+    }, { passive: true });
+    document.addEventListener("mouseout", function (e) {
+      if (!e.relatedTarget && e.clientY <= 0) { S.flags.exit_intent++; dirty = true; }
+      if (!hov || (e.relatedTarget && hov.el.contains(e.relatedTarget))) return;
+      var ms = now() - hov.at;
+      if (ms >= 1000 && !hov.clicked && S.hesitations.length < 30) {
+        var r = hov.el.getBoundingClientRect(), s = secAt(r.top + scrollY + r.height / 2);
+        S.hesitations.push({ el: el2name(hov.el), sec: s ? s.k : null, ms: Math.min(ms, 60000), t: t() }); dirty = true;
+      }
+      hov = null;
+    }, { passive: true });
+
+    // 폼 · 칸을 눌렀는지(f)·썼는지(e)만 · 값은 읽지 않는다
+    function fieldName(x) { return x && x.form && (x.name || x.id) ? String(x.name || x.id).slice(0, 30) : null; }
+    document.addEventListener("focusin", function (e) { var k = fieldName(e.target); if (!k) return; var o = S.form.fields[k] || (S.form.fields[k] = { f: 0, e: false }); o.f++; S.form.last = k; dirty = true; });
+    document.addEventListener("input", function (e) { var k = fieldName(e.target); if (!k || !S.form.fields[k] || S.form.fields[k].e) return; S.form.fields[k].e = true; dirty = true; });
+    document.addEventListener("submit", function () { S.form.submitted = true; dirty = true; setTimeout(function () { send(false); }, 300); }, true);
+
+    document.addEventListener("toggle", function (e) {
+      var d = e.target; if (!d || !d.classList || !d.classList.contains("faq") || !d.open) return;
+      var sm = d.querySelector("summary"), q = sm ? sm.textContent.trim().slice(0, 30) : "?";
+      if (S.faq_open.indexOf(q) < 0 && S.faq_open.length < 20) { S.faq_open.push(q); dirty = true; }
+    }, true);
+    document.addEventListener("copy", function () {
+      var sel = String(window.getSelection ? getSelection() : ""), node = getSelection && getSelection().anchorNode, el = node && (node.nodeType === 1 ? node : node.parentElement), r = el && el.getBoundingClientRect(), s = r ? secAt(r.top + scrollY) : null;
+      if (S.flags.copies.length < 10) { S.flags.copies.push([s ? s.k : null, sel.length]); dirty = true; }
+    });
+
+    // 버튼이 화면에 보인 시간(누른 비율의 분모)
+    var ctaIn = {};
+    function watchCtas() {
+      if (!("IntersectionObserver" in window)) return;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (en) { var k = el2name(en.target); if (en.isIntersecting) ctaIn[k] = now(); else if (ctaIn[k]) { S.cta_seen[k] = (S.cta_seen[k] || 0) + now() - ctaIn[k]; delete ctaIn[k]; dirty = true; } });
+      }, { threshold: 0.5 });
+      [].forEach.call(document.querySelectorAll(CTA), function (b) { io.observe(b); });
+    }
+
+    function payload(final) {
+      var cs = {}, n = now(), k;
+      for (k in S.cta_seen) cs[k] = S.cta_seen[k];
+      for (k in ctaIn) cs[k] = (cs[k] || 0) + n - ctaIn[k];
+      var u = {}; ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (x) { if (p.get(x)) u[x] = p.get(x).slice(0, 120); });
+      if (p.get("fbclid")) u.utm_source = u.utm_source || "meta";
+      var o = { sid: sid, vid: vid, n: sent + 1, final: final ? 1 : 0, page: location.pathname, device: mobile ? "mobile" : "pc", vw: innerWidth, vh: innerHeight,
+        doc_h: document.documentElement.scrollHeight, utm: u, referrer: document.referrer ? document.referrer.slice(0, 300) : null, variant: variant, returning: returning,
+        sections: S.sections, path: S.path, clicks: S.clicks, hesitations: S.hesitations, cta_seen: cs, form: S.form, faq_open: S.faq_open, heat: S.heat,
+        flags: S.flags, max_scroll_pct: S.max_scroll_pct, exit_section: S.exit_section };
+      if (isTeam()) o.team = 1;
+      var s = JSON.stringify(o);
+      if (s.length > 10000) { o.heat = {}; s = JSON.stringify(o); }
+      if (s.length > 10000) { o.clicks = o.clicks.slice(-15); s = JSON.stringify(o); }
+      return s;
+    }
+    function send(final) {
+      if ((!dirty && !final) || (sent >= 40 && !final)) return;
+      try { if (navigator.sendBeacon(SES_API, payload(final))) { sent++; dirty = false; touch(); } } catch (e) {}
+    }
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { hiddenAt = now(); send(true); }
+      else if (hiddenAt) { S.flags.tab_hidden_ms += now() - hiddenAt; hiddenAt = 0; lastTick = now(); }
+    });
+    addEventListener("pagehide", function () { send(true); });
+
+    onReady(function () {
+      [].forEach.call(document.querySelectorAll("[data-sec]"), function (el) { secs.push({ k: el.getAttribute("data-sec").slice(0, 20), el: el }); });
+      if (!secs.length) secs.push({ k: "page", el: document.body });
+      watchCtas();
+      var start = function (cb) { if ("requestIdleCallback" in window) requestIdleCallback(cb, { timeout: 2000 }); else setTimeout(cb, 200); };
+      start(function () { tick(); setInterval(tick, 250); setTimeout(function () { send(false); }, 3000); setInterval(function () { send(false); }, 15000); });
+    });
+  })();
 })();

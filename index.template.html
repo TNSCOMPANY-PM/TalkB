@@ -807,7 +807,7 @@ fbq('track', 'PageView');
 
 <main id="top">
 
-<section class="wrap hero">
+<section class="wrap hero" data-sec="hero">
 <div class="hero-top">
 <h1 class="h1" id="h1"><span class="va"><span class="l">옆 가게는</span> <span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span> <span class="l">사장님 가게는요?</span></span><small class="h1-kw">손님이 AI에 맛집을 물으면 우리 가게가 나오게, <span style="white-space: nowrap">식당·카페·술집 AI 마케팅 토크비</span></small></h1>
 <template id="h1b"><span class="vb"><span class="l">손님이 ChatGPT에</span> <span class="l">동네 맛집을 물으면,</span> <span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span><small class="h1-kw">손님이 AI에 맛집을 물으면 우리 가게가 나오게, <span style="white-space: nowrap">식당·카페·술집 AI 마케팅 토크비</span></small></template>
@@ -864,7 +864,7 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section class="sec" id="proof" style="background: #FFF6F2">
+<section class="sec" id="proof" data-sec="proof" style="background: #FFF6F2">
 <div class="wrap">
 <h2 class="h2">이렇게 바뀝니다</h2>
 <p class="lead">용인 모현의 감자탕집, 인생뼈다귀 본점의 실제 사례예요.</p>
@@ -898,7 +898,7 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section class="sec" id="stores" style="background: #F7F8FA">
+<section class="sec" id="stores" data-sec="stores" style="background: #F7F8FA">
 <div class="wrap">
 <p class="upd">최신 업데이트 {{updatedDotPad}}</p>
 <h2 class="h2">토크비와 함께하는 가게는<br>이렇게 나옵니다</h2>
@@ -922,7 +922,7 @@ fbq('track', 'PageView');
 <div class="cs-nav"><button type="button" class="cs-arr" id="csPrev" aria-label="이전 사례">‹</button><div class="cs-dots" id="csDots" role="tablist" aria-label="사례 고르기"></div><button type="button" class="cs-arr" id="csNext" aria-label="다음 사례">›</button></div>
 </section>
 
-<section class="sec" id="reviews" style="background: #191F28; color: #fff">
+<section class="sec" id="reviews" data-sec="reviews" style="background: #191F28; color: #fff">
 <div class="wrap">
 <h2 class="h2" style="color: #fff">사장님들이 직접 남긴 후기</h2>
 <p class="lead" style="color: #B0B8C1">남겨 주신 후기를 그대로 옮겼어요.</p>
@@ -948,7 +948,7 @@ fbq('track', 'PageView');
 <dialog class="cs-view" id="csView" aria-label="답변 크게 보기"><button type="button" class="cs-x" id="csX" aria-label="닫기">×</button><img id="csImg" alt=""></dialog>
 
 
-<section class="sec" id="price" style="background: #F7F8FA">
+<section class="sec" id="price" data-sec="price" style="background: #F7F8FA">
 <div class="wrap">
 <p class="eyebrow">가격</p>
 <h2 class="h2">가게에 맞게 고르세요</h2>
@@ -979,7 +979,7 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section class="sec" id="inquiry" style="background: #FFF6F2">
+<section class="sec" id="inquiry" data-sec="inquiry" style="background: #FFF6F2">
 <div class="wrap inq">
 <div class="inq-copy">
 <p class="eyebrow">음식점 · 술집 · 카페 무료 리포트</p>
@@ -992,7 +992,7 @@ fbq('track', 'PageView');
 </div>
 <script>(function(){var w=document.currentScript.previousElementSibling,tb=w.querySelectorAll(".frs-tabs button"),im=w.querySelectorAll(".frs-view img");[].forEach.call(tb,function(b){b.addEventListener("click",function(){var i=+b.getAttribute("data-i");[].forEach.call(tb,function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});[].forEach.call(im,function(x,k){x.hidden=k!==i});w.querySelector(".frs-view").scrollTop=0})})})();</script>
 </div>
-<form class="inq-card" id="inquiryForm" novalidate>
+<form class="inq-card" id="inquiryForm" novalidate data-clarity-mask="true">
 <h3>무료 리포트 신청</h3>
 <p class="inq-sub">음식점 · 술집 · 카페 사장님이면 남겨 주세요. 담당자가 확인하고 연락드려요.</p>
 <div class="inq-cols">
@@ -1023,13 +1023,13 @@ fbq('track', 'PageView');
 </div>
 </div>
 <label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
-<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn">무료 리포트 신청하기</button>
+<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn" data-track="inquiry-submit">무료 리포트 신청하기</button>
 <p class="inq-status" id="inqStatus" role="status" aria-live="polite"></p>
 </form>
 </div>
 </section>
 
-<section class="sec" id="faq">
+<section class="sec" id="faq" data-sec="faq">
 <div class="wrap" style="max-width: 820px">
 <p class="eyebrow">자주 묻는 질문</p>
 <h2 class="h2" style="font-size: 30px">궁금한 건 카톡으로 물어보셔도 돼요</h2>
@@ -1052,7 +1052,7 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<section id="final" style="background: #191F28; color: #fff">
+<section id="final" data-sec="final" style="background: #191F28; color: #fff">
 <div class="wrap" style="padding-top: 80px; padding-bottom: 80px; text-align: center">
 <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 800">우리 가게는 나올까요?</h2>
 <p style="font-size: 17px; color: #B0B8C1; margin-top: 12px">가게 이름과 연락처만 남겨 주세요.</p>
@@ -1212,7 +1212,7 @@ fbq('track', 'PageView');
   // Meta Lead 중복 제거용(2026-10-19) · 같은 event_id를 브라우저 픽셀과 서버 전환 API(app /api/inquiries)가 같이 쓴다.
   // _fbp·_fbc는 talkb.co.kr 쿠키라 app. 서버로 안 넘어가서 직접 싣는다.
   // 유입 경로(2026-10-19) · track.js가 저장한 tb_attr + 방문자 ID · 어드민 퍼널의 유입별 비교에 쓴다
-  function tbAttr() { try { var a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); return a; } catch (e) { return null; } }
+  function tbAttr() { try { var a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); try { a.sid = JSON.parse(sessionStorage.getItem("tb_sid") || "null").id; } catch (e1) {} return a; } catch (e) { return null; } }
   function tbLeadMeta() { var c = function (k) { var m = document.cookie.match(new RegExp("(?:^|; )" + k + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; }; var id = "lead_" + ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + "_" + Math.random().toString(36).slice(2))); return { event_id: id, fbp: c("_fbp"), fbc: c("_fbc"), url: location.href.split("#")[0].slice(0, 300) }; }
   var API = "https://app.talkb.co.kr/api/inquiries";
   var form = document.getElementById("inquiryForm");
