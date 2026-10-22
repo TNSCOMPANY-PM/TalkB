@@ -133,8 +133,17 @@
 
     if (CLARITY_ID && !isTeam()) {
       (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, "clarity", "script", CLARITY_ID);
-      try { clarity("identify", vid || sid, sid); clarity("set", "sid", sid); if (variant) clarity("set", "variant", variant); } catch (e) {}
+      try {
+        clarity("identify", vid || sid, sid); clarity("set", "sid", sid); if (variant) clarity("set", "variant", variant);
+        // 태그(PLAN-talkb-landing-cro §12-1) · 소재 · 유입 묶음 · 재방문 · 실험 ID 로 녹화를 골라 본다
+        if (p.get("utm_content")) clarity("set", "utm_content", p.get("utm_content").slice(0, 80));
+        clarity("set", "src", p.get("fbclid") || /meta|facebook|instagram/i.test(p.get("utm_source") || "") ? "meta" : /naver|google|daum|bing/i.test(document.referrer) ? "search" : document.referrer ? "etc" : "direct");
+        if (window.TB_EXP) clarity("set", "exp", String(window.TB_EXP));
+      } catch (e) {}
     }
+    // 행동 이벤트를 GA4 · 메타 픽셀 · Clarity 에 한 번씩(cro §8 · 입력값 없음)
+    var once = {};
+    function sig(name) { if (once[name]) return; once[name] = 1; mid(name); try { if (window.clarity) clarity("event", name); } catch (e) {} }
 
     var mobile = (window.matchMedia && matchMedia("(pointer: coarse)").matches) || innerWidth <= 640;
     var S = { sections: {}, path: [], clicks: [], hesitations: [], cta_seen: {}, form: { fields: {}, last: null, submitted: false }, faq_open: [], heat: {},
@@ -225,15 +234,25 @@
       if (ms >= 1000 && !hov.clicked && S.hesitations.length < 30) {
         var r = hov.el.getBoundingClientRect(), s = secAt(r.top + scrollY + r.height / 2);
         S.hesitations.push({ el: el2name(hov.el), sec: s ? s.k : null, ms: Math.min(ms, 60000), t: t() }); dirty = true;
+        sig("cta_hesitate");
       }
       hov = null;
     }, { passive: true });
 
-    // 폼 · 칸을 눌렀는지(f)·썼는지(e)만 · 값은 읽지 않는다
+    // 폼 · 칸을 눌렀는지(f)·썼는지(e)·머문 ms(ms)·떠날 때 비어 있었는지(v) · 값 자체는 저장하지 않는다
     function fieldName(x) { return x && x.form && (x.name || x.id) ? String(x.name || x.id).slice(0, 30) : null; }
-    document.addEventListener("focusin", function (e) { var k = fieldName(e.target); if (!k) return; var o = S.form.fields[k] || (S.form.fields[k] = { f: 0, e: false }); o.f++; S.form.last = k; dirty = true; });
+    var fAt = 0;
+    document.addEventListener("focusin", function (e) { var k = fieldName(e.target); if (!k) return; var o = S.form.fields[k] || (S.form.fields[k] = { f: 0, e: false, ms: 0 }); o.f++; S.form.last = k; fAt = now(); dirty = true; sig("form_start"); });
+    document.addEventListener("focusout", function (e) { var k = fieldName(e.target), o = k && S.form.fields[k]; if (!o || !fAt) return; o.ms += Math.min(now() - fAt, 600000); fAt = 0; if ("value" in e.target && e.target.type !== "checkbox") o.v = !!String(e.target.value).trim(); dirty = true; });
     document.addEventListener("input", function (e) { var k = fieldName(e.target); if (!k || !S.form.fields[k] || S.form.fields[k].e) return; S.form.fields[k].e = true; dirty = true; });
-    document.addEventListener("submit", function () { S.form.submitted = true; dirty = true; setTimeout(function () { send(false); }, 300); }, true);
+    document.addEventListener("submit", function () { S.form.submitted = true; dirty = true; try { if (window.clarity) clarity("set", "inquiry", "yes"); } catch (e) {} setTimeout(function () { send(false); }, 300); }, true);
+
+    // 속도(cro §12-6) · LCP · CLS · INP 근사(가장 느린 반응) · 라이브러리 없이 브라우저 기본 기능으로
+    var V = S.flags.vitals = {};
+    function po(type, fn, opt) { try { new PerformanceObserver(function (l) { l.getEntries().forEach(fn); dirty = true; }).observe(opt || { type: type, buffered: true }); } catch (e) {} }
+    po("largest-contentful-paint", function (en) { V.lcp = Math.round(en.startTime); });
+    po("layout-shift", function (en) { if (!en.hadRecentInput) V.cls = Math.round(((V.cls || 0) + en.value) * 1000) / 1000; });
+    po("event", function (en) { if (en.interactionId && en.duration > (V.inp || 0)) V.inp = Math.round(en.duration); }, { type: "event", buffered: true, durationThreshold: 40 });
 
     document.addEventListener("toggle", function (e) {
       var d = e.target; if (!d || !d.classList || !d.classList.contains("faq") || !d.open) return;
