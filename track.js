@@ -207,6 +207,7 @@
     document.addEventListener("click", function (e) {
       var tg = e.target; if (!tg || !tg.closest) return;
       var act = tg.closest("a,button,input,select,textarea,label,summary,[role=button],[role=tab],[onclick],[data-track]");
+      if (tg.closest('a[href*="pf.kakao.com"]')) S.flags.kakao = (S.flags.kakao || 0) + 1;
       var name = act ? el2name(act) : el2name(tg.closest("[id],[class]") || tg);
       var p = rel(e.pageX, e.pageY), ent = { el: name, sec: p ? p.sec : null, x: p ? p.x : null, y: p ? p.y : null, t: t() };
       if (S.clicks.length < 50) S.clicks.push(ent);
