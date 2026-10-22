@@ -116,7 +116,7 @@
   // 어느 구역까지 봤나 · 얼마나 머물렀나 · 무엇을 눌렀나 · 무엇 위에서 망설였나 · 어디서 나갔나
   // 폼 입력값은 읽지 않는다(칸을 눌렀는지·썼는지만) · 마우스는 원본 궤적 대신 구역별 20×20 칸 수
   // Clarity(무료 화면 녹화)는 CLARITY_ID 를 채우면 켜진다 · 팀 기기는 녹화하지 않는다
-  var CLARITY_ID = "";
+  var CLARITY_ID = "z1h51fvwbn";
   (function () {
     var SES_API = "https://app.talkb.co.kr/api/track/session";
     var now = function () { return Date.now(); };
