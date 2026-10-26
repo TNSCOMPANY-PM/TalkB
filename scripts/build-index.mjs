@@ -21,7 +21,8 @@ for (const s of Object.values(data.stores)) {
 // 광고별 첫 화면 사례(2026-10-26) · 목록은 scripts/references.config.json adCases 한 곳 · 홈 <head> 스크립트가 utm_content로 고른다
 {
   const cfg = JSON.parse(readFileSync(join(ROOT, "scripts", "references.config.json"), "utf8"));
-  const need = ["utm", "short", "tag", "photo", "after", "beforeLabel", "afterLabel", "weekly", "band", "quote", "owner"];
+  // 후기(quote · owner)는 있을 때만 · 사장님 원문이 없으면 비운다(지어내지 않음)
+  const need = ["utm", "short", "tag", "photo", "after", "beforeLabel", "afterLabel", "weekly", "band"];
   const cases = (cfg.adCases ?? []).map((c) => {
     const miss = need.filter((k) => c[k] == null || c[k] === "");
     if (miss.length) { console.error(`adCases ${c.utm ?? "?"} 빠진 칸:`, miss.join(", ")); process.exit(1); }

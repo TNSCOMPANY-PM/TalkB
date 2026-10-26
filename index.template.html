@@ -691,7 +691,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .ch-b{font-size:26px;font-weight:800;color:#8B95A1}
 .ch-a{font-size:52px;font-weight:900;color:var(--accent);letter-spacing:-.04em;line-height:1}
 .ch-chip{margin-left:auto;align-self:center;background:var(--accent-soft);color:var(--deep);font-size:14px;font-weight:800;border-radius:999px;padding:4px 11px;white-space:nowrap}
-.ch-graph{display:block;width:100%;height:84px;margin-top:8px}
+.ch-graph{display:block;width:100%;height:124px;margin-top:8px}
 .ch-lab{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:700;color:var(--ink-mid)}
 .ch-lab span:last-child{color:var(--deep)}
 .ch-q{display:flex;gap:10px;align-items:flex-start;margin:16px 8px 0}
@@ -872,22 +872,27 @@ fbq('track', 'PageView');
   $("chA").textContent = pct(c.after);
   $("chChip").textContent = c.chip || "";
   $("chL1").textContent = c.beforeLabel; $("chL2").textContent = c.afterLabel;
-  $("chQ").textContent = "“" + c.quote + "”";
-  $("chWho").textContent = c.owner + (c.pilot ? " · 무료 파일럿 참여" : "");
-  $("chAv").textContent = String(c.owner).charAt(0);
+  // 사장님 후기는 있을 때만(원문 그대로 · 없으면 후기 줄을 뺀다)
+  if (c.quote && c.owner) {
+    $("chQ").textContent = "“" + c.quote + "”";
+    $("chWho").textContent = c.owner + (c.pilot ? " · 무료 파일럿 참여" : "");
+    $("chAv").textContent = String(c.owner).charAt(0);
+  } else { var cq = document.querySelector("#caseHero .ch-q"); if (cq) cq.style.display = "none"; }
   // 매주 잰 값 선 그래프 · 큰 숫자가 가리키는 마지막 구간(band)은 바탕색 · 실제 너비로 그려 선이 늘어나지 않게
-  var g = $("chG"), v = c.weekly || [], W = Math.round(g.getBoundingClientRect().width) || 318, H = 84, NS = "http://www.w3.org/2000/svg";
+  var g = $("chG"), v = c.weekly || [], W = Math.round(g.getBoundingClientRect().width) || 318, H = 124, NS = "http://www.w3.org/2000/svg";
   g.setAttribute("viewBox", "0 0 " + W + " " + H);
   g.setAttribute("aria-label", c.store + " 주별 ChatGPT 추천 비율 · " + c.beforeLabel + " " + pct(c.before || 0) + " · " + c.afterLabel);
   if (v.length > 1) {
-    var step = (W - 12) / (v.length - 1), x = function (i) { return 6 + i * step; }, y = function (p) { return H - 6 - (p / 100) * (H - 14); };
+    var step = (W - 18) / (v.length - 1), x = function (i) { return 8 + i * step; }, y = function (p) { return H - 4 - (p / 100) * (H - 16); };
     var mk = function (tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); g.appendChild(e); return e; };
     var bx = x(Math.max(0, v.length - (c.band || 1))) - step / 2; if (bx < 0) bx = 0;
     mk("rect", { x: bx.toFixed(1), y: 0, width: (W - bx).toFixed(1), height: H, rx: 8, fill: "#FFF1EC" });
+    var pts = v.map(function (p, i) { return x(i).toFixed(1) + "," + y(p).toFixed(1); }).join(" ");
+    mk("polygon", { points: pts + " " + x(v.length - 1).toFixed(1) + "," + H + " " + x(0).toFixed(1) + "," + H, fill: "#E85D3A", "fill-opacity": 0.22 });
     mk("line", { x1: bx.toFixed(1), x2: W, y1: y(c.after).toFixed(1), y2: y(c.after).toFixed(1), stroke: "#E85D3A", "stroke-width": 1.5, "stroke-dasharray": "4 4" });
-    mk("polyline", { points: v.map(function (p, i) { return x(i).toFixed(1) + "," + y(p).toFixed(1); }).join(" "), fill: "none", stroke: "#E85D3A", "stroke-width": 3, "stroke-linejoin": "round", "stroke-linecap": "round" });
+    mk("polyline", { points: pts, fill: "none", stroke: "#E85D3A", "stroke-width": 5, "stroke-linejoin": "round", "stroke-linecap": "round" });
     mk("circle", { cx: x(0).toFixed(1), cy: y(v[0]).toFixed(1), r: 4.5, fill: "#fff", stroke: "#8B95A1", "stroke-width": 2.5 });
-    mk("circle", { cx: x(v.length - 1).toFixed(1), cy: y(v[v.length - 1]).toFixed(1), r: 4.5, fill: "#E85D3A" });
+    mk("circle", { cx: x(v.length - 1).toFixed(1), cy: y(v[v.length - 1]).toFixed(1), r: 8, fill: "#E85D3A", stroke: "#fff", "stroke-width": 3 });
   }
 })();
 </script>

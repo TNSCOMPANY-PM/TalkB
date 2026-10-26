@@ -246,7 +246,7 @@
 <!-- 광고별 첫 화면(2026-10-26) · 주소의 utm_content가 사례 목록(scripts/references.config.json adCases)과 같으면 첫 화면을 그 가게 사례로 · 읽기만 하고 저장 · 전송은 하지 않는다(utm 저장은 track.js 그대로) -->
 <script>
 (function(){
-  var cases = [{"utm":"B_인생뼈다귀","store":"인생뼈다귀 본점","short":"인생뼈다귀","tag":"용인 모현 감자탕집 · 인생뼈다귀 본점","photo":"/images/reviews/insaeng.jpg","photoAlt":"인생뼈다귀 본점 감자탕","before":3.1,"after":66,"chip":"9주","beforeLabel":"7월 첫 주 측정","afterLabel":"8~10월 평균 66%","weekly":[3.1,6.7,23.3,53.3,80,73.3,86.7,76.7,60,69,56,73.3,68,61.1,53,58.7],"band":11,"quote":"답변률도 좋아지고 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인거 같아요","owner":"이현민 사장님","pilot":false},{"utm":"A_탐라담","store":"탐라담 영종도점","short":"탐라담","tag":"영종도 고깃집 · 탐라담 영종도점","photo":"/images/reviews/tamladam.jpg","photoAlt":"탐라담 영종도점 고기 굽는 모습","before":0,"after":46.7,"chip":"13주","beforeLabel":"6월 1일 첫 측정","afterLabel":"8월 한 달 평균 46.7%","weekly":[0,0,0,7.8,16.7,23.3,40,46.7,33.3,53.3,43.3,40,50],"band":4,"quote":"지피티에서 추천받고 연락 하셨다고 12명 예약 하시는 분도 생기고 전화 문의도 많이 늘었어요!","owner":"백지혜 사장님","pilot":true}];
+  var cases = [{"utm":"B_인생뼈다귀","store":"인생뼈다귀 본점","short":"인생뼈다귀","tag":"용인 모현 감자탕집 · 인생뼈다귀 본점","photo":"/images/reviews/insaeng.jpg","photoAlt":"인생뼈다귀 본점 감자탕","before":3.1,"after":66,"chip":"9주","beforeLabel":"7월 첫 주 측정","afterLabel":"8~10월 평균 66%","weekly":[3.1,6.7,23.3,53.3,80,73.3,86.7,76.7,60,69,56,73.3,68,61.1,53,58.7],"band":11,"quote":"답변률도 좋아지고 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인거 같아요","owner":"이현민 사장님","pilot":false},{"utm":"A_탐라담","store":"탐라담 영종도점","short":"탐라담","tag":"영종도 고깃집 · 탐라담 영종도점","photo":"/images/reviews/tamladam.jpg","photoAlt":"탐라담 영종도점 고기 굽는 모습","before":0,"after":46.7,"chip":"13주","beforeLabel":"6월 1일 첫 측정","afterLabel":"8월 한 달 평균 46.7%","weekly":[0,0,0,7.8,16.7,23.3,40,46.7,33.3,53.3,43.3,40,50],"band":4,"quote":"지피티에서 추천받고 연락 하셨다고 12명 예약 하시는 분도 생기고 전화 문의도 많이 늘었어요!","owner":"백지혜 사장님","pilot":true},{"utm":"A2_오공김밥","store":"오공김밥 일산탄현점","short":"오공김밥","tag":"고양시 탄현동 분식 · 오공김밥 일산탄현점","photo":"/images/ad-cases/ogong.jpg","photoAlt":"오공김밥 김밥 메뉴","before":0,"after":85,"chip":"22주","beforeLabel":"5월 26일 첫 주","afterLabel":"최근 4주 평균 85%","weekly":[0,0,0,0,76.7,76.7,96.7,90,100,100,96.7,100,93.3,90,90,86,82,86,78,92,82,88],"band":4,"pilot":false},{"utm":"B2_덮밥장사장","store":"덮밥장사장 대치역점","short":"덮밥장사장","tag":"강남구 대치동 덮밥 · 덮밥장사장 대치역점","photo":"/images/ad-cases/deopbap.jpg","photoAlt":"덮밥장사장 대치역점 덮밥 상차림","before":0,"after":96.7,"chip":"12주","beforeLabel":"6월 2일 첫 주","afterLabel":"8월 4주 평균 96.7%","weekly":[0,0,81.7,90,96.7,93.3,96.7,96.7,96.7,100,96.7,93.3],"band":4,"pilot":true},{"utm":"C2_광장동가온","store":"광장동가온","short":"광장동가온","tag":"광진구 광장동 한식 · 광장동가온","photo":"/images/ad-cases/gaon.jpg","photoAlt":"광장동가온 어복쟁반","before":26.7,"after":92.5,"chip":"21주","beforeLabel":"6월 2일 첫 주","afterLabel":"최근 4주 평균 92.5%","weekly":[26.7,33.3,74.4,76.7,71.7,90,91.7,96.7,86.7,100,100,100,98,100,96,94,98,96,80,98,96],"band":4,"pilot":false}];
   try {
     var m = /[?&]utm_content=([^&#]*)/.exec(location.search); if (!m) return;
     var v = m[1].replace(/\+/g, " ");
@@ -691,7 +691,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .ch-b{font-size:26px;font-weight:800;color:#8B95A1}
 .ch-a{font-size:52px;font-weight:900;color:var(--accent);letter-spacing:-.04em;line-height:1}
 .ch-chip{margin-left:auto;align-self:center;background:var(--accent-soft);color:var(--deep);font-size:14px;font-weight:800;border-radius:999px;padding:4px 11px;white-space:nowrap}
-.ch-graph{display:block;width:100%;height:84px;margin-top:8px}
+.ch-graph{display:block;width:100%;height:124px;margin-top:8px}
 .ch-lab{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:700;color:var(--ink-mid)}
 .ch-lab span:last-child{color:var(--deep)}
 .ch-q{display:flex;gap:10px;align-items:flex-start;margin:16px 8px 0}
@@ -872,22 +872,27 @@ fbq('track', 'PageView');
   $("chA").textContent = pct(c.after);
   $("chChip").textContent = c.chip || "";
   $("chL1").textContent = c.beforeLabel; $("chL2").textContent = c.afterLabel;
-  $("chQ").textContent = "“" + c.quote + "”";
-  $("chWho").textContent = c.owner + (c.pilot ? " · 무료 파일럿 참여" : "");
-  $("chAv").textContent = String(c.owner).charAt(0);
+  // 사장님 후기는 있을 때만(원문 그대로 · 없으면 후기 줄을 뺀다)
+  if (c.quote && c.owner) {
+    $("chQ").textContent = "“" + c.quote + "”";
+    $("chWho").textContent = c.owner + (c.pilot ? " · 무료 파일럿 참여" : "");
+    $("chAv").textContent = String(c.owner).charAt(0);
+  } else { var cq = document.querySelector("#caseHero .ch-q"); if (cq) cq.style.display = "none"; }
   // 매주 잰 값 선 그래프 · 큰 숫자가 가리키는 마지막 구간(band)은 바탕색 · 실제 너비로 그려 선이 늘어나지 않게
-  var g = $("chG"), v = c.weekly || [], W = Math.round(g.getBoundingClientRect().width) || 318, H = 84, NS = "http://www.w3.org/2000/svg";
+  var g = $("chG"), v = c.weekly || [], W = Math.round(g.getBoundingClientRect().width) || 318, H = 124, NS = "http://www.w3.org/2000/svg";
   g.setAttribute("viewBox", "0 0 " + W + " " + H);
   g.setAttribute("aria-label", c.store + " 주별 ChatGPT 추천 비율 · " + c.beforeLabel + " " + pct(c.before || 0) + " · " + c.afterLabel);
   if (v.length > 1) {
-    var step = (W - 12) / (v.length - 1), x = function (i) { return 6 + i * step; }, y = function (p) { return H - 6 - (p / 100) * (H - 14); };
+    var step = (W - 18) / (v.length - 1), x = function (i) { return 8 + i * step; }, y = function (p) { return H - 4 - (p / 100) * (H - 16); };
     var mk = function (tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); g.appendChild(e); return e; };
     var bx = x(Math.max(0, v.length - (c.band || 1))) - step / 2; if (bx < 0) bx = 0;
     mk("rect", { x: bx.toFixed(1), y: 0, width: (W - bx).toFixed(1), height: H, rx: 8, fill: "#FFF1EC" });
+    var pts = v.map(function (p, i) { return x(i).toFixed(1) + "," + y(p).toFixed(1); }).join(" ");
+    mk("polygon", { points: pts + " " + x(v.length - 1).toFixed(1) + "," + H + " " + x(0).toFixed(1) + "," + H, fill: "#E85D3A", "fill-opacity": 0.22 });
     mk("line", { x1: bx.toFixed(1), x2: W, y1: y(c.after).toFixed(1), y2: y(c.after).toFixed(1), stroke: "#E85D3A", "stroke-width": 1.5, "stroke-dasharray": "4 4" });
-    mk("polyline", { points: v.map(function (p, i) { return x(i).toFixed(1) + "," + y(p).toFixed(1); }).join(" "), fill: "none", stroke: "#E85D3A", "stroke-width": 3, "stroke-linejoin": "round", "stroke-linecap": "round" });
+    mk("polyline", { points: pts, fill: "none", stroke: "#E85D3A", "stroke-width": 5, "stroke-linejoin": "round", "stroke-linecap": "round" });
     mk("circle", { cx: x(0).toFixed(1), cy: y(v[0]).toFixed(1), r: 4.5, fill: "#fff", stroke: "#8B95A1", "stroke-width": 2.5 });
-    mk("circle", { cx: x(v.length - 1).toFixed(1), cy: y(v[v.length - 1]).toFixed(1), r: 4.5, fill: "#E85D3A" });
+    mk("circle", { cx: x(v.length - 1).toFixed(1), cy: y(v[v.length - 1]).toFixed(1), r: 8, fill: "#E85D3A", stroke: "#fff", "stroke-width": 3 });
   }
 })();
 </script>
