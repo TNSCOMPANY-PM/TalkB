@@ -756,6 +756,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .ch-q p{margin:0;font-size:15px;line-height:1.55;font-weight:700}
 .ch-who{display:block;margin-top:2px;font-size:13px;font-weight:400;color:var(--ink-mid)}
 .case-hero .kbtn{width:100%;margin-top:16px}
+/* PC(901px~) · 사진 왼쪽 · 숫자 카드 · 후기 · 버튼 오른쪽 두 칸(10/26 사장) · 모바일은 위 한 칸 그대로 */
+@media (min-width:901px){.case-on .case-hero{display:grid;max-width:1120px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-areas:"photo body" "photo q" "photo btn" "photo ease";grid-template-rows:auto auto auto 1fr;column-gap:48px;padding-top:40px;padding-bottom:64px}.case-hero .ch-photo{grid-area:photo;height:auto;min-height:480px;align-self:stretch;border-radius:24px}.case-hero .ch-tag{left:20px;top:18px;font-size:14px}.case-hero .ch-body{grid-area:body;margin:0;padding:28px 28px 22px}.case-hero .ch-h{font-size:26px}.case-hero .ch-a{font-size:64px}.case-hero .ch-b{font-size:30px}.case-hero .ch-chip{top:28px;right:28px}.case-hero .ch-q{grid-area:q;margin:18px 4px 0}.case-hero .kbtn{grid-area:btn;margin-top:18px}.case-hero .ch-ease{grid-area:ease;align-self:start}}
+@media (min-width:901px) and (max-width:1199px){.case-hero .ch-h{font-size:22px}.case-on .float-qr{display:none!important}}
 .ch-what{margin:12px 0 0;font-size:14px;line-height:1.55;color:var(--ink-mid);word-break:keep-all}
 .ch-ease{margin:10px 0 0;font-size:14.5px;line-height:1.5;font-weight:600;color:var(--ink-mid);text-align:center;word-break:keep-all}
 @media (max-width:640px){.case-on .case-hero{padding-top:0;padding-bottom:36px}.ch-photo{height:170px;margin:0 -18px;border-radius:0}.ch-h{font-size:21px}.ch-body{margin:-34px -6px 0;padding:20px 18px 16px}.ch-q{margin:14px 0 0}}
