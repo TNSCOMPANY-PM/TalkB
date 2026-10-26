@@ -18,6 +18,20 @@ for (const s of Object.values(data.stores)) {
   s.barClass = (s.nowPct ?? 0) >= 60 ? "" : "b";
 }
 
+// 광고별 첫 화면 사례(2026-10-26) · 목록은 scripts/references.config.json adCases 한 곳 · 홈 <head> 스크립트가 utm_content로 고른다
+{
+  const cfg = JSON.parse(readFileSync(join(ROOT, "scripts", "references.config.json"), "utf8"));
+  const need = ["utm", "short", "tag", "photo", "after", "beforeLabel", "afterLabel", "weekly", "band", "quote", "owner"];
+  const cases = (cfg.adCases ?? []).map((c) => {
+    const miss = need.filter((k) => c[k] == null || c[k] === "");
+    if (miss.length) { console.error(`adCases ${c.utm ?? "?"} 빠진 칸:`, miss.join(", ")); process.exit(1); }
+    const { _source, ...pub } = c;
+    return pub;
+  });
+  // </script> 로 끊기지 않게 < 를 이스케이프
+  data.adCasesJson = JSON.stringify(cases).replace(/</g, "\\u003c");
+}
+
 // 화면 표기용 날짜(한국시간 · 2026.10.08 꼴)
 {
   const k = new Date(new Date(data.updatedAt).getTime() + 9 * 3600000);

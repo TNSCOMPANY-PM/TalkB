@@ -243,6 +243,19 @@
   window.TB_VARIANT = "h1-" + v;
 })();
 </script>
+<!-- 광고별 첫 화면(2026-10-26) · 주소의 utm_content가 사례 목록(scripts/references.config.json adCases)과 같으면 첫 화면을 그 가게 사례로 · 읽기만 하고 저장 · 전송은 하지 않는다(utm 저장은 track.js 그대로) -->
+<script>
+(function(){
+  var cases = [{"utm":"B_인생뼈다귀","store":"인생뼈다귀 본점","short":"인생뼈다귀","tag":"용인 모현 감자탕집 · 인생뼈다귀 본점","photo":"/images/reviews/insaeng.jpg","photoAlt":"인생뼈다귀 본점 감자탕","before":0,"after":66,"chip":"7월부터","beforeLabel":"7월 1일 첫 측정","afterLabel":"8~10월 평균 66%","weekly":[0,6.7,23.3,53.3,80,73.3,86.7,76.7,60,69,56,73.3,68,61.1,53,58.7],"band":11,"quote":"답변률도 좋아지고 바뀌는 시대에 맞게 발빠르게 준비할 수 있는 좋은 시스템인거 같아요","owner":"이현민 사장님","pilot":false},{"utm":"A_탐라담","store":"탐라담 영종도점","short":"탐라담","tag":"영종도 고깃집 · 탐라담 영종도점","photo":"/images/reviews/tamladam.jpg","photoAlt":"탐라담 영종도점 고기 굽는 모습","before":0,"after":46.7,"chip":"13주","beforeLabel":"6월 1일 첫 측정","afterLabel":"8월 한 달 평균 46.7%","weekly":[0,0,0,7.8,16.7,23.3,40,46.7,33.3,53.3,43.3,40,50],"band":4,"quote":"지피티에서 추천받고 연락 하셨다고 12명 예약 하시는 분도 생기고 전화 문의도 많이 늘었어요!","owner":"백지혜 사장님","pilot":true}];
+  try {
+    var m = /[?&]utm_content=([^&#]*)/.exec(location.search); if (!m) return;
+    var v = m[1].replace(/\+/g, " ");
+    for (var i = 0; i < 3; i++) { try { var d = decodeURIComponent(v); if (d === v) break; v = d; } catch (e) { break; } }
+    v = v.replace(/^\s+|\s+$/g, "").toLowerCase();
+    for (var j = 0; j < cases.length; j++) if (String(cases[j].utm).toLowerCase() === v) { window.TB_CASE = cases[j]; document.documentElement.className += " case-on"; break; }
+  } catch (e) {}
+})();
+</script>
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -663,6 +676,27 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .hero-bottom{grid-area:bottom;align-self:start}
 .hero-bottom .lead{margin-top:22px}
 .hero-fig{grid-area:fig}
+.case-hero{display:none}
+.case-on section.hero{display:none!important}
+.case-on .case-hero{display:block;max-width:640px;padding-top:24px;padding-bottom:48px}
+.ch-photo{position:relative;height:220px;border-radius:22px;overflow:hidden;background:var(--soft)}
+.ch-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ch-tag{position:absolute;left:14px;top:12px;background:var(--ink);color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:5px 12px}
+.ch-body{position:relative;margin:-36px 12px 0;background:#fff;border-radius:22px;padding:20px 20px 16px;box-shadow:0 10px 28px rgba(25,31,40,.12)}
+.ch-h{margin:0;font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-.02em}
+.ch-num{display:flex;align-items:baseline;gap:10px;margin-top:8px}
+.ch-b{font-size:26px;font-weight:800;color:#8B95A1}
+.ch-a{font-size:52px;font-weight:900;color:var(--accent);letter-spacing:-.04em;line-height:1}
+.ch-chip{margin-left:auto;align-self:center;background:var(--accent-soft);color:var(--deep);font-size:14px;font-weight:800;border-radius:999px;padding:4px 11px;white-space:nowrap}
+.ch-graph{display:block;width:100%;height:84px;margin-top:8px}
+.ch-lab{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:700;color:var(--ink-mid)}
+.ch-lab span:last-child{color:var(--deep)}
+.ch-q{display:flex;gap:10px;align-items:flex-start;margin:16px 8px 0}
+.ch-av{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.ch-q p{margin:0;font-size:15px;line-height:1.55;font-weight:700}
+.ch-who{display:block;margin-top:2px;font-size:13px;font-weight:400;color:var(--ink-mid)}
+.case-hero .kbtn{width:100%;margin-top:16px}
+@media (max-width:640px){.case-on .case-hero{padding-top:0;padding-bottom:36px}.ch-photo{height:170px;margin:0 -18px;border-radius:0}.ch-h{font-size:21px}.ch-body{margin:-34px -6px 0;padding:20px 18px 16px}.ch-q{margin:14px 0 0}}
 .h1{font-weight:800;letter-spacing:-0.035em;line-height:1.18}
 .h1 span.l{display:block;white-space:nowrap}
 .h1-kw{display:block;margin-top:16px;max-width:620px;font-size:17px;font-weight:600;letter-spacing:-0.01em;line-height:1.6;color:var(--ink-mid);white-space:normal;word-break:keep-all}
@@ -801,11 +835,55 @@ fbq('track', 'PageView');
 
 </nav>
 <a class="nl-m" href="/content/">콘텐츠</a>
-<a class="kbtn kbtn-sm fbtn" href="#inquiry" data-pos="header">무료 리포트 신청</a>
+<a class="kbtn kbtn-sm fbtn" href="#inquiry" data-pos="header">우리 가게도 무료로 확인하기</a>
 </div>
 </header>
 
 <main id="top">
+
+<!-- 광고별 첫 화면(2026-10-26) · <head> 스크립트가 고른 사례(window.TB_CASE)가 있을 때만 보인다 · 없으면 아래 원래 첫 화면 -->
+<section class="wrap case-hero" id="caseHero" data-sec="hero" aria-label="광고에서 보신 가게 사례">
+<div class="ch-photo"><img id="chImg" alt="" width="640" height="400" decoding="async"><span class="ch-tag" id="chTag"></span></div>
+<div class="ch-body">
+<h2 class="ch-h"><span id="chName"></span> 사장님 가게,<br>ChatGPT 추천 비율이 이렇게 됐어요</h2>
+<div class="ch-num"><span class="ch-b" id="chB"></span><svg width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><path d="M2 9h20M15 2l7 7-7 7" fill="none" stroke="#8B95A1" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><b class="ch-a" id="chA"></b><span class="ch-chip" id="chChip"></span></div>
+<svg class="ch-graph" id="chG" role="img" aria-label=""></svg>
+<div class="ch-lab"><span id="chL1"></span><span id="chL2"></span></div>
+</div>
+<div class="ch-q"><span class="ch-av" id="chAv" aria-hidden="true"></span><p><span id="chQ"></span><span class="ch-who" id="chWho"></span></p></div>
+<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="hero-case">우리 가게도 무료로 확인하기</a>
+</section>
+<script>
+(function(){
+  var c = window.TB_CASE; if (!c) return;
+  var $ = function (id) { return document.getElementById(id); };
+  var pct = function (n) { return (Math.round(n * 10) / 10) + "%"; };
+  $("chImg").src = c.photo; $("chImg").alt = c.photoAlt || c.store;
+  $("chTag").textContent = c.tag;
+  $("chName").textContent = c.short;
+  $("chB").textContent = pct(c.before || 0);
+  $("chA").textContent = pct(c.after);
+  $("chChip").textContent = c.chip || "";
+  $("chL1").textContent = c.beforeLabel; $("chL2").textContent = c.afterLabel;
+  $("chQ").textContent = "“" + c.quote + "”";
+  $("chWho").textContent = c.owner + (c.pilot ? " · 무료 파일럿 참여" : "");
+  $("chAv").textContent = String(c.owner).charAt(0);
+  // 매주 잰 값 선 그래프 · 큰 숫자가 가리키는 마지막 구간(band)은 바탕색 · 실제 너비로 그려 선이 늘어나지 않게
+  var g = $("chG"), v = c.weekly || [], W = Math.round(g.getBoundingClientRect().width) || 318, H = 84, NS = "http://www.w3.org/2000/svg";
+  g.setAttribute("viewBox", "0 0 " + W + " " + H);
+  g.setAttribute("aria-label", c.store + " 주별 ChatGPT 추천 비율 · " + c.beforeLabel + " " + pct(c.before || 0) + " · " + c.afterLabel);
+  if (v.length > 1) {
+    var step = (W - 12) / (v.length - 1), x = function (i) { return 6 + i * step; }, y = function (p) { return H - 6 - (p / 100) * (H - 14); };
+    var mk = function (tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); g.appendChild(e); return e; };
+    var bx = x(Math.max(0, v.length - (c.band || 1))) - step / 2; if (bx < 0) bx = 0;
+    mk("rect", { x: bx.toFixed(1), y: 0, width: (W - bx).toFixed(1), height: H, rx: 8, fill: "#FFF1EC" });
+    mk("line", { x1: bx.toFixed(1), x2: W, y1: y(c.after).toFixed(1), y2: y(c.after).toFixed(1), stroke: "#E85D3A", "stroke-width": 1.5, "stroke-dasharray": "4 4" });
+    mk("polyline", { points: v.map(function (p, i) { return x(i).toFixed(1) + "," + y(p).toFixed(1); }).join(" "), fill: "none", stroke: "#E85D3A", "stroke-width": 3, "stroke-linejoin": "round", "stroke-linecap": "round" });
+    mk("circle", { cx: x(0).toFixed(1), cy: y(v[0]).toFixed(1), r: 4.5, fill: "#fff", stroke: "#8B95A1", "stroke-width": 2.5 });
+    mk("circle", { cx: x(v.length - 1).toFixed(1), cy: y(v[v.length - 1]).toFixed(1), r: 4.5, fill: "#E85D3A" });
+  }
+})();
+</script>
 
 <section class="wrap hero" data-sec="hero">
 <div class="hero-top">
@@ -815,7 +893,7 @@ fbq('track', 'PageView');
 </div>
 <div class="hero-bottom">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 28px">
-<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="hero">무료 리포트 신청하기</a>
+<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="hero">우리 가게도 무료로 확인하기</a>
 </div>
 <div class="reassure">
 <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F7A4A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>손님 질문 20개 무료 리포트</span>
@@ -1021,7 +1099,7 @@ fbq('track', 'PageView');
 </div>
 </div>
 <label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
-<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn" data-track="inquiry-submit">무료 리포트 신청하기</button>
+<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn" data-track="inquiry-submit">우리 가게도 무료로 확인하기</button>
 <p class="inq-status" id="inqStatus" role="status" aria-live="polite"></p>
 </form>
 </div>
@@ -1054,7 +1132,7 @@ fbq('track', 'PageView');
 <div class="wrap" style="padding-top: 80px; padding-bottom: 80px; text-align: center">
 <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 800">우리 가게는 나올까요?</h2>
 <p style="font-size: 17px; color: #B0B8C1; margin-top: 12px">가게 이름과 연락처만 남겨 주세요.</p>
-<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="final" style="margin-top: 28px">무료 리포트 신청하기</a>
+<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="final" style="margin-top: 28px">우리 가게도 무료로 확인하기</a>
 </div>
 </section>
 
@@ -1079,7 +1157,7 @@ fbq('track', 'PageView');
 
 <div class="sticky" id="sticky">
 <a class="price" href="#price">가격</a>
-<a class="kbtn fbtn" href="#inquiry" data-pos="sticky">무료 리포트 신청하기</a>
+<a class="kbtn fbtn" href="#inquiry" data-pos="sticky">우리 가게도 무료로 확인하기</a>
 </div>
 
 </div>
@@ -1092,6 +1170,7 @@ fbq('track', 'PageView');
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ seen[e.target.id || e.target.className] = e.isIntersecting; }); var hide = Object.keys(seen).some(function(k){ return seen[k]; }); st.classList.toggle("hide", hide); });
   ["final", "inquiry"].forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
   var hb = document.querySelector(".hero-bottom .fbtn"); if (hb) { hb.id = hb.id || "heroCta"; io.observe(hb); }
+  var cb = document.querySelector("#caseHero .fbtn"); if (cb) { cb.id = cb.id || "caseCta"; io.observe(cb); }
   var f = document.querySelector(".foot"); if (f) io.observe(f);
 })();
 </script>
@@ -1291,7 +1370,7 @@ fbq('track', 'PageView');
     fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: hasCall ? cday : "", preferred_call_slot: hasCall ? ctime : "", inquiry: ((hasCall ? "[희망 통화] " + callText + "\n" : "") + v("inq_inquiry")).trim() }) })
       .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
       .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
-      .finally(function () { btn.disabled = false; btn.textContent = "무료 리포트 신청하기"; });
+      .finally(function () { btn.disabled = false; btn.textContent = "우리 가게도 무료로 확인하기"; });
   });
 })();
 </script>
