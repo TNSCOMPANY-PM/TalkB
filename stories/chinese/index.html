@@ -55,6 +55,9 @@ section[id]{scroll-margin-top:80px}
 .logo small{font-size:14px;color:var(--muted);font-weight:700}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
+button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
+.nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
+@media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
 .nl-m{display:none;margin-left:auto;font-size:15px;font-weight:700;color:var(--ink-mid);padding:8px 10px;min-height:44px;align-items:center;border-radius:8px}
 .kbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--kakao);color:#191919;font-weight:800;border-radius:14px;min-height:48px;padding:0 22px;font-size:16px;border:0}
 .kbtn:hover{color:#191919;background:#F5DC00}
@@ -472,6 +475,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .ch-q p{margin:0;font-size:15px;line-height:1.55;font-weight:700}
 .ch-who{display:block;margin-top:2px;font-size:13px;font-weight:400;color:var(--ink-mid)}
 .case-hero .kbtn{width:100%;margin-top:16px}
+.ch-what{margin:12px 0 0;font-size:14px;line-height:1.55;color:var(--ink-mid);word-break:keep-all}
+.ch-ease{margin:10px 0 0;font-size:14.5px;line-height:1.5;font-weight:600;color:var(--ink-mid);text-align:center;word-break:keep-all}
 @media (max-width:640px){.case-on .case-hero{padding-top:0;padding-bottom:36px}.ch-photo{height:170px;margin:0 -18px;border-radius:0}.ch-h{font-size:21px}.ch-body{margin:-34px -6px 0;padding:20px 18px 16px}.ch-q{margin:14px 0 0}}
 .h1{font-weight:800;letter-spacing:-0.035em;line-height:1.18}
 .h1 span.l{display:block;white-space:nowrap}
@@ -651,15 +656,15 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <header class="hdr">
 <div class="hdr-in">
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
-<nav class="nav" aria-label="주요 메뉴">
+<nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
 <a class="nl" href="/content/">콘텐츠</a>
 
 <a class="nl" href="/#inquiry">문의하기</a>
 </nav>
-<a class="nl-m" href="/stories/">사장님 이야기</a>
-<a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">무료 리포트 신청</a>
+<button class="nl-m" type="button" aria-expanded="false" aria-label="메뉴 열기" onclick="var h=this.closest('.hdr'),o=h.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기')"><svg class="ic-m" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg><svg class="ic-x" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>
+<a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">우리 가게도 무료로 확인하기</a>
 </div>
 </header>
 <main class="g-main">
@@ -670,7 +675,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 
 <div class="g-tabs"></div>
 <p class="g-empty">중식 사장님 이야기를 준비하고 있어요.</p>
-<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">무료 리포트 신청하기</a></div>
+<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">우리 가게도 무료로 확인하기</a></div>
 </div>
 </main>
 <footer class="foot">

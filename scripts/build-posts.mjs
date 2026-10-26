@@ -607,7 +607,7 @@ ${ld.map(jsonLd).join("\n")}
 <header class="hdr">
 <div class="hdr-in">
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
-<nav class="nav" aria-label="주요 메뉴">
+<nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
 <a class="nl" href="/${GUIDE_DIR}/"${section === "guide" ? ' aria-current="page"' : ""}>콘텐츠</a>
@@ -615,8 +615,8 @@ ${H.hasStories ? `<a class="nl" href="/${STORIES_DIR}/"${section === "stories" ?
 ` : ""}
 <a class="nl" href="/#inquiry">문의하기</a>
 </nav>
-${section === "stories" ? `<a class="nl-m" href="/${STORIES_DIR}/">사장님 이야기</a>` : `<a class="nl-m" href="/${GUIDE_DIR}/">콘텐츠</a>`}
-<a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">무료 리포트 신청</a>
+<button class="nl-m" type="button" aria-expanded="false" aria-label="메뉴 열기" onclick="var h=this.closest('.hdr'),o=h.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기')"><svg class="ic-m" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg><svg class="ic-x" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>
+<a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">우리 가게도 무료로 확인하기</a>
 </div>
 </header>
 `;
@@ -722,7 +722,7 @@ ${bodyHtml(p)}
 <section class="g-sec" aria-labelledby="g-faq"><h2 id="g-faq">자주 묻는 질문</h2>
 ${p.faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("\n")}
 </section>
-${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">같이 읽으면 좋은 글</h2><div class="g-cards">${rel.map(card).join("")}</div></section>\n` : ""}<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">무료 리포트 신청하기</a></div>
+${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">같이 읽으면 좋은 글</h2><div class="g-cards">${rel.map(card).join("")}</div></section>\n` : ""}<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">우리 가게도 무료로 확인하기</a></div>
 </div></article>
 </main>`;
   return head + main + pageTail(H);
@@ -810,7 +810,7 @@ ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a hre
 <p class="lead" style="margin-top:12px">${esc(GUIDE_DEF)}</p>
 ${body}
 ${sorted.length ? hubIntro(GUIDE_INTRO(sorted), guideFaq(hasStories)) : ""}
-<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-list-cta">무료 리포트 신청하기</a></div>
+<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-list-cta">우리 가게도 무료로 확인하기</a></div>
 </div>
 </main>`;
   return head + main + pageTail(H);
@@ -931,7 +931,7 @@ export function renderCaseHub(H, hub, all) {
 ${sorted.length ? `<p style="margin-top:10px;font-size:16px;font-weight:700">${esc(hubStat(sorted))}</p>` : ""}
 ${nav}
 ${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>${hubIntro(STORY_INTRO(isRoot ? null : hub.label), isRoot ? STORY_FAQ : [])}` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
-<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">무료 리포트 신청하기</a></div>
+<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">우리 가게도 무료로 확인하기</a></div>
 </div>
 </main>`;
   return head + main + pageTail(H);
