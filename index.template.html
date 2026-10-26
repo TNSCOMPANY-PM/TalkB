@@ -1100,7 +1100,7 @@ fbq('track', 'PageView');
 </div>
 <div class="inq-call">
 <p class="inq-call-t">결과를 통화로 설명드려요</p>
-<p>편한 날짜와 시간을 고르시면 그때 연락드려요(선택)</p>
+<p>편한 날짜와 시간을 골라 주시면 그때 연락드려요 <span class="req">*</span></p>
 <fieldset class="cal"><legend>날짜</legend>
 <div class="cal-picked" id="calPicked" hidden><b id="calPickedT"></b><button type="button" id="calChange">날짜 바꾸기</button></div>
 <div class="cal-open" id="calOpen">
@@ -1375,8 +1375,9 @@ fbq('track', 'PageView');
     if (!name || !place || !phone) { show("err", "성함, 가게 이름, 휴대폰 번호를 적어 주세요."); return; }
     if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
     var cday = v("inq_day"), ctime = v("inq_time");
-    // 통화 날짜 · 시간은 선택(2026-10-22) · 둘 다 골랐을 때만 보낸다
-    var hasCall = !!(cday && ctime);
+    // 통화 날짜 · 시간 필수(2026-10-27 사장 · 10/22 선택으로 바꿨다가 시간 없는 문의가 들어와 되돌림)
+    if (!cday || !ctime) { show("err", cday ? "통화 받으실 시간을 골라 주세요." : "통화 받으실 날짜와 시간을 골라 주세요."); var cal = document.querySelector(".inq-call"); if (cal && cal.scrollIntoView) cal.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    var hasCall = true;
     var callText = hasCall ? dayText + " " + timeText : "";
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     // 대상 업종(2026-10-19) · 링크에 종류가 보이면 바로 안내 · 안 보이는 링크는 서버가 확인해 422로 돌려준다
