@@ -470,6 +470,11 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pc-terms li{font-size:13.5px;font-weight:700;color:var(--ok);background:#E8F6EE;border-radius:999px;padding:6px 12px}
 .pc-terms li.hot{color:var(--deep);background:var(--accent-soft)}
 .pc-btns{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+/* 10/28 가격표 열 강조(헛클릭 기획 A) · 요금제 머리나 칸을 누르면 그 열만 강조 · 이동 없음 */
+.pt thead th[data-col],.pt td[data-col]{cursor:pointer}
+.pt .pt-pick{background:#FFEDE4!important;box-shadow:inset 2px 0 0 var(--accent),inset -2px 0 0 var(--accent)!important}
+.pt thead th.pt-pick{box-shadow:inset 2px 0 0 var(--accent),inset -2px 0 0 var(--accent),inset 0 3px 0 var(--accent)!important}
+
 .pc-btns .kbtn{min-width:280px}
 .pc-detail{display:inline-flex;align-items:center;justify-content:center;min-height:56px;min-width:200px;padding:0 22px;border:1.5px solid var(--ink);border-radius:14px;background:#fff;font-weight:800;font-size:16px;color:var(--ink)}
 .pc-ent{margin-top:12px;text-align:center;font-size:14px;color:var(--muted)}
@@ -1064,8 +1069,30 @@ fbq('track', 'PageView');
 <script>(function(){var w=document.currentScript&&document.currentScript.previousElementSibling;if(!w||!w.classList.contains("pmc"))return;var t=w.querySelector(".pmc-track"),cs=[].slice.call(w.querySelectorAll(".pmc-card")),tb=[].slice.call(w.querySelectorAll(".pmc-tabs button"));function go(i,sm){var c=cs[i];if(!c)return;t.scrollTo({left:c.offsetLeft-(t.clientWidth-c.clientWidth)/2,behavior:sm?"smooth":"auto"})}function cur(){var m=t.scrollLeft+t.clientWidth/2,b=0,d=1e9;cs.forEach(function(c,i){var x=Math.abs(c.offsetLeft+c.clientWidth/2-m);if(x<d){d=x;b=i}});return b}function mark(){var i=cur();tb.forEach(function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});cs.forEach(function(c,k){c.classList.toggle("on",k===i)})}tb.forEach(function(x,k){x.addEventListener("click",function(){go(k,true)})});w.querySelector(".pmc-prev").addEventListener("click",function(){go(Math.max(0,cur()-1),true)});w.querySelector(".pmc-next").addEventListener("click",function(){go(Math.min(cs.length-1,cur()+1),true)});var r;t.addEventListener("scroll",function(){cancelAnimationFrame(r);r=requestAnimationFrame(mark)},{passive:true});var touched=false;t.addEventListener("pointerdown",function(){touched=true},{passive:true});function init(){if(!touched&&t.clientWidth){go(1,false);mark()}}init();requestAnimationFrame(init);document.addEventListener("DOMContentLoaded",init);window.addEventListener("pageshow",init);if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){init();setTimeout(init,120)}})},{threshold:0.05});io.observe(t)}window.addEventListener("load",init);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(init);window.addEventListener("resize",function(){if(t.clientWidth)go(cur(),false)})})();</script><!--/pt-->
 <ul class="pc-terms"><li>약정 없음</li><li>결제 후 3영업일 내 전액 환불 가능</li><li class="hot">같은 동네·같은 업종 3곳까지만</li></ul>
 <div class="pc-btns">
+<a class="kbtn kbtn-lg fbtn" href="#inquiry" data-pos="price-cta">우리 가게도 무료로 확인하기</a>
 <a class="pc-detail" href="/pricing/" data-pos="price-plan">요금제 자세히 보기</a>
 </div>
+<script>
+// 10/28 가격표 열 강조(PLAN-talkb-landing-deadclick-20261028 A) · 요금제 머리 · 칸을 누르면 그 열만 강조 · 다시 누르면 끔 · 이동 없음
+(function(){
+  var t = document.querySelector("table.pt"); if (!t) return;
+  var keys = [].slice.call(t.querySelectorAll("thead th[id]")).map(function(th){ return th.id; });
+  [].slice.call(t.rows).forEach(function(r){
+    var c = 0;
+    [].slice.call(r.cells).forEach(function(cell){
+      var span = cell.colSpan || 1;
+      if (c >= 1 && span === 1 && keys[c - 1]) { cell.setAttribute("data-col", keys[c - 1]); if (cell.tagName === "TH") cell.setAttribute("data-track", "price-col-" + keys[c - 1]); }
+      c += span;
+    });
+  });
+  var on = null;
+  t.addEventListener("click", function(e){
+    var cell = e.target.closest && e.target.closest("[data-col]"); if (!cell || e.target.closest("a,button")) return;
+    var k = cell.getAttribute("data-col"); on = on === k ? null : k;
+    [].slice.call(t.querySelectorAll("[data-col]")).forEach(function(x){ x.classList.toggle("pt-pick", x.getAttribute("data-col") === on); });
+  });
+})();
+</script>
 <p class="pc-ent">매장 10개 이상이면 <a href="/enterprise/" data-pos="price-enterprise">엔터프라이즈 문의</a></p>
 </div>
 </section>
@@ -1253,7 +1280,8 @@ fbq('track', 'PageView');
   function close(){ if (view.close) view.close(); else view.removeAttribute("open"); resume(); }
   document.addEventListener("keydown", function(e){ if (e.key === "Enter" && e.target.classList && e.target.classList.contains("frs-view")) e.target.click(); });
   document.getElementById("csX").addEventListener("click", close);
-  view.addEventListener("click", function(e){ if (e.target === view) close(); });
+  // 그림을 눌러도 닫힌다(10/28 · 휴대폰에선 그림이 화면을 채워 바깥을 누를 데가 없었다)
+  view.addEventListener("click", function(e){ if (e.target === view || e.target === img) close(); });
   view.addEventListener("close", resume);
 })();
 </script>

@@ -204,8 +204,13 @@
     addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; mAt = now(); }, { passive: true });
 
     // 클릭 · 헛클릭(눌러도 1초 안에 아무 변화 없음) · 화난 클릭(1초 안 30px 안에서 3번)
-    var recent = [], mutated = false;
-    if ("MutationObserver" in window) new MutationObserver(function () { mutated = true; }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, characterData: true });
+    // 10/28 헛클릭 판정 바로잡기(PLAN-talkb-landing-deadclick-20261028 C)
+    //  · 저절로 움직이는 곳(사례 흐름 · 후기 넘김 · 첫 화면 답변 넘김)의 변화는 반응으로 치지 않는다(그동안 헛클릭을 놓쳤다)
+    //  · 글자를 끌어 고른 클릭은 헛클릭으로 세지 않는다
+    var recent = [], mutated = false, AUTO = "#csRoll,#rsTrack,.hero-fig";
+    if ("MutationObserver" in window) new MutationObserver(function (rs) {
+      for (var i = 0; i < rs.length; i++) { var n = rs[i].target; n = n && n.nodeType === 1 ? n : n && n.parentElement; if (!n || !n.closest || !n.closest(AUTO)) { mutated = true; return; } }
+    }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, characterData: true });
     document.addEventListener("click", function (e) {
       var tg = e.target; if (!tg || !tg.closest) return;
       var act = tg.closest("a,button,input,select,textarea,label,summary,[role=button],[role=tab],[onclick],[data-track]");
@@ -217,7 +222,8 @@
       var n = now(); recent = recent.filter(function (r) { return n - r.at < 1000 && Math.abs(r.x - e.clientX) < 30 && Math.abs(r.y - e.clientY) < 30; });
       recent.push({ at: n, x: e.clientX, y: e.clientY });
       if (recent.length === 3) S.flags.rage++;
-      if (!act) {
+      var picked = ""; try { picked = String(window.getSelection ? getSelection() : ""); } catch (er) {}
+      if (!act && !picked) {
         mutated = false; var y0 = scrollY;
         setTimeout(function () { if (!mutated && scrollY === y0) { ent.d = 1; S.flags.dead++; dirty = true; } }, 1000);
       }
