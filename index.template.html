@@ -714,7 +714,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .h1 span.l{display:block;white-space:nowrap}
 .h1-kw{display:block;margin-top:16px;max-width:620px;font-size:17px;font-weight:600;letter-spacing:-0.01em;line-height:1.6;color:var(--ink-mid);white-space:normal;word-break:keep-all}
 @media (max-width:640px){.h1-kw{margin-top:12px;font-size:15px}}
-.h1-a .h1 .vb,.h1-b .h1 .va{display:none}
+.h1-a .h1 .vb,.h1-b .h1 .va:not(.vad){display:none}
 .h1 .va{font-size:clamp(36px,4.8vw,56px)}
 .h1 .vb{font-size:clamp(30px,4vw,48px)}
 .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -910,7 +910,7 @@ fbq('track', 'PageView');
 <h1 class="h1" id="h1"><span class="va"><span class="l">옆 가게는</span> <span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span> <span class="l">사장님 가게는요?</span></span><small class="h1-kw">손님이 AI에 맛집을 물으면 우리 가게가 나오게, <span style="white-space: nowrap">식당·카페·술집 AI 마케팅 토크비</span></small></h1>
 <template id="h1b"><span class="vb"><span class="l">손님이 ChatGPT에</span> <span class="l">동네 맛집을 물으면,</span> <span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span><small class="h1-kw">손님이 AI에 맛집을 물으면 우리 가게가 나오게, <span style="white-space: nowrap">식당·카페·술집 AI 마케팅 토크비</span></small></template>
 <script>if (window.TB_VARIANT === "h1-b") { document.getElementById("h1").innerHTML = document.getElementById("h1b").innerHTML; }</script>
-<!-- 광고별 제목 · 부제(2026-11-02) · 주소의 utm_content가 목록(scripts/references.config.json adHeroes)과 같으면 글자만 바꾼다 · 없거나 다르면 그대로 -->
+<!-- 광고별 제목 · 부제(2026-11-02) · 광고 제목은 vad 표시라 제목 A/B의 b 그룹에서도 보인다(11/3) · 주소의 utm_content가 목록(scripts/references.config.json adHeroes)과 같으면 글자만 바꾼다 · 없거나 다르면 그대로 -->
 <script>
 (function(){
   var heroes = {{adHeroesJson}};
@@ -921,7 +921,7 @@ fbq('track', 'PageView');
     v = v.replace(/^\s+|\s+$/g, "").toLowerCase();
     for (var j = 0; j < heroes.length; j++) if (String(heroes[j].utm).toLowerCase() === v) {
       var h1 = document.getElementById("h1"); h1.textContent = "";
-      var t = document.createElement("span"); t.className = "va"; for (var k = 0; k < heroes[j].title.length; k++) { if (k) t.appendChild(document.createTextNode(" ")); var l = document.createElement("span"); l.className = "l"; l.textContent = heroes[j].title[k]; t.appendChild(l); } h1.appendChild(t);
+      var t = document.createElement("span"); t.className = "va vad"; for (var k = 0; k < heroes[j].title.length; k++) { if (k) t.appendChild(document.createTextNode(" ")); var l = document.createElement("span"); l.className = "l"; l.textContent = heroes[j].title[k]; t.appendChild(l); } h1.appendChild(t);
       var s = document.createElement("small"); s.className = "h1-kw"; s.textContent = heroes[j].sub + (heroes[j].pilot ? " · 토크비 무료 파일럿 참여 매장" : ""); h1.appendChild(s);
       window.TB_HERO = heroes[j];
       break;
