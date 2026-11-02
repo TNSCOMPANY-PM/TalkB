@@ -31,9 +31,9 @@ for (const s of Object.values(data.stores)) {
   });
   // </script> 로 끊기지 않게 < 를 이스케이프
   data.adCasesJson = JSON.stringify(cases).replace(/</g, "\\u003c");
-  // 광고별 제목 · 부제(2026-11-02) · 첫 화면 글자만 바꾼다 · 사례 화면(adCases)과 별개
+  // 광고별 제목 · 부제(2026-11-02) · 첫 화면 글자만 바꾼다 · 사례 화면(adCases)과 별개 · 제목 칸은 줄바꿈이 꺼져 있어 title은 줄 목록으로 적는다
   const heroes = cfg.adHeroes ?? [];
-  for (const h of heroes) if (!h.utm || !h.title || !h.sub) { console.error("adHeroes 빠진 칸:", JSON.stringify(h)); process.exit(1); }
+  for (const h of heroes) if (!h.utm || !Array.isArray(h.title) || !h.title.length || !h.sub) { console.error("adHeroes 빠진 칸:", JSON.stringify(h)); process.exit(1); }
   data.adHeroesJson = JSON.stringify(heroes).replace(/</g, "\\u003c");
 }
 

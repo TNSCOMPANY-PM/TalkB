@@ -913,7 +913,7 @@ fbq('track', 'PageView');
 <!-- 광고별 제목 · 부제(2026-11-02) · 주소의 utm_content가 목록(scripts/references.config.json adHeroes)과 같으면 글자만 바꾼다 · 없거나 다르면 그대로 -->
 <script>
 (function(){
-  var heroes = [{"utm":"A3_일산게장집","title":"처음엔 0%, 13주 뒤 73.3%","sub":"고양시 일산게장집, ChatGPT 추천 비율 최근 4주 평균"},{"utm":"B3_인생뼈다귀답변","title":"ChatGPT 답 1순위, 인생뼈다귀 본점","sub":"처음 3.1%에서 9주 만에 66%"},{"utm":"C3_탐라담후기","title":"ChatGPT 보고 12명 단체 예약","sub":"탐라담 영종도점 사장님 후기 · 추천 비율 0% → 46.7%"}];
+  var heroes = [{"utm":"A3_일산게장집","title":["처음엔 0%,","13주 뒤 73.3%"],"sub":"고양시 일산게장집, ChatGPT 추천 비율 최근 4주 평균"},{"utm":"B3_인생뼈다귀답변","title":["ChatGPT 답 1순위,","인생뼈다귀 본점"],"sub":"처음 3.1%에서 9주 만에 66%"},{"utm":"C3_탐라담후기","title":["ChatGPT 보고","12명 단체 예약"],"sub":"탐라담 영종도점 사장님 후기 · 추천 비율 0% → 46.7%"}];
   try {
     var m = /[?&]utm_content=([^&#]*)/.exec(location.search); if (!m) return;
     var v = m[1].replace(/\+/g, " ");
@@ -921,7 +921,7 @@ fbq('track', 'PageView');
     v = v.replace(/^\s+|\s+$/g, "").toLowerCase();
     for (var j = 0; j < heroes.length; j++) if (String(heroes[j].utm).toLowerCase() === v) {
       var h1 = document.getElementById("h1"); h1.textContent = "";
-      var t = document.createElement("span"); t.className = "va"; var l = document.createElement("span"); l.className = "l"; l.textContent = heroes[j].title; t.appendChild(l); h1.appendChild(t);
+      var t = document.createElement("span"); t.className = "va"; for (var k = 0; k < heroes[j].title.length; k++) { if (k) t.appendChild(document.createTextNode(" ")); var l = document.createElement("span"); l.className = "l"; l.textContent = heroes[j].title[k]; t.appendChild(l); } h1.appendChild(t);
       var s = document.createElement("small"); s.className = "h1-kw"; s.textContent = heroes[j].sub; h1.appendChild(s);
       break;
     }
