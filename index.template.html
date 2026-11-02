@@ -252,7 +252,9 @@
     var v = m[1].replace(/\+/g, " ");
     for (var i = 0; i < 3; i++) { try { var d = decodeURIComponent(v); if (d === v) break; v = d; } catch (e) { break; } }
     v = v.replace(/^\s+|\s+$/g, "").toLowerCase();
-    for (var j = 0; j < cases.length; j++) if (String(cases[j].utm).toLowerCase() === v) { window.TB_CASE = cases[j]; document.documentElement.className += " case-on"; break; }
+    var code = v.indexOf("%") >= 0 ? v.split("_")[0] + "_" : null; // 광고 이름이 두 번 인코딩된 채 잘려 오면(11/3 B3 5건) 앞 코드(B3_)로 맞춘다
+    var hit = function (u) { u = String(u).toLowerCase(); return u === v || (code && u.indexOf(code) === 0); };
+    for (var j = 0; j < cases.length; j++) if (hit(cases[j].utm)) { window.TB_CASE = cases[j]; document.documentElement.className += " case-on"; break; }
   } catch (e) {}
 })();
 </script>
@@ -919,7 +921,9 @@ fbq('track', 'PageView');
     var v = m[1].replace(/\+/g, " ");
     for (var i = 0; i < 3; i++) { try { var d = decodeURIComponent(v); if (d === v) break; v = d; } catch (e) { break; } }
     v = v.replace(/^\s+|\s+$/g, "").toLowerCase();
-    for (var j = 0; j < heroes.length; j++) if (String(heroes[j].utm).toLowerCase() === v) {
+    var code = v.indexOf("%") >= 0 ? v.split("_")[0] + "_" : null; // 광고 이름이 두 번 인코딩된 채 잘려 오면(11/3 B3 5건) 앞 코드(B3_)로 맞춘다
+    var hit = function (u) { u = String(u).toLowerCase(); return u === v || (code && u.indexOf(code) === 0); };
+    for (var j = 0; j < heroes.length; j++) if (hit(heroes[j].utm)) {
       var h1 = document.getElementById("h1"); h1.textContent = "";
       var t = document.createElement("span"); t.className = "va vad"; for (var k = 0; k < heroes[j].title.length; k++) { if (k) t.appendChild(document.createTextNode(" ")); var l = document.createElement("span"); l.className = "l"; l.textContent = heroes[j].title[k]; t.appendChild(l); } h1.appendChild(t);
       var s = document.createElement("small"); s.className = "h1-kw"; s.textContent = heroes[j].sub + (heroes[j].pilot ? " · 토크비 무료 파일럿 참여 매장" : ""); h1.appendChild(s);
