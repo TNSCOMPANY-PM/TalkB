@@ -922,7 +922,8 @@ fbq('track', 'PageView');
     for (var j = 0; j < heroes.length; j++) if (String(heroes[j].utm).toLowerCase() === v) {
       var h1 = document.getElementById("h1"); h1.textContent = "";
       var t = document.createElement("span"); t.className = "va"; for (var k = 0; k < heroes[j].title.length; k++) { if (k) t.appendChild(document.createTextNode(" ")); var l = document.createElement("span"); l.className = "l"; l.textContent = heroes[j].title[k]; t.appendChild(l); } h1.appendChild(t);
-      var s = document.createElement("small"); s.className = "h1-kw"; s.textContent = heroes[j].sub; h1.appendChild(s);
+      var s = document.createElement("small"); s.className = "h1-kw"; s.textContent = heroes[j].sub + (heroes[j].pilot ? " · 토크비 무료 파일럿 참여 매장" : ""); h1.appendChild(s);
+      window.TB_HERO = heroes[j];
       break;
     }
   } catch (e) {}
@@ -979,6 +980,25 @@ fbq('track', 'PageView');
 </figure>
 </div>
 </section>
+
+<!-- 광고별 답변 예시(2026-11-02) · 설정에 실제 답변이 있는 가게만 오른쪽 예시를 그 가게 하나로 · 없으면 기본 예시 그대로 -->
+<script>
+(function(){
+  var f = window.TB_HERO && window.TB_HERO.fig; if (!f) return;
+  var g = document.querySelector(".hero-fig .gpt"); if (!g) return;
+  var tabs = g.querySelector(".gpt-tabs"); if (tabs) tabs.parentNode.removeChild(tabs);
+  ["gp1", "gp2"].forEach(function (id) { var e = document.getElementById(id); if (e) e.parentNode.removeChild(e); });
+  var p = document.getElementById("gp0"); p.removeAttribute("role"); p.removeAttribute("aria-labelledby");
+  p.querySelector(".gpt-q").textContent = f.question;
+  var a = p.querySelector(".gpt-a"), ps = a.querySelectorAll("p");
+  ps[0].querySelector("mark").textContent = f.store;
+  ps[0].lastChild.textContent = f.answer;
+  ps[1].textContent = "2순위: " + f.second + " …";
+  var c = p.querySelector(".gpt-cap");
+  c.childNodes[0].textContent = "같은 질문을 " + f.runs + "번 물었더니 ";
+  c.querySelector("b").textContent = f.label;
+})();
+</script>
 
 <section class="sec" id="proof" data-sec="proof" style="background: #FFF6F2">
 <div class="wrap">
