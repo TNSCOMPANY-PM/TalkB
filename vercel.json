@@ -41,6 +41,21 @@
       "permanent": true
     },
     {
+      "source": "/insights/geo-guide.html",
+      "destination": "/content/geo-meaning/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/seo-geo-aeo-comparison.html",
+      "destination": "/content/aeo-meaning/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/korea-ai-search-2026.html",
+      "destination": "/content/chatgpt-restaurant-search-users-2026/",
+      "permanent": true
+    },
+    {
       "source": "/insights",
       "destination": "/content/",
       "permanent": true
