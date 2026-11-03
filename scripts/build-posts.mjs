@@ -421,7 +421,7 @@ function caseResult(p) {
   const parts = [];
   if (tr) parts.push(`<figure class="g-fig"><img src="${pathOf(p)}trend.svg" width="${tr.w}" height="${tr.h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption><b>주별 추천률</b> 매주 같은 질문을 ChatGPT에 물어 추천된 비율</figcaption></figure>`);
   if (p.case.questions.length) {
-    parts.push(`<div class="g-tbl"><table><tr><th>대표 질문</th><th>시작</th><th>지금</th></tr>${p.case.questions.map((q) => `<tr><td>${esc(q.q)}</td><td>${rankCell(q.startRank)}</td><td><b>${rankCell(q.nowRank)}</b></td></tr>`).join("")}</table></div>`);
+    parts.push(`<div class="g-tbl"><table><tr><th>대표 질문</th><th>시작</th><th>기간 끝</th></tr>${p.case.questions.map((q) => `<tr><td>${esc(q.q)}</td><td>${rankCell(q.startRank)}</td><td><b>${rankCell(q.nowRank)}</b></td></tr>`).join("")}</table></div>`);
   }
   const shots = p.case.captures.filter((c) => c.ok);
   if (shots.length) {
