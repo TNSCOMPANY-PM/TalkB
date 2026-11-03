@@ -425,7 +425,7 @@ function caseResult(p) {
   }
   const shots = p.case.captures.filter((c) => c.ok);
   if (shots.length) {
-    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><img src="${pathOf(p)}${c.file}" width="840" height="1500" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
+    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><a href="${pathOf(p)}${c.file}" target="_blank" rel="noopener"><img src="${pathOf(p)}${c.file}" width="840" height="1500" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"></a><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
   }
   return `<div class="c-res">\n${parts.join("\n")}\n</div>`;
 }
@@ -550,6 +550,8 @@ const GUIDE_CSS = `
 .c-shot{margin:0;border:1px solid var(--line);border-radius:16px;padding:10px;background:#fff}
 .c-shot img{display:block;width:100%;height:auto;border-radius:10px}
 .c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
+/* 모바일: 240px 칸에선 답 글씨가 안 읽혀 넓게 옆으로 넘기기 · 누르면 원본 */
+@media (max-width:640px){.c-shots{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;justify-content:start;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.c-shot{scroll-snap-align:start}}
 @media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 `;
 
