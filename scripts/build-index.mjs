@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadLandingDb, fetchCaseAssets } from "./landing-db.mjs";
+import { writeRss } from "./build-rss.mjs";
 import { buildGuide, writeManifest, readManifest, applySitemap, llmsSection, fillReviews, linkHomeCases } from "./build-posts.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -138,4 +139,6 @@ const smPath = join(ROOT, "sitemap.xml");
 const sm = readFileSync(smPath, "utf8");
 const sm2 = applySitemap(sm.replace(/(<loc>https:\/\/talkb\.co\.kr\/<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/, `$1${day}$2`), guidePosts);
 if (sm2 !== sm) { writeFileSync(smPath, sm2); console.log("sitemap 홈 lastmod", day); }
+// RSS(11/3) · 게시 글이 바뀌면 같이 바뀐다
+writeRss(guidePosts);
 if (data.warnings?.length) console.warn("경고:", data.warnings.join(" / "));
