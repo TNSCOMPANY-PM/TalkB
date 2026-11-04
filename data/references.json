@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-26T00:30:02.689Z",
-  "periodFrom": "2026년 10월 19일",
-  "periodTo": "2026년 10월 23일",
-  "updatedDot": "2026.10.23",
+  "updatedAt": "2026-11-04T23:51:21.458Z",
+  "periodFrom": "2026년 10월 29일",
+  "periodTo": "2026년 11월 5일",
+  "updatedDot": "2026.11.5",
   "stores": {
     "ogong": {
       "key": "ogong",
@@ -10,9 +10,9 @@
       "area": "고양 일산서구",
       "cat": "분식",
       "baselinePct": 0,
-      "nowPct": 76,
+      "nowPct": 88,
       "base10": 0,
-      "now10": 8,
+      "now10": 9,
       "runs": 75
     },
     "gaon": {
@@ -21,7 +21,7 @@
       "area": "서울 광진구",
       "cat": "한식",
       "baselinePct": 26.7,
-      "nowPct": 80,
+      "nowPct": 81.3,
       "base10": 3,
       "now10": 8,
       "runs": 75
@@ -32,9 +32,9 @@
       "area": "용인 처인구",
       "cat": "감자탕",
       "baselinePct": 0,
-      "nowPct": 58.7,
+      "nowPct": 68,
       "base10": 0,
-      "now10": 6,
+      "now10": 7,
       "runs": 75
     },
     "sunbi": {
@@ -43,9 +43,9 @@
       "area": "서울 종로구",
       "cat": "분식",
       "baselinePct": 10,
-      "nowPct": 76,
+      "nowPct": 66.7,
       "base10": 1,
-      "now10": 8,
+      "now10": 7,
       "runs": 75
     },
     "donas": {
@@ -54,7 +54,7 @@
       "area": "수원 권선구",
       "cat": "대형 카페",
       "baselinePct": 20,
-      "nowPct": 53.3,
+      "nowPct": 48,
       "base10": 2,
       "now10": 5,
       "runs": 75
@@ -65,9 +65,9 @@
       "area": "수원 팔달구",
       "cat": "우동·야식",
       "baselinePct": 13.3,
-      "nowPct": 61.3,
+      "nowPct": 49.3,
       "base10": 1,
-      "now10": 6,
+      "now10": 5,
       "runs": 75
     }
   },
@@ -86,27 +86,27 @@
     },
     "c1": {
       "runs": 5,
-      "rank1": 1,
-      "label": "5번 중 1번",
-      "all": false
+      "rank1": 5,
+      "label": "5번 중 5번",
+      "all": true
     },
     "c2": {
-      "runs": 5,
-      "rank1": 4,
-      "label": "5번 중 4번",
-      "all": false
-    },
-    "c3": {
-      "runs": 5,
-      "rank1": 4,
-      "label": "5번 중 4번",
-      "all": false
-    },
-    "s1": {
       "runs": 5,
       "rank1": 5,
       "label": "5번 중 5번",
       "all": true
+    },
+    "c3": {
+      "runs": 5,
+      "rank1": 3,
+      "label": "5번 중 3번",
+      "all": false
+    },
+    "s1": {
+      "runs": 5,
+      "rank1": 2,
+      "label": "5번 중 2번",
+      "all": false
     },
     "s2": {
       "runs": 5,
@@ -118,7 +118,7 @@
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 67.6,
+    "nowPct": 66.9,
     "base10": 1,
     "now10": 7
   },

@@ -246,7 +246,18 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .pc-terms li{font-size:13.5px;font-weight:700;color:var(--ok);background:#E8F6EE;border-radius:999px;padding:6px 12px}
 .pc-terms li.hot{color:var(--deep);background:var(--accent-soft)}
 .pc-btns{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+/* 10/28 가격표 열 강조(헛클릭 기획 A) · 요금제 머리나 칸을 누르면 그 열만 강조 · 이동 없음 */
+.pt thead th[data-col],.pt td[data-col]{cursor:pointer}
+.pt .pt-pick{background:#FFEDE4!important;box-shadow:inset 2px 0 0 var(--accent),inset -2px 0 0 var(--accent)!important}
+.pt thead th.pt-pick{box-shadow:inset 2px 0 0 var(--accent),inset -2px 0 0 var(--accent),inset 0 3px 0 var(--accent)!important}
+
 .pc-btns .kbtn{min-width:280px}
+.pc-proof{display:flex;align-items:flex-start;gap:10px;width:fit-content;max-width:100%;margin:16px auto 0;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.55;color:var(--ink);text-align:left}
+.pc-proof .pc-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none;margin-top:8px}
+.pc-proof .hl{color:var(--deep)}
+.pc-together{margin:26px 0 0;text-align:center;font-size:17px;line-height:1.6;color:var(--ink)}
+.pc-together+.pc-btns{margin-top:14px}
+@media (max-width:640px){.pc-proof{border-radius:16px;padding:12px 16px;font-size:14.5px}.pc-together{font-size:16px}}
 .pc-detail{display:inline-flex;align-items:center;justify-content:center;min-height:56px;min-width:200px;padding:0 22px;border:1.5px solid var(--ink);border-radius:14px;background:#fff;font-weight:800;font-size:16px;color:var(--ink)}
 .pc-ent{margin-top:12px;text-align:center;font-size:14px;color:var(--muted)}
 .pc-ent a{color:var(--ink-mid);font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:6px 0;display:inline-block}
@@ -485,7 +496,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .h1 span.l{display:block;white-space:nowrap}
 .h1-kw{display:block;margin-top:16px;max-width:620px;font-size:17px;font-weight:600;letter-spacing:-0.01em;line-height:1.6;color:var(--ink-mid);white-space:normal;word-break:keep-all}
 @media (max-width:640px){.h1-kw{margin-top:12px;font-size:15px}}
-.h1-a .h1 .vb,.h1-b .h1 .va{display:none}
+.h1-a .h1 .vb,.h1-b .h1 .va:not(.vad){display:none}
 .h1 .va{font-size:clamp(36px,4.8vw,56px)}
 .h1 .vb{font-size:clamp(30px,4vw,48px)}
 .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -513,6 +524,17 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-list{list-style:none;padding:0}.inq-list li{position:relative;padding-left:26px}
 .inq-list li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
 .inq-copy .rp{margin-top:28px}
+.inq-steps{margin-top:20px;background:#fff;border:2px solid var(--accent);border-radius:16px;padding:16px 18px;box-shadow:0 6px 18px rgba(232,93,58,.12)}
+.inq-steps-t{margin:0 0 10px;font-size:15px;font-weight:800;color:var(--deep)}
+.inq-steps ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.inq-steps li{display:flex;align-items:center;gap:10px;font-size:16.5px;font-weight:700;color:var(--ink)}
+.inq-steps li b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center}
+.inq-nopay{margin:14px 0 0;font-size:15px;font-weight:700;color:var(--ok)}
+.inq-nopay+.kbtn{margin-top:10px}
+.cal-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;margin-top:12px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+.cal-toggle::after{content:"";width:8px;height:8px;border-right:2px solid var(--ink-mid);border-bottom:2px solid var(--ink-mid);transform:rotate(45deg);margin-top:-4px}
+.cal-toggle[hidden],#calBody[hidden]{display:none!important}
+#calDone{margin-top:12px}
 .frs{margin-top:26px}
 .frs-t{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--deep)}
 .frs-t span{margin-left:6px;font-weight:600;color:var(--muted)}
@@ -650,6 +672,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .c-shot{margin:0;border:1px solid var(--line);border-radius:16px;padding:10px;background:#fff}
 .c-shot img{display:block;width:100%;height:auto;border-radius:10px}
 .c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
+/* 모바일: 240px 칸에선 답 글씨가 안 읽혀 넓게 옆으로 넘기기 · 누르면 원본 */
+@media (max-width:640px){.c-shots{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;justify-content:start;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.c-shot{scroll-snap-align:start}}
 @media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 </style>
 
@@ -663,6 +687,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
 <a class="nl" href="/content/">콘텐츠</a>
+<a class="nl" href="/stories/" aria-current="page">사장님 이야기</a>
 
 <a class="nl" href="/#inquiry">문의하기</a>
 </nav>
@@ -676,7 +701,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <h1 class="g-h1">그 밖의 음식점 사장님 이야기</h1>
 <p class="lead" style="margin-top:12px">그 밖의 음식점 사장님 가게가 ChatGPT 추천에 나오기까지 토크비가 한 일과 달라진 숫자를 모았어요.</p>
 
-<div class="g-tabs"></div>
+<div class="g-tabs"><a class="g-tab" href="/stories/seafood/" style="display:inline-flex;align-items:center">해산물 1</a><a class="g-tab" href="/stories/meat/" style="display:inline-flex;align-items:center">고기구이 1</a><a class="g-tab" href="/stories/soup/" style="display:inline-flex;align-items:center">국밥 · 탕 1</a></div>
 <p class="g-empty">그 밖의 음식점 사장님 이야기를 준비하고 있어요.</p>
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">우리 가게도 무료로 확인하기</a></div>
 </div>

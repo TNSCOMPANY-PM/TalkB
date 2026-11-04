@@ -1,6 +1,20 @@
 {
  "posts": [
   {
+   "id": "03c352b8-97b2-4f8a-abd2-fa05340a9bb6",
+   "slug": "google-ai-mode-ai-overview-store",
+   "title": "구글 AI 모드 · AI 개요에 우리 가게가 나오려면",
+   "line1": "구글은 AI 모드 · AI 개요에 나오려고 따로 할 일은 없다고 밝혔습니다.",
+   "vertical": "all",
+   "kind": "insight",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.825Z",
+   "dateModified": "2026-11-04T23:51:47.825Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/google-ai-mode-ai-overview-store/"
+  },
+  {
    "id": "04b01d11-0e52-44e9-951c-4c99faa0d0a2",
    "slug": "seo-meaning",
    "title": "SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법",
@@ -13,6 +27,76 @@
    "storeId": null,
    "industry": null,
    "path": "/content/seo-meaning/"
+  },
+  {
+   "id": "17846738-6a35-4b93-9f65-29daf6197ebd",
+   "slug": "unseodong-yukryu",
+   "title": "고깃집 ChatGPT 추천 0%에서 46.7%로, 12명 단체 예약까지",
+   "line1": "영종도 운서동 고깃집 탐라담 영종도점의 기록입니다. ChatGPT 추천률이 13주 동안 0%에서 46.7%로 올랐습니다.",
+   "vertical": "restaurant",
+   "kind": "case",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.843Z",
+   "dateModified": "2026-11-04T23:51:47.843Z",
+   "storeId": "8a8a4891-c7c0-45c0-ac2b-3aa9ee25fecd",
+   "industry": "meat",
+   "path": "/stories/meat/unseodong-yukryu/"
+  },
+  {
+   "id": "1ebf6399-1fd1-43b9-baf0-d4ba99605d51",
+   "slug": "seongsadong-hansik",
+   "title": "게장집 ChatGPT 추천 0%에서 73.3%로, 열흘 만에 절반 넘어",
+   "line1": "고양시 성사동 게장 무한리필집 일산게장집의 기록입니다. ChatGPT 추천률이 13주 동안 0%에서 73.3%로 올랐습니다.",
+   "vertical": "restaurant",
+   "kind": "case",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.843Z",
+   "dateModified": "2026-11-04T23:51:47.843Z",
+   "storeId": "dea97ee9-8f05-4455-b1bb-03059fba1bcb",
+   "industry": "seafood",
+   "path": "/stories/seafood/seongsadong-hansik/"
+  },
+  {
+   "id": "2db945f8-6daf-44e7-8834-271e93719a9e",
+   "slug": "mohyeoneup-hansik",
+   "title": "뼈해장국집 ChatGPT 추천 0%에서 66%로, 가족·회식 질문 1위",
+   "line1": "용인 모현읍 뼈해장국집 인생뼈다귀 본점의 기록입니다. ChatGPT 추천률이 15주 동안 0%에서 66%로 올랐습니다.",
+   "vertical": "restaurant",
+   "kind": "case",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.843Z",
+   "dateModified": "2026-11-04T23:51:47.843Z",
+   "storeId": "420c1d08-7bc2-4eb5-8769-392361e956f1",
+   "industry": "soup",
+   "path": "/stories/soup/mohyeoneup-hansik/"
+  },
+  {
+   "id": "352aea8b-c581-4900-b59a-482012771a53",
+   "slug": "naver-place-danggeun-bizprofile-next-step",
+   "title": "네이버 플레이스 등록, 당근 비즈프로필까지 만든 다음 할 일",
+   "line1": "네이버 플레이스와 당근 비즈프로필을 다 만들었다면, 두 곳의 가게 정보가 똑같은지부터 확인하세요.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.844Z",
+   "dateModified": "2026-11-04T23:51:47.844Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-place-danggeun-bizprofile-next-step/"
+  },
+  {
+   "id": "4c1fcf4c-08a7-421d-bd84-c7a48d133d7c",
+   "slug": "google-business-profile-naming-address-guideline",
+   "title": "구글 비즈니스 프로필 등록, 가게 이름과 주소 쓰는 법",
+   "line1": "구글 비즈니스 프로필에는 간판에 적힌 가게 이름을 그대로 씁니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.844Z",
+   "dateModified": "2026-11-04T23:51:47.844Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/google-business-profile-naming-address-guideline/"
   },
   {
    "id": "8ee91f0b-b086-4a46-9343-cd90d46ba037",
@@ -29,6 +113,62 @@
    "path": "/content/aeo-meaning/"
   },
   {
+   "id": "9986fa40-7fd0-4f76-8b1f-a29503f0f0c5",
+   "slug": "naver-place-ads-restaurant-marketing-trend-2026",
+   "title": "네이버 플레이스 광고, 2026년 식당 사장님 돈 쓰는 흐름",
+   "line1": "네이버 플레이스 광고는 지금도 식당 사장님이 가장 많이 찾는 검색어입니다.",
+   "vertical": "restaurant",
+   "kind": "insight",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.844Z",
+   "dateModified": "2026-11-04T23:51:47.844Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-place-ads-restaurant-marketing-trend-2026/"
+  },
+  {
+   "id": "ad2cde82-0b0e-4779-b544-89be88564fda",
+   "slug": "chatgpt-restaurant-cases-7-stores",
+   "title": "식당 7곳 ChatGPT 추천 기록, 소개 글을 낸 뒤 언제 올랐나",
+   "line1": "토크비가 매주 ChatGPT 추천을 확인한 음식점 가운데 결과가 좋았던 7곳의 기록입니다.",
+   "vertical": "restaurant",
+   "kind": "data",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.844Z",
+   "dateModified": "2026-11-04T23:51:47.844Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/chatgpt-restaurant-cases-7-stores/"
+  },
+  {
+   "id": "d194db31-4ae6-4f1a-b067-b5324f4fafbd",
+   "slug": "naver-place-ad-cost-ai-search",
+   "title": "네이버 플레이스 광고 비용, 쓰기 전에 알아야 할 것 (AI 검색 편)",
+   "line1": "네이버 플레이스 광고는 돈을 내는 동안만 가게를 위로 올려주는 자리입니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.844Z",
+   "dateModified": "2026-11-04T23:51:47.844Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-place-ad-cost-ai-search/"
+  },
+  {
+   "id": "d760d560-5550-4023-93c6-9a2fb86d40e6",
+   "slug": "ai-search-optimization-openai-crawlers",
+   "title": "AI 검색 최적화 첫걸음, ChatGPT가 가게 홈페이지를 읽게 하는 법",
+   "line1": "AI 검색 최적화의 첫걸음은 ChatGPT가 가게 홈페이지를 읽게 하는 것입니다.",
+   "vertical": "all",
+   "kind": "insight",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.844Z",
+   "dateModified": "2026-11-04T23:51:47.844Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/ai-search-optimization-openai-crawlers/"
+  },
+  {
    "id": "d776c68b-f957-4379-88df-c1801c645b05",
    "slug": "chatgpt-restaurant-search-users-2026",
    "title": "식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법",
@@ -43,6 +183,48 @@
    "path": "/content/chatgpt-restaurant-search-users-2026/"
   },
   {
+   "id": "d7dcce71-f6a9-4ad0-8483-c7eb2f2f212f",
+   "slug": "naver-searchadvisor-registration",
+   "title": "서치어드바이저 등록, 가게 홈페이지를 네이버에 올리는 법",
+   "line1": "서치어드바이저 등록은 가게 홈페이지를 네이버 검색에 올리는 첫 단계입니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.845Z",
+   "dateModified": "2026-11-04T23:51:47.845Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-searchadvisor-registration/"
+  },
+  {
+   "id": "dbce36e5-1731-4e1d-a032-0929ad609751",
+   "slug": "naver-blog-exposure-chatgpt-review-conditions",
+   "title": "네이버 블로그 노출, 체험단 후기만으로 안 되는 이유",
+   "line1": "네이버 블로그 노출은 체험단 후기 한 번으로 늘지 않고, 꾸준히 올라오는 정확한 글이 쌓여야 합니다.",
+   "vertical": "all",
+   "kind": "insight",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.845Z",
+   "dateModified": "2026-11-04T23:51:47.845Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-blog-exposure-chatgpt-review-conditions/"
+  },
+  {
+   "id": "ef275730-248a-4b91-8b16-5f69a2908572",
+   "slug": "how-to-write-store-intro-google-helpful-content",
+   "title": "가게 소개글 쓰는 법, 식당 · 카페 · 술집 예시",
+   "line1": "구글은 검색에 걸리려고 쓴 글보다 손님에게 도움이 되는 글을 먼저 보여 준다고 밝혔습니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.845Z",
+   "dateModified": "2026-11-04T23:51:47.845Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/how-to-write-store-intro-google-helpful-content/"
+  },
+  {
    "id": "fa4fd17b-8728-4076-b08a-e55853348a61",
    "slug": "geo-meaning",
    "title": "GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법",
@@ -55,6 +237,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/geo-meaning/"
+  },
+  {
+   "id": "fedbb7fb-4bf4-4c4b-a0f3-c0f1b3fedea9",
+   "slug": "naver-ai-tab-restaurant-info-10",
+   "title": "네이버 AI탭에 가게가 나오려면 먼저 채울 정보 10가지",
+   "line1": "네이버 AI탭에 나오려면 플레이스 정보부터 빠짐없이 채워야 합니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-04T23:51:47.845Z",
+   "dateModified": "2026-11-04T23:51:47.845Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-ai-tab-restaurant-info-10/"
   }
  ]
 }
