@@ -35,95 +35,23 @@
   <!-- guide:start · scripts/build-posts.mjs 가 만든다(게시 글 1편 이상일 때만) -->
   <url>
     <loc>https://talkb.co.kr/content/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/google-ai-mode-ai-overview-store/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/content/seo-meaning/</loc>
     <lastmod>2026-10-21</lastmod>
   </url>
   <url>
-    <loc>https://talkb.co.kr/stories/meat/unseodong-yukryu/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/stories/seafood/seongsadong-hansik/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/stories/soup/mohyeoneup-hansik/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/naver-place-danggeun-bizprofile-next-step/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/google-business-profile-naming-address-guideline/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
     <loc>https://talkb.co.kr/content/aeo-meaning/</loc>
     <lastmod>2026-10-21</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/naver-place-ads-restaurant-marketing-trend-2026/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/chatgpt-restaurant-cases-7-stores/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/naver-place-ad-cost-ai-search/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/ai-search-optimization-openai-crawlers/</loc>
-    <lastmod>2026-11-05</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/</loc>
     <lastmod>2026-10-21</lastmod>
   </url>
   <url>
-    <loc>https://talkb.co.kr/content/naver-searchadvisor-registration/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/naver-blog-exposure-chatgpt-review-conditions/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/how-to-write-store-intro-google-helpful-content/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
     <loc>https://talkb.co.kr/content/geo-meaning/</loc>
     <lastmod>2026-10-21</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/content/naver-ai-tab-restaurant-info-10/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/stories/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/stories/seafood/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/stories/meat/</loc>
-    <lastmod>2026-11-05</lastmod>
-  </url>
-  <url>
-    <loc>https://talkb.co.kr/stories/soup/</loc>
-    <lastmod>2026-11-05</lastmod>
   </url>
   <!-- guide:end -->
 </urlset>
