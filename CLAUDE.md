@@ -45,7 +45,7 @@
 | 분야 표기 (영문) | AI Visibility Solution |
 | 분야 표기 (한글) | AI 노출 솔루션 |
 | 영문 태그라인 | Make AI Talk Your Brand |
-| 한글 태그라인 | AI가 당신의 브랜드를 말하게 |
+| 한글 태그라인 | ChatGPT가 우리 가게를 추천하게 (11/5 사장 · 옛 "AI가 당신의 브랜드를 말하게"는 번역투라 안 씀) |
 | 도메인 | talkb.co.kr |
 | 이메일 | adm.tnscompany@gmail.com |
 
