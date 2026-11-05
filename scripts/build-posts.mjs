@@ -730,6 +730,10 @@ export function related(p, posts) {
 
 /** 본문 HTML · 후기 글은 {{결과 그림}} 자리에 그래프 · 순위 표 · 캡처(자리가 없으면 본문 끝에) */
 function bodyHtml(p) {
+  // 손으로 짠 본문(11/5 · "토크비가 하는 일"처럼 칸 상자 · 두 칸 비교가 있는 페이지) · data/pages/{slug}.html 이 있으면 그걸 쓴다
+  //   머리 · 글쓴이 · 상담 · FAQ · 구조화 데이터는 다른 글과 같은 틀 · DB body_md 는 llms · 검색 요약용으로 그대로 둔다
+  const page = join(ROOT, "data", "pages", `${p.slug}.html`);
+  if (SLUG_RE.test(p.slug) && existsSync(page)) return readFileSync(page, "utf8");
   const html = mdToHtml(p.body_md);
   if (!p.case) return html;
   const mark = `<p>${esc(RESULT_MARK)}</p>`;

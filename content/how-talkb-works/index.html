@@ -735,39 +735,129 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <p class="g-by"><img class="g-face" src="/images/team/kim-jeongseop.jpg" width="28" height="28" alt="" aria-hidden="true" loading="eager" decoding="async"><span>김정섭 총괄 · <time datetime="2026-11-05T01:38:15.693+00:00">2026년 11월 5일 수정</time></span></p>
 <div class="g-sum"><b>세 줄 요약</b><ul><li>구글, OpenAI, Anthropic은 &quot;AI 검색에 나오려면 이렇게 하라&quot;는 안내를 직접 공개해 두었습니다. 토크비는 그대로 사장님 가게를 챙겨 드립니다.</li><li>가게 정보를 바로잡고, 손님이 물어볼 만한 상황에 맞춰 소개 글을 올리고, ChatGPT에 매주 직접 물어봅니다.</li><li>사장님 가게 이야기만 씁니다. 결과는 숫자와 ChatGPT 답 그대로 보여 드립니다.</li></ul></div>
 <div class="g-body">
-<p>요즘 손님은 네이버만 찾지 않습니다. ChatGPT에도 &quot;근처에 회식하기 좋은 고깃집 있어?&quot; 하고 물어봅니다. 이때 우리 가게 이름이 답에 나오게 하는 일을 GEO 마케팅이라고 부릅니다. 토크비가 하는 일이 바로 이것입니다.</p>
+<!-- 토크비가 하는 일 본문(2026-11-05 · 캔버스 https://claude.ai/artifact/7PkcBKxMEAnZpZxsYCockP 그대로) · scripts/build-posts.mjs bodyHtml 이 이 파일을 넣는다 · 글 내용을 바꾸면 DB body_md(llms · 요약용)도 같이 -->
+<style>
+.hw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0 8px}
+.hw-card{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.hw-card .k{margin:0;font-size:14px;font-weight:800;color:var(--deep)}
+.hw-card .t{margin:6px 0 0;font-size:16.5px;font-weight:800;color:var(--ink)}
+.hw-card .d{margin:8px 0 0;font-size:15.5px;line-height:1.7;color:#4E5968}
+.hw-co{display:flex;flex-direction:column;gap:14px;margin:18px 0 0}
+.hw-co-box{padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.hw-co-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.hw-co-h b{font-size:18px;color:var(--ink)}
+.hw-co-h span{font-size:14px;color:#4E5968}
+.hw-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:12px}
+.hw-said{padding:4px 2px}
+.hw-do{padding:14px 16px;border-radius:14px;background:var(--warm,#FFF7F3);border:1px solid #FBD5C6}
+.hw-two .lab{margin:0;font-size:13px;font-weight:800;color:#4E5968}
+.hw-do .lab{color:var(--deep)}
+.tb .g-body .hw-two ul{margin:8px 0 0;padding-left:18px;font-size:15.5px;line-height:1.75}
+.tb .g-body .hw-two li{margin:.35em 0}
+.hw-dark{margin:16px 0 0;padding:18px 20px;border-radius:16px;background:#191F28;color:#fff;font-size:17px;line-height:1.75;font-weight:700}
+.hw-src{font-size:14px;line-height:1.8;color:#4E5968}
+.hw-ex{margin:16px 0;padding:20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.hw-ex .q{display:inline-block;margin:10px 0 0;padding:10px 14px;border-radius:18px;background:var(--soft,#F2F4F6);font-size:15.5px;color:var(--ink)}
+.hw-ex mark{background:#FFE58A;padding:0 4px;border-radius:4px}
+.tb .g-body .hw-ex p{margin:0}
+</style>
+
+<p>요즘 손님은 네이버만 찾지 않습니다. ChatGPT에도 "근처에 회식하기 좋은 고깃집 있어?" 하고 물어봅니다. 이때 우리 가게 이름이 답에 나오게 하는 일을 GEO 마케팅이라고 부릅니다. 토크비가 하는 일이 바로 이것입니다.</p>
+
 <h2>토크비는 무엇을 하나요</h2>
 <p>하는 일은 세 가지입니다. 모두 사장님 가게의 실제 정보로만 합니다.</p>
-<ol><li><strong>가게 정보 바로잡기</strong>: 메뉴, 가격, 영업시간, 주차, 단체석까지 손님이 자주 묻는 걸 빠짐없이 적어 둡니다.</li><li><strong>소개 글 올리기</strong>: &quot;회식하기 좋은 고깃집&quot;처럼 손님이 실제로 묻는 상황에 맞춰 가게 소개 글을 씁니다.</li><li><strong>매주 물어보기</strong>: 같은 질문을 ChatGPT에 매주 여러 번 물어보고, 우리 가게가 몇 번 나왔는지 셉니다. 답도 그대로 저장합니다.</li></ol>
+<div class="hw-grid">
+<div class="hw-card"><p class="k">1. 가게 정보 바로잡기</p><p class="d">메뉴, 가격, 영업시간, 주차, 단체석까지 손님이 자주 묻는 걸 빠짐없이 적어 둡니다.</p></div>
+<div class="hw-card"><p class="k">2. 소개 글 올리기</p><p class="d">"회식하기 좋은 고깃집"처럼 손님이 실제로 묻는 상황에 맞춰 가게 소개 글을 씁니다.</p></div>
+<div class="hw-card"><p class="k">3. 매주 물어보기</p><p class="d">같은 질문을 ChatGPT에 매주 여러 번 물어보고, 우리 가게가 몇 번 나왔는지 셉니다. 답도 그대로 저장합니다.</p></div>
+</div>
+
 <h2>구글, OpenAI, Anthropic은 뭐라고 했나요</h2>
-<p>AI 검색을 만드는 회사들은 &quot;이렇게 하면 우리 검색에 나온다&quot;는 안내를 직접 공개해 두었습니다. 내용은 어렵지 않습니다.</p>
-<p>다만 영어로 된 개발자 문서라 바쁜 사장님이 하나하나 챙기기는 쉽지 않습니다. 토크비가 이 문서를 읽고, 사장님 가게에 맞게 대신 해 드립니다.</p>
-<h3>구글은 이렇게 하라고 했습니다</h3>
-<ul><li>AI 개요나 AI 모드에 나오려고 따로 준비할 건 없습니다. 원래 검색에 잘 나오게 하던 기본만 지키면 됩니다.</li><li>중요한 내용은 사진 말고 글로 적어 두세요.</li><li>비즈니스 프로필은 늘 지금 상태로 맞춰 두세요.</li><li>검색에 걸리려고 꾸민 글보다 읽는 사람에게 도움이 되는 글을 먼저 보여 줍니다.</li></ul>
-<p><strong>토크비가 해 드리는 일</strong>: 메뉴판 사진에만 있던 메뉴와 가격을 글로 옮겨 적습니다. 영업시간, 쉬는 날, 주차처럼 자주 바뀌는 정보를 지금 상태로 고칩니다. 검색어만 늘어놓지 않고, 손님 질문에 답하는 글로 씁니다.</p>
-<h3>OpenAI(ChatGPT)는 이렇게 하라고 했습니다</h3>
-<ul><li>OAI-SearchBot이 사이트를 읽을 수 있어야 ChatGPT 검색에 나옵니다. 이 로봇을 막아 두면 답에 안 나올 수 있습니다.</li><li>손님이 ChatGPT에 물어보면 ChatGPT-User가 그 자리에서 사이트를 열어 보기도 합니다.</li></ul>
-<p><strong>토크비가 해 드리는 일</strong>: 가게 정보와 소개 글을 이 로봇들이 읽을 수 있는 곳에 올립니다. 손님이 할 만한 질문을 매주 ChatGPT에 직접 물어서, 정말 나오는지 확인합니다.</p>
-<h3>Anthropic(Claude)은 이렇게 하라고 했습니다</h3>
-<ul><li>Claude-SearchBot을 막아 두면 Claude 검색에서 덜 보이고, 내용도 덜 정확하게 나올 수 있습니다.</li><li>누가 Claude에 질문하면 Claude-User가 사이트를 가져와 답을 만듭니다. 이걸 막아도 덜 보일 수 있습니다.</li></ul>
-<p><strong>토크비가 해 드리는 일</strong>: 가게 정보가 올라간 곳에서 Claude 로봇을 막고 있지 않은지 확인합니다. 어느 AI가 읽든 같은 내용이 나오도록 가게 정보를 하나로 맞춥니다.</p>
-<blockquote>세 회사 말을 한 줄로 줄이면 이렇습니다. 가게 정보를 정확하게, AI가 읽을 수 있는 곳에, 사람이 읽기 편하게 올려 두라는 것. 토크비는 이걸 대신 하고, 잘 되고 있는지 매주 숫자로 보여 드립니다.</blockquote>
-<p>원문: <a href="https://developers.google.com/search/docs/appearance/ai-features?hl=ko" target="_blank" rel="noopener">Google 검색 센터 · AI 기능 및 웹사이트</a> · <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko" target="_blank" rel="noopener">Google 검색 센터 · 도움이 되는 글 만들기</a> · <a href="https://developers.openai.com/api/docs/bots" target="_blank" rel="noopener">OpenAI 크롤러 안내</a> · <a href="https://support.claude.com/en/articles/8896518" target="_blank" rel="noopener">Anthropic 크롤러 안내</a></p>
+<p>AI 검색을 만드는 회사들은 "이렇게 하면 우리 검색에 나온다"는 안내를 직접 공개해 두었습니다. 내용은 어렵지 않습니다. 다만 영어로 된 개발자 문서라 바쁜 사장님이 하나하나 챙기기는 쉽지 않습니다. 토크비가 이 문서를 읽고, 사장님 가게에 맞게 대신 해 드립니다.</p>
+
+<div class="hw-co">
+<div class="hw-co-box">
+<div class="hw-co-h"><b>구글</b><span>Google 검색 센터 안내</span></div>
+<div class="hw-two">
+<div class="hw-said"><p class="lab">구글은 이렇게 하라고 했습니다</p><ul>
+<li>AI 개요나 AI 모드에 나오려고 따로 준비할 건 없습니다. 원래 검색에 잘 나오게 하던 기본만 지키면 됩니다.</li>
+<li>중요한 내용은 사진 말고 글로 적어 두세요.</li>
+<li>비즈니스 프로필은 늘 지금 상태로 맞춰 두세요.</li>
+<li>검색에 걸리려고 꾸민 글보다 읽는 사람에게 도움이 되는 글을 먼저 보여 줍니다.</li>
+</ul></div>
+<div class="hw-do"><p class="lab">토크비가 해 드리는 일</p><ul>
+<li>메뉴판 사진에만 있던 메뉴와 가격을 글로 옮겨 적습니다.</li>
+<li>영업시간, 쉬는 날, 주차처럼 자주 바뀌는 정보를 지금 상태로 고칩니다.</li>
+<li>검색어만 늘어놓지 않고, 손님 질문에 답하는 글로 씁니다.</li>
+</ul></div>
+</div>
+</div>
+
+<div class="hw-co-box">
+<div class="hw-co-h"><b>OpenAI (ChatGPT)</b><span>OpenAI 크롤러 안내</span></div>
+<div class="hw-two">
+<div class="hw-said"><p class="lab">OpenAI는 이렇게 하라고 했습니다</p><ul>
+<li>OAI-SearchBot이 사이트를 읽을 수 있어야 ChatGPT 검색에 나옵니다. 이 로봇을 막아 두면 답에 안 나올 수 있습니다.</li>
+<li>손님이 ChatGPT에 물어보면 ChatGPT-User가 그 자리에서 사이트를 열어 보기도 합니다.</li>
+</ul></div>
+<div class="hw-do"><p class="lab">토크비가 해 드리는 일</p><ul>
+<li>가게 정보와 소개 글을 이 로봇들이 읽을 수 있는 곳에 올립니다.</li>
+<li>손님이 할 만한 질문을 매주 ChatGPT에 직접 물어서, 정말 나오는지 확인합니다.</li>
+</ul></div>
+</div>
+</div>
+
+<div class="hw-co-box">
+<div class="hw-co-h"><b>Anthropic (Claude)</b><span>Anthropic 크롤러 안내</span></div>
+<div class="hw-two">
+<div class="hw-said"><p class="lab">Anthropic은 이렇게 하라고 했습니다</p><ul>
+<li>Claude-SearchBot을 막아 두면 Claude 검색에서 덜 보이고, 내용도 덜 정확하게 나올 수 있습니다.</li>
+<li>누가 Claude에 질문하면 Claude-User가 사이트를 가져와 답을 만듭니다. 이걸 막아도 덜 보일 수 있습니다.</li>
+</ul></div>
+<div class="hw-do"><p class="lab">토크비가 해 드리는 일</p><ul>
+<li>가게 정보가 올라간 곳에서 Claude 로봇을 막고 있지 않은지 확인합니다.</li>
+<li>어느 AI가 읽든 같은 내용이 나오도록 가게 정보를 하나로 맞춥니다.</li>
+</ul></div>
+</div>
+</div>
+</div>
+
+<p class="hw-dark">세 회사 말을 한 줄로 줄이면 이렇습니다. 가게 정보를 정확하게, AI가 읽을 수 있는 곳에, 사람이 읽기 편하게 올려 두라는 것. 토크비는 이걸 대신 하고, 잘 되고 있는지 매주 숫자로 보여 드립니다.</p>
+<p class="hw-src">원문: <a href="https://developers.google.com/search/docs/appearance/ai-features?hl=ko" target="_blank" rel="noopener">Google 검색 센터 · AI 기능 및 웹사이트</a> · <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko" target="_blank" rel="noopener">Google 검색 센터 · 도움이 되는 글 만들기</a> · <a href="https://developers.openai.com/api/docs/bots" target="_blank" rel="noopener">OpenAI 크롤러 안내</a> · <a href="https://support.claude.com/en/articles/8896518" target="_blank" rel="noopener">Anthropic 크롤러 안내</a></p>
+
 <h2>토크비가 하지 않는 일은 무엇인가요</h2>
 <p>사장님들이 자주 물어보시는 것들입니다. 토크비는 아래 일을 하지 않습니다.</p>
-<div class="g-tbl"><table><tr><th>이런 일</th><th>토크비</th></tr><tr><td>가짜 클릭으로 순위 올리기</td><td>하지 않습니다</td></tr><tr><td>돈 주고 사람 모아서 방문, 저장, 클릭 시키기</td><td>하지 않습니다</td></tr><tr><td>가짜 리뷰, 대신 써 주는 후기</td><td>하지 않습니다</td></tr><tr><td>사장님 계정 빌려서 몰래 고치기</td><td>하지 않습니다</td></tr><tr><td>&quot;1위 보장&quot;, &quot;노출 보장&quot; 약속</td><td>하지 않습니다</td></tr></table></div>
+<div class="g-tbl"><table><thead><tr><th>이런 일</th><th>토크비</th></tr></thead><tbody>
+<tr><td>가짜 클릭으로 순위 올리기</td><td><b>하지 않습니다</b></td></tr>
+<tr><td>돈 주고 사람 모아서 방문, 저장, 클릭 시키기</td><td><b>하지 않습니다</b></td></tr>
+<tr><td>가짜 리뷰, 대신 써 주는 후기</td><td><b>하지 않습니다</b></td></tr>
+<tr><td>사장님 계정 빌려서 몰래 고치기</td><td><b>하지 않습니다</b></td></tr>
+<tr><td>"1위 보장", "노출 보장" 약속</td><td><b>하지 않습니다</b></td></tr>
+</tbody></table></div>
+
 <h2>측정은 어떻게 하나요</h2>
-<p>손님이 할 만한 질문은 상담할 때 사장님과 같이 정합니다. 그 질문을 ChatGPT에 매주 여러 번 물어보고, 우리 가게가 몇 번 나왔는지, 몇 번째로 나왔는지 셉니다.</p>
-<p>ChatGPT가 한 답도 그대로 저장해서 사장님 화면에 보여 드립니다. 예를 들어 &quot;용인시청 근처 도넛 맛집 추천해줘&quot;를 최근 7일 동안 5번 물었더니, 도나스데이 용인역북점이 5번 모두 1순위로 나왔습니다.</p>
-<p>여러 번 물어보는 데는 이유가 있습니다. ChatGPT는 같은 질문에도 물을 때마다 답이 조금씩 달라집니다. 한 번 나왔다고 늘 나오지 않고, 한 번 빠졌다고 늘 빠지지도 않습니다. 그래서 &quot;몇 번 중 몇 번&quot;으로 셉니다.</p>
+<p>손님이 할 만한 질문은 상담할 때 사장님과 같이 정합니다. 그 질문을 ChatGPT에 매주 여러 번 물어보고, 우리 가게가 몇 번 나왔는지, 몇 번째로 나왔는지 셉니다. ChatGPT가 한 답도 그대로 저장해서 사장님 화면에 보여 드립니다.</p>
+<div class="hw-ex">
+<p style="font-size:13px;font-weight:700;color:#4E5968">실제로 측정한 예 · 최근 7일</p>
+<p class="q">용인시청 근처 도넛 맛집 추천해줘</p>
+<p style="margin-top:12px;font-size:15.5px;line-height:1.7"><b>1순위: <mark>도나스데이 용인역북점</mark></b> · 크림도넛과 색다른 토핑 도넛을 먹고 싶다면 여기부터 추천해요 …</p>
+<p style="margin-top:12px;font-size:16px;font-weight:800;color:var(--ink)">같은 질문을 5번 물었더니 5번 모두 1순위로 추천</p>
+</div>
+<p>여러 번 물어보는 데는 이유가 있습니다. ChatGPT는 같은 질문에도 물을 때마다 답이 조금씩 달라집니다. 한 번 나왔다고 늘 나오지 않고, 한 번 빠졌다고 늘 빠지지도 않습니다. 그래서 "몇 번 중 몇 번"으로 셉니다.</p>
+
 <h2>신청하면 어떻게 되나요</h2>
-<p>세 단계로 진행합니다.</p>
-<ol><li><strong>무료 측정</strong>: 손님 질문 20개로 지금 ChatGPT가 우리 가게를 추천하는지 봅니다.</li><li><strong>상담사 전화</strong>: 사장님이 고른 시간에 결과를 설명해 드립니다. 그 시간에만 전화드립니다.</li><li><strong>보고 결정</strong>: 리포트를 보시고 하실지 정하시면 됩니다. 신청만 해서는 결제되지 않습니다.</li></ol>
+<div class="hw-grid">
+<div class="hw-card"><p class="k">1단계</p><p class="t">무료 측정</p><p class="d">손님 질문 20개로 지금 ChatGPT가 우리 가게를 추천하는지 봅니다.</p></div>
+<div class="hw-card"><p class="k">2단계</p><p class="t">상담사 전화</p><p class="d">사장님이 고른 시간에 결과를 설명해 드립니다. 그 시간에만 전화드립니다.</p></div>
+<div class="hw-card"><p class="k">3단계</p><p class="t">보고 결정</p><p class="d">리포트를 보시고 하실지 정하시면 됩니다. 신청만 해서는 결제되지 않습니다.</p></div>
+</div>
+
 <h2>결과를 보장하나요</h2>
-<p>보장하지 않습니다. ChatGPT가 어떤 가게를 추천할지는 OpenAI가 정하고, 그 기준은 공개되지 않았습니다.</p>
-<p>토크비가 약속하는 건 매주 측정한 숫자를 있는 그대로 보여 드리는 것입니다. 결과가 좋았던 가게들은 식당 마케팅 사례 7곳에 모아 두었습니다.</p>
+<p>보장하지 않습니다. ChatGPT가 어떤 가게를 추천할지는 OpenAI가 정하고, 그 기준은 공개되지 않았습니다. 토크비가 약속하는 건 매주 측정한 숫자를 있는 그대로 보여 드리는 것입니다. 결과가 좋았던 가게들은 식당 마케팅 사례 7곳에 모아 두었습니다.</p>
+
 <h2>네이버 규칙에 걸리지는 않나요</h2>
 <p>토크비는 사장님 가게 정보를 사실대로 정리하고 글로 올립니다. 네이버가 막는 건 부정한 방법으로 클릭이나 리뷰를 만드는 일이고, 토크비는 그런 일을 하지 않습니다.</p>
+
 </div>
 <aside class="g-writer" aria-label="글쓴이"><img class="g-face g-face-lg" src="/images/team/kim-jeongseop.jpg" width="56" height="56" alt="김정섭 총괄" loading="lazy" decoding="async"><div><p class="g-writer-n">김정섭 <span>토크비 총괄</span></p><p class="g-writer-b">식당, 카페, 술집 사장님 가게가 네이버, 구글 검색과 ChatGPT 같은 AI 답에 나오도록 돕는 일을 맡고 있습니다. 글은 토크비가 매주 측정한 실제 ChatGPT 답과 네이버, 구글 공식 안내를 바탕으로 쓰고 직접 확인합니다.</p></div></aside>
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">우리 가게도 무료로 확인하기</a></div>
