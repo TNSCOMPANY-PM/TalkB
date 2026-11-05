@@ -25,7 +25,14 @@ export const GUIDE_DIR = "content";
 // 사장님 이야기(후기 글) · 가이드와 따로 /stories/{업종}/{slug}/ (10/21 사장 "가이드 밑 말고 새로 · 스토리로")
 export const STORIES_DIR = "stories";
 const MANIFEST = join(ROOT, "data", "guide-posts.json");
-const AUTHOR = "토크비 팀";
+// 글쓴이(11/5 사장 "담당자 김정섭 총괄 · 짧은 소개 · 모든 글에") · 사진은 얼굴 중심 원형 · 작게 · 링크 · 확대 없음
+//   소개는 사실만(경력 · 연차를 지어 넣지 않는다)
+export const WRITER = {
+  name: "김정섭", role: "총괄", photo: "/images/team/kim-jeongseop.jpg",
+  bio: "토크비에서 식당 · 카페 · 술집 사장님의 가게가 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 나오도록 돕는 일을 총괄합니다. 토크비가 매주 측정한 실제 ChatGPT 답변과 네이버 · 구글 공식 안내를 바탕으로 글을 쓰고 확인합니다.",
+};
+const writerLd = () => ({ "@type": "Person", "@id": `${SITE}/#writer-kim-jeongseop`, name: WRITER.name, jobTitle: WRITER.role, image: `${SITE}${WRITER.photo}`, description: WRITER.bio, worksFor: { "@id": `${SITE}/#org` } });
+const writerBox = () => `<aside class="g-writer" aria-label="글쓴이"><img class="g-face g-face-lg" src="${WRITER.photo}" width="56" height="56" alt="${esc(WRITER.name)} ${esc(WRITER.role)}" loading="lazy" decoding="async"><div><p class="g-writer-n">${esc(WRITER.name)} <span>토크비 ${esc(WRITER.role)}</span></p><p class="g-writer-b">${esc(WRITER.bio)}</p></div></aside>`;
 
 // ── 원본 TalkB-app/lib/landing-posts/checks.ts (2026-10-20) · 막힘 규칙만 복사 ──
 const LANDING_FORBIDDEN = ["여기먹자", "정본", "유료", "메디스펙"];
@@ -496,7 +503,13 @@ const GUIDE_CSS = `
 .g-chip{display:inline-flex;align-items:center;min-height:28px;padding:0 11px;border-radius:999px;background:var(--accent-soft);color:var(--deep);font-size:14px;font-weight:700}
 .g-chip.k{background:var(--soft);color:var(--ink-mid)}
 .tb .g-h1{font-size:clamp(28px,4.2vw,40px);font-weight:800;margin-top:12px;word-break:keep-all;text-wrap:balance;letter-spacing:-0.035em;line-height:1.25}
-.tb .g-by{margin-top:12px;font-size:15px;color:var(--ink-mid)}
+.tb .g-by{margin-top:12px;font-size:15px;color:var(--ink-mid);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.g-face{width:28px;height:28px;border-radius:50%;object-fit:cover;flex:none;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.g-face-lg{width:56px;height:56px}
+.g-writer{display:flex;gap:14px;align-items:flex-start;margin-top:32px;padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.g-writer-n{font-weight:800;font-size:16px;margin:0}
+.g-writer-n span{font-weight:600;font-size:14px;color:var(--ink-mid);margin-left:4px}
+.g-writer-b{margin:6px 0 0;font-size:14.5px;line-height:1.7;color:var(--ink-mid);word-break:keep-all}
 .g-cover{margin-top:22px;border-radius:18px;width:100%;height:auto;display:block}
 .g-sum{margin-top:24px;background:var(--warm);border:1px solid #FBD5C6;border-radius:18px;padding:20px 22px}
 .g-sum b{display:block;font-size:15px;color:var(--deep);margin-bottom:8px}
@@ -708,7 +721,7 @@ export function renderPost(H, p, posts) {
       "@context": "https://schema.org", "@type": "Article", "@id": `${url}#article`, headline: p.title, description: desc,
       datePublished: p.datePublished, dateModified: p.dateModified, inLanguage: "ko",
       // 글쓴이 '토크비 팀'을 회사 엔티티(#org · sameAs 있음)에 잇는다(11/5 · 떨어진 이름뿐이었음)
-      author: { "@type": "Organization", name: AUTHOR, url: `${SITE}/`, parentOrganization: { "@id": `${SITE}/#org` } }, publisher: ORG, image: [image], mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      author: writerLd(), publisher: ORG, image: [image], mainEntityOfPage: { "@type": "WebPage", "@id": url },
       ...(p.case?.place ? { about: { "@type": "Restaurant", name: p.case.place.name, ...(p.case.place.locality ? { address: { "@type": "PostalAddress", addressLocality: p.case.place.locality, addressCountry: "KR" } } : {}) } } : {}),
       ...(p.case ? { keywords: ["AI 검색 최적화", "ChatGPT 추천", INDUSTRY_LABEL[p.industry] ?? ""].filter(Boolean).join(", ") } : p.keywords?.length ? { keywords: p.keywords.join(", ") } : {}),
     },
@@ -730,11 +743,12 @@ export function renderPost(H, p, posts) {
 <nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${p.industry ? `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><a href="/${STORIES_DIR}/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : `<a href="/${GUIDE_DIR}/">콘텐츠</a>`}</nav>
 <div class="g-chips">${chips(p)}</div>
 <h1 class="g-h1">${esc(p.title)}</h1>
-<p class="g-by">${AUTHOR} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></p>
+<p class="g-by"><img class="g-face" src="${WRITER.photo}" width="28" height="28" alt="" aria-hidden="true" loading="eager" decoding="async"><span>${esc(WRITER.name)} ${esc(WRITER.role)} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></span></p>
 ${p.case ? caseHero(p) : ""}${p.cover ? `<img class="g-cover" src="${esc(p.cover)}" alt="${esc(p.cover_alt)}" loading="eager" decoding="async">\n` : ""}<div class="g-sum"><b>세 줄 요약</b><ul>${p.lines.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>
 ${chartsSection(p)}<div class="g-body">
 ${bodyHtml(p)}
 </div>
+${writerBox()}
 <section class="g-sec" aria-labelledby="g-faq"><h2 id="g-faq">자주 묻는 질문</h2>
 ${p.faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("\n")}
 </section>
