@@ -970,12 +970,24 @@ ${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>${hubI
  * 렌더 · rows(DB 줄) → outRoot/guide/ 에 쓰고 게시 목록을 돌려준다
  *   log: 건너뛴 글 · noindex 로 바꾼 글
  */
-/** data/publish-queue.json · { "slug": "YYYY-MM-DD" } · 없거나 깨졌으면 빈 표(순서 없이 바로) */
+/** data/publish-queue.json · { "slug": "YYYY-MM-DD" 또는 "YYYY-MM-DDTHH:MM"(KST · 11/5 하루에 나눠 올리기) } · 없거나 깨졌으면 빈 표(순서 없이 바로) */
 export function loadQueue(root = ROOT) {
   try {
     const j = JSON.parse(readFileSync(join(root, "data", "publish-queue.json"), "utf8"));
-    return Object.fromEntries(Object.entries(j.queue ?? {}).filter(([k, v]) => SLUG_RE.test(k) && /^\d{4}-\d{2}-\d{2}$/.test(String(v))));
+    return Object.fromEntries(Object.entries(j.queue ?? {}).filter(([k, v]) => SLUG_RE.test(k) && /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(String(v))));
   } catch { return {}; }
+}
+/** 순서표 값이 아직 안 왔나 · 날짜만이면 그날 0시부터, 시각이 있으면 그 시각부터(KST) */
+export function queueWaiting(at, now = new Date()) {
+  const k = new Date(now.getTime() + 9 * 3600000).toISOString();
+  return at.length > 10 ? at > k.slice(0, 16) : at > k.slice(0, 10);
+}
+/** 본문 속 글 링크 중 아직 안 올라간 글은 링크를 빼고 글자만 남긴다(11/5 · 나눠 올리는 동안 404 링크가 생기지 않게 · 올라가면 다음 빌드에서 링크로) */
+export function unlinkUnbuilt(html, posts) {
+  const live = new Set(posts.map((x) => pathOf(x)));
+  // 글 주소 꼴만(/content/{slug}/ · /stories/{업종}/{slug}/) · 목록 주소(/content/ · /stories/ · /stories/{업종}/)는 그대로
+  const postPath = /^\/content\/[a-z0-9-]+\/$|^\/stories\/[a-z]+\/[a-z0-9-]+\/$/;
+  return html.replace(/<a href="(\/(?:content|stories)\/[^"]*)">([\s\S]*?)<\/a>/g, (m, href, text) => (postPath.test(href) && !live.has(href) ? text : m));
 }
 
 export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents, partnerNames, now, assets = new Map(), log = console.log }) {
@@ -983,10 +995,9 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
   const ready = [];
   // 게시 순서표(11/5 · 14편이 같은 1분에 한꺼번에 올라간 일) · 아직 게시 전(published_at 없음)인 승인 글은 순서표 날짜(KST) 전에 만들지 않는다
   const queue = loadQueue(root);
-  const todayKst = new Date((now ?? new Date()).getTime() + 9 * 3600000).toISOString().slice(0, 10);
   for (const r of rows) {
     const at = queue[r.slug];
-    if (!r.published_at && at && at > todayKst) { log(`글 대기 · ${r.slug} · 순서표 ${at}`); continue; }
+    if (!r.published_at && at && queueWaiting(at, now ?? new Date())) { log(`글 대기 · ${r.slug} · 순서표 ${at}`); continue; }
     const res = preparePost(r, { stores, consents, partnerNames, now });
     if (res.ok) ready.push(res.post);
     else log(`글 건너뜀 · ${res.slug || res.id} · ${res.why.join(" / ")}`);
@@ -1010,7 +1021,7 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
       }
       for (let i = p.case.captures.length + 1; i <= 3; i++) rmSync(dirOf(outRoot, p, `answer-${i}.png`), { force: true });
     }
-    writeFileSync(dirOf(outRoot, p, "index.html"), renderPost(H, p, posts));
+    writeFileSync(dirOf(outRoot, p, "index.html"), unlinkUnbuilt(renderPost(H, p, posts), posts));
     // 그래프 · 그릴 숫자가 없어졌으면 예전 파일을 지운다(페이지가 더 이상 가리키지 않음) · 후기 글은 추천률 그래프를 trend.svg 로
     const caseTrend = p.case?.snap?.trend?.length ? caseTrendSvg(p.case.snap.trend) : null;
     for (const [file, ch] of [["trend.svg", caseTrend ?? p.charts?.trend], ["volume.svg", p.charts?.volume]]) {
