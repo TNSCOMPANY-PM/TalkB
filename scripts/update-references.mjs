@@ -74,10 +74,11 @@ for (const f of cfg.featured) {
   const st = byName.get(f.store);
   const q = qs.find((x) => x.store_id === st.id && x.question === f.question);
   if (!q) { out.warnings.push(`${f.key}: 질문이 비활성/없음 · ${f.question}`); out.featured[f.key] = null; continue; }
-  const rs = resp.filter((r) => r.question_id === q.id);
+  // 11/5 사장 "질문마다 3번씩이 맞음 · 3번으로 통일" · 가장 최근 3번 답으로 센다(예전 주 5회 매장도 같은 기준)
+  const rs = resp.filter((r) => r.question_id === q.id).sort((a, b) => String(b.asked_at).localeCompare(String(a.asked_at))).slice(0, 3);
   const r1 = rs.filter((r) => r.target_rank === 1).length;
   if (!rs.length || r1 === 0) out.warnings.push(`${f.key}: 최근 7일 1위 없음(${r1}/${rs.length}) · 문구 점검 필요`);
-  out.featured[f.key] = { runs: rs.length, rank1: r1, label: `${rs.length}번 중 ${r1}번`, all: rs.length > 0 && r1 === rs.length };
+  out.featured[f.key] = { runs: rs.length, rank1: r1, label: r1 === rs.length ? `${rs.length}번 모두` : `${rs.length}번 중 ${r1}번`, all: rs.length > 0 && r1 === rs.length };
 }
 
 mkdirSync(join(ROOT, "data"), { recursive: true });
