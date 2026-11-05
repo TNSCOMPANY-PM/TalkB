@@ -56,8 +56,6 @@ section[id]{scroll-margin-top:80px}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
 .nl{white-space:nowrap}
-/* 11/5 메뉴 항목이 늘어 노트북 폭에서 글자가 꺾이던 것 · 홈 안에서 이동만 하는 링크는 넓은 PC와 휴대폰 메뉴에서만 */
-@media (min-width:641px) and (max-width:1279px){.nl-in{display:none}}
 button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
 .nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
 @media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
@@ -720,13 +718,10 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <div class="hdr-in">
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
-<a class="nl" href="/">홈</a>
-<a class="nl" href="/pricing/">요금제</a>
-<a class="nl" href="/content/how-talkb-works/">토크비가 하는 일</a>
-<a class="nl" href="/content/">콘텐츠</a>
-<a class="nl" href="/stories/" aria-current="page">사장님 이야기</a>
-
-<a class="nl" href="/#inquiry">문의하기</a>
+<a class="nl" href="/content/how-talkb-works/" data-pos="nav-how">토크비가 하는 일</a>
+<a class="nl" href="/stories/" data-pos="nav-stories" aria-current="page">사장님 이야기</a>
+<a class="nl" href="/pricing/" data-pos="nav-price">요금제</a>
+<a class="nl" href="/content/" data-pos="nav-content">콘텐츠</a>
 </nav>
 <button class="nl-m" type="button" aria-expanded="false" aria-label="메뉴 열기" onclick="var h=this.closest('.hdr'),o=h.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기')"><svg class="ic-m" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg><svg class="ic-x" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>
 <a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">우리 가게도 무료로 확인하기</a>

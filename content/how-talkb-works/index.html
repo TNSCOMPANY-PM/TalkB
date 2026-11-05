@@ -56,8 +56,6 @@ section[id]{scroll-margin-top:80px}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
 .nl{white-space:nowrap}
-/* 11/5 메뉴 항목이 늘어 노트북 폭에서 글자가 꺾이던 것 · 홈 안에서 이동만 하는 링크는 넓은 PC와 휴대폰 메뉴에서만 */
-@media (min-width:641px) and (max-width:1279px){.nl-in{display:none}}
 button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
 .nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
 @media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
@@ -705,7 +703,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 @media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:17px;line-height:1.8}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","@id":"https://talkb.co.kr/content/how-talkb-works/#article","headline":"GEO 마케팅, 토크비는 이렇게 합니다","description":"구글, OpenAI, Anthropic은 \"AI 검색에 나오려면 이렇게 하라\"는 안내를 직접 공개해 두었습니다. 토크비는 그대로 사장님 가게를 챙겨 드립니다. 가게 정보를 바로잡고, 손님이 물어볼 만한 상황에 맞춰 소개 글을 올리고, ChatGPT에 매주 직접","datePublished":"2026-11-05T01:38:15.693Z","dateModified":"2026-11-05T01:38:15.693Z","inLanguage":"ko","author":{"@type":"Person","@id":"https://talkb.co.kr/#writer-kim-jeongseop","name":"김정섭","jobTitle":"총괄","image":"https://talkb.co.kr/images/team/kim-jeongseop.jpg","description":"식당, 카페, 술집 사장님 가게가 네이버, 구글 검색과 ChatGPT 같은 AI 답에 나오도록 돕는 일을 맡고 있습니다. 글은 토크비가 매주 측정한 실제 ChatGPT 답과 네이버, 구글 공식 안내를 바탕으로 쓰고 직접 확인합니다.","worksFor":{"@id":"https://talkb.co.kr/#org"}},"publisher":{"@type":"Organization","@id":"https://talkb.co.kr/#org","name":"토크비","alternateName":"TalkB","url":"https://talkb.co.kr/","logo":"https://talkb.co.kr/logo.png"},"image":["https://talkb.co.kr/images/og/how-talkb-works.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://talkb.co.kr/content/how-talkb-works/"},"keywords":"GEO 마케팅, GEO 업체, AI 마케팅"}
+{"@context":"https://schema.org","@type":"Article","@id":"https://talkb.co.kr/content/how-talkb-works/#article","headline":"GEO 마케팅, 토크비는 이렇게 합니다","description":"구글, OpenAI, Anthropic은 \"AI 검색에 나오려면 이렇게 하라\"는 안내를 직접 공개해 두었습니다. 토크비는 그대로 사장님 가게를 챙겨 드립니다. 가게 정보를 바로잡고, 손님이 물어볼 만한 상황에 맞춰 소개 글을 올리고, ChatGPT에 매주 직접","datePublished":"2026-11-05T01:38:15.693+00:00","dateModified":"2026-11-05T01:38:15.693+00:00","inLanguage":"ko","author":{"@type":"Person","@id":"https://talkb.co.kr/#writer-kim-jeongseop","name":"김정섭","jobTitle":"총괄","image":"https://talkb.co.kr/images/team/kim-jeongseop.jpg","description":"식당, 카페, 술집 사장님 가게가 네이버, 구글 검색과 ChatGPT 같은 AI 답에 나오도록 돕는 일을 맡고 있습니다. 글은 토크비가 매주 측정한 실제 ChatGPT 답과 네이버, 구글 공식 안내를 바탕으로 쓰고 직접 확인합니다.","worksFor":{"@id":"https://talkb.co.kr/#org"}},"publisher":{"@type":"Organization","@id":"https://talkb.co.kr/#org","name":"토크비","alternateName":"TalkB","url":"https://talkb.co.kr/","logo":"https://talkb.co.kr/logo.png"},"image":["https://talkb.co.kr/images/og/how-talkb-works.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://talkb.co.kr/content/how-talkb-works/"},"keywords":"GEO 마케팅, GEO 업체, AI 마케팅"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","@id":"https://talkb.co.kr/content/how-talkb-works/#faq","mainEntity":[{"@type":"Question","name":"GEO 마케팅이 뭔가요?","acceptedAnswer":{"@type":"Answer","text":"손님이 ChatGPT 같은 AI에 가게를 물어볼 때 우리 가게가 답에 나오게 하는 일입니다. 네이버 검색에 잘 나오게 하는 일을 SEO라고 하듯, AI 답에 나오게 하는 일을 GEO라고 부릅니다."}},{"@type":"Question","name":"토크비를 쓰면 네이버 플레이스 순위도 오르나요?","acceptedAnswer":{"@type":"Answer","text":"토크비가 측정하는 건 ChatGPT 답에 가게가 나오는지입니다. 네이버 순위를 올려 드린다고 약속하지는 않습니다. 다만 정리해 둔 가게 정보는 네이버와 구글에도 그대로 쓰입니다."}},{"@type":"Question","name":"측정 질문은 누가 정하나요?","acceptedAnswer":{"@type":"Answer","text":"상담할 때 사장님과 같이 정합니다. 손님이 실제로 할 만한 질문으로 고르고, 우리 가게에 유리한 질문만 골라 넣지 않습니다."}},{"@type":"Question","name":"구글은 따로 할 게 없다던데, 토크비가 왜 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"\"따로 할 게 없다\"는 말은 AI만을 위한 특별한 기술이 필요 없다는 뜻입니다. 가게 정보를 글로, 정확하게, 지금 상태로 두라는 기본은 그대로입니다. 이 기본을 꾸준히 지키고, 정말 AI 답에 나오는지 매주 확인하는 일을 토크비가 대신 합니다."}},{"@type":"Question","name":"Claude나 구글 AI에서도 측정해 주나요?","acceptedAnswer":{"@type":"Answer","text":"지금 매주 측정하는 건 ChatGPT입니다. 가게 정보를 하나로 맞추는 일은 다른 AI에도 똑같이 도움이 되지만, 숫자는 ChatGPT 기준으로 보여 드립니다."}},{"@type":"Question","name":"다른 GEO 업체와 뭐가 다른가요?","acceptedAnswer":{"@type":"Answer","text":"매주 같은 질문으로 측정한 숫자와 ChatGPT 답을 사장님 화면에 그대로 보여 드립니다. 무엇을 했고 무엇이 바뀌었는지 사장님이 직접 확인하실 수 있습니다."}},{"@type":"Question","name":"신청하면 바로 결제되나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 먼저 손님 질문 20개로 무료 리포트를 만들어 드리고, 결과를 설명해 드린 다음 사장님이 정하시면 됩니다."}}]}
@@ -720,13 +718,10 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <div class="hdr-in">
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
-<a class="nl" href="/">홈</a>
-<a class="nl" href="/pricing/">요금제</a>
-<a class="nl" href="/content/how-talkb-works/">토크비가 하는 일</a>
-<a class="nl" href="/content/" aria-current="page">콘텐츠</a>
-<a class="nl" href="/stories/">사장님 이야기</a>
-
-<a class="nl" href="/#inquiry">문의하기</a>
+<a class="nl" href="/content/how-talkb-works/" data-pos="nav-how">토크비가 하는 일</a>
+<a class="nl" href="/stories/" data-pos="nav-stories">사장님 이야기</a>
+<a class="nl" href="/pricing/" data-pos="nav-price">요금제</a>
+<a class="nl" href="/content/" data-pos="nav-content" aria-current="page">콘텐츠</a>
 </nav>
 <button class="nl-m" type="button" aria-expanded="false" aria-label="메뉴 열기" onclick="var h=this.closest('.hdr'),o=h.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기')"><svg class="ic-m" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg><svg class="ic-x" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>
 <a class="kbtn kbtn-sm fbtn" href="/#inquiry" data-pos="guide-header">우리 가게도 무료로 확인하기</a>
@@ -737,7 +732,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="/content/">콘텐츠</a></nav>
 <div class="g-chips"><span class="g-chip">업체 고르기</span><span class="g-chip k">가이드</span></div>
 <h1 class="g-h1">GEO 마케팅, 토크비는 이렇게 합니다</h1>
-<p class="g-by"><img class="g-face" src="/images/team/kim-jeongseop.jpg" width="28" height="28" alt="" aria-hidden="true" loading="eager" decoding="async"><span>김정섭 총괄 · <time datetime="2026-11-05T01:38:15.693Z">2026년 11월 5일 수정</time></span></p>
+<p class="g-by"><img class="g-face" src="/images/team/kim-jeongseop.jpg" width="28" height="28" alt="" aria-hidden="true" loading="eager" decoding="async"><span>김정섭 총괄 · <time datetime="2026-11-05T01:38:15.693+00:00">2026년 11월 5일 수정</time></span></p>
 <div class="g-sum"><b>세 줄 요약</b><ul><li>구글, OpenAI, Anthropic은 &quot;AI 검색에 나오려면 이렇게 하라&quot;는 안내를 직접 공개해 두었습니다. 토크비는 그대로 사장님 가게를 챙겨 드립니다.</li><li>가게 정보를 바로잡고, 손님이 물어볼 만한 상황에 맞춰 소개 글을 올리고, ChatGPT에 매주 직접 물어봅니다.</li><li>사장님 가게 이야기만 씁니다. 결과는 숫자와 ChatGPT 답 그대로 보여 드립니다.</li></ul></div>
 <div class="g-body">
 <p>요즘 손님은 네이버만 찾지 않습니다. ChatGPT에도 &quot;근처에 회식하기 좋은 고깃집 있어?&quot; 하고 물어봅니다. 이때 우리 가게 이름이 답에 나오게 하는 일을 GEO 마케팅이라고 부릅니다. 토크비가 하는 일이 바로 이것입니다.</p>
