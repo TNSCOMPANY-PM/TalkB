@@ -545,8 +545,8 @@ const GUIDE_CSS = `
 .g-cat-tab{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap;text-decoration:none}
 .g-cat-tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--soft,#F2F4F6);font-size:13px;font-weight:800;color:var(--ink-mid)}
 .g-cat-tab:hover{border-color:#FBD5C6;color:var(--ink)}
-.g-cat-tab[aria-current=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-.g-cat-tab[aria-current=true] .n{background:rgba(255,255,255,.18);color:#fff}
+.g-cat-tab[aria-current=true],.g-cat-tab[aria-current=page]{background:var(--ink);border-color:var(--ink);color:#fff}
+.g-cat-tab[aria-current=true] .n,.g-cat-tab[aria-current=page] .n{background:rgba(255,255,255,.18);color:#fff}
 .g-cat{margin-top:36px;scroll-margin-top:80px}
 .g-cat-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
 .tb .g-cat-h h2{font-size:24px;font-weight:800;margin:0}
@@ -978,7 +978,25 @@ export function renderCaseHub(H, hub, all) {
   ] : [];
   const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: name, ld, section: "stories" });
   const hubs = caseHubs(all);
-  const nav = `<div class="g-tabs">${hubs.filter((h) => h.posts.length).map((h) => `<a class="g-tab" href="/${STORIES_DIR}/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-pressed="true"' : ""} style="display:inline-flex;align-items:center">${esc(h.label)} ${h.posts.length}</a>`).join("")}</div>`;
+  // 업종 칸(11/5 사장 "사장님 이야기에도 업종별 카테고리 저런 식으로") · 콘텐츠 목록과 같은 모양 · 업종마다 따로 페이지라 칸은 진짜 링크
+  const live = hubs.filter((h) => h.posts.length);
+  const allCount = live.reduce((n, h) => n + h.posts.length, 0);
+  const nav = live.length ? `<nav class="g-cats" aria-label="업종 고르기" id="gTabs"><div class="g-cats-row">
+<a class="g-cat-tab" href="/${STORIES_DIR}/"${isRoot ? ' aria-current="page"' : ""}>전체 <span class="n">${allCount}</span></a>${live.map((h) => `<a class="g-cat-tab" href="/${STORIES_DIR}/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-current="page"' : ""}>${esc(h.label)} <span class="n">${h.posts.length}</span></a>`).join("")}
+</div></nav>
+<script>
+(function(){
+  var nav = document.getElementById("gTabs"); if (!nav) return;
+  var hdr = document.querySelector(".hdr"); function pin(){ nav.style.top = (hdr ? hdr.getBoundingClientRect().height : 0) + "px"; } pin(); addEventListener("resize", pin);
+  var row = nav.querySelector(".g-cats-row"); function fade(){ row.classList.toggle("more", row.scrollLeft + row.clientWidth < row.scrollWidth - 4); } fade(); row.addEventListener("scroll", fade, { passive: true }); addEventListener("resize", fade);
+  var cur = row.querySelector('[aria-current="page"]'); if (cur && cur.offsetLeft + cur.offsetWidth > row.clientWidth) row.scrollLeft = cur.offsetLeft - 16;
+})();
+</script>` : "";
+  // 전체 보기는 업종마다 제목 · 글 수 · 카드 묶음(콘텐츠 목록과 같은 모양) · 업종 페이지는 그 업종 묶음 하나
+  const groupsHtml = (isRoot ? live : [hub]).filter((h) => h.posts.length).map((h) => `<section class="g-cat" aria-labelledby="st-h-${h.key}">
+<div class="g-cat-h"><h2 id="st-h-${h.key}">${isRoot ? `<a href="/${STORIES_DIR}/${h.key}/" style="color:inherit">${esc(h.label)}</a>` : esc(h.label)}</h2><p>${esc(h.label)} 가게의 식당 마케팅 사례</p><span class="n">이야기 ${h.posts.length}편</span></div>
+<div class="g-cards">${[...h.posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1)).map(card).join("")}</div>
+</section>`).join("\n");
   const main = `<main class="g-main">
 <div class="wrap">
 <nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${isRoot ? "<span>사장님 이야기</span>" : `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
@@ -986,7 +1004,7 @@ export function renderCaseHub(H, hub, all) {
 <p class="lead" style="margin-top:12px">${esc(desc)}</p>
 ${sorted.length ? `<p style="margin-top:10px;font-size:16px;font-weight:700">${esc(hubStat(sorted))}</p>` : ""}
 ${nav}
-${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>${hubIntro(STORY_INTRO(isRoot ? null : hub.label), isRoot ? STORY_FAQ : [])}` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
+${sorted.length ? `${groupsHtml}${hubIntro(STORY_INTRO(isRoot ? null : hub.label), isRoot ? STORY_FAQ : [])}` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">우리 가게도 무료로 확인하기</a></div>
 </div>
 </main>`;

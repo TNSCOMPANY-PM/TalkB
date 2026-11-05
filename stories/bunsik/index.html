@@ -658,8 +658,8 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .g-cat-tab{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap;text-decoration:none}
 .g-cat-tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--soft,#F2F4F6);font-size:13px;font-weight:800;color:var(--ink-mid)}
 .g-cat-tab:hover{border-color:#FBD5C6;color:var(--ink)}
-.g-cat-tab[aria-current=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-.g-cat-tab[aria-current=true] .n{background:rgba(255,255,255,.18);color:#fff}
+.g-cat-tab[aria-current=true],.g-cat-tab[aria-current=page]{background:var(--ink);border-color:var(--ink);color:#fff}
+.g-cat-tab[aria-current=true] .n,.g-cat-tab[aria-current=page] .n{background:rgba(255,255,255,.18);color:#fff}
 .g-cat{margin-top:36px;scroll-margin-top:80px}
 .g-cat-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
 .tb .g-cat-h h2{font-size:24px;font-weight:800;margin:0}
@@ -721,7 +721,17 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <h1 class="g-h1">분식 사장님 이야기</h1>
 <p class="lead" style="margin-top:12px">분식 사장님 가게가 ChatGPT 추천에 나오기까지 토크비가 한 일과 달라진 숫자를 모았어요.</p>
 
-<div class="g-tabs"><a class="g-tab" href="/stories/soup/" style="display:inline-flex;align-items:center">국밥 · 탕 1</a></div>
+<nav class="g-cats" aria-label="업종 고르기" id="gTabs"><div class="g-cats-row">
+<a class="g-cat-tab" href="/stories/">전체 <span class="n">1</span></a><a class="g-cat-tab" href="/stories/soup/">국밥 · 탕 <span class="n">1</span></a>
+</div></nav>
+<script>
+(function(){
+  var nav = document.getElementById("gTabs"); if (!nav) return;
+  var hdr = document.querySelector(".hdr"); function pin(){ nav.style.top = (hdr ? hdr.getBoundingClientRect().height : 0) + "px"; } pin(); addEventListener("resize", pin);
+  var row = nav.querySelector(".g-cats-row"); function fade(){ row.classList.toggle("more", row.scrollLeft + row.clientWidth < row.scrollWidth - 4); } fade(); row.addEventListener("scroll", fade, { passive: true }); addEventListener("resize", fade);
+  var cur = row.querySelector('[aria-current="page"]'); if (cur && cur.offsetLeft + cur.offsetWidth > row.clientWidth) row.scrollLeft = cur.offsetLeft - 16;
+})();
+</script>
 <p class="g-empty">분식 사장님 이야기를 준비하고 있어요.</p>
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">우리 가게도 무료로 확인하기</a></div>
 </div>
