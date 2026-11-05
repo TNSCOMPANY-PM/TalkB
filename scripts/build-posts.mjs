@@ -540,6 +540,9 @@ const GUIDE_CSS = `
 .tb .g-card p{margin-top:8px;color:var(--ink-mid);font-size:15px}
 .tb .g-card p.d{margin-top:10px;font-size:14px}
 .g-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.g-first{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:20px;padding:14px 18px;border-radius:14px;background:var(--warm,#FFF7F3);border:1px solid #FBD5C6;color:var(--ink);text-decoration:none;font-size:16px}
+.g-first b{color:var(--deep);font-size:14px}
+.g-first span{font-weight:800}
 .g-cats{margin-top:26px;position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:10px 0;border-bottom:1px solid var(--line)}
 .g-cats-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
 .g-cats-row::-webkit-scrollbar{display:none}
@@ -643,6 +646,7 @@ ${ld.map(jsonLd).join("\n")}
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
+<a class="nl" href="/${GUIDE_DIR}/how-talkb-works/">토크비가 하는 일</a>
 <a class="nl" href="/${GUIDE_DIR}/"${section === "guide" ? ' aria-current="page"' : ""}>콘텐츠</a>
 ${H.hasStories ? `<a class="nl" href="/${STORIES_DIR}/"${section === "stories" ? ' aria-current="page"' : ""}>사장님 이야기</a>
 ` : ""}
@@ -776,11 +780,11 @@ ${chartsSection(p)}<div class="g-body">
 ${bodyHtml(p)}
 </div>
 ${writerBox()}
+<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">우리 가게도 무료로 확인하기</a></div>
 <section class="g-sec" aria-labelledby="g-faq"><h2 id="g-faq">자주 묻는 질문</h2>
 ${p.faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("\n")}
 </section>
-${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">같이 읽으면 좋은 글</h2><div class="g-cards">${rel.map(card).join("")}</div></section>\n` : ""}<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">우리 가게도 무료로 확인하기</a></div>
-</div></article>
+${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">같이 읽으면 좋은 글</h2><div class="g-cards">${rel.map(card).join("")}</div></section>\n` : ""}</div></article>
 </main>`;
   return head + main + pageTail(H);
 }
@@ -838,6 +842,7 @@ export function renderList(H, all) {
       return `<nav class="g-cats" aria-label="주제 고르기" id="gTabs"><div class="g-cats-row">
 <a class="g-cat-tab" href="#cat-all" data-f="" aria-current="true">전체 <span class="n">${sorted.length}</span></a>${groups.map((g) => `<a class="g-cat-tab" href="#cat-${g.key}" data-f="${g.key}">${esc(g.label)} <span class="n">${g.list.length}</span></a>`).join("")}
 </div></nav>
+${sorted.some((p) => p.slug === "how-talkb-works") ? `<a class="g-first" href="/${GUIDE_DIR}/how-talkb-works/"><b>처음 오셨다면</b><span>GEO 마케팅, 토크비는 이렇게 합니다 ›</span></a>` : ""}
 ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${STORIES_DIR}/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>` : ""}
 <div id="cat-all">${groups.map((g) => `<section class="g-cat" id="cat-${g.key}" data-t="${g.key}" aria-labelledby="cat-h-${g.key}">
 <div class="g-cat-h"><h2 id="cat-h-${g.key}">${esc(g.label)}</h2><p>${esc(g.q)}</p><span class="n">글 ${g.list.length}편</span></div>

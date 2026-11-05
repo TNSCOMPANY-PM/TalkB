@@ -55,6 +55,9 @@ section[id]{scroll-margin-top:80px}
 .logo small{font-size:14px;color:var(--muted);font-weight:700}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
+.nl{white-space:nowrap}
+/* 11/5 메뉴 항목이 늘어 노트북 폭에서 글자가 꺾이던 것 · 홈 안에서 이동만 하는 링크는 넓은 PC와 휴대폰 메뉴에서만 */
+@media (min-width:641px) and (max-width:1279px){.nl-in{display:none}}
 button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
 .nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
 @media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
@@ -653,6 +656,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .tb .g-card p{margin-top:8px;color:var(--ink-mid);font-size:15px}
 .tb .g-card p.d{margin-top:10px;font-size:14px}
 .g-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.g-first{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:20px;padding:14px 18px;border-radius:14px;background:var(--warm,#FFF7F3);border:1px solid #FBD5C6;color:var(--ink);text-decoration:none;font-size:16px}
+.g-first b{color:var(--deep);font-size:14px}
+.g-first span{font-weight:800}
 .g-cats{margin-top:26px;position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:10px 0;border-bottom:1px solid var(--line)}
 .g-cats-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
 .g-cats-row::-webkit-scrollbar{display:none}
@@ -716,6 +722,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
+<a class="nl" href="/content/how-talkb-works/">토크비가 하는 일</a>
 <a class="nl" href="/content/" aria-current="page">콘텐츠</a>
 <a class="nl" href="/stories/">사장님 이야기</a>
 
@@ -748,13 +755,13 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <p>토크비는 손님이 ChatGPT에 맛집을 물을 때 우리 가게가 실제로 나오는지 매주 확인해 드립니다. 가게 정보를 AI가 읽기 좋게 정리하는 일도 같이 해 드립니다. ChatGPT 사용자가 쿠팡이츠보다 많아진 지금, 가게 정보부터 한번 점검해 보세요.</p>
 </div>
 <aside class="g-writer" aria-label="글쓴이"><img class="g-face g-face-lg" src="/images/team/kim-jeongseop.jpg" width="56" height="56" alt="김정섭 총괄" loading="lazy" decoding="async"><div><p class="g-writer-n">김정섭 <span>토크비 총괄</span></p><p class="g-writer-b">식당, 카페, 술집 사장님 가게가 네이버, 구글 검색과 ChatGPT 같은 AI 답에 나오도록 돕는 일을 맡고 있습니다. 글은 토크비가 매주 측정한 실제 ChatGPT 답과 네이버, 구글 공식 안내를 바탕으로 쓰고 직접 확인합니다.</p></div></aside>
+<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">우리 가게도 무료로 확인하기</a></div>
 <section class="g-sec" aria-labelledby="g-faq"><h2 id="g-faq">자주 묻는 질문</h2>
 <details class="faq"><summary>ChatGPT 사용자가 쿠팡이츠보다 많다는 게 정말인가요?</summary><p>네, 2026년 상반기 기준 와이즈앱·리테일 조사(파이낸셜뉴스 2026년 7월 14일)에서 ChatGPT 월평균 사용자는 2,324만 명, 쿠팡이츠는 1,284만 명이었습니다.</p></details>
 <details class="faq"><summary>50대 이상 손님도 ChatGPT를 쓰나요?</summary><p>2025년 8월 기준 ChatGPT 사용자 중 50세 이상이 17.8%였습니다(와이즈앱·리테일 조사, 2025년 9월 7일 보도). 중장년 손님도 적지 않게 씁니다.</p></details>
 <details class="faq"><summary>네이버나 ChatGPT가 어떤 가게를 먼저 보여주는지 알 수 있나요?</summary><p>두 서비스 모두 내부 기준을 공식으로 밝힌 적이 없어 정확히 알 수 없습니다. 대신 사장님이 확실하게 할 수 있는 일은 있습니다. 가게 정보를 정확하게, 어디서나 똑같이 올려 두는 겁니다.</p></details>
 </section>
 <section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">같이 읽으면 좋은 글</h2><div class="g-cards"><a class="g-card" href="/content/aeo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법</h3><p>AEO는 손님이 물었을 때 나오는 답 속에 우리 가게 정보가 들어가게 하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a><a class="g-card" href="/content/geo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법</h3><p>GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a><a class="g-card" href="/stories/soup/mohyeoneup-haejangguk/" data-v="restaurant" data-k="case" data-t="case"><div class="g-chips" style="margin-top:0"><span class="g-chip">식당</span><span class="g-chip k">후기</span></div><h3>식당 마케팅 사례, 뼈해장국집 ChatGPT 추천 0%에서 66%로</h3><p>용인 모현읍 뼈해장국집 인생뼈다귀 본점의 식당 마케팅 사례입니다. 15주 동안 ChatGPT 추천률이 0%에서 66%로 올랐습니다.</p><p class="d">2026년 11월 5일 수정</p></a></div></section>
-<div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-cta">우리 가게도 무료로 확인하기</a></div>
 </div></article>
 </main>
 <footer class="foot">

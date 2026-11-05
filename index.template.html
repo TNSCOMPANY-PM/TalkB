@@ -282,6 +282,9 @@ section[id]{scroll-margin-top:80px}
 .logo small{font-size:14px;color:var(--muted);font-weight:700}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
+.nl{white-space:nowrap}
+/* 11/5 메뉴 항목이 늘어 노트북 폭에서 글자가 꺾이던 것 · 홈 안에서 이동만 하는 링크는 넓은 PC와 휴대폰 메뉴에서만 */
+@media (min-width:641px) and (max-width:1279px){.nl-in{display:none}}
 button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
 .nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
 @media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
@@ -859,11 +862,12 @@ fbq('track', 'PageView');
 <div class="hdr-in">
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
-<a class="nl" href="#proof">실제 답변</a>
-<a class="nl" href="#stores">함께하는 가게</a>
-<a class="nl" href="#reviews">후기</a>
+<a class="nl nl-in" href="#proof">실제 답변</a>
+<a class="nl nl-in" href="#stores">함께하는 가게</a>
+<a class="nl nl-in" href="#reviews">후기</a>
 <a class="nl" href="#price">가격</a>
-<a class="nl" href="#faq">자주 묻는 질문</a>
+<a class="nl nl-in" href="#faq">자주 묻는 질문</a>
+<a class="nl" href="/content/how-talkb-works/">토크비가 하는 일</a>
 <a class="nl" href="/content/">콘텐츠</a>
 {{storiesNav}}
 </nav>

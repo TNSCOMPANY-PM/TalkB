@@ -55,6 +55,9 @@ section[id]{scroll-margin-top:80px}
 .logo small{font-size:14px;color:var(--muted);font-weight:700}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
+.nl{white-space:nowrap}
+/* 11/5 메뉴 항목이 늘어 노트북 폭에서 글자가 꺾이던 것 · 홈 안에서 이동만 하는 링크는 넓은 PC와 휴대폰 메뉴에서만 */
+@media (min-width:641px) and (max-width:1279px){.nl-in{display:none}}
 button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
 .nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
 @media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
@@ -653,6 +656,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .tb .g-card p{margin-top:8px;color:var(--ink-mid);font-size:15px}
 .tb .g-card p.d{margin-top:10px;font-size:14px}
 .g-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.g-first{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:20px;padding:14px 18px;border-radius:14px;background:var(--warm,#FFF7F3);border:1px solid #FBD5C6;color:var(--ink);text-decoration:none;font-size:16px}
+.g-first b{color:var(--deep);font-size:14px}
+.g-first span{font-weight:800}
 .g-cats{margin-top:26px;position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:10px 0;border-bottom:1px solid var(--line)}
 .g-cats-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
 .g-cats-row::-webkit-scrollbar{display:none}
@@ -713,6 +719,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
+<a class="nl" href="/content/how-talkb-works/">토크비가 하는 일</a>
 <a class="nl" href="/content/">콘텐츠</a>
 <a class="nl" href="/stories/" aria-current="page">사장님 이야기</a>
 

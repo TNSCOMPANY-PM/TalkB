@@ -55,6 +55,9 @@ section[id]{scroll-margin-top:80px}
 .logo small{font-size:14px;color:var(--muted);font-weight:700}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--ink-mid);padding:8px 12px;border-radius:8px}
+.nl{white-space:nowrap}
+/* 11/5 메뉴 항목이 늘어 노트북 폭에서 글자가 꺾이던 것 · 홈 안에서 이동만 하는 링크는 넓은 PC와 휴대폰 메뉴에서만 */
+@media (min-width:641px) and (max-width:1279px){.nl-in{display:none}}
 button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-content:center;color:var(--ink);font:inherit}
 .nl-m .ic-x,.hdr.open .nl-m .ic-m{display:none}.hdr.open .nl-m .ic-x{display:block}
 @media (max-width:640px){.hdr.open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:4px 16px 12px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(25,31,40,.08)}.hdr.open .nav .nl{padding:14px 6px;font-size:17px;font-weight:700;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line)}.hdr.open .nav .nl:last-child{border-bottom:0}}
@@ -653,6 +656,9 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .tb .g-card p{margin-top:8px;color:var(--ink-mid);font-size:15px}
 .tb .g-card p.d{margin-top:10px;font-size:14px}
 .g-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.g-first{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:20px;padding:14px 18px;border-radius:14px;background:var(--warm,#FFF7F3);border:1px solid #FBD5C6;color:var(--ink);text-decoration:none;font-size:16px}
+.g-first b{color:var(--deep);font-size:14px}
+.g-first span{font-weight:800}
 .g-cats{margin-top:26px;position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:10px 0;border-bottom:1px solid var(--line)}
 .g-cats-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
 .g-cats-row::-webkit-scrollbar{display:none}
@@ -702,7 +708,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 {"@context":"https://schema.org","@type":"FAQPage","@id":"https://talkb.co.kr/content/#faq","mainEntity":[{"@type":"Question","name":"토크비 콘텐츠는 누구를 위한 글인가요?","acceptedAnswer":{"@type":"Answer","text":"식당 · 카페 · 술집을 운영하는 사장님을 위한 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 쉬운 말로 쓰고, 오늘 바로 해 볼 수 있는 일을 먼저 적습니다."}},{"@type":"Question","name":"SEO, AEO, GEO는 무엇이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"SEO는 검색 결과 목록에 가게가 잘 보이게 하는 일입니다. AEO는 검색 결과 위에 바로 뜨는 답에, GEO는 ChatGPT 같은 AI가 만든 답에 가게가 들어가게 하는 일입니다. 셋 다 가게 정보를 정확하게 적어 두는 것에서 시작합니다."}},{"@type":"Question","name":"실제로 AI 추천이 달라진 가게가 있나요?","acceptedAnswer":{"@type":"Answer","text":"있습니다. 매주 같은 질문으로 ChatGPT 추천을 확인한 가게들의 기록을 사장님 이야기(talkb.co.kr/stories/)에 업종별로 모았습니다."}}]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://talkb.co.kr/content/#page","url":"https://talkb.co.kr/content/","name":"식당·카페·술집 사장님 콘텐츠","description":"토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.","inLanguage":"ko","publisher":{"@type":"Organization","@id":"https://talkb.co.kr/#org","name":"토크비","alternateName":"TalkB","url":"https://talkb.co.kr/","logo":"https://talkb.co.kr/logo.png"},"about":["SEO","AEO","GEO","AI 검색 최적화","네이버 검색","구글 비즈니스 프로필"],"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://talkb.co.kr/content/geo-meaning/","name":"GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법"},{"@type":"ListItem","position":2,"url":"https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/","name":"식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법"},{"@type":"ListItem","position":3,"url":"https://talkb.co.kr/content/aeo-meaning/","name":"AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법"},{"@type":"ListItem","position":4,"url":"https://talkb.co.kr/content/seo-meaning/","name":"SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법"}]}}
+{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://talkb.co.kr/content/#page","url":"https://talkb.co.kr/content/","name":"식당·카페·술집 사장님 콘텐츠","description":"토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.","inLanguage":"ko","publisher":{"@type":"Organization","@id":"https://talkb.co.kr/#org","name":"토크비","alternateName":"TalkB","url":"https://talkb.co.kr/","logo":"https://talkb.co.kr/logo.png"},"about":["SEO","AEO","GEO","AI 검색 최적화","네이버 검색","구글 비즈니스 프로필"],"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://talkb.co.kr/content/how-talkb-works/","name":"GEO 마케팅, 토크비는 이렇게 합니다"},{"@type":"ListItem","position":2,"url":"https://talkb.co.kr/content/geo-meaning/","name":"GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법"},{"@type":"ListItem","position":3,"url":"https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/","name":"식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법"},{"@type":"ListItem","position":4,"url":"https://talkb.co.kr/content/aeo-meaning/","name":"AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법"},{"@type":"ListItem","position":5,"url":"https://talkb.co.kr/content/seo-meaning/","name":"SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법"}]}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"토크비","item":"https://talkb.co.kr/"},{"@type":"ListItem","position":2,"name":"콘텐츠","item":"https://talkb.co.kr/content/"}]}
@@ -716,6 +722,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/">홈</a>
 <a class="nl" href="/pricing/">요금제</a>
+<a class="nl" href="/content/how-talkb-works/">토크비가 하는 일</a>
 <a class="nl" href="/content/" aria-current="page">콘텐츠</a>
 <a class="nl" href="/stories/">사장님 이야기</a>
 
@@ -731,10 +738,15 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <h1 class="g-h1">식당·카페·술집 사장님 콘텐츠</h1>
 <p class="lead" style="margin-top:12px">토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.</p>
 <nav class="g-cats" aria-label="주제 고르기" id="gTabs"><div class="g-cats-row">
-<a class="g-cat-tab" href="#cat-all" data-f="" aria-current="true">전체 <span class="n">4</span></a><a class="g-cat-tab" href="#cat-ai" data-f="ai">AI 검색 <span class="n">3</span></a><a class="g-cat-tab" href="#cat-basic" data-f="basic">기본 정리 <span class="n">1</span></a>
+<a class="g-cat-tab" href="#cat-all" data-f="" aria-current="true">전체 <span class="n">5</span></a><a class="g-cat-tab" href="#cat-agency" data-f="agency">업체 고르기 <span class="n">1</span></a><a class="g-cat-tab" href="#cat-ai" data-f="ai">AI 검색 <span class="n">3</span></a><a class="g-cat-tab" href="#cat-basic" data-f="basic">기본 정리 <span class="n">1</span></a>
 </div></nav>
+<a class="g-first" href="/content/how-talkb-works/"><b>처음 오셨다면</b><span>GEO 마케팅, 토크비는 이렇게 합니다 ›</span></a>
 <p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/stories/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>
-<div id="cat-all"><section class="g-cat" id="cat-ai" data-t="ai" aria-labelledby="cat-h-ai">
+<div id="cat-all"><section class="g-cat" id="cat-agency" data-t="agency" aria-labelledby="cat-h-agency">
+<div class="g-cat-h"><h2 id="cat-h-agency">업체 고르기</h2><p>업체에 맡겨도 되나요</p><span class="n">글 1편</span></div>
+<div class="g-cards"><a class="g-card" href="/content/how-talkb-works/" data-v="all" data-k="guide" data-t="agency"><div class="g-chips" style="margin-top:0"><span class="g-chip">업체 고르기</span><span class="g-chip k">가이드</span></div><h3>GEO 마케팅, 토크비는 이렇게 합니다</h3><p>구글, OpenAI, Anthropic은 &quot;AI 검색에 나오려면 이렇게 하라&quot;는 안내를 직접 공개해 두었습니다. 토크비는 그대로 사장님 가게를 챙겨 드립니다.</p><p class="d">2026년 11월 5일 수정</p></a></div>
+</section>
+<section class="g-cat" id="cat-ai" data-t="ai" aria-labelledby="cat-h-ai">
 <div class="g-cat-h"><h2 id="cat-h-ai">AI 검색</h2><p>ChatGPT에 우리 가게가 나오게 하려면</p><span class="n">글 3편</span></div>
 <div class="g-cards"><a class="g-card" href="/content/geo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법</h3><p>GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a><a class="g-card" href="/content/chatgpt-restaurant-search-users-2026/" data-v="restaurant" data-k="insight" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">소식</span></div><h3>식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법</h3><p>2026년 상반기 국내 ChatGPT 앱 월평균 사용자는 2,324만 명입니다. 한국 사람들이 쓰는 앱 가운데 3번째로 많습니다.</p><p class="d">2026년 11월 5일 수정</p></a><a class="g-card" href="/content/aeo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법</h3><p>AEO는 손님이 물었을 때 나오는 답 속에 우리 가게 정보가 들어가게 하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a></div>
 </section>
@@ -763,7 +775,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <h2>토크비 콘텐츠는 무엇인가요</h2>
 <p>토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다. 손님이 검색창이나 ChatGPT에 "주차 되는 고깃집", "콘센트 있는 카페"처럼 물을 때 우리 가게가 답에 들어가려면 무엇을 하면 되는지를 다룹니다.</p>
 <h2>어떤 주제를 다루나요</h2>
-<ul><li><b>AI 검색</b>: ChatGPT에 우리 가게가 나오게 하려면 · 글 3편</li><li><b>기본 정리</b>: 처음이라 무엇부터 하나요 · 글 1편</li></ul>
+<ul><li><b>업체 고르기</b>: 업체에 맡겨도 되나요 · 글 1편</li><li><b>AI 검색</b>: ChatGPT에 우리 가게가 나오게 하려면 · 글 3편</li><li><b>기본 정리</b>: 처음이라 무엇부터 하나요 · 글 1편</li></ul>
 <h2>글은 어떻게 만드나요</h2>
 <p>네이버 · 구글 · OpenAI가 공식으로 밝힌 문서를 읽고, 문서에 있는 내용만 사장님 말로 풀어 씁니다. 글 끝에 원문 링크를 붙입니다. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 가게가 답에 나오는지 확인하는 서비스이고, 그 확인 결과도 글에 씁니다. 새 글은 매주 월요일과 목요일에 올라옵니다.</p>
 </div>
