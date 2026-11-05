@@ -194,6 +194,8 @@ export function preparePost(row, ctx) {
       cover, cover_alt: String(row.cover_alt ?? "").trim() || fTitle, status: row.status, datePublished, dateModified,
       storeId: row.store_id ?? null, case: kase,
       topicWords: topicWordsOf(fTitle, row.target_keywords),
+      // 노리는 검색어 · Article keywords 로(11/5 · 가이드 글에는 없었음)
+      keywords: (Array.isArray(row.target_keywords) ? row.target_keywords : []).map((k) => String(k?.kw ?? "").trim()).filter(Boolean).slice(0, 6),
       industry: kase ? (INDUSTRY_LABEL[kase.snap.industry] ? kase.snap.industry : "etc") : null,
       // 후기 글은 검색어 그래프 대신 추천률 그래프(결과 그림)
       // 검색어 조회수 그래프는 사장님에게 뜻이 없어 뺐다(10/21) · 가이드는 aiUsageSection 이 공통으로 붙는다
@@ -705,9 +707,10 @@ export function renderPost(H, p, posts) {
     {
       "@context": "https://schema.org", "@type": "Article", "@id": `${url}#article`, headline: p.title, description: desc,
       datePublished: p.datePublished, dateModified: p.dateModified, inLanguage: "ko",
-      author: { "@type": "Organization", name: AUTHOR, url: `${SITE}/` }, publisher: ORG, image: [image], mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      // 글쓴이 '토크비 팀'을 회사 엔티티(#org · sameAs 있음)에 잇는다(11/5 · 떨어진 이름뿐이었음)
+      author: { "@type": "Organization", name: AUTHOR, url: `${SITE}/`, parentOrganization: { "@id": `${SITE}/#org` } }, publisher: ORG, image: [image], mainEntityOfPage: { "@type": "WebPage", "@id": url },
       ...(p.case?.place ? { about: { "@type": "Restaurant", name: p.case.place.name, ...(p.case.place.locality ? { address: { "@type": "PostalAddress", addressLocality: p.case.place.locality, addressCountry: "KR" } } : {}) } } : {}),
-      ...(p.case ? { keywords: ["AI 검색 최적화", "ChatGPT 추천", INDUSTRY_LABEL[p.industry] ?? ""].filter(Boolean).join(", ") } : {}),
+      ...(p.case ? { keywords: ["AI 검색 최적화", "ChatGPT 추천", INDUSTRY_LABEL[p.industry] ?? ""].filter(Boolean).join(", ") } : p.keywords?.length ? { keywords: p.keywords.join(", ") } : {}),
     },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: p.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
     {
