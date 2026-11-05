@@ -21,9 +21,9 @@
    "line1": "영종도 운서동 고깃집 탐라담 영종도점의 AI 마케팅 사례입니다. 13주 동안 ChatGPT 추천률이 0%에서 46.7%로 올랐습니다.",
    "vertical": "restaurant",
    "kind": "case",
-   "status": "approved",
-   "datePublished": "2026-11-05T07:08:17.753Z",
-   "dateModified": "2026-11-05T07:08:17.753Z",
+   "status": "published",
+   "datePublished": "2026-11-05T07:08:17.753+00:00",
+   "dateModified": "2026-11-05T07:08:17.753+00:00",
    "storeId": "8a8a4891-c7c0-45c0-ac2b-3aa9ee25fecd",
    "industry": "meat",
    "path": "/stories/meat/unseodong-gogi/"
@@ -69,6 +69,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/aeo-meaning/"
+  },
+  {
+   "id": "ad2cde82-0b0e-4779-b544-89be88564fda",
+   "slug": "chatgpt-restaurant-cases-7-stores",
+   "title": "식당 마케팅 사례 7곳, ChatGPT 추천은 언제 올랐을까",
+   "line1": "토크비가 매주 ChatGPT 추천을 확인한 음식점 가운데, 결과가 좋았던 7곳을 모았습니다.",
+   "vertical": "restaurant",
+   "kind": "data",
+   "status": "approved",
+   "datePublished": "2026-11-05T23:42:59.976Z",
+   "dateModified": "2026-11-05T23:42:59.976Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/chatgpt-restaurant-cases-7-stores/"
   },
   {
    "id": "d776c68b-f957-4379-88df-c1801c645b05",

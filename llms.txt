@@ -15,7 +15,7 @@
 
 추천률 = 그 매장의 손님 질문을 ChatGPT에 물은 전체 횟수 중 매장이 답에 나온 비율.
 
-시작은 매장별 첫 측정(2026년 6~7월), 지금은 최근 7일(2026년 10월 29일~2026년 11월 5일) 실측입니다. 평균 11.7% → 66.9%.
+시작은 매장별 첫 측정(2026년 6~7월), 지금은 최근 7일(2026년 10월 30일~2026년 11월 6일) 실측입니다. 평균 11.7% → 66.9%.
 
 - 오공김밥 일산탄현점 (고양 일산서구 · 분식): 0% → 88%
 - 광장동가온 (서울 광진구 · 한식): 26.7% → 81.3%
@@ -78,6 +78,7 @@ ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계�
 ## 콘텐츠(식당 · 카페 · 술집 사장님 글)
 
 - 목록: https://talkb.co.kr/content/
+- 식당 마케팅 사례 7곳, ChatGPT 추천은 언제 올랐을까: https://talkb.co.kr/content/chatgpt-restaurant-cases-7-stores/ · 토크비가 매주 ChatGPT 추천을 확인한 음식점 가운데, 결과가 좋았던 7곳을 모았습니다.
 - GEO 마케팅, 토크비는 이렇게 합니다: https://talkb.co.kr/content/how-talkb-works/ · 구글, OpenAI, Anthropic은 "AI 검색에 나오려면 이렇게 하라"는 안내를 직접 공개해 두었습니다. 토크비는 그대로 사장님 가게를 챙겨 드립니다.
 - GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법: https://talkb.co.kr/content/geo-meaning/ · GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.
 - 식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법: https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/ · 2026년 상반기 국내 ChatGPT 앱 월평균 사용자는 2,324만 명입니다. 한국 사람들이 쓰는 앱 가운데 3번째로 많습니다.
@@ -93,4 +94,4 @@ ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계�
 
 ---
 
-Last updated: 2026.11.5
+Last updated: 2026.11.6
