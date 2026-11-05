@@ -139,6 +139,36 @@
       "source": "/gpt-plan/",
       "destination": "/pricing/",
       "permanent": true
+    },
+    {
+      "source": "/stories/meat/unseodong-yukryu",
+      "destination": "/stories/meat/unseodong-gogi/",
+      "permanent": true
+    },
+    {
+      "source": "/stories/meat/unseodong-yukryu/",
+      "destination": "/stories/meat/unseodong-gogi/",
+      "permanent": true
+    },
+    {
+      "source": "/stories/seafood/seongsadong-hansik",
+      "destination": "/stories/seafood/seongsadong-gejang/",
+      "permanent": true
+    },
+    {
+      "source": "/stories/seafood/seongsadong-hansik/",
+      "destination": "/stories/seafood/seongsadong-gejang/",
+      "permanent": true
+    },
+    {
+      "source": "/stories/soup/mohyeoneup-hansik",
+      "destination": "/stories/soup/mohyeoneup-haejangguk/",
+      "permanent": true
+    },
+    {
+      "source": "/stories/soup/mohyeoneup-hansik/",
+      "destination": "/stories/soup/mohyeoneup-haejangguk/",
+      "permanent": true
     }
   ],
   "headers": [

@@ -425,7 +425,7 @@ function caseResult(p) {
   }
   const shots = p.case.captures.filter((c) => c.ok);
   if (shots.length) {
-    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><a href="${pathOf(p)}${c.file}" target="_blank" rel="noopener"><img src="${pathOf(p)}${c.file}" width="840" height="1500" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"></a><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
+    parts.push(`<div class="c-shots">${shots.map((c) => `<figure class="c-shot"><a href="${pathOf(p)}${c.file}" target="_blank" rel="noopener"><img src="${pathOf(p)}${c.file}" width="${c.w ?? 840}" height="${c.h ?? 1500}" alt="${esc(`ChatGPT 답변 원문 · ${c.q}${c.rank ? ` · 추천 ${c.rank}위` : ""}${c.askedAt ? ` · ${koDate(c.askedAt)}` : ""}`)}" loading="lazy" decoding="async"></a><figcaption>${esc(c.q)}${c.askedAt ? ` · ${esc(koDate(c.askedAt))}` : ""}</figcaption></figure>`).join("")}</div>`);
   }
   return `<div class="c-res">\n${parts.join("\n")}\n</div>`;
 }
@@ -642,8 +642,17 @@ const ORG = { "@type": "Organization", "@id": `${SITE}/#org`, name: "토크비",
 const absImg = (p) => (p ? (p.startsWith("/") ? SITE + p : p) : `${SITE}/og-image.png?v=5`);
 const chips = (p) => `<span class="g-chip">${VERTICAL_LABEL[p.vertical]}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`;
 
+// 목록 주제 탭(11/5 사장 "카테고리도 안 나눴는데" · 글이 거의 다 '공통'이라 업종 탭이 쓸모없었음) · 제목 · 주소로 나눈다 · 위에서부터 먼저 맞는 것
+export const TOPIC_TABS = [
+  ["basic", "기초 개념", (p) => /-meaning$/.test(p.slug)],
+  ["data", "데이터 · 사례", (p) => p.kind === "data" || p.kind === "case"],
+  ["naver", "네이버 · 당근", (p) => /naver|danggeun/.test(p.slug) || /네이버|당근/.test(p.title)],
+  ["google", "구글", (p) => /google/.test(p.slug) || /구글/.test(p.title)],
+  ["ai", "ChatGPT · AI", (p) => /chatgpt|-ai-|^ai-/.test(p.slug) || /ChatGPT|AI/.test(p.title)],
+];
+export const topicOf = (p) => (TOPIC_TABS.find(([, , m]) => m(p)) ?? ["etc"])[0];
 function card(p) {
-  return `<a class="g-card" href="${pathOf(p)}" data-v="${p.vertical}" data-k="${p.kind}"><div class="g-chips" style="margin-top:0">${chips(p)}</div><h3>${esc(p.title)}</h3><p>${esc(p.lines[0] ?? "")}</p><p class="d">${koDate(p.dateModified)} 수정</p></a>`;
+  return `<a class="g-card" href="${pathOf(p)}" data-v="${p.vertical}" data-k="${p.kind}" data-t="${topicOf(p)}"><div class="g-chips" style="margin-top:0">${chips(p)}</div><h3>${esc(p.title)}</h3><p>${esc(p.lines[0] ?? "")}</p><p class="d">${koDate(p.dateModified)} 수정</p></a>`;
 }
 
 /** 관련 글 · 같은 업종 먼저, 그다음 공통 글 · 최대 3개(수정일 최근 순) */
@@ -688,7 +697,9 @@ export function renderPost(H, p, posts) {
   const url = urlOfP(p);
   const title = `${p.title} | 토크비(TalkB)`;
   const desc = metaDescription(p.lines);
-  const image = absImg(p.cover);
+  // 공유 그림(11/5 · 14편이 모두 기본 og-image 였음) · 표지 → 글마다 만든 그림(scripts/make-og.cjs) → 기본
+  const og = `/images/og/${p.slug}.png`;
+  const image = absImg(p.cover || (existsSync(join(ROOT, "images", "og", `${p.slug}.png`)) ? og : null));
   const rel = related(p, posts);
   const ld = [
     {
@@ -730,7 +741,6 @@ ${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">�
   return head + main + pageTail(H);
 }
 
-const TABS = [["", "전체"], ["restaurant", "식당"], ["cafe", "카페"], ["bar", "술집"]];
 // ── 목록 페이지 설명 글(10/21 사장 "이 페이지가 뭔지 정의 · AI가 더 잘 찾아오게") · 화면 본문과 FAQPage 구조화 데이터가 같은 문장 ──
 const GUIDE_DEF = "토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.";
 // 다루는 주제 묶음 · 제목으로 나눈다(글이 있는 묶음만 보임)
@@ -786,10 +796,10 @@ export function renderList(H, all) {
   ] : [];
   const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: "식당·카페·술집 사장님 콘텐츠", ld });
   const body = sorted.length
-    ? `<div class="g-tabs" role="group" aria-label="업종 고르기" id="gTabs" hidden>${TABS.map(([v, l], i) => `<button type="button" class="g-tab" data-f="${v}" aria-pressed="${i === 0}">${l}</button>`).join("")}</div>
+    ? `<div class="g-tabs" role="group" aria-label="주제 고르기" id="gTabs" hidden>${[["", "전체"], ...TOPIC_TABS.filter(([k]) => sorted.some((p) => topicOf(p) === k))].map(([v, l], i) => `<button type="button" class="g-tab" data-f="${v}" aria-pressed="${i === 0}">${l}</button>`).join("")}</div>
 ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${STORIES_DIR}/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>` : ""}
 <div class="g-cards" id="gCards">${sorted.map(card).join("")}</div>
-<p class="g-empty" id="gNone" hidden>이 업종 글은 준비하고 있어요.</p>
+<p class="g-empty" id="gNone" hidden>이 주제 글은 준비하고 있어요.</p>
 <script>
 (function(){
   var tabs = document.getElementById("gTabs"), cards = document.querySelectorAll("#gCards .g-card"), none = document.getElementById("gNone");
@@ -797,7 +807,7 @@ ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a hre
   function apply(f){
     var n = 0;
     cards.forEach(function(c){ var v = c.getAttribute("data-v"), k = c.getAttribute("data-k");
-      var on = !f || v === f || v === "all"; c.hidden = !on; if (on) n++; });
+      var on = !f || c.getAttribute("data-t") === f; c.hidden = !on; if (on) n++; });
     none.hidden = n > 0;
     tabs.querySelectorAll(".g-tab").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-f") === f)); });
   }
@@ -943,10 +953,23 @@ ${sorted.length ? `<div class="g-cards">${sorted.map(card).join("")}</div>${hubI
  * 렌더 · rows(DB 줄) → outRoot/guide/ 에 쓰고 게시 목록을 돌려준다
  *   log: 건너뛴 글 · noindex 로 바꾼 글
  */
+/** data/publish-queue.json · { "slug": "YYYY-MM-DD" } · 없거나 깨졌으면 빈 표(순서 없이 바로) */
+export function loadQueue(root = ROOT) {
+  try {
+    const j = JSON.parse(readFileSync(join(root, "data", "publish-queue.json"), "utf8"));
+    return Object.fromEntries(Object.entries(j.queue ?? {}).filter(([k, v]) => SLUG_RE.test(k) && /^\d{4}-\d{2}-\d{2}$/.test(String(v))));
+  } catch { return {}; }
+}
+
 export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents, partnerNames, now, assets = new Map(), log = console.log }) {
   const H = homeParts(root);
   const ready = [];
+  // 게시 순서표(11/5 · 14편이 같은 1분에 한꺼번에 올라간 일) · 아직 게시 전(published_at 없음)인 승인 글은 순서표 날짜(KST) 전에 만들지 않는다
+  const queue = loadQueue(root);
+  const todayKst = new Date((now ?? new Date()).getTime() + 9 * 3600000).toISOString().slice(0, 10);
   for (const r of rows) {
+    const at = queue[r.slug];
+    if (!r.published_at && at && at > todayKst) { log(`글 대기 · ${r.slug} · 순서표 ${at}`); continue; }
     const res = preparePost(r, { stores, consents, partnerNames, now });
     if (res.ok) ready.push(res.post);
     else log(`글 건너뜀 · ${res.slug || res.id} · ${res.why.join(" / ")}`);
@@ -963,6 +986,8 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
       for (const c of p.case.captures) {
         const buf = c.path ? assets.get(c.path) : null;
         c.ok = !!buf;
+        // 그림 높이는 답 길이에 맞춰 달라진다(11/5) · PNG 머리에서 실제 크기를 읽는다
+        if (buf && buf.length > 24 && buf.readUInt32BE(12) === 0x49484452) { c.w = buf.readUInt32BE(16); c.h = buf.readUInt32BE(20); }
         if (buf) writeFileSync(dirOf(outRoot, p, c.file), buf);
         else log(`후기 글 캡처 빠짐 · ${p.slug} · ${c.file}`);
       }
