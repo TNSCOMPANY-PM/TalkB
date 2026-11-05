@@ -29,7 +29,7 @@ const MANIFEST = join(ROOT, "data", "guide-posts.json");
 //   소개는 사실만(경력 · 연차를 지어 넣지 않는다)
 export const WRITER = {
   name: "김정섭", role: "총괄", photo: "/images/team/kim-jeongseop.jpg",
-  bio: "토크비에서 식당 · 카페 · 술집 사장님의 가게가 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 나오도록 돕는 일을 총괄합니다. 토크비가 매주 측정한 실제 ChatGPT 답변과 네이버 · 구글 공식 안내를 바탕으로 글을 쓰고 확인합니다.",
+  bio: "식당, 카페, 술집 사장님 가게가 네이버, 구글 검색과 ChatGPT 같은 AI 답에 나오도록 돕는 일을 맡고 있습니다. 글은 토크비가 매주 측정한 실제 ChatGPT 답과 네이버, 구글 공식 안내를 바탕으로 쓰고 직접 확인합니다.",
 };
 const writerLd = () => ({ "@type": "Person", "@id": `${SITE}/#writer-kim-jeongseop`, name: WRITER.name, jobTitle: WRITER.role, image: `${SITE}${WRITER.photo}`, description: WRITER.bio, worksFor: { "@id": `${SITE}/#org` } });
 const writerBox = () => `<aside class="g-writer" aria-label="글쓴이"><img class="g-face g-face-lg" src="${WRITER.photo}" width="56" height="56" alt="${esc(WRITER.name)} ${esc(WRITER.role)}" loading="lazy" decoding="async"><div><p class="g-writer-n">${esc(WRITER.name)} <span>토크비 ${esc(WRITER.role)}</span></p><p class="g-writer-b">${esc(WRITER.bio)}</p></div></aside>`;
@@ -496,7 +496,7 @@ export function mdToHtml(md) {
 // ── 페이지 머리 · 꼬리(홈 템플릿의 스타일 · 헤더 · 푸터 재사용) ──
 const GUIDE_CSS = `
 .g-main{padding:40px 0 72px}
-.g-art{max-width:760px;margin:0 auto}
+.g-art{max-width:680px;margin:0 auto}
 .g-crumb{font-size:15px;color:var(--ink-mid);display:flex;gap:6px;flex-wrap:wrap}
 .g-crumb a{text-decoration:underline;text-underline-offset:3px}
 .g-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}
@@ -513,19 +513,21 @@ const GUIDE_CSS = `
 .g-cover{margin-top:22px;border-radius:18px;width:100%;height:auto;display:block}
 .g-sum{margin-top:24px;background:var(--warm);border:1px solid #FBD5C6;border-radius:18px;padding:20px 22px}
 .g-sum b{display:block;font-size:15px;color:var(--deep);margin-bottom:8px}
-.g-sum ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:16.5px;font-weight:600;line-height:1.6}
-.g-body{margin-top:32px;font-size:17px;line-height:1.85;color:var(--ink);overflow-wrap:break-word}
-.tb .g-body h2{font-size:24px;margin:40px 0 12px}
-.tb .g-body h3{font-size:20px;margin:30px 0 10px}
-.tb .g-body h4{font-size:18px;margin:24px 0 8px}
-.tb .g-body p{margin:0 0 16px}
-.g-body ul,.g-body ol{margin:0 0 16px;padding-left:24px}
-.g-body li{margin:4px 0}
-.g-body blockquote{margin:0 0 16px;padding:10px 16px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 12px 12px 0}
-.g-tbl{overflow-x:auto;margin:0 0 18px;-webkit-overflow-scrolling:touch}
-.g-body table{border-collapse:collapse;font-size:15px;min-width:100%}
-.g-body th,.g-body td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
-.g-body th{background:var(--soft);white-space:nowrap}
+.g-sum ul{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16.5px;font-weight:500;line-height:1.7;color:#333D4B}
+.g-body{margin-top:36px;font-size:18px;line-height:1.8;color:#333D4B;overflow-wrap:break-word;letter-spacing:-0.01em}
+.tb .g-body h2{font-size:24px;line-height:1.4;color:var(--ink);margin:2.4em 0 .7em}
+.tb .g-body h3{font-size:20px;line-height:1.45;color:var(--ink);margin:1.8em 0 .5em}
+.tb .g-body h4{font-size:18px;color:var(--ink);margin:1.5em 0 .4em}
+.tb .g-body p{margin:0 0 1.2em}
+.g-body strong,.g-body b{color:var(--ink)}
+.g-body ul,.g-body ol{margin:0 0 1.2em;padding-left:1.4em}
+.g-body li{margin:.5em 0;padding-left:.2em}
+.g-body li::marker{color:#8B95A1}
+.g-body blockquote{margin:1.4em 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 12px 12px 0;color:var(--ink)}
+.g-tbl{overflow-x:auto;margin:1.4em 0;-webkit-overflow-scrolling:touch}
+.g-body table{border-collapse:collapse;font-size:15.5px;line-height:1.6;min-width:100%}
+.g-body th,.g-body td{border:0;border-bottom:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top}
+.g-body th{background:var(--soft);white-space:nowrap;color:var(--ink);font-weight:700;border-bottom:1.5px solid #D1D6DB}
 .g-body a{color:var(--deep);text-decoration:underline;text-underline-offset:3px}
 .g-sec{margin-top:48px}
 .tb .g-sec h2{font-size:24px;font-weight:800;margin-bottom:6px}
@@ -581,7 +583,7 @@ const GUIDE_CSS = `
 .c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
 /* 모바일: 240px 칸에선 답 글씨가 안 읽혀 넓게 옆으로 넘기기 · 누르면 원본 */
 @media (max-width:640px){.c-shots{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;justify-content:start;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.c-shot{scroll-snap-align:start}}
-@media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
+@media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:17px;line-height:1.8}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 `;
 
 function homeParts(root) {
@@ -766,7 +768,7 @@ export function renderPost(H, p, posts) {
   const main = `<main class="g-main">
 <article class="wrap"><div class="g-art">
 <nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${p.industry ? `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><a href="/${STORIES_DIR}/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : `<a href="/${GUIDE_DIR}/">콘텐츠</a>`}</nav>
-<div class="g-chips">${chips(p)}</div>
+<div class="g-chips">${p.industry ? chips(p) : `<span class="g-chip">${esc(catOf(p)?.label ?? "기본 정리")}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`}</div>
 <h1 class="g-h1">${esc(p.title)}</h1>
 <p class="g-by"><img class="g-face" src="${WRITER.photo}" width="28" height="28" alt="" aria-hidden="true" loading="eager" decoding="async"><span>${esc(WRITER.name)} ${esc(WRITER.role)} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></span></p>
 ${p.case ? caseHero(p) : ""}${p.cover ? `<img class="g-cover" src="${esc(p.cover)}" alt="${esc(p.cover_alt)}" loading="eager" decoding="async">\n` : ""}<div class="g-sum"><b>세 줄 요약</b><ul>${p.lines.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>

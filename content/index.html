@@ -609,7 +609,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 @media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
 @media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.frs-view{height:360px}}
 .g-main{padding:40px 0 72px}
-.g-art{max-width:760px;margin:0 auto}
+.g-art{max-width:680px;margin:0 auto}
 .g-crumb{font-size:15px;color:var(--ink-mid);display:flex;gap:6px;flex-wrap:wrap}
 .g-crumb a{text-decoration:underline;text-underline-offset:3px}
 .g-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}
@@ -626,19 +626,21 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .g-cover{margin-top:22px;border-radius:18px;width:100%;height:auto;display:block}
 .g-sum{margin-top:24px;background:var(--warm);border:1px solid #FBD5C6;border-radius:18px;padding:20px 22px}
 .g-sum b{display:block;font-size:15px;color:var(--deep);margin-bottom:8px}
-.g-sum ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:16.5px;font-weight:600;line-height:1.6}
-.g-body{margin-top:32px;font-size:17px;line-height:1.85;color:var(--ink);overflow-wrap:break-word}
-.tb .g-body h2{font-size:24px;margin:40px 0 12px}
-.tb .g-body h3{font-size:20px;margin:30px 0 10px}
-.tb .g-body h4{font-size:18px;margin:24px 0 8px}
-.tb .g-body p{margin:0 0 16px}
-.g-body ul,.g-body ol{margin:0 0 16px;padding-left:24px}
-.g-body li{margin:4px 0}
-.g-body blockquote{margin:0 0 16px;padding:10px 16px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 12px 12px 0}
-.g-tbl{overflow-x:auto;margin:0 0 18px;-webkit-overflow-scrolling:touch}
-.g-body table{border-collapse:collapse;font-size:15px;min-width:100%}
-.g-body th,.g-body td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
-.g-body th{background:var(--soft);white-space:nowrap}
+.g-sum ul{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16.5px;font-weight:500;line-height:1.7;color:#333D4B}
+.g-body{margin-top:36px;font-size:18px;line-height:1.8;color:#333D4B;overflow-wrap:break-word;letter-spacing:-0.01em}
+.tb .g-body h2{font-size:24px;line-height:1.4;color:var(--ink);margin:2.4em 0 .7em}
+.tb .g-body h3{font-size:20px;line-height:1.45;color:var(--ink);margin:1.8em 0 .5em}
+.tb .g-body h4{font-size:18px;color:var(--ink);margin:1.5em 0 .4em}
+.tb .g-body p{margin:0 0 1.2em}
+.g-body strong,.g-body b{color:var(--ink)}
+.g-body ul,.g-body ol{margin:0 0 1.2em;padding-left:1.4em}
+.g-body li{margin:.5em 0;padding-left:.2em}
+.g-body li::marker{color:#8B95A1}
+.g-body blockquote{margin:1.4em 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 12px 12px 0;color:var(--ink)}
+.g-tbl{overflow-x:auto;margin:1.4em 0;-webkit-overflow-scrolling:touch}
+.g-body table{border-collapse:collapse;font-size:15.5px;line-height:1.6;min-width:100%}
+.g-body th,.g-body td{border:0;border-bottom:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top}
+.g-body th{background:var(--soft);white-space:nowrap;color:var(--ink);font-weight:700;border-bottom:1.5px solid #D1D6DB}
 .g-body a{color:var(--deep);text-decoration:underline;text-underline-offset:3px}
 .g-sec{margin-top:48px}
 .tb .g-sec h2{font-size:24px;font-weight:800;margin-bottom:6px}
@@ -694,13 +696,13 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .c-shot figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:var(--ink-mid);word-break:keep-all}
 /* 모바일: 240px 칸에선 답 글씨가 안 읽혀 넓게 옆으로 넘기기 · 누르면 원본 */
 @media (max-width:640px){.c-shots{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;justify-content:start;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.c-shot{scroll-snap-align:start}}
-@media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:16.5px}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
+@media (max-width:640px){.g-about{padding:20px 18px 6px;margin-top:40px}.g-main{padding:28px 0 56px}.g-body{font-size:17px;line-height:1.8}.g-cta{padding:22px}.g-cta .kbtn{width:100%}.g-sum{padding:18px}.g-fig{padding:12px}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","@id":"https://talkb.co.kr/content/#faq","mainEntity":[{"@type":"Question","name":"토크비 콘텐츠는 누구를 위한 글인가요?","acceptedAnswer":{"@type":"Answer","text":"식당 · 카페 · 술집을 운영하는 사장님을 위한 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 쉬운 말로 쓰고, 오늘 바로 해 볼 수 있는 일을 먼저 적습니다."}},{"@type":"Question","name":"SEO, AEO, GEO는 무엇이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"SEO는 검색 결과 목록에 가게가 잘 보이게 하는 일입니다. AEO는 검색 결과 위에 바로 뜨는 답에, GEO는 ChatGPT 같은 AI가 만든 답에 가게가 들어가게 하는 일입니다. 셋 다 가게 정보를 정확하게 적어 두는 것에서 시작합니다."}},{"@type":"Question","name":"실제로 AI 추천이 달라진 가게가 있나요?","acceptedAnswer":{"@type":"Answer","text":"있습니다. 매주 같은 질문으로 ChatGPT 추천을 확인한 가게들의 기록을 사장님 이야기(talkb.co.kr/stories/)에 업종별로 모았습니다."}}]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://talkb.co.kr/content/#page","url":"https://talkb.co.kr/content/","name":"식당·카페·술집 사장님 콘텐츠","description":"토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.","inLanguage":"ko","publisher":{"@type":"Organization","@id":"https://talkb.co.kr/#org","name":"토크비","alternateName":"TalkB","url":"https://talkb.co.kr/","logo":"https://talkb.co.kr/logo.png"},"about":["SEO","AEO","GEO","AI 검색 최적화","네이버 검색","구글 비즈니스 프로필"],"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/","name":"식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법"},{"@type":"ListItem","position":2,"url":"https://talkb.co.kr/content/geo-meaning/","name":"GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법"},{"@type":"ListItem","position":3,"url":"https://talkb.co.kr/content/aeo-meaning/","name":"AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법"},{"@type":"ListItem","position":4,"url":"https://talkb.co.kr/content/seo-meaning/","name":"SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법"}]}}
+{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://talkb.co.kr/content/#page","url":"https://talkb.co.kr/content/","name":"식당·카페·술집 사장님 콘텐츠","description":"토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.","inLanguage":"ko","publisher":{"@type":"Organization","@id":"https://talkb.co.kr/#org","name":"토크비","alternateName":"TalkB","url":"https://talkb.co.kr/","logo":"https://talkb.co.kr/logo.png"},"about":["SEO","AEO","GEO","AI 검색 최적화","네이버 검색","구글 비즈니스 프로필"],"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://talkb.co.kr/content/geo-meaning/","name":"GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법"},{"@type":"ListItem","position":2,"url":"https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/","name":"식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법"},{"@type":"ListItem","position":3,"url":"https://talkb.co.kr/content/aeo-meaning/","name":"AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법"},{"@type":"ListItem","position":4,"url":"https://talkb.co.kr/content/seo-meaning/","name":"SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법"}]}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"토크비","item":"https://talkb.co.kr/"},{"@type":"ListItem","position":2,"name":"콘텐츠","item":"https://talkb.co.kr/content/"}]}
@@ -734,11 +736,11 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 <p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/stories/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>
 <div id="cat-all"><section class="g-cat" id="cat-ai" data-t="ai" aria-labelledby="cat-h-ai">
 <div class="g-cat-h"><h2 id="cat-h-ai">AI 검색</h2><p>ChatGPT에 우리 가게가 나오게 하려면</p><span class="n">글 3편</span></div>
-<div class="g-cards"><a class="g-card" href="/content/chatgpt-restaurant-search-users-2026/" data-v="restaurant" data-k="insight" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">소식</span></div><h3>식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법</h3><p>국내 ChatGPT 앱 월평균 사용자는 2026년 상반기 2,324만 명으로, 한국 사람들이 쓰는 앱 가운데 3번째로 많습니다.</p><p class="d">2026년 10월 21일 수정</p></a><a class="g-card" href="/content/geo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법</h3><p>GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.</p><p class="d">2026년 10월 21일 수정</p></a><a class="g-card" href="/content/aeo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법</h3><p>AEO는 손님 질문에 대한 답 속에 우리 가게 정보가 쓰이게 하는 일입니다.</p><p class="d">2026년 10월 21일 수정</p></a></div>
+<div class="g-cards"><a class="g-card" href="/content/geo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>GEO 뜻과 GEO 마케팅, ChatGPT에 우리 가게가 나오는 법</h3><p>GEO는 ChatGPT 같은 AI가 맛집을 추천할 때 우리 가게가 나오게 하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a><a class="g-card" href="/content/chatgpt-restaurant-search-users-2026/" data-v="restaurant" data-k="insight" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">소식</span></div><h3>식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법</h3><p>2026년 상반기 국내 ChatGPT 앱 월평균 사용자는 2,324만 명입니다. 한국 사람들이 쓰는 앱 가운데 3번째로 많습니다.</p><p class="d">2026년 11월 5일 수정</p></a><a class="g-card" href="/content/aeo-meaning/" data-v="all" data-k="guide" data-t="ai"><div class="g-chips" style="margin-top:0"><span class="g-chip">AI 검색</span><span class="g-chip k">가이드</span></div><h3>AEO 뜻과 AEO 마케팅, AI 답변에 우리 가게가 나오는 법</h3><p>AEO는 손님이 물었을 때 나오는 답 속에 우리 가게 정보가 들어가게 하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a></div>
 </section>
 <section class="g-cat" id="cat-basic" data-t="basic" aria-labelledby="cat-h-basic">
 <div class="g-cat-h"><h2 id="cat-h-basic">기본 정리</h2><p>처음이라 무엇부터 하나요</p><span class="n">글 1편</span></div>
-<div class="g-cards"><a class="g-card" href="/content/seo-meaning/" data-v="all" data-k="guide" data-t="basic"><div class="g-chips" style="margin-top:0"><span class="g-chip">기본 정리</span><span class="g-chip k">가이드</span></div><h3>SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법</h3><p>SEO는 손님이 검색할 때 우리 가게가 잘 보이게 정보를 정리하는 일입니다.</p><p class="d">2026년 10월 21일 수정</p></a></div>
+<div class="g-cards"><a class="g-card" href="/content/seo-meaning/" data-v="all" data-k="guide" data-t="basic"><div class="g-chips" style="margin-top:0"><span class="g-chip">기본 정리</span><span class="g-chip k">가이드</span></div><h3>SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법</h3><p>SEO는 손님이 검색할 때 우리 가게가 잘 보이게 정보를 정리하는 일입니다.</p><p class="d">2026년 11월 5일 수정</p></a></div>
 </section></div>
 <script>
 (function(){
