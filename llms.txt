@@ -87,6 +87,7 @@ ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계�
 ## 사장님 이야기(업종별 AI 검색 노출 사례)
 
 - 목록: https://talkb.co.kr/stories/
+- 고깃집 AI 마케팅 사례, ChatGPT 추천 보고 12명 단체 예약: https://talkb.co.kr/stories/meat/unseodong-gogi/ · 영종도 운서동 고깃집 탐라담 영종도점의 AI 마케팅 사례입니다. 13주 동안 ChatGPT 추천률이 0%에서 46.7%로 올랐습니다.
 - 음식점 마케팅 사례, 게장집 ChatGPT 추천 0%에서 73.3%로: https://talkb.co.kr/stories/seafood/seongsadong-gejang/ · 고양시 성사동 게장 무한리필집 일산게장집의 음식점 마케팅 사례입니다. 13주 동안 ChatGPT 추천률이 0%에서 73.3%로 올랐습니다.
 - 식당 마케팅 사례, 뼈해장국집 ChatGPT 추천 0%에서 66%로: https://talkb.co.kr/stories/soup/mohyeoneup-haejangguk/ · 용인 모현읍 뼈해장국집 인생뼈다귀 본점의 식당 마케팅 사례입니다. 15주 동안 ChatGPT 추천률이 0%에서 66%로 올랐습니다.
 
