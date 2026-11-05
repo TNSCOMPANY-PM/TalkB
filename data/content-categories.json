@@ -1,0 +1,15 @@
+{
+  "_comment": "콘텐츠 목록 칸(2026-11-05 · 기획/PLAN-talkb-content-categories-trust-20261105.md §1) · 글 주소 → 칸 key(ads 광고 비용 · free 돈 안 드는 홍보 · agency 업체 고르기 · ai AI 검색 · basic 기본 정리 · case 실제 사례) · 없는 글은 사례 글이면 case, 나머지 basic · 글 주소에는 칸을 넣지 않아 칸을 바꿔도 주소는 그대로 · scripts/build-posts.mjs CATEGORIES",
+  "map": {
+    "naver-place-ad-cost-ai-search": "ads",
+    "store-introduction-examples": "free",
+    "geo-meaning": "ai",
+    "aeo-meaning": "ai",
+    "chatgpt-restaurant-search-users-2026": "ai",
+    "google-ai-mode-ai-overview-store": "ai",
+    "seo-meaning": "basic",
+    "google-business-profile-naming-address-guideline": "basic",
+    "naver-place-danggeun-bizprofile-next-step": "basic",
+    "chatgpt-restaurant-cases-7-stores": "case"
+  }
+}

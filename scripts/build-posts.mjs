@@ -538,6 +538,20 @@ const GUIDE_CSS = `
 .tb .g-card p{margin-top:8px;color:var(--ink-mid);font-size:15px}
 .tb .g-card p.d{margin-top:10px;font-size:14px}
 .g-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.g-cats{margin-top:26px;position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:10px 0;border-bottom:1px solid var(--line)}
+.g-cats-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
+.g-cats-row::-webkit-scrollbar{display:none}
+.g-cats-row.more{-webkit-mask-image:linear-gradient(90deg,#000 78%,transparent);mask-image:linear-gradient(90deg,#000 78%,transparent)}
+.g-cat-tab{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap;text-decoration:none}
+.g-cat-tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--soft,#F2F4F6);font-size:13px;font-weight:800;color:var(--ink-mid)}
+.g-cat-tab:hover{border-color:#FBD5C6;color:var(--ink)}
+.g-cat-tab[aria-current=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.g-cat-tab[aria-current=true] .n{background:rgba(255,255,255,.18);color:#fff}
+.g-cat{margin-top:36px;scroll-margin-top:80px}
+.g-cat-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.tb .g-cat-h h2{font-size:24px;font-weight:800;margin:0}
+.tb .g-cat-h p{margin:0;font-size:16px;font-weight:700;color:var(--ink-mid)}
+.g-cat-h .n{margin-left:auto;font-size:14px;font-weight:700;color:var(--ink-mid)}
 .g-tab{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;font-size:15px;font-weight:700;color:var(--ink-mid);cursor:pointer}
 .g-tab[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .tb .g-empty{margin-top:28px;background:var(--soft);border-radius:18px;padding:28px;font-size:18px;font-weight:700}
@@ -657,17 +671,28 @@ const ORG = { "@type": "Organization", "@id": `${SITE}/#org`, name: "토크비",
 const absImg = (p) => (p ? (p.startsWith("/") ? SITE + p : p) : `${SITE}/og-image.png?v=5`);
 const chips = (p) => `<span class="g-chip">${VERTICAL_LABEL[p.vertical]}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`;
 
-// 목록 주제 탭(11/5 사장 "카테고리도 안 나눴는데" · 글이 거의 다 '공통'이라 업종 탭이 쓸모없었음) · 제목 · 주소로 나눈다 · 위에서부터 먼저 맞는 것
-export const TOPIC_TABS = [
-  ["basic", "기초 개념", (p) => /-meaning$/.test(p.slug)],
-  ["data", "데이터 · 사례", (p) => p.kind === "data" || p.kind === "case"],
-  ["naver", "네이버 · 당근", (p) => /naver|danggeun/.test(p.slug) || /네이버|당근/.test(p.title)],
-  ["google", "구글", (p) => /google/.test(p.slug) || /구글/.test(p.title)],
-  ["ai", "ChatGPT · AI", (p) => /chatgpt|-ai-|^ai-/.test(p.slug) || /ChatGPT|AI/.test(p.title)],
+// 콘텐츠 칸(11/5 사장 "카테고리명은 원래대로 · 가시성") · 사장님이 하려는 일 기준 · 순서 = 화면 순서
+export const CATEGORIES = [
+  { key: "ads", label: "광고 비용", q: "광고하면 얼마 드나요" },
+  { key: "free", label: "돈 안 드는 홍보", q: "돈 안 들이고 무엇을 하나요" },
+  { key: "agency", label: "업체 고르기", q: "업체에 맡겨도 되나요" },
+  { key: "ai", label: "AI 검색", q: "ChatGPT에 우리 가게가 나오게 하려면" },
+  { key: "basic", label: "기본 정리", q: "처음이라 무엇부터 하나요" },
+  { key: "case", label: "실제 사례", q: "진짜 효과가 있나요" },
 ];
-export const topicOf = (p) => (TOPIC_TABS.find(([, , m]) => m(p)) ?? ["etc"])[0];
+const CAT_KEYS = new Set(CATEGORIES.map((c) => c.key));
+let catMap = null;
+/** data/content-categories.json { "map": { "slug": "칸 key" } } · 없거나 틀린 값이면 기본 판정 */
+function categoryMap() {
+  if (catMap) return catMap;
+  try { catMap = JSON.parse(readFileSync(join(ROOT, "data", "content-categories.json"), "utf8")).map ?? {}; } catch { catMap = {}; }
+  return catMap;
+}
+export const topicOf = (p) => { const k = categoryMap()[p.slug]; return CAT_KEYS.has(k) ? k : p.kind === "data" || p.kind === "case" ? "case" : "basic"; };
+const catOf = (p) => CATEGORIES.find((c) => c.key === topicOf(p));
 function card(p) {
-  return `<a class="g-card" href="${pathOf(p)}" data-v="${p.vertical}" data-k="${p.kind}" data-t="${topicOf(p)}"><div class="g-chips" style="margin-top:0">${chips(p)}</div><h3>${esc(p.title)}</h3><p>${esc(p.lines[0] ?? "")}</p><p class="d">${koDate(p.dateModified)} 수정</p></a>`;
+  const chipsHtml = p.industry ? chips(p) : `<span class="g-chip">${esc(catOf(p)?.label ?? "기본 정리")}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`;
+  return `<a class="g-card" href="${pathOf(p)}" data-v="${p.vertical}" data-k="${p.kind}" data-t="${topicOf(p)}"><div class="g-chips" style="margin-top:0">${chipsHtml}</div><h3>${esc(p.title)}</h3><p>${esc(p.lines[0] ?? "")}</p><p class="d">${koDate(p.dateModified)} 수정</p></a>`;
 }
 
 /** 관련 글 · 같은 업종 먼저, 그다음 공통 글 · 최대 3개(수정일 최근 순) */
@@ -760,20 +785,13 @@ ${rel.length ? `<section class="g-sec" aria-labelledby="g-rel"><h2 id="g-rel">�
 
 // ── 목록 페이지 설명 글(10/21 사장 "이 페이지가 뭔지 정의 · AI가 더 잘 찾아오게") · 화면 본문과 FAQPage 구조화 데이터가 같은 문장 ──
 const GUIDE_DEF = "토크비 콘텐츠는 식당 · 카페 · 술집 사장님이 네이버 · 구글 검색과 ChatGPT 같은 AI 답변에 우리 가게가 나오도록 오늘 할 수 있는 일을 정리한 글 모음입니다.";
-// 다루는 주제 묶음 · 제목으로 나눈다(글이 있는 묶음만 보임)
-const GUIDE_TOPICS = [
-  { name: "검색에 잘 나오기", note: "SEO · 네이버 검색 · 홈페이지 등록", re: /SEO|서치어드바이저|네이버/ },
-  { name: "AI 답변에 나오기", note: "AEO · GEO · ChatGPT · AI 검색 최적화", re: /AEO|GEO|ChatGPT|챗GPT|AI 검색/ },
-  { name: "구글 지도 · 구글 AI", note: "구글 비즈니스 프로필 · AI 모드 · AI 개요", re: /구글/ },
-  { name: "가게 정보 · 소개글", note: "소개글 · 메뉴 · 영업시간 정리", re: /소개글|정보|플레이스|메뉴/ },
-];
+// 다루는 주제 묶음 · 위 칸과 같은 묶음(11/5)
 const GUIDE_INTRO = (posts) => {
-  const used = new Set();
-  const groups = GUIDE_TOPICS.map((g) => ({ ...g, list: posts.filter((p) => !used.has(p.slug) && g.re.test(p.title) && used.add(p.slug)) })).filter((g) => g.list.length);
+  const groups = CATEGORIES.map((c) => ({ ...c, list: posts.filter((p) => topicOf(p) === c.key) })).filter((g) => g.list.length);
   return [
     { h: "토크비 콘텐츠는 무엇인가요", html: `<p>${esc(GUIDE_DEF)} 손님이 검색창이나 ChatGPT에 "주차 되는 고깃집", "콘센트 있는 카페"처럼 물을 때 우리 가게가 답에 들어가려면 무엇을 하면 되는지를 다룹니다.</p>` },
     // 글 제목을 다시 늘어놓지 않음(위 카드와 헷갈림 · 10/21)
-    { h: "어떤 주제를 다루나요", html: `<ul>${groups.map((g) => `<li><b>${esc(g.name)}</b>: ${esc(g.note)} · 글 ${g.list.length}편</li>`).join("")}</ul>` },
+    { h: "어떤 주제를 다루나요", html: `<ul>${groups.map((g) => `<li><b>${esc(g.label)}</b>: ${esc(g.q)} · 글 ${g.list.length}편</li>`).join("")}</ul>` },
     { h: "글은 어떻게 만드나요", html: `<p>네이버 · 구글 · OpenAI가 공식으로 밝힌 문서를 읽고, 문서에 있는 내용만 사장님 말로 풀어 씁니다. 글 끝에 원문 링크를 붙입니다. 토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어 가게가 답에 나오는지 확인하는 서비스이고, 그 확인 결과도 글에 씁니다. 새 글은 매주 월요일과 목요일에 올라옵니다.</p>` },
   ];
 };
@@ -813,24 +831,33 @@ export function renderList(H, all) {
   ] : [];
   const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: "식당·카페·술집 사장님 콘텐츠", ld });
   const body = sorted.length
-    ? `<div class="g-tabs" role="group" aria-label="주제 고르기" id="gTabs" hidden>${[["", "전체"], ...TOPIC_TABS.filter(([k]) => sorted.some((p) => topicOf(p) === k))].map(([v, l], i) => `<button type="button" class="g-tab" data-f="${v}" aria-pressed="${i === 0}">${l}</button>`).join("")}</div>
+    ? (() => {
+      const groups = CATEGORIES.map((c) => ({ ...c, list: sorted.filter((p) => topicOf(p) === c.key) })).filter((g) => g.list.length);
+      return `<nav class="g-cats" aria-label="주제 고르기" id="gTabs"><div class="g-cats-row">
+<a class="g-cat-tab" href="#cat-all" data-f="" aria-current="true">전체 <span class="n">${sorted.length}</span></a>${groups.map((g) => `<a class="g-cat-tab" href="#cat-${g.key}" data-f="${g.key}">${esc(g.label)} <span class="n">${g.list.length}</span></a>`).join("")}
+</div></nav>
 ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${STORIES_DIR}/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>` : ""}
-<div class="g-cards" id="gCards">${sorted.map(card).join("")}</div>
-<p class="g-empty" id="gNone" hidden>이 주제 글은 준비하고 있어요.</p>
+<div id="cat-all">${groups.map((g) => `<section class="g-cat" id="cat-${g.key}" data-t="${g.key}" aria-labelledby="cat-h-${g.key}">
+<div class="g-cat-h"><h2 id="cat-h-${g.key}">${esc(g.label)}</h2><p>${esc(g.q)}</p><span class="n">글 ${g.list.length}편</span></div>
+<div class="g-cards">${g.list.map(card).join("")}</div>
+</section>`).join("\n")}</div>
 <script>
 (function(){
-  var tabs = document.getElementById("gTabs"), cards = document.querySelectorAll("#gCards .g-card"), none = document.getElementById("gNone");
-  if (!tabs) return; tabs.hidden = false;
+  var nav = document.getElementById("gTabs"); if (!nav) return;
+  // 위에 붙는 머리 메뉴(.hdr) 바로 아래에 붙게 · 휴대폰 57px · PC 65px
+  var hdr = document.querySelector(".hdr"); function pin(){ nav.style.top = (hdr ? hdr.getBoundingClientRect().height : 0) + "px"; } pin(); addEventListener("resize", pin);
+  // 휴대폰에서 옆으로 더 있으면 오른쪽 끝을 흐리게(넘길 수 있다는 표시)
+  var row = nav.querySelector(".g-cats-row"); function fade(){ row.classList.toggle("more", row.scrollLeft + row.clientWidth < row.scrollWidth - 4); } fade(); row.addEventListener("scroll", fade, { passive: true }); addEventListener("resize", fade);
+  var tabs = nav.querySelectorAll(".g-cat-tab"), secs = document.querySelectorAll(".g-cat");
   function apply(f){
-    var n = 0;
-    cards.forEach(function(c){ var v = c.getAttribute("data-v"), k = c.getAttribute("data-k");
-      var on = !f || c.getAttribute("data-t") === f; c.hidden = !on; if (on) n++; });
-    none.hidden = n > 0;
-    tabs.querySelectorAll(".g-tab").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-f") === f)); });
+    secs.forEach(function(s){ s.hidden = !!f && s.getAttribute("data-t") !== f; });
+    tabs.forEach(function(b){ if (b.getAttribute("data-f") === f) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
   }
-  tabs.addEventListener("click", function(e){ var b = e.target.closest(".g-tab"); if (b) apply(b.getAttribute("data-f")); });
+  nav.addEventListener("click", function(e){ var b = e.target.closest(".g-cat-tab"); if (!b) return; e.preventDefault(); apply(b.getAttribute("data-f")); b.scrollIntoView({ block: "nearest", inline: "center" }); });
+  var h = (location.hash || "").replace("#cat-", ""); if (h && h !== "all" && document.getElementById("cat-" + h)) apply(h);
 })();
-</script>`
+</script>`;
+    })()
     : `<p class="g-empty">첫 글을 준비하고 있어요.</p>`;
   const main = `<main class="g-main">
 <div class="wrap">

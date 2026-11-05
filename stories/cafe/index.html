@@ -651,6 +651,20 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .tb .g-card p{margin-top:8px;color:var(--ink-mid);font-size:15px}
 .tb .g-card p.d{margin-top:10px;font-size:14px}
 .g-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.g-cats{margin-top:26px;position:sticky;top:0;z-index:5;background:var(--bg,#fff);padding:10px 0;border-bottom:1px solid var(--line)}
+.g-cats-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
+.g-cats-row::-webkit-scrollbar{display:none}
+.g-cats-row.more{-webkit-mask-image:linear-gradient(90deg,#000 78%,transparent);mask-image:linear-gradient(90deg,#000 78%,transparent)}
+.g-cat-tab{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap;text-decoration:none}
+.g-cat-tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--soft,#F2F4F6);font-size:13px;font-weight:800;color:var(--ink-mid)}
+.g-cat-tab:hover{border-color:#FBD5C6;color:var(--ink)}
+.g-cat-tab[aria-current=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.g-cat-tab[aria-current=true] .n{background:rgba(255,255,255,.18);color:#fff}
+.g-cat{margin-top:36px;scroll-margin-top:80px}
+.g-cat-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.tb .g-cat-h h2{font-size:24px;font-weight:800;margin:0}
+.tb .g-cat-h p{margin:0;font-size:16px;font-weight:700;color:var(--ink-mid)}
+.g-cat-h .n{margin-left:auto;font-size:14px;font-weight:700;color:var(--ink-mid)}
 .g-tab{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;font-size:15px;font-weight:700;color:var(--ink-mid);cursor:pointer}
 .g-tab[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .tb .g-empty{margin-top:28px;background:var(--soft);border-radius:18px;padding:28px;font-size:18px;font-weight:700}
