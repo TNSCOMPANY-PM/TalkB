@@ -836,6 +836,23 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 }
 @media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
 @media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.frs-view{height:360px}}
+/* 모바일 두 단계 신청(2026-11-06 사장 · 목업 JAo15dSLzAecLLZrt4pPNn): 1단계 가게 이름 · 번호 → 2단계 통화 시간 → 성함 · 직책 → (문의 내용 접힘) → 동의(맨 끝) → 신청 · PC(641px 이상)는 한 장 그대로 */
+.inq-prog,.inq-next,.inq-sum,.inq-memo-btn,#inqStatus1{display:none}
+.two .inq-prog{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.two .inq-prog i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.two .inq-prog i.on{background:var(--accent)}
+.two[data-step="1"] .s2,.two[data-step="2"] .s1{display:none!important}
+.two[data-step="1"] .inq-next{display:flex}
+.two[data-step="1"] #inqStatus1{display:block}
+.two[data-step="2"] .inq-sum{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;background:var(--soft);border-radius:12px;padding:10px 12px 10px 14px}
+.inq-sum b{display:block;font-size:15px}.inq-sum span{font-size:13.5px;color:var(--ink-mid)}
+.inq-sum button{min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink-mid);cursor:pointer;flex:none}
+.two[data-step="2"] .inq-cols{display:flex;flex-direction:column}
+.two[data-step="2"] .inq-call{order:1}
+.two[data-step="2"] .inq-left{order:2}
+.two[data-step="2"] .inq-memo-btn{display:block;width:100%;min-height:44px;margin-top:14px;padding:0 14px;border:1px dashed #D1D6DB;border-radius:12px;background:#fff;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink-mid);text-align:left;cursor:pointer}
+.two .inq-memo:not(.open){display:none!important}
+.two .inq-memo-btn[hidden]{display:none!important}
 .cs-w{display:flex;flex-direction:column;gap:8px;flex:none}.cs-story{padding:0 6px;font-size:14px;font-weight:800;color:var(--deep);text-decoration:underline;text-underline-offset:3px}
 </style>
 
@@ -1175,17 +1192,20 @@ fbq('track', 'PageView');
 <form class="inq-card" id="inquiryForm" novalidate data-clarity-mask="true">
 <h3>무료 리포트 신청</h3>
 <p class="inq-sub">음식점 · 술집 · 카페 사장님이면 남겨 주세요. 담당자가 확인하고 연락드려요.</p>
+<p class="inq-prog" aria-hidden="true"><span id="inqStepN">1/2</span><i class="on"></i><i id="inqBar2"></i></p>
+<div class="inq-sum s2"><div><b id="inqSumP"></b><span id="inqSumN"></span></div><button type="button" id="inqBack" data-track="inq-back">고치기</button></div>
 <div class="inq-cols">
 <div class="inq-left">
-<div class="inq-2">
+<div class="inq-2 s2">
 <div class="inq-f"><label for="inq_name">성함 <span class="req">*</span></label><input type="text" id="inq_name" placeholder="이름" autocomplete="name" required></div>
 <div class="inq-f"><label for="inq_position">직책</label><input type="text" id="inq_position" placeholder="예: 대표, 점장" autocomplete="organization-title"></div>
 </div>
-<div class="inq-f"><label for="inq_place">가게 이름 <span class="req">*</span></label><input type="text" id="inq_place" placeholder="예: 광장동가온 명동성당점" autocomplete="organization" required><span class="inq-hint">지점이 있으면 지점 이름까지 적어 주세요</span></div>
-<div class="inq-f"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
-<div class="inq-f"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
+<div class="inq-f s1"><label for="inq_place">가게 이름 <span class="req">*</span></label><input type="text" id="inq_place" placeholder="예: 광장동가온 명동성당점" autocomplete="organization" required><span class="inq-hint">지점이 있으면 지점 이름까지 적어 주세요</span></div>
+<div class="inq-f s1"><label for="inq_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
+<button type="button" class="inq-memo-btn" id="inqMemoBtn">남기실 말이 있으면 적어 주세요 (선택)</button>
+<div class="inq-f s2 inq-memo"><label for="inq_inquiry">문의 내용</label><textarea id="inq_inquiry" rows="3" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
 </div>
-<div class="inq-call">
+<div class="inq-call s2">
 <p class="inq-call-t">결과를 통화로 설명드려요</p>
 <p>편한 날짜와 시간을 골라 주시면 그때 연락드려요 <span class="req">*</span></p>
 <button type="button" class="cal-toggle" id="calToggle" aria-expanded="false" aria-controls="calBody" data-track="inq-call-open">편한 날짜·시간 고르기</button>
@@ -1206,10 +1226,12 @@ fbq('track', 'PageView');
 <input type="hidden" id="inq_day"><input type="hidden" id="inq_time">
 </div>
 </div>
-<label class="inq-agree"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
-<p class="inq-nopay">신청만으로는 결제되지 않아요.</p>
-<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn" data-track="inquiry-submit">우리 가게도 무료로 확인하기</button>
-<p class="inq-status" id="inqStatus" role="status" aria-live="polite"></p>
+<p class="inq-status s1" id="inqStatus1" role="status" aria-live="polite"></p>
+<button type="button" class="kbtn kbtn-lg fbtn inq-next s1" id="inqNext" data-track="inq-next">다음 · 통화 시간 고르기</button>
+<label class="inq-agree s2"><input type="checkbox" id="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
+<p class="inq-nopay s2">신청만으로는 결제되지 않아요.</p>
+<button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn s2" data-track="inquiry-submit">우리 가게도 무료로 확인하기</button>
+<p class="inq-status s2" id="inqStatus" role="status" aria-live="polite"></p>
 </form>
 </div>
 </section>
@@ -1491,10 +1513,45 @@ fbq('track', 'PageView');
     document.getElementById("calDoneChange").addEventListener("click", function () { calShow("body"); });
   }
   function show(kind, msg) { st.className = "inq-status " + kind; st.textContent = msg; }
+  // 모바일 두 단계(2026-11-06 사장 · 동의는 맨 마지막) · 1단계 값은 [신청] 전까지 브라우저 밖으로 안 나간다
+  var two = !!(window.matchMedia && matchMedia("(max-width:640px)").matches), st1 = document.getElementById("inqStatus1");
+  function show1(kind, msg) { st1.className = "inq-status s1 " + kind; st1.textContent = msg; }
+  function setStep(n) {
+    if (!two) return;
+    form.setAttribute("data-step", String(n));
+    document.getElementById("inqStepN").textContent = n + "/2";
+    document.getElementById("inqBar2").className = n === 2 ? "on" : "";
+  }
+  if (two) { form.classList.add("two"); setStep(1); }
+  function step1Ok() {
+    var place = v("inq_place"), phone = v("inq_phone").replace(/\D/g, "");
+    if (!place || !phone) { show1("err", "가게 이름과 휴대폰 번호를 적어 주세요."); return false; }
+    if (!/^01\d{8,9}$/.test(phone)) { show1("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return false; }
+    if (/place\.naver\.com\/(hairshop|hospital|accommodation|attraction)\//.test(place)) { show1("err", "지금은 음식점 · 술집 · 카페만 신청받고 있어요. 음식점인데 이 안내가 보이면 카카오톡 상담으로 알려 주세요."); return false; }
+    return true;
+  }
+  function goStep2() {
+    if (!step1Ok()) return;
+    show1("", ""); show("", "");
+    var phone = v("inq_phone").replace(/\D/g, "");
+    document.getElementById("inqSumP").textContent = v("inq_place");
+    document.getElementById("inqSumN").textContent = phone.replace(/^(\d{3})(\d{3,4})(\d{4})$/, "$1-$2-$3");
+    setStep(2);
+    if (!v("inq_day") || !v("inq_time")) calShow("body");
+    try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); form.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e0) {}
+  }
+  if (two) {
+    document.getElementById("inqNext").addEventListener("click", goStep2);
+    document.getElementById("inqBack").addEventListener("click", function () { show("", ""); setStep(1); try { document.getElementById("inq_place").focus(); } catch (e0) {} });
+    document.getElementById("inqMemoBtn").addEventListener("click", function () { var m = document.querySelector(".inq-memo"); m.classList.add("open"); this.hidden = true; try { document.getElementById("inq_inquiry").focus(); } catch (e0) {} });
+  }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    // 1단계에서 키보드 [이동] · [완료] = [다음]
+    if (two && form.getAttribute("data-step") === "1") { goStep2(); return; }
+    if (two && !step1Ok()) { setStep(1); return; }
     var place = v("inq_place"), name = v("inq_name"), phone = v("inq_phone").replace(/\D/g, "");
-    if (!name || !place || !phone) { show("err", "성함, 가게 이름, 휴대폰 번호를 적어 주세요."); return; }
+    if (!name || !place || !phone) { show("err", two ? "성함을 적어 주세요." : "성함, 가게 이름, 휴대폰 번호를 적어 주세요."); return; }
     if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
     var cday = v("inq_day"), ctime = v("inq_time");
     // 통화 날짜 · 시간 필수(2026-10-27 사장 · 10/22 선택으로 바꿨다가 시간 없는 문의가 들어와 되돌림)
@@ -1510,7 +1567,7 @@ fbq('track', 'PageView');
     btn.disabled = true; btn.textContent = "보내는 중…";
     var lead = tbLeadMeta();
     fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: hasCall ? cday : "", preferred_call_slot: hasCall ? ctime : "", inquiry: ((hasCall ? "[희망 통화] " + callText + "\n" : "") + v("inq_inquiry")).trim() }) })
-      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요."); form.reset(); fillDays(); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
+      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요."); form.reset(); fillDays(); if (two) calShow("body"); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
       .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "우리 가게도 무료로 확인하기"; });
   });

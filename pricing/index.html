@@ -890,6 +890,23 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 }
 @media (max-width:900px){.inq{grid-template-columns:1fr;gap:28px}}
 @media (max-width:640px){.inq-card{padding:22px}.inq-2{grid-template-columns:1fr;gap:0}.frs-view{height:360px}}
+/* 모바일 두 단계 신청(2026-11-06 사장 · 목업 JAo15dSLzAecLLZrt4pPNn): 1단계 가게 이름 · 번호 → 2단계 통화 시간 → 성함 · 직책 → (문의 내용 접힘) → 동의(맨 끝) → 신청 · PC(641px 이상)는 한 장 그대로 */
+.inq-prog,.inq-next,.inq-sum,.inq-memo-btn,#inqStatus1{display:none}
+.two .inq-prog{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.two .inq-prog i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.two .inq-prog i.on{background:var(--accent)}
+.two[data-step="1"] .s2,.two[data-step="2"] .s1{display:none!important}
+.two[data-step="1"] .inq-next{display:flex}
+.two[data-step="1"] #inqStatus1{display:block}
+.two[data-step="2"] .inq-sum{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;background:var(--soft);border-radius:12px;padding:10px 12px 10px 14px}
+.inq-sum b{display:block;font-size:15px}.inq-sum span{font-size:13.5px;color:var(--ink-mid)}
+.inq-sum button{min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink-mid);cursor:pointer;flex:none}
+.two[data-step="2"] .inq-cols{display:flex;flex-direction:column}
+.two[data-step="2"] .inq-call{order:1}
+.two[data-step="2"] .inq-left{order:2}
+.two[data-step="2"] .inq-memo-btn{display:block;width:100%;min-height:44px;margin-top:14px;padding:0 14px;border:1px dashed #D1D6DB;border-radius:12px;background:#fff;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink-mid);text-align:left;cursor:pointer}
+.two .inq-memo:not(.open){display:none!important}
+.two .inq-memo-btn[hidden]{display:none!important}
 .plan-hero{padding-top:56px;padding-bottom:40px}
 .plan-hero .h1{font-size:clamp(30px,4vw,46px)}
 .inc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
