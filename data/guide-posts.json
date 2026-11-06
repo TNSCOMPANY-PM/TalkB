@@ -99,6 +99,20 @@
    "path": "/content/chatgpt-restaurant-cases-7-stores/"
   },
   {
+   "id": "d194db31-4ae6-4f1a-b067-b5324f4fafbd",
+   "slug": "naver-place-ad-cost-ai-search",
+   "title": "네이버 플레이스 광고 비용, 클릭 한 번에 얼마이고 하루 얼마까지 나가나",
+   "line1": "네이버 플레이스 광고는 보이기만 해서는 돈이 안 나가고, 손님이 눌러야 나갑니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-06T07:07:18.060Z",
+   "dateModified": "2026-11-06T07:07:18.060Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-place-ad-cost-ai-search/"
+  },
+  {
    "id": "d776c68b-f957-4379-88df-c1801c645b05",
    "slug": "chatgpt-restaurant-search-users-2026",
    "title": "식당 홍보, 손님이 ChatGPT로 맛집 묻는 시대 대응법",
@@ -133,9 +147,9 @@
    "line1": "블로그 체험단 후기는 대가를 받고 쓴 글이라 그 사실을 글에 밝혀야 합니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-06T04:28:50.456Z",
-   "dateModified": "2026-11-06T04:28:50.456Z",
+   "status": "published",
+   "datePublished": "2026-11-06T04:28:50.456+00:00",
+   "dateModified": "2026-11-06T04:28:50.456+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/blog-experience-group-before-you-start/"
