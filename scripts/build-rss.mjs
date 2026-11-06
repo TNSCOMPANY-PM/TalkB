@@ -33,7 +33,7 @@ export function rssXml(posts) {
     "<channel>",
     "  <title>토크비(TalkB) 콘텐츠</title>",
     `  <link>${SITE}/</link>`,
-    "  <description>식당·카페·술집 사장님을 위한 AI 검색 마케팅 가이드와 사장님 이야기</description>",
+    "  <description>식당·카페·술집 사장님을 위한 AI 검색 마케팅 꿀팁과 실제 사례</description>",
     "  <language>ko</language>",
     `  <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml"/>`,
     ...(last ? [`  <lastBuildDate>${rfc822(last)}</lastBuildDate>`] : []),

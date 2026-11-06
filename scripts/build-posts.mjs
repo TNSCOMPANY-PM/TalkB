@@ -645,8 +645,8 @@ ${ld.map(jsonLd).join("\n")}
 <a class="logo" href="/" aria-label="토크비 홈"><img src="/images/brand/talkb-symbol.svg" alt="" width="30" height="30"><span>TalkB <small>토크비</small></span></a>
 <nav class="nav" aria-label="주요 메뉴" onclick="if(event.target.closest('a')){var h=this.closest('.hdr');h.classList.remove('open');var b=h.querySelector('.nl-m');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','메뉴 열기')}}">
 <a class="nl" href="/${GUIDE_DIR}/how-talkb-works/" data-pos="nav-how">토크비가 하는 일</a>
-<a class="nl" href="/${STORIES_DIR}/" data-pos="nav-stories"${section === "stories" ? ' aria-current="page"' : ""}>사장님 이야기</a>
-<a class="nl" href="/${GUIDE_DIR}/" data-pos="nav-content"${section === "guide" ? ' aria-current="page"' : ""}>콘텐츠</a>
+<a class="nl" href="/${STORIES_DIR}/" data-pos="nav-stories"${section === "stories" ? ' aria-current="page"' : ""}>실제 사례</a>
+<a class="nl" href="/${GUIDE_DIR}/" data-pos="nav-content"${section === "guide" ? ' aria-current="page"' : ""}>꿀팁</a>
 <a class="nl" href="/pricing/" data-pos="nav-price">요금제</a>
 </nav>
 <button class="nl-m" type="button" aria-expanded="false" aria-label="메뉴 열기" onclick="var h=this.closest('.hdr'),o=h.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기')"><svg class="ic-m" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg><svg class="ic-x" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>
@@ -681,7 +681,7 @@ export const CATEGORIES = [
   { key: "agency", label: "업체 고르기", q: "업체에 맡겨도 되나요" },
   { key: "ai", label: "AI 검색", q: "ChatGPT에 우리 가게가 나오게 하려면" },
   { key: "basic", label: "기본 정리", q: "처음이라 무엇부터 하나요" },
-  { key: "case", label: "실제 사례", q: "진짜 효과가 있나요" },
+  { key: "case", label: "숫자로 본 효과", q: "진짜 효과가 있나요" },
 ];
 const CAT_KEYS = new Set(CATEGORIES.map((c) => c.key));
 let catMap = null;
@@ -762,9 +762,9 @@ export function renderPost(H, p, posts) {
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` },
         ...(p.industry ? [
-          { "@type": "ListItem", position: 2, name: "사장님 이야기", item: `${SITE}/${STORIES_DIR}/` },
+          { "@type": "ListItem", position: 2, name: "실제 사례", item: `${SITE}/${STORIES_DIR}/` },
           { "@type": "ListItem", position: 3, name: INDUSTRY_LABEL[p.industry], item: `${SITE}/${STORIES_DIR}/${p.industry}/` },
-        ] : [{ "@type": "ListItem", position: 2, name: "콘텐츠", item: `${SITE}/${GUIDE_DIR}/` }]),
+        ] : [{ "@type": "ListItem", position: 2, name: "꿀팁", item: `${SITE}/${GUIDE_DIR}/` }]),
         { "@type": "ListItem", position: p.industry ? 4 : 3, name: p.title, item: url },
       ],
     },
@@ -772,7 +772,7 @@ export function renderPost(H, p, posts) {
   const head = pageHead(H, { title, desc, canonical: url, robots: "index, follow, max-snippet:-1, max-image-preview:large", ogType: "article", image, imageAlt: p.cover ? p.cover_alt : p.title, ld, section: p.industry ? "stories" : "guide" });
   const main = `<main class="g-main">
 <article class="wrap"><div class="g-art">
-<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${p.industry ? `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><a href="/${STORIES_DIR}/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : `<a href="/${GUIDE_DIR}/">콘텐츠</a>`}</nav>
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${p.industry ? `<a href="/${STORIES_DIR}/">실제 사례</a><span aria-hidden="true">›</span><a href="/${STORIES_DIR}/${p.industry}/">${esc(INDUSTRY_LABEL[p.industry])}</a>` : `<a href="/${GUIDE_DIR}/">꿀팁</a>`}</nav>
 <div class="g-chips">${p.industry ? chips(p) : `<span class="g-chip">${esc(catOf(p)?.label ?? "기본 정리")}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`}</div>
 <h1 class="g-h1">${esc(p.title)}</h1>
 <p class="g-by"><img class="g-face" src="${WRITER.photo}" width="28" height="28" alt="" aria-hidden="true" loading="eager" decoding="async"><span>${esc(WRITER.name)} ${esc(WRITER.role)} · <time datetime="${p.dateModified}">${koDate(p.dateModified)} 수정</time></span></p>
@@ -796,7 +796,7 @@ const GUIDE_DEF = "식당, 카페, 술집 사장님이 오늘 바로 해 볼 수
 const GUIDE_INTRO = (posts) => {
   const groups = CATEGORIES.map((c) => ({ ...c, list: posts.filter((p) => topicOf(p) === c.key) })).filter((g) => g.list.length);
   return [
-    { h: "토크비 콘텐츠는 무엇인가요", html: `<p>손님은 검색창이나 ChatGPT에 "주차 되는 고깃집", "콘센트 있는 카페"처럼 물어봅니다. 그때 우리 가게가 답에 들어가려면 무엇을 하면 되는지, 사장님 말로 풀어 쓴 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 썼습니다.</p>` },
+    { h: "토크비 꿀팁은 무엇인가요", html: `<p>손님은 검색창이나 ChatGPT에 "주차 되는 고깃집", "콘센트 있는 카페"처럼 물어봅니다. 그때 우리 가게가 답에 들어가려면 무엇을 하면 되는지, 사장님 말로 풀어 쓴 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 썼습니다.</p>` },
     // 글 제목을 다시 늘어놓지 않음(위 카드와 헷갈림 · 10/21)
     { h: "어떤 주제를 다루나요", html: `<ul>${groups.map((g) => `<li><b>${esc(g.label)}</b>: ${esc(g.q)} · 글 ${g.list.length}편</li>`).join("")}</ul>` },
     { h: "글은 어떻게 만드나요", html: `<p>네이버, 구글, OpenAI, Anthropic이 직접 공개한 안내 문서를 읽고, 거기 적힌 내용만 쉬운 말로 옮깁니다. 글 끝에는 원문 링크를 붙입니다.</p><p>토크비는 손님이 물을 만한 질문을 매주 ChatGPT에 직접 물어보고 있습니다. 그렇게 측정한 결과도 글에 씁니다. 새 글은 매주 월요일과 목요일에 올라옵니다.</p>` },
@@ -804,9 +804,9 @@ const GUIDE_INTRO = (posts) => {
 };
 // 사장님 이야기 질문은 이야기가 1편 이상일 때만(없는 걸 있다고 하지 않게)
 const GUIDE_FAQ_ALL = [
-  { q: "토크비 콘텐츠는 누구를 위한 글인가요?", a: "식당 · 카페 · 술집을 운영하는 사장님을 위한 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 쉬운 말로 쓰고, 오늘 바로 해 볼 수 있는 일을 먼저 적습니다." },
+  { q: "토크비 꿀팁은 누구를 위한 글인가요?", a: "식당 · 카페 · 술집을 운영하는 사장님을 위한 글입니다. 마케팅 용어를 몰라도 읽을 수 있게 쉬운 말로 쓰고, 오늘 바로 해 볼 수 있는 일을 먼저 적습니다." },
   { q: "SEO, AEO, GEO는 무엇이 다른가요?", a: "SEO는 검색 결과 목록에 가게가 잘 보이게 하는 일입니다. AEO는 검색 결과 위에 바로 뜨는 답에, GEO는 ChatGPT 같은 AI가 만든 답에 가게가 들어가게 하는 일입니다. 셋 다 가게 정보를 정확하게 적어 두는 것에서 시작합니다." },
-  { stories: true, q: "실제로 AI 추천이 달라진 가게가 있나요?", a: "있습니다. 매주 같은 질문으로 ChatGPT 추천을 확인한 가게들의 기록을 사장님 이야기(talkb.co.kr/stories/)에 업종별로 모았습니다." },
+  { stories: true, q: "실제로 AI 추천이 달라진 가게가 있나요?", a: "있습니다. 매주 같은 질문으로 ChatGPT 추천을 확인한 가게들의 기록을 실제 사례(talkb.co.kr/stories/)에 업종별로 모았습니다." },
 ];
 const guideFaq = (hasStories) => GUIDE_FAQ_ALL.filter((x) => hasStories || !x.stories);
 /** 목록 페이지 설명 칸 · 소제목(질문) + 본문 + FAQ */
@@ -827,24 +827,23 @@ export function renderList(H, all) {
   const posts = all.filter((p) => !p.industry);
   const hasStories = all.some((p) => p.industry);
   const url = `${SITE}/${GUIDE_DIR}/`;
-  const title = "식당·카페·술집 사장님 콘텐츠 | 토크비(TalkB)";
+  const title = "식당·카페·술집 사장님 꿀팁 | 토크비(TalkB)";
   const desc = GUIDE_DEF;
   const sorted = [...posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
   const ld = sorted.length ? [
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: guideFaq(hasStories).map((q) => ({ "@type": "Question", name: q.q, acceptedAnswer: { "@type": "Answer", text: q.a } })) },
-    { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name: "식당·카페·술집 사장님 콘텐츠", description: desc, inLanguage: "ko", publisher: ORG, about: ["SEO", "AEO", "GEO", "AI 검색 최적화", "네이버 검색", "구글 비즈니스 프로필"],
+    { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${url}#page`, url, name: "식당·카페·술집 사장님 꿀팁", description: desc, inLanguage: "ko", publisher: ORG, about: ["SEO", "AEO", "GEO", "AI 검색 최적화", "네이버 검색", "구글 비즈니스 프로필"],
       mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
-    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` }, { "@type": "ListItem", position: 2, name: "콘텐츠", item: url }] },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` }, { "@type": "ListItem", position: 2, name: "꿀팁", item: url }] },
   ] : [];
-  const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: "식당·카페·술집 사장님 콘텐츠", ld });
+  const head = pageHead(H, { title, desc, canonical: url, robots: sorted.length ? "index, follow, max-snippet:-1, max-image-preview:large" : "noindex, follow", ogType: "website", image: `${SITE}/og-image.png?v=5`, imageAlt: "식당·카페·술집 사장님 꿀팁", ld });
   const body = sorted.length
     ? (() => {
       const groups = CATEGORIES.map((c) => ({ ...c, list: sorted.filter((p) => topicOf(p) === c.key) })).filter((g) => g.list.length);
       return `<nav class="g-cats" aria-label="주제 고르기" id="gTabs"><div class="g-cats-row">
-<a class="g-cat-tab" href="#cat-all" data-f="" aria-current="true">전체 <span class="n">${sorted.length}</span></a>${groups.map((g) => `<a class="g-cat-tab" href="#cat-${g.key}" data-f="${g.key}">${esc(g.label)} <span class="n">${g.list.length}</span></a>`).join("")}
+<a class="g-cat-tab" href="#cat-all" data-f="" aria-current="true">전체</a>${groups.map((g) => `<a class="g-cat-tab" href="#cat-${g.key}" data-f="${g.key}">${esc(g.label)}</a>`).join("")}
 </div></nav>
 ${sorted.some((p) => p.slug === "how-talkb-works") ? `<a class="g-first" href="/${GUIDE_DIR}/how-talkb-works/"><b>처음 오셨다면</b><span>GEO 마케팅, 토크비는 이렇게 합니다 ›</span></a>` : ""}
-${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a href="/${STORIES_DIR}/" style="color:var(--deep);text-decoration:underline;text-underline-offset:3px">사장님 이야기 보기 · 업종별 AI 검색 노출 사례 ›</a></p>` : ""}
 <div id="cat-all">${groups.map((g) => `<section class="g-cat" id="cat-${g.key}" data-t="${g.key}" aria-labelledby="cat-h-${g.key}">
 <div class="g-cat-h"><h2 id="cat-h-${g.key}">${esc(g.label)}</h2><p>${esc(g.q)}</p><span class="n">글 ${g.list.length}편</span></div>
 <div class="g-cards">${g.list.map(card).join("")}</div>
@@ -869,9 +868,9 @@ ${hasStories ? `<p style="margin-top:14px;font-size:15px;font-weight:700"><a hre
     : `<p class="g-empty">첫 글을 준비하고 있어요.</p>`;
   const main = `<main class="g-main">
 <div class="wrap">
-<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><span>콘텐츠</span></nav>
-<h1 class="g-h1">식당·카페·술집 사장님 콘텐츠</h1>
-<p class="lead" style="margin-top:12px">${esc(GUIDE_DEF)}</p>
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><span>꿀팁</span></nav>
+<h1 class="g-h1">식당·카페·술집 사장님 꿀팁</h1>
+<p class="lead" style="margin-top:12px">ChatGPT, 네이버에 우리 가게가 나오게 하는 방법을 모았어요.</p>
 ${body}
 ${sorted.length ? hubIntro(GUIDE_INTRO(sorted), guideFaq(hasStories)) : ""}
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="guide-list-cta">우리 가게도 무료로 확인하기</a></div>
@@ -911,8 +910,8 @@ export function llmsSection(posts) {
   // 사장님 이야기(후기 글 · /stories/)는 따로 묶는다 · manifest 폴백에는 industry 가 없어 주소(path)로 가른다
   const isStory = (p) => !!p.industry || String(p.path ?? "").startsWith(`/${STORIES_DIR}/`);
   const g = sorted.filter((p) => !isStory(p)), s = sorted.filter(isStory);
-  return (g.length ? `\n\n## 콘텐츠(식당 · 카페 · 술집 사장님 글)\n\n- 목록: ${SITE}/${GUIDE_DIR}/\n${g.map(line).join("\n")}` : "")
-    + (s.length ? `\n\n## 사장님 이야기(업종별 AI 검색 노출 사례)\n\n- 목록: ${SITE}/${STORIES_DIR}/\n${s.map(line).join("\n")}` : "");
+  return (g.length ? `\n\n## 꿀팁(식당 · 카페 · 술집 사장님 글)\n\n- 목록: ${SITE}/${GUIDE_DIR}/\n${g.map(line).join("\n")}` : "")
+    + (s.length ? `\n\n## 실제 사례(업종별 AI 검색 노출 결과)\n\n- 목록: ${SITE}/${STORIES_DIR}/\n${s.map(line).join("\n")}` : "");
 }
 
 /** 예전에 만든 글 페이지 중 이번에 안 만든 것 → 지우지 않고 noindex */
@@ -948,7 +947,7 @@ export function hubStat(list) {
 }
 // 사장님 이야기 목록 설명 글 · 무엇인지 · 숫자를 어떻게 재는지(GEO · AEO 인용용 정의 문장)
 const STORY_INTRO = (label) => [
-  { h: label ? `${label} 사장님 이야기는 무엇인가요` : "토크비 사장님 이야기는 무엇인가요",
+  { h: label ? `${label} 실제 사례는 무엇인가요` : "토크비 실제 사례는 무엇인가요",
     html: `<p>${label ? `${esc(label)} 가게가` : "식당, 카페, 술집이"} ChatGPT 추천에 나오기까지 무엇을 했고, 숫자가 어떻게 달라졌는지 실제 측정 기록으로 적었습니다. 처음엔 어땠는지, 토크비가 무엇을 했는지, 추천률이 얼마나 올랐는지, ChatGPT가 실제로 한 답까지 담았습니다.</p>` },
   { h: "추천률은 어떻게 측정하나요",
     html: "<p>추천률은 손님이 물을 만한 같은 질문을 매주 ChatGPT에 직접 물어, 답에 그 가게가 나온 비율입니다. 질문에는 가게 이름을 넣지 않고 \"동네 + 상황 + 메뉴\"처럼 실제 손님 말투로 묻습니다. 글에 적힌 숫자는 모두 이 측정 기록에서 나온 값이고, 글마다 측정 기간과 근거 답 수를 함께 적습니다.</p>" },
@@ -968,7 +967,7 @@ export function renderCaseHub(H, hub, all) {
   const list = isRoot ? all.filter((p) => p.kind === "case" && p.industry) : hub.posts;
   const path = isRoot ? `/${STORIES_DIR}/` : `/${STORIES_DIR}/${hub.key}/`;
   const url = `${SITE}${path}`;
-  const name = isRoot ? "사장님 이야기 · 업종별 AI 검색 노출 사례" : `${hub.label} 사장님 이야기`;
+  const name = isRoot ? "실제 사례 · 업종별 AI 검색 노출 결과" : `${hub.label} 실제 사례`;
   const title = `${name} | 토크비(TalkB)`;
   const desc = isRoot
     ? "식당 · 카페 · 술집 사장님 가게가 ChatGPT 추천에 나오기까지 토크비가 한 일과 달라진 숫자를 업종별로 모았어요."
@@ -980,7 +979,7 @@ export function renderCaseHub(H, hub, all) {
       mainEntity: { "@type": "ItemList", itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: urlOfP(p), name: p.title })) } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "토크비", item: `${SITE}/` },
-      { "@type": "ListItem", position: 2, name: "사장님 이야기", item: `${SITE}/${STORIES_DIR}/` },
+      { "@type": "ListItem", position: 2, name: "실제 사례", item: `${SITE}/${STORIES_DIR}/` },
       ...(isRoot ? [] : [{ "@type": "ListItem", position: 3, name: hub.label, item: url }]),
     ] },
   ] : [];
@@ -988,9 +987,8 @@ export function renderCaseHub(H, hub, all) {
   const hubs = caseHubs(all);
   // 업종 칸(11/5 사장 "사장님 이야기에도 업종별 카테고리 저런 식으로") · 콘텐츠 목록과 같은 모양 · 업종마다 따로 페이지라 칸은 진짜 링크
   const live = hubs.filter((h) => h.posts.length);
-  const allCount = live.reduce((n, h) => n + h.posts.length, 0);
   const nav = live.length ? `<nav class="g-cats" aria-label="업종 고르기" id="gTabs"><div class="g-cats-row">
-<a class="g-cat-tab" href="/${STORIES_DIR}/"${isRoot ? ' aria-current="page"' : ""}>전체 <span class="n">${allCount}</span></a>${live.map((h) => `<a class="g-cat-tab" href="/${STORIES_DIR}/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-current="page"' : ""}>${esc(h.label)} <span class="n">${h.posts.length}</span></a>`).join("")}
+<a class="g-cat-tab" href="/${STORIES_DIR}/"${isRoot ? ' aria-current="page"' : ""}>전체</a>${live.map((h) => `<a class="g-cat-tab" href="/${STORIES_DIR}/${h.key}/"${!isRoot && h.key === hub.key ? ' aria-current="page"' : ""}>${esc(h.label)}</a>`).join("")}
 </div></nav>
 <script>
 (function(){
@@ -1002,17 +1000,17 @@ export function renderCaseHub(H, hub, all) {
 </script>` : "";
   // 전체 보기는 업종마다 제목 · 글 수 · 카드 묶음(콘텐츠 목록과 같은 모양) · 업종 페이지는 그 업종 묶음 하나
   const groupsHtml = (isRoot ? live : [hub]).filter((h) => h.posts.length).map((h) => `<section class="g-cat" aria-labelledby="st-h-${h.key}">
-<div class="g-cat-h"><h2 id="st-h-${h.key}">${isRoot ? `<a href="/${STORIES_DIR}/${h.key}/" style="color:inherit">${esc(h.label)}</a>` : esc(h.label)}</h2><p>${esc(h.label)} 가게의 식당 마케팅 사례</p><span class="n">이야기 ${h.posts.length}편</span></div>
+<div class="g-cat-h"><h2 id="st-h-${h.key}">${isRoot ? `<a href="/${STORIES_DIR}/${h.key}/" style="color:inherit">${esc(h.label)}</a>` : esc(h.label)}</h2><p>${esc(h.label)} 가게의 식당 마케팅 사례</p><span class="n">사례 ${h.posts.length}편</span></div>
 <div class="g-cards">${[...h.posts].sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1)).map(card).join("")}</div>
 </section>`).join("\n");
   const main = `<main class="g-main">
 <div class="wrap">
-<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${isRoot ? "<span>사장님 이야기</span>" : `<a href="/${STORIES_DIR}/">사장님 이야기</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
+<nav class="g-crumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span>${isRoot ? "<span>실제 사례</span>" : `<a href="/${STORIES_DIR}/">실제 사례</a><span aria-hidden="true">›</span><span>${esc(hub.label)}</span>`}</nav>
 <h1 class="g-h1">${esc(name)}</h1>
 <p class="lead" style="margin-top:12px">${esc(desc)}</p>
 ${sorted.length ? `<p style="margin-top:10px;font-size:16px;font-weight:700">${esc(hubStat(sorted))}</p>` : ""}
 ${nav}
-${sorted.length ? `${groupsHtml}${hubIntro(STORY_INTRO(isRoot ? null : hub.label), isRoot ? STORY_FAQ : [])}` : `<p class="g-empty">${isRoot ? "첫 이야기를 준비하고 있어요." : `${esc(hub.label)} 사장님 이야기를 준비하고 있어요.`}</p>`}
+${sorted.length ? `${groupsHtml}${hubIntro(STORY_INTRO(isRoot ? null : hub.label), isRoot ? STORY_FAQ : [])}` : `<p class="g-empty">${isRoot ? "첫 사례를 준비하고 있어요." : `${esc(hub.label)} 실제 사례를 준비하고 있어요.`}</p>`}
 <div class="g-cta"><p>우리 가게도 AI가 추천하는지<br>무료 리포트로 확인해 보세요.</p><a class="kbtn kbtn-lg fbtn" href="/#inquiry" data-pos="case-hub-cta">우리 가게도 무료로 확인하기</a></div>
 </div>
 </main>`;

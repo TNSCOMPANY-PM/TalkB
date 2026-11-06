@@ -3,10 +3,17 @@
 <channel>
   <title>토크비(TalkB) 콘텐츠</title>
   <link>https://talkb.co.kr/</link>
-  <description>식당·카페·술집 사장님을 위한 AI 검색 마케팅 가이드와 사장님 이야기</description>
+  <description>식당·카페·술집 사장님을 위한 AI 검색 마케팅 꿀팁과 실제 사례</description>
   <language>ko</language>
   <atom:link href="https://talkb.co.kr/rss.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Thu, 05 Nov 2026 07:08:17 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 05 Nov 2026 23:42:59 GMT</lastBuildDate>
+  <item>
+    <title>식당 마케팅 사례 7곳, ChatGPT 추천은 언제 올랐을까</title>
+    <link>https://talkb.co.kr/content/chatgpt-restaurant-cases-7-stores/</link>
+    <guid isPermaLink="true">https://talkb.co.kr/content/chatgpt-restaurant-cases-7-stores/</guid>
+    <pubDate>Thu, 05 Nov 2026 23:42:59 GMT</pubDate>
+    <description>토크비가 매주 ChatGPT 추천을 확인한 음식점 가운데, 결과가 좋았던 7곳을 모았습니다.</description>
+  </item>
   <item>
     <title>고깃집 AI 마케팅 사례, ChatGPT 추천 보고 12명 단체 예약</title>
     <link>https://talkb.co.kr/stories/meat/unseodong-gogi/</link>
