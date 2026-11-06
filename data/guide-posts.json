@@ -15,6 +15,20 @@
    "path": "/content/seo-meaning/"
   },
   {
+   "id": "142bb01b-a6da-455b-a133-6760f95f5c0c",
+   "slug": "receipt-review-increase-guide",
+   "title": "영수증 리뷰 늘리는 법, 손님에게 부탁하는 방법과 지킬 규칙",
+   "line1": "영수증 리뷰는 계산할 때 건네는 부탁 한마디와 꾸준한 답글에서 늘어납니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-06T02:50:57.653Z",
+   "dateModified": "2026-11-06T02:50:57.653Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/receipt-review-increase-guide/"
+  },
+  {
    "id": "17846738-6a35-4b93-9f65-29daf6197ebd",
    "slug": "unseodong-gogi",
    "title": "고깃집 AI 마케팅 사례, ChatGPT 추천 보고 12명 단체 예약",
@@ -119,9 +133,9 @@
    "line1": "ChatGPT가 1순위로 꼽은 가게 소개에는 가격과 주차 얘기가 전체보다 2배에서 4배 자주 나왔습니다.",
    "vertical": "all",
    "kind": "data",
-   "status": "approved",
-   "datePublished": "2026-11-06T00:46:46.004Z",
-   "dateModified": "2026-11-06T00:46:46.004Z",
+   "status": "published",
+   "datePublished": "2026-11-06T00:46:46.004+00:00",
+   "dateModified": "2026-11-06T00:46:46.004+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/chatgpt-restaurant-recommendation-reasons/"
