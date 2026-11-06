@@ -15,6 +15,20 @@
    "path": "/content/seo-meaning/"
   },
   {
+   "id": "10d2989e-1313-4352-9d76-6d31141d3cbb",
+   "slug": "cafe-startup-online-checklist-before-opening",
+   "title": "카페 창업 전, 문 열기 전에 끝내야 할 온라인 준비 5가지",
+   "line1": "카페 창업, 식당 창업 모두 사업자등록을 마쳤다면 지도 등록부터 챙기세요.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-06T08:37:45.371Z",
+   "dateModified": "2026-11-06T08:37:45.371Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/cafe-startup-online-checklist-before-opening/"
+  },
+  {
    "id": "142bb01b-a6da-455b-a133-6760f95f5c0c",
    "slug": "receipt-review-increase-guide",
    "title": "영수증 리뷰 늘리는 법, 손님에게 부탁하는 방법과 지킬 규칙",
@@ -105,9 +119,9 @@
    "line1": "네이버 플레이스 광고는 보이기만 해서는 돈이 안 나가고, 손님이 눌러야 나갑니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-06T07:07:18.060Z",
-   "dateModified": "2026-11-06T07:07:18.060Z",
+   "status": "published",
+   "datePublished": "2026-11-06T07:07:18.06+00:00",
+   "dateModified": "2026-11-06T07:07:18.06+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/naver-place-ad-cost-ai-search/"
