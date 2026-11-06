@@ -21,9 +21,9 @@
    "line1": "카페 창업, 식당 창업 모두 사업자등록을 마쳤다면 지도 등록부터 챙기세요.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-06T08:37:45.371Z",
-   "dateModified": "2026-11-06T08:37:45.371Z",
+   "status": "published",
+   "datePublished": "2026-11-06T08:37:45.371+00:00",
+   "dateModified": "2026-11-06T08:37:45.371+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/cafe-startup-online-checklist-before-opening/"
@@ -83,6 +83,20 @@
    "storeId": "420c1d08-7bc2-4eb5-8769-392361e956f1",
    "industry": "soup",
    "path": "/stories/soup/mohyeoneup-haejangguk/"
+  },
+  {
+   "id": "8911c95c-0fef-449d-b7aa-c373a56f2314",
+   "slug": "danggeun-ad-cost-how-to-use",
+   "title": "당근 광고 비용과 쓰는 법, 하루 5,000원부터 동네 손님 모으기",
+   "line1": "당근 광고는 가게 주변 동네 이웃에게 보여 주는 지역 광고입니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-06T10:35:04.563Z",
+   "dateModified": "2026-11-06T10:35:04.563Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/danggeun-ad-cost-how-to-use/"
   },
   {
    "id": "8ee91f0b-b086-4a46-9343-cd90d46ba037",
