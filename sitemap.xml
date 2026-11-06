@@ -5,7 +5,7 @@
   <!-- 메인 페이지 -->
   <url>
     <loc>https://talkb.co.kr/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,6 +68,10 @@
   <url>
     <loc>https://talkb.co.kr/content/how-talkb-works/</loc>
     <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://talkb.co.kr/content/chatgpt-restaurant-recommendation-reasons/</loc>
+    <lastmod>2026-11-06</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/content/geo-meaning/</loc>

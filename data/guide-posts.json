@@ -77,9 +77,9 @@
    "line1": "토크비가 매주 ChatGPT 추천을 확인한 음식점 가운데, 결과가 좋았던 7곳을 모았습니다.",
    "vertical": "restaurant",
    "kind": "data",
-   "status": "approved",
-   "datePublished": "2026-11-05T23:42:59.976Z",
-   "dateModified": "2026-11-05T23:42:59.976Z",
+   "status": "published",
+   "datePublished": "2026-11-05T23:42:59.976+00:00",
+   "dateModified": "2026-11-05T23:42:59.976+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/chatgpt-restaurant-cases-7-stores/"
@@ -111,6 +111,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/how-talkb-works/"
+  },
+  {
+   "id": "eb5ca09b-2e6c-4642-a195-c886be33e0b1",
+   "slug": "chatgpt-restaurant-recommendation-reasons",
+   "title": "챗GPT 맛집 추천 이유 4만 건, 1순위엔 가격과 주차가 있었다",
+   "line1": "ChatGPT가 1순위로 꼽은 가게 소개에는 가격과 주차 얘기가 전체보다 2배에서 4배 자주 나왔습니다.",
+   "vertical": "all",
+   "kind": "data",
+   "status": "approved",
+   "datePublished": "2026-11-06T00:46:46.004Z",
+   "dateModified": "2026-11-06T00:46:46.004Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/chatgpt-restaurant-recommendation-reasons/"
   },
   {
    "id": "fa4fd17b-8728-4076-b08a-e55853348a61",
