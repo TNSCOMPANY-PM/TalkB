@@ -21,9 +21,9 @@
    "line1": "영수증 리뷰는 계산할 때 건네는 부탁 한마디와 꾸준한 답글에서 늘어납니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-06T02:50:57.653Z",
-   "dateModified": "2026-11-06T02:50:57.653Z",
+   "status": "published",
+   "datePublished": "2026-11-06T02:50:57.653+00:00",
+   "dateModified": "2026-11-06T02:50:57.653+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/receipt-review-increase-guide/"
@@ -125,6 +125,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/how-talkb-works/"
+  },
+  {
+   "id": "e8cf2e8f-edb3-4ffc-94b6-0dd583f4996b",
+   "slug": "blog-experience-group-before-you-start",
+   "title": "블로그 체험단 맡기기 전에 꼭 확인할 것 (표시 의무 포함)",
+   "line1": "블로그 체험단 후기는 대가를 받고 쓴 글이라 그 사실을 글에 밝혀야 합니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-06T04:28:50.456Z",
+   "dateModified": "2026-11-06T04:28:50.456Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/blog-experience-group-before-you-start/"
   },
   {
    "id": "eb5ca09b-2e6c-4642-a195-c886be33e0b1",
