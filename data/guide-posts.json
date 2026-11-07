@@ -197,6 +197,20 @@
    "path": "/content/how-talkb-works/"
   },
   {
+   "id": "e35887ed-b816-49e0-9f4b-3f9255865164",
+   "slug": "instagram-marketing-restaurant-cafe-bar-guide",
+   "title": "인스타 마케팅, 식당 사장님이 계정 하나로 손님 모으는 법",
+   "line1": "인스타 마케팅은 사진 올리는 일이 아니라 위치와 메뉴를 정확히 적는 일부터 시작합니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-07T09:09:55.510Z",
+   "dateModified": "2026-11-07T09:09:55.510Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/instagram-marketing-restaurant-cafe-bar-guide/"
+  },
+  {
    "id": "e89b7cf5-c8c1-455b-8994-bc807a6bacac",
    "slug": "blog-marketing-owner-write-guide",
    "title": "블로그 마케팅, 사장님이 직접 글 쓰는 법 (가게 블로그 편)",
@@ -231,9 +245,9 @@
    "line1": "마케팅 회사를 고를 때는 먼저 우리 가게와 비슷한 업종을 해 봤는지 물어보세요.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-07T07:15:22.341Z",
-   "dateModified": "2026-11-07T07:15:22.341Z",
+   "status": "published",
+   "datePublished": "2026-11-07T07:15:22.341+00:00",
+   "dateModified": "2026-11-07T07:15:22.341+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/marketing-agency-checklist-before-contract/"
