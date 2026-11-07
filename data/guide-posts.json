@@ -161,9 +161,9 @@
    "line1": "바이럴 마케팅은 블로그와 SNS에 가게 글을 퍼뜨려 입소문을 만드는 일입니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-07T01:25:38.859Z",
-   "dateModified": "2026-11-07T01:25:38.859Z",
+   "status": "published",
+   "datePublished": "2026-11-07T01:25:38.859+00:00",
+   "dateModified": "2026-11-07T01:25:38.859+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/viral-marketing-agency-checklist/"
@@ -181,6 +181,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/how-talkb-works/"
+  },
+  {
+   "id": "e89b7cf5-c8c1-455b-8994-bc807a6bacac",
+   "slug": "blog-marketing-owner-write-guide",
+   "title": "블로그 마케팅, 사장님이 직접 글 쓰는 법 (가게 블로그 편)",
+   "line1": "블로그 마케팅은 대행사 없이도 사장님이 직접 할 수 있습니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-07T02:22:52.498Z",
+   "dateModified": "2026-11-07T02:22:52.498Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/blog-marketing-owner-write-guide/"
   },
   {
    "id": "e8cf2e8f-edb3-4ffc-94b6-0dd583f4996b",
