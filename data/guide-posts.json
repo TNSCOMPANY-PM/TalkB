@@ -119,9 +119,9 @@
    "line1": "온라인 마케팅은 지도 등록부터 시작해 정보, 리뷰, SNS, 광고 순서로 하면 됩니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-07T04:41:59.690Z",
-   "dateModified": "2026-11-07T04:41:59.690Z",
+   "status": "published",
+   "datePublished": "2026-11-07T04:41:59.69+00:00",
+   "dateModified": "2026-11-07T04:41:59.69+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/online-marketing-restaurant-first-steps/"
@@ -223,6 +223,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/blog-experience-group-before-you-start/"
+  },
+  {
+   "id": "e906b164-e770-4d38-a6b0-82833f0429c8",
+   "slug": "marketing-agency-checklist-before-contract",
+   "title": "마케팅 회사 고르는 법, 계약 전 확인할 5가지",
+   "line1": "마케팅 회사를 고를 때는 먼저 우리 가게와 비슷한 업종을 해 봤는지 물어보세요.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-07T07:15:22.341Z",
+   "dateModified": "2026-11-07T07:15:22.341Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/marketing-agency-checklist-before-contract/"
   },
   {
    "id": "eb5ca09b-2e6c-4642-a195-c886be33e0b1",
