@@ -91,9 +91,9 @@
    "line1": "당근 광고는 가게 주변 동네 이웃에게 보여 주는 지역 광고입니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-06T10:35:04.563Z",
-   "dateModified": "2026-11-06T10:35:04.563Z",
+   "status": "published",
+   "datePublished": "2026-11-06T10:35:04.563+00:00",
+   "dateModified": "2026-11-06T10:35:04.563+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/danggeun-ad-cost-how-to-use/"
@@ -153,6 +153,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/chatgpt-restaurant-search-users-2026/"
+  },
+  {
+   "id": "dbe28718-e182-46ff-b7de-69463c930ba0",
+   "slug": "viral-marketing-agency-checklist",
+   "title": "바이럴 마케팅 업체에 맡기기 전에 확인할 것 5가지",
+   "line1": "바이럴 마케팅은 블로그와 SNS에 가게 글을 퍼뜨려 입소문을 만드는 일입니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-07T01:25:38.859Z",
+   "dateModified": "2026-11-07T01:25:38.859Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/viral-marketing-agency-checklist/"
   },
   {
    "id": "e222fca5-b359-4d62-a1fc-f3a6442ea087",

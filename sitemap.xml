@@ -5,7 +5,7 @@
   <!-- 메인 페이지 -->
   <url>
     <loc>https://talkb.co.kr/</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- guide:start · scripts/build-posts.mjs 가 만든다(게시 글 1편 이상일 때만) -->
   <url>
     <loc>https://talkb.co.kr/content/</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/content/seo-meaning/</loc>
@@ -80,6 +80,10 @@
   <url>
     <loc>https://talkb.co.kr/content/chatgpt-restaurant-search-users-2026/</loc>
     <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://talkb.co.kr/content/viral-marketing-agency-checklist/</loc>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/content/how-talkb-works/</loc>
