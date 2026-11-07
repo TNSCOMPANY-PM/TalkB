@@ -113,6 +113,20 @@
    "path": "/content/aeo-meaning/"
   },
   {
+   "id": "a8b4e80a-167b-4180-a8dd-219dceeb326a",
+   "slug": "online-marketing-restaurant-first-steps",
+   "title": "온라인 마케팅, 식당 사장님이 처음에 할 5단계 순서",
+   "line1": "온라인 마케팅은 지도 등록부터 시작해 정보, 리뷰, SNS, 광고 순서로 하면 됩니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-07T04:41:59.690Z",
+   "dateModified": "2026-11-07T04:41:59.690Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/online-marketing-restaurant-first-steps/"
+  },
+  {
    "id": "ad2cde82-0b0e-4779-b544-89be88564fda",
    "slug": "chatgpt-restaurant-cases-7-stores",
    "title": "식당 마케팅 사례 7곳, ChatGPT 추천은 언제 올랐을까",
@@ -189,9 +203,9 @@
    "line1": "블로그 마케팅은 대행사 없이도 사장님이 직접 할 수 있습니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-07T02:22:52.498Z",
-   "dateModified": "2026-11-07T02:22:52.498Z",
+   "status": "published",
+   "datePublished": "2026-11-07T02:22:52.498+00:00",
+   "dateModified": "2026-11-07T02:22:52.498+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/blog-marketing-owner-write-guide/"
