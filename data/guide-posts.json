@@ -77,9 +77,9 @@
    "line1": "네이버 플레이스 마케팅은 정보 채우기, 사진, 새소식, 리뷰 답글 순서로 하면 됩니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-08T01:18:43.978Z",
-   "dateModified": "2026-11-08T01:18:43.978Z",
+   "status": "published",
+   "datePublished": "2026-11-08T01:18:43.978+00:00",
+   "dateModified": "2026-11-08T01:18:43.978+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/naver-place-marketing-free-steps/"
@@ -293,6 +293,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/chatgpt-restaurant-recommendation-reasons/"
+  },
+  {
+   "id": "ef275730-248a-4b91-8b16-5f69a2908572",
+   "slug": "store-introduction-examples",
+   "title": "가게 소개글 예시, 네이버 플레이스 소개 문구 쓰는 법(식당·카페·술집)",
+   "line1": "가게 소개글은 다섯 가지를 차례대로 적으면 됩니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-08T03:29:26.480Z",
+   "dateModified": "2026-11-08T03:29:26.480Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/store-introduction-examples/"
   },
   {
    "id": "fa4fd17b-8728-4076-b08a-e55853348a61",
