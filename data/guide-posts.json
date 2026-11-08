@@ -119,9 +119,9 @@
    "line1": "네이버 플레이스와 당근 비즈프로필을 다 만들었다면, 두 곳의 가게 정보부터 똑같이 맞추세요.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-08T08:14:51.944Z",
-   "dateModified": "2026-11-08T08:14:51.944Z",
+   "status": "published",
+   "datePublished": "2026-11-08T08:14:51.944+00:00",
+   "dateModified": "2026-11-08T08:14:51.944+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/naver-place-danggeun-bizprofile-next-step/"
@@ -139,6 +139,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/google-business-profile-naming-address-guideline/"
+  },
+  {
+   "id": "8115e648-9f07-4bd0-8717-d6cfafac5b3a",
+   "slug": "store-promotion-methods-online-offline",
+   "title": "가게 홍보 방법, 온라인과 오프라인으로 나눠 하는 법",
+   "line1": "가게 홍보 방법은 오프라인 입간판부터 온라인 검색, ChatGPT까지 함께 챙겨야 합니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-08T10:02:01.745Z",
+   "dateModified": "2026-11-08T10:02:01.745Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/store-promotion-methods-online-offline/"
   },
   {
    "id": "8911c95c-0fef-449d-b7aa-c373a56f2314",
