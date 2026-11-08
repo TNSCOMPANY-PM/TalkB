@@ -1,6 +1,20 @@
 {
  "posts": [
   {
+   "id": "03c352b8-97b2-4f8a-abd2-fa05340a9bb6",
+   "slug": "google-ai-mode-ai-overview-store",
+   "title": "구글 AI 모드 · AI 개요에 우리 가게가 나오려면",
+   "line1": "구글은 AI 모드나 AI 개요에 나오려고 따로 할 일은 없다고 밝혔습니다.",
+   "vertical": "all",
+   "kind": "insight",
+   "status": "approved",
+   "datePublished": "2026-11-08T06:34:17.127Z",
+   "dateModified": "2026-11-08T06:34:17.127Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/google-ai-mode-ai-overview-store/"
+  },
+  {
    "id": "04b01d11-0e52-44e9-951c-4c99faa0d0a2",
    "slug": "seo-meaning",
    "title": "SEO 뜻과 네이버 SEO, 우리 가게가 검색에 잘 나오는 법",
@@ -105,9 +119,9 @@
    "line1": "구글 비즈니스 프로필에는 간판에 적힌 가게 이름을 그대로 씁니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-08T05:17:53.326Z",
-   "dateModified": "2026-11-08T05:17:53.326Z",
+   "status": "published",
+   "datePublished": "2026-11-08T05:17:53.326+00:00",
+   "dateModified": "2026-11-08T05:17:53.326+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/google-business-profile-naming-address-guideline/"
