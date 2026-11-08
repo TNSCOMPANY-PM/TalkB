@@ -99,6 +99,20 @@
    "path": "/stories/soup/mohyeoneup-haejangguk/"
   },
   {
+   "id": "4c1fcf4c-08a7-421d-bd84-c7a48d133d7c",
+   "slug": "google-business-profile-naming-address-guideline",
+   "title": "구글 비즈니스 프로필 등록, 가게 이름과 주소 쓰는 법",
+   "line1": "구글 비즈니스 프로필에는 간판에 적힌 가게 이름을 그대로 씁니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-08T05:17:53.326Z",
+   "dateModified": "2026-11-08T05:17:53.326Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/google-business-profile-naming-address-guideline/"
+  },
+  {
    "id": "8911c95c-0fef-449d-b7aa-c373a56f2314",
    "slug": "danggeun-ad-cost-how-to-use",
    "title": "당근 광고 비용과 쓰는 법, 하루 5,000원부터 동네 손님 모으기",
@@ -301,9 +315,9 @@
    "line1": "가게 소개글은 다섯 가지를 차례대로 적으면 됩니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-08T03:29:26.480Z",
-   "dateModified": "2026-11-08T03:29:26.480Z",
+   "status": "published",
+   "datePublished": "2026-11-08T03:29:26.48+00:00",
+   "dateModified": "2026-11-08T03:29:26.48+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/store-introduction-examples/"

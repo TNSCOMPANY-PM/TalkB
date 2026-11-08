@@ -78,6 +78,7 @@ ChatGPT는 OpenAI의 상표이며, 토크비는 OpenAI와 제휴·후원 관계�
 ## 꿀팁(식당 · 카페 · 술집 사장님 글)
 
 - 목록: https://talkb.co.kr/content/
+- 구글 비즈니스 프로필 등록, 가게 이름과 주소 쓰는 법: https://talkb.co.kr/content/google-business-profile-naming-address-guideline/ · 구글 비즈니스 프로필에는 간판에 적힌 가게 이름을 그대로 씁니다.
 - 가게 소개글 예시, 네이버 플레이스 소개 문구 쓰는 법(식당·카페·술집): https://talkb.co.kr/content/store-introduction-examples/ · 가게 소개글은 다섯 가지를 차례대로 적으면 됩니다.
 - 네이버 플레이스 마케팅, 돈 안 들이고 사장님이 직접 하는 순서: https://talkb.co.kr/content/naver-place-marketing-free-steps/ · 네이버 플레이스 마케팅은 정보 채우기, 사진, 새소식, 리뷰 답글 순서로 하면 됩니다.
 - 식당 AI 마케팅, 손님이 ChatGPT에 맛집을 물을 때 챙길 것: https://talkb.co.kr/content/restaurant-ai-marketing-chatgpt-guide/ · 식당 AI 마케팅은 광고비를 늘리는 일이 아니라 가게 정보를 빠짐없이 정확하게 채우는 일입니다.
