@@ -7,9 +7,9 @@
    "line1": "구글은 AI 모드나 AI 개요에 나오려고 따로 할 일은 없다고 밝혔습니다.",
    "vertical": "all",
    "kind": "insight",
-   "status": "approved",
-   "datePublished": "2026-11-08T06:34:17.127Z",
-   "dateModified": "2026-11-08T06:34:17.127Z",
+   "status": "published",
+   "datePublished": "2026-11-08T06:34:17.127+00:00",
+   "dateModified": "2026-11-08T06:34:17.127+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/google-ai-mode-ai-overview-store/"
@@ -111,6 +111,20 @@
    "storeId": "420c1d08-7bc2-4eb5-8769-392361e956f1",
    "industry": "soup",
    "path": "/stories/soup/mohyeoneup-haejangguk/"
+  },
+  {
+   "id": "352aea8b-c581-4900-b59a-482012771a53",
+   "slug": "naver-place-danggeun-bizprofile-next-step",
+   "title": "네이버 플레이스 등록, 당근 비즈프로필까지 만든 다음 할 일",
+   "line1": "네이버 플레이스와 당근 비즈프로필을 다 만들었다면, 두 곳의 가게 정보부터 똑같이 맞추세요.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-08T08:14:51.944Z",
+   "dateModified": "2026-11-08T08:14:51.944Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-place-danggeun-bizprofile-next-step/"
   },
   {
    "id": "4c1fcf4c-08a7-421d-bd84-c7a48d133d7c",
