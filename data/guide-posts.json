@@ -71,6 +71,20 @@
    "path": "/stories/seafood/seongsadong-gejang/"
   },
   {
+   "id": "2a9d3f98-36d5-44c1-bc5d-29ffe659315a",
+   "slug": "naver-place-marketing-free-steps",
+   "title": "네이버 플레이스 마케팅, 돈 안 들이고 사장님이 직접 하는 순서",
+   "line1": "네이버 플레이스 마케팅은 정보 채우기, 사진, 새소식, 리뷰 답글 순서로 하면 됩니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-08T01:18:43.978Z",
+   "dateModified": "2026-11-08T01:18:43.978Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/naver-place-marketing-free-steps/"
+  },
+  {
    "id": "2db945f8-6daf-44e7-8834-271e93719a9e",
    "slug": "mohyeoneup-haejangguk",
    "title": "식당 마케팅 사례, 뼈해장국집 ChatGPT 추천 0%에서 66%로",
@@ -189,9 +203,9 @@
    "line1": "식당 AI 마케팅은 광고비를 늘리는 일이 아니라 가게 정보를 빠짐없이 정확하게 채우는 일입니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-07T11:32:18.694Z",
-   "dateModified": "2026-11-07T11:32:18.694Z",
+   "status": "published",
+   "datePublished": "2026-11-07T11:32:18.694+00:00",
+   "dateModified": "2026-11-07T11:32:18.694+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/restaurant-ai-marketing-chatgpt-guide/"

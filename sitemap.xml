@@ -5,7 +5,7 @@
   <!-- 메인 페이지 -->
   <url>
     <loc>https://talkb.co.kr/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- guide:start · scripts/build-posts.mjs 가 만든다(게시 글 1편 이상일 때만) -->
   <url>
     <loc>https://talkb.co.kr/content/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/content/seo-meaning/</loc>
@@ -56,6 +56,10 @@
   <url>
     <loc>https://talkb.co.kr/stories/seafood/seongsadong-gejang/</loc>
     <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://talkb.co.kr/content/naver-place-marketing-free-steps/</loc>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://talkb.co.kr/stories/soup/mohyeoneup-haejangguk/</loc>
