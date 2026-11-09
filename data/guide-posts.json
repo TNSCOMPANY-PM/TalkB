@@ -147,9 +147,9 @@
    "line1": "가게 홍보 방법은 오프라인 입간판부터 온라인 검색, ChatGPT까지 함께 챙겨야 합니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-08T10:02:01.745Z",
-   "dateModified": "2026-11-08T10:02:01.745Z",
+   "status": "published",
+   "datePublished": "2026-11-08T10:02:01.745+00:00",
+   "dateModified": "2026-11-08T10:02:01.745+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/store-promotion-methods-online-offline/"
@@ -205,7 +205,7 @@
    "kind": "data",
    "status": "published",
    "datePublished": "2026-11-05T23:42:59.976+00:00",
-   "dateModified": "2026-11-05T23:42:59.976+00:00",
+   "dateModified": "2026-11-09T00:10:42.579+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/chatgpt-restaurant-cases-7-stores/"
