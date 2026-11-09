@@ -16,6 +16,8 @@
       localStorage.setItem("tb_vid", vid);
     }
   } catch (e) {}
+  // 11/9 · 브라우저 보관함(localStorage)이 막힌 인앱 브라우저에서도 이 방문 동안은 같은 방문자 번호를 쓴다(세션 보관함)
+  if (!vid) { try { vid = sessionStorage.getItem("tb_vid") || ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + "-" + Math.random().toString(36).slice(2))); sessionStorage.setItem("tb_vid", vid); } catch (e) {} }
   var p = new URLSearchParams(location.search);
   var TEAM_KEY = "tb_team";
   try { var tq = p.get("team"); if (tq === "1") localStorage.setItem(TEAM_KEY, "1"); else if (tq === "0") localStorage.removeItem(TEAM_KEY); } catch (e) {}
@@ -25,20 +27,36 @@
 
   // 유입 경로 저장(2026-10-19) · 문의폼이 문의와 함께 보낸다(어느 광고·검색에서 온 문의인지 · 어드민 퍼널 유입별 비교).
   // 광고·검색 꼬리표나 바깥 사이트에서 온 방문만 덮어쓴다 · 나중의 직접 재방문이 광고 유입을 지우지 않게.
+  // 11/9 사장 "어디로 들어왔는지 꼬리표 붙여서 추적 가능하게" · 꼬리표를 세 겹으로 든다: ① localStorage ② sessionStorage ③ 이 페이지 메모리
+  //   인스타 앱 안 브라우저에서 ①이 비어 신청서에 경로가 빠졌다(11월 제주갈치정원 · 밥상편지 · 방문 기록엔 utm 이 있었음) · 신청서는 window.TB_ATTR() 로 꺼낸다
+  //   광고 · 검색 꼬리표나 바깥 사이트에서 온 방문만 덮어쓴다 · 나중의 직접 재방문이 광고 유입을 지우지 않게(종전 규칙)
+  var attrMem = null;
   try {
     var refHost = ""; try { refHost = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e0) {}
     var outside = !!refHost && !/(^|\.)talkb\.co\.kr$/.test(refHost);
     var tagged = !!(p.get("utm_source") || p.get("fbclid") || p.get("gclid"));
-    if (tagged || outside || !localStorage.getItem("tb_attr")) {
-      localStorage.setItem("tb_attr", JSON.stringify({
-        utm_source: p.get("utm_source") || (p.get("fbclid") ? "meta" : p.get("gclid") ? "google" : null),
-        utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"),
-        referrer: outside ? document.referrer.slice(0, 300) : null, landing: location.pathname, at: new Date().toISOString(),
-        // 메타 광고 클릭 ID(10/21) · 서버가 _fbc 쿠키가 없을 때 fb.1.{클릭 시각}.{fbclid} 로 만들어 전환 API에 싣는다
-        fbclid: p.get("fbclid") ? p.get("fbclid").slice(0, 500) : null
-      }));
-    }
+    var attrNow = {
+      utm_source: p.get("utm_source") || (p.get("fbclid") ? "meta" : p.get("gclid") ? "google" : null),
+      utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"),
+      referrer: outside ? document.referrer.slice(0, 300) : null, landing: location.pathname, at: new Date().toISOString(),
+      // 메타 광고 클릭 ID(10/21) · 서버가 _fbc 쿠키가 없을 때 fb.1.{클릭 시각}.{fbclid} 로 만들어 전환 API에 싣는다
+      fbclid: p.get("fbclid") ? p.get("fbclid").slice(0, 500) : null
+    };
+    if (tagged || outside) attrMem = attrNow;
+    try { if (tagged || outside || !localStorage.getItem("tb_attr")) localStorage.setItem("tb_attr", JSON.stringify(attrNow)); } catch (e1) {}
+    try { if (tagged || outside || !sessionStorage.getItem("tb_attr")) sessionStorage.setItem("tb_attr", JSON.stringify(attrNow)); } catch (e2) {}
   } catch (e) {}
+  // 신청서가 보낼 꼬리표 · 경로가 찍힌 것(utm · 바깥 주소 · fbclid)을 ① → ② → ③ 순으로 · 다 없으면 남아 있는 아무 것
+  window.TB_ATTR = function () {
+    function read(st) { try { return JSON.parse(st.getItem("tb_attr") || "null"); } catch (e) { return null; } }
+    function has(a) { return !!(a && (a.utm_source || a.referrer || a.fbclid)); }
+    var L = null, S = null; try { L = read(localStorage); } catch (e3) {} try { S = read(sessionStorage); } catch (e4) {}
+    var src = has(L) ? L : has(S) ? S : has(attrMem) ? attrMem : (L || S || attrMem || {}), a = {};
+    for (var k in src) if (Object.prototype.hasOwnProperty.call(src, k)) a[k] = src[k];
+    a.visitor_id = vid;
+    try { var ss = JSON.parse(sessionStorage.getItem("tb_sid") || "null"); if (ss && ss.id) a.sid = ss.id; } catch (e5) {}
+    return a;
+  };
 
   if (isHome) beacon({ event: "landing_view", visitor_id: vid, utm_source: p.get("utm_source"), utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"), referrer: document.referrer || null, props: { variant: variant } });
 

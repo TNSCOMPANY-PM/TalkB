@@ -420,7 +420,7 @@ fbq('track', 'PageView');
   // Meta Lead 중복 제거용(2026-10-19) · 같은 event_id를 브라우저 픽셀과 서버 전환 API(app /api/inquiries)가 같이 쓴다.
   // _fbp·_fbc는 talkb.co.kr 쿠키라 app. 서버로 안 넘어가서 직접 싣는다.
   // 유입 경로(2026-10-19) · track.js가 저장한 tb_attr + 방문자 ID · 어드민 퍼널의 유입별 비교에 쓴다
-  function tbAttr() { try { var a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); return a; } catch (e) { return null; } }
+  function tbAttr() { if (window.TB_ATTR) { try { return window.TB_ATTR(); } catch (e0) {} } try { var a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); return a; } catch (e) { return null; } }
   function tbLeadMeta() { var c = function (k) { var m = document.cookie.match(new RegExp("(?:^|; )" + k + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; }; var id = "lead_" + ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + "_" + Math.random().toString(36).slice(2))); return { event_id: id, fbp: c("_fbp"), fbc: c("_fbc"), url: location.href.split("#")[0].slice(0, 300) }; }
   var API = "https://app.talkb.co.kr/api/inquiries", f = document.getElementById("ent-form"), st = document.getElementById("e_st"), btn = document.getElementById("e_btn");
   function v(id) { return (document.getElementById(id).value || "").trim(); }
