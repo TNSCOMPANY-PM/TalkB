@@ -91,9 +91,9 @@
    "line1": "배민 광고와 쿠팡이츠 광고는 돈 내는 방식부터 다릅니다.",
    "vertical": "all",
    "kind": "guide",
-   "status": "approved",
-   "datePublished": "2026-11-09T00:31:47.675Z",
-   "dateModified": "2026-11-09T00:31:47.675Z",
+   "status": "published",
+   "datePublished": "2026-11-09T00:31:47.675+00:00",
+   "dateModified": "2026-11-09T00:31:47.675+00:00",
    "storeId": null,
    "industry": null,
    "path": "/content/baemin-coupang-eats-ad-comparison/"
@@ -181,6 +181,20 @@
    "storeId": null,
    "industry": null,
    "path": "/content/danggeun-ad-cost-how-to-use/"
+  },
+  {
+   "id": "8aa10231-36d0-4702-b295-1105b34db28e",
+   "slug": "franchise-marketing-headquarters-store-roles",
+   "title": "프랜차이즈 마케팅, 본사와 가맹점이 나눠 할 일",
+   "line1": "프랜차이즈 마케팅은 본사가 공통 정보를, 가맹점이 지점 정보를 맡는 식으로 나눕니다.",
+   "vertical": "all",
+   "kind": "guide",
+   "status": "approved",
+   "datePublished": "2026-11-09T02:13:26.744Z",
+   "dateModified": "2026-11-09T02:13:26.744Z",
+   "storeId": null,
+   "industry": null,
+   "path": "/content/franchise-marketing-headquarters-store-roles/"
   },
   {
    "id": "8ee91f0b-b086-4a46-9343-cd90d46ba037",
