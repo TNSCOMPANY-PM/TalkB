@@ -54,6 +54,8 @@
     var src = has(L) ? L : has(S) ? S : has(attrMem) ? attrMem : (L || S || attrMem || {}), a = {};
     for (var k in src) if (Object.prototype.hasOwnProperty.call(src, k)) a[k] = src[k];
     a.visitor_id = vid;
+    // 추천 코드(11/10 · 레퍼럴) · ?ref= 로 30일 기억한 코드 · 담당자가 결제 링크를 만들 때 자동으로 들어간다
+    var rc = refCode(); if (rc) a.ref = rc;
     try { var ss = JSON.parse(sessionStorage.getItem("tb_sid") || "null"); if (ss && ss.id) a.sid = ss.id; } catch (e5) {}
     return a;
   };
