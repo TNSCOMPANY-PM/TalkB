@@ -790,6 +790,13 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-call{margin-top:16px;background:#FFF7F3;border-radius:14px;padding:14px 16px}
 .inq-call p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-mid)}
 .inq-call .inq-call-t{font-size:16px;font-weight:800;color:var(--ink)}
+/* 즉시 통화 요청(11/12 사장) · 영업일 09:00~17:30 · 지금 칸이 비어 있을 때만 보인다 */
+.inq-now{display:flex;align-items:flex-start;gap:10px;margin:12px 0 4px;padding:12px 14px;background:#fff;border:1.5px solid var(--brand,#FF5A1F);border-radius:12px;cursor:pointer}
+.inq-now input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--brand,#FF5A1F)}
+.inq-now b{display:block;font-size:15px;color:var(--ink)}
+.inq-now small{display:block;font-size:13px;color:var(--ink-mid);margin-top:1px}
+.inq-now[hidden],.inq-now-on[hidden]{display:none}
+.inq-now-on{margin:10px 0 0;font-size:14px;font-weight:700;color:var(--ink)}
 .cal{border:0;margin:14px 0 0;padding:0;min-width:0}
 .cal legend{padding:0;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px}
 .cal-month{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
@@ -1276,7 +1283,9 @@ fbq('track', 'PageView');
 </div>
 <div class="inq-call s2">
 <p class="inq-call-t">결과를 통화로 설명드려요</p>
-<p>편한 날짜와 시간을 골라 주시면 그때 연락드려요 <span class="req">*</span></p>
+<label class="inq-now" id="inqNowWrap" hidden><input type="checkbox" id="inq_now" data-track="inq-call-now"><span><b>지금 바로 통화 요청</b><small>체크하면 5~10분 안에 연락드려요</small></span></label>
+<p id="calLead">편한 날짜와 시간을 골라 주시면 그때 연락드려요 <span class="req">*</span></p>
+<p class="inq-now-on" id="inqNowOn" hidden>지금 신청하시면 5~10분 안에 전화드려요</p>
 <button type="button" class="cal-toggle" id="calToggle" aria-expanded="false" aria-controls="calBody" data-track="inq-call-open">편한 날짜·시간 고르기</button>
 <div class="cal-picked" id="calDone" hidden><b id="calDoneT"></b><button type="button" id="calDoneChange">바꾸기</button></div>
 <div id="calBody" hidden>
@@ -1555,10 +1564,31 @@ fbq('track', 'PageView');
   function calShow(s) {
     var tg = document.getElementById("calToggle"), bd = document.getElementById("calBody"), dn = document.getElementById("calDone");
     if (!tg || !bd || !dn) return;
+    var now = nowOn(), ld = document.getElementById("calLead"), on = document.getElementById("inqNowOn");
+    if (ld) ld.hidden = now; if (on) on.hidden = !now;
+    if (now) { tg.hidden = true; bd.hidden = true; dn.hidden = true; tg.setAttribute("aria-expanded", "false"); return; }
     tg.hidden = s !== "toggle"; bd.hidden = s !== "body"; dn.hidden = s !== "done";
     tg.setAttribute("aria-expanded", s === "body" ? "true" : "false");
   }
   var TAKEN = {}, CLOSED = {}; /* CLOSED: 운영팀이 하루 막은 날(어드민 통화 예약 시간 · 10/19) */
+  // 즉시 통화 요청(11/12 사장) · 서버 lib/call-now.ts 와 같은 규칙 · 영업일 09:00~17:30 · 지금 칸 · 10분 뒤 칸이 비어 있을 때만
+  var nowEl = document.getElementById("inq_now"), nowWrap = document.getElementById("inqNowWrap");
+  function nowOn() { return !!(nowEl && nowEl.checked && nowWrap && !nowWrap.hidden); }
+  function nowSlot() { var m = nowMin(); return slotVal(Math.floor(m / 30) * 30); }
+  function nowOpen() {
+    var n = kstNow(), d = ymd(n), dw = n.getUTCDay(), m = nowMin();
+    if (dw === 0 || dw === 6 || HOL.indexOf(d) >= 0 || CLOSED[d]) return false;
+    if (m < 9 * 60 || m >= 17 * 60 + 30) return false;
+    var ahead = slotVal(Math.floor(Math.min(m + 10, 17 * 60 + 29) / 30) * 30);
+    return !TAKEN[d + " " + nowSlot()] && !TAKEN[d + " " + ahead];
+  }
+  function syncNow() {
+    if (!nowWrap) return;
+    var open = nowOpen();
+    if (!open && nowEl.checked) nowEl.checked = false;
+    nowWrap.hidden = !open;
+    calShow(v("inq_day") && v("inq_time") ? "done" : (two ? "body" : "toggle"));
+  }
   function loadTaken(cb) { fetch(API, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { TAKEN = {}; (j.taken || []).forEach(function (k) { TAKEN[k] = 1; }); CLOSED = {}; (j.closed_days || []).forEach(function (k) { CLOSED[k] = 1; }); if (cb) cb(); }).catch(function () { if (cb) cb(); }); }
   function fillTimes(isToday) {
     var min = isToday ? nowMin() + 30 : 0, html = "", am = true, cut = dayEl.value === cutDay();
@@ -1577,7 +1607,9 @@ fbq('track', 'PageView');
   }
   function press(box, btn) { [].forEach.call(box.querySelectorAll("button"), function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); }); }
   if (calDays && calTimes) {
-    fillDays(); loadTaken(function () { if (!dayEl.value) fillDays(); });
+    fillDays(); loadTaken(function () { if (!dayEl.value) fillDays(); syncNow(); });
+    setInterval(syncNow, 60e3); setInterval(function () { loadTaken(syncNow); }, 300e3);
+    if (nowEl) nowEl.addEventListener("change", function () { if (nowEl.checked) { show("", ""); loadTaken(syncNow); } else syncNow(); });
     calDays.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calDays, b); dayEl.value = b.getAttribute("data-k"); dayText = b.getAttribute("data-t"); var td = b.getAttribute("data-today") === "1"; fillTimes(td); loadTaken(function () { if (!timeEl.value) fillTimes(td); }); fold(true); });
     document.getElementById("calChange").addEventListener("click", function () { fold(false); });
     calTimes.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b || b.disabled) return; press(calTimes, b); timeEl.value = b.getAttribute("data-v"); timeText = b.getAttribute("data-t"); document.getElementById("calDoneT").textContent = dayText.split(" (")[0] + " " + dayText.slice(-2, -1) + "요일 " + timeText.split(" ~ ")[0]; calShow("done"); });
@@ -1609,7 +1641,7 @@ fbq('track', 'PageView');
     document.getElementById("inqSumP").textContent = v("inq_place");
     document.getElementById("inqSumN").textContent = phone.replace(/^(\d{3})(\d{3,4})(\d{4})$/, "$1-$2-$3");
     setStep(2);
-    if (!v("inq_day") || !v("inq_time")) calShow("body");
+    if (!nowOn() && (!v("inq_day") || !v("inq_time"))) calShow("body");
     try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); form.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e0) {}
   }
   if (two) {
@@ -1625,22 +1657,24 @@ fbq('track', 'PageView');
     var place = v("inq_place"), name = v("inq_name"), phone = v("inq_phone").replace(/\D/g, "");
     if (!name || !place || !phone) { show("err", two ? "성함을 적어 주세요." : "성함, 가게 이름, 휴대폰 번호를 적어 주세요."); return; }
     if (!/^01\d{8,9}$/.test(phone)) { show("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
-    var cday = v("inq_day"), ctime = v("inq_time");
+    var cday = v("inq_day"), ctime = v("inq_time"), callNow = nowOn();
+    if (callNow && !nowOpen()) { nowEl.checked = false; syncNow(); show("err", "지금은 바로 통화가 어려워요. 통화 받으실 시간을 골라 주세요."); return; }
+    if (callNow) { cday = ymd(kstNow()); ctime = nowSlot(); }
     // 통화 날짜 · 시간 필수(2026-10-27 사장 · 10/22 선택으로 바꿨다가 시간 없는 문의가 들어와 되돌림)
-    if (!cday || !ctime) { show("err", cday ? "통화 받으실 시간을 골라 주세요." : "통화 받으실 날짜와 시간을 골라 주세요."); calShow("body"); var cal = document.querySelector(".inq-call"); if (cal && cal.scrollIntoView) cal.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    if (!callNow && (!cday || !ctime)) { show("err", cday ? "통화 받으실 시간을 골라 주세요." : "통화 받으실 날짜와 시간을 골라 주세요."); calShow("body"); var cal = document.querySelector(".inq-call"); if (cal && cal.scrollIntoView) cal.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
     // 칸을 고른 채 18시를 넘긴 경우
-    if (ctime === "09:00" && cday === cutDay()) { fillTimes(cday === ymd(kstNow())); show("err", "오전 9:00 통화는 전 영업일 오후 6시까지만 신청받아요. 다른 시간을 골라 주세요."); return; }
+    if (!callNow && ctime === "09:00" && cday === cutDay()) { fillTimes(cday === ymd(kstNow())); show("err", "오전 9:00 통화는 전 영업일 오후 6시까지만 신청받아요. 다른 시간을 골라 주세요."); return; }
     var hasCall = true;
-    var callText = hasCall ? dayText + " " + timeText : "";
+    var callText = callNow ? "지금 바로" : (hasCall ? dayText + " " + timeText : "");
     if (!document.getElementById("inq_agree").checked) { show("err", "개인정보 수집·이용에 동의해 주세요."); return; }
     // 대상 업종(2026-10-19) · 링크에 종류가 보이면 바로 안내 · 안 보이는 링크는 서버가 확인해 422로 돌려준다
     var NOT_FOOD = "지금은 음식점 · 술집 · 카페만 신청받고 있어요. 음식점인데 이 안내가 보이면 카카오톡 상담으로 알려 주세요.";
     if (/place\.naver\.com\/(hairshop|hospital|accommodation|attraction)\//.test(place)) { show("err", NOT_FOOD); return; }
     btn.disabled = true; btn.textContent = "보내는 중…";
     var lead = tbLeadMeta();
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: hasCall ? cday : "", preferred_call_slot: hasCall ? ctime : "", inquiry: ((hasCall ? "[희망 통화] " + callText + "\n" : "") + v("inq_inquiry")).trim() }) })
-      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { var e409 = new Error("taken"); e409.taken = true; throw e409; } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요."); form.reset(); fillDays(); if (two) calShow("body"); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
-      .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: hasCall ? cday : "", preferred_call_slot: hasCall ? ctime : "", call_now: callNow || undefined, inquiry: ((callNow ? "[즉시 통화 요청] 5~10분 안 연락\n" : (hasCall ? "[희망 통화] " + callText + "\n" : "")) + v("inq_inquiry")).trim() }) })
+      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { return r.json().catch(function () { return {}; }).then(function (j) { var e409 = new Error("taken"); e409.taken = true; e409.code = j && j.code; throw e409; }); } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", callNow ? "신청됐어요. 5~10분 안에 연락드릴게요." : (hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요.")); form.reset(); fillDays(); syncNow(); if (two) calShow("body"); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
+      .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken && err.code === "call_now_unavailable") { nowEl.checked = false; loadTaken(syncNow); syncNow(); show("err", "지금은 바로 통화가 어려워요. 통화 받으실 시간을 골라 주세요."); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "우리 가게도 무료로 확인하기"; });
   });
 })();
