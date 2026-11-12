@@ -916,12 +916,16 @@ export function llmsSection(posts) {
 
 /** 예전에 만든 글 페이지 중 이번에 안 만든 것 → 지우지 않고 noindex */
 //   keep: 이번에 만든 글 주소(pathOf) · /guide/{slug}/ 와 후기 글 /guide/case/{업종}/{slug}/ 둘 다 본다(업종 목록 페이지는 글이 아님)
-function demoteStale(outRoot, keep) {
+// isHeld(slug) = 순서표에서 아직 기다리는 글(잠깐 내린 글) · noindex 대신 302 로 돌린다(11/12 네이버 웹마스터 가이드 "웹 페이지의 이동":
+//   잠시 페이지를 변경할 때는 302 · 응답이 없으면 삭제된 것으로 판단해 기존 정보를 지울 수 있음) · held 에 주소를 모은다
+function demoteStale(outRoot, keep, isHeld = () => false, held = []) {
   const dir = join(outRoot, GUIDE_DIR);
   if (!existsSync(dir)) return [];
   const out = [];
   const demote = (f, name) => {
     if (!existsSync(f)) return;
+    const slug = name.split("/").pop();
+    if (isHeld(slug)) { held.push(name.includes("/") ? `/${name}/` : `/${GUIDE_DIR}/${name}/`); return; }
     const t = readFileSync(f, "utf8");
     const t2 = t.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, follow">');
     if (t2 !== t) writeFileSync(f, t2);
@@ -1034,6 +1038,29 @@ export function queueWaiting(at, now = new Date()) {
   return at.length > 10 ? at > k.slice(0, 16) : at > k.slice(0, 10);
 }
 /** 본문 속 글 링크 중 아직 안 올라간 글은 링크를 빼고 글자만 남긴다(11/5 · 나눠 올리는 동안 404 링크가 생기지 않게 · 올라가면 다음 빌드에서 링크로) */
+/** 잠깐 내린 글 302(11/12 네이버 권고) · vercel.json 맨 앞에 넣고, 지난번에 넣은 주소(data/held-302.json)는 먼저 걷어 낸다 · 다시 올라가면 다음 빌드에서 빠진다
+ *  302 = 임시 이동 · 네이버가 원래 페이지 정보를 지우지 않게 · 도착은 목록(/content/ · 사장님 이야기는 /stories/) */
+export function syncHeldRedirects(outRoot, held) {
+  const vf = join(outRoot, "vercel.json");
+  if (!existsSync(vf)) return "";
+  const rf = join(outRoot, "data", "held-302.json");
+  let prev = [];
+  try { prev = JSON.parse(readFileSync(rf, "utf8")).sources ?? []; } catch { prev = []; }
+  const raw = readFileSync(vf, "utf8");
+  const v = JSON.parse(raw);
+  const add = [...new Set(held)].sort().flatMap((p) => {
+    const dest = p.startsWith(`/${STORIES_DIR}/`) ? `/${STORIES_DIR}/` : `/${GUIDE_DIR}/`;
+    return [p, p.replace(/\/$/, "")].map((source) => ({ source, destination: dest, statusCode: 302 }));
+  });
+  v.redirects = [...add, ...(v.redirects ?? []).filter((r) => !prev.includes(r.source))];
+  const next = JSON.stringify(v, null, 2) + "\n";
+  if (next !== raw) writeFileSync(vf, next);
+  mkdirSync(join(outRoot, "data"), { recursive: true });
+  const rec = JSON.stringify({ _comment: "build-posts.mjs syncHeldRedirects 가 관리 · 잠깐 내린 글 302 주소(손으로 고치지 말 것)", sources: add.map((r) => r.source) }, null, 2) + "\n";
+  if (!existsSync(rf) || readFileSync(rf, "utf8") !== rec) writeFileSync(rf, rec);
+  return add.length ? `잠깐 내린 글 302: ${held.join(", ")}` : "";
+}
+
 export function unlinkUnbuilt(html, posts) {
   const live = new Set(posts.map((x) => pathOf(x)));
   // 글 주소 꼴만(/content/{slug}/ · /stories/{업종}/{slug}/) · 목록 주소(/content/ · /stories/ · /stories/{업종}/)는 그대로
@@ -1093,8 +1120,12 @@ export function buildGuide({ root = ROOT, outRoot = ROOT, rows, stores, consents
     mkdirSync(join(outRoot, STORIES_DIR, hub.key), { recursive: true });
     writeFileSync(join(outRoot, STORIES_DIR, hub.key, "index.html"), renderCaseHub(H, hub, posts));
   }
-  const stale = demoteStale(outRoot, slugs);
+  const held = [];
+  const isHeld = (slug) => !!queue[slug] && queueWaiting(queue[slug], now ?? new Date());
+  const stale = demoteStale(outRoot, slugs, isHeld, held);
   if (stale.length) log(`예전 글 페이지 noindex 로 둠: ${stale.join(", ")}`);
+  const heldNote = syncHeldRedirects(outRoot, held);
+  if (heldNote) log(heldNote);
   log(`가이드 글 ${posts.length}편 생성${posts.length ? "" : " · 목록 noindex"}`);
   return posts;
 }

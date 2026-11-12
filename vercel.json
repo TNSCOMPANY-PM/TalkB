@@ -1,174 +1,234 @@
 {
   "redirects": [
     {
+      "source": "/content/how-to-write-store-intro-google-helpful-content/",
+      "destination": "/content/store-introduction-examples/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/how-to-write-store-intro-google-helpful-content",
+      "destination": "/content/store-introduction-examples/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-place-ads-restaurant-marketing-trend-2026/",
+      "destination": "/content/naver-place-ad-cost-ai-search/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-place-ads-restaurant-marketing-trend-2026",
+      "destination": "/content/naver-place-ad-cost-ai-search/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-blog-exposure-chatgpt-review-conditions/",
+      "destination": "/content/blog-experience-group-before-you-start/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-blog-exposure-chatgpt-review-conditions",
+      "destination": "/content/blog-experience-group-before-you-start/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/ai-search-optimization-openai-crawlers/",
+      "destination": "/content/restaurant-ai-marketing-chatgpt-guide/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/ai-search-optimization-openai-crawlers",
+      "destination": "/content/restaurant-ai-marketing-chatgpt-guide/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-ai-tab-restaurant-info-10/",
+      "destination": "/content/naver-place-marketing-free-steps/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-ai-tab-restaurant-info-10",
+      "destination": "/content/naver-place-marketing-free-steps/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-searchadvisor-registration/",
+      "destination": "/content/seo-meaning/",
+      "statusCode": 301
+    },
+    {
+      "source": "/content/naver-searchadvisor-registration",
+      "destination": "/content/seo-meaning/",
+      "statusCode": 301
+    },
+    {
       "source": "/pricing",
       "destination": "/pricing/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/enterprise",
       "destination": "/enterprise/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/content",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/content/index.html",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/guide",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/guide/",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/guide/:slug/",
       "destination": "/content/:slug/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/guide/:path*",
       "destination": "/content/:path*",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights/geo-guide.html",
       "destination": "/content/geo-meaning/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights/seo-geo-aeo-comparison.html",
       "destination": "/content/aeo-meaning/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights/korea-ai-search-2026.html",
       "destination": "/content/chatgpt-restaurant-search-users-2026/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights/",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights/:slug/",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/insights/:path*",
       "destination": "/content/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories",
       "destination": "/stories/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/index.html",
       "destination": "/stories/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/ig",
       "destination": "/?utm_source=instagram&utm_medium=profile",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/dm",
       "destination": "/?utm_source=instagram&utm_medium=dm&utm_campaign=reference_feed",
-      "permanent": false
+      "statusCode": 302
     },
     {
       "source": "/ai-restaurant",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/ai-restaurant/",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/ai-restaurant/:path+",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/fceo45",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/fceo45/",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/fceo45/:path+",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/index.html",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/gpt-plan",
       "destination": "/pricing/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/gpt-plan/",
       "destination": "/pricing/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/meat/unseodong-yukryu",
       "destination": "/stories/meat/unseodong-gogi/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/meat/unseodong-yukryu/",
       "destination": "/stories/meat/unseodong-gogi/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/seafood/seongsadong-hansik",
       "destination": "/stories/seafood/seongsadong-gejang/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/seafood/seongsadong-hansik/",
       "destination": "/stories/seafood/seongsadong-gejang/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/soup/mohyeoneup-hansik",
       "destination": "/stories/soup/mohyeoneup-haejangguk/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/stories/soup/mohyeoneup-hansik/",
       "destination": "/stories/soup/mohyeoneup-haejangguk/",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "headers": [
