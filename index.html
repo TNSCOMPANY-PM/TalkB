@@ -1570,7 +1570,7 @@ fbq('track', 'PageView');
     tg.setAttribute("aria-expanded", s === "body" ? "true" : "false");
   }
   var TAKEN = {}, CLOSED = {}; /* CLOSED: 운영팀이 하루 막은 날(어드민 통화 예약 시간 · 10/19) */
-  // 즉시 통화 요청(11/12 사장) · 서버 lib/call-now.ts 와 같은 규칙 · 영업일 09:00~17:30 · 지금 칸 · 10분 뒤 칸이 비어 있을 때만
+  // 즉시 통화 요청(11/12 사장) · 서버 lib/call-now.ts 와 같은 규칙 · 영업일 09:00~17:30(점심 12:50~14:00 빼고) · 지금 칸 · 10분 뒤 칸이 비어 있을 때만
   var nowEl = document.getElementById("inq_now"), nowWrap = document.getElementById("inqNowWrap");
   function nowOn() { return !!(nowEl && nowEl.checked && nowWrap && !nowWrap.hidden); }
   function nowSlot() { var m = nowMin(); return slotVal(Math.floor(m / 30) * 30); }
@@ -1578,6 +1578,7 @@ fbq('track', 'PageView');
     var n = kstNow(), d = ymd(n), dw = n.getUTCDay(), m = nowMin();
     if (dw === 0 || dw === 6 || HOL.indexOf(d) >= 0 || CLOSED[d]) return false;
     if (m < 9 * 60 || m >= 17 * 60 + 30) return false;
+    if (m + 10 >= 13 * 60 && m < 14 * 60) return false; /* 점심 13~14시 · 10분 안 전화가 걸리는 12:50부터 막는다(11/12) */
     var ahead = slotVal(Math.floor(Math.min(m + 10, 17 * 60 + 29) / 30) * 30);
     return !TAKEN[d + " " + nowSlot()] && !TAKEN[d + " " + ahead];
   }
