@@ -37,7 +37,7 @@
     var tagged = !!(p.get("utm_source") || p.get("fbclid") || p.get("gclid"));
     var attrNow = {
       utm_source: p.get("utm_source") || (p.get("fbclid") ? "meta" : p.get("gclid") ? "google" : null),
-      utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"),
+      utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"), utm_term: p.get("utm_term"),
       referrer: outside ? document.referrer.slice(0, 300) : null, landing: location.pathname, at: new Date().toISOString(),
       // 메타 광고 클릭 ID(10/21) · 서버가 _fbc 쿠키가 없을 때 fb.1.{클릭 시각}.{fbclid} 로 만들어 전환 API에 싣는다
       fbclid: p.get("fbclid") ? p.get("fbclid").slice(0, 500) : null
@@ -307,7 +307,7 @@
       var cs = {}, n = now(), k;
       for (k in S.cta_seen) cs[k] = S.cta_seen[k];
       for (k in ctaIn) cs[k] = (cs[k] || 0) + n - ctaIn[k];
-      var u = {}; ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (x) { if (p.get(x)) u[x] = p.get(x).slice(0, 120); });
+      var u = {}; ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (x) { if (p.get(x)) u[x] = p.get(x).slice(0, 120); });
       if (p.get("fbclid")) u.utm_source = u.utm_source || "meta";
       var o = { sid: sid, vid: vid, n: sent + 1, final: final ? 1 : 0, page: location.pathname, device: mobile ? "mobile" : "pc", vw: innerWidth, vh: innerHeight,
         doc_h: document.documentElement.scrollHeight, utm: u, referrer: document.referrer ? document.referrer.slice(0, 300) : null, variant: variant, returning: returning,
