@@ -876,7 +876,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 /* 신청서 실험 1(11/13 · f1) · 1안(f1-b) 간편 신청 카드 · 기본안(f1-a)은 그대로
    1000px 이상: 기본안 카드가 같은 칸에 보이지 않게 남아 높이를 지킨다(왼쪽 설명 칸 · 아래 섹션 위치 · 크기 그대로) · 1안 카드는 그 높이로 늘고 동의 · 신청 버튼 묶음은 카드 아래쪽에 붙는다
    999px 이하: 기본안 카드는 빠지고 1안 카드 자체 높이(빈 자리를 남기지 않음) · 안내 줄은 두 줄 자리를 미리 잡아 글이 떠도 카드 높이가 그대로 */
-.inq-slot{display:grid;min-width:0}
+.inq-slot{display:grid;min-width:0;scroll-margin-top:72px}
 .inq-slot>.inq-card{grid-area:1/1;min-width:0}
 .inq-b{display:none}
 .f1-b .inq-b{display:flex;flex-direction:column}
@@ -1718,6 +1718,18 @@ fbq('track', 'PageView');
       .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken && err.code === "call_now_unavailable") { nowEl.checked = false; loadTaken(syncNow); syncNow(); show("err", "지금은 바로 통화가 어려워요. 통화 받으실 시간을 골라 주세요."); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "우리 가게도 무료로 확인하기"; });
   });
+  // 신청 버튼 → 신청서 카드로 바로(11/13) · 세로 배치(999px 이하)에서는 신청서 구간 맨 위가 설명 · 견본이라 입력 칸이 한 화면 아래에 있었다
+  //   최근 14일 유료 유입 455건: 신청서 구간을 본 308건 중 입력을 시작한 방문은 41건(13%) · 레이아웃은 그대로 두고 버튼을 눌렀을 때 멈추는 위치만 신청서 카드로 바꾼다
+  (function () {
+    var slot = document.querySelector("#inquiry .inq-slot");
+    if (!slot || !slot.scrollIntoView || !window.matchMedia) return;
+    document.addEventListener("click", function (e) {
+      var t = e.target, a = t && t.closest ? t.closest('a[href="#inquiry"]') : null;
+      if (!a || e.defaultPrevented || !matchMedia("(max-width:999px)").matches) return;
+      e.preventDefault();
+      try { slot.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e0) { location.hash = "#inquiry"; }
+    });
+  })();
   // 신청서 실험 1(11/13 · f1-b 1안 · 간편 신청) · 가게 이름 · 휴대폰만 받는다 · 통화 시간은 고르지 않으면 '가장 빠른 시간'
   //   영업시간이고 지금 칸이 비어 있으면 즉시 통화(call_now · 서버가 지금 칸으로 정한다) · 아니면 비어 있는 가장 이른 칸을 보낸다(서버가 통화 칸을 꼭 받는다)
   //   서버가 성함을 꼭 받아서 성함 자리에 '사장'을 보낸다(알림톡이 '사장님,'으로 시작) · 문의 내용 앞 [간편 신청]으로 담당자가 알아본다
