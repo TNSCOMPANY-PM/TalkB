@@ -238,13 +238,25 @@
 { "@context": "https://schema.org", "@type": "WebSite", "@id": "https://talkb.co.kr/#website", "name": "토크비", "alternateName": ["TalkB", "토크비(TalkB)"], "url": "https://talkb.co.kr/", "publisher": { "@id": "https://talkb.co.kr/#org" } }
 </script>
 
-<!-- 제목 A/B(2026-10-07) · 방문자마다 한쪽을 고정(localStorage) · 클릭 계측에 variant 를 싣는다(track.js) -->
+<!-- 제목 A/B(2026-10-07 ~ 11-13) 끝 · 11/13 분석에서 두 제목의 방문 → 신청 차이가 없어 이긴 쪽 없이 기본안(지금 제목)으로 고정 · 실험 칸은 신청서 구간으로 옮김(11/13 대표 승인) -->
+<!-- 신청서 실험 1(f1 · 2026-11-13 ~) · 방문자마다 반반으로 한쪽을 고정한다
+     f1-a 기본안(지금 신청서 그대로) · f1-b 1안(가게 이름 · 휴대폰만 · 통화 시간은 고르지 않으면 가장 빠른 시간 · 버튼 '무료 리포트 받기')
+     보관: localStorage → 막히면 sessionStorage → 둘 다 막히면 이 페이지에서만 · 꼬리표 form_variant 는 track.js 가 방문 기록 · 행동 세션 · 신청서 꼬리표에 싣는다
+     미리보기: 주소 끝에 ?fv=a 또는 ?fv=b (그 기기에 고정됨) -->
 <script>
 (function(){
-  var v = null;
-  try { v = localStorage.getItem("tb_h1v"); if (v !== "a" && v !== "b") { v = Math.random() < 0.5 ? "a" : "b"; localStorage.setItem("tb_h1v", v); } } catch(e) { v = "a"; }
-  document.documentElement.className += " h1-" + v;
-  window.TB_VARIANT = "h1-" + v;
+  var K = "tb_fv", m = /[?&]fv=([ab])(?:[&#]|$)/.exec(location.search), v = null, L = null, S = null;
+  try { L = window.localStorage; } catch (e) {}
+  try { S = window.sessionStorage; } catch (e) {}
+  function get(s) { try { var x = s ? s.getItem(K) : null; return x === "a" || x === "b" ? x : null; } catch (e) { return null; } }
+  function put(s, x) { try { if (!s) return false; s.setItem(K, x); return s.getItem(K) === x; } catch (e) { return false; } }
+  try { if (L) L.removeItem("tb_h1v"); } catch (e) {}
+  v = m ? m[1] : (get(L) || get(S));
+  if (!v) v = Math.random() < 0.5 ? "a" : "b";
+  if (!put(L, v)) put(S, v);
+  document.documentElement.className += " f1-" + v;
+  window.TB_FORM_VARIANT = "f1-" + v;
+  window.TB_EXP = "f1";
 })();
 </script>
 <!-- 광고별 첫 화면(2026-10-26) · 주소의 utm_content가 사례 목록(scripts/references.config.json adCases)과 같으면 첫 화면을 그 가게 사례로 · 읽기만 하고 저장 · 전송은 하지 않는다(utm 저장은 track.js 그대로) -->
@@ -727,9 +739,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .h1 span.l{display:block;white-space:nowrap}
 .h1-kw{display:block;margin-top:16px;max-width:620px;font-size:17px;font-weight:600;letter-spacing:-0.01em;line-height:1.6;color:var(--ink-mid);white-space:normal;word-break:keep-all}
 @media (max-width:640px){.h1-kw{margin-top:12px;font-size:15px}}
-.h1-a .h1 .vb,.h1-b .h1 .va:not(.vad){display:none}
 .h1 .va{font-size:clamp(36px,4.8vw,56px)}
-.h1 .vb{font-size:clamp(30px,4vw,48px)}
 .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .sticky{display:none}
@@ -863,6 +873,22 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .two[data-step="2"] .inq-memo-btn{display:block;width:100%;min-height:44px;margin-top:14px;padding:0 14px;border:1px dashed #D1D6DB;border-radius:12px;background:#fff;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink-mid);text-align:left;cursor:pointer}
 .two .inq-memo:not(.open){display:none!important}
 .two .inq-memo-btn[hidden]{display:none!important}
+/* 신청서 실험 1(11/13 · f1) · 1안(f1-b) 간편 신청 카드 · 기본안(f1-a)은 그대로
+   1000px 이상: 기본안 카드가 같은 칸에 보이지 않게 남아 높이를 지킨다(왼쪽 설명 칸 · 아래 섹션 위치 · 크기 그대로) · 1안 카드는 그 높이로 늘고 동의 · 신청 버튼 묶음은 카드 아래쪽에 붙는다
+   999px 이하: 기본안 카드는 빠지고 1안 카드 자체 높이(빈 자리를 남기지 않음) · 안내 줄은 두 줄 자리를 미리 잡아 글이 떠도 카드 높이가 그대로 */
+.inq-slot{display:grid;min-width:0}
+.inq-slot>.inq-card{grid-area:1/1;min-width:0}
+.inq-b{display:none}
+.f1-b .inq-b{display:flex;flex-direction:column}
+.f1-b #inquiryForm{visibility:hidden}
+@media (max-width:999px){.f1-b #inquiryForm{display:none}}
+.inq-b .inq-f label small{margin-left:6px;font-size:13px;font-weight:600;color:var(--muted)}
+.inq-b .inq-f select{height:52px;padding:0 44px 0 14px;-webkit-appearance:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 5.5 5.5-5.5' fill='none' stroke='%234E5968' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center;cursor:pointer;text-overflow:ellipsis;white-space:nowrap}
+.inq-b .inq-f select:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+.inq-b-end{margin-top:auto}
+.inq-b-help{display:none;margin:8px 0 0;font-size:13.5px;color:var(--muted)}
+@media (min-width:1000px){.inq-b .inq-f{margin-top:20px}.inq-b .inq-f input,.inq-b .inq-f select{height:56px}.inq-b-help{display:block}}
+.inq-b .inq-status{min-height:48px}
 /* 외국어 질문 옵션(11/6 · 캔버스 claude.ai/artifact/7APTQEDvsG5ojqLHn9MWLy) */
 .fx-row th[scope=row]{border-top:2px solid #E5E8EB!important}
 .fx-row td{border-top:2px solid #E5E8EB!important;background:#fff!important;box-shadow:none!important;padding:14px 18px!important}
@@ -1000,8 +1026,6 @@ fbq('track', 'PageView');
 <section class="wrap hero" data-sec="hero">
 <div class="hero-top">
 <h1 class="h1" id="h1"><span class="va"><span class="l">옆 가게는</span> <span class="l">ChatGPT <span style="color: #E85D3A">1순위</span>,</span> <span class="l">사장님 가게는요?</span></span><small class="h1-kw">손님이 AI에 맛집을 물을 때 우리 가게가 나오게 해 드려요. <span style="white-space: nowrap">식당, 카페, 술집 AI 마케팅 토크비</span></small></h1>
-<template id="h1b"><span class="vb"><span class="l">손님이 ChatGPT에</span> <span class="l">동네 맛집을 물으면,</span> <span class="l">사장님 가게가 <span style="color: #E85D3A">나올까요?</span></span></span><small class="h1-kw">손님이 AI에 맛집을 물을 때 우리 가게가 나오게 해 드려요. <span style="white-space: nowrap">식당, 카페, 술집 AI 마케팅 토크비</span></small></template>
-<script>if (window.TB_VARIANT === "h1-b") { document.getElementById("h1").innerHTML = document.getElementById("h1b").innerHTML; }</script>
 <!-- 광고별 제목 · 부제(2026-11-02) · 광고 제목은 vad 표시라 제목 A/B의 b 그룹에서도 보인다(11/3) · 주소의 utm_content가 목록(scripts/references.config.json adHeroes)과 같으면 글자만 바꾼다 · 없거나 다르면 그대로 -->
 <script>
 (function(){
@@ -1265,6 +1289,7 @@ fbq('track', 'PageView');
 </div>
 <script>(function(){var w=document.currentScript.previousElementSibling,tb=w.querySelectorAll(".frs-tabs button"),im=w.querySelectorAll(".frs-view img");[].forEach.call(tb,function(b){b.addEventListener("click",function(){var i=+b.getAttribute("data-i");[].forEach.call(tb,function(x,k){x.setAttribute("aria-selected",k===i?"true":"false")});[].forEach.call(im,function(x,k){x.hidden=k!==i});w.querySelector(".frs-view").scrollTop=0})})})();</script>
 </div>
+<div class="inq-slot">
 <form class="inq-card" id="inquiryForm" novalidate data-clarity-mask="true">
 <h3>무료 리포트 신청</h3>
 <p class="inq-sub">음식점 · 술집 · 카페 사장님이면 남겨 주세요. 담당자가 확인하고 연락드려요.</p>
@@ -1311,6 +1336,21 @@ fbq('track', 'PageView');
 <button type="submit" id="inqSubmit" class="kbtn kbtn-lg fbtn s2" data-track="inquiry-submit">우리 가게도 무료로 확인하기</button>
 <p class="inq-status s2" id="inqStatus" role="status" aria-live="polite"></p>
 </form>
+<!-- 신청서 실험 1 · 1안(f1-b) 간편 신청 · 홈 <head> 가 f1-b 로 정한 방문자만 보인다(CSS .f1-b) · 칸 이름(name)은 기본안과 같게 해 행동 기록이 같은 칸으로 모인다 -->
+<form class="inq-card inq-b" id="inquiryFormB" novalidate data-clarity-mask="true">
+<h3>무료 리포트 신청</h3>
+<p class="inq-sub">가게 이름과 휴대폰 번호만 남겨 주세요.</p>
+<div class="inq-f"><label for="inqb_place">가게 이름 <span class="req">*</span><small>지점이 있으면 지점까지</small></label><input type="text" id="inqb_place" name="inq_place" placeholder="예: 광장동가온 명동성당점" autocomplete="organization" required></div>
+<div class="inq-f"><label for="inqb_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inqb_phone" name="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
+<div class="inq-f"><label for="inqb_when">통화 시간<small>(선택)</small></label><select id="inqb_when" name="inq_when"><option value="asap" selected>가장 빠른 시간에 연락받기</option></select><p class="inq-b-help">고르지 않으시면 가장 빠른 시간에 전화로 결과를 설명드려요.</p></div>
+<div class="inq-b-end">
+<label class="inq-agree"><input type="checkbox" id="inqb_agree" name="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
+<p class="inq-nopay">신청만으로는 결제되지 않아요.</p>
+<button type="submit" id="inqbSubmit" class="kbtn kbtn-lg fbtn" data-track="inquiry-submit">무료 리포트 받기</button>
+<p class="inq-status" id="inqbStatus" role="status" aria-live="polite"></p>
+</div>
+</form>
+</div>
 </div>
 </section>
 
@@ -1514,7 +1554,8 @@ fbq('track', 'PageView');
   // Meta Lead 중복 제거용(2026-10-19) · 같은 event_id를 브라우저 픽셀과 서버 전환 API(app /api/inquiries)가 같이 쓴다.
   // _fbp·_fbc는 talkb.co.kr 쿠키라 app. 서버로 안 넘어가서 직접 싣는다.
   // 유입 경로(2026-10-19) · track.js가 저장한 tb_attr + 방문자 ID · 어드민 퍼널의 유입별 비교에 쓴다
-  function tbAttr() { if (window.TB_ATTR) { try { return window.TB_ATTR(); } catch (e0) {} } try { var a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); try { a.sid = JSON.parse(sessionStorage.getItem("tb_sid") || "null").id; } catch (e1) {} return a; } catch (e) { return null; } }
+  // 신청서 실험(11/13) · 어느 신청서 안에서 보냈는지(form_variant)를 꼬리표에 같이 싣는다
+  function tbAttr() { var a = null; if (window.TB_ATTR) { try { a = window.TB_ATTR(); } catch (e0) {} } if (!a) { try { a = JSON.parse(localStorage.getItem("tb_attr") || "null") || {}; a.visitor_id = localStorage.getItem("tb_vid"); try { a.sid = JSON.parse(sessionStorage.getItem("tb_sid") || "null").id; } catch (e1) {} } catch (e) { a = null; } } if (a && window.TB_FORM_VARIANT) a.form_variant = window.TB_FORM_VARIANT; return a; }
   function tbLeadMeta() { var c = function (k) { var m = document.cookie.match(new RegExp("(?:^|; )" + k + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; }; var id = "lead_" + ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + "_" + Math.random().toString(36).slice(2))); return { event_id: id, fbp: c("_fbp"), fbc: c("_fbc"), url: location.href.split("#")[0].slice(0, 300) }; }
   var API = "https://app.talkb.co.kr/api/inquiries";
   var form = document.getElementById("inquiryForm");
@@ -1674,10 +1715,95 @@ fbq('track', 'PageView');
     btn.disabled = true; btn.textContent = "보내는 중…";
     var lead = tbLeadMeta();
     fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: name, position: v("inq_position"), phone: phone, preferred_call_date: hasCall ? cday : "", preferred_call_slot: hasCall ? ctime : "", call_now: callNow || undefined, inquiry: ((callNow ? "[즉시 통화 요청] 최대한 빨리 연락\n" : (hasCall ? "[희망 통화] " + callText + "\n" : "")) + v("inq_inquiry")).trim() }) })
-      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { return r.json().catch(function () { return {}; }).then(function (j) { var e409 = new Error("taken"); e409.taken = true; e409.code = j && j.code; throw e409; }); } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", callNow ? "신청됐어요. 최대한 빠른 시간에 연락드릴게요." : (hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요.")); form.reset(); fillDays(); syncNow(); if (two) calShow("body"); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
+      .then(function (r) { if (r.status === 422) { return r.json().catch(function () { return {}; }).then(function (j) { var e422 = new Error("not_food"); e422.notFood = (j && j.error) || NOT_FOOD; throw e422; }); } if (r.status === 409) { return r.json().catch(function () { return {}; }).then(function (j) { var e409 = new Error("taken"); e409.taken = true; e409.code = j && j.code; throw e409; }); } if (!r.ok) throw new Error("HTTP " + r.status); show("ok", callNow ? "신청됐어요. 최대한 빠른 시간에 연락드릴게요." : (hasCall ? "신청됐어요. " + callText + "에 연락드릴게요." : "신청됐어요. 영업일 09:00~18:00에 담당자가 연락드릴게요.")); form.reset(); fillDays(); syncNow(); if (two) calShow("body"); try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname, form_variant: window.TB_FORM_VARIANT || null }); } catch (e1) {} try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {} })
       .catch(function (err) { if (err && err.notFood) { show("err", err.notFood); return; } if (err && err.taken && err.code === "call_now_unavailable") { nowEl.checked = false; loadTaken(syncNow); syncNow(); show("err", "지금은 바로 통화가 어려워요. 통화 받으실 시간을 골라 주세요."); return; } if (err && err.taken) { show("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); var td = (calDays.querySelector('[aria-pressed="true"]') || {}).getAttribute; loadTaken(function () { var sel = calDays.querySelector('button[aria-pressed="true"]'); fillTimes(!!(sel && sel.getAttribute("data-today") === "1")); }); return; } show("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요."); })
       .finally(function () { btn.disabled = false; btn.textContent = "우리 가게도 무료로 확인하기"; });
   });
+  // 신청서 실험 1(11/13 · f1-b 1안 · 간편 신청) · 가게 이름 · 휴대폰만 받는다 · 통화 시간은 고르지 않으면 '가장 빠른 시간'
+  //   영업시간이고 지금 칸이 비어 있으면 즉시 통화(call_now · 서버가 지금 칸으로 정한다) · 아니면 비어 있는 가장 이른 칸을 보낸다(서버가 통화 칸을 꼭 받는다)
+  //   서버가 성함을 꼭 받아서 성함 자리에 '사장'을 보낸다(알림톡이 '사장님,'으로 시작) · 문의 내용 앞 [간편 신청]으로 담당자가 알아본다
+  //   기본안 카드는 1안에서 손이 닿지 않게(inert) · 1000px 이상에선 보이지 않게 남아 자리를 지킨다(CSS)
+  (function () {
+    var fb = document.getElementById("inquiryFormB");
+    if (!fb || window.TB_FORM_VARIANT !== "f1-b") return;
+    form.setAttribute("inert", ""); form.setAttribute("aria-hidden", "true");
+    if (fl && "IntersectionObserver" in window) new IntersectionObserver(function (es) { fl.style.visibility = (es[0].isIntersecting && innerWidth <= 640) ? "hidden" : ""; }, { threshold: 0.15 }).observe(fb);
+    var sel = document.getElementById("inqb_when"), agree = document.getElementById("inqb_agree"), sb = document.getElementById("inqbSubmit"), sst = document.getElementById("inqbStatus"), LABEL = sb.textContent;
+    var NOT_FOOD = "지금은 음식점 · 술집 · 카페만 신청받고 있어요. 음식점인데 이 안내가 보이면 카카오톡 상담으로 알려 주세요.";
+    function say(kind, msg) { sst.className = "inq-status " + kind; sst.textContent = msg; }
+    function val(id) { return (document.getElementById(id).value || "").trim(); }
+    function dayLabel(key) { var d = new Date(key + "T00:00:00Z"); return (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일 (" + WD[d.getUTCDay()] + ")"; }
+    function slotText(s) { return hm(s) + " ~ " + hm(s + 30).replace(/^오[전후] /, ""); }
+    function toMin(t) { return +t.slice(0, 2) * 60 + +t.slice(3, 5); }
+    // 비어 있는 칸 · 달력(fillDays · fillTimes)과 같은 규칙: 평일만 · 공휴일 · 막은 날 빼고 · 오늘은 30분 뒤부터 · 전 영업일 18시가 지나면 다음 영업일 9:00 빼고 · 잡힌 칸 빼고
+    function free(maxDays) {
+      var out = [], n = kstNow(), d0 = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate()), today = ymd(new Date(d0)), cut = cutDay(), nm = nowMin(), days = 0;
+      for (var i = 0; i < 31 && days < maxDays; i++) {
+        var d = new Date(d0 + i * 864e5), key = ymd(d), dw = d.getUTCDay(), hit = 0;
+        if (dw === 0 || dw === 6 || HOL.indexOf(key) >= 0 || CLOSED[key]) continue;
+        for (var j = 0; j < SLOTS.length; j++) {
+          if ((key === today && SLOTS[j] < nm + 30) || (key === cut && j === 0) || TAKEN[key + " " + slotVal(SLOTS[j])]) continue;
+          out.push({ day: key, s: SLOTS[j] }); hit = 1;
+        }
+        days += hit;
+      }
+      return out;
+    }
+    // 고르기 칸 · 맨 위 '가장 빠른 시간에 연락받기'(기본) + 앞으로 5영업일의 빈 칸 · 고른 칸이 사라지면 기본으로 · 고르는 중엔 다시 만들지 않는다
+    function fill() {
+      if (document.activeElement === sel) return;
+      var keep = sel.value, today = ymd(kstNow()), g = "", h = '<option value="asap">가장 빠른 시간에 연락받기</option>';
+      free(5).forEach(function (f) {
+        var dl = dayLabel(f.day);
+        if (f.day !== g) { h += (g ? "</optgroup>" : "") + '<optgroup label="' + (f.day === today ? "오늘 · " : "") + dl + '">'; g = f.day; }
+        h += '<option value="' + f.day + " " + slotVal(f.s) + '">' + (f.day === today ? "오늘" : dl) + " " + hm(f.s) + "</option>";
+      });
+      sel.innerHTML = h + (g ? "</optgroup>" : "");
+      sel.value = keep; if (sel.value !== keep) sel.value = "asap";
+    }
+    fill(); loadTaken(fill); setInterval(fill, 60e3);
+    var lead = null, tries = 0;
+    function done() { sb.disabled = false; sb.textContent = LABEL; }
+    fb.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (sb.disabled) return;
+      var place = val("inqb_place"), phone = val("inqb_phone").replace(/\D/g, "");
+      if (!place || !phone) { say("err", "가게 이름과 휴대폰 번호를 적어 주세요."); return; }
+      if (!/^01\d{8,9}$/.test(phone)) { say("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
+      if (/place\.naver\.com\/(hairshop|hospital|accommodation|attraction)\//.test(place)) { say("err", NOT_FOOD); return; }
+      if (!agree.checked) { say("err", "개인정보 수집·이용에 동의해 주세요."); return; }
+      lead = tbLeadMeta(); tries = 0;
+      sb.disabled = true; sb.textContent = "보내는 중…"; say("", "");
+      loadTaken(function () { send(place, phone, false); });
+    });
+    function send(place, phone, noNow) {
+      var w = sel.value, c = null;
+      if (w && w !== "asap") c = { day: w.slice(0, 10), slot: w.slice(11), text: dayLabel(w.slice(0, 10)) + " " + slotText(toMin(w.slice(11))), mine: 1 };
+      else if (!noNow && nowOpen()) c = { now: 1 };
+      else { var f = free(1)[0]; if (f) c = { day: f.day, slot: slotVal(f.s), text: dayLabel(f.day) + " " + slotText(f.s) }; }
+      if (!c) { done(); say("err", "지금 고를 수 있는 통화 시간이 없어요. 카카오톡 상담으로 알려 주세요."); return; }
+      if (c.mine && TAKEN[w]) { done(); fill(); say("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); return; }
+      var memo = c.now ? "[간편 신청 · 가장 빠른 시간] 최대한 빨리 연락" : (c.mine ? "[간편 신청 · 희망 통화] " : "[간편 신청 · 가장 빠른 시간] ") + c.text;
+      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: "사장", position: "", phone: phone, preferred_call_date: c.now ? "" : c.day, preferred_call_slot: c.now ? "" : c.slot, call_now: c.now ? true : undefined, inquiry: memo }) })
+        .then(function (r) {
+          if (r.status === 422) return r.json().catch(function () { return {}; }).then(function (j) { var x = new Error("not_food"); x.notFood = (j && j.error) || NOT_FOOD; throw x; });
+          if (r.status === 409) return r.json().catch(function () { return {}; }).then(function (j) { var x = new Error("taken"); x.taken = true; x.code = j && j.code; throw x; });
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          done(); fb.reset(); fill();
+          say("ok", c.now ? "신청됐어요. 최대한 빠른 시간에 연락드릴게요." : "신청됐어요. " + c.text + "에 연락드릴게요.");
+          try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname, form_variant: window.TB_FORM_VARIANT }); } catch (e1) {}
+          try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {}
+        })
+        .catch(function (err) {
+          // 고르지 않았는데 지금 칸 · 가장 빠른 칸이 그새 막혔으면 칸을 다시 받아 다음 빠른 칸으로 두 번까지 다시 보낸다 · 사장님이 고른 칸은 다시 고르게
+          if (err && err.taken && !c.mine && tries < 2) { tries++; loadTaken(function () { fill(); send(place, phone, true); }); return; }
+          done();
+          if (err && err.notFood) { say("err", err.notFood); return; }
+          if (err && err.taken) { loadTaken(fill); say("err", c.mine ? "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요." : "지금은 통화 칸을 잡지 못했어요. 통화 시간을 골라 주세요."); return; }
+          say("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요.");
+        });
+    }
+  })();
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>

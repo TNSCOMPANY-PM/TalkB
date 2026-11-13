@@ -1,7 +1,8 @@
 /* 토크비 랜딩 공용 계측(2026-10-07 개편) · 홈·인사이트·자료·404 모두 이 파일 하나
    - tb_vid(방문자), tb_team(팀 기기 제외), tb_ref(할인코드 30일)는 종전 규칙 그대로
    - 홈(<script data-home="1">)만 landing_view 를 보낸다 · 퍼널 1단계 = 홈 방문(종전 정의 유지)
-   - 카카오 상담 버튼(pf.kakao.com) 클릭 = kakao_click · props: pos(버튼 위치), page, variant(제목 A/B)
+   - 카카오 상담 버튼(pf.kakao.com) 클릭 = kakao_click · props: pos(버튼 위치), page, variant(제목 A/B · 11/13 끝나 지금은 비어 있음), form_variant(신청서 실험)
+   - 신청서 실험(11/13 · f1) · 홈 <head> 가 정한 안(TB_FORM_VARIANT · f1-a 기본안 · f1-b 1안)을 방문 기록(landing_view) · 클릭 · 행동 세션(form.form_variant) · 신청서 꼬리표(TB_ATTR)에 싣는다
    - 앱 셀프 진단(app.talkb.co.kr/onboard) 클릭 = landing_cta_click(종전 이벤트) + vid·ref 꼬리표
    - 랜딩 행동 세션 요약(10/22) = /api/track/session · 맨 아래 블록 */
 (function () {
@@ -24,6 +25,7 @@
   function isTeam() { try { return localStorage.getItem(TEAM_KEY) === "1"; } catch (e) { return false; } }
   function beacon(payload) { try { if (isTeam()) payload.team = 1; navigator.sendBeacon(API, JSON.stringify(payload)); } catch (e) {} }
   var variant = window.TB_VARIANT || null;
+  var formVariant = window.TB_FORM_VARIANT || null;
 
   // 유입 경로 저장(2026-10-19) · 문의폼이 문의와 함께 보낸다(어느 광고·검색에서 온 문의인지 · 어드민 퍼널 유입별 비교).
   // 광고·검색 꼬리표나 바깥 사이트에서 온 방문만 덮어쓴다 · 나중의 직접 재방문이 광고 유입을 지우지 않게.
@@ -54,13 +56,14 @@
     var src = has(L) ? L : has(S) ? S : has(attrMem) ? attrMem : (L || S || attrMem || {}), a = {};
     for (var k in src) if (Object.prototype.hasOwnProperty.call(src, k)) a[k] = src[k];
     a.visitor_id = vid;
+    if (formVariant) a.form_variant = formVariant;
     // 추천 코드(11/10 · 레퍼럴) · ?ref= 로 30일 기억한 코드 · 담당자가 결제 링크를 만들 때 자동으로 들어간다
     var rc = refCode(); if (rc) a.ref = rc;
     try { var ss = JSON.parse(sessionStorage.getItem("tb_sid") || "null"); if (ss && ss.id) a.sid = ss.id; } catch (e5) {}
     return a;
   };
 
-  if (isHome) beacon({ event: "landing_view", visitor_id: vid, utm_source: p.get("utm_source"), utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"), referrer: document.referrer || null, props: { variant: variant } });
+  if (isHome) beacon({ event: "landing_view", visitor_id: vid, utm_source: p.get("utm_source"), utm_medium: p.get("utm_medium"), utm_campaign: p.get("utm_campaign"), utm_content: p.get("utm_content"), referrer: document.referrer || null, props: { variant: variant, form_variant: formVariant } });
 
   var REF_KEY = "tb_ref", REF_TS = "tb_ref_ts";
   try {
@@ -93,15 +96,15 @@
     var k = t.closest('a[href*="pf.kakao.com"]');
     if (k) {
       var pos = k.getAttribute("data-pos") || "etc";
-      beacon({ event: "kakao_click", visitor_id: vid, props: { pos: pos, page: location.pathname, variant: variant, cta: label(k) } });
-      try { if (window.gtag) gtag("event", "kakao_click", { pos: pos, page_path: location.pathname, variant: variant }); } catch (e1) {}
+      beacon({ event: "kakao_click", visitor_id: vid, props: { pos: pos, page: location.pathname, variant: variant, cta: label(k), form_variant: formVariant } });
+      try { if (window.gtag) gtag("event", "kakao_click", { pos: pos, page_path: location.pathname, variant: variant, form_variant: formVariant }); } catch (e1) {}
       try { if (window.fbq) fbq("track", "Contact"); } catch (e2) {}
       return;
     }
     var a = t.closest('a[href*="app.talkb.co.kr/onboard"]');
     if (a) {
       linkVid(a);
-      beacon({ event: "landing_cta_click", visitor_id: vid, props: { cta: label(a), page: location.pathname, pos: a.getAttribute("data-pos") || null, variant: variant } });
+      beacon({ event: "landing_cta_click", visitor_id: vid, props: { cta: label(a), page: location.pathname, pos: a.getAttribute("data-pos") || null, variant: variant, form_variant: formVariant } });
       try { if (window.gtag) gtag("event", "self_onboard_click", { page_path: location.pathname }); } catch (e3) {}
       try { if (window.fbq) fbq("trackCustom", "CTAClick_FreeDiagnosis"); } catch (e4) {}
     }
@@ -109,7 +112,7 @@
 
   // 중간 행동 3개(2026-10-08 레드팀) · 리타게팅 세분화용 · GA4·Meta 픽셀만, 앱 퍼널에는 보내지 않는다
   function mid(name) {
-    try { if (window.gtag) gtag("event", name, { page_path: location.pathname, variant: variant }); } catch (e) {}
+    try { if (window.gtag) gtag("event", name, { page_path: location.pathname, variant: variant, form_variant: formVariant }); } catch (e) {}
     try { if (window.fbq) fbq("trackCustom", name); } catch (e) {}
   }
   var scrolled = false;
@@ -154,7 +157,7 @@
     if (CLARITY_ID && !isTeam()) {
       (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, "clarity", "script", CLARITY_ID);
       try {
-        clarity("identify", vid || sid, sid); clarity("set", "sid", sid); if (variant) clarity("set", "variant", variant);
+        clarity("identify", vid || sid, sid); clarity("set", "sid", sid); if (variant) clarity("set", "variant", variant); if (formVariant) clarity("set", "form_variant", formVariant);
         // 태그(PLAN-talkb-landing-cro §12-1) · 소재 · 유입 묶음 · 재방문 · 실험 ID 로 녹화를 골라 본다
         if (p.get("utm_content")) clarity("set", "utm_content", p.get("utm_content").slice(0, 80));
         clarity("set", "src", p.get("fbclid") || /meta|facebook|instagram/i.test(p.get("utm_source") || "") ? "meta" : /naver|google|daum|bing/i.test(document.referrer) ? "search" : document.referrer ? "etc" : "direct");
@@ -168,6 +171,8 @@
     var mobile = (window.matchMedia && matchMedia("(pointer: coarse)").matches) || innerWidth <= 640;
     var S = { sections: {}, path: [], clicks: [], hesitations: [], cta_seen: {}, form: { fields: {}, last: null, submitted: false }, faq_open: [], heat: {},
       flags: { rage: 0, dead: 0, exit_intent: 0, copies: [], tab_hidden_ms: 0, backtracks: [], pauses: [] }, max_scroll_pct: 0, exit_section: null };
+    // 신청서 실험 안(11/13) · 서버가 정해진 칸만 저장해서 저장되는 form 칸 안에 싣는다(landing_sessions.form->>'form_variant')
+    if (formVariant) S.form.form_variant = formVariant;
     var secs = [], cur = null, maxIdx = -1, dirty = true, sent = 0, mx = -1, my = -1, mAt = 0, hiddenAt = 0;
     function t() { return now() - T0; }
     function el2name(el) {
@@ -300,7 +305,8 @@
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (en) { var k = el2name(en.target); if (en.isIntersecting) ctaIn[k] = now(); else if (ctaIn[k]) { S.cta_seen[k] = (S.cta_seen[k] || 0) + now() - ctaIn[k]; delete ctaIn[k]; dirty = true; } });
       }, { threshold: 0.5 });
-      [].forEach.call(document.querySelectorAll(CTA), function (b) { io.observe(b); });
+      // 신청서 실험 1안에선 기본안 카드가 보이지 않게(inert) 남아 있어 그 안 버튼은 세지 않는다
+      [].forEach.call(document.querySelectorAll(CTA), function (b) { if (!b.closest || !b.closest("[inert]")) io.observe(b); });
     }
 
     function payload(final) {
@@ -310,7 +316,7 @@
       var u = {}; ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (x) { if (p.get(x)) u[x] = p.get(x).slice(0, 120); });
       if (p.get("fbclid")) u.utm_source = u.utm_source || "meta";
       var o = { sid: sid, vid: vid, n: sent + 1, final: final ? 1 : 0, page: location.pathname, device: mobile ? "mobile" : "pc", vw: innerWidth, vh: innerHeight,
-        doc_h: document.documentElement.scrollHeight, utm: u, referrer: document.referrer ? document.referrer.slice(0, 300) : null, variant: variant, returning: returning,
+        doc_h: document.documentElement.scrollHeight, utm: u, referrer: document.referrer ? document.referrer.slice(0, 300) : null, variant: variant, form_variant: formVariant, returning: returning,
         sections: S.sections, path: S.path, clicks: S.clicks, hesitations: S.hesitations, cta_seen: cs, form: S.form, faq_open: S.faq_open, heat: S.heat,
         flags: S.flags, max_scroll_pct: S.max_scroll_pct, exit_section: S.exit_section };
       if (isTeam()) o.team = 1;
