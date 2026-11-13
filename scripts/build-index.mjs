@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { loadLandingDb, fetchCaseAssets } from "./landing-db.mjs";
 import { writeRss } from "./build-rss.mjs";
 import { buildGuide, writeManifest, readManifest, applySitemap, llmsSection, fillReviews, linkHomeCases } from "./build-posts.mjs";
+import { loadMeasurePlanFields } from "./measure-plan-landing.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(readFileSync(join(ROOT, "data", "references.json"), "utf8"));
@@ -119,6 +120,8 @@ function fill(tplName, outName, transform) {
   writeFileSync(join(ROOT, outName), text);
   console.log(`${outName} 생성`, text.length, "bytes");
 }
+// 측정 플랜(2026-11-13 · data/measure-plan.json) · live 가 false 면 전부 빈 글자(홈 · 요금제 · llms.txt 그대로)
+Object.assign(data, loadMeasurePlanFields(ROOT));
 // 요금제(/pricing/)는 홈과 같은 스타일을 쓴다 · 홈 템플릿의 <style>을 그대로 가져온다
 {
   const home = readFileSync(join(ROOT, "index.template.html"), "utf8");
