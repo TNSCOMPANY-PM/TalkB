@@ -1122,7 +1122,7 @@ fbq('track', 'PageView');
 </div>
 </section>
 
-<!-- 광고별 답변 예시(2026-11-02) · 설정에 실제 답변이 있는 가게만 오른쪽 예시를 그 가게 하나로 · 없으면 기본 예시 그대로 -->
+<!-- 광고별 답변 예시(2026-11-02) · 설정에 실제 답변이 있는 가게만 오른쪽 예시를 그 가게 하나로 · 없으면 기본 예시 그대로 · 조사형(2026-11-16)은 가게 이름 없이 광고의 질문과 실제 답 첫 줄 -->
 <script>
 (function(){
   var f = window.TB_HERO && window.TB_HERO.fig; if (!f) return;
@@ -1132,6 +1132,13 @@ fbq('track', 'PageView');
   var p = document.getElementById("gp0"); p.removeAttribute("role"); p.removeAttribute("aria-labelledby");
   p.querySelector(".gpt-q").textContent = f.question;
   var a = p.querySelector(".gpt-a"), ps = a.querySelectorAll("p");
+  if (f.kind === "survey") { // 조사형(2026-11-16) · 조사 결과를 알리는 광고: 가게 이름 없이 광고에서 본 질문 · 실제 답 첫 줄 · 조사 숫자를 그대로
+    var tx = function (s) { return document.createTextNode(s); }, el = function (t, s, k) { var e = document.createElement(t); e.textContent = s; if (k) e.className = k; return e; };
+    ps[0].textContent = ""; ps[0].appendChild(el("b", f.head)); ps[0].appendChild(document.createElement("br")); ps[0].appendChild(tx(f.answer[0])); ps[0].appendChild(el("mark", f.answer[1])); ps[0].appendChild(tx(f.answer[2]));
+    ps[1].textContent = f.line;
+    var sc = p.querySelector(".gpt-cap"); sc.textContent = ""; sc.appendChild(tx(f.cap[0])); sc.appendChild(el("b", f.cap[1], "tnum")); sc.appendChild(tx(f.cap[2])); if (f.cap[3]) { var nw = el("span", f.cap[3]); nw.style.whiteSpace = "nowrap"; sc.appendChild(nw); }
+    return;
+  }
   ps[0].querySelector("mark").textContent = f.store;
   ps[0].lastChild.textContent = f.answer;
   ps[1].textContent = "2순위: " + f.second + " …";

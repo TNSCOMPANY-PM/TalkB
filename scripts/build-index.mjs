@@ -39,6 +39,12 @@ for (const s of Object.values(data.stores)) {
   const pubHeroes = heroes.map((h) => {
     const pub = Object.fromEntries(Object.entries(h).filter(([k]) => !k.startsWith("_")));
     if (h.fig) {
+      // 조사형(2026-11-16): 고객 가게가 아니라 조사 결과를 알리는 광고 · 가게 이름 없이 질문 · 실제 답 첫 줄 · 캡션을 설정에 적은 그대로 싣는다(측정 횟수를 featured 에서 가져오지 않음)
+      if (h.fig.kind === "survey") {
+        const bad = ["question", "head", "line"].filter((k) => !h.fig[k]);
+        if (bad.length || !Array.isArray(h.fig.answer) || h.fig.answer.length !== 3 || !Array.isArray(h.fig.cap) || h.fig.cap.length < 3 || h.fig.cap.length > 4) { console.error("adHeroes 조사형 fig 빠진 칸:", h.utm, bad.join(", ")); process.exit(1); }
+        return pub;
+      }
       const m = data.featured[h.fig.key];
       if (!m?.runs || !m?.label) { console.error("adHeroes fig 측정값 없음:", h.utm); process.exit(1); }
       pub.fig = { ...h.fig, runs: m.runs, label: m.label };
