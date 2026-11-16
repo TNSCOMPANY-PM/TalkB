@@ -254,6 +254,26 @@
   window.TB_EXP = "f1";
 })();
 </script>
+<!-- 사이트 토비 실험 1(t1 · 2026-11-16 준비) · 방문자 절반은 오른쪽 아래 카톡 단추 대신 상담 챗봇 토비 단추를 본다
+     t1-a 지금 그대로(카톡 단추) · t1-b 토비 단추 · 방문자마다 한쪽 고정 · 묶음은 track.js 가 방문 기록 · 행동 세션의 variant 칸에 싣는다(TB_VARIANT)
+     토비가 닫혀 있으면(앱 공개 스위치 꺼짐 · 4초 안에 응답 없음) 맨 아래 스크립트가 t1-b 를 t1-off 로 바꿔 카톡 단추를 다시 보여 준다
+     보관: localStorage → 막히면 sessionStorage → 둘 다 막히면 이 페이지에서만
+     미리보기: 주소 끝에 ?tv=a 또는 ?tv=b (그 기기에 고정됨) -->
+<script>
+(function(){
+  var K = "tb_tv", m = /[?&]tv=([ab])(?:[&#]|$)/.exec(location.search), v = null, L = null, S = null;
+  try { L = window.localStorage; } catch (e) {}
+  try { S = window.sessionStorage; } catch (e) {}
+  function get(s) { try { var x = s ? s.getItem(K) : null; return x === "a" || x === "b" ? x : null; } catch (e) { return null; } }
+  function put(s, x) { try { if (!s) return false; s.setItem(K, x); return s.getItem(K) === x; } catch (e) { return false; } }
+  v = m ? m[1] : (get(L) || get(S));
+  if (!v) v = Math.random() < 0.5 ? "a" : "b";
+  if (!put(L, v)) put(S, v);
+  document.documentElement.className += " t1-" + v;
+  window.TB_TOBI_VARIANT = "t1-" + v;
+  window.TB_VARIANT = "t1-" + v;
+})();
+</script>
 <!-- 광고별 첫 화면(2026-10-26) · 주소의 utm_content가 사례 목록(scripts/references.config.json adCases)과 같으면 첫 화면을 그 가게 사례로 · 읽기만 하고 저장 · 전송은 하지 않는다(utm 저장은 track.js 그대로) -->
 <script>
 (function(){
@@ -701,6 +721,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .float-qr button{position:absolute;top:4px;right:4px;width:28px;height:28px;border:0;background:transparent;color:var(--muted);font-size:18px;line-height:1;cursor:pointer;border-radius:8px}
 .float-qr button:hover{background:var(--soft)}
 .float-qr.hide{display:none}
+.t1-b .float{display:none}
 .float-kakao{display:inline-flex;align-items:center;gap:8px;min-height:56px;padding:0 20px 0 16px;border-radius:999px;background:var(--kakao);color:#191919;font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(25,31,40,.20)}
 .float-kakao:hover{color:#191919;background:#F5DC00}
 .float-kakao svg{width:26px;height:26px}
@@ -1873,5 +1894,30 @@ fbq('track', 'PageView');
 })();
 </script>
 <script src="/track.js" data-home="1" defer></script>
+<!-- 사이트 토비 단추(실험 t1-b 방문자만) · 앱에 열려 있는지 먼저 묻고(1분 캐시) 열려 있을 때만 위젯을 부른다
+     닫혀 있거나 4초 안에 답이 없으면 카톡 단추로 되돌린다(html 의 t1-b → t1-off) · 위젯은 화면에 떠 있는 단추라 본문 자리를 밀지 않는다 -->
+<script>
+(function(){
+  if (window.TB_TOBI_VARIANT !== "t1-b") return;
+  var done = false, de = document.documentElement;
+  function back() { if (done) return; done = true; de.className = de.className.replace(/(^|\s)t1-b(?=\s|$)/, "$1t1-off"); }
+  var timer = setTimeout(back, 4000);
+  function load(j) {
+    if (done) return; done = true; clearTimeout(timer);
+    window.TALKB_TOBI_CONFIG = { mode: "public", "bottom-mobile": 84, checks: !!(j && j.checks) };
+    var s = document.createElement("script");
+    s.src = "https://app.talkb.co.kr/tobi/widget.js"; s.defer = true;
+    s.setAttribute("data-mode", "public"); s.setAttribute("data-bottom-mobile", "84");
+    s.onerror = function () { done = false; back(); };
+    document.body.appendChild(s);
+  }
+  try {
+    fetch("https://app.talkb.co.kr/api/site-chat/session?status=1", { credentials: "omit" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { if (j && j.open) load(j); else { clearTimeout(timer); back(); } })
+      .catch(function () { clearTimeout(timer); back(); });
+  } catch (e) { clearTimeout(timer); back(); }
+})();
+</script>
 </body>
 </html>
