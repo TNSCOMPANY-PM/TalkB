@@ -245,7 +245,8 @@
      기본안 미리보기: 주소 끝에 ?fv=a (그 화면에서만 · 저장하지 않음) -->
 <script>
 (function(){
-  var m = /[?&]fv=([ab])(?:[&#]|$)/.exec(location.search), v = m ? m[1] : "b";
+  // 11/16 · 기본안 미리보기(?fv=a)도 끝 · 기본안은 통화 시간을 고르는 옛 신청서라 새 흐름(통화 약속 없음)과 맞지 않는다
+  var v = "b";
   try { if (window.localStorage) { window.localStorage.removeItem("tb_h1v"); window.localStorage.removeItem("tb_fv"); } } catch (e) {}
   try { if (window.sessionStorage) window.sessionStorage.removeItem("tb_fv"); } catch (e) {}
   document.documentElement.className += " f1-" + v;
@@ -766,6 +767,7 @@ mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:
 .inq-copy .rp{margin-top:28px}
 .inq-steps{margin-top:20px;background:#fff;border:2px solid var(--accent);border-radius:16px;padding:16px 18px;box-shadow:0 6px 18px rgba(232,93,58,.12)}
 .inq-steps-t{margin:0 0 10px;font-size:15px;font-weight:800;color:var(--deep)}
+.inq-steps-n{font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap}
 .inq-steps ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .inq-steps li{display:flex;align-items:center;gap:10px;font-size:16.5px;font-weight:700;color:var(--ink)}
 .inq-steps li b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center}
@@ -1332,7 +1334,7 @@ fbq('track', 'PageView');
 <div class="inq-copy">
 <p class="eyebrow">음식점 · 술집 · 카페 무료 리포트</p>
 <h2 class="h2">우리 가게가 ChatGPT에 나오는지 먼저 확인해 보세요</h2>
-<div class="inq-steps"><p class="inq-steps-t">신청하면 이렇게 진행돼요</p><ol><li><b aria-hidden="true">1</b>ChatGPT에 질문 20개 무료 측정</li><li><b aria-hidden="true">2</b>토크비 상담사 전화 상담 진행</li><li><b aria-hidden="true">3</b>결과 상담 후 진행 여부 결정</li></ol></div>
+<div class="inq-steps"><p class="inq-steps-t">신청하면 이렇게 진행돼요</p><ol><li><b aria-hidden="true">1</b>ChatGPT에 질문 20개 무료 측정</li><li><b aria-hidden="true">2</b><span>가장 빠른 시간 내에 리포트 발송 <small class="inq-steps-n">(영업일 기준 24시간 내)</small></span></li></ol></div>
 <div class="frs" aria-label="무료 리포트 실제 화면">
 <p class="frs-t">이런 리포트를 받을 수 있어요 <span>가게 이름은 가렸어요</span></p>
 <div class="frs-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-i="0">결과 요약</button><button type="button" role="tab" aria-selected="false" data-i="1">질문별 결과</button><button type="button" role="tab" aria-selected="false" data-i="2">대신 추천된 가게</button></div>
@@ -1393,7 +1395,8 @@ fbq('track', 'PageView');
 <p class="inq-sub">가게 이름과 휴대폰 번호만 남겨 주세요.</p>
 <div class="inq-f"><label for="inqb_place">가게 이름 <span class="req">*</span><small>지점이 있으면 지점까지</small></label><input type="text" id="inqb_place" name="inq_place" placeholder="예: 광장동가온 명동성당점" autocomplete="organization" required></div>
 <div class="inq-f"><label for="inqb_phone">휴대폰 번호 <span class="req">*</span></label><input type="tel" id="inqb_phone" name="inq_phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" required></div>
-<div class="inq-f"><label for="inqb_when">통화 시간<small>(선택)</small></label><select id="inqb_when" name="inq_when"><option value="asap" selected>가장 빠른 시간에 연락받기</option></select><p class="inq-b-help">고르지 않으시면 가장 빠른 시간에 전화로 결과를 설명드려요.</p></div>
+<!-- 11/16 사장 · 통화 시간 칸을 없애고 문의 내용(선택)을 받는다 · 통화 시간은 담당자가 전화해서 어드민에서 잡는다 -->
+<div class="inq-f"><label for="inqb_memo">문의 내용<small>(선택)</small></label><textarea id="inqb_memo" name="inq_memo" rows="3" maxlength="1000" placeholder="궁금한 점이나 매장 상황을 편하게 남겨 주세요."></textarea></div>
 <div class="inq-b-end">
 <label class="inq-agree"><input type="checkbox" id="inqb_agree" name="inq_agree"> <span>개인정보 수집·이용에 동의합니다(필수) · 상담 목적으로만 쓰고 1년 뒤 지웁니다 <a href="/privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
 <p class="inq-nopay">신청만으로는 결제되지 않아요.</p>
@@ -1827,90 +1830,45 @@ fbq('track', 'PageView');
       try { slot.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e0) { location.hash = "#inquiry"; }
     });
   })();
-  // 신청서 실험 1(11/13 · f1-b 1안 · 간편 신청) · 가게 이름 · 휴대폰만 받는다 · 통화 시간은 고르지 않으면 '가장 빠른 시간'
-  //   영업시간이고 지금 칸이 비어 있으면 즉시 통화(call_now · 서버가 지금 칸으로 정한다) · 아니면 비어 있는 가장 이른 칸을 보낸다(서버가 통화 칸을 꼭 받는다)
-  //   서버가 성함을 꼭 받아서 성함 자리에 '사장'을 보낸다(알림톡이 '사장님,'으로 시작) · 문의 내용 앞 [간편 신청]으로 담당자가 알아본다
+  // 간편 신청서(f1-b · 11/16부터 모든 방문자) · 가게 이름 · 휴대폰 · 문의 내용(선택)
+  //   통화 시간은 보내지 않는다(11/16 · 서버가 성함 없으면 '사장'으로 저장 · 알림톡 통화시간은 늘 '가장 빠른 시간')
   //   기본안 카드는 1안에서 손이 닿지 않게(inert) · 1000px 이상에선 보이지 않게 남아 자리를 지킨다(CSS)
   (function () {
     var fb = document.getElementById("inquiryFormB");
     if (!fb || window.TB_FORM_VARIANT !== "f1-b") return;
     form.setAttribute("inert", ""); form.setAttribute("aria-hidden", "true");
     if (fl && "IntersectionObserver" in window) new IntersectionObserver(function (es) { fl.style.visibility = (es[0].isIntersecting && innerWidth <= 640) ? "hidden" : ""; }, { threshold: 0.15 }).observe(fb);
-    var sel = document.getElementById("inqb_when"), agree = document.getElementById("inqb_agree"), sb = document.getElementById("inqbSubmit"), sst = document.getElementById("inqbStatus"), LABEL = sb.textContent;
+    // 11/16 사장 · 통화 약속을 잡지 않는다 · 가게 이름 · 휴대폰 · 문의 내용(선택)만 보내고, 담당자가 리포트를 만든 뒤 전화한다(통화 시간은 어드민에서 잡음)
+    var agree = document.getElementById("inqb_agree"), sb = document.getElementById("inqbSubmit"), sst = document.getElementById("inqbStatus"), LABEL = sb.textContent;
     var NOT_FOOD = "지금은 음식점 · 술집 · 카페만 신청받고 있어요. 음식점인데 이 안내가 보이면 카카오톡 상담으로 알려 주세요.";
     function say(kind, msg) { sst.className = "inq-status " + kind; sst.textContent = msg; }
-    function val(id) { return (document.getElementById(id).value || "").trim(); }
-    function dayLabel(key) { var d = new Date(key + "T00:00:00Z"); return (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일 (" + WD[d.getUTCDay()] + ")"; }
-    function slotText(s) { return hm(s) + " ~ " + hm(s + 30).replace(/^오[전후] /, ""); }
-    function toMin(t) { return +t.slice(0, 2) * 60 + +t.slice(3, 5); }
-    // 비어 있는 칸 · 달력(fillDays · fillTimes)과 같은 규칙: 평일만 · 공휴일 · 막은 날 빼고 · 오늘은 30분 뒤부터 · 전 영업일 18시가 지나면 다음 영업일 9:00 빼고 · 잡힌 칸 빼고
-    function free(maxDays) {
-      var out = [], n = kstNow(), d0 = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate()), today = ymd(new Date(d0)), cut = cutDay(), nm = nowMin(), days = 0;
-      for (var i = 0; i < 31 && days < maxDays; i++) {
-        var d = new Date(d0 + i * 864e5), key = ymd(d), dw = d.getUTCDay(), hit = 0;
-        if (dw === 0 || dw === 6 || HOL.indexOf(key) >= 0 || CLOSED[key]) continue;
-        for (var j = 0; j < SLOTS.length; j++) {
-          if ((key === today && SLOTS[j] < nm + 30) || (key === cut && j === 0) || TAKEN[key + " " + slotVal(SLOTS[j])]) continue;
-          out.push({ day: key, s: SLOTS[j] }); hit = 1;
-        }
-        days += hit;
-      }
-      return out;
-    }
-    // 고르기 칸 · 맨 위 '가장 빠른 시간에 연락받기'(기본) + 앞으로 5영업일의 빈 칸 · 고른 칸이 사라지면 기본으로 · 고르는 중엔 다시 만들지 않는다
-    function fill() {
-      if (document.activeElement === sel) return;
-      var keep = sel.value, today = ymd(kstNow()), g = "", h = '<option value="asap">가장 빠른 시간에 연락받기</option>';
-      free(5).forEach(function (f) {
-        var dl = dayLabel(f.day);
-        if (f.day !== g) { h += (g ? "</optgroup>" : "") + '<optgroup label="' + (f.day === today ? "오늘 · " : "") + dl + '">'; g = f.day; }
-        h += '<option value="' + f.day + " " + slotVal(f.s) + '">' + (f.day === today ? "오늘" : dl) + " " + hm(f.s) + "</option>";
-      });
-      sel.innerHTML = h + (g ? "</optgroup>" : "");
-      sel.value = keep; if (sel.value !== keep) sel.value = "asap";
-    }
-    fill(); loadTaken(fill); setInterval(fill, 60e3);
-    var lead = null, tries = 0;
+    function val(id) { var el = document.getElementById(id); return el ? (el.value || "").trim() : ""; }
     function done() { sb.disabled = false; sb.textContent = LABEL; }
     fb.addEventListener("submit", function (e) {
       e.preventDefault();
       if (sb.disabled) return;
-      var place = val("inqb_place"), phone = val("inqb_phone").replace(/\D/g, "");
+      var place = val("inqb_place"), phone = val("inqb_phone").replace(/\D/g, ""), memo = val("inqb_memo").slice(0, 1000);
       if (!place || !phone) { say("err", "가게 이름과 휴대폰 번호를 적어 주세요."); return; }
       if (!/^01\d{8,9}$/.test(phone)) { say("err", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); return; }
       if (/place\.naver\.com\/(hairshop|hospital|accommodation|attraction)\//.test(place)) { say("err", NOT_FOOD); return; }
       if (!agree.checked) { say("err", "개인정보 수집·이용에 동의해 주세요."); return; }
-      lead = tbLeadMeta(); tries = 0;
+      var lead = tbLeadMeta();
       sb.disabled = true; sb.textContent = "보내는 중…"; say("", "");
-      loadTaken(function () { send(place, phone, false); });
-    });
-    function send(place, phone, noNow) {
-      var w = sel.value, c = null;
-      if (w && w !== "asap") c = { day: w.slice(0, 10), slot: w.slice(11), text: dayLabel(w.slice(0, 10)) + " " + slotText(toMin(w.slice(11))), mine: 1 };
-      else if (!noNow && nowOpen()) c = { now: 1 };
-      else { var f = free(1)[0]; if (f) c = { day: f.day, slot: slotVal(f.s), text: dayLabel(f.day) + " " + slotText(f.s) }; }
-      if (!c) { done(); say("err", "지금 고를 수 있는 통화 시간이 없어요. 카카오톡 상담으로 알려 주세요."); return; }
-      if (c.mine && TAKEN[w]) { done(); fill(); say("err", "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요."); return; }
-      var memo = c.now ? "[간편 신청 · 가장 빠른 시간] 최대한 빨리 연락" : (c.mine ? "[간편 신청 · 희망 통화] " : "[간편 신청 · 가장 빠른 시간] ") + c.text;
-      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, applicant_name: "사장", position: "", phone: phone, preferred_call_date: c.now ? "" : c.day, preferred_call_slot: c.now ? "" : c.slot, call_now: c.now ? true : undefined, inquiry: memo }) })
+      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ meta: lead, attr: tbAttr(), store_name: place, phone: phone, inquiry: memo }) })
         .then(function (r) {
           if (r.status === 422) return r.json().catch(function () { return {}; }).then(function (j) { var x = new Error("not_food"); x.notFood = (j && j.error) || NOT_FOOD; throw x; });
-          if (r.status === 409) return r.json().catch(function () { return {}; }).then(function (j) { var x = new Error("taken"); x.taken = true; x.code = j && j.code; throw x; });
           if (!r.ok) throw new Error("HTTP " + r.status);
-          done(); fb.reset(); fill();
-          say("ok", c.now ? "신청됐어요. 최대한 빠른 시간에 연락드릴게요." : "신청됐어요. " + c.text + "에 연락드릴게요.");
+          done(); fb.reset();
+          say("ok", "신청됐어요. 리포트를 만들어 최대한 빠른 시간에 전화드릴게요.");
           try { if (window.gtag) gtag("event", "inquiry_submit", { page_path: location.pathname, form_variant: window.TB_FORM_VARIANT }); } catch (e1) {}
           try { if (window.fbq) fbq("track", "Lead", {}, { eventID: lead.event_id }); } catch (e2) {}
         })
         .catch(function (err) {
-          // 고르지 않았는데 지금 칸 · 가장 빠른 칸이 그새 막혔으면 칸을 다시 받아 다음 빠른 칸으로 두 번까지 다시 보낸다 · 사장님이 고른 칸은 다시 고르게
-          if (err && err.taken && !c.mine && tries < 2) { tries++; loadTaken(function () { fill(); send(place, phone, true); }); return; }
           done();
           if (err && err.notFood) { say("err", err.notFood); return; }
-          if (err && err.taken) { loadTaken(fill); say("err", c.mine ? "그 시간은 방금 다른 분이 예약했어요. 다른 시간을 골라 주세요." : "지금은 통화 칸을 잡지 못했어요. 통화 시간을 골라 주세요."); return; }
           say("err", "보내지 못했어요. 잠시 뒤 다시 눌러 주세요.");
         });
-    }
+    });
   })();
 })();
 </script>
