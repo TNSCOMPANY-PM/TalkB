@@ -947,7 +947,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 /* 첫 화면 답변 재생 · 질문 입력 → 생각 중 → 답 → 가게 이름 형광펜(자리는 처음부터 잡아 둬 화면이 밀리지 않는다) */
 .gpt-body{position:relative}
 .gp-off{visibility:hidden}
-.gp-in{animation:tb-up 320ms var(--ease) both}
+.gp-in{animation:tb-up 260ms var(--ease) both}
 @keyframes tb-up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .gp-caret{display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:currentColor;animation:tb-blink .9s steps(1) infinite}
 @keyframes tb-blink{50%{opacity:0}}
@@ -956,7 +956,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .gp-dots i{width:7px;height:7px;border-radius:50%;background:#8B95A1;animation:tb-dot .9s ease-in-out infinite}
 .gp-dots i:nth-child(2){animation-delay:.15s}.gp-dots i:nth-child(3){animation-delay:.3s}
 @keyframes tb-dot{0%,100%{opacity:.3;transform:none}50%{opacity:1;transform:translateY(-3px)}}
-mark.gp-sweep{background-color:transparent;background-image:linear-gradient(#FFE58A,#FFE58A);background-repeat:no-repeat;background-size:0% 100%;transition:background-size 520ms var(--ease)}
+mark.gp-sweep{background-color:transparent;background-image:linear-gradient(#FFE58A,#FFE58A);background-repeat:no-repeat;background-size:0% 100%;transition:background-size 420ms var(--ease)}
 mark.gp-sweep.on{background-size:100% 100%}
 @media (prefers-reduced-motion:reduce){.kbtn,.gpt-tabs button,.pc-detail,.pc-go,.sub-cta,.nl,mark.gp-sweep{transition:none}.hdr.open .nav,.gp-in,.gp-caret,.gp-dots i{animation:none}}
 </style>
@@ -1556,19 +1556,19 @@ fbq('track', 'PageView');
     dots.style.top = a.offsetTop + "px"; dots.hidden = true;
     q.textContent = "";
     var caret = document.createElement("span"); caret.className = "gp-caret"; caret.setAttribute("aria-hidden", "true"); q.appendChild(caret);
-    var n = 0;
+    var n = 0, step = Math.max(12, Math.min(30, Math.round(600 / Math.max(1, full.length))));
     (function type(){
       if (p._run !== id) return;
-      if (n < full.length) { q.insertBefore(document.createTextNode(full.charAt(n++)), caret); setTimeout(type, 70); return; }
-      q.textContent = full; dots.hidden = false; setTimeout(answer, 650);
+      if (n < full.length) { q.insertBefore(document.createTextNode(full.charAt(n++)), caret); setTimeout(type, step); return; }
+      q.textContent = full; dots.hidden = false; setTimeout(answer, 300);
     })();
     function reveal(e, d){ setTimeout(function(){ if (p._run !== id) return; e.classList.remove("gp-off"); e.classList.add("gp-in"); }, d); }
     function answer(){
       if (p._run !== id) return;
       dots.hidden = true;
-      ps.forEach(function(e, k){ reveal(e, k * 350); });
-      if (mk) setTimeout(function(){ if (p._run === id) mk.classList.add("on"); }, 220);
-      if (cap) reveal(cap, ps.length * 350 + 250);
+      ps.forEach(function(e, k){ reveal(e, k * 150); });
+      if (mk) setTimeout(function(){ if (p._run === id) mk.classList.add("on"); }, 120);
+      if (cap) reveal(cap, ps.length * 150 + 150);
     }
   }
   window.tbPlayAnswer = play;
