@@ -239,21 +239,15 @@
 </script>
 
 <!-- 제목 A/B(2026-10-07 ~ 11-13) 끝 · 11/13 분석에서 두 제목의 방문 → 신청 차이가 없어 이긴 쪽 없이 기본안(지금 제목)으로 고정 · 실험 칸은 신청서 구간으로 옮김(11/13 대표 승인) -->
-<!-- 신청서 실험 1(f1 · 2026-11-13 ~) · 방문자마다 한쪽을 고정한다 · 새 방문자 배정은 2026-11-16부터 기본안 20% · 간편안 80%(그전까지 반반 · 이미 정해진 방문자는 그대로)
-     f1-a 기본안(지금 신청서 그대로) · f1-b 1안(가게 이름 · 휴대폰만 · 통화 시간은 고르지 않으면 가장 빠른 시간 · 버튼 '무료 리포트 받기')
-     보관: localStorage → 막히면 sessionStorage → 둘 다 막히면 이 페이지에서만 · 꼬리표 form_variant 는 track.js 가 방문 기록 · 행동 세션 · 신청서 꼬리표에 싣는다
-     미리보기: 주소 끝에 ?fv=a 또는 ?fv=b (그 기기에 고정됨) -->
+<!-- 신청서 실험 1(f1 · 2026-11-13 ~ 11-16) 끝 · 2026-11-16 대표 결정 "간편신청서로 적용": 모든 방문자에게 간편 신청서(f1-b · 가게 이름 · 휴대폰만 · 통화 시간은 고르지 않으면 가장 빠른 시간 · 버튼 '무료 리포트 받기')
+     실험 때 기본안(f1-a)으로 정해졌던 방문자도 간편 신청서로 본다 · 꼬리표 form_variant 는 f1-b 그대로 남긴다(track.js 가 방문 기록 · 행동 세션 · 신청서 꼬리표에 싣는다 · 앞 기록과 이어 보려고)
+     끝날 때 숫자(11/13 17:08 ~ 11/16 15:35 · 사람 방문): 기본안 방문 96 · 신청 1 / 간편안 방문 107 · 신청 5
+     기본안 미리보기: 주소 끝에 ?fv=a (그 화면에서만 · 저장하지 않음) -->
 <script>
 (function(){
-  var K = "tb_fv", m = /[?&]fv=([ab])(?:[&#]|$)/.exec(location.search), v = null, L = null, S = null;
-  try { L = window.localStorage; } catch (e) {}
-  try { S = window.sessionStorage; } catch (e) {}
-  function get(s) { try { var x = s ? s.getItem(K) : null; return x === "a" || x === "b" ? x : null; } catch (e) { return null; } }
-  function put(s, x) { try { if (!s) return false; s.setItem(K, x); return s.getItem(K) === x; } catch (e) { return false; } }
-  try { if (L) L.removeItem("tb_h1v"); } catch (e) {}
-  v = m ? m[1] : (get(L) || get(S));
-  if (!v) v = Math.random() < 0.2 ? "a" : "b";
-  if (!put(L, v)) put(S, v);
+  var m = /[?&]fv=([ab])(?:[&#]|$)/.exec(location.search), v = m ? m[1] : "b";
+  try { if (window.localStorage) { window.localStorage.removeItem("tb_h1v"); window.localStorage.removeItem("tb_fv"); } } catch (e) {}
+  try { if (window.sessionStorage) window.sessionStorage.removeItem("tb_fv"); } catch (e) {}
   document.documentElement.className += " f1-" + v;
   window.TB_FORM_VARIANT = "f1-" + v;
   window.TB_EXP = "f1";
