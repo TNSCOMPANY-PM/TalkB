@@ -321,6 +321,11 @@ button.nl-m{border:0;background:none;cursor:pointer;min-width:44px;justify-conte
 .gpt-stack{display:grid}.gpt-stack>.gpt-panel{grid-area:1/1;display:flex;flex-direction:column}.gpt-stack>.gpt-panel[hidden]{display:flex;visibility:hidden}.gpt-stack .gpt-body{flex:1}
 .gpt-cap{padding:14px 20px;background:#FFF6F2;border-top:1px solid #FBD5C6;font-size:14px}
 .gpt-a p+p{margin-top:10px}
+/* 광고별 언어 탭(11/16 D_다국어진단) · 질문 아래 한국어 풀이 · 가게 목록 · 일본어는 띄어쓰기가 없어 글자 단위 줄바꿈(keep-all이면 말풍선이 한 줄로 늘어 모바일 폭이 넓어진다) */
+.gpt-ko{align-self:flex-end;margin:-6px 6px 0;max-width:80%;font-size:12.5px;color:#8B95A1;text-align:right}
+.gpt-q:has(.gp-caret)+.gpt-ko{visibility:hidden}
+.gpt-list p{margin:0;line-height:1.55}.gpt-list p+p{margin-top:8px}
+.gpt [lang=ja]{word-break:normal;line-break:strict;overflow-wrap:anywhere}
 mark{background:#FFE58A;color:#191F28;font-weight:800;border-radius:4px;padding:0 3px}
 .reassure{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:14px;color:var(--muted)}
 .reassure span{display:inline-flex;align-items:center;gap:6px}
@@ -1139,6 +1144,28 @@ fbq('track', 'PageView');
   var c = p.querySelector(".gpt-cap");
   c.childNodes[0].textContent = "같은 질문을 " + f.runs + "번 물었더니 ";
   c.querySelector("b").textContent = f.label;
+})();
+</script>
+
+<!-- 광고별 언어 탭(2026-11-16 · D_다국어진단) · 설정 figTabs가 있으면 업종 탭 자리를 언어 탭(영어 · 일본어)으로 · 가게 이름은 설정에서 가려 온다 · 글자는 textContent로만 넣는다 -->
+<script>
+(function(){
+  var f = window.TB_HERO && window.TB_HERO.figTabs; if (!f || !f.tabs || !f.tabs.length) return;
+  var g = document.querySelector(".hero-fig .gpt"); if (!g) return;
+  var bar = g.querySelector(".gpt-tabs"), stack = g.querySelector(".gpt-stack"); if (!bar || !stack) return;
+  bar.setAttribute("aria-label", "언어 고르기"); bar.textContent = ""; stack.textContent = "";
+  var el = function (tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  f.tabs.forEach(function (t, k) {
+    var b = el("button", null, t.label); b.type = "button"; b.id = "gt" + k; b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "gp" + k); b.setAttribute("aria-selected", k ? "false" : "true"); bar.appendChild(b);
+    var p = el("div", "gpt-panel"); p.id = "gp" + k; p.setAttribute("role", "tabpanel"); p.setAttribute("aria-labelledby", "gt" + k); if (k) p.hidden = true;
+    var body = el("div", "gpt-body"), q = el("p", "gpt-q", t.question); q.lang = t.lang; body.appendChild(q);
+    if (t.ko) body.appendChild(el("p", "gpt-ko", t.ko));
+    var a = el("div", "gpt-a gpt-list"); a.lang = t.lang;
+    (t.items || []).forEach(function (it, i) { var r = el("p"), n = el("b", null, (i + 1) + ". " + it.name); r.appendChild(n); r.appendChild(document.createTextNode(" – " + it.desc)); a.appendChild(r); });
+    body.appendChild(a); p.appendChild(body);
+    var c = el("p", "gpt-cap", f.cap); p.appendChild(c);
+    stack.appendChild(p);
+  });
 })();
 </script>
 

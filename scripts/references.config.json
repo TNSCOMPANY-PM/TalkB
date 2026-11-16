@@ -399,6 +399,61 @@
         ]
       },
       "_source": "11/16 대표 승인 '확인했어 교체해'(강남 회식 횟집 광고도 같은 틀로) · 질문 = 주간 측정 질문 원문 · 가게 = 2026.11.13 04:15 실제 답의 1 · 2번(다미선 강남역점 · 삼해수산 강남본점 · 이름 가림) · 저장본 로그_메모/근거_3개월_1115 · 광고 그림 ad-G04 와 같은 질문 · 가게"
+    },
+    {
+      "utm": "D_다국어진단",
+      "title": [
+        "외국인 손님이",
+        "ChatGPT에 물어도",
+        "우리 가게가 나올까요?"
+      ],
+      "sub": "영어 · 일본어 질문까지 무료로 확인해 드려요",
+      "figTabs": {
+        "cap": "11/16 직접 물어본 답변 · 같은 질문인데 영어와 일본어 답에서 겹친 가게는 1곳뿐이었어요",
+        "tabs": [
+          {
+            "label": "영어",
+            "lang": "en",
+            "question": "I'm visiting Seoul next week. Can you recommend a good Korean BBQ restaurant near Myeongdong for dinner?",
+            "ko": "명동 근처 저녁 먹기 좋은 고깃집 추천해줘",
+            "items": [
+              {
+                "name": "○○○○ Myeongdong Main Store",
+                "desc": "Famous for grilled beef galbi"
+              },
+              {
+                "name": "○○○ Myeongdong",
+                "desc": "Thick-cut, aged pork belly"
+              },
+              {
+                "name": "○○○○ Myeongdong",
+                "desc": "Premium Korean Hanwoo beef"
+              }
+            ]
+          },
+          {
+            "label": "일본어",
+            "lang": "ja",
+            "question": "来週ソウルに行きます。明洞の近くで、夕食におすすめの韓国焼肉のお店を教えてください。",
+            "ko": "명동 근처 저녁 먹기 좋은 고깃집 추천해줘",
+            "items": [
+              {
+                "name": "○○○ 明洞本店",
+                "desc": "豚焼肉ならイチオシ"
+              },
+              {
+                "name": "○○○ BBQ",
+                "desc": "牛肉・高級志向"
+              },
+              {
+                "name": "○○○ 明洞本店",
+                "desc": "初めての韓国焼肉におすすめ"
+              }
+            ]
+          }
+        ]
+      },
+      "_source": "2026-11-16 사장 지시 · 광고 소재(명동 고깃집 영어 · 일본어) 문구 그대로 · 무료진단 매장은 실명 동의 기록이 없어 가게 이름 전부 가림 · 측정 DB(foreign_responses)에는 명동 질문 기록 없음(광고 제작 때 직접 물어본 답변)"
     }
   ],
   "_adCasesComment": "광고별 첫 화면(2026-10-26) · utm = 메타 광고 이름(utm_content) 그대로 · 주소에 이 값이 있으면 홈 첫 화면이 이 사례로 바뀐다 · 없거나 모르는 값이면 지금 첫 화면 · 숫자는 측정 기록에서 확인한 것만(진단 기록 · 월간 리포트) · weekly = 매주 잰 추천 비율(%) · band = 큰 숫자가 가리키는 마지막 구간의 측정 개수 · 소재가 늘면 한 줄 추가하고 build-index.mjs 다시 실행",
