@@ -1,14 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "talkb.vercel.app"
         }
       ],
-      "destination": "https://talkb.co.kr/:path*",
+      "destination": "https://talkb.co.kr/$1",
       "statusCode": 301
     },
     {
