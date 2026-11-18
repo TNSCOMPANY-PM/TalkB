@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-09T02:13:18.410Z",
-  "periodFrom": "2026년 11월 2일",
-  "periodTo": "2026년 11월 6일",
-  "updatedDot": "2026.11.6",
+  "updatedAt": "2026-11-18T05:32:30.189Z",
+  "periodFrom": "2026년 11월 11일",
+  "periodTo": "2026년 11월 17일",
+  "updatedDot": "2026.11.17",
   "stores": {
     "ogong": {
       "key": "ogong",
@@ -10,7 +10,7 @@
       "area": "고양 일산서구",
       "cat": "분식",
       "baselinePct": 0,
-      "nowPct": 88,
+      "nowPct": 85.3,
       "base10": 0,
       "now10": 9,
       "runs": 75
@@ -21,9 +21,9 @@
       "area": "서울 광진구",
       "cat": "한식",
       "baselinePct": 26.7,
-      "nowPct": 81.3,
+      "nowPct": 86.7,
       "base10": 3,
-      "now10": 8,
+      "now10": 9,
       "runs": 75
     },
     "insaeng": {
@@ -32,7 +32,7 @@
       "area": "용인 처인구",
       "cat": "감자탕",
       "baselinePct": 0,
-      "nowPct": 68,
+      "nowPct": 65.3,
       "base10": 0,
       "now10": 7,
       "runs": 75
@@ -43,9 +43,9 @@
       "area": "서울 종로구",
       "cat": "분식",
       "baselinePct": 10,
-      "nowPct": 66.7,
+      "nowPct": 78.7,
       "base10": 1,
-      "now10": 7,
+      "now10": 8,
       "runs": 75
     },
     "donas": {
@@ -54,9 +54,9 @@
       "area": "수원 권선구",
       "cat": "대형 카페",
       "baselinePct": 20,
-      "nowPct": 48,
+      "nowPct": 40,
       "base10": 2,
-      "now10": 5,
+      "now10": 4,
       "runs": 75
     },
     "hansin": {
@@ -86,9 +86,9 @@
     },
     "c1": {
       "runs": 3,
-      "rank1": 3,
-      "label": "3번 모두",
-      "all": true
+      "rank1": 2,
+      "label": "3번 중 2번",
+      "all": false
     },
     "c2": {
       "runs": 3,
@@ -98,14 +98,14 @@
     },
     "c3": {
       "runs": 3,
-      "rank1": 2,
-      "label": "3번 중 2번",
-      "all": false
+      "rank1": 3,
+      "label": "3번 모두",
+      "all": true
     },
     "s1": {
       "runs": 3,
-      "rank1": 2,
-      "label": "3번 중 2번",
+      "rank1": 1,
+      "label": "3번 중 1번",
       "all": false
     },
     "s2": {
@@ -118,7 +118,7 @@
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 66.9,
+    "nowPct": 67.6,
     "base10": 1,
     "now10": 7
   },

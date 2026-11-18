@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 230" width="560" height="230" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">
+<rect width="560" height="230" fill="#fff"/>
+<line x1="44" y1="190" x2="544" y2="190" stroke="#C9CDD2" stroke-width="1"/>
+<text x="36" y="195" font-size="13" fill="#6B7684" text-anchor="end">0%</text>
+<line x1="44" y1="104" x2="544" y2="104" stroke="#E5E8EB" stroke-width="1"/>
+<text x="36" y="109" font-size="13" fill="#6B7684" text-anchor="end">50%</text>
+<line x1="44" y1="18" x2="544" y2="18" stroke="#E5E8EB" stroke-width="1"/>
+<text x="36" y="23" font-size="13" fill="#6B7684" text-anchor="end">100%</text>
+<path d="M44.0,190.0 L67.8,190.0 L91.6,190.0 L115.4,190.0 L139.2,58.1 L163.0,58.1 L186.9,23.7 L210.7,35.2 L234.5,18.0 L258.3,18.0 L282.1,23.7 L305.9,18.0 L329.7,29.5 L353.5,35.2 L377.3,35.2 L401.1,42.1 L425.0,49.0 L448.8,42.1 L472.6,55.8 L496.4,31.8 L520.2,49.0 L544.0,38.6 L544.0,190 L44.0,190 Z" fill="rgba(232,93,58,.12)"/>
+<polyline points="44.0,190.0 67.8,190.0 91.6,190.0 115.4,190.0 139.2,58.1 163.0,58.1 186.9,23.7 210.7,35.2 234.5,18.0 258.3,18.0 282.1,23.7 305.9,18.0 329.7,29.5 353.5,35.2 377.3,35.2 401.1,42.1 425.0,49.0 448.8,42.1 472.6,55.8 496.4,31.8 520.2,49.0 544.0,38.6" fill="none" stroke="#E85D3A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="44" cy="190" r="4.5" fill="#8B95A1" stroke="#fff" stroke-width="2"/>
+<circle cx="544" cy="38.639999999999986" r="5" fill="#E85D3A" stroke="#fff" stroke-width="2"/>
+<text x="44" y="212" font-size="13" fill="#6B7684" text-anchor="start">5월 25일</text>
+<text x="544" y="212" font-size="13" fill="#6B7684" text-anchor="end">10월 19일</text>
+</svg>
