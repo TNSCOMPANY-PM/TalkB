@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-18T05:32:30.189Z",
-  "periodFrom": "2026년 11월 11일",
-  "periodTo": "2026년 11월 17일",
-  "updatedDot": "2026.11.17",
+  "updatedAt": "2026-11-19T00:30:03.161Z",
+  "periodFrom": "2026년 11월 12일",
+  "periodTo": "2026년 11월 19일",
+  "updatedDot": "2026.11.19",
   "stores": {
     "ogong": {
       "key": "ogong",
@@ -32,10 +32,10 @@
       "area": "용인 처인구",
       "cat": "감자탕",
       "baselinePct": 0,
-      "nowPct": 65.3,
+      "nowPct": 64.5,
       "base10": 0,
-      "now10": 7,
-      "runs": 75
+      "now10": 6,
+      "runs": 76
     },
     "sunbi": {
       "key": "sunbi",
@@ -118,7 +118,7 @@
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 67.6,
+    "nowPct": 67.4,
     "base10": 1,
     "now10": 7
   },
