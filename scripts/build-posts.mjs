@@ -670,7 +670,7 @@ ${H.kakao}
 `;
 }
 
-const ORG = { "@type": "Organization", "@id": `${SITE}/#org`, name: "토크비", alternateName: "TalkB", url: `${SITE}/`, logo: `${SITE}/logo.png`, sameAs: ["https://www.instagram.com/talkb.co.kr/", "https://www.threads.com/@talkb.co.kr", "https://www.youtube.com/@talkb_kr", "https://www.facebook.com/1364982746705486", "https://pf.kakao.com/_JxlWTX", "https://www.instagram.com/talkb_official/", "https://www.threads.com/@talkb_official"] };
+const ORG = { "@type": "Organization", "@id": `${SITE}/#org`, name: "토크비", alternateName: "TalkB", url: `${SITE}/`, logo: `${SITE}/logo.png`, sameAs: ["https://www.instagram.com/talkb.co.kr/", "https://www.threads.com/@talkb.co.kr", "https://www.youtube.com/@talkb_kr", "https://blog.naver.com/talkb_kr", "https://www.facebook.com/1364982746705486", "https://pf.kakao.com/_JxlWTX", "https://www.instagram.com/talkb_official/", "https://www.threads.com/@talkb_official"] };
 const absImg = (p) => (p ? (p.startsWith("/") ? SITE + p : p) : `${SITE}/og-image.png?v=5`);
 const chips = (p) => `<span class="g-chip">${VERTICAL_LABEL[p.vertical]}</span><span class="g-chip k">${KIND_LABEL[p.kind] ?? "가이드"}</span>`;
 
