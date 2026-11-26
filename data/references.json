@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-23T00:30:03.516Z",
-  "periodFrom": "2026년 11월 16일",
-  "periodTo": "2026년 11월 20일",
-  "updatedDot": "2026.11.20",
+  "updatedAt": "2026-11-26T00:30:02.815Z",
+  "periodFrom": "2026년 11월 19일",
+  "periodTo": "2026년 11월 26일",
+  "updatedDot": "2026.11.26",
   "stores": {
     "ogong": {
       "key": "ogong",
@@ -10,9 +10,9 @@
       "area": "고양 일산서구",
       "cat": "분식",
       "baselinePct": 0,
-      "nowPct": 85.3,
+      "nowPct": 77.3,
       "base10": 0,
-      "now10": 9,
+      "now10": 8,
       "runs": 75
     },
     "gaon": {
@@ -21,7 +21,7 @@
       "area": "서울 광진구",
       "cat": "한식",
       "baselinePct": 26.7,
-      "nowPct": 86.7,
+      "nowPct": 85.3,
       "base10": 3,
       "now10": 9,
       "runs": 75
@@ -32,9 +32,9 @@
       "area": "용인 처인구",
       "cat": "감자탕",
       "baselinePct": 0,
-      "nowPct": 64,
+      "nowPct": 70.7,
       "base10": 0,
-      "now10": 6,
+      "now10": 7,
       "runs": 75
     },
     "sunbi": {
@@ -43,9 +43,9 @@
       "area": "서울 종로구",
       "cat": "분식",
       "baselinePct": 10,
-      "nowPct": 78.7,
+      "nowPct": 61.3,
       "base10": 1,
-      "now10": 8,
+      "now10": 6,
       "runs": 75
     },
     "donas": {
@@ -54,9 +54,9 @@
       "area": "수원 권선구",
       "cat": "대형 카페",
       "baselinePct": 20,
-      "nowPct": 40,
+      "nowPct": 45.3,
       "base10": 2,
-      "now10": 4,
+      "now10": 5,
       "runs": 75
     },
     "hansin": {
@@ -65,9 +65,9 @@
       "area": "수원 팔달구",
       "cat": "우동·야식",
       "baselinePct": 13.3,
-      "nowPct": 49.3,
+      "nowPct": 40,
       "base10": 1,
-      "now10": 5,
+      "now10": 4,
       "runs": 75
     }
   },
@@ -92,9 +92,9 @@
     },
     "c2": {
       "runs": 3,
-      "rank1": 3,
-      "label": "3번 모두",
-      "all": true
+      "rank1": 1,
+      "label": "3번 중 1번",
+      "all": false
     },
     "c3": {
       "runs": 3,
@@ -110,17 +110,17 @@
     },
     "s2": {
       "runs": 3,
-      "rank1": 3,
-      "label": "3번 모두",
-      "all": true
+      "rank1": 2,
+      "label": "3번 중 2번",
+      "all": false
     }
   },
   "warnings": [],
   "avg": {
     "basePct": 11.7,
-    "nowPct": 67.3,
+    "nowPct": 63.3,
     "base10": 1,
-    "now10": 7
+    "now10": 6
   },
   "storeCount": 6
 }
